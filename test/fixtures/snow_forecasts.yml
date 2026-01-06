@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  resort: one
+  forecast_date: 2026-01-06
+  snowfall_inches: 9.99
+  fetched_at: 2026-01-06 13:20:00
+
+two:
+  resort: two
+  forecast_date: 2026-01-06
+  snowfall_inches: 9.99
+  fetched_at: 2026-01-06 13:20:00

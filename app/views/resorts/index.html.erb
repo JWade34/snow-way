@@ -1,0 +1,65 @@
+<div class="min-h-screen">
+  <!-- Header -->
+  <header class="px-6 py-4 flex items-center justify-between border-b border-slate-800">
+    <%= link_to root_path, class: "text-2xl font-extrabold tracking-tight" do %>
+      <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
+    <% end %>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-8">
+    <!-- Title -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-extrabold mb-2">Powder Rankings</h1>
+      <p class="text-slate-400">North American ski resorts sorted by projected snowfall</p>
+    </div>
+
+    <!-- Sort Controls -->
+    <div class="flex gap-2 mb-6">
+      <%= link_to "Most Snow", resorts_path, class: "px-4 py-2 rounded-lg text-sm font-medium transition #{params[:sort].nil? ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
+      <%= link_to "A-Z", resorts_path(sort: "name"), class: "px-4 py-2 rounded-lg text-sm font-medium transition #{params[:sort] == 'name' ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
+      <%= link_to "By State", resorts_path(sort: "state"), class: "px-4 py-2 rounded-lg text-sm font-medium transition #{params[:sort] == 'state' ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
+    </div>
+
+    <!-- Resort List -->
+    <div class="space-y-3">
+      <% @resorts.each_with_index do |resort, index| %>
+        <%= link_to resort_path(resort.slug), class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-slate-600 rounded-xl p-4 transition" do %>
+          <div class="flex items-center gap-4">
+            <!-- Rank -->
+            <% if params[:sort].nil? %>
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg <%= index < 3 ? 'bg-cyan-500 text-slate-900' : 'bg-slate-700 text-slate-300' %>">
+                <%= index + 1 %>
+              </div>
+            <% end %>
+
+            <!-- Resort Info -->
+            <div class="flex-1">
+              <h3 class="font-bold text-lg"><%= resort.name %></h3>
+              <p class="text-slate-400 text-sm"><%= resort.state_province %>, <%= resort.country %></p>
+            </div>
+
+            <!-- Snow Amount -->
+            <div class="text-right">
+              <p class="text-2xl font-bold text-cyan-400"><%= resort.projected_snowfall_7_day %>"</p>
+              <p class="text-slate-500 text-xs">7-day forecast</p>
+            </div>
+
+            <!-- Arrow -->
+            <div class="text-slate-500">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="mt-8 text-center">
+      <%= link_to root_path, class: "text-slate-400 hover:text-white transition" do %>
+        &larr; Back to Home
+      <% end %>
+    </div>
+  </main>
+</div>

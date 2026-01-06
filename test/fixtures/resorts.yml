@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  slug: MyString
+  latitude: 9.99
+  longitude: 9.99
+  nearest_airport_code: MyString
+  state_province: MyString
+  country: MyString
+  elevation_base: 1
+  elevation_summit: 1
+  website_url: MyString
+
+two:
+  name: MyString
+  slug: MyString
+  latitude: 9.99
+  longitude: 9.99
+  nearest_airport_code: MyString
+  state_province: MyString
+  country: MyString
+  elevation_base: 1
+  elevation_summit: 1
+  website_url: MyString

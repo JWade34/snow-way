@@ -1,0 +1,135 @@
+<div class="min-h-screen">
+  <!-- Header -->
+  <header class="px-6 py-4 flex items-center justify-between border-b border-slate-800">
+    <%= link_to root_path, class: "text-2xl font-extrabold tracking-tight" do %>
+      <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
+    <% end %>
+    <%= link_to resorts_path, class: "text-slate-400 hover:text-white transition text-sm" do %>
+      All Resorts
+    <% end %>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-8">
+    <!-- Resort Header -->
+    <div class="text-center mb-10">
+      <p class="text-slate-500 text-sm uppercase tracking-widest mb-2"><%= @resort.state_province %>, <%= @resort.country %></p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %></h1>
+
+      <!-- Big Snow Number -->
+      <div class="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-cyan-300 mb-2">
+        <%= @resort.projected_snowfall_7_day %><span class="text-4xl">"</span>
+      </div>
+      <p class="text-slate-400">projected in 7 days</p>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-3 gap-4 mb-10">
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
+        <p class="text-2xl font-bold"><%= @resort.nearest_airport_code %></p>
+        <p class="text-slate-400 text-sm">Airport</p>
+      </div>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
+        <p class="text-2xl font-bold"><%= number_with_delimiter(@resort.elevation_summit) %>'</p>
+        <p class="text-slate-400 text-sm">Summit</p>
+      </div>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
+        <p class="text-2xl font-bold"><%= number_with_delimiter(@resort.elevation_base) %>'</p>
+        <p class="text-slate-400 text-sm">Base</p>
+      </div>
+    </div>
+
+    <!-- 7-Day Forecast -->
+    <div class="mb-10">
+      <h2 class="text-xl font-bold mb-4">7-Day Forecast</h2>
+      <div class="grid grid-cols-7 gap-2">
+        <% @daily_forecasts.each do |forecast| %>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-center">
+            <p class="text-slate-400 text-xs mb-1"><%= forecast.forecast_date.strftime("%a") %></p>
+            <p class="text-lg font-bold <%= forecast.snowfall_inches.to_f > 5 ? 'text-cyan-400' : 'text-white' %>">
+              <%= forecast.snowfall_inches.to_f.round(1) %>"
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Book Your Trip -->
+    <div class="mb-10">
+      <h2 class="text-xl font-bold mb-4">Book Your Trip</h2>
+
+      <% departure_date = (Date.today + 2.days).strftime("%Y-%m-%d") %>
+      <% return_date = (Date.today + 5.days).strftime("%Y-%m-%d") %>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <!-- Flights -->
+        <a href="https://www.google.com/travel/flights?q=flights+to+<%= @resort.nearest_airport_code %>+from+<%= departure_date %>+to+<%= return_date %>"
+           target="_blank"
+           rel="noopener"
+           class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-6 transition group">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-lg group-hover:text-cyan-400 transition">Search Flights</h3>
+              <p class="text-slate-400 text-sm">Find flights to <%= @resort.nearest_airport_code %></p>
+            </div>
+            <svg class="w-5 h-5 text-slate-500 group-hover:text-cyan-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Rental Cars -->
+        <a href="https://www.kayak.com/cars/<%= @resort.nearest_airport_code %>/<%= departure_date %>/<%= return_date %>?sort=price_a"
+           target="_blank"
+           rel="noopener"
+           class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-6 transition group">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-lg group-hover:text-cyan-400 transition">Rent a 4x4</h3>
+              <p class="text-slate-400 text-sm">SUV rentals at <%= @resort.nearest_airport_code %></p>
+            </div>
+            <svg class="w-5 h-5 text-slate-500 group-hover:text-cyan-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <p class="text-slate-500 text-sm text-center mt-4">
+        Dates: <%= departure_date %> to <%= return_date %> (adjust on booking site)
+      </p>
+    </div>
+
+    <!-- Resort Website -->
+    <div class="text-center mb-10">
+      <a href="<%= @resort.website_url %>"
+         target="_blank"
+         rel="noopener"
+         class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition">
+        Visit <%= @resort.name %> Website
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Back Links -->
+    <div class="flex justify-center gap-6">
+      <%= link_to root_path, class: "text-slate-400 hover:text-white transition" do %>
+        &larr; Home
+      <% end %>
+      <%= link_to resorts_path, class: "text-slate-400 hover:text-white transition" do %>
+        All Resorts
+      <% end %>
+    </div>
+  </main>
+</div>

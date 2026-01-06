@@ -1,0 +1,83 @@
+<div class="min-h-screen flex flex-col" data-controller="snowflakes">
+  <!-- Snowflakes container -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" data-snowflakes-target="container"></div>
+
+  <!-- Header -->
+  <header class="relative z-10 px-6 py-4 flex items-center justify-between">
+    <h1 class="text-2xl font-extrabold tracking-tight">
+      <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
+    </h1>
+    <nav class="flex gap-4">
+      <%= link_to "Rankings", resorts_path, class: "text-slate-400 hover:text-white transition" %>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pb-20">
+    <% if @top_resort %>
+      <p class="text-slate-400 text-sm uppercase tracking-widest mb-2">Chase the powder</p>
+
+      <h2 class="text-4xl md:text-6xl font-extrabold text-center mb-4">
+        <%= @top_resort.name %>
+      </h2>
+
+      <p class="text-slate-400 mb-8">
+        <%= @top_resort.state_province %>, <%= @top_resort.country %>
+      </p>
+
+      <!-- Big Snow Number -->
+      <div class="relative mb-8">
+        <div class="text-8xl md:text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-cyan-300" data-controller="counter" data-counter-target-value="<%= @top_resort.projected_snowfall_7_day %>">
+          <span data-counter-target="number">0</span><span class="text-5xl">"</span>
+        </div>
+        <p class="text-center text-slate-400 mt-2">projected in 7 days</p>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="flex gap-8 mb-10 text-center">
+        <div>
+          <p class="text-2xl font-bold"><%= @top_resort.nearest_airport_code %></p>
+          <p class="text-slate-400 text-sm">Nearest Airport</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold"><%= number_with_delimiter(@top_resort.elevation_summit) %>'</p>
+          <p class="text-slate-400 text-sm">Summit</p>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 mb-12">
+        <%= link_to resort_path(@top_resort), class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-4 px-8 rounded-xl text-lg transition transform hover:scale-105 text-center" do %>
+          SEND IT
+        <% end %>
+
+        <%= link_to resorts_path, class: "border border-slate-600 hover:border-slate-400 text-white font-semibold py-4 px-8 rounded-xl text-lg transition text-center" do %>
+          Explore All Resorts
+        <% end %>
+      </div>
+
+    <% else %>
+      <div class="text-center">
+        <p class="text-6xl mb-4">:(</p>
+        <h2 class="text-2xl font-bold mb-2">No storms in sight...</h2>
+        <p class="text-slate-400">Check back later for powder alerts!</p>
+      </div>
+    <% end %>
+  </main>
+
+  <!-- Bottom Preview -->
+  <% if @top_resorts.present? %>
+    <section class="relative z-10 px-6 pb-8">
+      <p class="text-slate-500 text-sm uppercase tracking-widest mb-4 text-center">Top 5 Powder Destinations</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <% @top_resorts.each_with_index do |resort, index| %>
+          <%= link_to resort_path(resort), class: "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 rounded-lg px-4 py-2 transition flex items-center gap-2" do %>
+            <span class="text-cyan-400 font-bold"><%= index + 1 %>.</span>
+            <span class="font-medium"><%= resort.name %></span>
+            <span class="text-slate-400"><%= resort.projected_snowfall_7_day %>"</span>
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+</div>
