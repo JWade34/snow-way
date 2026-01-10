@@ -62,6 +62,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  # Pin minitest to avoid compatibility issues with Rails 8
+  gem "minitest", "~> 5.25"
 end
 
 gem "dockerfile-rails", ">= 1.7", group: :development
