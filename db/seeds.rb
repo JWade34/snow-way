@@ -65,7 +65,7 @@ resorts = [
   { name: "Stevens Pass", slug: "stevens-pass", latitude: 47.7448, longitude: -121.0890, nearest_airport_code: "SEA", state_province: "Washington", country: "USA", elevation_base: 4061, elevation_summit: 5845, website_url: "https://www.stevenspass.com" },
 
   # Alaska
-  { name: "Alyeska", slug: "alyeska", latitude: 60.9689, longitude: -149.0981, nearest_airport_code: "ANC", state_province: "Alaska", country: "USA", elevation_base: 250, elevation_summit: 2750, website_url: "https://www.alyeskaresort.com" },
+  { name: "Alyeska", slug: "alyeska", latitude: 60.9689, longitude: -149.0981, nearest_airport_code: "ANC", state_province: "Alaska", country: "USA", elevation_base: 250, elevation_summit: 2750, website_url: "https://www.alyeskaresort.com" }
 ]
 
 puts "Seeding #{resorts.count} resorts..."

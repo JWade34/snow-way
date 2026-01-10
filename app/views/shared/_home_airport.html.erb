@@ -1,0 +1,69 @@
+<div data-controller="geolocation" class="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+  <div class="flex items-center justify-between gap-4">
+    <div>
+      <h3 class="font-bold text-sm">Home Airport</h3>
+      <p class="text-slate-400 text-xs">For personalized flight links</p>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <select 
+        data-geolocation-target="airportSelect"
+        data-action="change->geolocation#selectAirport"
+        class="bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500">
+        <option value="">Select airport...</option>
+        <optgroup label="West Coast">
+          <option value="LAX">LAX - Los Angeles</option>
+          <option value="SFO">SFO - San Francisco</option>
+          <option value="SEA">SEA - Seattle</option>
+          <option value="PDX">PDX - Portland</option>
+          <option value="SAN">SAN - San Diego</option>
+          <option value="OAK">OAK - Oakland</option>
+          <option value="SJC">SJC - San Jose</option>
+          <option value="SMF">SMF - Sacramento</option>
+          <option value="LAS">LAS - Las Vegas</option>
+          <option value="PHX">PHX - Phoenix</option>
+        </optgroup>
+        <optgroup label="Mountain">
+          <option value="DEN">DEN - Denver</option>
+          <option value="SLC">SLC - Salt Lake City</option>
+        </optgroup>
+        <optgroup label="Midwest">
+          <option value="ORD">ORD - Chicago</option>
+          <option value="MSP">MSP - Minneapolis</option>
+          <option value="DTW">DTW - Detroit</option>
+        </optgroup>
+        <optgroup label="South">
+          <option value="DFW">DFW - Dallas</option>
+          <option value="ATL">ATL - Atlanta</option>
+          <option value="MIA">MIA - Miami</option>
+          <option value="AUS">AUS - Austin</option>
+          <option value="CLT">CLT - Charlotte</option>
+        </optgroup>
+        <optgroup label="East Coast">
+          <option value="JFK">JFK - New York</option>
+          <option value="EWR">EWR - Newark</option>
+          <option value="BOS">BOS - Boston</option>
+          <option value="PHL">PHL - Philadelphia</option>
+          <option value="IAD">IAD - Washington DC</option>
+        </optgroup>
+        <optgroup label="Canada">
+          <option value="YVR">YVR - Vancouver</option>
+          <option value="YYC">YYC - Calgary</option>
+          <option value="YEG">YEG - Edmonton</option>
+        </optgroup>
+      </select>
+      
+      <button 
+        data-action="click->geolocation#detect"
+        class="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 px-3 py-2 rounded-lg text-sm transition flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+        Detect
+      </button>
+    </div>
+  </div>
+  
+  <p data-geolocation-target="status" class="text-sm mt-2 text-slate-400"></p>
+</div>

@@ -4,9 +4,10 @@
     <%= link_to root_path, class: "text-2xl font-extrabold tracking-tight" do %>
       <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
     <% end %>
-    <%= link_to resorts_path, class: "text-slate-400 hover:text-white transition text-sm" do %>
-      All Resorts
-    <% end %>
+    <nav class="flex gap-4">
+      <%= link_to "Weather", weather_index_path, class: "text-slate-400 hover:text-white transition text-sm" %>
+      <%= link_to "All Resorts", resorts_path, class: "text-slate-400 hover:text-white transition text-sm" %>
+    </nav>
   </header>
 
   <main class="max-w-4xl mx-auto px-6 py-8">
@@ -41,9 +42,9 @@
     <!-- 7-Day Forecast -->
     <div class="mb-10">
       <h2 class="text-xl font-bold mb-4">7-Day Forecast</h2>
-      <div class="grid grid-cols-7 gap-2">
+      <div class="flex gap-2 overflow-x-auto pb-2">
         <% @daily_forecasts.each do |forecast| %>
-          <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-center">
+          <div class="flex-1 min-w-[4.5rem] bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-center">
             <p class="text-slate-400 text-xs mb-1"><%= forecast.forecast_date.strftime("%a") %></p>
             <p class="text-lg font-bold <%= forecast.snowfall_inches.to_f > 5 ? 'text-cyan-400' : 'text-white' %>">
               <%= forecast.snowfall_inches.to_f.round(1) %>"
@@ -53,54 +54,60 @@
       </div>
     </div>
 
+    <!-- Home Airport Selector -->
+    <div class="mb-6">
+      <%= render "shared/home_airport" %>
+    </div>
+
     <!-- Book Your Trip -->
-    <div class="mb-10">
+    <div class="mb-10" data-controller="geolocation">
       <h2 class="text-xl font-bold mb-4">Book Your Trip</h2>
 
       <% departure_date = (Date.today + 2.days).strftime("%Y-%m-%d") %>
       <% return_date = (Date.today + 5.days).strftime("%Y-%m-%d") %>
 
-      <div class="grid md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-3 gap-3">
         <!-- Flights -->
-        <a href="https://www.google.com/travel/flights?q=flights+to+<%= @resort.nearest_airport_code %>+from+<%= departure_date %>+to+<%= return_date %>"
+        <a href="https://www.kayak.com/flights/-<%= @resort.nearest_airport_code %>/<%= departure_date %>/<%= return_date %>?sort=bestflight_a"
+           data-flight-link="true"
            target="_blank"
            rel="noopener"
-           class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-6 transition group">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-              </svg>
-            </div>
-            <div class="flex-1">
-              <h3 class="font-bold text-lg group-hover:text-cyan-400 transition">Search Flights</h3>
-              <p class="text-slate-400 text-sm">Find flights to <%= @resort.nearest_airport_code %></p>
-            </div>
-            <svg class="w-5 h-5 text-slate-500 group-hover:text-cyan-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+           class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-5 transition group text-center">
+          <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
             </svg>
           </div>
+          <h3 class="font-bold group-hover:text-cyan-400 transition mb-1">Flights</h3>
+          <p class="text-slate-400 text-xs">to <%= @resort.nearest_airport_code %></p>
         </a>
 
         <!-- Rental Cars -->
         <a href="https://www.kayak.com/cars/<%= @resort.nearest_airport_code %>/<%= departure_date %>/<%= return_date %>?sort=price_a"
            target="_blank"
            rel="noopener"
-           class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-6 transition group">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-              </svg>
-            </div>
-            <div class="flex-1">
-              <h3 class="font-bold text-lg group-hover:text-cyan-400 transition">Rent a 4x4</h3>
-              <p class="text-slate-400 text-sm">SUV rentals at <%= @resort.nearest_airport_code %></p>
-            </div>
-            <svg class="w-5 h-5 text-slate-500 group-hover:text-cyan-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+           class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-5 transition group text-center">
+          <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
             </svg>
           </div>
+          <h3 class="font-bold group-hover:text-cyan-400 transition mb-1">Rent a 4x4</h3>
+          <p class="text-slate-400 text-xs">at <%= @resort.nearest_airport_code %></p>
+        </a>
+
+        <!-- Hotels -->
+        <a href="https://www.kayak.com/hotels/<%= @resort.name.parameterize %>/<%= departure_date %>/<%= return_date %>/2guests?sort=distance_a"
+           target="_blank"
+           rel="noopener"
+           class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-5 transition group text-center">
+          <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold group-hover:text-cyan-400 transition mb-1">Hotels</h3>
+          <p class="text-slate-400 text-xs">near resort</p>
         </a>
       </div>
 
