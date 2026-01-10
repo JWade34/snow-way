@@ -24,7 +24,7 @@
     </div>
 
     <!-- Quick Stats -->
-    <div class="grid grid-cols-3 gap-4 mb-10">
+    <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-10">
       <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
         <p class="text-2xl font-bold"><%= @resort.nearest_airport_code %></p>
         <p class="text-slate-400 text-sm">Airport</p>
@@ -66,7 +66,7 @@
       <% departure_date = (Date.today + 2.days).strftime("%Y-%m-%d") %>
       <% return_date = (Date.today + 5.days).strftime("%Y-%m-%d") %>
 
-      <div class="grid grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <!-- Flights -->
         <a href="https://www.kayak.com/flights/-<%= @resort.nearest_airport_code %>/<%= departure_date %>/<%= return_date %>?sort=bestflight_a"
            data-flight-link="true"
