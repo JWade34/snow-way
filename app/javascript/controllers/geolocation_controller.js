@@ -128,16 +128,26 @@ export default class extends Controller {
   }
 
   updateFlightLinks(originCode) {
-    // Update all flight links on the page
-    document.querySelectorAll('a[href*="google.com/travel/flights"]').forEach(link => {
-      const url = new URL(link.href)
-      // Google Flights URL format: flights to DEST from ORIGIN
-      const currentSearch = url.searchParams.get('q') || ''
-      const newSearch = currentSearch.replace(/from\+[A-Z]{3}/, `from+${originCode}`)
-                                     .replace(/from [A-Z]{3}/, `from ${originCode}`)
-      if (newSearch !== currentSearch) {
-        url.searchParams.set('q', newSearch)
-        link.href = url.toString()
+    // Update all Kayak flight links on the page
+    // Format: /flights/ORIGIN-DEST/date/date or /flights/DEST/date/date
+    document.querySelectorAll('a[data-flight-link]').forEach(link => {
+      const destination = link.dataset.destination
+      if (destination) {
+        // Replace the flight path with origin-destination format
+        const url = new URL(link.href)
+        const pathParts = url.pathname.split('/')
+        // pathParts: ['', 'flights', 'DEST or ORIGIN-DEST', 'date', 'date']
+        if (pathParts[1] === 'flights') {
+          pathParts[2] = `${originCode}-${destination}`
+          url.pathname = pathParts.join('/')
+          link.href = url.toString()
+        }
+      }
+
+      // Update the label text
+      const label = link.querySelector('[data-flight-label]')
+      if (label) {
+        label.textContent = `${originCode} to ${link.dataset.destination}`
       }
     })
 

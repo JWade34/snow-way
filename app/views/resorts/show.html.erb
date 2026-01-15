@@ -73,7 +73,7 @@
     </div>
 
     <!-- Book Your Trip -->
-    <div class="mb-10" data-controller="geolocation">
+    <div class="mb-10">
       <h2 class="text-xl font-bold mb-4">Book Your Trip</h2>
 
       <% departure_date = (Date.today + 2.days).strftime("%Y-%m-%d") %>
@@ -81,8 +81,9 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <!-- Flights -->
-        <a href="https://www.kayak.com/flights/-<%= @resort.nearest_airport_code %>/<%= departure_date %>/<%= return_date %>?sort=bestflight_a"
+        <a href="https://www.kayak.com/flights/<%= @resort.nearest_airport_code %>/<%= departure_date %>/<%= return_date %>?sort=bestflight_a"
            data-flight-link="true"
+           data-destination="<%= @resort.nearest_airport_code %>"
            target="_blank"
            rel="noopener"
            class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-5 transition group text-center">
@@ -92,7 +93,7 @@
             </svg>
           </div>
           <h3 class="font-bold group-hover:text-cyan-400 transition mb-1">Flights</h3>
-          <p class="text-slate-400 text-xs">to <%= @resort.nearest_airport_code %></p>
+          <p class="text-slate-400 text-xs" data-flight-label>to <%= @resort.nearest_airport_code %></p>
         </a>
 
         <!-- Rental Cars -->
