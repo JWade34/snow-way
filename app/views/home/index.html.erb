@@ -26,6 +26,14 @@
         <%= @top_resort.state_province %>, <%= @top_resort.country %>
       </p>
 
+      <!-- Recent Snowfall Badge -->
+      <% if @top_resort.recent_snowfall_48h > 0 %>
+        <div class="bg-amber-500/20 border border-amber-500/30 rounded-lg px-4 py-2 mb-6">
+          <span class="text-amber-400 font-bold"><%= @top_resort.recent_snowfall_48h %>"</span>
+          <span class="text-slate-400 text-sm">fresh in 48h</span>
+        </div>
+      <% end %>
+
       <!-- Big Snow Number -->
       <div class="relative mb-8">
         <div class="text-8xl md:text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-cyan-300" data-controller="counter" data-counter-target-value="<%= @top_resort.projected_snowfall_7_day %>">
@@ -75,7 +83,11 @@
           <%= link_to resort_path(resort), class: "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 rounded-lg px-4 py-2 transition flex items-center gap-2" do %>
             <span class="text-cyan-400 font-bold"><%= index + 1 %>.</span>
             <span class="font-medium"><%= resort.name %></span>
-            <span class="text-slate-400"><%= resort.projected_snowfall_7_day %>"</span>
+            <% if resort.recent_snowfall_48h > 0 %>
+              <span class="text-amber-400"><%= resort.recent_snowfall_48h %>"</span>
+              <span class="text-slate-600">/</span>
+            <% end %>
+            <span class="text-cyan-400"><%= resort.projected_snowfall_7_day %>"</span>
           <% end %>
         <% end %>
       </div>

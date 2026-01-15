@@ -5,6 +5,8 @@ class ResortsController < ApplicationController
       Resort.order(:name)
     when "state"
       Resort.order(:state_province, :name)
+    when "recent"
+      Resort.by_recent_snow
     else
       Resort.by_most_snow
     end

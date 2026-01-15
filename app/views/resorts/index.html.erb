@@ -15,10 +15,11 @@
     </div>
 
     <!-- Sort Controls -->
-    <div class="flex gap-2 mb-6">
-      <%= link_to "Most Snow", resorts_path, class: "px-4 py-2 rounded-lg text-sm font-medium transition #{params[:sort].nil? ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
-      <%= link_to "A-Z", resorts_path(sort: "name"), class: "px-4 py-2 rounded-lg text-sm font-medium transition #{params[:sort] == 'name' ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
-      <%= link_to "By State", resorts_path(sort: "state"), class: "px-4 py-2 rounded-lg text-sm font-medium transition #{params[:sort] == 'state' ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
+    <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+      <%= link_to "Most Snow", resorts_path, class: "px-4 py-2 rounded-lg text-sm font-medium transition whitespace-nowrap #{params[:sort].nil? ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
+      <%= link_to "Recent", resorts_path(sort: "recent"), class: "px-4 py-2 rounded-lg text-sm font-medium transition whitespace-nowrap #{params[:sort] == 'recent' ? 'bg-amber-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
+      <%= link_to "A-Z", resorts_path(sort: "name"), class: "px-4 py-2 rounded-lg text-sm font-medium transition whitespace-nowrap #{params[:sort] == 'name' ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
+      <%= link_to "By State", resorts_path(sort: "state"), class: "px-4 py-2 rounded-lg text-sm font-medium transition whitespace-nowrap #{params[:sort] == 'state' ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
     </div>
 
     <!-- Resort List -->
@@ -41,6 +42,9 @@
 
             <!-- Snow Amount -->
             <div class="text-right">
+              <% if resort.recent_snowfall_48h > 0 %>
+                <p class="text-sm font-bold text-amber-400"><%= resort.recent_snowfall_48h %>" <span class="text-slate-500 font-normal">48h</span></p>
+              <% end %>
               <p class="text-2xl font-bold text-cyan-400"><%= resort.projected_snowfall_7_day %>"</p>
               <p class="text-slate-500 text-xs">7-day forecast</p>
             </div>

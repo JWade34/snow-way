@@ -13,10 +13,27 @@ class Resort < ApplicationRecord
       .round(1)
   end
 
+  # Get total snowfall from past 48 hours (yesterday and day before)
+  def recent_snowfall_48h
+    snow_forecasts
+      .where(forecast_date: 2.days.ago.to_date..Date.yesterday)
+      .sum(:snowfall_inches)
+      .to_f
+      .round(1)
+  end
+
   # Scope to order by most snow projected
   scope :by_most_snow, -> {
     left_joins(:snow_forecasts)
       .where(snow_forecasts: { forecast_date: Date.today..7.days.from_now })
+      .group(:id)
+      .order(Arel.sql("COALESCE(SUM(snow_forecasts.snowfall_inches), 0) DESC"))
+  }
+
+  # Scope to order by most recent snowfall (past 48 hours)
+  scope :by_recent_snow, -> {
+    left_joins(:snow_forecasts)
+      .where(snow_forecasts: { forecast_date: 2.days.ago.to_date..Date.yesterday })
       .group(:id)
       .order(Arel.sql("COALESCE(SUM(snow_forecasts.snowfall_inches), 0) DESC"))
   }

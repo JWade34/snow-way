@@ -39,6 +39,19 @@
       </div>
     </div>
 
+    <!-- Recent Snowfall -->
+    <% if @resort.recent_snowfall_48h > 0 %>
+      <div class="mb-10">
+        <div class="bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-xl p-6 text-center">
+          <p class="text-amber-400 text-sm uppercase tracking-widest mb-2">Last 48 Hours</p>
+          <p class="text-5xl font-extrabold text-white mb-1">
+            <%= @resort.recent_snowfall_48h %><span class="text-3xl">"</span>
+          </p>
+          <p class="text-slate-400 text-sm">of fresh snow</p>
+        </div>
+      </div>
+    <% end %>
+
     <!-- 7-Day Forecast -->
     <div class="mb-10">
       <h2 class="text-xl font-bold mb-4">7-Day Forecast</h2>

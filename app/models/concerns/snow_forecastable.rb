@@ -16,9 +16,10 @@ module SnowForecastable
         latitude: resort.latitude,
         longitude: resort.longitude,
         elevation: summit_meters,
-        daily: "precipitation_sum,temperature_2m_mean",
+        daily: "precipitation_sum,temperature_2m_mean,snowfall_sum",
         timezone: "auto",
-        forecast_days: 7
+        forecast_days: 7,
+        past_days: 2
       )
 
       response = Net::HTTP.get_response(uri)
@@ -30,12 +31,19 @@ module SnowForecastable
       return [] unless daily && daily["time"] && daily["precipitation_sum"]
 
       daily["time"].each_with_index.map do |date_str, i|
-        precip_mm = daily["precipitation_sum"][i] || 0
-        temp_c = daily["temperature_2m_mean"][i] || 0
+        # Prefer snowfall_sum from API (in cm), fall back to calculation
+        snowfall_cm = daily["snowfall_sum"]&.dig(i)
+        if snowfall_cm && snowfall_cm > 0
+          snowfall_inches = (snowfall_cm * 0.393701).round(1)
+        else
+          precip_mm = daily["precipitation_sum"][i] || 0
+          temp_c = daily["temperature_2m_mean"][i] || 0
+          snowfall_inches = calculate_snowfall(precip_mm, temp_c)
+        end
 
         {
           forecast_date: Date.parse(date_str),
-          snowfall_inches: calculate_snowfall(precip_mm, temp_c)
+          snowfall_inches: snowfall_inches
         }
       end
     rescue StandardError => e
@@ -74,14 +82,12 @@ module SnowForecastable
       forecasts = fetch_forecasts_from_api(resort)
       return if forecasts.empty?
 
-      # Delete old forecasts for this resort
-      resort.snow_forecasts.where(forecast_date: Date.today..).delete_all
+      # Delete forecasts from 2 days ago through future (covers past + forecast window)
+      resort.snow_forecasts.where(forecast_date: 2.days.ago.to_date..).delete_all
 
-      # Insert new forecasts
+      # Insert all forecasts (past and future)
       forecasts.each do |forecast_data|
-        resort.snow_forecasts.find_or_create_by(forecast_date: forecast_data[:forecast_date]) do |f|
-          f.snowfall_inches = forecast_data[:snowfall_inches]
-        end
+        resort.snow_forecasts.create!(forecast_data)
       end
 
       Rails.logger.info "Updated forecasts for #{resort.name}: #{forecasts.sum { |f| f[:snowfall_inches] }}\" total"
