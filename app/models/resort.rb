@@ -4,6 +4,11 @@ class Resort < ApplicationRecord
   validates :name, :slug, :latitude, :longitude, :nearest_airport_code, presence: true
   validates :slug, uniqueness: true
 
+  # Use slug in URLs instead of id
+  def to_param
+    slug
+  end
+
   # Get total projected snowfall for next 7 days
   def projected_snowfall_7_day
     snow_forecasts
