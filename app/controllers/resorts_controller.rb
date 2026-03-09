@@ -14,6 +14,6 @@ class ResortsController < ApplicationController
 
   def show
     @resort = Resort.find_by(slug: params[:id]) || Resort.find(params[:id])
-    @daily_forecasts = @resort.snow_forecasts.where(forecast_date: Date.today..7.days.from_now).order(:forecast_date)
+    @daily_forecasts = @resort.snow_forecasts.where(forecast_date: Date.today..(Date.today + 7)).order(:forecast_date)
   end
 end
