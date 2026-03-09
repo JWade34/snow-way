@@ -84,3 +84,13 @@ module SnowForecastable
 
       # Delete forecasts from 2 days ago through future (covers past + forecast window)
       resort.snow_forecasts.where(forecast_date: 2.days.ago.to_date..).delete_all
+
+      # Insert all forecasts (past and future)
+      forecasts.each do |forecast_data|
+        resort.snow_forecasts.create!(forecast_data)
+      end
+
+      Rails.logger.info "Updated forecasts for #{resort.name}: #{forecasts.sum { |f| f[:snowfall_inches] }}\" total"
+    end
+  end
+end
