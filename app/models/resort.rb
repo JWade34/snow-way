@@ -12,7 +12,7 @@ class Resort < ApplicationRecord
   # Get total projected snowfall for next 7 days
   def projected_snowfall_7_day
     snow_forecasts
-      .where(forecast_date: Date.today..7.days.from_now)
+      .where(forecast_date: Date.today..(Date.today + 7))
       .sum(:snowfall_inches)
       .to_f
       .round(1)
@@ -30,7 +30,7 @@ class Resort < ApplicationRecord
   # Scope to order by most snow projected
   scope :by_most_snow, -> {
     left_joins(:snow_forecasts)
-      .where(snow_forecasts: { forecast_date: Date.today..7.days.from_now })
+      .where(snow_forecasts: { forecast_date: Date.today..(Date.today + 7) })
       .group(:id)
       .order(Arel.sql("COALESCE(SUM(snow_forecasts.snowfall_inches), 0) DESC"))
   }
