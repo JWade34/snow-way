@@ -1,3 +1,6 @@
+<% content_for(:title, "Live Ski Resort Weather Conditions — Snow Way") %>
+<% content_for(:description, "Current weather at top powder destinations. Real-time temperature, wind, snow depth, and snowfall conditions at North American ski resorts.") %>
+
 <div class="min-h-screen">
   <!-- Header -->
   <header class="px-6 py-4 flex items-center justify-between border-b border-slate-800">
@@ -98,17 +101,7 @@
 
     <!-- Data Source -->
     <p class="text-slate-600 text-xs text-center mt-6">
-      Weather data from Open-Meteo.com • Updated in real-time
+      Weather data from Open-Meteo.com
     </p>
-
-    <!-- Back Links -->
-    <div class="flex justify-center gap-6 mt-8">
-      <%= link_to root_path, class: "text-slate-400 hover:text-white transition" do %>
-        &larr; Home
-      <% end %>
-      <%= link_to resorts_path, class: "text-slate-400 hover:text-white transition" do %>
-        All Resorts
-      <% end %>
-    </div>
   </main>
 </div>

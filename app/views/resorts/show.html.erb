@@ -1,3 +1,32 @@
+<% content_for(:title, "#{@resort.name} Snow Forecast — Snow Way") %>
+<% content_for(:description, "#{@resort.name} has #{@resort.projected_snowfall_7_day}\" of snow projected in the next 7 days. #{@resort.state_province}, #{@resort.country} — summit #{number_with_delimiter(@resort.elevation_summit)}'.") %>
+
+<% content_for(:head) do %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SkiResort",
+    "name": "<%= j @resort.name %>",
+    "url": "https://snowway.app/resorts/<%= @resort.slug %>",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": <%= @resort.latitude %>,
+      "longitude": <%= @resort.longitude %>
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "<%= j @resort.state_province %>",
+      "addressCountry": "<%= j @resort.country %>"
+    },
+    "elevation": {
+      "@type": "QuantitativeValue",
+      "value": <%= @resort.elevation_summit %>,
+      "unitCode": "FOT"
+    }
+  }
+  </script>
+<% end %>
+
 <div class="min-h-screen">
   <!-- Header -->
   <header class="px-6 py-4 flex items-center justify-between border-b border-slate-800">
@@ -141,16 +170,6 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
         </svg>
       </a>
-    </div>
-
-    <!-- Back Links -->
-    <div class="flex justify-center gap-6">
-      <%= link_to root_path, class: "text-slate-400 hover:text-white transition" do %>
-        &larr; Home
-      <% end %>
-      <%= link_to resorts_path, class: "text-slate-400 hover:text-white transition" do %>
-        All Resorts
-      <% end %>
     </div>
   </main>
 </div>

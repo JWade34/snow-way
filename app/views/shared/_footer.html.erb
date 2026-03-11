@@ -1,0 +1,50 @@
+<footer class="relative z-10 border-t border-slate-800 mt-16">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div>
+        <%= link_to root_path, class: "text-2xl font-extrabold tracking-tight inline-block mb-3" do %>
+          <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
+        <% end %>
+        <p class="text-slate-400 text-sm">Chase the powder. Find the ski resort getting the most snow.</p>
+      </div>
+
+      <!-- Explore -->
+      <div>
+        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Explore</h3>
+        <ul class="space-y-2">
+          <li><%= link_to "All Resorts", resorts_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Live Weather", weather_index_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Powder Rankings", resorts_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
+        </ul>
+      </div>
+
+      <!-- About -->
+      <div>
+        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">About</h3>
+        <ul class="space-y-2">
+          <li><a href="https://justinmckelvey.com" target="_blank" rel="noopener" class="text-slate-400 hover:text-white transition text-sm">justinmckelvey.com</a></li>
+          <li><a href="https://github.com/justinmckelvey" target="_blank" rel="noopener" class="text-slate-400 hover:text-white transition text-sm">GitHub</a></li>
+        </ul>
+      </div>
+
+      <!-- Tip Jar -->
+      <div>
+        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Support</h3>
+        <a href="https://buy.stripe.com/fZuaEY4VR8wi4ldfoG6Ri05"
+           target="_blank"
+           rel="noopener"
+           class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 text-slate-900 font-bold py-3 px-5 rounded-xl text-sm transition transform hover:scale-105">
+          Buy me a lift ticket
+        </a>
+        <p class="text-slate-500 text-xs mt-2">Help keep the forecasts running</p>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-slate-500 text-xs">&copy; <%= Date.today.year %> Snow Way. Weather data from <a href="https://open-meteo.com" target="_blank" rel="noopener" class="hover:text-slate-400 transition">Open-Meteo</a>.</p>
+      <p class="text-slate-600 text-xs">Made with fresh powder in mind.</p>
+    </div>
+  </div>
+</footer>

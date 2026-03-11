@@ -1,3 +1,34 @@
+<% content_for(:title, "Snow Way — Which Ski Resort Is Getting the Most Snow?") %>
+<% if @top_resort %>
+  <% content_for(:description, "#{@top_resort.name} leads with #{@top_resort.projected_snowfall_7_day}\" of snow projected in the next 7 days. Find the best powder conditions at North American ski resorts.") %>
+<% else %>
+  <% content_for(:description, "Find the ski resort getting the most snow in the next 7 days. Real-time powder forecasts for North American ski resorts.") %>
+<% end %>
+
+<% if @top_resorts.present? %>
+  <% content_for(:head) do %>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Top Powder Destinations",
+      "description": "North American ski resorts ranked by projected snowfall in the next 7 days",
+      "numberOfItems": <%= @top_resorts.size %>,
+      "itemListElement": [
+        <% @top_resorts.each_with_index do |resort, index| %>
+        {
+          "@type": "ListItem",
+          "position": <%= index + 1 %>,
+          "name": "<%= j resort.name %>",
+          "url": "https://snowway.app/resorts/<%= resort.slug %>"
+        }<%= index < @top_resorts.size - 1 ? ',' : '' %>
+        <% end %>
+      ]
+    }
+    </script>
+  <% end %>
+<% end %>
+
 <div class="min-h-screen flex flex-col" data-controller="snowflakes">
   <!-- Snowflakes container -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" data-snowflakes-target="container"></div>
