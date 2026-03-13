@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # Redirect www to bare domain
+  constraints(host: "www.snowway.app") do
+    match "(*any)", to: redirect(subdomain: "", path: "/%{any}"), via: :all
+    root to: redirect(subdomain: ""), via: :all
+  end
+
   root "home#index"
 
   resources :resorts, only: [ :index, :show ]
