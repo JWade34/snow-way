@@ -5,6 +5,28 @@
   <% content_for(:description, "Find the ski resort getting the most snow in the next 7 days. Real-time powder forecasts for North American ski resorts.") %>
 <% end %>
 
+<% content_for(:head) do %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Snow Way",
+    "url": "https://snowway.app",
+    "description": "Find the ski resort getting the most snow in the next 7 days. Chase the powder with one tap.",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Web",
+    "author": {
+      "@type": "Person",
+      "@id": "https://justinmckelvey.com/#person",
+      "name": "Justin McKelvey",
+      "url": "https://justinmckelvey.com",
+      "sameAs": ["https://www.linkedin.com/in/justinmckelvey"]
+    },
+    "creator": { "@id": "https://justinmckelvey.com/#person" }
+  }
+  </script>
+<% end %>
+
 <% if @top_resorts.present? %>
   <% content_for(:head) do %>
     <script type="application/ld+json">
