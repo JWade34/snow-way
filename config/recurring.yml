@@ -22,4 +22,4 @@ production:
   refresh_snow_forecasts:
     class: RefreshSnowForecastsJob
     queue: default
-    schedule: every day at 6am
+    schedule: every 6 hours
