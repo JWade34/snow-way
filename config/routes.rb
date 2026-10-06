@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :weather, only: [ :index ]
 
   # Refresh forecast data
-  post "refresh_forecasts", to: "weather#refresh"
 
   get "sitemap.xml" => "sitemaps#index", defaults: { format: :xml }
 
