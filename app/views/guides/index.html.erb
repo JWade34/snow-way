@@ -1,0 +1,21 @@
+<% content_for(:title, "Ski Guides: How to Ski, What to Wear & Packing | Snow Way") %>
+<% content_for(:description, "Practical ski guides for beginners and powder chasers: how to ski, what to wear, a ski trip packing list, renting vs buying gear, and planning around the forecast.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [ breadcrumb_schema([ [ "Guides", nil ] ]),
+        { "@type" => "ItemList", "itemListElement" => @guides.each_with_index.map { |g, i| { "@type" => "ListItem", "position" => i + 1, "name" => g.title, "url" => absolute_url("/guides/#{g.slug}") } } } ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski guides</h1>
+    <p class="text-slate-300 mb-8">Straight answers for planning a ski trip, from your first lesson to chasing a storm.</p>
+    <ul class="space-y-3">
+      <% @guides.each do |g| %>
+        <li><%= link_to guide_path(g), class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-5 transition" do %>
+          <h2 class="font-bold text-lg mb-1"><%= g.title %></h2><p class="text-slate-300 text-sm"><%= g.description %></p>
+        <% end %></li>
+      <% end %>
+    </ul>
+  </main>
+</div>

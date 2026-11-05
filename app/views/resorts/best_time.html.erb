@@ -1,0 +1,67 @@
+<% share = (@resort.monthly_snow_share || {}).transform_keys(&:to_i) %>
+<% months = (1..12).map { |m| [ m, share[m].to_f ] } %>
+<% top3 = @resort.snowiest_months(3) %>
+<% month_name = ->(m) { Date::MONTHNAMES[m] } %>
+<% season = months.rotate(6).select { |_, v| v >= 5 }.map(&:first) %>
+<% dec_share = months.find { |m, _| m == 12 }[1] %>
+<% faqs = [] %>
+<% if top3.any? %>
+  <% faqs << { question: "What is the best time to ski #{@resort.name}?", answer: "For the best snow, ski #{@resort.name} in #{top3.map { |m, _| month_name.(m) }.to_sentence}. Those months bring #{top3.sum { |_, v| v }.round}% of a typical season's snowfall at the summit, based on 10 seasons of modeled weather data (2015–2025)." } %>
+  <% faqs << { question: "What is the snowiest month at #{@resort.name}?", answer: "#{month_name.(top3.first[0])} is typically the snowiest month at #{@resort.name}, with about #{top3.first[1].round}% of the season's snow." } %>
+  <% faqs << { question: "Does #{@resort.name} have good snow in December?", answer: "December brings about #{dec_share.round}% of #{@resort.name}'s typical seasonal snowfall#{top3.map(&:first).include?(12) ? ", making it one of the snowiest months" : (dec_share >= 10 ? ", a solid month though not the peak" : ", so early-season coverage can be thin")}. Check the live forecast before booking." } %>
+<% end %>
+<% faqs << { question: "Is #{@resort.name} getting snow right now?", answer: @summary.answer } %>
+
+<% content_for(:title, "Best Time to Ski #{@resort.name}: Snowiest Months | Snow Way") %>
+<% content_for(:description, (faqs.first[:answer]).truncate(158)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Best Time to Ski #{@resort.name}", "url" => absolute_url("/resorts/#{@resort.slug}/best-time-to-ski"),
+          "author" => { "@type" => "Person", "name" => "Justin McKelvey", "url" => "https://justinmckelvey.com" }, "dateModified" => Date.current.iso8601,
+          "about" => { "@type" => "SkiResort", "name" => @resort.name } },
+        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ @resort.state_province, "/ski-resorts/#{@resort.region_slug}" ], [ @resort.name, "/resorts/#{@resort.slug}" ], [ "Best Time to Ski", nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ @resort.state_province, region_path(@resort.region_slug) ], [ @resort.name, resort_path(@resort) ], [ "Best Time to Ski", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best time to ski <%= @resort.name %></h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
+    </section>
+
+    <% if top3.any? %>
+      <h2 class="text-xl font-bold mb-2"><%= @resort.name %> snowfall by month</h2>
+      <p class="text-slate-400 text-sm mb-4">Share of a typical season's summit snowfall in each month.</p>
+      <div class="border border-slate-700 rounded-xl p-4 mb-3" role="img" aria-label="<%= @resort.name %> share of seasonal snowfall by month: <%= months.select { |_, v| v >= 1 }.map { |m, v| "#{month_name.(m)} #{v.round}%" }.join(", ") %>">
+        <div class="flex items-end gap-1 sm:gap-2 h-44">
+          <% max = months.map(&:last).max.to_f.nonzero? || 1 %>
+          <% months.rotate(6).each do |m, v| %>
+            <div class="flex-1 flex flex-col items-center justify-end h-full">
+              <span class="text-[10px] sm:text-xs text-slate-300 mb-1"><%= v >= 1 ? "#{v.round}%" : "" %></span>
+              <div class="w-full rounded-t <%= top3.map(&:first).include?(m) ? "bg-cyan-400" : "bg-slate-600" %>" style="height: <%= (v / max * 100).round %>%"></div>
+              <span class="text-[10px] sm:text-xs text-slate-400 mt-1"><%= Date::ABBR_MONTHNAMES[m] %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <p class="text-slate-400 text-xs mb-10">
+        Source: Open-Meteo historical weather (ERA5-based reanalysis), July 2015 to June 2025, at <%= number_with_delimiter(@resort.elevation_summit) %> ft.
+        Weather models undercount total mountain snowfall, so this shows the seasonal pattern, not inch totals. For season totals, see <%= link_to "#{@resort.name}'s website", @resort.website_url, rel: "noopener", target: "_blank", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.
+      </p>
+
+      <h2 class="text-xl font-bold mb-3">How to time your trip</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-10">
+        <li><strong class="text-white">Deepest snow:</strong> <%= top3.map { |m, _| month_name.(m) }.to_sentence %> get the most snowfall, which usually means the best coverage and the most powder days.</li>
+        <li><strong class="text-white">Main season:</strong> months that bring at least 5% of the season's snow are <%= season.map { |m| Date::ABBR_MONTHNAMES[m] }.join(", ") %>. Actual opening and closing dates are set by the resort.</li>
+        <li><strong class="text-white">Book on the forecast:</strong> history tells you which months are reliable; the <%= link_to "7-day forecast", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> tells you which week. Snow Way ranks every resort on it daily.</li>
+      </ul>
+    <% end %>
+
+    <%= render "shared/faq", faqs: faqs, heading: "#{@resort.name} season FAQ" %>
+    <p class="text-sm text-slate-400"><%= link_to "#{@resort.name} snow forecast", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Ski resorts in #{@resort.state_province}", region_path(@resort.region_slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+  </main>
+</div>

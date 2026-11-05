@@ -16,7 +16,7 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 fontconfig fonts-dejavu-core && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environmen
@@ -63,6 +63,11 @@ RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 # USER 1000:1000 # Commented out for Railway volume mount compatibility
+
+# Register the bundled brand font system-wide so libvips can render share images with it.
+RUN mkdir -p /usr/local/share/fonts/plus-jakarta-sans && \
+    cp /rails/vendor/fonts/*.ttf /usr/local/share/fonts/plus-jakarta-sans/ && \
+    fc-cache -f
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]

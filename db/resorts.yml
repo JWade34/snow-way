@@ -11,6 +11,19 @@
   elevation_base: 250
   elevation_summit: 2750
   website_url: https://www.alyeskaresort.com
+  monthly_snow_share:
+    1: 19.2
+    2: 12.2
+    3: 11.2
+    4: 9.7
+    5: 4.6
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.6
+    10: 8.5
+    11: 15.8
+    12: 18.1
 - name: Arizona Snowbowl
   slug: arizona-snowbowl
   latitude: 35.3307
@@ -21,6 +34,19 @@
   elevation_base: 9200
   elevation_summit: 11500
   website_url: https://www.snowbowl.ski
+  monthly_snow_share:
+    1: 21.6
+    2: 19.3
+    3: 24.5
+    4: 6.4
+    5: 4.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 3.1
+    11: 8.2
+    12: 12.5
 - name: Bear Mountain
   slug: bear-mountain
   latitude: 34.2276
@@ -31,6 +57,19 @@
   elevation_base: 7140
   elevation_summit: 8805
   website_url: https://www.bigbearmountainresort.com
+  monthly_snow_share:
+    1: 25.5
+    2: 22.6
+    3: 22.3
+    4: 4.9
+    5: 2.9
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 0.4
+    11: 6.8
+    12: 14.5
 - name: Heavenly
   slug: heavenly
   latitude: 38.9353
@@ -41,6 +80,19 @@
   elevation_base: 6540
   elevation_summit: 10067
   website_url: https://www.skiheavenly.com
+  monthly_snow_share:
+    1: 20.8
+    2: 19.0
+    3: 19.5
+    4: 6.5
+    5: 3.0
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 2.2
+    11: 9.6
+    12: 18.9
 - name: Kirkwood
   slug: kirkwood
   latitude: 38.685
@@ -51,6 +103,19 @@
   elevation_base: 7800
   elevation_summit: 9800
   website_url: https://www.kirkwood.com
+  monthly_snow_share:
+    1: 20.8
+    2: 18.6
+    3: 19.8
+    4: 6.9
+    5: 3.2
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.5
+    10: 1.9
+    11: 9.8
+    12: 18.4
 - name: Mammoth Mountain
   slug: mammoth-mountain
   latitude: 37.6308
@@ -61,6 +126,19 @@
   elevation_base: 7953
   elevation_summit: 11053
   website_url: https://www.mammothmountain.com
+  monthly_snow_share:
+    1: 21.5
+    2: 20.1
+    3: 21.6
+    4: 6.6
+    5: 2.8
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.3
+    10: 1.6
+    11: 8.6
+    12: 16.6
 - name: Northstar
   slug: northstar
   latitude: 39.2746
@@ -71,6 +149,19 @@
   elevation_base: 6330
   elevation_summit: 8610
   website_url: https://www.northstarcalifornia.com
+  monthly_snow_share:
+    1: 20.7
+    2: 20.0
+    3: 20.8
+    4: 6.5
+    5: 2.4
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 1.8
+    11: 8.3
+    12: 19.2
 - name: Palisades Tahoe
   slug: palisades-tahoe
   latitude: 39.197
@@ -81,6 +172,19 @@
   elevation_base: 6200
   elevation_summit: 9050
   website_url: https://www.palisadestahoe.com
+  monthly_snow_share:
+    1: 20.7
+    2: 19.3
+    3: 20.7
+    4: 6.6
+    5: 2.6
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 1.8
+    11: 8.8
+    12: 19.2
 - name: Sierra-at-Tahoe
   slug: sierra-at-tahoe
   latitude: 38.7993
@@ -91,6 +195,19 @@
   elevation_base: 6640
   elevation_summit: 8852
   website_url: https://www.sierraattahoe.com
+  monthly_snow_share:
+    1: 20.9
+    2: 18.6
+    3: 20.0
+    4: 7.0
+    5: 3.2
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.3
+    10: 1.9
+    11: 9.6
+    12: 18.5
 - name: Sugar Bowl
   slug: sugar-bowl
   latitude: 39.3047
@@ -101,6 +218,19 @@
   elevation_base: 6883
   elevation_summit: 8383
   website_url: https://www.sugarbowl.com
+  monthly_snow_share:
+    1: 20.3
+    2: 19.5
+    3: 21.1
+    4: 7.6
+    5: 3.0
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 1.6
+    11: 9.1
+    12: 17.4
 - name: Arapahoe Basin
   slug: arapahoe-basin
   latitude: 39.6426
@@ -111,6 +241,19 @@
   elevation_base: 10780
   elevation_summit: 13050
   website_url: https://www.arapahoebasin.com
+  monthly_snow_share:
+    1: 11.9
+    2: 13.0
+    3: 15.3
+    4: 14.8
+    5: 12.0
+    6: 1.5
+    7: 0.0
+    8: 0.1
+    9: 1.8
+    10: 7.7
+    11: 10.2
+    12: 11.5
 - name: Aspen Snowmass
   slug: aspen-snowmass
   latitude: 39.2084
@@ -121,6 +264,19 @@
   elevation_base: 8104
   elevation_summit: 12510
   website_url: https://www.aspensnowmass.com
+  monthly_snow_share:
+    1: 13.4
+    2: 14.2
+    3: 16.9
+    4: 11.7
+    5: 7.6
+    6: 0.8
+    7: 0.0
+    8: 0.0
+    9: 1.0
+    10: 8.0
+    11: 10.8
+    12: 15.6
 - name: Beaver Creek
   slug: beaver-creek
   latitude: 39.6042
@@ -131,6 +287,19 @@
   elevation_base: 8100
   elevation_summit: 11440
   website_url: https://www.beavercreek.com
+  monthly_snow_share:
+    1: 12.4
+    2: 13.6
+    3: 16.0
+    4: 14.4
+    5: 8.1
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 0.8
+    10: 9.1
+    11: 11.2
+    12: 13.4
 - name: Breckenridge
   slug: breckenridge
   latitude: 39.4817
@@ -141,6 +310,19 @@
   elevation_base: 9600
   elevation_summit: 12998
   website_url: https://www.breckenridge.com
+  monthly_snow_share:
+    1: 11.9
+    2: 12.4
+    3: 15.4
+    4: 15.5
+    5: 11.8
+    6: 1.3
+    7: 0.0
+    8: 0.1
+    9: 2.0
+    10: 8.1
+    11: 9.9
+    12: 11.6
 - name: Copper Mountain
   slug: copper-mountain
   latitude: 39.5022
@@ -151,6 +333,19 @@
   elevation_base: 9712
   elevation_summit: 12313
   website_url: https://www.coppercolorado.com
+  monthly_snow_share:
+    1: 12.1
+    2: 13.2
+    3: 15.2
+    4: 15.4
+    5: 10.4
+    6: 1.3
+    7: 0.0
+    8: 0.1
+    9: 1.4
+    10: 8.2
+    11: 10.3
+    12: 12.4
 - name: Crested Butte
   slug: crested-butte
   latitude: 38.8991
@@ -161,6 +356,19 @@
   elevation_base: 9375
   elevation_summit: 12162
   website_url: https://www.skicb.com
+  monthly_snow_share:
+    1: 14.9
+    2: 14.5
+    3: 17.5
+    4: 10.8
+    5: 6.5
+    6: 0.6
+    7: 0.0
+    8: 0.0
+    9: 1.1
+    10: 7.6
+    11: 10.2
+    12: 16.2
 - name: Eldora
   slug: eldora
   latitude: 39.9372
@@ -171,6 +379,19 @@
   elevation_base: 9200
   elevation_summit: 10600
   website_url: https://www.eldora.com
+  monthly_snow_share:
+    1: 12.2
+    2: 13.2
+    3: 17.5
+    4: 15.2
+    5: 10.8
+    6: 1.1
+    7: 0.0
+    8: 0.0
+    9: 1.6
+    10: 7.2
+    11: 10.5
+    12: 10.8
 - name: Keystone
   slug: keystone
   latitude: 39.6045
@@ -181,6 +402,19 @@
   elevation_base: 9280
   elevation_summit: 12408
   website_url: https://www.keystoneresort.com
+  monthly_snow_share:
+    1: 12.2
+    2: 13.3
+    3: 15.5
+    4: 15.2
+    5: 11.1
+    6: 1.2
+    7: 0.0
+    8: 0.1
+    9: 1.7
+    10: 7.5
+    11: 10.1
+    12: 12.1
 - name: Loveland
   slug: loveland
   latitude: 39.68
@@ -191,6 +425,19 @@
   elevation_base: 10800
   elevation_summit: 13010
   website_url: https://skiloveland.com
+  monthly_snow_share:
+    1: 12.3
+    2: 12.9
+    3: 14.9
+    4: 14.9
+    5: 11.4
+    6: 1.4
+    7: 0.0
+    8: 0.1
+    9: 1.6
+    10: 8.0
+    11: 10.7
+    12: 11.8
 - name: Monarch Mountain
   slug: monarch-mountain
   latitude: 38.5121
@@ -201,6 +448,19 @@
   elevation_base: 10790
   elevation_summit: 11952
   website_url: https://www.skimonarch.com
+  monthly_snow_share:
+    1: 13.2
+    2: 14.4
+    3: 17.3
+    4: 13.7
+    5: 8.6
+    6: 0.5
+    7: 0.0
+    8: 0.0
+    9: 1.5
+    10: 6.9
+    11: 10.2
+    12: 13.7
 - name: Purgatory
   slug: purgatory
   latitude: 37.6303
@@ -211,6 +471,19 @@
   elevation_base: 8793
   elevation_summit: 10822
   website_url: https://www.purgatory.ski
+  monthly_snow_share:
+    1: 15.8
+    2: 16.7
+    3: 19.5
+    4: 8.1
+    5: 5.2
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.5
+    10: 6.3
+    11: 10.9
+    12: 16.9
 - name: Steamboat
   slug: steamboat
   latitude: 40.4572
@@ -221,6 +494,19 @@
   elevation_base: 6900
   elevation_summit: 10568
   website_url: https://www.steamboat.com
+  monthly_snow_share:
+    1: 15.9
+    2: 16.2
+    3: 14.8
+    4: 11.5
+    5: 6.1
+    6: 0.7
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 6.7
+    11: 12.1
+    12: 15.6
 - name: Telluride
   slug: telluride
   latitude: 37.9375
@@ -231,6 +517,19 @@
   elevation_base: 8725
   elevation_summit: 13150
   website_url: https://www.tellurideskiresort.com
+  monthly_snow_share:
+    1: 14.3
+    2: 13.8
+    3: 18.4
+    4: 11.6
+    5: 8.1
+    6: 0.8
+    7: 0.0
+    8: 0.0
+    9: 1.2
+    10: 7.6
+    11: 10.9
+    12: 13.4
 - name: Vail
   slug: vail
   latitude: 39.6403
@@ -241,6 +540,19 @@
   elevation_base: 8120
   elevation_summit: 11570
   website_url: https://www.vail.com
+  monthly_snow_share:
+    1: 14.0
+    2: 14.1
+    3: 14.9
+    4: 13.9
+    5: 7.8
+    6: 1.1
+    7: 0.0
+    8: 0.1
+    9: 0.8
+    10: 8.6
+    11: 11.5
+    12: 13.5
 - name: Winter Park
   slug: winter-park
   latitude: 39.8868
@@ -251,6 +563,19 @@
   elevation_base: 9000
   elevation_summit: 12060
   website_url: https://www.winterparkresort.com
+  monthly_snow_share:
+    1: 12.2
+    2: 12.7
+    3: 16.0
+    4: 15.5
+    5: 11.4
+    6: 1.3
+    7: 0.0
+    8: 0.0
+    9: 1.3
+    10: 7.7
+    11: 10.3
+    12: 11.5
 - name: Wolf Creek
   slug: wolf-creek
   latitude: 37.4722
@@ -261,6 +586,19 @@
   elevation_base: 10300
   elevation_summit: 11904
   website_url: https://wolfcreekski.com
+  monthly_snow_share:
+    1: 13.6
+    2: 17.8
+    3: 18.9
+    4: 7.7
+    5: 6.2
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 1.4
+    10: 7.0
+    11: 11.6
+    12: 15.6
 - name: Bogus Basin
   slug: bogus-basin
   latitude: 43.7643
@@ -271,6 +609,19 @@
   elevation_base: 5800
   elevation_summit: 7582
   website_url: https://bogusbasin.org
+  monthly_snow_share:
+    1: 19.9
+    2: 19.3
+    3: 15.1
+    4: 6.1
+    5: 3.3
+    6: 0.3
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 1.8
+    11: 10.5
+    12: 23.5
 - name: Brundage
   slug: brundage
   latitude: 45.005
@@ -281,6 +632,19 @@
   elevation_base: 5840
   elevation_summit: 7640
   website_url: https://brundage.com
+  monthly_snow_share:
+    1: 17.0
+    2: 20.0
+    3: 14.8
+    4: 7.7
+    5: 3.4
+    6: 1.2
+    7: 0.0
+    8: 0.0
+    9: 0.6
+    10: 4.3
+    11: 11.5
+    12: 19.5
 - name: Schweitzer
   slug: schweitzer
   latitude: 48.3679
@@ -291,6 +655,19 @@
   elevation_base: 4000
   elevation_summit: 6400
   website_url: https://www.schweitzer.com
+  monthly_snow_share:
+    1: 19.4
+    2: 15.7
+    3: 15.3
+    4: 8.4
+    5: 1.3
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.7
+    10: 3.6
+    11: 14.7
+    12: 20.8
 - name: Sun Valley
   slug: sun-valley
   latitude: 43.6777
@@ -301,6 +678,19 @@
   elevation_base: 5750
   elevation_summit: 9150
   website_url: https://www.sunvalley.com
+  monthly_snow_share:
+    1: 14.4
+    2: 19.3
+    3: 16.7
+    4: 9.2
+    5: 5.6
+    6: 1.2
+    7: 0.0
+    8: 0.0
+    9: 0.9
+    10: 5.0
+    11: 11.1
+    12: 16.7
 - name: Tamarack
   slug: tamarack
   latitude: 44.671
@@ -311,6 +701,19 @@
   elevation_base: 4900
   elevation_summit: 7700
   website_url: https://tamarackidaho.com
+  monthly_snow_share:
+    1: 17.6
+    2: 19.0
+    3: 15.7
+    4: 7.6
+    5: 3.5
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 3.6
+    11: 11.8
+    12: 19.7
 - name: Sugarloaf
   slug: sugarloaf
   latitude: 45.0314
@@ -321,6 +724,19 @@
   elevation_base: 1417
   elevation_summit: 4237
   website_url: https://www.sugarloaf.com
+  monthly_snow_share:
+    1: 19.8
+    2: 17.9
+    3: 18.2
+    4: 11.9
+    5: 1.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.6
+    11: 11.6
+    12: 16.6
 - name: Sunday River
   slug: sunday-river
   latitude: 44.4734
@@ -331,6 +747,19 @@
   elevation_base: 800
   elevation_summit: 3140
   website_url: https://www.sundayriver.com
+  monthly_snow_share:
+    1: 20.7
+    2: 18.8
+    3: 17.6
+    4: 11.6
+    5: 1.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.3
+    11: 11.1
+    12: 16.7
 - name: Big Sky
   slug: big-sky
   latitude: 45.2858
@@ -341,6 +770,19 @@
   elevation_base: 7500
   elevation_summit: 11166
   website_url: https://www.bigskyresort.com
+  monthly_snow_share:
+    1: 9.0
+    2: 12.4
+    3: 12.6
+    4: 16.0
+    5: 12.2
+    6: 4.3
+    7: 0.1
+    8: 0.3
+    9: 3.4
+    10: 9.7
+    11: 10.8
+    12: 9.3
 - name: Bridger Bowl
   slug: bridger-bowl
   latitude: 45.8174
@@ -351,6 +793,19 @@
   elevation_base: 6100
   elevation_summit: 8800
   website_url: https://bridgerbowl.com
+  monthly_snow_share:
+    1: 9.5
+    2: 14.4
+    3: 13.3
+    4: 16.5
+    5: 10.1
+    6: 2.0
+    7: 0.0
+    8: 0.0
+    9: 2.9
+    10: 9.1
+    11: 10.6
+    12: 11.6
 - name: Whitefish Mountain
   slug: whitefish-mountain
   latitude: 48.4827
@@ -361,6 +816,19 @@
   elevation_base: 4464
   elevation_summit: 6817
   website_url: https://www.skiwhitefish.com
+  monthly_snow_share:
+    1: 15.6
+    2: 18.3
+    3: 13.1
+    4: 9.2
+    5: 2.5
+    6: 0.8
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 5.6
+    11: 14.6
+    12: 19.9
 - name: Mt. Rose
   slug: mt-rose
   latitude: 39.3149
@@ -371,6 +839,19 @@
   elevation_base: 8260
   elevation_summit: 9700
   website_url: https://skirose.com
+  monthly_snow_share:
+    1: 20.7
+    2: 19.4
+    3: 19.5
+    4: 6.3
+    5: 2.9
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.6
+    10: 2.6
+    11: 8.9
+    12: 18.8
 - name: Bretton Woods
   slug: bretton-woods
   latitude: 44.258
@@ -381,6 +862,19 @@
   elevation_base: 1500
   elevation_summit: 3100
   website_url: https://www.brettonwoods.com
+  monthly_snow_share:
+    1: 19.7
+    2: 17.4
+    3: 17.7
+    4: 12.2
+    5: 1.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.9
+    11: 12.2
+    12: 16.5
 - name: Cannon Mountain
   slug: cannon-mountain
   latitude: 44.1564
@@ -391,6 +885,19 @@
   elevation_base: 1900
   elevation_summit: 4080
   website_url: https://www.cannonmt.com
+  monthly_snow_share:
+    1: 18.6
+    2: 17.4
+    3: 17.0
+    4: 12.8
+    5: 2.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 3.1
+    11: 12.1
+    12: 16.8
 - name: Loon Mountain
   slug: loon-mountain
   latitude: 44.0364
@@ -401,6 +908,19 @@
   elevation_base: 950
   elevation_summit: 3050
   website_url: https://www.loonmtn.com
+  monthly_snow_share:
+    1: 19.6
+    2: 18.9
+    3: 17.5
+    4: 11.3
+    5: 1.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.2
+    11: 11.5
+    12: 17.6
 - name: Ski Santa Fe
   slug: ski-santa-fe
   latitude: 35.796
@@ -411,6 +931,19 @@
   elevation_base: 10350
   elevation_summit: 12075
   website_url: https://skisantafe.com
+  monthly_snow_share:
+    1: 14.9
+    2: 16.1
+    3: 19.1
+    4: 11.4
+    5: 7.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.8
+    10: 7.0
+    11: 11.4
+    12: 12.1
 - name: Taos Ski Valley
   slug: taos-ski-valley
   latitude: 36.5958
@@ -421,6 +954,19 @@
   elevation_base: 9207
   elevation_summit: 12481
   website_url: https://www.skitaos.com
+  monthly_snow_share:
+    1: 14.6
+    2: 16.1
+    3: 18.4
+    4: 10.9
+    5: 8.3
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 1.3
+    10: 8.8
+    11: 9.6
+    12: 12.0
 - name: Gore Mountain
   slug: gore-mountain
   latitude: 43.6727
@@ -431,6 +977,19 @@
   elevation_base: 998
   elevation_summit: 3600
   website_url: https://goremountain.com
+  monthly_snow_share:
+    1: 21.9
+    2: 21.8
+    3: 17.9
+    4: 8.0
+    5: 0.5
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.9
+    11: 12.1
+    12: 16.0
 - name: Hunter Mountain
   slug: hunter-mountain
   latitude: 42.2024
@@ -441,6 +1000,19 @@
   elevation_base: 1600
   elevation_summit: 3200
   website_url: https://www.huntermtn.com
+  monthly_snow_share:
+    1: 19.1
+    2: 17.8
+    3: 21.4
+    4: 9.6
+    5: 1.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.5
+    11: 11.7
+    12: 17.6
 - name: Whiteface
   slug: whiteface
   latitude: 44.3659
@@ -451,6 +1023,19 @@
   elevation_base: 1220
   elevation_summit: 4867
   website_url: https://whiteface.com
+  monthly_snow_share:
+    1: 20.0
+    2: 19.3
+    3: 17.6
+    4: 11.5
+    5: 0.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 3.4
+    11: 11.9
+    12: 15.3
 - name: Mt. Bachelor
   slug: mt-bachelor
   latitude: 43.9792
@@ -461,6 +1046,19 @@
   elevation_base: 5700
   elevation_summit: 9068
   website_url: https://www.mtbachelor.com
+  monthly_snow_share:
+    1: 18.9
+    2: 15.8
+    3: 13.5
+    4: 9.2
+    5: 3.9
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 0.9
+    10: 4.0
+    11: 12.5
+    12: 20.3
 - name: Mt. Hood Meadows
   slug: mt-hood-meadows
   latitude: 45.3311
@@ -471,6 +1069,19 @@
   elevation_base: 4523
   elevation_summit: 7300
   website_url: https://www.skihood.com
+  monthly_snow_share:
+    1: 19.0
+    2: 18.8
+    3: 13.5
+    4: 9.8
+    5: 3.6
+    6: 0.6
+    7: 0.0
+    8: 0.0
+    9: 0.5
+    10: 3.2
+    11: 11.3
+    12: 19.7
 - name: Timberline
   slug: timberline
   latitude: 45.3311
@@ -481,6 +1092,19 @@
   elevation_base: 4950
   elevation_summit: 8540
   website_url: https://www.timberlinelodge.com
+  monthly_snow_share:
+    1: 18.6
+    2: 19.2
+    3: 14.2
+    4: 10.1
+    5: 3.8
+    6: 0.7
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 3.0
+    11: 11.0
+    12: 19.1
 - name: Alta
   slug: alta
   latitude: 40.5884
@@ -491,6 +1115,19 @@
   elevation_base: 8530
   elevation_summit: 10550
   website_url: https://www.alta.com
+  monthly_snow_share:
+    1: 16.6
+    2: 15.4
+    3: 16.7
+    4: 12.9
+    5: 6.8
+    6: 0.8
+    7: 0.0
+    8: 0.0
+    9: 1.7
+    10: 6.5
+    11: 9.9
+    12: 12.9
 - name: Brian Head
   slug: brian-head
   latitude: 37.7021
@@ -501,6 +1138,19 @@
   elevation_base: 9600
   elevation_summit: 11307
   website_url: https://www.brianhead.com
+  monthly_snow_share:
+    1: 16.4
+    2: 17.3
+    3: 20.6
+    4: 9.1
+    5: 6.3
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.7
+    10: 5.1
+    11: 10.9
+    12: 13.4
 - name: Brighton
   slug: brighton
   latitude: 40.598
@@ -511,6 +1161,19 @@
   elevation_base: 8755
   elevation_summit: 10500
   website_url: https://www.brightonresort.com
+  monthly_snow_share:
+    1: 16.4
+    2: 15.2
+    3: 16.7
+    4: 12.9
+    5: 6.7
+    6: 0.8
+    7: 0.0
+    8: 0.0
+    9: 1.7
+    10: 6.4
+    11: 10.0
+    12: 13.3
 - name: Deer Valley
   slug: deer-valley
   latitude: 40.6375
@@ -521,6 +1184,19 @@
   elevation_base: 6570
   elevation_summit: 9570
   website_url: https://www.deervalley.com
+  monthly_snow_share:
+    1: 17.0
+    2: 15.7
+    3: 17.0
+    4: 12.6
+    5: 5.8
+    6: 0.6
+    7: 0.0
+    8: 0.0
+    9: 1.5
+    10: 6.1
+    11: 10.2
+    12: 13.6
 - name: Park City
   slug: park-city
   latitude: 40.6514
@@ -531,6 +1207,19 @@
   elevation_base: 6900
   elevation_summit: 10026
   website_url: https://www.parkcitymountain.com
+  monthly_snow_share:
+    1: 16.6
+    2: 15.4
+    3: 16.8
+    4: 12.7
+    5: 6.4
+    6: 0.7
+    7: 0.0
+    8: 0.0
+    9: 1.6
+    10: 6.3
+    11: 10.1
+    12: 13.3
 - name: Powder Mountain
   slug: powder-mountain
   latitude: 41.379
@@ -541,6 +1230,19 @@
   elevation_base: 6900
   elevation_summit: 9422
   website_url: https://powdermountain.com
+  monthly_snow_share:
+    1: 18.8
+    2: 17.8
+    3: 17.3
+    4: 9.4
+    5: 4.2
+    6: 0.6
+    7: 0.0
+    8: 0.0
+    9: 0.6
+    10: 4.1
+    11: 9.9
+    12: 17.5
 - name: Snowbasin
   slug: snowbasin
   latitude: 41.216
@@ -551,6 +1253,19 @@
   elevation_base: 6390
   elevation_summit: 9350
   website_url: https://www.snowbasin.com
+  monthly_snow_share:
+    1: 19.3
+    2: 17.9
+    3: 18.3
+    4: 9.7
+    5: 3.8
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 3.1
+    11: 9.4
+    12: 18.2
 - name: Snowbird
   slug: snowbird
   latitude: 40.583
@@ -561,6 +1276,19 @@
   elevation_base: 7760
   elevation_summit: 11000
   website_url: https://www.snowbird.com
+  monthly_snow_share:
+    1: 16.4
+    2: 15.3
+    3: 16.6
+    4: 12.9
+    5: 7.0
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 1.7
+    10: 6.5
+    11: 9.9
+    12: 12.7
 - name: Solitude
   slug: solitude
   latitude: 40.6199
@@ -571,6 +1299,19 @@
   elevation_base: 7988
   elevation_summit: 10488
   website_url: https://www.solitudemountain.com
+  monthly_snow_share:
+    1: 16.4
+    2: 15.3
+    3: 16.7
+    4: 12.9
+    5: 6.7
+    6: 0.8
+    7: 0.0
+    8: 0.0
+    9: 1.7
+    10: 6.4
+    11: 10.0
+    12: 13.3
 - name: Sundance
   slug: sundance
   latitude: 40.3926
@@ -581,6 +1322,19 @@
   elevation_base: 6100
   elevation_summit: 8250
   website_url: https://www.sundanceresort.com
+  monthly_snow_share:
+    1: 20.1
+    2: 17.9
+    3: 18.7
+    4: 7.7
+    5: 3.4
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.6
+    10: 3.3
+    11: 9.9
+    12: 18.3
 - name: Jay Peak
   slug: jay-peak
   latitude: 44.927
@@ -591,6 +1345,19 @@
   elevation_base: 1815
   elevation_summit: 3968
   website_url: https://jaypeakresort.com
+  monthly_snow_share:
+    1: 21.4
+    2: 19.0
+    3: 18.0
+    4: 10.1
+    5: 0.8
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.5
+    11: 12.8
+    12: 16.5
 - name: Killington
   slug: killington
   latitude: 43.6045
@@ -601,6 +1368,19 @@
   elevation_base: 1165
   elevation_summit: 4241
   website_url: https://www.killington.com
+  monthly_snow_share:
+    1: 20.5
+    2: 19.0
+    3: 18.0
+    4: 10.4
+    5: 1.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.3
+    11: 12.5
+    12: 16.3
 - name: Mad River Glen
   slug: mad-river-glen
   latitude: 44.2025
@@ -611,6 +1391,19 @@
   elevation_base: 1600
   elevation_summit: 3637
   website_url: https://www.madriverglen.com
+  monthly_snow_share:
+    1: 19.9
+    2: 19.5
+    3: 18.9
+    4: 10.6
+    5: 1.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.9
+    11: 12.6
+    12: 15.7
 - name: Mount Snow
   slug: mount-snow
   latitude: 42.9602
@@ -621,6 +1414,19 @@
   elevation_base: 1900
   elevation_summit: 3600
   website_url: https://www.mountsnow.com
+  monthly_snow_share:
+    1: 20.6
+    2: 18.5
+    3: 19.1
+    4: 9.8
+    5: 1.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.1
+    11: 11.5
+    12: 16.9
 - name: Okemo
   slug: okemo
   latitude: 43.4017
@@ -631,6 +1437,19 @@
   elevation_base: 1144
   elevation_summit: 3344
   website_url: https://www.okemo.com
+  monthly_snow_share:
+    1: 21.0
+    2: 19.2
+    3: 18.5
+    4: 9.7
+    5: 0.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.1
+    11: 12.1
+    12: 16.5
 - name: Smugglers' Notch
   slug: smugglers-notch
   latitude: 44.5886
@@ -641,6 +1460,19 @@
   elevation_base: 1030
   elevation_summit: 3640
   website_url: https://www.smuggs.com
+  monthly_snow_share:
+    1: 20.1
+    2: 18.9
+    3: 18.2
+    4: 9.9
+    5: 0.7
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.2
+    11: 13.2
+    12: 16.8
 - name: Stowe
   slug: stowe
   latitude: 44.5303
@@ -651,6 +1483,19 @@
   elevation_base: 1559
   elevation_summit: 3719
   website_url: https://www.stowe.com
+  monthly_snow_share:
+    1: 20.0
+    2: 18.8
+    3: 18.1
+    4: 10.4
+    5: 0.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.2
+    11: 13.0
+    12: 16.6
 - name: Stratton
   slug: stratton
   latitude: 43.1134
@@ -661,6 +1506,19 @@
   elevation_base: 1872
   elevation_summit: 3875
   website_url: https://www.stratton.com
+  monthly_snow_share:
+    1: 20.7
+    2: 18.7
+    3: 19.1
+    4: 9.7
+    5: 1.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.1
+    11: 11.9
+    12: 16.6
 - name: Sugarbush
   slug: sugarbush
   latitude: 44.1357
@@ -671,6 +1529,19 @@
   elevation_base: 1483
   elevation_summit: 4083
   website_url: https://www.sugarbush.com
+  monthly_snow_share:
+    1: 19.4
+    2: 19.5
+    3: 18.6
+    4: 11.3
+    5: 1.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.2
+    11: 12.9
+    12: 15.1
 - name: Crystal Mountain
   slug: crystal-mountain
   latitude: 46.9282
@@ -681,6 +1552,19 @@
   elevation_base: 4400
   elevation_summit: 7002
   website_url: https://www.crystalmountainresort.com
+  monthly_snow_share:
+    1: 20.5
+    2: 17.5
+    3: 11.3
+    4: 8.0
+    5: 2.1
+    6: 0.5
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 3.9
+    11: 13.3
+    12: 22.5
 - name: Mission Ridge
   slug: mission-ridge
   latitude: 47.2925
@@ -691,6 +1575,19 @@
   elevation_base: 4570
   elevation_summit: 6820
   website_url: https://www.missionridge.com
+  monthly_snow_share:
+    1: 20.4
+    2: 17.4
+    3: 13.3
+    4: 8.7
+    5: 2.4
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.8
+    10: 3.9
+    11: 12.3
+    12: 20.5
 - name: Mt. Baker
   slug: mt-baker
   latitude: 48.857
@@ -701,6 +1598,19 @@
   elevation_base: 3500
   elevation_summit: 5089
   website_url: https://www.mtbaker.us
+  monthly_snow_share:
+    1: 19.8
+    2: 15.4
+    3: 14.2
+    4: 8.2
+    5: 1.4
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 4.3
+    11: 14.6
+    12: 21.9
 - name: Stevens Pass
   slug: stevens-pass
   latitude: 47.7448
@@ -711,6 +1621,19 @@
   elevation_base: 4061
   elevation_summit: 5845
   website_url: https://www.stevenspass.com
+  monthly_snow_share:
+    1: 18.3
+    2: 18.7
+    3: 12.5
+    4: 8.5
+    5: 2.7
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 0.3
+    10: 4.6
+    11: 12.4
+    12: 21.0
 - name: Summit at Snoqualmie
   slug: summit-at-snoqualmie
   latitude: 47.4246
@@ -721,6 +1644,19 @@
   elevation_base: 3000
   elevation_summit: 5420
   website_url: https://summitatsnoqualmie.com
+  monthly_snow_share:
+    1: 18.4
+    2: 20.3
+    3: 13.6
+    4: 9.3
+    5: 2.2
+    6: 0.3
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 3.0
+    11: 11.4
+    12: 21.3
 - name: Snowshoe
   slug: snowshoe
   latitude: 38.4097
@@ -731,6 +1667,19 @@
   elevation_base: 3348
   elevation_summit: 4848
   website_url: https://www.snowshoemtn.com
+  monthly_snow_share:
+    1: 30.1
+    2: 19.1
+    3: 16.5
+    4: 7.2
+    5: 2.6
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.9
+    11: 8.3
+    12: 15.2
 - name: Grand Targhee
   slug: grand-targhee
   latitude: 43.7872
@@ -741,6 +1690,19 @@
   elevation_base: 8000
   elevation_summit: 10230
   website_url: https://www.grandtarghee.com
+  monthly_snow_share:
+    1: 13.0
+    2: 16.1
+    3: 13.5
+    4: 12.8
+    5: 7.3
+    6: 1.7
+    7: 0.0
+    8: 0.0
+    9: 2.9
+    10: 7.6
+    11: 11.9
+    12: 13.2
 - name: Jackson Hole
   slug: jackson-hole
   latitude: 43.5875
@@ -751,6 +1713,19 @@
   elevation_base: 6311
   elevation_summit: 10450
   website_url: https://www.jacksonhole.com
+  monthly_snow_share:
+    1: 13.5
+    2: 17.7
+    3: 14.1
+    4: 11.3
+    5: 6.2
+    6: 1.1
+    7: 0.0
+    8: 0.0
+    9: 2.5
+    10: 6.8
+    11: 12.7
+    12: 14.0
 - name: Banff Sunshine
   slug: banff-sunshine
   latitude: 51.115
@@ -761,6 +1736,19 @@
   elevation_base: 5440
   elevation_summit: 8954
   website_url: https://www.skibanff.com
+  monthly_snow_share:
+    1: 7.4
+    2: 10.1
+    3: 12.0
+    4: 11.0
+    5: 9.6
+    6: 6.7
+    7: 0.7
+    8: 0.8
+    9: 4.7
+    10: 11.7
+    11: 13.4
+    12: 12.0
 - name: Kicking Horse
   slug: kicking-horse
   latitude: 51.2975
@@ -771,6 +1759,19 @@
   elevation_base: 3900
   elevation_summit: 8033
   website_url: https://kickinghorseresort.com
+  monthly_snow_share:
+    1: 11.9
+    2: 12.9
+    3: 12.9
+    4: 8.8
+    5: 3.4
+    6: 1.4
+    7: 0.0
+    8: 0.1
+    9: 1.7
+    10: 13.1
+    11: 18.6
+    12: 15.2
 - name: Lake Louise
   slug: lake-louise
   latitude: 51.4254
@@ -781,6 +1782,19 @@
   elevation_base: 5400
   elevation_summit: 8650
   website_url: https://www.skilouise.com
+  monthly_snow_share:
+    1: 8.7
+    2: 11.0
+    3: 11.1
+    4: 9.1
+    5: 9.0
+    6: 5.9
+    7: 0.6
+    8: 0.9
+    9: 5.0
+    10: 12.9
+    11: 14.1
+    12: 11.5
 - name: Big White
   slug: big-white
   latitude: 49.7216
@@ -791,6 +1805,19 @@
   elevation_base: 4950
   elevation_summit: 7606
   website_url: https://www.bigwhite.com
+  monthly_snow_share:
+    1: 13.6
+    2: 13.5
+    3: 15.3
+    4: 11.9
+    5: 3.9
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 0.9
+    10: 8.5
+    11: 15.6
+    12: 15.9
 - name: Fernie
   slug: fernie
   latitude: 49.4627
@@ -801,6 +1828,19 @@
   elevation_base: 3500
   elevation_summit: 7000
   website_url: https://skifernie.com
+  monthly_snow_share:
+    1: 13.4
+    2: 14.8
+    3: 14.2
+    4: 9.5
+    5: 4.1
+    6: 1.4
+    7: 0.0
+    8: 0.1
+    9: 0.8
+    10: 7.7
+    11: 15.7
+    12: 18.3
 - name: Panorama
   slug: panorama
   latitude: 50.46
@@ -811,6 +1851,19 @@
   elevation_base: 3770
   elevation_summit: 8038
   website_url: https://www.panoramaresort.com
+  monthly_snow_share:
+    1: 9.8
+    2: 12.5
+    3: 12.6
+    4: 10.2
+    5: 5.7
+    6: 3.7
+    7: 0.4
+    8: 0.2
+    9: 2.5
+    10: 11.9
+    11: 16.1
+    12: 14.5
 - name: Red Mountain
   slug: red-mountain
   latitude: 49.1022
@@ -821,6 +1874,19 @@
   elevation_base: 3888
   elevation_summit: 6807
   website_url: https://www.redresort.com
+  monthly_snow_share:
+    1: 17.8
+    2: 11.9
+    3: 16.7
+    4: 10.8
+    5: 2.3
+    6: 0.3
+    7: 0.0
+    8: 0.0
+    9: 1.0
+    10: 5.4
+    11: 16.3
+    12: 17.5
 - name: Revelstoke
   slug: revelstoke
   latitude: 51.0045
@@ -831,6 +1897,19 @@
   elevation_base: 1680
   elevation_summit: 7300
   website_url: https://www.revelstokemountainresort.com
+  monthly_snow_share:
+    1: 15.9
+    2: 15.8
+    3: 13.3
+    4: 5.8
+    5: 1.1
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 9.3
+    11: 19.3
+    12: 19.1
 - name: Sun Peaks
   slug: sun-peaks
   latitude: 50.8833
@@ -841,6 +1920,19 @@
   elevation_base: 3960
   elevation_summit: 7060
   website_url: https://www.sunpeaksresort.com
+  monthly_snow_share:
+    1: 14.6
+    2: 13.1
+    3: 13.2
+    4: 10.4
+    5: 2.9
+    6: 0.3
+    7: 0.0
+    8: 0.0
+    9: 0.6
+    10: 9.3
+    11: 18.2
+    12: 17.6
 - name: Whistler Blackcomb
   slug: whistler-blackcomb
   latitude: 50.1163
@@ -851,6 +1943,19 @@
   elevation_base: 2140
   elevation_summit: 7494
   website_url: https://www.whistlerblackcomb.com
+  monthly_snow_share:
+    1: 18.4
+    2: 9.9
+    3: 11.9
+    4: 7.8
+    5: 3.1
+    6: 1.2
+    7: 0.0
+    8: 0.0
+    9: 1.8
+    10: 9.6
+    11: 17.8
+    12: 18.3
 - name: Whitewater
   slug: whitewater
   latitude: 49.443
@@ -861,6 +1966,19 @@
   elevation_base: 5400
   elevation_summit: 6700
   website_url: https://skiwhitewater.com
+  monthly_snow_share:
+    1: 14.7
+    2: 13.8
+    3: 14.9
+    4: 10.6
+    5: 2.7
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 1.1
+    10: 7.8
+    11: 16.3
+    12: 17.2
 - name: Le Massif de Charlevoix
   slug: le-massif
   latitude: 47.2833
@@ -871,6 +1989,19 @@
   elevation_base: 118
   elevation_summit: 2645
   website_url: https://www.lemassif.com
+  monthly_snow_share:
+    1: 19.6
+    2: 19.3
+    3: 20.2
+    4: 10.9
+    5: 0.7
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.1
+    11: 11.6
+    12: 15.8
 - name: Mont Tremblant
   slug: mont-tremblant
   latitude: 46.2094
@@ -881,6 +2012,19 @@
   elevation_base: 870
   elevation_summit: 2871
   website_url: https://www.tremblant.ca
+  monthly_snow_share:
+    1: 21.8
+    2: 23.4
+    3: 14.5
+    4: 8.5
+    5: 0.5
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.7
+    11: 11.4
+    12: 18.0
 - name: Mont-Sainte-Anne
   slug: mont-sainte-anne
   latitude: 47.0753
@@ -891,3 +2035,16 @@
   elevation_base: 575
   elevation_summit: 2625
   website_url: https://mont-sainte-anne.com
+  monthly_snow_share:
+    1: 19.2
+    2: 19.4
+    3: 18.6
+    4: 10.5
+    5: 1.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.1
+    11: 12.8
+    12: 16.5

@@ -1,0 +1,34 @@
+<% content_for(:title, "Ski Resorts by State & Province: Snow Forecasts | Snow Way") %>
+<% content_for(:description, "Browse #{Resort.count} North American ski resorts by state and province, with 7-day snow forecasts, summit elevations, nearest airports, and pass info.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [ breadcrumb_schema([ [ "Ski Resorts by State", nil ] ]) ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts by state and province</h1>
+    <p class="text-slate-300 mb-8">Snow Way tracks <%= Resort.count %> ski resorts across <%= @regions.size %> states and provinces. Pick a region for a directory with this week's snow forecast for every resort.</p>
+    <% @regions.group_by(&:country).each do |country, regions| %>
+      <h2 class="text-xl font-bold mb-4"><%= country == "USA" ? "United States" : country %></h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
+        <% regions.each do |region| %>
+          <% leader = region.resorts.max_by { |r| @totals.fetch(r.id, 0.0) } %>
+          <li>
+            <%= link_to region_path(region), class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-4 py-3 transition" do %>
+              <span class="font-semibold">Ski resorts in <%= region.name %></span>
+              <span class="block text-xs text-slate-400"><%= pluralize(region.resorts.size, "resort") %> · most snow this week: <%= leader.name %> (<%= inches(@totals.fetch(leader.id, 0.0)) %>)</span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <h2 class="text-xl font-bold mb-4">Ski resorts near major cities</h2>
+    <ul class="flex flex-wrap gap-2">
+      <% SkiHub.all.each do |hub| %>
+        <li><%= link_to "Near #{hub.city}", hub_path(hub), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 text-sm transition" %></li>
+      <% end %>
+    </ul>
+  </main>
+</div>

@@ -1,0 +1,36 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> pick the month from history, pick the week from the 7-day forecast, and commit to a resort when a storm is within about 3 days. Book refundable or flexible travel when you can, and stay within driving distance of several resorts so you can follow the snow.</p></div>
+
+<h2>How far out can you trust a snow forecast?</h2>
+<ul>
+  <li><strong>1–3 days:</strong> reliable for whether it will snow and roughly how much. This is when to commit.</li>
+  <li><strong>4–7 days:</strong> good for spotting which regions a storm will hit, with amounts that still shift.</li>
+  <li><strong>8–14 days:</strong> a hint that something may be coming. Don't plan around the numbers.</li>
+</ul>
+<p>That's why Snow Way ranks resorts on the 7-day total and labels days 8–14 as low-confidence on every resort page.</p>
+
+<h2>A powder-trip playbook</h2>
+<ol>
+  <li><strong>Pick your month.</strong> Each resort's "best time to ski" page shows which months historically get the most snow, like <%= link_to "best time to ski Alta", best_time_resort_path("alta") %>.</li>
+  <li><strong>Pick a hub, not a resort.</strong> Fly into an airport with several resorts nearby so a storm anywhere in the region works for you. See <%= link_to "ski resorts near Salt Lake City", hub_path("salt-lake-city") %> or <%= link_to "near Denver", hub_path("denver") %>.</li>
+  <li><strong>Watch the 7-day forecast.</strong> Check <%= link_to "where it's snowing this week", where_is_it_snowing_path %> about a week out to see which regions are lined up.</li>
+  <li><strong>Commit 2–3 days out.</strong> Book lodging near the resort with the best short-range forecast.</li>
+  <li><strong>Ski the morning after.</strong> The best powder is usually first chair the morning after a storm ends, before it gets tracked out.</li>
+</ol>
+
+<h2>Reading a snow forecast</h2>
+<ul>
+  <li><strong>Summit vs base:</strong> snow totals at the top can be much higher than in town, and rain can fall at the base while it snows up high. Snow Way forecasts for each resort's summit elevation.</li>
+  <li><strong>Timing matters:</strong> snow that falls overnight is groomed or skied fresh in the morning; snow during the day can mean low visibility.</li>
+  <li><strong>Wind:</strong> strong wind can close upper lifts on storm days. Have a backup plan for lower terrain.</li>
+</ul>
+
+<h2>Travel tips for storm chasers</h2>
+<ul>
+  <li>Rent a 4WD or AWD car and carry chains where required; mountain roads close or require traction during storms.</li>
+  <li>Book flexible fares and refundable lodging when possible.</li>
+  <li>An Epic or Ikon pass makes it easy to switch resorts mid-trip. Compare <%= link_to "Ikon vs Epic snow this week", ikon_vs_epic_path %>.</li>
+</ul>
+<% faqs << { question: "How accurate are ski resort snow forecasts?", answer: "They're most accurate within about 3 days. Out to 7 days they're useful for spotting storms; beyond that, amounts change often." } %>
+<% faqs << { question: "When is the best time to book a powder ski trip?", answer: "Choose your month from historical snowfall, then commit to a specific resort 2–3 days before a storm when the short-range forecast is reliable." } %>
+<% faqs << { question: "What is a powder day?", answer: "A day with fresh, untracked snow, usually after several inches or more falls overnight. The best skiing is typically at first chair." } %>

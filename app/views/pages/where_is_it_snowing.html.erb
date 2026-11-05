@@ -1,0 +1,68 @@
+<% today = Date.current.strftime("%B %-d, %Y") %>
+<% top = @ranked.first %>
+<% snowing = @ranked.select { |r| @totals.fetch(r.id, 0.0) > 0 } %>
+<% faqs = [] %>
+<% if top && @totals.fetch(top.id, 0.0) > 0 %>
+  <% faqs << { question: "Where is it snowing the most this week?", answer: "As of #{today}, #{top.name} in #{top.state_province} has the most snow forecast over the next 7 days at #{inches(@totals[top.id])}, #{(runners = @ranked[1..2].select { |r| @totals.fetch(r.id, 0.0) > 0 }).any? ? "followed by #{runners.map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}" : "with no other resort expecting snow"}." } %>
+<% end %>
+<% faqs << { question: "How many ski resorts have snow in the forecast this week?", answer: "#{snowing.size} of the #{@resorts.size} North American ski resorts Snow Way tracks have snow in their 7-day forecast as of #{today}." } %>
+<% if @fresh.any? %>
+  <% faqs << { question: "Which ski resorts got fresh snow in the last 48 hours?", answer: "#{@fresh.first(5).map { |r| "#{r.name} (#{inches(@recent[r.id])})" }.to_sentence} picked up the most new snow over the last 48 hours." } %>
+<% end %>
+<% if @region_leaders.any? %>
+  <% faqs << { question: "Which state is getting the most snow this week?", answer: "#{@region_leaders.first[0]} has the snowiest resort this week: #{@region_leaders.first[1].name}, with #{inches(@totals[@region_leaders.first[1].id])} forecast over 7 days." } %>
+<% end %>
+
+<% content_for(:title, "Where Is It Snowing? Ski Resorts With the Most Snow | Snow Way") %>
+<% content_for(:description, (faqs.first || faqs.last)[:answer].truncate(155)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "Where Is It Snowing This Week?", "url" => absolute_url("/where-is-it-snowing"), "dateModified" => @updated_at&.iso8601 }.compact,
+        breadcrumb_schema([ [ "Where Is It Snowing", nil ] ]),
+        { "@type" => "ItemList", "name" => "Ski resorts with the most snow forecast this week",
+          "itemListElement" => @ranked.first(15).each_with_index.map { |r, i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
+        faq_schema(faqs)
+      ].compact }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Where Is It Snowing", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Where is it snowing this week?</h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
+      <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · 7-day summit forecasts for <%= @resorts.size %> resorts from Open-Meteo</p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-4">Most snow in the next 7 days</h2>
+    <div class="mb-10">
+      <%= render "shared/snow_table", resorts: @ranked.first(15), totals: @totals, caption: "Top 15 ski resorts by 7-day forecast snowfall",
+            extra: ->(r) { inches(@recent.fetch(r.id, 0.0)) }, extra_label: "Last 48h" %>
+    </div>
+
+    <% if @region_leaders.any? %>
+      <h2 class="text-xl font-bold mb-4">Snowiest resort in each state and province</h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
+        <% @region_leaders.each do |region, resort| %>
+          <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3 flex justify-between gap-3">
+            <span><%= link_to region, region_path(resort.region_slug), class: "inline-block py-1 text-slate-300 hover:text-white text-sm" %><span class="block font-semibold"><%= link_to resort.name, resort_path(resort), class: "inline-block py-1 hover:text-cyan-300" %></span></span>
+            <span class="text-cyan-300 font-bold self-center"><%= inches(@totals[resort.id]) %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @fresh.any? %>
+      <h2 class="text-xl font-bold mb-4">Fresh snow in the last 48 hours</h2>
+      <ul class="flex flex-wrap gap-2 mb-10">
+        <% @fresh.first(12).each do |resort| %>
+          <li><%= link_to resort_path(resort), class: "inline-flex gap-2 bg-amber-500/10 border border-amber-500/30 rounded-lg px-3 py-2 text-sm hover:border-amber-400" do %><span class="font-semibold"><%= resort.name %></span><span class="text-amber-300 font-bold"><%= inches(@recent[resort.id]) %></span><% end %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Where it's snowing: quick answers" %>
+    <p class="text-sm text-slate-400">See the <%= link_to "full powder rankings", resorts_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> or browse <%= link_to "ski resorts by state", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
+  </main>
+</div>

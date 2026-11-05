@@ -1,0 +1,12 @@
+<div class="p-4">
+  <p class="text-xs uppercase tracking-widest text-slate-400 mb-2">Most snow in the next 7 days</p>
+  <ol class="space-y-1">
+    <% @resorts.each_with_index do |r, i| %>
+      <li class="flex justify-between gap-2 text-sm bg-slate-800/60 rounded-md px-3 py-2">
+        <a href="https://snowway.app/resorts/<%= r.slug %>" target="_blank" rel="noopener" class="font-semibold text-white hover:text-cyan-300"><%= i + 1 %>. <%= r.name %> <span class="text-slate-400 font-normal"><%= r.state_province %></span></a>
+        <span class="text-cyan-300 font-bold"><%= inches(@totals.fetch(r.id, 0.0)) %></span>
+      </li>
+    <% end %>
+  </ol>
+  <p class="text-xs text-slate-400 mt-2">Powder rankings by <a href="https://snowway.app/" target="_blank" rel="noopener" class="text-cyan-300 underline underline-offset-2 hover:text-cyan-200">Snow Way</a>, updated every 6 hours</p>
+</div>

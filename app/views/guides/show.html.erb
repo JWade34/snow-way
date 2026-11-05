@@ -1,0 +1,38 @@
+<% faqs = [] %>
+<% body = render(@guide.partial, faqs: faqs) %>
+<% content_for(:title, @guide.title.length > 55 ? @guide.title : "#{@guide.title} | Snow Way") %>
+<% content_for(:description, @guide.description) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => @guide.title, "description" => @guide.description, "url" => absolute_url("/guides/#{@guide.slug}"),
+          "author" => { "@type" => "Person", "@id" => "https://justinmckelvey.com/#person", "name" => "Justin McKelvey", "url" => "https://justinmckelvey.com" },
+          "publisher" => { "@type" => "Organization", "name" => "Snow Way", "url" => "https://snowway.app" },
+          "datePublished" => "2026-11-05", "dateModified" => "2026-11-05" },
+        breadcrumb_schema([ [ "Guides", "/guides" ], [ @guide.title, nil ] ]),
+        faq_schema(faqs)
+      ].compact }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ @guide.title, nil ] ] %>
+    <article class="guide">
+      <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= @guide.title %></h1>
+      <p class="text-slate-400 text-sm mb-8">By <a href="https://justinmckelvey.com" class="text-slate-300 hover:text-white underline-offset-2 hover:underline">Justin McKelvey</a> · Updated <time datetime="2026-11-05">November 5, 2026</time></p>
+      <%= body %>
+      <%= render "shared/faq", faqs: faqs, heading: "FAQ" %>
+    </article>
+    <% if @top.any? %>
+      <aside class="bg-slate-800/40 border border-slate-700 rounded-xl p-5 mb-10" aria-labelledby="powder-now">
+        <h2 id="powder-now" class="font-bold mb-3">Where the snow is this week</h2>
+        <ol class="space-y-1 text-sm">
+          <% @top.each_with_index do |r, i| %>
+            <li class="flex justify-between"><span><%= i + 1 %>. <%= link_to r.name, resort_path(r), class: "hover:text-cyan-300" %> <span class="text-slate-400"><%= r.state_province %></span></span><span class="text-cyan-300 font-bold"><%= inches(@totals[r.id]) %></span></li>
+          <% end %>
+        </ol>
+        <p class="mt-3 text-sm"><%= link_to "Full powder rankings →", resorts_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+      </aside>
+    <% end %>
+    <nav aria-label="More guides" class="text-sm text-slate-400">More guides: <%= safe_join(Guide.all.reject { |g| g.slug == @guide.slug }.map { |g| link_to(g.title, guide_path(g), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></nav>
+  </main>
+</div>

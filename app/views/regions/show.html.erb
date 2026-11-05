@@ -1,0 +1,84 @@
+<% name = @region.name %>
+<% leader = @resorts.first %>
+<% lead_total = @totals.fetch(leader.id, 0.0) %>
+<% today = Date.current.strftime("%B %-d, %Y") %>
+<% highest = @region.resorts.max_by(&:elevation_summit) %>
+<% biggest_vert = @region.resorts.select(&:vertical_drop).max_by(&:vertical_drop) %>
+<% airports = @region.resorts.map { |r| "#{r.airport_name} (#{r.nearest_airport_code})" }.tally.sort_by { |_, n| -n }.map(&:first) %>
+<% faqs = [] %>
+<% faqs << { question: "How many ski resorts are in #{name}?", answer: "Snow Way tracks #{pluralize(@region.resorts.size, "ski resort")} in #{name}: #{@region.resorts.map(&:name).to_sentence}." } %>
+<% faqs << { question: "Which #{name} ski resort is getting the most snow this week?",
+             answer: lead_total > 0 ? "As of #{today}, #{leader.name} leads #{name} with #{inches(lead_total)} of snow forecast over the next 7 days#{(runners = @resorts[1..2].select { |r| @totals.fetch(r.id, 0.0) > 0 }).any? ? ", followed by #{runners.map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}" : ""}." : "As of #{today}, no #{name} ski resort has new snow in its 7-day forecast." } %>
+<% faqs << { question: "What is the highest ski resort in #{name}?", answer: "#{highest.name} has the highest summit in #{name} at #{number_with_delimiter(highest.elevation_summit)} ft." } if @region.resorts.size > 1 %>
+<% faqs << { question: "Which #{name} ski resort has the most vertical?", answer: "#{biggest_vert.name} has the biggest vertical drop in #{name}: #{number_with_delimiter(biggest_vert.vertical_drop)} ft from base to summit." } if biggest_vert && @region.resorts.size > 1 %>
+<% faqs << { question: "What airport do you fly into for #{name} ski resorts?", answer: "The main airports for #{name} ski resorts are #{airports.first(3).to_sentence}." } %>
+<% epic = @region.resorts.select(&:on_epic?) %>
+<% ikon = @region.resorts.select(&:on_ikon?) %>
+<% if epic.any? || ikon.any? %>
+  <% faqs << { question: "Which #{name} ski resorts are on the Epic Pass and Ikon Pass?", answer: [ ("Epic Pass: #{epic.map(&:name).to_sentence}." if epic.any?), ("Ikon Pass: #{ikon.map(&:name).to_sentence}." if ikon.any?) ].compact.join(" ") } %>
+<% end %>
+
+<% content_for(:title, "Ski Resorts in #{name}: Snow Forecast & Guide | Snow Way") %>
+<% content_for(:description, "All #{@region.resorts.size} ski resorts in #{name} with 7-day and 14-day snow forecasts, summit elevation, vertical, nearest airport, and pass. #{faqs[1][:answer]}".truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "CollectionPage", "name" => "Ski Resorts in #{name}", "url" => absolute_url("/ski-resorts/#{@region.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
+        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ name, nil ] ]),
+        { "@type" => "ItemList", "name" => "Ski resorts in #{name}", "numberOfItems" => @resorts.size,
+          "itemListElement" => @resorts.each_with_index.map { |r, i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
+        faq_schema(faqs)
+      ].compact }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ name, nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts in <%= name %></h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs[1][:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= name %>, ranked below by forecast snow.</p>
+      <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Summit-elevation forecasts from Open-Meteo</p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-4"><%= name %> ski resorts ranked by snow this week</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only"><%= name %> ski resorts with 7-day and 14-day snow forecasts</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left">
+          <tr>
+            <th scope="col" class="px-3 py-2">Resort</th>
+            <th scope="col" class="px-3 py-2 text-right">7-day</th>
+            <th scope="col" class="px-3 py-2 text-right">14-day</th>
+            <th scope="col" class="px-3 py-2 text-right">48h</th>
+            <th scope="col" class="px-3 py-2 text-right hidden sm:table-cell">Summit</th>
+            <th scope="col" class="px-3 py-2 text-right hidden md:table-cell">Vertical</th>
+            <th scope="col" class="px-3 py-2 hidden sm:table-cell">Airport</th>
+            <th scope="col" class="px-3 py-2 hidden md:table-cell">Pass</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800">
+          <% @resorts.each do |r| %>
+            <tr class="hover:bg-slate-800/40">
+              <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></th>
+              <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
+              <td class="px-3 py-2 text-right text-slate-200"><%= inches(@totals_14.fetch(r.id, 0.0)) %></td>
+              <td class="px-3 py-2 text-right text-amber-300"><%= inches(@recent.fetch(r.id, 0.0)) %></td>
+              <td class="px-3 py-2 text-right text-slate-300 hidden sm:table-cell"><%= number_with_delimiter(r.elevation_summit) %> ft</td>
+              <td class="px-3 py-2 text-right text-slate-300 hidden md:table-cell"><%= number_with_delimiter(r.vertical_drop) %> ft</td>
+              <td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.nearest_airport_code %></td>
+              <td class="px-3 py-2 text-slate-300 hidden md:table-cell"><%= r.pass_label || "—" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= render "shared/faq", faqs: faqs, heading: "#{name} skiing FAQ" %>
+
+    <% nearby_hubs = SkiHub.all.select { |h| h.nearby.any? { |r, _| r.state_province == name } } %>
+    <% if nearby_hubs.any? %>
+      <p class="text-sm text-slate-400 mb-2">Ski resorts near: <%= safe_join(nearby_hubs.map { |h| link_to(h.city, hub_path(h), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, ", ") %></p>
+    <% end %>
+    <p class="text-sm text-slate-400"><%= link_to "All states and provinces", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Where is it snowing this week?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+  </main>
+</div>

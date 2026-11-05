@@ -18,5 +18,8 @@ class RefreshSnowForecastsJob < ApplicationJob
     end
 
     Rails.logger.info "Snow forecast refresh complete!"
+
+    # Full refreshes change every forecast page; tell IndexNow engines once a day.
+    IndexNow.submit_daily(SitePages.forecast_urls) if resort_ids.nil?
   end
 end

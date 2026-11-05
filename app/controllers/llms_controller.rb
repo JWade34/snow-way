@@ -8,9 +8,10 @@ class LlmsController < ApplicationController
 
   def full
     @totals = Resort.projected_totals
+    totals_14 = Resort.projected_totals(days: 14)
     @summaries = Resort.includes(:snow_forecasts).to_a
       .sort_by { |r| -@totals.fetch(r.id, 0.0) }
-      .map { |r| ResortSummary.new(r, totals: @totals) }
+      .map { |r| ResortSummary.new(r, totals: @totals, totals_14: totals_14) }
     render formats: :text, content_type: "text/plain"
   end
 end

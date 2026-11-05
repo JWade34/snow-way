@@ -1,0 +1,62 @@
+<% avg = ->(list) { list.any? ? (list.sum { |r| @totals.fetch(r.id, 0.0) } / list.size).round(1) : 0.0 } %>
+<% epic_avg, ikon_avg = avg.(@epic), avg.(@ikon) %>
+<% has_data = @epic.any? && @ikon.any? %>
+<% prices = @prices[:passes] %>
+<% price = ->(key) { (p = prices[key]) && p["adult_price_usd"] ? number_to_currency(p["adult_price_usd"], precision: 0) : nil } %>
+<% leader = epic_avg >= ikon_avg ? "Epic" : "Ikon" %>
+<% faqs = [] %>
+<% if has_data %>
+  <% faqs << { question: "Which pass is getting more snow this week, Ikon or Epic?", answer: "As of #{Date.current.strftime("%B %-d, %Y")}, #{leader} Pass resorts average more snow in the 7-day forecast: #{inches([ epic_avg, ikon_avg ].max)} vs #{inches([ epic_avg, ikon_avg ].min)} across the #{@epic.size} Epic and #{@ikon.size} Ikon resorts Snow Way tracks. The snowiest Epic resort is #{@epic.first.name} (#{inches(@totals.fetch(@epic.first.id, 0.0))}); the snowiest Ikon resort is #{@ikon.first.name} (#{inches(@totals.fetch(@ikon.first.id, 0.0))})." } %>
+<% end %>
+<% if price.("epic") && price.("ikon") %>
+  <% faqs << { question: "How much do the Ikon Pass and Epic Pass cost for #{Date.current.month >= 7 ? Date.current.year : Date.current.year - 1}-#{((Date.current.month >= 7 ? Date.current.year : Date.current.year - 1) + 1).to_s.last(2)}?", answer: "Adult prices as of #{@prices[:checked_on]&.strftime("%B %-d, %Y")}: Epic Pass #{price.("epic")}#{price.("epic_local") ? ", Epic Local Pass #{price.("epic_local")}" : ""}, Ikon Pass #{price.("ikon")}#{price.("ikon_base") ? ", Ikon Base Pass #{price.("ikon_base")}" : ""}. Prices change by sale deadline; check the official sites before buying." } %>
+<% end %>
+<% faqs << { question: "What is the main difference between the Ikon Pass and the Epic Pass?", answer: "The Epic Pass is sold by Vail Resorts and covers mostly resorts it owns, usually with unlimited days. The Ikon Pass is sold by Alterra Mountain Company and covers a mix of owned and partner resorts, many with a set number of days. The better pass is the one with more resorts you'll actually ski." } %>
+<% faqs << { question: "Which Snow Way resorts are on each pass?", answer: "Epic Pass: #{@epic.map(&:name).to_sentence}. Ikon Pass: #{@ikon.map(&:name).to_sentence}." } if has_data %>
+
+<% content_for(:title, "Ikon vs Epic: Which Pass Is Getting More Snow? | Snow Way") %>
+<% content_for(:description, (faqs.first[:answer]).truncate(158)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "Ikon vs Epic Pass", "url" => absolute_url("/ikon-vs-epic"), "dateModified" => Date.current.iso8601 },
+        breadcrumb_schema([ [ "Ikon vs Epic", nil ] ]), faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ikon vs Epic: which pass is getting more snow?</h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
+      <% if @prices[:checked_on] %><p class="text-slate-400 text-xs mt-3">Pass membership and prices checked <%= @prices[:checked_on].strftime("%B %-d, %Y") %> from epicpass.com and ikonpass.com. Snow updates every 6 hours.</p><% end %>
+    </section>
+
+    <% if has_data %>
+      <div class="grid grid-cols-2 gap-3 mb-8 text-center">
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4"><p class="text-slate-300 text-sm">Epic avg, 7 days</p><p class="text-3xl font-extrabold text-cyan-300"><%= inches(epic_avg) %></p><p class="text-slate-400 text-xs"><%= @epic.size %> resorts<%= price.("epic") ? " · #{price.("epic")}" : "" %></p></div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4"><p class="text-slate-300 text-sm">Ikon avg, 7 days</p><p class="text-3xl font-extrabold text-cyan-300"><%= inches(ikon_avg) %></p><p class="text-slate-400 text-xs"><%= @ikon.size %> resorts<%= price.("ikon") ? " · #{price.("ikon")}" : "" %></p></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <% [ [ "Epic Pass resorts", @epic ], [ "Ikon Pass resorts", @ikon ] ].each do |label, list| %>
+          <section>
+            <h2 class="text-xl font-bold mb-3"><%= label %> by snow this week</h2>
+            <ol class="space-y-1">
+              <% list.each_with_index do |r, i| %>
+                <li class="flex justify-between gap-2 bg-slate-800/40 border border-slate-700 rounded-lg px-3 py-2 text-sm">
+                  <span><span class="text-slate-400 mr-1"><%= i + 1 %>.</span><%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %><% if r.pass_note.present? %><span class="block text-xs text-slate-400"><%= r.pass_note %></span><% end %></span>
+                  <span class="text-cyan-300 font-bold"><%= inches(@totals.fetch(r.id, 0.0)) %></span>
+                </li>
+              <% end %>
+            </ol>
+          </section>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-slate-300 mb-10">Pass data is being verified. Check back soon.</p>
+    <% end %>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Ikon vs Epic FAQ" %>
+  </main>
+</div>

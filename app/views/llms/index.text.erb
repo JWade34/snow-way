@@ -6,15 +6,28 @@ As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answ
 
 ## Key pages
 
+- [Where is it snowing this week](https://snowway.app/where-is-it-snowing): resorts with the most snow forecast, regional leaders, and fresh snow in the last 48 hours
 - [Powder rankings](https://snowway.app/resorts): every tracked resort ranked by 7-day projected snowfall
-- [Top powder destination](https://snowway.app/): the resort with the most snow forecast this week
+- [Ikon vs Epic](https://snowway.app/ikon-vs-epic): which pass's resorts are getting more snow this week, plus pass prices
+- [Ski resort opening dates](https://snowway.app/ski-resort-opening-dates): this season's opening dates with sources
+- [Ski resorts by state and province](https://snowway.app/ski-resorts): directories with 7- and 14-day forecasts, elevation, airport, and pass
 - [Live weather](https://snowway.app/weather): current conditions at the top resorts
+
+## Ski resorts near major cities
+<% SkiHub.all.each do |hub| %>
+- [Ski resorts near <%= hub.city %>](https://snowway.app/ski-resorts-near/<%= hub.slug %>): <%= hub.nearby.size %> resorts within <%= SkiHub::RADIUS_MILES %> miles of <%= hub.airport %>
+<% end %>
+
+## Guides
+<% Guide.all.each do |guide| %>
+- [<%= guide.title %>](https://snowway.app/guides/<%= guide.slug %>): <%= guide.description %>
+<% end %>
 
 ## Resort snow forecasts
 <% @resorts.group_by(&:state_province).each do |region, resorts| %>
 
-### <%= region %>
+### [<%= region %>](https://snowway.app/ski-resorts/<%= region.parameterize %>)
 <% resorts.each do |resort| %>
-- [<%= resort.name %> snow forecast](https://snowway.app/resorts/<%= resort.slug %>): <%= @totals.fetch(resort.id, 0.0) %>" forecast over the next 7 days
+- [<%= resort.name %> snow forecast](https://snowway.app/resorts/<%= resort.slug %>): <%= @totals.fetch(resort.id, 0.0) %>" forecast over the next 7 days ([best time to ski](https://snowway.app/resorts/<%= resort.slug %>/best-time-to-ski))
 <% end %>
 <% end %>

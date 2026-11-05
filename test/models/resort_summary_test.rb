@@ -34,6 +34,12 @@ class ResortSummaryTest < ActiveSupport::TestCase
     assert_includes summary.faqs.find { |f| f[:question].start_with?("When is snow") }[:answer], "No day with 1 inch or more"
   end
 
+  test "14-day total includes days 8 to 14 and the FAQ flags low confidence" do
+    assert_in_delta 36.5, @vail.total_14
+    faq = @vail.faqs.find { |f| f[:question].start_with?("What is the 14-day") }
+    assert_includes faq[:answer], "low-confidence"
+  end
+
   test "faqs include state comparison only when peers exist" do
     assert @vail.faqs.any? { |f| f[:question].include?("other Colorado ski resorts") }
     assert_not ResortSummary.new(resorts(:alyeska)).faqs.any? { |f| f[:question].include?("compare") }

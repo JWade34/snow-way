@@ -1,9 +1,14 @@
 class Resort < ApplicationRecord
   DATA_FILE = Rails.root.join("db/resorts.yml")
+  FACTS_FILE = Rails.root.join("db/resort_facts.yml")
+  PASS_LABELS = {
+    "epic" => "Epic Pass", "ikon" => "Ikon Pass", "both" => "Epic & Ikon",
+    "independent" => "Independent"
+  }.freeze
 
-  # Next 7 days, today included.
-  def self.forecast_window(as_of = Date.current)
-    as_of..(as_of + 6)
+  # Next `days` days, today included.
+  def self.forecast_window(as_of = Date.current, days: 7)
+    as_of..(as_of + days - 1)
   end
 
   AIRPORTS = {
@@ -34,21 +39,62 @@ class Resort < ApplicationRecord
   validates :name, :slug, :latitude, :longitude, :nearest_airport_code, presence: true
   validates :slug, uniqueness: true
 
-  # Upserts every resort in db/resorts.yml by slug. Returns the resorts that were newly created.
-  def self.sync_from_data_file!(path = DATA_FILE)
+  FACT_FIELDS = %w[pass pass_note pass_source other_passes opening_date opening_status opening_source].freeze
+
+  # Upserts every resort in db/resorts.yml by slug, merging sourced facts from db/resort_facts.yml.
+  # Returns the resorts that were newly created.
+  def self.sync_from_data_file!(path = DATA_FILE, facts_path = FACTS_FILE)
+    facts = File.exist?(facts_path) ? YAML.load_file(facts_path, permitted_classes: [ Date ]) : {}
+    checked_on = facts["checked_on"]
+    resort_facts = facts.fetch("resorts", {}) || {}
+
     YAML.load_file(path).filter_map do |attrs|
       resort = find_or_initialize_by(slug: attrs.fetch("slug"))
       created = resort.new_record?
-      resort.update!(attrs)
+      fact = (resort_facts[attrs["slug"]] || {}).slice(*FACT_FIELDS)
+      resort.update!(attrs.merge(fact).merge("facts_checked_on" => (checked_on if fact.any?)))
       resort if created
     end
   end
 
+  def self.pass_prices
+    facts = File.exist?(FACTS_FILE) ? YAML.load_file(FACTS_FILE, permitted_classes: [ Date ]) : {}
+    { checked_on: facts["checked_on"], passes: facts.fetch("passes", {}) || {} }
+  end
+
   # { resort_id => inches } projected over the forecast window, for every resort with forecast rows.
-  def self.projected_totals(as_of = Date.current)
-    SnowForecast.where(forecast_date: forecast_window(as_of))
+  def self.projected_totals(as_of = Date.current, days: 7)
+    SnowForecast.where(forecast_date: forecast_window(as_of, days: days))
       .group(:resort_id).sum(:snowfall_inches)
       .transform_values { |v| v.to_f.round(1) }
+  end
+
+  # { resort_id => inches } over the last 48 hours (the two days before today).
+  def self.recent_totals(as_of = Date.current)
+    SnowForecast.where(forecast_date: (as_of - 2)..(as_of - 1))
+      .group(:resort_id).sum(:snowfall_inches)
+      .transform_values { |v| v.to_f.round(1) }
+  end
+
+  def region_slug
+    state_province.parameterize
+  end
+
+  def pass_label
+    PASS_LABELS[pass]
+  end
+
+  def on_epic?
+    %w[epic both].include?(pass)
+  end
+
+  def on_ikon?
+    %w[ikon both].include?(pass)
+  end
+
+  # Months ranked by share of a typical season's snowfall (modeled), e.g. [[1, 16.6], [3, 16.7], ...]
+  def snowiest_months(limit = 3)
+    (monthly_snow_share || {}).map { |m, v| [ m.to_i, v.to_f ] }.sort_by { |_, v| -v }.first(limit)
   end
 
   # Use slug in URLs instead of id

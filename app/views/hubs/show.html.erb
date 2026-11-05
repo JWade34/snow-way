@@ -1,0 +1,56 @@
+<% city = @hub.city %>
+<% nearby = @hub.nearby %>
+<% closest, closest_mi = nearby.first %>
+<% snowiest, _ = nearby.max_by { |r, _| @totals.fetch(r.id, 0.0) } %>
+<% within_100 = nearby.select { |_, mi| mi <= 100 } %>
+<% faqs = [] %>
+<% faqs << { question: "What is the closest ski resort to #{city}?", answer: "#{closest.name} is the closest ski resort Snow Way tracks to #{city}, about #{closest_mi} miles in a straight line from #{@hub.airport}. Driving distance is longer." } %>
+<% faqs << { question: "Which ski resort near #{city} is getting the most snow this week?", answer: @totals.fetch(snowiest.id, 0.0) > 0 ? "As of #{Date.current.strftime("%B %-d, %Y")}, #{snowiest.name} has the most snow forecast near #{city}: #{inches(@totals[snowiest.id])} over the next 7 days." : "As of #{Date.current.strftime("%B %-d, %Y")}, none of the ski resorts near #{city} have new snow in the 7-day forecast." } %>
+<% faqs << { question: "How many ski resorts are within 100 miles of #{city}?", answer: within_100.any? ? "#{pluralize(within_100.size, "ski resort")} Snow Way tracks #{within_100.size == 1 ? "is" : "are"} within 100 miles (straight line) of #{@hub.airport}: #{within_100.map { |r, _| r.name }.to_sentence}." : "None of the resorts Snow Way tracks are within 100 straight-line miles of #{@hub.airport}; the closest is #{closest.name} at about #{closest_mi} miles." } %>
+
+<% content_for(:title, "Ski Resorts Near #{city}: Distance & Snow | Snow Way") %>
+<% content_for(:description, "#{nearby.size} ski resorts within #{SkiHub::RADIUS_MILES} miles of #{city} (#{@hub.airport}), sorted by distance with this week's snow forecast. #{faqs[1][:answer]}".truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "CollectionPage", "name" => "Ski Resorts Near #{city}", "url" => absolute_url("/ski-resorts-near/#{@hub.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
+        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ "Near #{city}", nil ] ]),
+        { "@type" => "ItemList", "name" => "Ski resorts near #{city}", "itemListElement" => nearby.each_with_index.map { |(r, _), i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ "Near #{city}", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts near <%= city %></h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs[0][:answer] %> <%= faqs[1][:answer] %></p>
+      <p class="text-slate-400 text-xs mt-3">Distances are straight-line miles from <%= Resort::AIRPORTS.fetch(@hub.airport, @hub.airport) %> (<%= @hub.airport %>), not driving distance. Snow updated <%= updated_label(@updated_at) %>.</p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-4">Resorts within <%= SkiHub::RADIUS_MILES %> miles of <%= city %>, nearest first</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski resorts near <%= city %> by distance with 7-day snow forecast</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left">
+          <tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">Distance</th><th scope="col" class="px-3 py-2 text-right">7-day snow</th><th scope="col" class="px-3 py-2 text-right hidden sm:table-cell">Summit</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Pass</th></tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800">
+          <% nearby.each do |r, mi| %>
+            <tr class="hover:bg-slate-800/40">
+              <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><span class="block text-xs text-slate-400 font-normal"><%= r.state_province %></span></th>
+              <td class="px-3 py-2 text-right text-slate-200">~<%= mi %> mi</td>
+              <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
+              <td class="px-3 py-2 text-right text-slate-300 hidden sm:table-cell"><%= number_with_delimiter(r.elevation_summit) %> ft</td>
+              <td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.pass_label || "—" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Skiing near #{city}: FAQ" %>
+    <p class="text-sm text-slate-400">More: <%= safe_join(nearby.map { |r, _| r.region_slug }.uniq.first(4).map { |slug| link_to("ski resorts in #{Region.find(slug).name}", region_path(slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>
+  </main>
+</div>

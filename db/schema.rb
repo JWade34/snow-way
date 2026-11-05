@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_06_192000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_05_232840) do
   create_table "resorts", force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -24,6 +24,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_06_192000) do
     t.string "website_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "monthly_snow_share"
+    t.string "pass"
+    t.string "pass_note"
+    t.string "pass_source"
+    t.json "other_passes"
+    t.date "opening_date"
+    t.string "opening_status"
+    t.string "opening_source"
+    t.date "facts_checked_on"
   end
 
   create_table "snow_forecasts", force: :cascade do |t|

@@ -8,13 +8,13 @@
 
 URL: https://snowway.app/resorts/<%= resort.slug %>
 7-day forecast: <%= summary.total %>"<%= summary.recent > 0 ? " · Last 48 hours: #{summary.recent}\"" : "" %>
-Summit <%= resort.elevation_summit %> ft · Base <%= resort.elevation_base %> ft · Nearest airport: <%= resort.airport_name %> (<%= resort.nearest_airport_code %>)
+Summit <%= resort.elevation_summit %> ft · Base <%= resort.elevation_base %> ft · Nearest airport: <%= resort.airport_name %> (<%= resort.nearest_airport_code %>)<%= resort.pass_label ? " · Pass: #{resort.pass_label}" : "" %><%= resort.snowiest_months.any? ? " · Snowiest months: #{resort.snowiest_months.map { |m, _| Date::MONTHNAMES[m] }.join(", ")}" : "" %>
 
 <%= summary.answer %>
 <% if summary.forecasts.any? %>
 Daily: <%= summary.forecasts.map { |f| "#{f.forecast_date.strftime("%a %b %-d")} #{f.snowfall_inches.to_f.round(1)}\"" }.join(" · ") %>
 <% end %>
-<% summary.faqs.first(2).each do |faq| %>
+<% summary.faqs.first(3).each do |faq| %>
 
 Q: <%= faq[:question] %>
 A: <%= faq[:answer] %>

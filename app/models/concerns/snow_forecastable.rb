@@ -18,7 +18,7 @@ module SnowForecastable
         elevation: summit_meters,
         daily: "precipitation_sum,temperature_2m_mean,snowfall_sum",
         timezone: "auto",
-        forecast_days: 8,
+        forecast_days: 16,
         past_days: 2
       )
 

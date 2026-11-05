@@ -1,0 +1,14 @@
+<%# locals: (faqs:, heading:) -%>
+<% if faqs.any? %>
+  <section class="mb-10" aria-labelledby="faq-heading">
+    <h2 id="faq-heading" class="text-xl font-bold mb-4"><%= heading %></h2>
+    <div class="space-y-3">
+      <% faqs.each do |faq| %>
+        <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-4">
+          <h3 class="font-semibold mb-1"><%= faq[:question] %></h3>
+          <p class="text-slate-300 text-sm leading-relaxed"><%= faq[:answer] %></p>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>

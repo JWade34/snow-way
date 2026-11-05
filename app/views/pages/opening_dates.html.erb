@@ -1,0 +1,60 @@
+<% today = Date.current %>
+<% opened = @resorts.select { |r| r.opening_status == "opened" || r.opening_date <= today } %>
+<% upcoming = @resorts.reject { |r| opened.include?(r) } %>
+<% season_year = today.month >= 7 ? today.year : today.year - 1 %>
+<% season = "#{season_year}-#{(season_year + 1).to_s.last(2)}" %>
+<% faqs = [] %>
+<% faqs << { question: "When do ski resorts open for the #{season} season?", answer: @resorts.any? ? "Of the resorts Snow Way tracks, #{@resorts.first.name} has the earliest #{season} opening date (#{@resorts.first.opening_date.strftime("%B %-d")}). Most western resorts open between mid-November and early December, depending on snow." : "Most western resorts open between mid-November and early December, depending on snow." } %>
+<% faqs << { question: "Which ski resorts are open right now?", answer: opened.any? ? "As of #{today.strftime("%B %-d, %Y")}, these resorts have opened for #{season}: #{opened.map(&:name).to_sentence}." : "As of #{today.strftime("%B %-d, %Y")}, none of the resorts Snow Way tracks have reported opening for #{season} yet." } %>
+<% upcoming.select { |r| %w[vail breckenridge park-city mammoth-mountain palisades-tahoe whistler-blackcomb jackson-hole].include?(r.slug) }.each do |r| %>
+  <% faqs << { question: "When does #{r.name} open for #{season}?", answer: "#{r.name} is scheduled to open on #{r.opening_date.strftime("%B %-d, %Y")}, according to the resort. Opening dates can move with the snow." } %>
+<% end %>
+
+<% content_for(:title, "Ski Resort Opening Dates #{season} | Snow Way") %>
+<% content_for(:description, "#{season} ski resort opening dates for #{@resorts.size} North American resorts, with live snow forecasts. #{faqs.first[:answer]}".truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "Ski Resort Opening Dates #{season}", "url" => absolute_url("/ski-resort-opening-dates"), "dateModified" => (@checked_on || today).iso8601 },
+        breadcrumb_schema([ [ "Opening Dates", nil ] ]), faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Opening Dates", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resort opening dates <%= season %></h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
+      <p class="text-slate-400 text-xs mt-3"><%= @checked_on ? "Dates checked #{@checked_on.strftime("%B %-d, %Y")} from each resort's announcements." : "Dates come from each resort's announcements." %> Resorts can open early or delay with conditions.</p>
+    </section>
+
+    <% [ [ "Open now", opened ], [ "Scheduled openings", upcoming ] ].each do |label, list| %>
+      <% next if list.empty? %>
+      <h2 class="text-xl font-bold mb-4"><%= label %></h2>
+      <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+        <table class="w-full text-sm">
+          <caption class="sr-only"><%= label %>: ski resort opening dates <%= season %></caption>
+          <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2"><%= label == "Open now" ? "Opened" : "Opening" %></th><th scope="col" class="px-3 py-2 text-right">7-day snow</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Source</th></tr></thead>
+          <tbody class="divide-y divide-slate-800">
+            <% list.each do |r| %>
+              <tr>
+                <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><span class="block text-xs text-slate-400 font-normal"><%= r.state_province %></span></th>
+                <td class="px-3 py-2 text-slate-200"><%= r.opening_date.strftime("%a, %b %-d") %></td>
+                <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
+                <td class="px-3 py-2 hidden sm:table-cell"><% if r.opening_source.present? %><%= link_to "Resort", r.opening_source, rel: "noopener nofollow", target: "_blank", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% end %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <% if @unknown.any? %>
+      <h2 class="text-xl font-bold mb-3">Opening date not yet announced</h2>
+      <p class="text-slate-300 text-sm mb-10"><%= safe_join(@unknown.map { |r| link_to(r.name, resort_path(r), class: "hover:text-cyan-300") }, ", ") %></p>
+    <% end %>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Opening day FAQ" %>
+  </main>
+</div>

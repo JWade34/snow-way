@@ -6,6 +6,7 @@
 <% end %>
 
 <% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org" }.merge(faq_schema(@faqs))) if @faqs.any? %>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,22 +55,16 @@
 <div class="min-h-screen flex flex-col" data-controller="snowflakes">
   <!-- Snowflakes container -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" data-snowflakes-target="container"></div>
-
-  <!-- Header -->
-  <header class="relative z-10 px-6 py-4 flex items-center justify-between">
-    <h1 class="text-2xl font-extrabold tracking-tight">
-      <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
-    </h1>
-    <nav class="flex gap-4">
-      <%= link_to "Weather", weather_index_path, class: "text-slate-400 hover:text-white transition" %>
-      <%= link_to "Rankings", resorts_path, class: "text-slate-400 hover:text-white transition" %>
-    </nav>
-  </header>
+  <%= render "shared/header" %>
 
   <!-- Hero Section -->
-  <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pb-20">
+  <main id="main" class="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-20">
+    <h1 class="text-xl md:text-2xl font-bold text-center text-slate-200 max-w-2xl mb-2">Which ski resort is getting the most snow this week?</h1>
+    <p class="text-slate-400 text-sm md:text-base text-center max-w-xl mb-10">
+      Snow Way ranks <%= @resort_count %> North American ski resorts by forecast snowfall for the next 7 days, updated every 6 hours.
+    </p>
     <% if @top_resort %>
-      <p class="text-slate-400 text-sm uppercase tracking-widest mb-2">Chase the powder</p>
+      <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">#1 for powder this week</p>
 
       <h2 class="text-4xl md:text-6xl font-extrabold text-center mb-4">
         <%= @top_resort.name %>
@@ -130,7 +125,7 @@
   <!-- Bottom Preview -->
   <% if @top_resorts.present? %>
     <section class="relative z-10 px-6 pb-8">
-      <p class="text-slate-500 text-sm uppercase tracking-widest mb-4 text-center">Top 5 Powder Destinations</p>
+      <p class="text-slate-400 text-sm uppercase tracking-widest mb-4 text-center">Top 5 Powder Destinations</p>
       <div class="flex flex-wrap justify-center gap-3">
         <% @top_resorts.each_with_index do |resort, index| %>
           <%= link_to resort_path(resort), class: "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 rounded-lg px-4 py-2 transition flex items-center gap-2" do %>
@@ -138,7 +133,7 @@
             <span class="font-medium"><%= resort.name %></span>
             <% if resort.recent_snowfall_48h > 0 %>
               <span class="text-amber-400"><%= resort.recent_snowfall_48h %>"</span>
-              <span class="text-slate-600">/</span>
+              <span class="text-slate-400">/</span>
             <% end %>
             <span class="text-cyan-400"><%= resort.projected_snowfall_7_day %>"</span>
           <% end %>
@@ -146,4 +141,21 @@
       </div>
     </section>
   <% end %>
+
+  <!-- How it works + FAQ: the plain-language answers search engines and AI assistants quote -->
+  <section class="relative z-10 max-w-4xl w-full mx-auto px-6 pb-12">
+    <h2 class="text-xl font-bold mb-4">How Snow Way works</h2>
+    <ol class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+      <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">1. Forecast every resort</p><p class="text-slate-300 text-sm">We pull a 16-day snowfall forecast for each resort's summit elevation from Open-Meteo, every 6 hours.</p></li>
+      <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">2. Rank by 7-day snow</p><p class="text-slate-300 text-sm">Resorts are ranked by total snow expected over the next 7 days, the range where forecasts are most useful.</p></li>
+      <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">3. Book the trip</p><p class="text-slate-300 text-sm">Every resort page links flights, 4x4 rentals, and hotels near the mountain for the dates you need.</p></li>
+    </ol>
+    <div class="flex flex-wrap gap-2 mb-10 text-sm">
+      <%= link_to "Where is it snowing?", where_is_it_snowing_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
+      <%= link_to "Ski resorts by state", regions_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
+      <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
+      <%= link_to "Opening dates", opening_dates_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
+    </div>
+    <%= render "shared/faq", faqs: @faqs, heading: "Frequently asked questions" %>
+  </section>
 </div>

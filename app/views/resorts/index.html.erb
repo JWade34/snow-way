@@ -1,20 +1,14 @@
-<% content_for(:title, "Ski Resort Powder Rankings — Snow Way") %>
-<% content_for(:description, "North American ski resorts ranked by projected snowfall. Find the best powder conditions for your next ski trip.") %>
+<% content_for(:title, "Ski Resort Snow Forecast Rankings: Most Snow This Week | Snow Way") %>
+<% content_for(:description, "#{Resort.count} North American ski resorts ranked by forecast snowfall for the next 7 days, updated every 6 hours. Find where the powder is before you book.") %>
 
 <div class="min-h-screen">
-  <!-- Header -->
-  <header class="px-6 py-4 flex items-center justify-between border-b border-slate-800">
-    <%= link_to root_path, class: "text-2xl font-extrabold tracking-tight" do %>
-      <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
-    <% end %>
-    <%= link_to "Weather", weather_index_path, class: "text-slate-400 hover:text-white transition text-sm" %>
-  </header>
+  <%= render "shared/header" %>
 
-  <main class="max-w-4xl mx-auto px-6 py-8">
+  <main id="main" class="max-w-4xl mx-auto px-6 py-8">
     <!-- Title -->
     <div class="mb-8">
-      <h1 class="text-3xl font-extrabold mb-2">Powder Rankings</h1>
-      <p class="text-slate-400">North American ski resorts sorted by projected snowfall</p>
+      <h1 class="text-3xl font-extrabold mb-2">Ski Resort Powder Rankings</h1>
+      <p class="text-slate-400">North American ski resorts ranked by forecast snowfall over the next 7 days. See also <%= link_to "where it's snowing this week", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> and <%= link_to "resorts by state", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     </div>
 
     <!-- Sort Controls -->
@@ -39,21 +33,21 @@
 
             <!-- Resort Info -->
             <div class="flex-1">
-              <h3 class="font-bold text-lg"><%= resort.name %></h3>
+              <h2 class="font-bold text-lg"><%= resort.name %></h2>
               <p class="text-slate-400 text-sm"><%= resort.state_province %>, <%= resort.country %></p>
             </div>
 
             <!-- Snow Amount -->
             <div class="text-right">
               <% if resort.recent_snowfall_48h > 0 %>
-                <p class="text-sm font-bold text-amber-400"><%= resort.recent_snowfall_48h %>" <span class="text-slate-500 font-normal">48h</span></p>
+                <p class="text-sm font-bold text-amber-400"><%= resort.recent_snowfall_48h %>" <span class="text-slate-400 font-normal">48h</span></p>
               <% end %>
               <p class="text-2xl font-bold text-cyan-400"><%= resort.projected_snowfall_7_day %>"</p>
-              <p class="text-slate-500 text-xs">7-day forecast</p>
+              <p class="text-slate-400 text-xs">7-day forecast</p>
             </div>
 
             <!-- Arrow -->
-            <div class="text-slate-500">
+            <div class="text-slate-400">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
