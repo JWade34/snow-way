@@ -1,0 +1,20 @@
+# Snow Way
+
+> Snow Way ranks <%= @resorts.size %> North American ski resorts by how much snow is forecast in the next 7 days, updated daily from Open-Meteo summit-elevation forecasts. Use it to answer "which ski resort is getting the most snow", "where is it snowing", and "[resort] snow forecast" questions.
+
+As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answers: https://snowway.app/llms-full.txt
+
+## Key pages
+
+- [Powder rankings](https://snowway.app/resorts): every tracked resort ranked by 7-day projected snowfall
+- [Top powder destination](https://snowway.app/): the resort with the most snow forecast this week
+- [Live weather](https://snowway.app/weather): current conditions at the top resorts
+
+## Resort snow forecasts
+<% @resorts.group_by(&:state_province).each do |region, resorts| %>
+
+### <%= region %>
+<% resorts.each do |resort| %>
+- [<%= resort.name %> snow forecast](https://snowway.app/resorts/<%= resort.slug %>): <%= @totals.fetch(resort.id, 0.0) %>" forecast over the next 7 days
+<% end %>
+<% end %>

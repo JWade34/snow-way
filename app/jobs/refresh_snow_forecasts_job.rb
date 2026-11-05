@@ -1,10 +1,12 @@
 class RefreshSnowForecastsJob < ApplicationJob
   queue_as :default
 
-  def perform
+  # resort_ids: refresh only these resorts (e.g. newly added ones); nil refreshes all.
+  def perform(resort_ids = nil)
     Rails.logger.info "Starting snow forecast refresh..."
 
-    Resort.find_each do |resort|
+    scope = resort_ids ? Resort.where(id: resort_ids) : Resort.all
+    scope.find_each do |resort|
       begin
         SnowForecast.refresh_forecasts_for!(resort)
       rescue => e

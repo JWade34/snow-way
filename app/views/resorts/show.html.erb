@@ -1,29 +1,44 @@
-<% content_for(:title, "#{@resort.name} Snow Forecast — Snow Way") %>
-<% content_for(:description, "#{@resort.name} has #{@resort.projected_snowfall_7_day}\" of snow projected in the next 7 days. #{@resort.state_province}, #{@resort.country} — summit #{number_with_delimiter(@resort.elevation_summit)}'.") %>
+<% content_for(:title, "#{@resort.name} Snow Forecast: 7-Day Snowfall & Powder Outlook | Snow Way") %>
+<% content_for(:description, "#{@summary.answer} Summit #{number_with_delimiter(@resort.elevation_summit)} ft, nearest airport #{@resort.nearest_airport_code}.".truncate(300)) %>
 
+<% page_url = "https://snowway.app/resorts/#{@resort.slug}" %>
 <% content_for(:head) do %>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SkiResort",
-    "name": "<%= j @resort.name %>",
-    "url": "https://snowway.app/resorts/<%= @resort.slug %>",
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": <%= @resort.latitude %>,
-      "longitude": <%= @resort.longitude %>
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "<%= j @resort.state_province %>",
-      "addressCountry": "<%= j @resort.country %>"
-    },
-    "elevation": {
-      "@type": "QuantitativeValue",
-      "value": <%= @resort.elevation_summit %>,
-      "unitCode": "FOT"
-    }
-  }
+  <%= raw({
+    "@context" => "https://schema.org",
+    "@graph" => [
+      {
+        "@type" => "SkiResort",
+        "@id" => "#{page_url}#resort",
+        "name" => @resort.name,
+        "url" => @resort.website_url,
+        "geo" => { "@type" => "GeoCoordinates", "latitude" => @resort.latitude.to_f, "longitude" => @resort.longitude.to_f, "elevation" => "#{@resort.elevation_summit} ft" },
+        "address" => { "@type" => "PostalAddress", "addressRegion" => @resort.state_province, "addressCountry" => @resort.country }
+      }.compact,
+      {
+        "@type" => "WebPage",
+        "@id" => page_url,
+        "url" => page_url,
+        "name" => "#{@resort.name} Snow Forecast",
+        "description" => @summary.answer,
+        "about" => { "@id" => "#{page_url}#resort" },
+        "dateModified" => @summary.updated_at&.iso8601,
+        "isPartOf" => { "@type" => "WebSite", "name" => "Snow Way", "url" => "https://snowway.app" }
+      }.compact,
+      {
+        "@type" => "BreadcrumbList",
+        "itemListElement" => [
+          { "@type" => "ListItem", "position" => 1, "name" => "Snow Way", "item" => "https://snowway.app/" },
+          { "@type" => "ListItem", "position" => 2, "name" => "Ski Resorts", "item" => "https://snowway.app/resorts" },
+          { "@type" => "ListItem", "position" => 3, "name" => "#{@resort.name} Snow Forecast", "item" => page_url }
+        ]
+      },
+      ({
+        "@type" => "FAQPage",
+        "mainEntity" => @summary.faqs.map { |faq| { "@type" => "Question", "name" => faq[:question], "acceptedAnswer" => { "@type" => "Answer", "text" => faq[:answer] } } }
+      } if @summary.faqs.any?)
+    ].compact
+  }.to_json) %>
   </script>
 <% end %>
 
@@ -42,8 +57,11 @@
   <main class="max-w-4xl mx-auto px-6 py-8">
     <!-- Resort Header -->
     <div class="text-center mb-10">
-      <p class="text-slate-500 text-sm uppercase tracking-widest mb-2"><%= @resort.state_province %>, <%= @resort.country %></p>
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %></h1>
+      <nav aria-label="Breadcrumb" class="text-slate-500 text-xs mb-3">
+        <%= link_to "Ski Resorts", resorts_path, class: "hover:text-slate-300 transition" %> <span aria-hidden="true">/</span> <%= @resort.state_province %>
+      </nav>
+      <p class="text-slate-500 text-sm uppercase tracking-widest mb-2"><%= @resort.location %></p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %> <span class="block text-2xl md:text-3xl text-slate-300 font-bold mt-1">Snow Forecast</span></h1>
 
       <!-- Big Snow Number -->
       <div class="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-cyan-300 mb-2">
@@ -51,6 +69,18 @@
       </div>
       <p class="text-slate-400">projected in 7 days</p>
     </div>
+
+    <!-- Answer: the direct, dated summary search engines and AI assistants quote -->
+    <section class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="outlook-heading">
+      <h2 id="outlook-heading" class="text-sm font-bold text-cyan-400 uppercase tracking-widest mb-2"><%= @resort.name %> snow outlook</h2>
+      <p class="text-slate-200 leading-relaxed"><%= @summary.answer %></p>
+      <% if @summary.updated_at %>
+        <p class="text-slate-500 text-xs mt-3">
+          Updated <time datetime="<%= @summary.updated_at.iso8601 %>"><%= @summary.updated_at.in_time_zone("America/Denver").strftime("%b %-d, %Y at %-l:%M %p MT") %></time>
+          · Forecast for the summit elevation (<%= number_with_delimiter(@resort.elevation_summit) %> ft) from Open-Meteo
+        </p>
+      <% end %>
+    </section>
 
     <!-- Quick Stats -->
     <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-10">
@@ -83,11 +113,11 @@
 
     <!-- 7-Day Forecast -->
     <div class="mb-10">
-      <h2 class="text-xl font-bold mb-4">7-Day Forecast</h2>
+      <h2 class="text-xl font-bold mb-4"><%= @resort.name %> 7-Day Snow Forecast</h2>
       <div class="flex gap-2 overflow-x-auto pb-2">
         <% @daily_forecasts.each do |forecast| %>
           <div class="flex-1 min-w-[4.5rem] bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-center">
-            <p class="text-slate-400 text-xs mb-1"><%= forecast.forecast_date.strftime("%a") %></p>
+            <p class="text-slate-400 text-xs mb-1"><%= forecast.forecast_date.strftime("%a") %> <span class="block text-slate-500"><%= forecast.forecast_date.strftime("%-m/%-d") %></span></p>
             <p class="text-lg font-bold <%= forecast.snowfall_inches.to_f > 5 ? 'text-cyan-400' : 'text-white' %>">
               <%= forecast.snowfall_inches.to_f.round(1) %>"
             </p>
@@ -95,6 +125,38 @@
         <% end %>
       </div>
     </div>
+
+    <!-- Nearby resorts: internal links within the state cluster -->
+    <% if @summary.state_peers.any? %>
+      <section class="mb-10">
+        <h2 class="text-xl font-bold mb-4">Other <%= @resort.state_province %> Ski Resorts This Week</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <% @summary.state_peers.each do |peer| %>
+            <li>
+              <%= link_to resort_path(peer), class: "flex items-center justify-between bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-4 py-3 transition" do %>
+                <span class="font-semibold"><%= peer.name %> snow forecast</span>
+                <span class="text-cyan-400 font-bold"><%= @summary.total_for(peer) %>"</span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
+
+    <!-- FAQ (mirrors the FAQPage schema above) -->
+    <% if @summary.faqs.any? %>
+      <section class="mb-10">
+        <h2 class="text-xl font-bold mb-4"><%= @resort.name %> Snow Forecast FAQ</h2>
+        <div class="space-y-3">
+          <% @summary.faqs.each do |faq| %>
+            <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-4">
+              <h3 class="font-semibold mb-1"><%= faq[:question] %></h3>
+              <p class="text-slate-300 text-sm leading-relaxed"><%= faq[:answer] %></p>
+            </div>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
 
     <!-- Home Airport Selector -->
     <div class="mb-6">

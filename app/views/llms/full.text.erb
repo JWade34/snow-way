@@ -1,0 +1,22 @@
+# Snow Way: ski resort snow forecasts (full data)
+
+> Every North American ski resort Snow Way tracks, ranked by snow forecast over the next 7 days (<%= Resort.forecast_window.first.strftime("%b %-d") %> to <%= Resort.forecast_window.last.strftime("%b %-d, %Y") %>). Forecasts are for each resort's summit elevation, sourced from Open-Meteo and refreshed daily. Source: https://snowway.app
+<% @summaries.each_with_index do |summary, i| %>
+<% resort = summary.resort %>
+
+## <%= i + 1 %>. <%= resort.name %> (<%= resort.location %>)
+
+URL: https://snowway.app/resorts/<%= resort.slug %>
+7-day forecast: <%= summary.total %>"<%= summary.recent > 0 ? " · Last 48 hours: #{summary.recent}\"" : "" %>
+Summit <%= resort.elevation_summit %> ft · Base <%= resort.elevation_base %> ft · Nearest airport: <%= resort.airport_name %> (<%= resort.nearest_airport_code %>)
+
+<%= summary.answer %>
+<% if summary.forecasts.any? %>
+Daily: <%= summary.forecasts.map { |f| "#{f.forecast_date.strftime("%a %b %-d")} #{f.snowfall_inches.to_f.round(1)}\"" }.join(" · ") %>
+<% end %>
+<% summary.faqs.first(2).each do |faq| %>
+
+Q: <%= faq[:question] %>
+A: <%= faq[:answer] %>
+<% end %>
+<% end %>

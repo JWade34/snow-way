@@ -6,9 +6,21 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get show" do
-    resort = Resort.first || Resort.create!(name: "Test Resort", latitude: 40.0, longitude: -105.0, state: "CO")
-    get resort_url(resort)
+  test "show targets the snow forecast query with answer, FAQ and schema" do
+    get resort_url(resorts(:vail))
     assert_response :success
+    assert_select "title", /Vail Snow Forecast/
+    assert_select "h1", /Snow Forecast/
+    assert_select "section", /ranking #2 of 3/
+    assert_select "a[href=?]", resort_path(resorts(:breckenridge))
+
+    ld = css_select('script[type="application/ld+json"]').map { |s| JSON.parse(s.text) }
+    graph = ld.find { |d| d["@graph"] }["@graph"]
+    types = graph.map { |n| n["@type"] }
+    assert_includes types, "SkiResort"
+    assert_includes types, "FAQPage"
+    assert_includes types, "BreadcrumbList"
+    faq = graph.find { |n| n["@type"] == "FAQPage" }
+    assert_equal "Will it snow at Vail this week?", faq["mainEntity"].first["name"]
   end
 end

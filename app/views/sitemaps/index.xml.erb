@@ -18,7 +18,7 @@
   <% @resorts.each do |resort| %>
   <url>
     <loc>https://snowway.app/resorts/<%= resort.slug %></loc>
-    <lastmod><%= resort.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    <lastmod><%= (@forecast_updated[resort.id] || resort.updated_at).strftime("%Y-%m-%d") %></lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>

@@ -1,25 +1,35 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+vail:
+  name: Vail
+  slug: vail
+  latitude: 39.6403
+  longitude: -106.3742
+  nearest_airport_code: EGE
+  state_province: Colorado
+  country: USA
+  elevation_base: 8120
+  elevation_summit: 11570
+  website_url: https://www.vail.com
 
-one:
-  name: MyString
-  slug: MyString
-  latitude: 9.99
-  longitude: 9.99
-  nearest_airport_code: MyString
-  state_province: MyString
-  country: MyString
-  elevation_base: 1
-  elevation_summit: 1
-  website_url: MyString
+breckenridge:
+  name: Breckenridge
+  slug: breckenridge
+  latitude: 39.4817
+  longitude: -106.0384
+  nearest_airport_code: DEN
+  state_province: Colorado
+  country: USA
+  elevation_base: 9600
+  elevation_summit: 12998
+  website_url: https://www.breckenridge.com
 
-two:
-  name: MyString
-  slug: MyString
-  latitude: 9.99
-  longitude: 9.99
-  nearest_airport_code: MyString
-  state_province: MyString
-  country: MyString
-  elevation_base: 1
-  elevation_summit: 1
-  website_url: MyString
+alyeska:
+  name: Alyeska
+  slug: alyeska
+  latitude: 60.9689
+  longitude: -149.0981
+  nearest_airport_code: ANC
+  state_province: Alaska
+  country: USA
+  elevation_base: 250
+  elevation_summit: 2750
+  website_url: https://www.alyeskaresort.com

@@ -13,7 +13,8 @@ class ResortsController < ApplicationController
   end
 
   def show
-    @resort = Resort.find_by(slug: params[:id]) || Resort.find(params[:id])
-    @daily_forecasts = @resort.snow_forecasts.where(forecast_date: Date.today..(Date.today + 7)).order(:forecast_date)
+    @resort = Resort.includes(:snow_forecasts).find_by(slug: params[:id]) || Resort.find(params[:id])
+    @summary = ResortSummary.new(@resort)
+    @daily_forecasts = @summary.forecasts
   end
 end
