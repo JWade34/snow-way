@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :resorts, only: [ :index, :show ]
   resources :weather, only: [ :index ]
 
-  # Refresh forecast data
-
   get "sitemap.xml" => "sitemaps#index", defaults: { format: :xml }
   get "llms.txt" => "llms#index", defaults: { format: :text }
   get "llms-full.txt" => "llms#full", defaults: { format: :text }
