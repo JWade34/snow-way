@@ -1,0 +1,33 @@
+<% delta = ->(key) { p = @prev[key].to_i; c = @totals[key].to_i; p.zero? ? (c.zero? ? "no change" : "new") : "#{c >= p ? "+" : ""}#{((c - p) * 100.0 / p).round}%" } -%>
+Snow Way, <%= @report.range.first.strftime("%b %-d") %>–<%= @report.range.last.strftime("%b %-d") %> (vs the week before)
+
+Search impressions: <%= @totals[:impressions] %> (<%= delta.(:impressions) %>)
+Search clicks:      <%= @totals[:clicks] %> (<%= delta.(:clicks) %>)  Google <%= @totals[:google_clicks] %> · Bing <%= @totals[:bing_clicks] %>
+Email signups:      <%= @totals[:signups] %> (<%= delta.(:signups) %>)
+Affiliate clicks:   <%= @totals[:affiliate_clicks] %> (<%= delta.(:affiliate_clicks) %>)
+
+<% gainers = @pages.select { |p| p.clicks > p.prev_clicks }.sort_by { |p| p.prev_clicks - p.clicks }.first(5) -%>
+<% losers = @pages.select { |p| p.decaying? }.first(5) -%>
+<% opportunities = @pages.select(&:striking_distance?).sort_by { |p| -p.impressions }.first(5) -%>
+<% if gainers.any? -%>
+Growing:
+<% gainers.each do |p| %>  <%= p.path %>: <%= p.prev_clicks %> → <%= p.clicks %> clicks
+<% end -%>
+<% end -%>
+<% if losers.any? -%>
+
+Slipping (worth a look):
+<% losers.each do |p| %>  <%= p.path %>: <%= p.prev_clicks %> → <%= p.clicks %> clicks
+<% end -%>
+<% end -%>
+<% if opportunities.any? -%>
+
+Opportunities (page 1–2, few clicks):
+<% opportunities.each do |p| %>  <%= p.path %>: position <%= p.position %>, <%= p.impressions %> impressions, <%= p.ctr %>% CTR
+<% end -%>
+<% end -%>
+<% if gainers.empty? && losers.empty? && opportunities.empty? -%>
+Too early for page-level trends. Google needs a few weeks of data on a new site.
+<% end -%>
+
+Full numbers: https://snowway.app/admin/growth

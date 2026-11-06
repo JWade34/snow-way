@@ -1,0 +1,81 @@
+<% content_for(:title, "Growth") %>
+<% delta = ->(cur, prev) { prev.to_i.zero? ? (cur.to_i.zero? ? "" : "new") : "#{(cur - prev) >= 0 ? "+" : ""}#{((cur - prev) * 100.0 / prev).round}%" } %>
+<div class="flex flex-wrap items-center justify-between gap-3 mb-2">
+  <h1 class="text-2xl font-extrabold">Growth</h1>
+  <nav class="flex gap-2 text-xs">
+    <% [ 7, 28, 90 ].each do |d| %><%= link_to "#{d} days", admin_growth_path(days: d), class: "rounded-full px-3 py-1 #{@days == d ? "bg-cyan-400 text-slate-900 font-bold" : "bg-slate-800"}" %><% end %>
+  </nav>
+</div>
+<p class="text-slate-400 text-xs mb-6">
+  <%= @report.range.first.strftime("%b %-d") %>–<%= @report.range.last.strftime("%b %-d") %> vs the <%= @days %> days before.
+  Search data through <%= @report.last_synced_on&.strftime("%b %-d") || "— (not synced yet)" %>; Google reports ~2–3 days behind.
+  <% unless SearchConsole.configured? %><span class="text-amber-300">Google not connected.</span><% end %>
+  <% unless BingWebmaster.configured? %><span class="text-amber-300">Bing not connected.</span><% end %>
+</p>
+
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+  <% [ [ "Search impressions", :impressions ], [ "Search clicks", :clicks ], [ "Email signups", :signups ], [ "Affiliate clicks", :affiliate_clicks ] ].each do |label, key| %>
+    <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4">
+      <span class="block text-xs text-slate-400"><%= label %></span>
+      <span class="block text-2xl font-bold mt-1"><%= number_with_delimiter(@totals[key]) %></span>
+      <span class="block text-xs <%= @totals[key] >= @prev[key] ? "text-emerald-300" : "text-red-300" %>"><%= delta.(@totals[key], @prev[key]) %></span>
+    </div>
+  <% end %>
+</div>
+<p class="text-slate-400 text-xs -mt-6 mb-8">Google <%= number_with_delimiter(@totals[:google_clicks]) %> clicks / <%= number_with_delimiter(@totals[:google_impressions]) %> impressions · Bing <%= number_with_delimiter(@totals[:bing_clicks]) %> / <%= number_with_delimiter(@totals[:bing_impressions]) %></p>
+
+<h2 class="text-lg font-bold mb-3">Weekly funnel</h2>
+<div class="overflow-x-auto border border-slate-800 rounded-xl mb-8">
+  <table class="w-full text-sm">
+    <thead class="text-left text-slate-400 bg-slate-800/50"><tr><th class="px-3 py-2">Week of</th><th class="px-3 py-2 text-right">Impr.</th><th class="px-3 py-2 text-right">Clicks</th><th class="px-3 py-2 text-right">Signups</th><th class="px-3 py-2 text-right">Affiliate</th></tr></thead>
+    <tbody class="divide-y divide-slate-800">
+      <% @series.reverse_each do |r, t| %>
+        <tr><td class="px-3 py-2"><%= r.first.strftime("%b %-d") %></td><td class="px-3 py-2 text-right"><%= number_with_delimiter(t[:impressions]) %></td><td class="px-3 py-2 text-right"><%= number_with_delimiter(t[:clicks]) %></td><td class="px-3 py-2 text-right"><%= t[:signups] %></td><td class="px-3 py-2 text-right"><%= t[:affiliate_clicks] %></td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="text-lg font-bold mb-1">Pages</h2>
+<p class="text-slate-400 text-xs mb-3"><span class="text-emerald-300">Winner</span> = top 3 or growing (protected from automatic changes). <span class="text-cyan-300">Opportunity</span> = page 1–2 with low click rate. <span class="text-red-300">Slipping</span> = clicks down 30%+.</p>
+<div class="overflow-x-auto border border-slate-800 rounded-xl mb-8">
+  <table class="w-full text-sm">
+    <thead class="text-left text-slate-400 bg-slate-800/50"><tr><th class="px-3 py-2">Page</th><th class="px-3 py-2 text-right">Impr.</th><th class="px-3 py-2 text-right">Clicks</th><th class="px-3 py-2 text-right">CTR</th><th class="px-3 py-2 text-right">Pos.</th><th class="px-3 py-2 text-right">Signups</th><th class="px-3 py-2 text-right">Affil.</th><th class="px-3 py-2"></th></tr></thead>
+    <tbody class="divide-y divide-slate-800">
+      <% @report.pages.first(100).each do |p| %>
+        <tr>
+          <td class="px-3 py-2 max-w-[16rem] truncate"><%= link_to p.path, p.path, target: "_blank", class: "hover:text-cyan-300" %></td>
+          <td class="px-3 py-2 text-right"><%= number_with_delimiter(p.impressions) %></td>
+          <td class="px-3 py-2 text-right"><%= p.clicks %></td>
+          <td class="px-3 py-2 text-right"><%= p.ctr %>%</td>
+          <td class="px-3 py-2 text-right"><%= p.position || "—" %></td>
+          <td class="px-3 py-2 text-right"><%= p.signups %></td>
+          <td class="px-3 py-2 text-right"><%= p.affiliate_clicks %></td>
+          <td class="px-3 py-2 text-xs whitespace-nowrap">
+            <% if p.winner? %><span class="text-emerald-300">Winner</span><% elsif p.striking_distance? %><span class="text-cyan-300">Opportunity</span><% end %>
+            <% if p.decaying? %><span class="text-red-300">Slipping</span><% end %>
+          </td>
+        </tr>
+      <% end %>
+      <% if @report.pages.empty? %><tr><td colspan="8" class="px-3 py-6 text-center text-slate-400">No data yet. It fills in after the first daily sync.</td></tr><% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6">
+  <div>
+    <h2 class="text-lg font-bold mb-3">Top searches</h2>
+    <ul class="text-sm divide-y divide-slate-800 border border-slate-800 rounded-xl">
+      <% @report.top_queries.each do |q, impr, clicks| %><li class="flex justify-between gap-3 px-3 py-2"><span class="truncate"><%= q %></span><span class="text-slate-400 shrink-0"><%= clicks %> / <%= number_with_delimiter(impr) %></span></li><% end %>
+      <% if @report.top_queries.empty? %><li class="px-3 py-4 text-slate-400">Nothing yet.</li><% end %>
+    </ul>
+  </div>
+  <div>
+    <h2 class="text-lg font-bold mb-1">Content gaps</h2>
+    <p class="text-slate-400 text-xs mb-2">Searches where Snow Way shows up below page 1. Each one is a page to improve or create.</p>
+    <ul class="text-sm divide-y divide-slate-800 border border-slate-800 rounded-xl">
+      <% @report.query_gaps.each do |g| %><li class="flex justify-between gap-3 px-3 py-2"><span class="truncate"><%= g[:query] %></span><span class="text-slate-400 shrink-0">#<%= g[:position] %> · <%= g[:impressions] %></span></li><% end %>
+      <% if @report.query_gaps.empty? %><li class="px-3 py-4 text-slate-400">Nothing yet.</li><% end %>
+    </ul>
+  </div>
+</div>

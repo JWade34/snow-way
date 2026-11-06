@@ -23,6 +23,14 @@ production:
     class: RefreshSnowForecastsJob
     queue: default
     schedule: every 6 hours
+  search_stats_sync:
+    class: SearchStatsSyncJob
+    queue: default
+    schedule: every day at 5am America/Denver
+  growth_weekly_email:
+    command: "GrowthMailer.weekly.deliver_now"
+    queue: default
+    schedule: every monday at 7am America/Denver
   powder_report_snapshot:
     class: PowderReportSnapshotJob
     queue: default

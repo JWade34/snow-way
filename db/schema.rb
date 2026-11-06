@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_145753) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_155703) do
+  create_table "affiliate_clicks", force: :cascade do |t|
+    t.string "page_path", null: false
+    t.string "merchant", null: false
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.index ["created_at"], name: "index_affiliate_clicks_on_created_at"
+    t.index ["page_path", "created_at"], name: "index_affiliate_clicks_on_page_path_and_created_at"
+  end
+
   create_table "gear_items", force: :cascade do |t|
     t.string "category", null: false
     t.string "brand"
@@ -74,6 +83,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_145753) do
     t.datetime "conditions_at"
   end
 
+  create_table "search_stats", force: :cascade do |t|
+    t.date "date", null: false
+    t.string "source", null: false
+    t.string "page", default: "", null: false
+    t.string "query", default: "", null: false
+    t.integer "clicks", default: 0, null: false
+    t.integer "impressions", default: 0, null: false
+    t.decimal "position", precision: 6, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date", "source", "page", "query"], name: "index_search_stats_unique", unique: true
+    t.index ["source", "query", "date"], name: "index_search_stats_on_source_and_query_and_date"
+  end
+
   create_table "snow_forecasts", force: :cascade do |t|
     t.integer "resort_id", null: false
     t.date "forecast_date"
@@ -101,6 +124,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_145753) do
     t.datetime "last_alerted_at"
     t.datetime "unsubscribed_at"
     t.datetime "welcomed_at"
+    t.string "page_path"
     t.index ["email", "resort_id"], name: "index_subscribers_on_email_and_resort_id", unique: true
     t.index ["resort_id"], name: "index_subscribers_on_resort_id"
     t.index ["token"], name: "index_subscribers_on_token", unique: true

@@ -78,3 +78,6 @@ gem "prawn", "~> 2.4"
 gem "prawn-table", "~> 0.2.2"
 
 gem "resend", "~> 1.19"
+
+gem "google-apis-searchconsole_v1", "~> 0.23.0"
+gem "googleauth", "~> 1.17"

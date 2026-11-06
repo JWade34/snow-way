@@ -42,9 +42,11 @@ Rails.application.routes.draw do
   get "#{IndexNow::KEY}.txt" => ->(_env) { [ 200, { "content-type" => "text/plain" }, [ IndexNow::KEY ] ] }
 
   get "what-i-ride" => "pages#gear", as: :gear
+  post "t/a" => "tracking#affiliate", as: :track_affiliate
 
   namespace :admin do
     root "dashboard#show"
+    get "growth" => "growth#show", as: :growth
     resources :visits, only: [ :index, :edit, :update ], param: :slug, path: "resorts"
     patch "resorts" => "visits#checklist", as: :visits_checklist
     get "import" => "imports#new", as: :import

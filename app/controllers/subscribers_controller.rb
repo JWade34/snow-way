@@ -7,7 +7,8 @@ class SubscribersController < ApplicationController
                                                    resort_id: params.dig(:subscriber, :resort_id).presence)
     @magnet = params.dig(:subscriber, :magnet).presence_in(LeadMagnetsController::MAGNETS.keys)
     @subscriber.assign_attributes(threshold_inches: params.dig(:subscriber, :threshold_inches).presence || 6,
-                                  source: (@magnet || request.referer.to_s).truncate(255))
+                                  source: (@magnet || request.referer.to_s).truncate(255),
+                                  page_path: referer_path)
     newly_created = @subscriber.new_record?
     @saved = @subscriber.save
     if @saved && (newly_created || @magnet)
@@ -24,5 +25,14 @@ class SubscribersController < ApplicationController
     @subscriber = Subscriber.find_by(token: params[:token])
     @subscriber&.update_column(:unsubscribed_at, Time.current)
     request.post? ? head(:ok) : render(:unsubscribe)
+  end
+
+  private
+
+  def referer_path
+    uri = URI.parse(request.referer.to_s)
+    uri.path.presence&.truncate(255, omission: "") if uri.host.nil? || uri.host.end_with?("snowway.app") || uri.host == request.host
+  rescue URI::InvalidURIError
+    nil
   end
 end
