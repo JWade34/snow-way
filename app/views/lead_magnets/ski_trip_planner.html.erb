@@ -1,0 +1,46 @@
+<% content_for(:hide_promo, "1") %>
+<% faqs = [
+  { question: "How far in advance should I plan a ski trip?", answer: "Pick your month and pass about three months out, book flexible flights and lodging six to eight weeks out, reserve rentals and lessons two weeks out, and commit to a specific resort about three days before a storm, when short-range forecasts are reliable." },
+  { question: "What's the best city to fly into for a ski trip?", answer: "Fly into a hub with several resorts nearby so a storm anywhere in the region works for you. By number of resorts within 120 miles, the top hubs Snow Way tracks are #{@hubs.first(3).map { |h| "#{h.city} (#{h.nearby.count { |_, mi| mi <= 120 }})" }.to_sentence}." },
+  { question: "What's in the Snow Way Ski Trip Planner?", answer: "A free printable PDF with a countdown timeline, a table of the best hub cities by nearby resorts, a quick pass guide, a trip budget worksheet, a 7-day forecast tracker, a full packing checklist, and a notes page." }
+] %>
+<% content_for(:title, "Free Printable Ski Trip Planner: Timeline, Budget, Packing | Snow Way") %>
+<% content_for(:description, "Free printable ski trip planner: a countdown timeline, best hub cities, pass guide, budget worksheet, 7-day forecast tracker, and packing checklist.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "Ski Trip Planner", "url" => absolute_url("/ski-trip-planner") },
+        breadcrumb_schema([ [ "Guides", "/guides" ], [ "Ski Trip Planner", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ "Ski Trip Planner", nil ] ] %>
+    <section class="grid md:grid-cols-2 gap-8 items-center mb-12">
+      <div>
+        <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">Free printable PDF</p>
+        <h1 class="text-3xl md:text-4xl font-extrabold mb-3">The Ski Trip Planner</h1>
+        <p class="text-slate-300 mb-4">Plan a powder trip from first idea to first chair. Print it, fill it in, and stop juggling ten browser tabs.</p>
+        <ul class="text-slate-200 text-sm space-y-1.5 mb-6">
+          <li>🗓️ A countdown timeline, from 3 months out to powder morning</li>
+          <li>✈️ The best hub cities by resorts within 120 miles</li>
+          <li>🎟️ A quick Epic vs Ikon vs Indy vs day ticket guide</li>
+          <li>💸 A budget worksheet and 7-day forecast tracker</li>
+          <li>🎒 The full packing checklist</li>
+        </ul>
+        <%= render "shared/planner_cta", suffix: "hero" %>
+      </div>
+      <div class="relative h-80 md:h-[26rem]" aria-hidden="true">
+        <%= image_tag "planner-timeline.webp", alt: "", width: 260, height: 336, loading: "lazy", class: "absolute right-0 top-8 w-48 md:w-56 rounded-lg shadow-2xl rotate-6 border border-slate-700" %>
+        <%= image_tag "planner-cover.webp", alt: "", width: 260, height: 336, fetchpriority: "high", class: "absolute left-4 md:left-6 top-0 w-56 md:w-64 rounded-lg shadow-2xl -rotate-3 border border-slate-700" %>
+      </div>
+    </section>
+
+    <figure class="mb-12">
+      <%= image_tag "photos/powder-jump-800.webp", alt: "Justin McKelvey snowboarding off a powder jump in the trees", width: 800, height: 419, loading: "lazy", class: "w-full h-auto rounded-xl" %>
+      <figcaption class="text-slate-400 text-sm mt-2">The payoff for good planning: a fresh day in the trees.</figcaption>
+    </figure>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Ski trip planning FAQ" %>
+    <p class="text-sm text-slate-400">Want the month-by-month snow picture too? Get the <%= link_to "free Powder Calendar", powder_calendar_path, class: "text-cyan-300 underline underline-offset-2" %>.</p>
+  </main>
+</div>

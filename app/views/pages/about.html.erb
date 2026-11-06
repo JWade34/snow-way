@@ -24,6 +24,16 @@
         <%= image_tag "justin-chairlift-storm.webp", alt: "Justin McKelvey grinning on a chairlift in a snowstorm", width: 960, height: 720, loading: "lazy", class: "rounded-xl w-full h-auto" %>
       </figure>
       <p>Snow Way is built by <a href="https://justinmckelvey.com">Justin McKelvey</a>. He ran snowboard and bike shops before teaching himself to code, and went on to ship more than 50 software products. He built Snow Way because finding the deep days shouldn't take ten browser tabs.</p>
+      <h2>From the slopes</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-6">
+        <%= image_tag "photos/powder-jump-800.webp", alt: "Justin snowboarding off a powder jump in the trees", width: 800, height: 419, loading: "lazy", class: "rounded-lg w-full h-40 object-cover" %>
+        <%= image_tag "photos/sitting-view-800.webp", alt: "Justin sitting on his snowboard above a valley of snowy ridges", width: 800, height: 533, loading: "lazy", class: "rounded-lg w-full h-40 object-cover" %>
+        <%= image_tag "photos/canyon-selfie-800.webp", alt: "Justin smiling in a snowy mountain canyon", width: 800, height: 600, loading: "lazy", class: "rounded-lg w-full h-40 object-cover" %>
+        <%= image_tag "photos/mammoth-road.webp", alt: "A road lined with tall snowbanks leading toward the mountains at sunset", width: 1200, height: 900, loading: "lazy", class: "rounded-lg w-full h-40 object-cover" %>
+        <%= image_tag "photos/green-pants-view.webp", alt: "Snowboard boots and green pants resting in the snow with a wide mountain view", width: 640, height: 640, loading: "lazy", class: "rounded-lg w-full h-40 object-cover" %>
+        <%= image_tag "photos/sunny-selfie.webp", alt: "Justin smiling in the sun among snowy pine trees", width: 676, height: 900, loading: "lazy", class: "rounded-lg w-full h-40 object-cover" %>
+      </div>
+
       <h2>Where the data comes from</h2>
       <ul>
         <li><strong>Forecasts:</strong> <a href="https://open-meteo.com">Open-Meteo</a>, which blends national weather models. Snow Way requests each resort's forecast at its summit elevation, not the nearest town.</li>

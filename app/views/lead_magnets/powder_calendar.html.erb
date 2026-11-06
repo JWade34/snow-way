@@ -1,3 +1,4 @@
+<% content_for(:hide_promo, "1") %>
 <% season = PowderCalendarPdf.season_label %>
 <% month_name = ->(m) { Date::MONTHNAMES[m] } %>
 <% best_month = ->(resorts) { resorts.filter_map { |r| r.snowiest_months(1).first&.first }.tally.max_by { |_, n| n }&.first } %>

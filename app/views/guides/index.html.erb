@@ -10,10 +10,12 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski &amp; snowboard guides</h1>
     <p class="text-slate-300 mb-8">Straight answers for skiers and snowboarders: sizing, first-day how-tos, gear buying guides, and head-to-head comparisons.</p>
-    <h2 class="text-xl font-bold mb-3">Sizing tools</h2>
+    <h2 class="text-xl font-bold mb-3">Tools and free downloads</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
       <li><%= link_to snowboard_size_chart_path, class: "block bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-xl p-5 transition" do %><span class="font-bold text-lg block">Snowboard size calculator</span><span class="text-slate-300 text-sm">Board length by height, weight, and style, plus width by boot size.</span><% end %></li>
       <li><%= link_to ski_size_chart_path, class: "block bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-xl p-5 transition" do %><span class="font-bold text-lg block">Ski size calculator</span><span class="text-slate-300 text-sm">Ski length by height, ability, and terrain, plus pole length.</span><% end %></li>
+      <li><%= link_to ski_trip_planner_path, class: "block bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-xl p-5 transition" do %><span class="font-bold text-lg block">Free Ski Trip Planner (PDF)</span><span class="text-slate-300 text-sm">Timeline, hub cities, pass guide, budget, and packing list.</span><% end %></li>
+      <li><%= link_to powder_calendar_path, class: "block bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-xl p-5 transition" do %><span class="font-bold text-lg block">Free Powder Calendar (PDF)</span><span class="text-slate-300 text-sm">When the snow really falls at every resort Snow Way tracks.</span><% end %></li>
     </ul>
     <% @guides.group_by(&:category).sort_by { |cat, _| Guide::CATEGORIES.keys.index(cat) }.each do |cat, guides| %>
       <h2 class="text-xl font-bold mb-3"><%= Guide::CATEGORIES[cat] %></h2>

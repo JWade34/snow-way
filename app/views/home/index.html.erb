@@ -150,6 +150,11 @@
       <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">2. Rank by 7-day snow</p><p class="text-slate-300 text-sm">Resorts are ranked by total snow expected over the next 7 days, the range where forecasts are most useful.</p></li>
       <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">3. Book the trip</p><p class="text-slate-300 text-sm">Every resort page links flights, 4x4 rentals, and hotels near the mountain for the dates you need.</p></li>
     </ol>
+    <div class="grid grid-cols-3 gap-2 mb-10" aria-hidden="true">
+      <%= image_tag "photos/powder-jump-800.webp", alt: "", width: 800, height: 419, loading: "lazy", class: "rounded-lg w-full h-28 sm:h-40 object-cover" %>
+      <%= image_tag "photos/night-storm-800.webp", alt: "", width: 800, height: 534, loading: "lazy", class: "rounded-lg w-full h-28 sm:h-40 object-cover" %>
+      <%= image_tag "photos/sitting-view-800.webp", alt: "", width: 800, height: 533, loading: "lazy", class: "rounded-lg w-full h-28 sm:h-40 object-cover" %>
+    </div>
     <div class="flex flex-wrap gap-2 mb-10 text-sm">
       <%= link_to "Where is it snowing?", where_is_it_snowing_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
       <%= link_to "Ski resorts by state", regions_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>

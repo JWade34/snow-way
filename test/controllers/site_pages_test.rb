@@ -107,4 +107,12 @@ class SitePagesTest < ActionDispatch::IntegrationTest
     get lead_magnet_download_path("nope", subscriber.token)
     assert_response :not_found
   end
+
+  test "trip planner signup returns a PDF" do
+    post subscribers_path, params: { subscriber: { email: "plan@example.com", magnet: "ski-trip-planner" } }, as: :turbo_stream
+    subscriber = Subscriber.find_by!(email: "plan@example.com")
+    assert_includes response.body, "ski-trip-planner-form"
+    get lead_magnet_download_path("ski-trip-planner", subscriber.token)
+    assert_equal "application/pdf", response.media_type
+  end
 end

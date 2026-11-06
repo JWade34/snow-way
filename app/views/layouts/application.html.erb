@@ -77,5 +77,6 @@
   <body class="bg-slate-900 text-white min-h-screen font-sans" style="font-family: 'Plus Jakarta Sans', sans-serif;">
     <%= yield %>
     <%= render "shared/footer" %>
+    <%= render "shared/promo_bar" unless content_for?(:hide_promo) %>
   </body>
 </html>

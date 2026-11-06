@@ -154,6 +154,16 @@ class Guide
 
   CATEGORIES = { "how-to" => "How-to guides", "comparison" => "Comparisons", "gear" => "Gear: how to choose" }.freeze
 
+  HERO = {
+    "how-to" => [ "photos/powder-jump-800.webp", 800, 419, "Justin McKelvey snowboarding off a powder jump in the trees" ],
+    "comparison" => [ "photos/tree-trail-800.webp", 800, 599, "A snowboarder on a snowy trail between tall pines on a bluebird day" ],
+    "gear" => [ "photos/sitting-view-800.webp", 800, 533, "A snowboarder sitting in fresh snow above a valley of snowy ridges" ]
+  }.freeze
+
+  def hero
+    HERO.fetch(category)
+  end
+
   def category
     return "comparison" if slug.include?("-vs-")
     return "gear" if slug.start_with?("best-") || slug.start_with?("snowboard-jacket", "snowboard-pants")

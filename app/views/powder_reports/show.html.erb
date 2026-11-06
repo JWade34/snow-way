@@ -27,6 +27,8 @@ end %>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= summary %></p>
       <p class="text-slate-400 text-xs mt-3"><%= @archived ? "Archived snapshot from #{label}." : "Live rankings, updated every 6 hours. A snapshot is archived every Thursday." %> Summit forecasts from Open-Meteo.</p></section>
 
+    <%= image_tag "photos/night-storm-800.webp", alt: "Justin McKelvey with arms out in the middle of a nighttime snowstorm on a snowy street", width: 800, height: 534, loading: "lazy", class: "w-full h-auto rounded-xl mb-8" %>
+
     <h2 class="text-xl font-bold mb-3">Top 10 resorts for snow this week</h2>
     <ol class="space-y-1 mb-10">
       <% top.each_with_index do |r, i| %>
