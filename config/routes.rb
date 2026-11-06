@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "affiliate-disclosure" => "pages#affiliate_disclosure", as: :affiliate_disclosure
   get "ski-resorts" => "regions#index", as: :regions
   get "ski-resorts/:id" => "regions#show", as: :region
+  get "ski-resorts-near-me" => "hubs#near_me", as: :near_me
   get "ski-resorts-near/:id" => "hubs#show", as: :hub
   get "guides/:topic" => "guides#topic", as: :guide_topic, constraints: { topic: Regexp.union(GuideTopic::TOPICS.keys) }
   resources :guides, only: [ :index, :show ]

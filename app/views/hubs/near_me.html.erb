@@ -1,0 +1,35 @@
+<% faqs = [
+  { question: "How do I find ski resorts near me?", answer: "Tap \"Use my location\" on this page to see the closest of the #{@resorts.size} North American ski resorts Snow Way tracks, with this week's snow forecast for each. Your location stays in your browser. Or pick the nearest city from the list below." },
+  { question: "Which cities have the most ski resorts nearby?", answer: "By resorts within 200 miles, the top hubs are #{@hubs.sort_by { |h| -h.nearby.size }.first(4).map { |h| "#{h.city} (#{h.nearby.size})" }.to_sentence}." },
+  { question: "Which ski resort near me has the most snow this week?", answer: "Use your location above to see the closest resorts sorted by distance with their 7-day snow totals, or check where it's snowing across North America this week." }
+] %>
+<% content_for(:title, "Ski Resorts Near Me: Closest Resorts & This Week's Snow | Snow Way") %>
+<% content_for(:description, "Find the ski resorts closest to you, with this week's snow forecast for each. Use your location (it stays in your browser) or pick from #{@hubs.size} cities.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "Ski Resorts Near Me", "url" => absolute_url("/ski-resorts-near-me") },
+        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ "Near Me", nil ] ]),
+        { "@type" => "ItemList", "name" => "Ski resorts near major cities", "itemListElement" => @hubs.each_with_index.map { |h, i| { "@type" => "ListItem", "position" => i + 1, "name" => "Ski resorts near #{h.city}", "url" => absolute_url("/ski-resorts-near/#{h.slug}") } } },
+        faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8" data-controller="nearby" data-nearby-resorts-value="<%= @resorts.to_json %>">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ "Near Me", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts near me</h1>
+    <section class="mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed">See the closest of the <%= @resorts.size %> North American ski resorts Snow Way tracks, with this week's snow forecast for each. Your location is only used in your browser and never sent to Snow Way.</p>
+      <button type="button" data-action="nearby#locate" class="mt-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-3 transition">📍 Use my location</button>
+    </section>
+    <p class="text-slate-300 text-sm mb-3" data-nearby-target="status" aria-live="polite"></p>
+    <ul class="space-y-2 mb-10" data-nearby-target="results"></ul>
+
+    <h2 class="text-xl font-bold mb-3">Or pick a city</h2>
+    <ul class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-10">
+      <% @hubs.each do |h| %>
+        <li><%= link_to hub_path(h), class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 rounded-lg px-3 py-2 text-sm" do %><span class="font-semibold">Near <%= h.city %></span><span class="block text-xs text-slate-400"><%= h.nearby.size %> resorts</span><% end %></li>
+      <% end %>
+    </ul>
+    <%= render "shared/faq", faqs: faqs, heading: "Finding ski resorts near you" %>
+  </main>
+</div>

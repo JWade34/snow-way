@@ -50,6 +50,7 @@
       </table>
     </div>
 
+    <p class="mb-8 text-sm"><%= link_to "📍 Not near #{city}? Find ski resorts near you", near_me_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <%= render "shared/faq", faqs: faqs, heading: "Skiing near #{city}: FAQ" %>
     <p class="text-sm text-slate-400">More: <%= safe_join(nearby.map { |r, _| r.region_slug }.uniq.first(4).map { |slug| link_to("ski resorts in #{Region.find(slug).name}", region_path(slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>
   </main>

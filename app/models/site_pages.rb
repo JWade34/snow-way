@@ -7,7 +7,7 @@ module SitePages
   def static_paths
     %w[/ /resorts /where-is-it-snowing /ski-resorts /ikon-vs-epic /ski-resort-opening-dates /guides /widget /weather
        /snowboard-size-chart /ski-size-chart /about /authors/justin-mckelvey /affiliate-disclosure
-       /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts /powder-report /powder-calendar /ski-trip-planner]
+       /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts /powder-report /powder-calendar /ski-trip-planner /ski-resorts-near-me]
   end
 
   def resort_paths(resorts = Resort.order(:name))

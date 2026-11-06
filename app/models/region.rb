@@ -11,7 +11,10 @@ class Region
   # Multi-state regions people search for ("best ski resorts in New England", "...in Canada").
   GROUPS = {
     "New England" => ->(r) { %w[Vermont New\ Hampshire Maine Massachusetts Connecticut Rhode\ Island].include?(r.state_province) },
-    "Canada" => ->(r) { r.country == "Canada" }
+    "Canada" => ->(r) { r.country == "Canada" },
+    "Lake Tahoe" => ->(r) { %w[palisades-tahoe northstar heavenly kirkwood sierra-at-tahoe sugar-bowl homewood diamond-peak boreal mt-rose].include?(r.slug) },
+    "Summit County, Colorado" => ->(r) { %w[breckenridge keystone copper-mountain arapahoe-basin loveland].include?(r.slug) },
+    "Southern California" => ->(r) { %w[bear-mountain snow-summit mountain-high].include?(r.slug) }
   }.freeze
 
   def self.groups
