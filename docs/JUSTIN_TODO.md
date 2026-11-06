@@ -11,6 +11,15 @@ Last updated: 2026-11-05
   Every gear link across the 37 guides and both size calculators starts tracking. Tell Claude when evo approves and it'll add evo links.
 - [ ] **Email service for powder alerts (you said: later).** Resend (resend.com) or Postmark. Verify the snowway.app domain (they'll give you DNS records), create an API key, add it on Railway as `RESEND_API_KEY` (or `POSTMARK_API_TOKEN`), and tell Claude. Alerts and a welcome email get switched on for everyone already on the list.
 
+## Your expertise (the biggest edge no competitor can copy)
+
+- [ ] **Send Claude your real tips, as voice memo transcripts or bullet notes.** Google and AI tools reward first-hand experience, and you lived in Vail and have ridden all over North and South America. Claude will add a "Justin's take" box to the matching resort pages, guides, and the Trip Planner PDF. Ideas:
+  - Vail local tips: best days and times, where locals go on a powder day, parking, how you'd spend a 3-day trip
+  - Resorts you've ridden (name each one) plus one honest line apiece: who it's for, what to skip
+  - South America: which resorts, when to go, how the trip works (Claude can also add Southern Hemisphere resorts, which bring in traffic June to September when North America is quiet)
+  - Your best family-trip and first-trip advice
+- [ ] **Confirm photo rights.** The night snowstorm shot and the Mammoth Lakes sign look professionally shot. If a friend or photographer took them, tell Claude their name for a photo credit (or say "remove" and they'll come down).
+
 ## Decisions for you
 
 - [ ] **Summit vs mid-mountain forecasts.** Snow Way forecasts at each resort's summit, which shows more snow than the mid-mountain numbers other sites use (this week: Whistler ~50" on Snow Way vs ~25" quoted by ChatGPT from j2ski). Summit is accurate for the top of the mountain and is labeled, but it can look inflated next to competitors. Options: keep summit (current), switch to mid-mountain, or show both. Claude recommends showing both, with mid-mountain as the headline number.
@@ -25,7 +34,7 @@ Last updated: 2026-11-05
 
 ## Nice to have
 
-- [ ] **More of your snow photos.** Drop 5–10 snowboarding or mountain shots (JPG, any size) into a folder and tell Claude where. They'll go on guides, the powder report, and share images. Claude already used `snowboarding-cabin-roof-rail.jpeg` and `ski-lift-selfie-goggles.jpeg` from your profile folder.
+- [ ] **A few skiing (not snowboarding) photos**, plus any with recognizable resorts (Vail, Mammoth, Heavenly, South America). Claude matches them to guides and resort pages. Already used: 11 photos (cabin roof rail, chairlift storm selfie, powder jump, night storm, Mammoth sign, sitting above the valley, canyon selfie, snowbank road, green-pants view, sunny selfie, tree trail). Skipped: your friend's selfie, the EpicMix screenshot, and the two quote images.
 
 ## Every week (Thursday)
 
@@ -40,6 +49,7 @@ Last updated: 2026-11-05
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Sent snow photos (2026-11-05)
 - [x] Tested the Powder Calendar download in production (2026-11-05)
 - [x] Submitted sitemap to Google Search Console and Bing (2026-11-05)
 
