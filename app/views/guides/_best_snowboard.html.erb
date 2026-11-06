@@ -1,0 +1,57 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> the best snowboard for you matches your weight, boot size, and where you ride. Most riders do best on an all-mountain board with a medium flex, sized by weight first and height second. Use the <%= link_to "snowboard size calculator", snowboard_size_chart_path %> to get your length range, then pick shape and profile for your style.</p></div>
+
+<h2>Step 1: Get the length right</h2>
+<p>Length is the first thing to get right, and weight matters more than height. Manufacturers rate each board for a rider weight range, and that range is what decides how the board flexes under you. Height is a rough starting point: a common rule is a board that reaches somewhere between your chin and nose when stood on end.</p>
+<ul>
+  <li><strong>Go shorter</strong> for park riding, beginners, or if you want quick, easy turns.</li>
+  <li><strong>Go longer</strong> for powder, high speeds, or if you're on the heavy end of a board's weight range.</li>
+  <li><strong>Stay in the middle</strong> of the range for all-mountain riding.</li>
+</ul>
+<p>Our <%= link_to "snowboard size chart and calculator", snowboard_size_chart_path %> gives you a length range from your height, weight, and riding style.</p>
+
+<h2>Step 2: Check the width against your boots</h2>
+<p>If your boots hang too far over the edges, your toes and heels drag in the snow during turns and can catch you off guard. Riders with larger boots, roughly US men's size 11 and up, should look at wide (often marked "W") boards. Your boots should overhang the edges only slightly, or not at all.</p>
+
+<h2>Step 3: Choose a camber profile</h2>
+<p>The profile is the shape of the board's base when you look at it from the side. It changes how the board feels more than almost anything else.</p>
+<h3>Camber</h3>
+<p>The middle arches up off the snow, with the contact points near the tip and tail. Camber is poppy, stable at speed, and holds an edge well on hardpack. It's less forgiving if you catch an edge.</p>
+<h3>Rocker (reverse camber)</h3>
+<p>The middle sits low and the tip and tail curve up. Rocker floats well in powder, feels loose and playful, and is forgiving for beginners because the edges are less likely to catch.</p>
+<h3>Flat and hybrid</h3>
+<p>Flat boards sit evenly on the snow and feel stable and predictable. Hybrid profiles mix camber and rocker, for example camber under the feet with rocker at the tip, to get grip and float in one board. Many all-mountain boards are hybrids.</p>
+
+<h2>Step 4: Pick a shape</h2>
+<ul>
+  <li><strong>True twin:</strong> the tip and tail are identical, so it rides the same in both directions. Best for park and riding switch.</li>
+  <li><strong>Directional twin:</strong> symmetrical shape with a slightly set-back stance or stiffer tail. A popular all-mountain choice.</li>
+  <li><strong>Directional:</strong> a distinct nose and tail, usually with the stance set back. Made to ride mostly one way, with better float in powder.</li>
+  <li><strong>Powder and volume-shifted shapes:</strong> wider, often shorter boards with tapered tails for deep snow.</li>
+</ul>
+
+<h2>Step 5: Choose a flex</h2>
+<p>Flex is how easily the board bends. Brands use their own scales, but the pattern is the same.</p>
+<ul>
+  <li><strong>Soft:</strong> forgiving and easy to turn. Good for beginners and park riding.</li>
+  <li><strong>Medium:</strong> the all-mountain sweet spot for most riders.</li>
+  <li><strong>Stiff:</strong> stable at speed and precise on hard snow, but less forgiving. Best for advanced riders and freeride.</li>
+</ul>
+
+<h2>Match the board to how you ride</h2>
+<ul>
+  <li><strong>First-timers:</strong> a soft to medium, rocker or hybrid <%= gear_link "beginner snowboard", "beginner snowboard" %>. Renting for your first few days is smart too; see <%= link_to "rent or buy ski gear", guide_path("rent-or-buy-ski-gear") %>.</li>
+  <li><strong>Riding the whole mountain:</strong> a medium-flex directional twin or hybrid <%= gear_link "all-mountain snowboard", "all mountain snowboard" %>.</li>
+  <li><strong>Park and jibbing:</strong> a soft, true twin <%= gear_link "park snowboard", "park snowboard" %>, sized on the shorter end.</li>
+  <li><strong>Powder and freeride:</strong> a directional <%= gear_link "powder snowboard", "powder snowboard" %> with rocker in the nose and a set-back stance.</li>
+</ul>
+
+<h2>Don't forget boots and bindings</h2>
+<p>Boots matter as much as the board. They should be snug with your heel locked down, and comfortable after a few minutes of standing in your riding stance. Bindings should match your boot size and the board's flex: softer bindings for park and beginners, stiffer for speed and freeride. Shop <%= gear_link "snowboard boots", "snowboard boots" %> and <%= gear_link "snowboard bindings", "snowboard bindings" %> together if you can, and try them on as a set.</p>
+
+<h2>Before you buy</h2>
+<p>If you're new, learn the basics first with our <%= link_to "how to snowboard guide", guide_path("how-to-snowboard") %>. Riding a few rental or demo boards tells you a lot about what you like, and once you have a board, check <%= link_to "where it's snowing this week", where_is_it_snowing_path %> to find good conditions to try it on.</p>
+<% faqs << { question: "How do I know what size snowboard to get?", answer: "Start with the manufacturer's weight range, which matters most, then use height as a check. Go shorter for park and beginners, longer for powder and speed, and pick a wide board if your boots are large." } %>
+<% faqs << { question: "What snowboard is best for beginners?", answer: "A soft to medium flex board with a rocker or hybrid profile, sized toward the shorter end of your range. It turns easily and is less likely to catch an edge." } %>
+<% faqs << { question: "Is camber or rocker better?", answer: "Camber is better for edge hold, pop, and stability on hard snow. Rocker is better for powder and forgiveness. Hybrid boards combine both and suit most all-mountain riders." } %>
+<% faqs << { question: "Do I need a wide snowboard?", answer: "If your boots hang noticeably over the edges, usually around US men's size 11 and up, a wide board prevents toe and heel drag in turns." } %>

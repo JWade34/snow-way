@@ -18,7 +18,8 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ @guide.title, nil ] ] %>
     <article class="guide">
       <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= @guide.title %></h1>
-      <p class="text-slate-400 text-sm mb-8">By <a href="https://justinmckelvey.com" class="text-slate-300 hover:text-white underline-offset-2 hover:underline">Justin McKelvey</a> · Updated <time datetime="2026-11-05">November 5, 2026</time></p>
+      <p class="text-slate-400 text-sm mb-4">By <a href="https://justinmckelvey.com" class="text-slate-300 hover:text-white underline-offset-2 hover:underline">Justin McKelvey</a> · Updated <time datetime="2026-11-05">November 5, 2026</time></p>
+      <%= @guide.affiliate? ? affiliate_disclosure : tag.div(class: "mb-8") %>
       <%= body %>
       <%= render "shared/faq", faqs: faqs, heading: "FAQ" %>
     </article>

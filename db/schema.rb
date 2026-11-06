@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_05_232840) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_001643) do
+  create_table "powder_reports", force: :cascade do |t|
+    t.date "week_of"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["week_of"], name: "index_powder_reports_on_week_of", unique: true
+  end
+
   create_table "resorts", force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -33,6 +41,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_05_232840) do
     t.string "opening_status"
     t.string "opening_source"
     t.date "facts_checked_on"
+    t.integer "current_temp_f"
+    t.integer "current_wind_mph"
+    t.integer "current_weather_code"
+    t.datetime "conditions_at"
   end
 
   create_table "snow_forecasts", force: :cascade do |t|
@@ -42,8 +54,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_05_232840) do
     t.datetime "fetched_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "temp_high_f"
+    t.integer "temp_low_f"
     t.index ["resort_id"], name: "index_snow_forecasts_on_resort_id"
   end
 
+  create_table "subscribers", force: :cascade do |t|
+    t.string "email", null: false
+    t.integer "resort_id"
+    t.integer "threshold_inches"
+    t.string "token"
+    t.datetime "confirmed_at"
+    t.string "source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email", "resort_id"], name: "index_subscribers_on_email_and_resort_id", unique: true
+    t.index ["resort_id"], name: "index_subscribers_on_resort_id"
+    t.index ["token"], name: "index_subscribers_on_token", unique: true
+  end
+
   add_foreign_key "snow_forecasts", "resorts"
+  add_foreign_key "subscribers", "resorts"
 end

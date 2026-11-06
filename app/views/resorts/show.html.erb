@@ -1,4 +1,4 @@
-<% content_for(:title, "#{@resort.name} Snow Forecast: 7 & 14-Day Snowfall | Snow Way") %>
+<% content_for(:title, "#{@resort.name} Snow Report & 14-Day Forecast | Snow Way") %>
 <% content_for(:description, "#{@summary.answer} Summit #{number_with_delimiter(@resort.elevation_summit)} ft, nearest airport #{@resort.nearest_airport_code}.".truncate(300)) %>
 
 <% page_url = "https://snowway.app/resorts/#{@resort.slug}" %>
@@ -20,7 +20,7 @@
         "@type" => "WebPage",
         "@id" => page_url,
         "url" => page_url,
-        "name" => "#{@resort.name} Snow Forecast",
+        "name" => "#{@resort.name} Snow Report & Forecast",
         "description" => @summary.answer,
         "about" => { "@id" => "#{page_url}#resort" },
         "dateModified" => @summary.updated_at&.iso8601,
@@ -32,7 +32,7 @@
           { "@type" => "ListItem", "position" => 1, "name" => "Snow Way", "item" => "https://snowway.app/" },
           { "@type" => "ListItem", "position" => 2, "name" => "Ski Resorts", "item" => "https://snowway.app/ski-resorts" },
           { "@type" => "ListItem", "position" => 3, "name" => @resort.state_province, "item" => "https://snowway.app/ski-resorts/#{@resort.region_slug}" },
-          { "@type" => "ListItem", "position" => 4, "name" => "#{@resort.name} Snow Forecast", "item" => page_url }
+          { "@type" => "ListItem", "position" => 4, "name" => "#{@resort.name} Snow Report", "item" => page_url }
         ]
       },
       ({
@@ -54,7 +54,7 @@
         <%= link_to "Ski Resorts", regions_path, class: "hover:text-white transition" %> <span aria-hidden="true">/</span> <%= link_to @resort.state_province, region_path(@resort.region_slug), class: "hover:text-white transition" %>
       </nav>
       <p class="text-slate-400 text-sm uppercase tracking-widest mb-2"><%= @resort.location %></p>
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %> <span class="block text-2xl md:text-3xl text-slate-300 font-bold mt-1">Snow Forecast</span></h1>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %> <span class="block text-2xl md:text-3xl text-slate-300 font-bold mt-1">Snow Report &amp; Forecast</span></h1>
 
       <!-- Big Snow Number -->
       <div class="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-cyan-300 mb-2">
@@ -75,34 +75,25 @@
       <% end %>
     </section>
 
-    <!-- Quick Stats -->
-    <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-10">
-      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
-        <p class="text-2xl font-bold"><%= @resort.nearest_airport_code %></p>
-        <p class="text-slate-400 text-sm">Airport</p>
+    <!-- Snow report: new snow + summit conditions -->
+    <section class="mb-10" aria-labelledby="report-heading">
+      <h2 id="report-heading" class="text-xl font-bold mb-4"><%= @resort.name %> snow report</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold text-amber-300"><%= inches(@summary.last_24h) %></p><p class="text-slate-400 text-sm">New snow, 24 hours</p></div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold text-amber-300"><%= inches(@summary.recent) %></p><p class="text-slate-400 text-sm">New snow, 48 hours</p></div>
+        <% if @summary.last_7_days %>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold text-amber-300"><%= inches(@summary.last_7_days) %></p><p class="text-slate-400 text-sm">Past 7 days</p></div>
+        <% end %>
+        <% if @summary.conditions? %>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold"><%= @resort.current_temp_f %>°F</p><p class="text-slate-400 text-sm">Summit now</p></div>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold"><%= @resort.current_wind_mph %> mph</p><p class="text-slate-400 text-sm">Wind</p></div>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-lg font-bold leading-8"><%= @summary.weather_description || "—" %></p><p class="text-slate-400 text-sm">Sky</p></div>
+        <% end %>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold"><%= number_with_delimiter(@resort.elevation_summit) %>'</p><p class="text-slate-400 text-sm">Summit · base <%= number_with_delimiter(@resort.elevation_base) %>'</p></div>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold"><%= @resort.nearest_airport_code %></p><p class="text-slate-400 text-sm">Nearest airport</p></div>
       </div>
-      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
-        <p class="text-2xl font-bold"><%= number_with_delimiter(@resort.elevation_summit) %>'</p>
-        <p class="text-slate-400 text-sm">Summit</p>
-      </div>
-      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
-        <p class="text-2xl font-bold"><%= number_with_delimiter(@resort.elevation_base) %>'</p>
-        <p class="text-slate-400 text-sm">Base</p>
-      </div>
-    </div>
-
-    <!-- Recent Snowfall -->
-    <% if @resort.recent_snowfall_48h > 0 %>
-      <div class="mb-10">
-        <div class="bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-xl p-6 text-center">
-          <p class="text-amber-400 text-sm uppercase tracking-widest mb-2">Last 48 Hours</p>
-          <p class="text-5xl font-extrabold text-white mb-1">
-            <%= @resort.recent_snowfall_48h %><span class="text-3xl">"</span>
-          </p>
-          <p class="text-slate-400 text-sm">of fresh snow</p>
-        </div>
-      </div>
-    <% end %>
+      <p class="text-slate-400 text-xs mt-3">Modeled summit snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>. For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
+    </section>
 
     <!-- 7-Day Forecast -->
     <div class="mb-10">
@@ -114,6 +105,7 @@
             <p class="text-lg font-bold <%= forecast.snowfall_inches.to_f > 5 ? 'text-cyan-400' : 'text-white' %>">
               <%= forecast.snowfall_inches.to_f.round(1) %>"
             </p>
+            <% if forecast.temp_high_f %><p class="text-[11px] text-slate-400 mt-1"><%= forecast.temp_high_f %>° / <%= forecast.temp_low_f %>°</p><% end %>
           </div>
         <% end %>
       </div>
@@ -159,7 +151,9 @@
       </section>
     <% end %>
 
-    <%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Forecast FAQ" %>
+    <%= render "shared/alert_form", resort: @resort %>
+
+    <%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %>
 
     <!-- Home Airport Selector -->
     <div class="mb-6">
@@ -222,6 +216,11 @@
       <p class="text-slate-400 text-sm text-center mt-4">
         Dates: <%= departure_date %> to <%= return_date %> (adjust on booking site)
       </p>
+      <% if (map_url = Affiliate.stay22_map_url(@resort)) %>
+        <h3 class="text-lg font-bold mt-8 mb-3">Places to stay near <%= @resort.name %></h3>
+        <iframe src="<%= map_url %>" title="Lodging near <%= @resort.name %>" width="100%" height="420" loading="lazy" class="rounded-xl border border-slate-700"></iframe>
+        <p class="text-slate-400 text-xs mt-2">Lodging map by Stay22. Bookings may earn Snow Way a commission. <%= link_to "Disclosure", affiliate_disclosure_path, class: "underline" %></p>
+      <% end %>
     </div>
 
     <!-- Resort Website -->

@@ -16,7 +16,8 @@ module SnowForecastable
         latitude: resort.latitude,
         longitude: resort.longitude,
         elevation: summit_meters,
-        daily: "precipitation_sum,temperature_2m_mean,snowfall_sum",
+        daily: "precipitation_sum,temperature_2m_mean,snowfall_sum,temperature_2m_max,temperature_2m_min",
+        current: "temperature_2m,wind_speed_10m,weather_code",
         timezone: "auto",
         forecast_days: 16,
         past_days: 2
@@ -26,6 +27,7 @@ module SnowForecastable
       return [] unless response.is_a?(Net::HTTPSuccess)
 
       data = JSON.parse(response.body)
+      store_current_conditions(resort, data["current"])
       daily = data["daily"]
 
       return [] unless daily && daily["time"] && daily["precipitation_sum"]
@@ -43,12 +45,32 @@ module SnowForecastable
 
         {
           forecast_date: Date.parse(date_str),
-          snowfall_inches: snowfall_inches
+          snowfall_inches: snowfall_inches,
+          temp_high_f: c_to_f(daily["temperature_2m_max"]&.dig(i)),
+          temp_low_f: c_to_f(daily["temperature_2m_min"]&.dig(i))
         }
       end
     rescue StandardError => e
       Rails.logger.error "Snow forecast fetch failed for #{resort&.name}: #{e.message}"
       []
+    end
+
+    def c_to_f(celsius)
+      (celsius * 9.0 / 5 + 32).round if celsius
+    end
+
+    # Summit conditions at fetch time; skipped quietly if the API omits them.
+    def store_current_conditions(resort, current)
+      return unless current && resort.persisted?
+
+      resort.update_columns(
+        current_temp_f: c_to_f(current["temperature_2m"]),
+        current_wind_mph: (current["wind_speed_10m"] * 0.621371).round,
+        current_weather_code: current["weather_code"],
+        conditions_at: Time.current
+      )
+    rescue StandardError => e
+      Rails.logger.error "Storing conditions failed for #{resort.name}: #{e.message}"
     end
 
     # Calculate snowfall from precipitation using temperature-based snow:water ratio

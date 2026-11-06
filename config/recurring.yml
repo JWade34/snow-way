@@ -23,3 +23,7 @@ production:
     class: RefreshSnowForecastsJob
     queue: default
     schedule: every 6 hours
+  powder_report_snapshot:
+    class: PowderReportSnapshotJob
+    queue: default
+    schedule: every thursday at 7am America/Denver

@@ -18,11 +18,13 @@
   <% faqs << { question: "Which #{name} ski resorts are on the Epic Pass and Ikon Pass?", answer: [ ("Epic Pass: #{epic.map(&:name).to_sentence}." if epic.any?), ("Ikon Pass: #{ikon.map(&:name).to_sentence}." if ikon.any?) ].compact.join(" ") } %>
 <% end %>
 
-<% content_for(:title, "Ski Resorts in #{name}: Snow Forecast & Guide | Snow Way") %>
-<% content_for(:description, "All #{@region.resorts.size} ski resorts in #{name} with 7-day and 14-day snow forecasts, summit elevation, vertical, nearest airport, and pass. #{faqs[1][:answer]}".truncate(300)) %>
+<% fresh = @resorts.select { |r| @recent.fetch(r.id, 0.0) > 0 }.sort_by { |r| -@recent[r.id] } %>
+<% faqs.unshift({ question: "What is the #{name} snow report today?", answer: [ (fresh.any? ? "In the last 48 hours, #{fresh.first(3).map { |r| "#{r.name} got #{inches(@recent[r.id])}" }.to_sentence}." : "No #{name} resort has had measurable new snow in the last 48 hours."), faqs.find { |f| f[:question].start_with?("Which #{name} ski resort is getting") }[:answer] ].join(" ") }) %>
+<% content_for(:title, "#{name} Snow Report & Ski Resorts | Snow Way") %>
+<% content_for(:description, "#{name} snow report and all #{@region.resorts.size} ski resorts: 48-hour snowfall, 7- and 14-day forecasts, elevation, airport, and pass. #{faqs.first[:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
-        { "@type" => "CollectionPage", "name" => "Ski Resorts in #{name}", "url" => absolute_url("/ski-resorts/#{@region.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
+        { "@type" => "CollectionPage", "name" => "#{name} Ski Resorts & Snow Report", "url" => absolute_url("/ski-resorts/#{@region.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
         breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ name, nil ] ]),
         { "@type" => "ItemList", "name" => "Ski resorts in #{name}", "numberOfItems" => @resorts.size,
           "itemListElement" => @resorts.each_with_index.map { |r, i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
@@ -34,9 +36,9 @@
   <%= render "shared/header" %>
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ name, nil ] ] %>
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts in <%= name %></h1>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= name %> ski resorts &amp; snow report</h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
-      <p class="text-slate-200 leading-relaxed"><%= faqs[1][:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= name %>, ranked below by forecast snow.</p>
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= name %>, ranked below by forecast snow.</p>
       <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Summit-elevation forecasts from Open-Meteo</p>
     </section>
 

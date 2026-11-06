@@ -55,4 +55,30 @@ class SitePagesTest < ActionDispatch::IntegrationTest
       assert_response :not_found, path
     end
   end
+
+  test "powder alert signup stores a subscriber once per email and resort" do
+    assert_difference "Subscriber.count", 1 do
+      post subscribers_path, params: { subscriber: { email: " Skier@Example.com ", resort_id: resorts(:vail).id, threshold_inches: 12 } }, as: :turbo_stream
+    end
+    assert_response :success
+    assert_equal "skier@example.com", Subscriber.last.email
+    assert_no_difference "Subscriber.count" do
+      post subscribers_path, params: { subscriber: { email: "skier@example.com", resort_id: resorts(:vail).id } }, as: :turbo_stream
+    end
+  end
+
+  test "invalid email is rejected" do
+    assert_no_difference "Subscriber.count" do
+      post subscribers_path, params: { subscriber: { email: "not-an-email" } }, as: :turbo_stream
+    end
+  end
+
+  test "powder report snapshots are archived and listed" do
+    report = PowderReport.snapshot!
+    get "/powder-report/#{report.week_of.iso8601}"
+    assert_response :success
+    assert_select "h1", /Breckenridge leads North America/
+    get "/powder-report"
+    assert_select "a[href=?]", "/powder-report/#{report.week_of.iso8601}"
+  end
 end

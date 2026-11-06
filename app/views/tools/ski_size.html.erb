@@ -1,0 +1,68 @@
+<% ex = SizeChart.ski_length(height_cm: SizeChart.cm(5, 9)) %>
+<% faqs = [
+  { question: "What size skis do I need?", answer: "Skis for an intermediate skier usually reach between the chin and nose: about your height in centimeters minus 5–10 cm. For someone 5'9\" (175 cm), that's about #{ex.first}–#{ex.last} cm for all-mountain skiing. Beginners go shorter, experts and powder skiers go longer." },
+  { question: "Should beginners use shorter skis?", answer: "Yes. Beginner skis are typically chin height or a little shorter (height minus 10–20 cm) because they're easier to turn and stop." },
+  { question: "What length ski poles do I need?", answer: "Ski poles are usually about 0.68 times your height. A quick check: flip the pole upside down and grip it under the basket; your elbow should be close to a right angle." },
+  { question: "Do powder skis need to be longer?", answer: "Usually. Longer, wider skis float better in deep snow, so powder skis are often sized near or slightly above your height." }
+] %>
+<% content_for(:title, "Ski Size Chart & Calculator: Ski Length by Height | Snow Way") %>
+<% content_for(:description, "Ski size chart and calculator: find the right ski length by height, weight, ability, and terrain, plus the right ski pole length.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebApplication", "name" => "Ski Size Calculator", "url" => absolute_url("/ski-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
+        breadcrumb_schema([ [ "Guides", "/guides" ], [ "Ski Size Chart", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ "Ski Size Chart", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski size chart &amp; calculator</h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p></section>
+
+    <section class="mb-10 bg-slate-800/30 border border-slate-700 rounded-xl p-5" data-controller="size-calculator" data-size-calculator-kind-value="ski" aria-labelledby="calc-heading">
+      <h2 id="calc-heading" class="text-xl font-bold mb-4">Ski length calculator</h2>
+      <%= render "tools/size_inputs", kind: :ski %>
+    </section>
+
+    <h2 class="text-xl font-bold mb-3">Ski length chart by height</h2>
+    <p class="text-slate-300 text-sm mb-4">All-mountain ski lengths for an average build, plus pole length.</p>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski length and pole length by skier height and ability</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Height</th><th scope="col" class="px-3 py-2">Beginner</th><th scope="col" class="px-3 py-2">Intermediate</th><th scope="col" class="px-3 py-2">Advanced</th><th scope="col" class="px-3 py-2">Poles</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% SizeChart.heights.each do |ft, inch| %>
+            <% h = SizeChart.cm(ft, inch) %>
+            <% b = SizeChart.ski_length(height_cm: h, ability: "beginner") %><% i = SizeChart.ski_length(height_cm: h) %><% a = SizeChart.ski_length(height_cm: h, ability: "advanced") %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= ft %>'<%= inch %>" <span class="text-slate-400 font-normal">(<%= h %> cm)</span></th><td class="px-3 py-2"><%= b.first %>–<%= b.last %> cm</td><td class="px-3 py-2 font-bold text-cyan-300"><%= i.first %>–<%= i.last %> cm</td><td class="px-3 py-2"><%= a.first %>–<%= a.last %> cm</td><td class="px-3 py-2"><%= SizeChart.pole_length(h) %> cm</td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="guide">
+      <h2>How to choose your ski length</h2>
+      <h3>1. Start with your height and ability</h3>
+      <ul>
+        <li><strong>Beginner:</strong> about chin height. Shorter skis turn and stop more easily.</li>
+        <li><strong>Intermediate:</strong> chin to nose.</li>
+        <li><strong>Advanced and expert:</strong> nose to the top of your head, or longer for speed and stability.</li>
+      </ul>
+      <h3>2. Adjust for weight</h3>
+      <p>Heavier skiers bend a ski more and can go a bit longer; lighter skiers can go a bit shorter.</p>
+      <h3>3. Adjust for terrain</h3>
+      <ul>
+        <li><strong>Groomers and carving:</strong> a few cm shorter for quick, tight turns.</li>
+        <li><strong>Powder and freeride:</strong> a few cm longer, often with more rocker, for float.</li>
+        <li><strong>Park:</strong> shorter for spins and rails.</li>
+      </ul>
+      <h3>4. Rocker changes the effective length</h3>
+      <p>Skis with a lot of tip rocker ski shorter than their measured length because less edge touches the snow, so you can size up a little.</p>
+      <h2>Next steps</h2>
+      <p>See <%= link_to "how to choose all-mountain skis", guide_path("best-all-mountain-skis") %> and <%= link_to "how to choose ski boots", guide_path("best-ski-boots") %>, or browse <%= gear_link "all-mountain skis", "all mountain skis" %> and <%= gear_link "ski poles", "ski poles" %>. Snowboarding instead? Use the <%= link_to "snowboard size calculator", snowboard_size_chart_path %>.</p>
+      <p class="text-slate-400 text-xs">Charts are general guidance. Manufacturer size charts for a specific ski take priority.</p>
+    </div>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Ski sizing FAQ" %>
+  </main>
+</div>

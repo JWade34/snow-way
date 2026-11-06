@@ -1,0 +1,63 @@
+<% today = Date.current.strftime("%B %-d, %Y") %>
+<% leader = @resorts.first %>
+<% snowing = @resorts.select { |r| @totals.fetch(r.id, 0.0) > 0 } %>
+<% price = (p = @prices[:passes][@pass]) && p["adult_price_usd"] ? "#{"from " if p["from"]}#{number_to_currency(p["adult_price_usd"], precision: 0)}" : nil %>
+<% official = @pass == "ikon" ? "ikonpass.com" : "epicpass.com" %>
+<% by_region = @resorts.group_by(&:state_province).sort_by { |region, rs| -rs.size } %>
+<% faqs = [] %>
+<% faqs << { question: "Which #{@pass_name} resort is getting the most snow this week?", answer: leader && @totals.fetch(leader.id, 0.0) > 0 ? "As of #{today}, #{leader.name} leads the #{@pass_name} resorts Snow Way tracks with #{inches(@totals[leader.id])} of snow forecast over the next 7 days#{(runners = @resorts[1..2].select { |r| @totals.fetch(r.id, 0.0) > 0 }).any? ? ", followed by #{runners.map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}" : ""}." : "As of #{today}, none of the #{@pass_name} resorts Snow Way tracks have new snow in the 7-day forecast." } %>
+<% faqs << { question: "What ski resorts are on the #{@pass_name}?", answer: "Snow Way tracks #{@resorts.size} #{@pass_name} resorts in North America for #{Date.current.month >= 7 ? Date.current.year : Date.current.year - 1}-#{((Date.current.month >= 7 ? Date.current.year : Date.current.year - 1) + 1).to_s.last(2)}: #{@resorts.map(&:name).sort.to_sentence}. The full pass also includes smaller and international resorts; see #{official} for the complete list." } %>
+<% faqs << { question: "How much is the #{@pass_name}?", answer: "The adult #{@pass_name} was #{price} as of #{@prices[:checked_on]&.strftime("%B %-d, %Y")}. #{@prices[:passes].dig(@pass, "price_note").to_s.include?("November 15") && Date.current <= Date.new(Date.current.year, 11, 15) ? "Prices go up after November 15. " : ""}Check #{official} for current prices." } if price %>
+<% faqs << { question: "Which states have the most #{@pass_name} resorts?", answer: "Among the resorts Snow Way tracks: #{by_region.first(4).map { |region, rs| "#{region} (#{rs.size})" }.to_sentence}." } %>
+<% faqs << { question: "Is the Epic Pass or Ikon Pass better?", answer: "It depends on where you'll ski. Compare which pass's resorts are getting more snow this week, and what each costs, on Snow Way's Ikon vs Epic page." } %>
+
+<% content_for(:title, "#{@pass_name} Resorts: Full List & This Week's Snow | Snow Way") %>
+<% content_for(:description, "#{@resorts.size} #{@pass_name} resorts in North America ranked by snow this week, with day limits, opening dates, and price. #{faqs.first[:answer]}") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "CollectionPage", "name" => "#{@pass_name} Resorts", "url" => absolute_url("/#{@pass}-pass-resorts"), "dateModified" => @updated_at&.iso8601 }.compact,
+        breadcrumb_schema([ [ "Ikon vs Epic", "/ikon-vs-epic" ], [ "#{@pass_name} Resorts", nil ] ]),
+        { "@type" => "ItemList", "name" => "#{@pass_name} resorts", "numberOfItems" => @resorts.size,
+          "itemListElement" => @resorts.each_with_index.map { |r, i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
+        faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", ikon_vs_epic_path ], [ "#{@pass_name} Resorts", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= @pass_name %> resorts</h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> <%= snowing.size %> of <%= @resorts.size %> <%= @pass_name %> resorts have snow in the forecast.</p>
+      <p class="text-slate-400 text-xs mt-3">Pass list checked <%= @prices[:checked_on]&.strftime("%B %-d, %Y") %> from <%= official %>. Snow updated <%= updated_label(@updated_at) %>.</p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-4"><%= @pass_name %> resorts ranked by snow this week</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only"><%= @pass_name %> resorts with 7-day snow forecast, pass access, and opening date</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">7-day</th><th scope="col" class="px-3 py-2 text-right">48h</th><th scope="col" class="px-3 py-2 hidden md:table-cell">Access</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Opens</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% @resorts.each do |r| %>
+            <tr class="hover:bg-slate-800/40">
+              <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 hover:underline" %><span class="block text-xs text-slate-400 font-normal"><%= r.state_province %></span></th>
+              <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
+              <td class="px-3 py-2 text-right text-amber-300"><%= inches(@recent.fetch(r.id, 0.0)) %></td>
+              <td class="px-3 py-2 text-slate-300 text-xs hidden md:table-cell"><%= r.pass_note %></td>
+              <td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.opening_date ? "#{r.opening_status == "opened" ? "Open since" : ""} #{r.opening_date.strftime("%b %-d")}".strip : "TBA" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold mb-3"><%= @pass_name %> resorts by state and province</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10 text-sm">
+      <% by_region.each do |region, rs| %>
+        <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3"><%= link_to region, region_path(region.parameterize), class: "font-semibold hover:text-cyan-300" %>: <span class="text-slate-300"><%= rs.map(&:name).sort.join(", ") %></span></li>
+      <% end %>
+    </ul>
+
+    <%= render "shared/faq", faqs: faqs, heading: "#{@pass_name} FAQ" %>
+    <p class="text-sm text-slate-400"><%= link_to "Ikon vs Epic: which is getting more snow?", ikon_vs_epic_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to(@pass == "ikon" ? "Epic Pass resorts" : "Ikon Pass resorts", @pass == "ikon" ? epic_pass_resorts_path : ikon_pass_resorts_path, class: "text-cyan-300 underline underline-offset-2") %></p>
+  </main>
+</div>

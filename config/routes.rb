@@ -8,11 +8,20 @@ Rails.application.routes.draw do
 
   get "where-is-it-snowing" => "pages#where_is_it_snowing", as: :where_is_it_snowing
   get "ikon-vs-epic" => "pages#ikon_vs_epic", as: :ikon_vs_epic
+  get "epic-pass-resorts" => "pages#pass_resorts", defaults: { pass: "epic" }, as: :epic_pass_resorts
+  get "ikon-pass-resorts" => "pages#pass_resorts", defaults: { pass: "ikon" }, as: :ikon_pass_resorts
   get "ski-resort-opening-dates" => "pages#opening_dates", as: :opening_dates
+  get "about" => "pages#about", as: :about
+  get "powder-report" => "powder_reports#current", as: :powder_report
+  get "powder-report/:id" => "powder_reports#show", as: :powder_report_archive, constraints: { id: /\d{4}-\d{2}-\d{2}/ }
+  resources :subscribers, only: [ :create ]
+  get "affiliate-disclosure" => "pages#affiliate_disclosure", as: :affiliate_disclosure
   get "ski-resorts" => "regions#index", as: :regions
   get "ski-resorts/:id" => "regions#show", as: :region
   get "ski-resorts-near/:id" => "hubs#show", as: :hub
   resources :guides, only: [ :index, :show ]
+  get "snowboard-size-chart" => "tools#snowboard_size", as: :snowboard_size_chart
+  get "ski-size-chart" => "tools#ski_size", as: :ski_size_chart
 
   get "widget" => "embeds#widget", as: :widget
   get "embed/powder-rankings" => "embeds#powder_rankings", as: :embed_powder_rankings

@@ -62,6 +62,7 @@
       </ul>
     <% end %>
 
+    <%= render "shared/alert_form" %>
     <%= render "shared/faq", faqs: faqs, heading: "Where it's snowing: quick answers" %>
     <p class="text-sm text-slate-400">See the <%= link_to "full powder rankings", resorts_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> or browse <%= link_to "ski resorts by state", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
   </main>

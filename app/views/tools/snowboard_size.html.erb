@@ -1,0 +1,64 @@
+<% ex = SizeChart.snowboard_length(height_cm: SizeChart.cm(5, 9)) %>
+<% faqs = [
+  { question: "What size snowboard do I need?", answer: "Most riders do well with a board that reaches between the chin and nose when stood on end, roughly 0.87 times your height in centimeters. For someone 5'9\" (175 cm), that's about #{ex.first}–#{ex.last} cm for all-mountain riding. Go a few cm shorter for park and a few cm longer for powder." },
+  { question: "Does weight or height matter more for snowboard size?", answer: "Weight matters more for how a board flexes, so manufacturers list a weight range for each length. Use height for a starting point, then size up if you're heavier than average for your height or down if you're lighter." },
+  { question: "How do I know if I need a wide snowboard?", answer: "If you wear a men's US size 11 or larger boot, you usually need a wide (W) board so your toes and heels don't drag in turns. Sizes 10 to 10.5 may fit a regular or mid-wide board depending on the binding angles." },
+  { question: "Should a beginner get a shorter snowboard?", answer: "Slightly. A board 2–5 cm shorter than your all-mountain size is easier to turn and control while you learn." }
+] %>
+<% content_for(:title, "Snowboard Size Chart & Calculator (Height, Weight, Boot) | Snow Way") %>
+<% content_for(:description, "Snowboard size chart and calculator: find your board length by height, weight, ability, and riding style, plus whether you need a wide board for your boot size.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebApplication", "name" => "Snowboard Size Calculator", "url" => absolute_url("/snowboard-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
+        breadcrumb_schema([ [ "Guides", "/guides" ], [ "Snowboard Size Chart", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ "Snowboard Size Chart", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Snowboard size chart &amp; calculator</h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p></section>
+
+    <section class="mb-10 bg-slate-800/30 border border-slate-700 rounded-xl p-5" data-controller="size-calculator" data-size-calculator-kind-value="snowboard" aria-labelledby="calc-heading">
+      <h2 id="calc-heading" class="text-xl font-bold mb-4">Snowboard size calculator</h2>
+      <%= render "tools/size_inputs", kind: :snowboard %>
+    </section>
+
+    <h2 class="text-xl font-bold mb-3">Snowboard size chart by height</h2>
+    <p class="text-slate-300 text-sm mb-4">All-mountain board lengths for an average build. Subtract about 4 cm for park, add about 4 cm for powder.</p>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Snowboard length by rider height</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Height</th><th scope="col" class="px-3 py-2">Beginner</th><th scope="col" class="px-3 py-2">All-mountain</th><th scope="col" class="px-3 py-2">Powder</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% SizeChart.heights.each do |ft, inch| %>
+            <% h = SizeChart.cm(ft, inch) %>
+            <% b = SizeChart.snowboard_length(height_cm: h, ability: "beginner") %><% a = SizeChart.snowboard_length(height_cm: h) %><% p = SizeChart.snowboard_length(height_cm: h, style: "powder") %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= ft %>'<%= inch %>" <span class="text-slate-400 font-normal">(<%= h %> cm)</span></th><td class="px-3 py-2"><%= b.first %>–<%= b.last %> cm</td><td class="px-3 py-2 font-bold text-cyan-300"><%= a.first %>–<%= a.last %> cm</td><td class="px-3 py-2"><%= p.first %>–<%= p.last %> cm</td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="guide">
+      <h2>How to choose your snowboard size</h2>
+      <h3>1. Start with height</h3>
+      <p>Stand the board on its tail: it should reach somewhere between your chin and nose. That's about 0.87 times your height in centimeters.</p>
+      <h3>2. Adjust for weight</h3>
+      <p>Weight drives how a board flexes. If you're heavier than average for your height, go a few centimeters longer; if you're lighter, go shorter. Each board's spec sheet lists a rider weight range, and staying inside it matters more than any chart.</p>
+      <h3>3. Adjust for how you ride</h3>
+      <ul>
+        <li><strong>Park and freestyle:</strong> shorter, about 3–5 cm, for easier spins and presses.</li>
+        <li><strong>All-mountain:</strong> the chart size.</li>
+        <li><strong>Powder and freeride:</strong> longer, about 3–5 cm, for float and stability at speed.</li>
+      </ul>
+      <h3>4. Check width against your boots</h3>
+      <p>Your boots should overhang the edges only slightly. Riders in men's US size 11+ boots usually need a wide board. Women's boot sizes run about 1.5 sizes larger than men's for the same foot.</p>
+      <h2>Next steps</h2>
+      <p>Read <%= link_to "how to choose a snowboard", guide_path("best-snowboard") %> for shape, camber, and flex, or browse <%= gear_link "all-mountain snowboards", "all mountain snowboard" %> and <%= gear_link "snowboard boots", "snowboard boots" %>. Renting first? See <%= link_to "rent or buy", guide_path("rent-or-buy-ski-gear") %>. Skiing instead? Use the <%= link_to "ski size calculator", ski_size_chart_path %>.</p>
+      <p class="text-slate-400 text-xs">Charts are general guidance. Manufacturer size charts for a specific board take priority.</p>
+    </div>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Snowboard sizing FAQ" %>
+  </main>
+</div>

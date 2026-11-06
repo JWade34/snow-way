@@ -1,0 +1,42 @@
+<%# locals: (kind:) -%>
+<% select_class = "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400" %>
+<form class="grid grid-cols-2 sm:grid-cols-4 gap-3" data-action="input->size-calculator#calculate change->size-calculator#calculate" onsubmit="return false">
+  <label class="text-sm text-slate-300">Height (ft)
+    <input type="number" min="3" max="7" value="5" data-size-calculator-target="feet" class="<%= select_class %> mt-1" inputmode="numeric">
+  </label>
+  <label class="text-sm text-slate-300">Height (in)
+    <input type="number" min="0" max="11" value="9" data-size-calculator-target="inches" class="<%= select_class %> mt-1" inputmode="numeric">
+  </label>
+  <label class="text-sm text-slate-300">Weight (lb, optional)
+    <input type="number" min="40" max="400" placeholder="165" data-size-calculator-target="weight" class="<%= select_class %> mt-1" inputmode="numeric">
+  </label>
+  <label class="text-sm text-slate-300">Ability
+    <select data-size-calculator-target="ability" class="<%= select_class %> mt-1">
+      <option value="beginner">Beginner</option>
+      <option value="intermediate" selected>Intermediate</option>
+      <option value="advanced">Advanced</option>
+      <% if kind == :ski %><option value="expert">Expert</option><% end %>
+    </select>
+  </label>
+  <label class="text-sm text-slate-300 col-span-2 sm:col-span-<%= kind == :ski ? 4 : 2 %>">Where you ride
+    <select data-size-calculator-target="style" class="<%= select_class %> mt-1">
+      <% if kind == :ski %><option value="groomers">Groomers / carving</option><% end %>
+      <option value="all-mountain" selected>All-mountain</option>
+      <option value="powder">Powder / freeride</option>
+      <option value="park">Park / freestyle</option>
+    </select>
+  </label>
+  <% if kind == :snowboard %>
+    <label class="text-sm text-slate-300">Boot size (US)
+      <input type="number" min="4" max="16" step="0.5" placeholder="10" data-size-calculator-target="boot" class="<%= select_class %> mt-1" inputmode="decimal">
+    </label>
+    <label class="text-sm text-slate-300">Boot sizing
+      <select data-size-calculator-target="bootGender" class="<%= select_class %> mt-1"><option value="mens">Men's</option><option value="womens">Women's</option></select>
+    </label>
+  <% end %>
+</form>
+<div class="mt-5 bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-5 text-center" aria-live="polite">
+  <p class="text-slate-300 text-sm mb-1">Your size</p>
+  <p class="text-3xl md:text-4xl font-extrabold text-cyan-300" data-size-calculator-target="result">Calculating…</p>
+  <p class="text-slate-300 text-sm mt-2" data-size-calculator-target="detail"></p>
+</div>

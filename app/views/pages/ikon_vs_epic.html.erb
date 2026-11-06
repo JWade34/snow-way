@@ -41,7 +41,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         <% [ [ "Epic Pass resorts", @epic ], [ "Ikon Pass resorts", @ikon ] ].each do |label, list| %>
           <section>
-            <h2 class="text-xl font-bold mb-3"><%= label %> by snow this week</h2>
+            <h2 class="text-xl font-bold mb-3"><%= link_to label, label.start_with?("Epic") ? epic_pass_resorts_path : ikon_pass_resorts_path, class: "hover:text-cyan-300" %> by snow this week</h2>
             <ol class="space-y-1">
               <% list.each_with_index do |r, i| %>
                 <li class="flex justify-between gap-2 bg-slate-800/40 border border-slate-700 rounded-lg px-3 py-2 text-sm">

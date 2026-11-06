@@ -20,6 +20,23 @@ class PagesController < ApplicationController
     @prices = Resort.pass_prices
   end
 
+  def pass_resorts
+    @pass = params[:pass] == "ikon" ? "ikon" : "epic"
+    @pass_name = @pass == "ikon" ? "Ikon Pass" : "Epic Pass"
+    @totals = Resort.projected_totals
+    @recent = Resort.recent_totals
+    @resorts = Resort.where(pass: [ @pass, "both" ]).to_a.sort_by { |r| [ -@totals.fetch(r.id, 0.0), r.name ] }
+    @prices = Resort.pass_prices
+    @updated_at = SnowForecast.maximum(:created_at)
+  end
+
+  def about
+    @resort_count = Resort.count
+  end
+
+  def affiliate_disclosure
+  end
+
   def opening_dates
     @totals = Resort.projected_totals
     @resorts = Resort.where.not(opening_date: nil).order(:opening_date, :name)

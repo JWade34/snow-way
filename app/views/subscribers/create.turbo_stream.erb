@@ -1,0 +1,9 @@
+<%= turbo_stream.update "alert-form" do %>
+  <% if @saved %>
+    <p class="text-lg font-bold mb-1">You're on the list ❄️</p>
+    <p class="text-slate-300 text-sm">We'll email <%= @subscriber.email %> when <%= @subscriber.resort ? "#{@subscriber.resort.name} is forecast #{@subscriber.threshold_inches}\"+" : "a big storm lines up" %>.</p>
+  <% else %>
+    <p class="text-lg font-bold mb-1">That email didn't work</p>
+    <p class="text-slate-300 text-sm"><%= @subscriber.errors.full_messages.to_sentence %>. <%= link_to "Try again", request.referer || root_path, class: "underline" %></p>
+  <% end %>
+<% end %>

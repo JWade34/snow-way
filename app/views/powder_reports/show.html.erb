@@ -1,0 +1,60 @@
+<% as_of = Date.parse(@data["as_of"]) %>
+<% label = as_of.strftime("%B %-d, %Y") %>
+<% top = @data["top"] %>
+<% lead = top.first %>
+<% headline = lead && lead["inches"].to_f > 0 ? "#{lead["name"]} leads North America with #{inches(lead["inches"])} of snow forecast" : "A quiet week: little new snow in the forecast" %>
+<% summary = if lead && lead["inches"].to_f > 0
+  "For the week of #{label}, #{lead["name"]} (#{lead["region"]}) tops Snow Way's powder rankings with #{inches(lead["inches"])} forecast over 7 days#{top[1] ? ", ahead of #{top[1..2].select { |r| r["inches"].to_f > 0 }.map { |r| "#{r["name"]} (#{inches(r["inches"])})" }.to_sentence}" : ""}. #{@data["snowing_count"]} of #{@data["tracked"]} tracked resorts have snow in the forecast. Epic Pass resorts average #{inches(@data["epic_avg"])} and Ikon Pass resorts #{inches(@data["ikon_avg"])}."
+else
+  "For the week of #{label}, none of the #{@data["tracked"]} resorts Snow Way tracks have significant snow in the 7-day forecast."
+end %>
+<% path = @archived ? "/powder-report/#{as_of.iso8601}" : "/powder-report" %>
+<% content_for(:title, @archived ? "Powder Report, Week of #{as_of.strftime("%b %-d, %Y")} | Snow Way" : "This Week's Powder Report: Where the Snow Is | Snow Way") %>
+<% content_for(:description, @archived ? "Archived: #{summary}" : "Live: #{summary}") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "NewsArticle", "headline" => headline, "description" => summary, "url" => absolute_url(path), "datePublished" => as_of.iso8601, "dateModified" => (@archived ? as_of : Date.current).iso8601,
+          "author" => { "@type" => "Person", "@id" => "https://justinmckelvey.com/#person", "name" => "Justin McKelvey", "url" => "https://justinmckelvey.com" },
+          "publisher" => { "@type" => "Organization", "@id" => "https://snowway.app/#organization", "name" => "Snow Way", "logo" => { "@type" => "ImageObject", "url" => "https://snowway.app/icon.png" } } },
+        breadcrumb_schema(@archived ? [ [ "Powder Report", "/powder-report" ], [ label, nil ] ] : [ [ "Powder Report", nil ] ]) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: @archived ? [ [ "Powder Report", powder_report_path ], [ label, nil ] ] : [ [ "Powder Report", nil ] ] %>
+    <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">Powder Report · week of <%= label %></p>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-4"><%= headline %></h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= summary %></p>
+      <p class="text-slate-400 text-xs mt-3"><%= @archived ? "Archived snapshot from #{label}." : "Live rankings, updated every 6 hours. A snapshot is archived every Thursday." %> Summit forecasts from Open-Meteo.</p></section>
+
+    <h2 class="text-xl font-bold mb-3">Top 10 resorts for snow this week</h2>
+    <ol class="space-y-1 mb-10">
+      <% top.each_with_index do |r, i| %>
+        <li class="flex justify-between gap-2 bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2 text-sm"><span><span class="text-slate-400 mr-1"><%= i + 1 %>.</span><%= link_to r["name"], resort_path(r["slug"]), class: "font-semibold hover:text-cyan-300" %> <span class="text-slate-400"><%= r["region"] %></span></span><span class="text-cyan-300 font-bold"><%= inches(r["inches"]) %></span></li>
+      <% end %>
+    </ol>
+
+    <% if @data["regions"].any? %>
+      <h2 class="text-xl font-bold mb-3">Snowiest resort by region</h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10 text-sm">
+        <% @data["regions"].each do |r| %>
+          <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2 flex justify-between"><span><span class="text-slate-400"><%= r["region"] %>:</span> <%= link_to r["name"], resort_path(r["slug"]), class: "font-semibold hover:text-cyan-300" %></span><span class="text-cyan-300 font-bold"><%= inches(r["inches"]) %></span></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @data["fresh"].any? %>
+      <h2 class="text-xl font-bold mb-3">Fresh snow in the last 48 hours</h2>
+      <p class="text-slate-300 mb-10"><%= safe_join(@data["fresh"].map { |r| safe_join([ link_to(r["name"], resort_path(r["slug"]), class: "text-cyan-300 underline underline-offset-2"), " (#{inches(r["inches"])})" ]) }, ", ") %></p>
+    <% end %>
+
+    <%= render "shared/alert_form" unless @archived %>
+
+    <% if @archive.any? %>
+      <h2 class="text-xl font-bold mb-3">Past powder reports</h2>
+      <ul class="flex flex-wrap gap-2 text-sm">
+        <% @archive.each do |report| %><li><%= link_to "Week of #{report.week_of.strftime("%b %-d, %Y")}", powder_report_archive_path(report), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2" %></li><% end %>
+      </ul>
+    <% end %>
+  </main>
+</div>

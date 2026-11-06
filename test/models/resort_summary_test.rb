@@ -45,3 +45,21 @@ class ResortSummaryTest < ActiveSupport::TestCase
     assert_not ResortSummary.new(resorts(:alyeska)).faqs.any? { |f| f[:question].include?("compare") }
   end
 end
+
+class SizeChartTest < ActiveSupport::TestCase
+  test "snowboard length for 5'9 all-mountain is chin to nose" do
+    range = SizeChart.snowboard_length(height_cm: SizeChart.cm(5, 9))
+    assert_equal 148..156, range
+  end
+
+  test "ski length scales with ability and terrain" do
+    h = SizeChart.cm(5, 9)
+    assert SizeChart.ski_length(height_cm: h, ability: "beginner").first < SizeChart.ski_length(height_cm: h, ability: "expert").first
+    assert SizeChart.ski_length(height_cm: h, style: "powder").first > SizeChart.ski_length(height_cm: h).first
+  end
+
+  test "wide board from men's 11" do
+    assert_equal "Wide (W)", SizeChart.board_width(11)
+    assert_equal "Regular", SizeChart.board_width(9)
+  end
+end

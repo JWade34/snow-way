@@ -53,6 +53,39 @@ class ResortSummary
       .sum { |f| f.snowfall_inches.to_f }.round(1)
   end
 
+  def past_days(days)
+    resort.snow_forecasts.select { |f| ((as_of - days)..(as_of - 1)).cover?(f.forecast_date) }
+  end
+
+  def last_24h
+    past_days(1).sum { |f| f.snowfall_inches.to_f }.round(1)
+  end
+
+  # Only reported when every one of the last 7 days has a row.
+  def last_7_days
+    rows = past_days(7)
+    rows.map(&:forecast_date).uniq.size == 7 ? rows.sum { |f| f.snowfall_inches.to_f }.round(1) : nil
+  end
+
+  def today
+    forecasts.find { |f| f.forecast_date == as_of }
+  end
+
+  def conditions?
+    resort.conditions_at.present? && resort.conditions_at > 1.day.ago && !resort.current_temp_f.nil?
+  end
+
+  def weather_description
+    WeatherData::WEATHER_CODES.dig(resort.current_weather_code, :description)
+  end
+
+  def conditions_sentence
+    return unless conditions?
+
+    sky = weather_description ? "#{weather_description.downcase}, " : ""
+    "Right now at the summit it's #{resort.current_temp_f}°F, #{sky}with #{resort.current_wind_mph} mph wind."
+  end
+
   def rank
     totals.values.count { |v| v > total } + 1
   end
@@ -107,6 +140,7 @@ class ResortSummary
       parts << "As of #{long_date(as_of)}, #{resort.name} has no new snow in the forecast for the next 7 days."
     end
     parts << "It picked up #{inches(recent)} in the last 48 hours." if recent > 0
+    parts << conditions_sentence if conditions_sentence
     parts.join(" ")
   end
 
@@ -114,6 +148,7 @@ class ResortSummary
     return [] unless has_forecast?
 
     list = [
+      { question: "What is the snow report for #{resort.name} today?", answer: snow_report_answer },
       { question: "Will it snow at #{resort.name} this week?", answer: snow_this_week_answer },
       { question: "When is snow expected at #{resort.name}?", answer: next_snow_answer },
       { question: "How much snow has #{resort.name} gotten in the last 48 hours?", answer: recent_answer }
@@ -128,6 +163,12 @@ class ResortSummary
   end
 
   private
+
+  def snow_report_answer
+    new_snow = last_24h > 0 ? "#{resort.name} got about #{inches(last_24h)} of new snow in the last 24 hours and #{inches(recent)} over 48 hours." : "#{resort.name} has had no measurable new snow in the last 24 hours#{recent > 0 ? " (#{inches(recent)} over 48 hours)" : ""}."
+    today_part = today && today.snowfall_inches.to_f > 0 ? " #{inches(today.snowfall_inches)} is forecast today." : ""
+    [ new_snow + today_part, conditions_sentence, "For base depth and lifts open, check the official #{resort.name} snow report." ].compact.join(" ")
+  end
 
   def snow_this_week_answer
     if total > 0

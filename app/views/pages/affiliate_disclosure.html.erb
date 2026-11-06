@@ -1,0 +1,20 @@
+<% content_for(:title, "Affiliate Disclosure | Snow Way") %>
+<% content_for(:description, "How Snow Way earns money: some gear and travel links are affiliate links that may pay Snow Way a commission at no extra cost to you. Rankings are never paid.") %>
+<% content_for(:head) do %><%= json_ld({ "@context" => "https://schema.org", "@graph" => [ breadcrumb_schema([ [ "Affiliate Disclosure", nil ] ]) ] }) %><% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Affiliate Disclosure", nil ] ] %>
+    <article class="guide">
+      <h1 class="text-3xl md:text-4xl font-extrabold mb-6">Affiliate disclosure</h1>
+      <p>Snow Way is free. To keep it that way, some links to gear retailers, lodging, and travel sites are affiliate links. If you click one and make a purchase or booking, Snow Way may earn a commission. It costs you nothing extra.</p>
+      <h2>What this does and doesn't affect</h2>
+      <ul>
+        <li><strong>Snow rankings are never paid.</strong> They're calculated from forecast data only.</li>
+        <li><strong>Gear guides explain how to choose,</strong> and link to product categories rather than paid placements. Snow Way doesn't claim to have tested products it hasn't used.</li>
+        <li><strong>Affiliate links are marked</strong> as sponsored in the page code, and guides with affiliate links say so at the top.</li>
+      </ul>
+      <p>Questions? Get in touch through <a href="https://justinmckelvey.com">justinmckelvey.com</a>.</p>
+    </article>
+  </main>
+</div>
