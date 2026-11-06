@@ -21,6 +21,7 @@
       <p class="text-slate-400 text-sm mb-4">By <a href="https://justinmckelvey.com" class="text-slate-300 hover:text-white underline-offset-2 hover:underline">Justin McKelvey</a> · Updated <time datetime="2026-11-05">November 5, 2026</time></p>
       <%= @guide.affiliate? ? affiliate_disclosure : tag.div(class: "mb-8") %>
       <%= body %>
+      <%= render "shared/checklist_cta" if %w[ski-trip-packing-list what-to-wear-skiing how-to-ski how-to-snowboard].include?(@guide.slug) %>
     <%= render "shared/calendar_cta" %>
       <%= render "shared/faq", faqs: faqs, heading: "FAQ" %>
     </article>

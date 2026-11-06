@@ -1,0 +1,11 @@
+<aside id="packing-checklist-form" class="my-10 bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-5 not-prose" aria-labelledby="checklist-heading">
+  <p id="checklist-heading" class="font-bold text-lg mb-1 text-white">Free printable packing checklist</p>
+  <p class="text-slate-300 text-sm mb-3">Every item on one page, with checkboxes. Instant download.</p>
+  <%= form_with model: Subscriber.new, url: subscribers_path, class: "flex flex-col sm:flex-row gap-2" do |f| %>
+    <%= f.hidden_field :magnet, value: "packing-checklist" %>
+    <%= f.label :email, "Email address", class: "sr-only", for: "checklist_email" %>
+    <%= f.email_field :email, id: "checklist_email", required: true, placeholder: "you@example.com", autocomplete: "email", class: "flex-1 bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400" %>
+    <%= f.submit "Get the checklist", class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 cursor-pointer transition" %>
+  <% end %>
+  <p class="text-slate-400 text-xs mt-2">We'll also send powder alerts for big storms; unsubscribe anytime.</p>
+</aside>

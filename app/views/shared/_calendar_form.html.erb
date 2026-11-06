@@ -1,4 +1,4 @@
-<div id="calendar-form">
+<div id="powder-calendar-form">
   <%= form_with model: Subscriber.new, url: subscribers_path, class: "flex flex-col sm:flex-row gap-2" do |f| %>
     <%= f.hidden_field :magnet, value: "powder-calendar" %>
     <%= f.label :email, "Email address", class: "sr-only", for: "calendar_email" %>

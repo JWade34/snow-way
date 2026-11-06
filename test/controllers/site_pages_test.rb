@@ -97,4 +97,14 @@ class SitePagesTest < ActionDispatch::IntegrationTest
     get powder_calendar_download_path("nope")
     assert_response :not_found
   end
+
+  test "packing checklist signup returns a PDF" do
+    post subscribers_path, params: { subscriber: { email: "pack@example.com", magnet: "packing-checklist" } }, as: :turbo_stream
+    subscriber = Subscriber.find_by!(email: "pack@example.com")
+    assert_includes response.body, lead_magnet_download_path("packing-checklist", subscriber.token)
+    get lead_magnet_download_path("packing-checklist", subscriber.token)
+    assert_equal "application/pdf", response.media_type
+    get lead_magnet_download_path("nope", subscriber.token)
+    assert_response :not_found
+  end
 end
