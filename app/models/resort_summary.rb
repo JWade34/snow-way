@@ -164,6 +164,7 @@ class ResortSummary
       { question: "How much snow has #{resort.name} gotten in the last 48 hours?", answer: recent_answer }
     ]
     list << { question: "How does #{resort.name} compare to other #{resort.state_province} ski resorts this week?", answer: peers_answer } if state_peers.any?
+    list << { question: "What's the weather at #{resort.name} this week?", answer: weather_answer } if weather_answer
     list << { question: "What is the 14-day snow forecast for #{resort.name}?", answer: fourteen_day_answer } if extended_forecasts.any?
     list << { question: "Is #{resort.name} on the Epic or Ikon Pass?", answer: pass_answer } if resort.pass.present?
     list << { question: "When does #{resort.name} open for the #{season_label} season?", answer: opening_answer } if resort.opening_date
@@ -210,6 +211,20 @@ class ResortSummary
     others = state_peers.map { |r| "#{r.name} (#{inches(total_for(r))})" }.to_sentence
     lead = total > 0 ? "#{resort.name} is forecast to get #{inches(total)} over the next 7 days." : "#{resort.name} has no new snow in the 7-day forecast."
     "#{lead} Other #{resort.state_province} resorts: #{others}."
+  end
+
+  def weather_answer
+    days = forecasts.select(&:temp_high_f)
+    return if days.empty?
+
+    highs = days.map(&:temp_high_f)
+    lows = days.filter_map(&:temp_low_f)
+    winds = days.filter_map(&:wind_max_mph)
+    snowy = days.count { |d| d.snowfall_inches.to_f >= 0.5 }
+    sky = snowy.positive? ? "snow on #{snowy} of the next #{days.size} days" : "no significant snow"
+    "At mid-mountain (#{number_with_delimiter(resort.mid_elevation)} ft), #{resort.name} is forecast to see highs of #{highs.min}–#{highs.max}°F " \
+      "and lows of #{lows.min}–#{lows.max}°F from #{short_date(as_of)} to #{short_date(forecast_through)}, with #{sky}" \
+      "#{winds.any? ? " and winds up to #{winds.max} mph" : ""}."
   end
 
   def fourteen_day_answer

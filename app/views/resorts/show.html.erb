@@ -1,4 +1,4 @@
-<% content_for(:title, fit_title("#{@resort.name} Snow Report & 14-Day Forecast | Snow Way", "#{@resort.name} Snow Report & Forecast | Snow Way", "#{@resort.name} Snow Report | Snow Way")) %>
+<% content_for(:title, fit_title("#{@resort.name} Snow Report, Weather & 14-Day Forecast | Snow Way", "#{@resort.name} Snow Report & Weather | Snow Way", "#{@resort.name} Snow Report | Snow Way")) %>
 <% content_for(:description, "#{@summary.answer} Summit #{number_with_delimiter(@resort.elevation_summit)} ft, nearest airport #{@resort.nearest_airport_code}.".truncate(300)) %>
 
 <% page_url = "https://snowway.app/resorts/#{@resort.slug}" %>
@@ -102,7 +102,7 @@
 
     <!-- 7-Day Forecast -->
     <div class="mb-10">
-      <h2 class="text-xl font-bold mb-4"><%= @resort.name %> 7-Day Snow Forecast</h2>
+      <h2 class="text-xl font-bold mb-4"><%= @resort.name %> 7-day snow &amp; weather forecast</h2>
       <div class="flex gap-2 overflow-x-auto pb-2">
         <% @daily_forecasts.each do |forecast| %>
           <div class="flex-1 min-w-[4.5rem] bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-center">
@@ -111,7 +111,9 @@
               <%= forecast.snowfall_inches.to_f.round(1) %>"
             </p>
             <% if forecast.snowfall_summit_inches.to_f > forecast.snowfall_inches.to_f %><p class="text-[11px] text-slate-300">top <%= forecast.snowfall_summit_inches.to_f.round(1) %>"</p><% end %>
+            <% if (wx = WeatherData::WEATHER_CODES[forecast.weather_code]) %><p class="text-base mt-1" title="<%= wx[:description] %>"><span aria-hidden="true"><%= wx[:icon] %></span><span class="sr-only"><%= wx[:description] %></span></p><% end %>
             <% if forecast.temp_high_f %><p class="text-[11px] text-slate-400 mt-1"><%= forecast.temp_high_f %>° / <%= forecast.temp_low_f %>°</p><% end %>
+            <% if forecast.wind_max_mph %><p class="text-[11px] text-slate-400"><%= forecast.wind_max_mph %> mph</p><% end %>
           </div>
         <% end %>
       </div>

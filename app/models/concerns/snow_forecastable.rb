@@ -17,7 +17,7 @@ module SnowForecastable
         latitude: [ resort.latitude, resort.latitude ].join(","),
         longitude: [ resort.longitude, resort.longitude ].join(","),
         elevation: [ mid_meters, summit_meters ].join(","),
-        daily: "precipitation_sum,temperature_2m_mean,snowfall_sum,temperature_2m_max,temperature_2m_min",
+        daily: "precipitation_sum,temperature_2m_mean,snowfall_sum,temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max",
         current: "temperature_2m,wind_speed_10m,weather_code",
         timezone: "auto",
         forecast_days: 16,
@@ -57,7 +57,9 @@ module SnowForecastable
           forecast_date: Date.parse(date_str),
           snowfall_inches: snowfall_inches,
           temp_high_f: c_to_f(daily["temperature_2m_max"]&.dig(i)),
-          temp_low_f: c_to_f(daily["temperature_2m_min"]&.dig(i))
+          temp_low_f: c_to_f(daily["temperature_2m_min"]&.dig(i)),
+          weather_code: daily["weather_code"]&.dig(i),
+          wind_max_mph: daily["wind_speed_10m_max"]&.dig(i)&.then { |kmh| (kmh * 0.621371).round }
         }
       end
     end

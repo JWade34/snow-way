@@ -10,7 +10,7 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
   test "show targets the snow forecast query with answer, FAQ and schema" do
     get resort_url(resorts(:vail))
     assert_response :success
-    assert_select "title", /Vail Snow Report & 14-Day Forecast/
+    assert_select "title", /Vail Snow Report, Weather & 14-Day Forecast/
     assert_select "h1", /Snow Report & Forecast/
     assert_select "section", /ranking #2 of 3/
     assert_select "a[href=?]", resort_path(resorts(:breckenridge))
