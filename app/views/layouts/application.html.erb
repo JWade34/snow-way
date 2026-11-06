@@ -69,14 +69,21 @@
             defaults: '2026-01-30'
           })
         }
+        // Stay22 Let Me Allez (Lift/Spark/Nova) turns booking links into affiliate links. It costs ~2s of CPU,
+        // so it loads on the visitor's first interaction (booking buttons are below the fold), never on page load.
+        var stay22Loaded = false
         var stay22 = function () {
-          // Stay22 Let Me Allez (Lift/Spark/Nova): turns booking links into affiliate links.
+          if (stay22Loaded) return
+          stay22Loaded = true
           window.Stay22 = window.Stay22 || {};
           window.Stay22.params = { lmaID: '6aed51010d63b07675116823' };
           var s = document.createElement('script'); s.async = true; s.src = 'https://lma.stay22.com/letmeallez.js';
           document.head.appendChild(s);
         }
-        var whenIdle = function () { var run = function () { start(); stay22() }; 'requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 3000 }) : setTimeout(run, 1500) }
+        ;['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
+          window.addEventListener(evt, stay22, { once: true, passive: true })
+        })
+        var whenIdle = function () { 'requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 3000 }) : setTimeout(start, 1500) }
         document.readyState === 'complete' ? whenIdle() : window.addEventListener('load', whenIdle, { once: true })
       })()
     </script>
