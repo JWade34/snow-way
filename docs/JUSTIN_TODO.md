@@ -5,6 +5,8 @@ Last updated: 2026-11-06
 
 ## Do now (highest payoff first)
 
+- [ ] **Bing API key.** bing.com/webmasters → snowway.app → gear icon → API access → API Key → Generate. Then run in Claude Code: `! railway variables --service snow-way --set "BING_WEBMASTER_API_KEY=paste-key-here"`. Google is already connected.
+
 - [ ] **Turn on your private admin area (2 minutes).** Pick a password (12+ characters) and run this in Claude Code: `! railway variables --service snow-way --set "ADMIN_PASSWORD=your-password-here"`. Railway redeploys; then open snowway.app/admin (user: `justin`). Save it in your phone's browser. Until the password is set, /admin returns "not found".
 
 - [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: Impact → Manage → My Brands → REI → Create Link, copy the tracking link (`https://rei.xxxx.net/c/...`), add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, reapply once Search Console shows traffic.
@@ -63,6 +65,7 @@ Last updated: 2026-11-06
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Growth tracking (2026-11-06): Google Search Console connected, daily sync, affiliate clicks and signups tracked by page, admin Growth tab, Monday 7am report email
 - [x] Private admin (2026-11-06): resorts-ridden checklist, dictate/paste importer, gear closet, subscriber list with CSV download
 - [x] International "snow around the world" section on where-is-it-snowing; Chamonix and La Parva elevations corrected (2026-11-06)
 - [x] Tested the welcome email and Powder Calendar (2026-11-06)
