@@ -79,6 +79,8 @@
           window.Stay22.params = { lmaID: '6aed51010d63b07675116823' };
           var s = document.createElement('script'); s.async = true; s.src = 'https://lma.stay22.com/letmeallez.js';
           document.head.appendChild(s);
+          // Third-party embeds (Stay22 lodging map) also wait for the first interaction.
+          document.querySelectorAll('iframe[data-interaction-src]').forEach(function (f) { f.src = f.getAttribute('data-interaction-src') })
         }
         ;['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
           window.addEventListener(evt, stay22, { once: true, passive: true })

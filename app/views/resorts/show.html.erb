@@ -215,7 +215,7 @@
       </p>
       <% if (map_url = Affiliate.stay22_map_url(@resort)) %>
         <h3 class="text-lg font-bold mt-8 mb-3">Places to stay near <%= @resort.name %></h3>
-        <iframe src="<%= map_url %>" title="Lodging near <%= @resort.name %>" width="100%" height="420" loading="lazy" class="rounded-xl border border-slate-700"></iframe>
+        <iframe data-interaction-src="<%= map_url %>" title="Lodging near <%= @resort.name %>" width="100%" height="420" class="rounded-xl border border-slate-700 bg-slate-800/40"></iframe>
         <p class="text-slate-400 text-xs mt-2">Lodging map by Stay22. Bookings may earn Snow Way a commission. <%= link_to "Disclosure", affiliate_disclosure_path, class: "underline" %></p>
       <% end %>
     </div>
