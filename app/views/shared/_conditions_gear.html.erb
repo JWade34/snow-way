@@ -20,5 +20,5 @@
       <li><%= link_to "#{guide_label} →", guide_url, class: "inline-block px-3 py-2 text-sm text-cyan-300 underline underline-offset-2" %></li>
     </ul>
   <% end %>
-  <p class="text-slate-400 text-xs">Shopping links may earn Snow Way a commission. <%= link_to "Disclosure", affiliate_disclosure_path, class: "underline" %></p>
+  <%= affiliate_disclosure("Shopping links may earn Snow Way a commission.", css: "mt-1") %>
 </section>
