@@ -29,6 +29,8 @@ Rule for gear content: "how to choose" guides only. No "we tested" claims unless
 - 13 more articles: goofy vs regular (1.6K), camber vs rocker (1.5K), bibs vs pants, gloves vs mittens, balaclava vs ski mask (720), freestyle vs freeride, snowboard boots (2.9K + women's 2.9K), bindings (1.9K), ski socks (1.9K), snowboard jacket, snowboard pants, best snowboard brands (5.4K), best ski brands (2.4K)
 - Finding: brand-vs-brand queries are tiny (10–110/mo); concept comparisons and "best brands" carry the volume.
 - Outreach drafts: docs/outreach/templates.md
+- All of the above shipped 11/5 (commit b3d6c7b)
+- Free Powder Calendar PDF lead magnet at /powder-calendar, instant token-gated download, subscribers tagged `powder-calendar` (commit 963ce2a)
 
 ## Phase 2: Justin (accounts and outreach)
 - [ ] Stay22 account → set STAY22_AID on Railway (lodging map turns on automatically)
