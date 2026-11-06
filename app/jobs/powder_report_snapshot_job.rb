@@ -3,5 +3,6 @@ class PowderReportSnapshotJob < ApplicationJob
 
   def perform
     PowderReport.snapshot!
+    IndexNowJob.perform_later
   end
 end

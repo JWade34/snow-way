@@ -19,7 +19,7 @@ class RefreshSnowForecastsJob < ApplicationJob
 
     Rails.logger.info "Snow forecast refresh complete!"
 
-    # Full refreshes change every forecast page; tell IndexNow engines once a day.
-    IndexNow.submit_daily(SitePages.forecast_urls) if resort_ids.nil?
+    # New pages go to IndexNow right away; forecast pages are resubmitted once a day.
+    IndexNowJob.perform_later if resort_ids.nil?
   end
 end

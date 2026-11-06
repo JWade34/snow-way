@@ -7,6 +7,7 @@ module IndexNow
   HOST = "snowway.app".freeze
   ENDPOINT = URI("https://api.indexnow.org/indexnow")
   CACHE_KEY = "index_now:last_submitted_on".freeze
+  SUBMITTED_KEY = "index_now:submitted_urls".freeze
 
   module_function
 
@@ -20,6 +21,17 @@ module IndexNow
     return false if Rails.cache.read(CACHE_KEY) == Date.current
 
     submit(urls).tap { |ok| Rails.cache.write(CACHE_KEY, Date.current, expires_in: 2.days) if ok }
+  end
+
+  # Submits URLs that have never been submitted (new pages, resorts, weekly reports). Safe to call often.
+  def submit_new(urls)
+    return false unless Rails.env.production?
+
+    submitted = Rails.cache.read(SUBMITTED_KEY) || []
+    fresh = urls - submitted
+    return false if fresh.empty?
+
+    submit(fresh).tap { |ok| Rails.cache.write(SUBMITTED_KEY, (submitted + fresh).uniq) if ok }
   end
 
   def submit(urls)
