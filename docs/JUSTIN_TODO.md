@@ -34,7 +34,7 @@ Last updated: 2026-11-05
 ## Every month
 
 - [ ] Google Search Console → Performance: note top queries and pages; tell Claude about any surprises.
-- [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding.
+- [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
 - [x] Submitted sitemap to Google Search Console and Bing (2026-11-05)
