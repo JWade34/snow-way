@@ -9,12 +9,7 @@ Last updated: 2026-11-05
   A lodging map then appears on all 179 resort pages automatically.
 - [ ] **AvantLink + REI (gear links).** Sign up at avantlink.com as an affiliate (website: snowway.app) → apply to REI (and evo, Backcountry, Christy Sports while you're there) → once REI approves, find your **Website ID** and **REI Merchant ID** → add `AVANTLINK_WEBSITE_ID` and `AVANTLINK_REI_MID` on Railway.
   Every gear link across the 37 guides and both size calculators starts tracking. Tell Claude when evo approves and it'll add evo links.
-- [ ] **Finish Resend: add the 4 DNS records in Namecheap, then click Verify in Resend.** (Account and `RESEND_API_KEY` on Railway: done.) Keep your existing records. Add, under Advanced DNS → Add New Record:
-  - TXT · Host `resend._domainkey` · Value: the full `p=MIGf...` key (use Resend's copy button; the screen truncates it)
-  - CNAME · Host `rsend` · Value: the full `rsend.fo...mta.net` target from Resend
-  - CNAME · Host `send` · Value: the full `send.for...mta.net` target from Resend
-  - TXT · Host `_dmarc` · Value `v=DMARC1; p=none;`
-  Until it verifies, welcome emails and powder alerts quietly fail; signups and downloads still work.
+- [ ] **Test the emails:** sign up yourself at snowway.app/powder-calendar (use a different email than before). You should get the welcome email with the download link within a minute.
 - [ ] **Add a mailing address for email footers.** US anti-spam law (CAN-SPAM) asks commercial email to include a postal address. A PO box or business address works. Add it on Railway as `MAIL_POSTAL_ADDRESS` (for example `Snow Way, PO Box 123, Austin, TX 78701`).
 
 ## Your expertise (the biggest edge no competitor can copy)
@@ -55,6 +50,7 @@ Last updated: 2026-11-05
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Resend account, API key on Railway, DNS verified (2026-11-05). Welcome emails and powder alerts are live.
 - [x] Sent snow photos (2026-11-05)
 - [x] Tested the Powder Calendar download in production (2026-11-05)
 - [x] Submitted sitemap to Google Search Console and Bing (2026-11-05)
