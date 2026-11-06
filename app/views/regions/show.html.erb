@@ -20,6 +20,19 @@
 
 <% fresh = @resorts.select { |r| @recent.fetch(r.id, 0.0) > 0 }.sort_by { |r| -@recent[r.id] } %>
 <% faqs.unshift({ question: "What is the #{name} snow report today?", answer: [ (fresh.any? ? "In the last 48 hours, #{fresh.first(3).map { |r| "#{r.name} got #{inches(@recent[r.id])}" }.to_sentence}." : "No #{name} resort has had measurable new snow in the last 48 hours."), faqs.find { |f| f[:question].start_with?("Which #{name} ski resort is getting") }[:answer] ].join(" ") }) %>
+<% picks = [] %>
+<% if @region.resorts.size >= 3 %>
+  <% picks << [ "Biggest vertical", biggest_vert, "#{number_with_delimiter(biggest_vert.vertical_drop)} ft from base to summit" ] if biggest_vert %>
+  <% picks << [ "Highest summit (best snow preservation)", highest, "#{number_with_delimiter(highest.elevation_summit)} ft" ] %>
+  <% picks << [ "Most snow this week", leader, "#{inches(lead_total)} forecast over 7 days" ] if lead_total > 0 %>
+  <% first_open = @region.resorts.select(&:opening_date).min_by(&:opening_date) %>
+  <% picks << [ "First to open this season", first_open, "#{first_open.opening_status == "opened" ? "opened" : "scheduled"} #{first_open.opening_date.strftime("%b %-d")}" ] if first_open %>
+  <% epic_big = epic.select(&:vertical_drop).max_by(&:vertical_drop) %>
+  <% ikon_big = ikon.select(&:vertical_drop).max_by(&:vertical_drop) %>
+  <% picks << [ "Biggest Epic Pass mountain", epic_big, "#{number_with_delimiter(epic_big.vertical_drop)} ft vertical" ] if epic_big && epic.size > 1 %>
+  <% picks << [ "Biggest Ikon Pass mountain", ikon_big, "#{number_with_delimiter(ikon_big.vertical_drop)} ft vertical" ] if ikon_big && ikon.size > 1 %>
+  <% faqs.insert(2, { question: "What are the best ski resorts in #{name}?", answer: "It depends on what you want. By the numbers: #{picks.map { |label, r, why| "#{label.sub(/ \(.*\)/, "").then { |l| l[0].downcase + l[1..] }}: #{r.name} (#{why})" }.join("; ")}. Snow Way ranks every #{name} resort by this week's snow forecast below." }) %>
+<% end %>
 <% content_for(:title, "#{name} Snow Report & Ski Resorts | Snow Way") %>
 <% content_for(:description, "#{name} snow report and all #{@region.resorts.size} ski resorts: 48-hour snowfall, 7- and 14-day forecasts, elevation, airport, and pass. #{faqs.first[:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
@@ -41,6 +54,15 @@
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= name %>, ranked below by forecast snow.</p>
       <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Summit-elevation forecasts from Open-Meteo</p>
     </section>
+
+    <% if picks.any? %>
+      <h2 class="text-xl font-bold mb-4">Best <%= name %> ski resorts by the numbers</h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
+        <% picks.each do |label, r, why| %>
+          <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3"><span class="block text-xs uppercase tracking-wider text-cyan-300"><%= label %></span><%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %> <span class="text-slate-400 text-sm"><%= why %></span></li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <h2 class="text-xl font-bold mb-4"><%= name %> ski resorts ranked by snow this week</h2>
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">

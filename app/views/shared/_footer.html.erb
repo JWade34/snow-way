@@ -31,7 +31,8 @@
       <nav aria-label="Ski resorts by state">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Ski Resorts</h2>
         <ul class="space-y-2">
-          <% [ "Colorado", "Utah", "California", "Vermont", "Wyoming", "British Columbia" ].each do |region| %>
+          <% existing = Resort.distinct.pluck(:state_province) %>
+          <% ([ "Colorado", "Utah", "California", "Vermont", "Wyoming", "British Columbia" ] & existing).each do |region| %>
             <li><%= link_to "#{region} ski resorts", region_path(region.parameterize), class: "text-slate-400 hover:text-white transition text-sm" %></li>
           <% end %>
           <li><%= link_to "All states & provinces", regions_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>

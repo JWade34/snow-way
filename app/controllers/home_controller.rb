@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       total = @top_resort.projected_snowfall_7_day
       runners = @top_resorts.drop(1).first(2).select { |r| r.projected_snowfall_7_day > 0 }.map { |r| "#{r.name} (#{r.projected_snowfall_7_day}\")" }
       faqs << { question: "Which ski resort is getting the most snow this week?",
-                answer: "As of #{Date.current.strftime("%B %-d, %Y")}, #{@top_resort.name} in #{@top_resort.state_province} leads with #{total}\" of snow forecast over the next 7 days" \
+                answer: "As of #{Date.current.strftime("%B %-d, %Y")}, #{@top_resort.name} in #{@top_resort.state_province} leads North American ski resorts with #{total}\" of snow forecast over the next 7 days" \
                         "#{runners.any? ? ", followed by #{runners.to_sentence}" : ""}." }
     end
     faqs << { question: "How often are Snow Way's snow forecasts updated?",

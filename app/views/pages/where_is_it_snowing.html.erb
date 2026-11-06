@@ -3,7 +3,7 @@
 <% snowing = @ranked.select { |r| @totals.fetch(r.id, 0.0) > 0 } %>
 <% faqs = [] %>
 <% if top && @totals.fetch(top.id, 0.0) > 0 %>
-  <% faqs << { question: "Where is it snowing the most this week?", answer: "As of #{today}, #{top.name} in #{top.state_province} has the most snow forecast over the next 7 days at #{inches(@totals[top.id])}, #{(runners = @ranked[1..2].select { |r| @totals.fetch(r.id, 0.0) > 0 }).any? ? "followed by #{runners.map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}" : "with no other resort expecting snow"}." } %>
+  <% faqs << { question: "Where is it snowing the most this week?", answer: "As of #{today}, among North American ski resorts, #{top.name} in #{top.state_province} has the most snow forecast over the next 7 days at #{inches(@totals[top.id])}, #{(runners = @ranked[1..2].select { |r| @totals.fetch(r.id, 0.0) > 0 }).any? ? "followed by #{runners.map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}" : "with no other resort expecting snow"}." } %>
 <% end %>
 <% faqs << { question: "How many ski resorts have snow in the forecast this week?", answer: "#{snowing.size} of the #{@resorts.size} North American ski resorts Snow Way tracks have snow in their 7-day forecast as of #{today}." } %>
 <% if @fresh.any? %>
@@ -13,7 +13,7 @@
   <% faqs << { question: "Which state is getting the most snow this week?", answer: "#{@region_leaders.first[0]} has the snowiest resort this week: #{@region_leaders.first[1].name}, with #{inches(@totals[@region_leaders.first[1].id])} forecast over 7 days." } %>
 <% end %>
 
-<% content_for(:title, "Where Is It Snowing? Ski Resorts With the Most Snow | Snow Way") %>
+<% content_for(:title, "Where Is It Snowing? North America's Snowiest Ski Resorts | Snow Way") %>
 <% content_for(:description, (faqs.first || faqs.last)[:answer].truncate(155)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
@@ -29,7 +29,7 @@
   <%= render "shared/header" %>
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Where Is It Snowing", nil ] ] %>
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Where is it snowing this week?</h1>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Where is it snowing this week in North America?</h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
       <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · 7-day summit forecasts for <%= @resorts.size %> resorts from Open-Meteo</p>
