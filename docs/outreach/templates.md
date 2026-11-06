@@ -11,7 +11,7 @@ Check each sub's self-promo rules first. Lead with the data, link once, at the e
 
 **Title:** Where the snow is this week: [Resort] leads with [X]" forecast
 
-> Pulled the 7-day summit forecasts for [179] resorts this morning.
+> Pulled the 7-day mid-mountain forecasts for [179] North American resorts this morning.
 >
 > Top 5:
 > 1. [Resort] ([Region]) [X]"
