@@ -16,8 +16,13 @@
   ```
 - **Link:** `https://snowway.app/?utm_source=instagram&utm_medium=social&utm_campaign=bio`
   (the tag lets PostHog show visits from Instagram). Optional second link: `https://snowway.app/powder-calendar`
-- **Account type:** Settings → Account type and tools → switch to **Professional → Creator**. Category: **Website**.
+- **Account type:** Settings → Account type and tools → switch to **Professional → Creator**. Category: search **Website** (or pick **App page** from the list), and check "Show category on profile".
   Free, and it unlocks insights and the category label.
+
+## More graphics (always current)
+- snowway.app/admin → **Instagram images**: this week's snowiest resorts, brand card, Powder Calendar card, each as a post or a story.
+- Direct links: `https://snowway.app/social/report.png` (add `?size=story` for stories), `/social/brand.png`, `/social/calendar.png`.
+- Static copies in this folder: `brand-*.png`, `calendar-*.png`, `sample-report-*.png` (sample only; use the live link each Thursday).
 
 ## Highlights
 1. **Forecasts**: weekly "snowiest resorts" stories.

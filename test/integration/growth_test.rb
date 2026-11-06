@@ -82,4 +82,13 @@ class GrowthTest < ActionDispatch::IntegrationTest
   ensure
     ENV.delete("LOOP_API_TOKEN")
   end
+
+  test "social cards render as PNGs" do
+    %w[report brand calendar].each do |kind|
+      get "/social/#{kind}.png", params: { size: "story" }
+      assert_response :success
+      assert_equal "image/png", response.media_type
+      assert_equal "\x89PNG".b, response.body.b[0, 4]
+    end
+  end
 end

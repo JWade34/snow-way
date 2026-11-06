@@ -4,4 +4,12 @@ class OgImagesController < ApplicationController
     expires_in 6.hours, public: true
     send_data OgImage.new(ResortSummary.new(resort)).to_png, type: "image/png", disposition: "inline"
   end
+
+  # Instagram graphics. /social/report.png is this week's snowiest resorts (live); add ?size=story for 1080x1920.
+  def social
+    format = SocialCard::FORMATS.key?(params[:size]&.to_sym) ? params[:size] : "post"
+    expires_in 1.hour, public: true
+    send_data SocialCard.new(params[:kind], format: format).to_png, type: "image/png", disposition: "inline",
+      filename: "snowway-#{params[:kind]}-#{format}-#{Date.current}.png"
+  end
 end

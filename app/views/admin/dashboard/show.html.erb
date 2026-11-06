@@ -17,3 +17,12 @@
   <li><strong>Review and publish.</strong> Each take saves as a draft. Open it, fix anything, check "Publish", and it shows on that resort's page.</li>
 </ol>
 <p class="text-slate-400 text-sm">Start with the resorts people search most (Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler). One honest line beats a paragraph.</p>
+
+<h2 class="text-lg font-bold mt-10 mb-3">Instagram images</h2>
+<p class="text-slate-400 text-sm mb-3">Always current. "This week" updates with the forecast; grab it on Thursdays. Long-press on your phone to save.</p>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+  <% [ [ "This week: post", "report", "post" ], [ "This week: story", "report", "story" ], [ "Brand: post", "brand", "post" ],
+       [ "Brand: story", "brand", "story" ], [ "Powder Calendar: post", "calendar", "post" ], [ "Powder Calendar: story", "calendar", "story" ] ].each do |label, kind, size| %>
+    <%= link_to label, social_card_path(kind: kind, size: size), target: "_blank", class: "block bg-slate-800/60 border border-slate-700 hover:border-cyan-500 rounded-xl p-3 text-cyan-300" %>
+  <% end %>
+</div>
