@@ -12,6 +12,8 @@ Last updated: 2026-11-06
 
 ## When you have time
 
+- [ ] **Turn on Instagram/Facebook auto-posting (about 15 minutes, Claude walks you through it).** The queue is already built and filling up at snowway.app/admin/social (daily snow report story, tips Mon/Wed/Sat, weekly report Thursday). Steps: 1) make a "Snow Way" Facebook Page and link @snowway.app to it, 2) developers.facebook.com → create a Business app (stays in development mode, no Meta review needed for your own accounts), 3) generate a long-lived Page token with Instagram publishing permissions, 4) set `META_ACCESS_TOKEN`, `IG_USER_ID` and `FB_PAGE_ID` on Railway yourself. Until then you can post from the queue by hand.
+
 - [ ] **Amazon Associates** (affiliate-program.amazon.com). About 3%, good for small stuff (hand warmers, wax, socks). Add the tag on Railway as `AMAZON_ASSOCIATE_TAG` or send it to Claude. Amazon closes accounts without 3 sales in 180 days (you can reapply), so do this after traffic picks up.
 - [ ] **Discover Cars** (discovercars.com/affiliate). "Rent a 4x4" buttons are already on every resort page. Send Claude your ID.
 - [ ] **Skyscanner** (via Impact). Lowest payout per click; do it last. Send Claude your link format.
