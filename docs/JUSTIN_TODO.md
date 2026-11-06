@@ -17,7 +17,7 @@ Last updated: 2026-11-05
 - [ ] **Send Claude your real tips, as voice memo transcripts or bullet notes.** Google and AI tools reward first-hand experience, and you lived in Vail and have ridden all over North and South America. Claude will add a "Justin's take" box to the matching resort pages, guides, and the Trip Planner PDF. Ideas:
   - Vail local tips: best days and times, where locals go on a powder day, parking, how you'd spend a 3-day trip
   - Resorts you've ridden (name each one) plus one honest line apiece: who it's for, what to skip
-  - South America: which resorts, when to go, how the trip works (Claude can also add Southern Hemisphere resorts, which bring in traffic June to September when North America is quiet)
+  - South America: which resorts you rode, when you went, how the trip worked. The resort pages and the "Skiing in Chile and Argentina" guide are live and waiting for your take (that traffic peaks June to September)
   - Your best family-trip and first-trip advice
 - [ ] **Backcountry guides need your eye.** You've ridden a lot of terrain, so read /guides/backcountry-skiing, /guides/splitboarding, and /guides/avalanche-safety-gear. If you tour or split, one or two lines from you (your setup, how you got started) would make them much stronger. If anything feels off on safety, tell Claude and it comes down.
 - [ ] **Confirm photo rights.** The night snowstorm shot and the Mammoth Lakes sign look professionally shot. If a friend or photographer took them, tell Claude their name for a photo credit (or say "remove" and they'll come down).
@@ -52,6 +52,7 @@ Last updated: 2026-11-05
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Worldwide (2026-11-05): 35 international resorts (Japan, the Alps, Chile, Argentina, Australia, New Zealand), country pages, and Skiing in Japan / the Alps / Chile and Argentina guides
 - [x] Phase 4 shipped (2026-11-05): Lake Tahoe, Summit County, and Southern California region pages; "ski resorts near me" page (location stays in the browser); backcountry skiing, splitboarding, and avalanche safety gear guides
 - [x] Stay22 set up (AID `snowway`); lodging map live on all resort pages (2026-11-05)
 - [x] Mailing address for email footers (Fast City LLC, Austin) — added to every email (2026-11-05)

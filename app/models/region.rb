@@ -43,6 +43,16 @@ class Region
     @group
   end
 
+  # Name as it reads after "in" or "leads": "the Alps", "the Southern Hemisphere", "Colorado".
+  def place
+    { "The Alps" => "the Alps", "Southern Hemisphere" => "the Southern Hemisphere" }.fetch(name, name)
+  end
+
+  # Name as an adjective: "Which Alps ski resort...".
+  def label
+    name.delete_prefix("The ")
+  end
+
   def international?
     resorts.none?(&:north_american?)
   end

@@ -1,0 +1,81 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> South America's ski season runs from about June to October, and July and August usually bring the best snow. In Chile, Valle Nevado, La Parva, and El Colorado (together called Tres Valles) sit an hour or two above Santiago, and Portillo is a classic on the road to Argentina. Southern Chile has volcano skiing at Nevados de Chillán and Corralco. In Argentina, Cerro Catedral near Bariloche, Las Leñas, Chapelco, and Cerro Castor near Ushuaia are the main draws. Valle Nevado is on the Ikon Pass, and Corralco is on the Indy Pass.</p></div>
+
+<h2>When to ski in South America</h2>
+<p>The Andes' ski season is the mirror image of North America's.</p>
+<ul>
+  <li><strong>June:</strong> resorts open as storms arrive. Early coverage depends on the year.</li>
+  <li><strong>July:</strong> peak season, with good snow and local winter school holidays, so expect crowds.</li>
+  <li><strong>August:</strong> often the best combination of snow depth and fewer crowds.</li>
+  <li><strong>September and October:</strong> spring conditions and sunny days, with some resorts closing earlier than others.</li>
+</ul>
+<p>Snow in the Andes tends to come in big storms followed by long stretches of sun, so timing matters. Check each resort's pattern on pages like <%= link_to "best time to ski Portillo", best_time_resort_path("portillo") %> and <%= link_to "best time to ski Cerro Catedral", best_time_resort_path("cerro-catedral") %>.</p>
+
+<h2>Chile: resorts near Santiago</h2>
+<ul>
+  <li><%= link_to "Valle Nevado", resort_path("valle-nevado") %>: the largest of the Tres Valles resorts, with high-altitude terrain and views across the Andes.</li>
+  <li><%= link_to "La Parva", resort_path("la-parva") %>: a high resort with a mix of groomers and open bowls, linked with its neighbors.</li>
+  <li><%= link_to "El Colorado", resort_path("el-colorado") %>: the closest of the three to Santiago, popular with day skiers.</li>
+  <li><%= link_to "Portillo", resort_path("portillo") %>: a historic resort near the Argentine border, known for its lakeside hotel and steep terrain. National ski teams often train here during the northern summer.</li>
+</ul>
+<p>The roads up from Santiago are winding mountain roads, and authorities can require chains or restrict traffic during storms. Many visitors use shuttles or transfers rather than driving. These resorts are also high, so take the first day easy, drink water, and watch for signs of altitude sickness.</p>
+
+<h2>Chile: volcano skiing in the south</h2>
+<ul>
+  <li><%= link_to "Nevados de Chillán", resort_path("nevados-de-chillan") %>: on the flanks of an active volcano complex, with tree skiing and natural hot springs nearby. The nearest airport is Concepción (CCP).</li>
+  <li><%= link_to "Corralco", resort_path("corralco") %>: on Lonquimay volcano, surrounded by araucaria (monkey puzzle) forests, reached through Temuco (ZCO). It's on the Indy Pass.</li>
+</ul>
+<p>Volcano slopes and the terrain beyond resort boundaries are uncontrolled avalanche terrain. If you go beyond the boundary, carry rescue gear and hire a local guide. See <%= link_to "avalanche safety gear explained", guide_path("avalanche-safety-gear") %>.</p>
+
+<h2>Argentina</h2>
+<ul>
+  <li><%= link_to "Cerro Catedral", resort_path("cerro-catedral") %>: South America's largest ski area by many measures, above the lake town of Bariloche (BRC), with lively nightlife.</li>
+  <li><%= link_to "Las Leñas", resort_path("las-lenas") %>: known for steep, high terrain, reached via Mendoza (MDZ) and a long transfer.</li>
+  <li><%= link_to "Chapelco", resort_path("chapelco") %>: tree-lined runs above San Martín de los Andes, with its own nearby airport (CPC).</li>
+  <li><%= link_to "Cerro Castor", resort_path("cerro-castor") %>: near Ushuaia (USH) at the southern tip of the continent, with a long season thanks to its far-south location.</li>
+</ul>
+
+<h2>Resorts at a glance</h2>
+<table>
+  <caption>South American ski resorts on Snow Way</caption>
+  <thead><tr><th scope="col">Resort</th><th scope="col">Country</th><th scope="col">Nearest airport</th><th scope="col">Pass (2026-27)</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Valle Nevado</th><td>Chile</td><td>Santiago (SCL)</td><td>Ikon; Mountain Collective</td></tr>
+    <tr><th scope="row">La Parva</th><td>Chile</td><td>Santiago (SCL)</td><td>Independent</td></tr>
+    <tr><th scope="row">El Colorado</th><td>Chile</td><td>Santiago (SCL)</td><td>Independent</td></tr>
+    <tr><th scope="row">Portillo</th><td>Chile</td><td>Santiago (SCL)</td><td>Independent</td></tr>
+    <tr><th scope="row">Nevados de Chillán</th><td>Chile</td><td>Concepción (CCP)</td><td>Independent</td></tr>
+    <tr><th scope="row">Corralco</th><td>Chile</td><td>Temuco (ZCO)</td><td>Indy Pass</td></tr>
+    <tr><th scope="row">Cerro Catedral</th><td>Argentina</td><td>Bariloche (BRC)</td><td>Independent</td></tr>
+    <tr><th scope="row">Las Leñas</th><td>Argentina</td><td>Mendoza (MDZ)</td><td>Independent</td></tr>
+    <tr><th scope="row">Chapelco</th><td>Argentina</td><td>Chapelco (CPC)</td><td>Independent</td></tr>
+    <tr><th scope="row">Cerro Castor</th><td>Argentina</td><td>Ushuaia (USH)</td><td>Independent</td></tr>
+  </tbody>
+</table>
+
+<h2>Passes</h2>
+<ul>
+  <li><strong>Ikon Pass:</strong> Valle Nevado, with 7 days on the Ikon Pass and 5 on the Ikon Base Pass. See <%= link_to "Ikon Pass resorts", ikon_pass_resorts_path %>.</li>
+  <li><strong>Mountain Collective:</strong> Valle Nevado, with 2 days.</li>
+  <li><strong>Indy Pass:</strong> Corralco. See <%= link_to "Indy Pass resorts", indy_pass_resorts_path %>.</li>
+  <li><strong>Others:</strong> buy lift tickets directly from each resort.</li>
+</ul>
+<p>Your North American season pass usually renews before South America's season begins, so check which pass year covers your dates before you book.</p>
+
+<h2>Who a South America ski trip suits</h2>
+<p>A trip to the Andes makes sense if you want to ski during the northern summer, keep your legs going between seasons, or see a very different kind of mountain. North American and European racers and freestyle teams often hold training camps here in August and September for the same reason. The terrain is big and open, with few trees at the high Chilean resorts, so it rewards confident intermediate and advanced skiers. Beginners can still have a great time on groomed runs, especially at Cerro Catedral, El Colorado, and Valle Nevado, where ski schools are well established. If you want trees and powder in a forest, look south to Chapelco, Nevados de Chillán, and Corralco.</p>
+<p>Spanish is the main language, though resort staff at the bigger areas are used to international visitors. Plan for long transfer days between regions, and keep a weather day in your schedule because storms can close roads and lifts for a day or two.</p>
+
+<h2>Planning tips</h2>
+<ul>
+  <li><strong>Base yourself well:</strong> Santiago works for day trips to Tres Valles, but staying on the mountain saves time on the road. Bariloche is a town base with buses to Cerro Catedral.</li>
+  <li><strong>Combine countries:</strong> Chile and Argentina are close, but crossing the Andes by road depends on weather and border hours, so flying between regions is often more reliable.</li>
+  <li><strong>Pack for big swings:</strong> strong high-altitude sun, cold storms, and warm spring afternoons can all happen in one trip. Bring sunscreen and goggles for both bright and flat light. See the <%= link_to "ski trip packing list", guide_path("ski-trip-packing-list") %>.</li>
+</ul>
+<p>See every resort ranked by this week's forecast on the <%= link_to "South America snow report", region_path("south-america") %>, or by country on the <%= link_to "Chile", region_path("chile") %> and <%= link_to "Argentina", region_path("argentina") %> pages. For Australia and New Zealand too, see the <%= link_to "Southern Hemisphere snow report", region_path("southern-hemisphere") %>.</p>
+
+<% faqs << { question: "When is ski season in South America?", answer: "From about June to October. July and August usually have the best snow, July is busiest because of local winter school holidays, and September and October bring spring conditions." } %>
+<% faqs << { question: "What are the best ski resorts in Chile?", answer: "Near Santiago, Valle Nevado, La Parva, and El Colorado (Tres Valles) and historic Portillo are the most popular. In southern Chile, Nevados de Chillán and Corralco offer volcano skiing and forests." } %>
+<% faqs << { question: "What are the best ski resorts in Argentina?", answer: "Cerro Catedral near Bariloche is the largest and best known. Las Leñas is famous for steep terrain, Chapelco has tree-lined runs above San Martín de los Andes, and Cerro Castor near Ushuaia has a long season." } %>
+<% faqs << { question: "Is the Ikon Pass good in South America?", answer: "For 2026-27, Valle Nevado in Chile is on the Ikon Pass (7 days, 5 on Ikon Base) and the Mountain Collective (2 days). Corralco is on the Indy Pass. Other South American resorts sell their own lift tickets." } %>
+<% faqs << { question: "How do I get to ski resorts near Santiago?", answer: "Fly into Santiago (SCL), then take a shuttle, transfer, or drive up the winding mountain roads to Tres Valles or Portillo. Chains or traffic restrictions can be required during storms, so many visitors use transfers." } %>

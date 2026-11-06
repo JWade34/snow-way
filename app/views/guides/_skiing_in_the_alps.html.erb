@@ -1,0 +1,82 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> the best time for skiing in the Alps is January through March, with high-altitude resorts like Val d'Isère, Tignes, and Zermatt often skiing well earlier. The Alps differ from North America in scale (huge linked ski areas between villages), in how trails are rated (blue, red, black), and in safety: off-piste terrain is usually not patrolled or avalanche-controlled. Fly into Geneva for most of France and western Switzerland, Zurich for eastern Switzerland, Innsbruck for Austria, and Venice or Innsbruck for the Dolomites.</p></div>
+
+<h2>How the Alps differ from North American skiing</h2>
+<ul>
+  <li><strong>Scale:</strong> many Alpine ski areas link several villages and even countries with one lift network, so you can ski all day without repeating a run.</li>
+  <li><strong>Villages, not base areas:</strong> resorts are often historic towns with shops, restaurants, and train stations, rather than purpose-built base lodges.</li>
+  <li><strong>Mountain huts:</strong> sit-down lunches at on-mountain restaurants are part of the culture. Expect table service, local food, and a slower midday pace. See <%= link_to "what is après-ski", guide_path("what-is-apres-ski") %>.</li>
+  <li><strong>Lift tickets:</strong> walk-up day tickets are often less expensive than at major North American resorts, and multi-day area passes are common. Prices vary widely by resort and season.</li>
+</ul>
+
+<h3>Piste vs off-piste</h3>
+<p>In the Alps, marked and groomed runs are called pistes, and they're patrolled. Terrain off the marked pistes, even when it's right beside a lift, is generally not patrolled or controlled for avalanches. That's a big change from North America, where most in-bounds terrain is managed. If you leave the piste, you're in avalanche terrain: check the local avalanche bulletin, carry a beacon, probe, and shovel, and hire a mountain guide. Read <%= link_to "avalanche safety gear explained", guide_path("avalanche-safety-gear") %>.</p>
+
+<h3>Trail colors</h3>
+<table>
+  <caption>European piste ratings vs North American trail ratings</caption>
+  <thead><tr><th scope="col">European color</th><th scope="col">Meaning</th><th scope="col">Rough North American equivalent</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Green (mainly France)</th><td>Very easy, beginner areas</td><td>Green circle</td></tr>
+    <tr><th scope="row">Blue</th><td>Easy</td><td>Easier blue or green</td></tr>
+    <tr><th scope="row">Red</th><td>Intermediate</td><td>Blue square, sometimes black</td></tr>
+    <tr><th scope="row">Black</th><td>Difficult</td><td>Black diamond</td></tr>
+  </tbody>
+</table>
+<p>Ratings are relative to each resort, so a red in one area can feel harder than a black in another. More on ratings: <%= link_to "ski trail ratings explained", guide_path("ski-trail-ratings") %>.</p>
+
+<h2>Best Alps ski resorts by country</h2>
+<table>
+  <caption>Alps resorts on Snow Way, with nearest airport and pass</caption>
+  <thead><tr><th scope="col">Resort</th><th scope="col">Country</th><th scope="col">Nearest airport</th><th scope="col">Pass (2026-27)</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><%= link_to "Chamonix", resort_path("chamonix") %></th><td>France</td><td>Geneva (GVA)</td><td>Ikon; Mountain Collective</td></tr>
+    <tr><th scope="row"><%= link_to "Val d'Isère", resort_path("val-disere") %></th><td>France</td><td>Geneva (GVA)</td><td>Independent</td></tr>
+    <tr><th scope="row"><%= link_to "Tignes", resort_path("tignes") %></th><td>France</td><td>Geneva (GVA)</td><td>Independent</td></tr>
+    <tr><th scope="row"><%= link_to "Courchevel", resort_path("courchevel") %></th><td>France</td><td>Geneva (GVA)</td><td>Epic</td></tr>
+    <tr><th scope="row"><%= link_to "Zermatt", resort_path("zermatt") %></th><td>Switzerland</td><td>Geneva (GVA)</td><td>Ikon</td></tr>
+    <tr><th scope="row"><%= link_to "Verbier", resort_path("verbier") %></th><td>Switzerland</td><td>Geneva (GVA)</td><td>Epic</td></tr>
+    <tr><th scope="row"><%= link_to "St. Moritz", resort_path("st-moritz") %></th><td>Switzerland</td><td>Zurich (ZRH)</td><td>Ikon</td></tr>
+    <tr><th scope="row"><%= link_to "St. Anton", resort_path("st-anton") %></th><td>Austria</td><td>Innsbruck (INN)</td><td>Epic (with conditions)</td></tr>
+    <tr><th scope="row"><%= link_to "Kitzbühel", resort_path("kitzbuhel") %></th><td>Austria</td><td>Innsbruck (INN)</td><td>Ikon</td></tr>
+    <tr><th scope="row"><%= link_to "Ischgl", resort_path("ischgl") %></th><td>Austria</td><td>Innsbruck (INN)</td><td>Ikon</td></tr>
+    <tr><th scope="row"><%= link_to "Cortina d'Ampezzo", resort_path("cortina-dampezzo") %></th><td>Italy</td><td>Venice (VCE)</td><td>Ikon (Dolomiti Superski)</td></tr>
+    <tr><th scope="row"><%= link_to "Val Gardena", resort_path("val-gardena") %></th><td>Italy</td><td>Innsbruck (INN)</td><td>Ikon (Dolomiti Superski)</td></tr>
+  </tbody>
+</table>
+
+<h3>France</h3>
+<p>Chamonix sits below Mont Blanc and is famous for steep, high-alpine terrain best explored with a guide. Val d'Isère and Tignes share a large, high ski area with a long season. Courchevel is part of Les 3 Vallées, one of the largest linked ski areas in the world. See the <%= link_to "France snow report", region_path("france") %>.</p>
+<h3>Switzerland</h3>
+<p>Zermatt skis beneath the Matterhorn, with high terrain and lifts that connect toward Italy. Verbier, in the 4 Vallées, is known for its off-piste. St. Moritz in the Engadin valley is a classic, sunny winter resort town. See the <%= link_to "Switzerland snow report", region_path("switzerland") %>.</p>
+<h3>Austria</h3>
+<p>St. Anton is the heart of Ski Arlberg and the lively après scene. Kitzbühel is a historic town known for the Hahnenkamm race. Ischgl links with Samnaun across the Swiss border. See the <%= link_to "Austria snow report", region_path("austria") %>.</p>
+<h3>Italy</h3>
+<p>Cortina d'Ampezzo and Val Gardena are in the Dolomites, where one Dolomiti Superski pass covers many valleys and the scenery is dramatic. Cortina co-hosted the 2026 Winter Olympics. See the <%= link_to "Italy snow report", region_path("italy") %>.</p>
+
+<h2>Epic and Ikon Pass in the Alps</h2>
+<ul>
+  <li><strong>Ikon:</strong> Chamonix, Zermatt, St. Moritz, Kitzbühel, and Ischgl each have 7 days on the Ikon Pass and 5 on the Ikon Base Pass. Cortina d'Ampezzo and Val Gardena are covered through Dolomiti Superski, with 7 days (5 on Base) shared across all Dolomiti Superski areas. Chamonix also has 2 days on the Mountain Collective.</li>
+  <li><strong>Epic:</strong> Courchevel has 7 consecutive days at Les 3 Vallées, and Verbier has 5 consecutive days at Verbier 4 Vallées. St. Anton has 3 consecutive days at Ski Arlberg, only with a stay booked directly at a participating Arlberg lodging partner.</li>
+  <li><strong>Neither:</strong> Val d'Isère and Tignes sell their own lift passes.</li>
+</ul>
+<p>Pass rules change each season; confirm on the pass website before you book. Compare on <%= link_to "Ikon vs Epic", ikon_vs_epic_path %>.</p>
+
+<h2>When to go</h2>
+<ul>
+  <li><strong>December:</strong> high resorts and glacier areas usually open first. Lower villages can be thin before Christmas.</li>
+  <li><strong>January:</strong> often cold with good snow and fewer crowds after New Year.</li>
+  <li><strong>February:</strong> European school holidays make it the busiest month, so book early.</li>
+  <li><strong>March:</strong> deep bases, longer days, and sunshine; a favorite month at high resorts.</li>
+</ul>
+<p>Each resort page has its own monthly snow pattern, such as <%= link_to "best time to ski Chamonix", best_time_resort_path("chamonix") %> and <%= link_to "best time to ski St. Anton", best_time_resort_path("st-anton") %>.</p>
+
+<h2>Getting there</h2>
+<p>Geneva (GVA) serves most French resorts plus Zermatt and Verbier. Zurich (ZRH) serves St. Moritz and eastern Switzerland. Innsbruck (INN) serves the Tyrol and is the closest major airport to Val Gardena; Venice (VCE) is the usual gateway to Cortina. Trains and transfer shuttles reach most resorts, and some car-free villages like Zermatt are reached only by train. See <%= link_to "how to plan a ski trip", guide_path("how-to-plan-a-ski-trip") %>.</p>
+<p>All 12 resorts are ranked by this week's forecast on the <%= link_to "Alps snow report", region_path("the-alps") %>.</p>
+
+<% faqs << { question: "When is the best time to ski in the Alps?", answer: "January through March. High-altitude resorts such as Val d'Isère, Tignes, and Zermatt often ski well from December, February is the busiest month because of European school holidays, and March brings deep bases and long sunny days." } %>
+<% faqs << { question: "What are the best ski resorts in Europe?", answer: "Popular choices include Chamonix, Val d'Isère, Tignes, and Courchevel in France; Zermatt, Verbier, and St. Moritz in Switzerland; St. Anton, Kitzbühel, and Ischgl in Austria; and Cortina d'Ampezzo and Val Gardena in Italy's Dolomites." } %>
+<% faqs << { question: "Can I use the Ikon or Epic Pass in the Alps?", answer: "Yes. For 2026-27 the Ikon Pass covers Chamonix, Zermatt, St. Moritz, Kitzbühel, Ischgl, and Cortina and Val Gardena via Dolomiti Superski. The Epic Pass covers Courchevel (7 consecutive days), Verbier (5), and St. Anton (3, only with a stay at a participating Arlberg lodging partner)." } %>
+<% faqs << { question: "Is off-piste skiing in the Alps patrolled?", answer: "Generally no. Marked pistes are patrolled, but off-piste terrain, even beside the lifts, is usually not controlled for avalanches. Check the avalanche bulletin, carry a beacon, probe, and shovel, and hire a mountain guide." } %>
+<% faqs << { question: "How do European ski run colors compare to North America?", answer: "Blue runs are easy, red runs are intermediate (roughly a North American blue, sometimes harder), and black runs are difficult. Some French resorts also use green for the easiest runs. Ratings are relative to each resort." } %>

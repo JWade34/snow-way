@@ -1,0 +1,85 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> go skiing in Japan from late December through February, with January usually the deepest month for Japan's famous light powder ("JAPOW"). Hokkaido (Niseko, Rusutsu, Kiroro, Furano) is the classic powder trip through New Chitose Airport near Sapporo. Honshu (Hakuba, Nozawa Onsen, Myoko) is reached by bullet train from Tokyo and adds bigger mountains and traditional villages. The Ikon Pass covers Niseko, Furano, Myoko Suginohara, and APPI; the Epic Pass covers Rusutsu and Hakuba Valley.</p></div>
+
+<h2>When to go skiing in Japan</h2>
+<p>Japan's snow comes from cold air crossing the Sea of Japan, which picks up moisture and drops it as frequent, light snowfall on the mountains. That pattern is strongest in mid-winter.</p>
+<ul>
+  <li><strong>December:</strong> resorts open and the base builds. Early December can be thin; late December is usually solid.</li>
+  <li><strong>January:</strong> typically the snowiest month and the most reliable for deep powder days. It is also the busiest.</li>
+  <li><strong>February:</strong> still excellent snow, with slightly more clear days. Lunar New Year and Japanese school holidays can bring crowds.</li>
+  <li><strong>March:</strong> longer days and spring conditions, with fewer powder days but quieter slopes.</li>
+</ul>
+<p>Each resort's "best time to ski" page shows its own monthly snow pattern from 10 seasons of weather data, for example <%= link_to "best time to ski Niseko", best_time_resort_path("niseko-united") %> and <%= link_to "best time to ski Hakuba", best_time_resort_path("hakuba-valley") %>.</p>
+
+<h2>Hokkaido vs Honshu</h2>
+<table>
+  <caption>Japan's two main ski regions compared</caption>
+  <thead><tr><th scope="col">Region</th><th scope="col">Resorts on Snow Way</th><th scope="col">Getting there</th><th scope="col">Best for</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Hokkaido</th><td>Niseko United, Rusutsu, Kiroro, Furano</td><td>Fly into New Chitose (CTS) near Sapporo, then bus or drive</td><td>Consistent light powder, tree skiing, first Japan trips</td></tr>
+    <tr><th scope="row">Honshu (Nagano and Niigata)</th><td>Hakuba Valley, Nozawa Onsen, Myoko Suginohara, Akakura Kanko</td><td>Fly into Tokyo (Haneda or Narita), then bullet train and bus</td><td>Bigger mountains, onsen villages, combining skiing with Tokyo</td></tr>
+    <tr><th scope="row">Northern Honshu (Iwate)</th><td>APPI Resort</td><td>Bullet train north from Tokyo</td><td>Groomed runs and a quieter, resort-style trip</td></tr>
+  </tbody>
+</table>
+
+<h3>Hokkaido resorts</h3>
+<ul>
+  <li><%= link_to "Niseko United", resort_path("niseko-united") %>: Japan's best-known ski area, four linked resorts on one mountain with an international village and lots of English support.</li>
+  <li><%= link_to "Rusutsu", resort_path("rusutsu") %>: a large resort across several peaks, known for tree runs, a short drive from Niseko.</li>
+  <li><%= link_to "Kiroro", resort_path("kiroro") %>: a smaller resort that tends to catch a lot of snow, close to Sapporo and Otaru.</li>
+  <li><%= link_to "Furano", resort_path("furano") %>: inland and colder, with dry snow and a working town at the base.</li>
+</ul>
+
+<h3>Honshu resorts</h3>
+<ul>
+  <li><%= link_to "Hakuba Valley", resort_path("hakuba-valley") %>: a valley of linked and nearby resorts in the Japanese Alps, home of the 1998 Winter Olympics alpine events. Snow Way's forecast is set at Happo-one.</li>
+  <li><%= link_to "Nozawa Onsen", resort_path("nozawa-onsen") %>: a traditional hot spring village with the ski area rising right above it.</li>
+  <li><%= link_to "Myoko Suginohara", resort_path("myoko-suginohara") %> and <%= link_to "Akakura Kanko", resort_path("akakura-kanko") %>: part of the Myoko area in Niigata, known for heavy snowfall.</li>
+  <li><%= link_to "APPI Resort", resort_path("appi") %>: a big, well-groomed resort in Iwate, farther north on Honshu.</li>
+</ul>
+<p>See every Japan resort ranked by this week's forecast on the <%= link_to "Japan snow report", region_path("japan") %>.</p>
+
+<h2>Epic and Ikon Pass in Japan</h2>
+<table>
+  <caption>Japan ski resorts by pass, 2026-27</caption>
+  <thead><tr><th scope="col">Resort</th><th scope="col">Pass</th><th scope="col">Access</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Niseko United</th><td>Ikon (also Mountain Collective)</td><td>7 days on Ikon Pass, 5 on Ikon Base Pass; 2 days on Mountain Collective</td></tr>
+    <tr><th scope="row">Furano</th><td>Ikon</td><td>7 days on Ikon Pass, 5 on Ikon Base Pass</td></tr>
+    <tr><th scope="row">Myoko Suginohara</th><td>Ikon</td><td>7 days on Ikon Pass, 5 on Ikon Base Pass</td></tr>
+    <tr><th scope="row">APPI Resort</th><td>Ikon</td><td>7 days on Ikon Pass, 5 on Ikon Base Pass</td></tr>
+    <tr><th scope="row">Rusutsu</th><td>Epic</td><td>5 consecutive days on Epic Pass (physical pass card required)</td></tr>
+    <tr><th scope="row">Hakuba Valley</th><td>Epic</td><td>5 consecutive days across Hakuba Valley's resorts (physical pass card required)</td></tr>
+    <tr><th scope="row">Kiroro, Nozawa Onsen, Akakura Kanko</th><td>Neither</td><td>Buy lift tickets from the resort</td></tr>
+  </tbody>
+</table>
+<p>Day limits and rules change each season, so confirm on the pass website before you book. Compare the passes on <%= link_to "Ikon vs Epic", ikon_vs_epic_path %>.</p>
+
+<h2>Getting there</h2>
+<ul>
+  <li><strong>Hokkaido:</strong> fly into New Chitose Airport (CTS), usually with a connection in Tokyo or another Asian hub. Airport buses and private transfers run to the main resorts, and roads are well maintained, though winter driving takes care.</li>
+  <li><strong>Nagano and Niigata:</strong> fly into Tokyo Haneda (HND) or Narita, then take the Hokuriku bullet train (shinkansen) toward Nagano or Joetsu-Myoko and finish by bus or taxi.</li>
+  <li><strong>Luggage:</strong> many travelers send ski bags ahead with a luggage delivery service rather than carry them on trains.</li>
+</ul>
+
+<h2>Tree skiing and out-of-bounds rules</h2>
+<p>Japan's tree skiing is a big part of the appeal, but the rules matter. Many resorts allow access to off-piste and backcountry terrain only through designated gates, and some areas are closed entirely. Ducking ropes can mean losing your lift ticket, and rescue costs may be charged to you.</p>
+<p>Terrain beyond resort gates is uncontrolled avalanche terrain, even when it's just past the lifts. Treat it like any backcountry trip: check the local avalanche information, travel with trained partners, and carry a beacon, probe, and shovel. Read <%= link_to "avalanche safety gear explained", guide_path("avalanche-safety-gear") %> and <%= link_to "backcountry skiing for beginners", guide_path("backcountry-skiing") %>, and consider a local guide for your first days in the trees.</p>
+
+<h2>Onsen and etiquette basics</h2>
+<ul>
+  <li><strong>Onsen (hot springs):</strong> wash and rinse thoroughly before getting in, keep towels out of the water, and expect to bathe without swimwear in separate men's and women's baths. Some onsen restrict visible tattoos; check ahead.</li>
+  <li><strong>Lift lines:</strong> queues are orderly. Wait your turn and follow staff directions.</li>
+  <li><strong>Shoes:</strong> take shoes off where you see a step up or shoe racks, including many lodges and restaurants.</li>
+  <li><strong>Cash:</strong> card acceptance has grown, but carry some yen for small restaurants and village shops.</li>
+</ul>
+
+<h2>How long to stay</h2>
+<p>Because the trip is long from North America, most skiers plan at least a week on snow. A common approach is 5 to 7 ski days at one base, or splitting time between two areas, such as Niseko and Rusutsu in Hokkaido, or Hakuba and Nozawa Onsen on Honshu. Build in a rest day: jet lag plus deep snow is tiring. Adding a few days in Tokyo or Sapporo is easy on the way in or out.</p>
+<p>For trip logistics in general, see <%= link_to "how to plan a ski trip", guide_path("how-to-plan-a-ski-trip") %> and the <%= link_to "ski trip packing list", guide_path("ski-trip-packing-list") %>. For deep-snow technique, see <%= link_to "how to ski powder", guide_path("how-to-ski-powder") %>.</p>
+
+<% faqs << { question: "When is the best time to ski in Japan?", answer: "Late December through February. January is typically the snowiest month and the most reliable for deep powder, while February still has excellent snow with slightly more clear days." } %>
+<% faqs << { question: "What are the best ski resorts in Japan?", answer: "In Hokkaido, Niseko United, Rusutsu, Kiroro, and Furano are known for consistent light powder. On Honshu, Hakuba Valley, Nozawa Onsen, and the Myoko area offer bigger mountains and traditional villages. APPI in Iwate is a large, well-groomed resort." } %>
+<% faqs << { question: "Which Japan ski resorts are on the Ikon or Epic Pass?", answer: "For 2026-27, the Ikon Pass includes Niseko United, Furano, Myoko Suginohara, and APPI. The Epic Pass includes Rusutsu and Hakuba Valley, each with 5 consecutive days. Kiroro, Nozawa Onsen, and Akakura Kanko are on neither." } %>
+<% faqs << { question: "Should I ski Hokkaido or Honshu?", answer: "Choose Hokkaido for the most consistent light powder and an easy first trip via New Chitose Airport. Choose Honshu (Hakuba, Nozawa Onsen, Myoko) for bigger mountains, onsen villages, and an easy bullet-train link to Tokyo." } %>
+<% faqs << { question: "Can you ski off-piste in Japan?", answer: "Many resorts allow off-piste and backcountry access only through designated gates, and terrain beyond them is uncontrolled avalanche terrain. Follow resort rules, check local avalanche information, carry a beacon, probe, and shovel, and consider a local guide." } %>

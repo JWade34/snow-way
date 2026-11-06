@@ -180,7 +180,16 @@ class Guide
       keyword: "splitboard", affiliate: true },
     { slug: "avalanche-safety-gear", title: "Avalanche Safety Gear: Beacon, Probe, and Shovel Explained",
       description: "What avalanche safety gear you need: transceiver (beacon), probe, and shovel, how they work together, airbag packs, practice, and why training matters most.",
-      keyword: "avalanche beacon", affiliate: true }
+      keyword: "avalanche beacon", affiliate: true },
+    { slug: "skiing-in-japan", title: "Skiing in Japan: Best Resorts, When to Go, and Passes",
+      description: "Skiing in Japan: when to go for powder, Hokkaido vs Honshu resorts, Epic and Ikon coverage, getting there from Tokyo or Sapporo, and onsen etiquette.",
+      keyword: "skiing in japan" },
+    { slug: "skiing-in-the-alps", title: "Skiing in the Alps: Best Resorts and How It Differs",
+      description: "Skiing in the Alps: the best resorts in France, Switzerland, Austria, and Italy, when to go, airports, Epic and Ikon coverage, and off-piste rules.",
+      keyword: "skiing in the alps" },
+    { slug: "skiing-in-south-america", title: "Skiing in Chile and Argentina: Season and Resorts",
+      description: "Skiing in Chile and Argentina: the June to October season, Tres Valles and Portillo near Santiago, volcano skiing, Bariloche, and which passes work.",
+      keyword: "skiing in chile" }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate

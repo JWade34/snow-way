@@ -1,4 +1,6 @@
 <% name = @region.name %>
+<% place = @region.place %>
+<% label = @region.label %>
 <% leader = @resorts.first %>
 <% lead_total = @totals.fetch(leader.id, 0.0) %>
 <% today = Date.current.strftime("%B %-d, %Y") %>
@@ -6,20 +8,20 @@
 <% biggest_vert = @region.resorts.select(&:vertical_drop).max_by(&:vertical_drop) %>
 <% airports = @region.resorts.map { |r| "#{r.airport_name} (#{r.nearest_airport_code})" }.tally.sort_by { |_, n| -n }.map(&:first) %>
 <% faqs = [] %>
-<% faqs << { question: "How many ski resorts are in #{name}?", answer: "Snow Way tracks #{pluralize(@region.resorts.size, "ski resort")} in #{name}: #{@region.resorts.map(&:name).to_sentence}." } %>
-<% faqs << { question: "Which #{name} ski resort is getting the most snow this week?",
-             answer: lead_total > 0 ? "As of #{today}, #{leader.name} leads #{name} with #{inches(lead_total)} of snow forecast over the next 7 days#{(runners = @resorts[1..2].select { |r| @totals.fetch(r.id, 0.0) > 0 }).any? ? ", followed by #{runners.map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}" : ""}." : "As of #{today}, no #{name} ski resort has new snow in its 7-day forecast." } %>
-<% faqs << { question: "What is the highest ski resort in #{name}?", answer: "#{highest.name} has the highest summit in #{name} at #{number_with_delimiter(highest.elevation_summit)} ft." } if @region.resorts.size > 1 %>
-<% faqs << { question: "Which #{name} ski resort has the most vertical?", answer: "#{biggest_vert.name} has the biggest vertical drop in #{name}: #{number_with_delimiter(biggest_vert.vertical_drop)} ft from base to summit." } if biggest_vert && @region.resorts.size > 1 %>
-<% faqs << { question: "What airport do you fly into for #{name} ski resorts?", answer: "The main airports for #{name} ski resorts are #{airports.first(3).to_sentence}." } %>
+<% faqs << { question: "How many ski resorts are in #{place}?", answer: "Snow Way tracks #{pluralize(@region.resorts.size, "ski resort")} in #{place}: #{@region.resorts.map(&:name).to_sentence}." } %>
+<% faqs << { question: "Which #{label} ski resort is getting the most snow this week?",
+             answer: lead_total > 0 ? "As of #{today}, #{leader.name} leads #{place} with #{inches(lead_total)} of snow forecast over the next 7 days#{(runners = @resorts[1..2].select { |r| @totals.fetch(r.id, 0.0) > 0 }).any? ? ", followed by #{runners.map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}" : ""}." : "As of #{today}, no #{name} ski resort has new snow in its 7-day forecast." } %>
+<% faqs << { question: "What is the highest ski resort in #{place}?", answer: "#{highest.name} has the highest summit in #{place} at #{number_with_delimiter(highest.elevation_summit)} ft." } if @region.resorts.size > 1 %>
+<% faqs << { question: "Which #{label} ski resort has the most vertical?", answer: "#{biggest_vert.name} has the biggest vertical drop in #{place}: #{number_with_delimiter(biggest_vert.vertical_drop)} ft from base to summit." } if biggest_vert && @region.resorts.size > 1 %>
+<% faqs << { question: "What airport do you fly into for #{label} ski resorts?", answer: "The main airports for #{label} ski resorts are #{airports.first(3).to_sentence}." } %>
 <% epic = @region.resorts.select(&:on_epic?) %>
 <% ikon = @region.resorts.select(&:on_ikon?) %>
 <% if epic.any? || ikon.any? %>
-  <% faqs << { question: "Which #{name} ski resorts are on the Epic Pass and Ikon Pass?", answer: [ ("Epic Pass: #{epic.map(&:name).to_sentence}." if epic.any?), ("Ikon Pass: #{ikon.map(&:name).to_sentence}." if ikon.any?) ].compact.join(" ") } %>
+  <% faqs << { question: "Which #{label} ski resorts are on the Epic Pass and Ikon Pass?", answer: [ ("Epic Pass: #{epic.map(&:name).to_sentence}." if epic.any?), ("Ikon Pass: #{ikon.map(&:name).to_sentence}." if ikon.any?) ].compact.join(" ") } %>
 <% end %>
 
 <% fresh = @resorts.select { |r| @recent.fetch(r.id, 0.0) > 0 }.sort_by { |r| -@recent[r.id] } %>
-<% faqs.unshift({ question: "What is the #{name} snow report today?", answer: [ (fresh.any? ? "In the last 48 hours, #{fresh.first(3).map { |r| "#{r.name} got #{inches(@recent[r.id])}" }.to_sentence}." : "No #{name} resort has had measurable new snow in the last 48 hours."), faqs.find { |f| f[:question].start_with?("Which #{name} ski resort is getting") }[:answer] ].join(" ") }) %>
+<% faqs.unshift({ question: "What is the #{label} snow report today?", answer: [ (fresh.any? ? "In the last 48 hours, #{fresh.first(3).map { |r| "#{r.name} got #{inches(@recent[r.id])}" }.to_sentence}." : "No #{name} resort has had measurable new snow in the last 48 hours."), faqs.find { |f| f[:question].start_with?("Which #{label} ski resort is getting") }[:answer] ].join(" ") }) %>
 <% picks = [] %>
 <% if @region.resorts.size >= 3 %>
   <% picks << [ "Biggest vertical", biggest_vert, "#{number_with_delimiter(biggest_vert.vertical_drop)} ft from base to summit" ] if biggest_vert %>
@@ -31,7 +33,7 @@
   <% ikon_big = ikon.select(&:vertical_drop).max_by(&:vertical_drop) %>
   <% picks << [ "Biggest Epic Pass mountain", epic_big, "#{number_with_delimiter(epic_big.vertical_drop)} ft vertical" ] if epic_big && epic.size > 1 %>
   <% picks << [ "Biggest Ikon Pass mountain", ikon_big, "#{number_with_delimiter(ikon_big.vertical_drop)} ft vertical" ] if ikon_big && ikon.size > 1 %>
-  <% faqs.insert(2, { question: "What are the best ski resorts in #{name}?", answer: "It depends on what you want. By the numbers: #{picks.map { |label, r, why| "#{label.sub(/ \(.*\)/, "").then { |l| l[0].downcase + l[1..] }}: #{r.name} (#{why})" }.join("; ")}. Snow Way ranks every #{name} resort by this week's snow forecast below." }) %>
+  <% faqs.insert(2, { question: "What are the best ski resorts in #{place}?", answer: "It depends on what you want. By the numbers: #{picks.map { |pick, r, why| "#{pick.sub(/ \(.*\)/, "").then { |l| l[0].downcase + l[1..] }}: #{r.name} (#{why})" }.join("; ")}. Snow Way ranks every #{name} resort by this week's snow forecast below." }) %>
 <% end %>
 <% content_for(:title, fit_title("#{name} Snow Report, Forecast & Best Ski Resorts | Snow Way", "#{name} Snow Report & Forecast | Snow Way", "#{name} Snow Report | Snow Way")) %>
 <% content_for(:description, "#{name} snow report and all #{@region.resorts.size} ski resorts: 48-hour snowfall, 7- and 14-day forecasts, elevation, airport, and pass. #{faqs.first[:answer]}".truncate(300)) %>
@@ -39,7 +41,7 @@
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "CollectionPage", "name" => "#{name} Ski Resorts & Snow Report", "url" => absolute_url("/ski-resorts/#{@region.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
         breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ name, nil ] ]),
-        { "@type" => "ItemList", "name" => "Ski resorts in #{name}", "numberOfItems" => @resorts.size,
+        { "@type" => "ItemList", "name" => "Ski resorts in #{place}", "numberOfItems" => @resorts.size,
           "itemListElement" => @resorts.each_with_index.map { |r, i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
         faq_schema(faqs)
       ].compact }) %>
@@ -51,12 +53,12 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ name, nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= name %> snow report, forecast &amp; ski resorts</h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
-      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= name %>, ranked below by forecast snow.</p>
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= place %>, ranked below by forecast snow.</p>
       <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Mid-mountain forecasts from Open-Meteo</p>
     </section>
 
     <% if picks.any? %>
-      <h2 class="text-xl font-bold mb-4">Best <%= name %> ski resorts by the numbers</h2>
+      <h2 class="text-xl font-bold mb-4">Best <%= label %> ski resorts by the numbers</h2>
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
         <% picks.each do |label, r, why| %>
           <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3"><span class="block text-xs uppercase tracking-wider text-cyan-300"><%= label %></span><%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %> <span class="text-slate-400 text-sm"><%= why %></span></li>
@@ -64,10 +66,10 @@
       </ul>
     <% end %>
 
-    <h2 class="text-xl font-bold mb-4"><%= name %> ski resorts ranked by snow this week</h2>
+    <h2 class="text-xl font-bold mb-4"><%= label %> ski resorts ranked by snow this week</h2>
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
       <table class="w-full text-sm">
-        <caption class="sr-only"><%= name %> ski resorts with 7-day and 14-day snow forecasts</caption>
+        <caption class="sr-only"><%= label %> ski resorts with 7-day and 14-day snow forecasts</caption>
         <thead class="bg-slate-800/70 text-slate-300 text-left">
           <tr>
             <th scope="col" class="px-3 py-2">Resort</th>
@@ -99,6 +101,12 @@
       </table>
     </div>
 
+    <% guide_slug = { "Japan" => "skiing-in-japan", "The Alps" => "skiing-in-the-alps", "France" => "skiing-in-the-alps", "Switzerland" => "skiing-in-the-alps",
+                      "Austria" => "skiing-in-the-alps", "Italy" => "skiing-in-the-alps", "South America" => "skiing-in-south-america",
+                      "Chile" => "skiing-in-south-america", "Argentina" => "skiing-in-south-america", "Southern Hemisphere" => "skiing-in-south-america" }[name] %>
+    <% if guide_slug && (g = Guide.all.find { |x| x.slug == guide_slug }) %>
+      <p class="mb-8"><%= link_to "Planning a trip? Read #{g.title}", guide_path(g.slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+    <% end %>
     <%= render "shared/faq", faqs: faqs, heading: "#{name} skiing FAQ" %>
 
     <% nearby_hubs = SkiHub.all.select { |h| h.nearby.any? { |r, _| r.state_province == name } } %>

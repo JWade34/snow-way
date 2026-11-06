@@ -5,7 +5,8 @@ class GuideTopic
       name: "Ski Trip Planning",
       intro: "Everything for planning a ski trip: when to go, where to fly, which pass, where to stay, what it costs, and how to make it work with kids.",
       guides: %w[how-to-plan-a-ski-trip family-ski-trip skiing-with-kids best-family-ski-resorts cheap-ski-trip holiday-ski-trips
-                 all-inclusive-ski-resorts ski-in-ski-out how-to-chase-powder ski-trip-packing-list what-to-wear-skiing what-is-apres-ski]
+                 all-inclusive-ski-resorts ski-in-ski-out how-to-chase-powder ski-trip-packing-list what-to-wear-skiing what-is-apres-ski
+                 skiing-in-japan skiing-in-the-alps skiing-in-south-america]
     },
     "skiing" => {
       name: "Skiing Guides",
