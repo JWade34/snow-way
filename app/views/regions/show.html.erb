@@ -33,7 +33,7 @@
   <% picks << [ "Biggest Ikon Pass mountain", ikon_big, "#{number_with_delimiter(ikon_big.vertical_drop)} ft vertical" ] if ikon_big && ikon.size > 1 %>
   <% faqs.insert(2, { question: "What are the best ski resorts in #{name}?", answer: "It depends on what you want. By the numbers: #{picks.map { |label, r, why| "#{label.sub(/ \(.*\)/, "").then { |l| l[0].downcase + l[1..] }}: #{r.name} (#{why})" }.join("; ")}. Snow Way ranks every #{name} resort by this week's snow forecast below." }) %>
 <% end %>
-<% content_for(:title, fit_title("#{name} Snow Report & Ski Resorts | Snow Way", "#{name} Snow Report | Snow Way")) %>
+<% content_for(:title, fit_title("#{name} Ski Resorts: Best Picks & Snow Report | Snow Way", "#{name} Ski Resorts & Snow Report | Snow Way", "#{name} Snow Report | Snow Way")) %>
 <% content_for(:description, "#{name} snow report and all #{@region.resorts.size} ski resorts: 48-hour snowfall, 7- and 14-day forecasts, elevation, airport, and pass. #{faqs.first[:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [

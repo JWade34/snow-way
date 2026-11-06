@@ -8,14 +8,33 @@ class Region
       .sort_by { |r| [ r.country == "USA" ? 0 : 1, r.name ] }
   end
 
-  def self.find(slug)
-    all.find { |r| r.slug == slug } or raise ActiveRecord::RecordNotFound
+  # Multi-state regions people search for ("best ski resorts in New England", "...in Canada").
+  GROUPS = {
+    "New England" => ->(r) { %w[Vermont New\ Hampshire Maine Massachusetts Connecticut Rhode\ Island].include?(r.state_province) },
+    "Canada" => ->(r) { r.country == "Canada" }
+  }.freeze
+
+  def self.groups
+    resorts = Resort.order(:name).to_a
+    GROUPS.filter_map do |name, rule|
+      members = resorts.select(&rule)
+      new(name, members.first.country, members, group: true) if members.size >= 3
+    end
   end
 
-  def initialize(name, country, resorts)
+  def self.find(slug)
+    (all + groups).find { |r| r.slug == slug } or raise ActiveRecord::RecordNotFound
+  end
+
+  def initialize(name, country, resorts, group: false)
     @name = name
     @country = country
     @resorts = resorts
+    @group = group
+  end
+
+  def group?
+    @group
   end
 
   def slug

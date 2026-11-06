@@ -111,7 +111,19 @@ class Guide
       keyword: "how to carve on a snowboard" },
     { slug: "ski-lessons-for-adults", title: "Ski Lessons for Adults: What to Book and What to Expect",
       description: "Ski lessons for adults: group vs private, what a first lesson covers, how long it takes to learn to ski, and how to choose a ski school.",
-      keyword: "ski lessons for adults" }
+      keyword: "ski lessons for adults" },
+    { slug: "ski-boot-bag", title: "Ski Boot Bags: How to Choose One That Fits Everything",
+      description: "How to choose a ski boot bag: size, backpack vs duffel, heated bags, airline carry-on rules, and what to pack in it.",
+      keyword: "ski boot bag", affiliate: true },
+    { slug: "best-heated-gloves", title: "Heated Gloves for Skiing: Are They Worth It and How to Choose",
+      description: "How to choose heated ski gloves and mittens: battery life, heat settings, warmth without power, and who they're worth it for.",
+      keyword: "best heated gloves", affiliate: true },
+    { slug: "best-womens-ski-jacket", title: "Women's Ski Jackets: How to Choose Fit, Warmth, and Waterproofing",
+      description: "How to choose a women's ski jacket: women's-specific fit, insulated vs shell, waterproof ratings, length, and features that matter.",
+      keyword: "best ski jacket for women", affiliate: true },
+    { slug: "best-snowboard-for-beginners", title: "Best Snowboard for Beginners: How to Choose Your First Board",
+      description: "How to choose a beginner snowboard: soft flex, rocker or hybrid profiles, the right length and width, and when to rent instead.",
+      keyword: "best snowboard for beginners", affiliate: true }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate

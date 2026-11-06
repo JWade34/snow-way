@@ -24,6 +24,15 @@
         <% end %>
       </ul>
     <% end %>
+    <h2 class="text-xl font-bold mb-4">Regions</h2>
+    <ul class="flex flex-wrap gap-2 mb-10">
+      <% Region.groups.each do |group| %>
+        <li><%= link_to "Ski resorts in #{group.name} (#{group.resorts.size})", region_path(group), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 text-sm transition" %></li>
+      <% end %>
+      <li><%= link_to "Epic Pass resorts", epic_pass_resorts_path, class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 text-sm transition" %></li>
+      <li><%= link_to "Ikon Pass resorts", ikon_pass_resorts_path, class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 text-sm transition" %></li>
+      <li><%= link_to "Indy Pass resorts", indy_pass_resorts_path, class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 text-sm transition" %></li>
+    </ul>
     <h2 class="text-xl font-bold mb-4">Ski resorts near major cities</h2>
     <ul class="flex flex-wrap gap-2">
       <% SkiHub.all.each do |hub| %>

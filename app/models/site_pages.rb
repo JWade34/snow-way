@@ -15,7 +15,7 @@ module SitePages
   end
 
   def region_paths
-    Region.all.map { |r| "/ski-resorts/#{r.slug}" }
+    (Region.all + Region.groups).map { |r| "/ski-resorts/#{r.slug}" }
   end
 
   def hub_paths
