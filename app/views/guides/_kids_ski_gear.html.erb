@@ -1,0 +1,63 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> buy the things that touch kids' skin and keep them warm (base layers, mittens, socks, goggles) and a helmet that fits now. Rent or lease skis, boots, and snowboards, because kids outgrow them fast. A seasonal lease or a used-gear swap gets families the most for their money.</p></div>
+
+<h2>Buy, rent, or lease?</h2>
+<table>
+  <thead><tr><th scope="col">Item</th><th scope="col">Best option for most families</th><th scope="col">Why</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Helmet</th><td>Buy</td><td>Fit and hygiene matter, and a good fit is a safety issue</td></tr>
+    <tr><th scope="row">Goggles</th><td>Buy</td><td>Inexpensive and need to fit the helmet</td></tr>
+    <tr><th scope="row">Mittens, socks, base layers</th><td>Buy</td><td>Warmth and comfort; reusable for other winter activities</td></tr>
+    <tr><th scope="row">Jacket and pants</th><td>Buy used or hand down</td><td>Kids grow out of them before they wear out</td></tr>
+    <tr><th scope="row">Boots, skis, poles, snowboards</th><td>Rent or seasonal lease</td><td>Sizes change every season or two</td></tr>
+  </tbody>
+</table>
+
+<h2>Helmets and goggles</h2>
+<p>A helmet is the one item worth getting exactly right. It should sit level just above the eyebrows, feel snug without pressure points, and not move when your child shakes their head. Check that goggles sit flush against the helmet with no gap at the forehead. Read <%= link_to "how to choose a ski helmet", guide_path("best-ski-helmet") %> for fit checks, or browse <%= gear_link "kids ski helmets", "kids ski helmet" %> and <%= gear_link "kids ski goggles", "kids ski goggles" %>.</p>
+
+<h2>Keeping them warm: layers, mittens, and socks</h2>
+<ul>
+  <li><strong>Base layer:</strong> snug merino or synthetic top and bottom. No cotton.</li>
+  <li><strong>Mid layer:</strong> a light fleece, added or removed with the temperature.</li>
+  <li><strong>Shell:</strong> waterproof jacket and snow pants or bibs. Bibs keep snow out when little kids fall a lot.</li>
+  <li><strong>Mittens:</strong> warmer than gloves and easier for small hands. Long cuffs that go over the jacket sleeve keep snow out. See <%= link_to "gloves vs mittens", guide_path("ski-gloves-vs-mittens") %>.</li>
+  <li><strong>Socks:</strong> one thin or midweight ski sock that comes above the boot. Bunched or doubled socks cause cold feet.</li>
+  <li><strong>Neck gaiter:</strong> easier for kids than a scarf and safer on lifts.</li>
+</ul>
+<p>Shop <%= gear_link "kids ski mittens", "kids ski mittens" %> and <%= gear_link "kids base layers", "kids base layer" %>. More on layering in <%= link_to "what to wear skiing", guide_path("what-to-wear-skiing") %>.</p>
+
+<h2>Boots: the most important rental</h2>
+<p>Ill-fitting boots ruin a kid's day faster than anything. When renting:</p>
+<ul>
+  <li>Have kids wear the ski socks they'll ski in.</li>
+  <li>Toes should just touch the front when standing, then pull back slightly when they bend their knees.</li>
+  <li>The heel shouldn't lift when they lean forward.</li>
+  <li>Ask to swap if they complain of pain after the first run; shops expect it.</li>
+</ul>
+
+<h2>Skis and snowboards: sizing for kids</h2>
+<p>Beginner kids generally do best on shorter skis, roughly between chest and chin height, which are easier to turn and control. More confident kids can go a bit longer. For snowboards, a board that reaches somewhere between the chest and chin is a common starting point. Snow Way's <%= link_to "ski size calculator", ski_size_chart_path %> gives a quick starting range, but a shop fitting is best for kids.</p>
+
+<h2>Seasonal leases and used gear</h2>
+<p>If your family skis more than a few days a season, a seasonal lease is often the best deal. Many ski shops lease a full kids' setup (skis or board, boots, and sometimes a helmet) for the whole winter, and some let you trade up a size midseason or apply part of the fee toward next year.</p>
+<ul>
+  <li><strong>Ski swaps</strong> in the fall are a great place to find used kids' gear and outerwear.</li>
+  <li><strong>Hand-me-downs</strong> work well for jackets and pants, but have bindings on used skis inspected and adjusted by a shop.</li>
+  <li><strong>Avoid used helmets</strong> unless you know their history; a helmet that took a hard impact should be replaced.</li>
+</ul>
+<p>The trade-offs for grown-ups too are in <%= link_to "rent or buy ski gear", guide_path("rent-or-buy-ski-gear") %>.</p>
+
+<h2>Packing for kids</h2>
+<ul>
+  <li>Extra mittens and socks (wet ones don't dry overnight in a bag)</li>
+  <li>Hand warmers</li>
+  <li>Sunscreen and SPF lip balm</li>
+  <li>Snacks in every pocket</li>
+  <li>A card with your phone number in each jacket</li>
+</ul>
+<p>Use the full <%= link_to "ski trip packing list", guide_path("ski-trip-packing-list") %> for the rest of the family.</p>
+<% faqs << { question: "Should I buy or rent ski gear for kids?", answer: "Buy helmets, goggles, mittens, socks, and base layers. Rent or seasonally lease boots, skis, and snowboards, since kids outgrow them quickly." } %>
+<% faqs << { question: "What length skis should a kid use?", answer: "Beginner kids generally do best on shorter skis, roughly between chest and chin height. Confident kids can go a little longer. A shop fitting is the best way to size them." } %>
+<% faqs << { question: "Are mittens or gloves better for kids skiing?", answer: "Mittens, for most young kids. They're warmer and easier for small hands to put on. Long cuffs that go over the jacket sleeve help keep snow out." } %>
+<% faqs << { question: "Is a seasonal ski lease worth it for kids?", answer: "Often, if your family skis more than a few days a season. A lease covers the whole winter and some shops let kids size up midseason." } %>

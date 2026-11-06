@@ -1,7 +1,7 @@
 <% resort, inches = @alerts.first %>
 <p style="margin:0 0 6px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#0891b2;">Powder alert</p>
 <h1 style="font-size:22px;margin:0 0 12px;color:#0f172a;"><%= resort.name %>: <%= inches.round(1) %>" in the next 3 days</h1>
-<p style="margin:0 0 16px;">The forecast at <%= resort.name %>'s summit (<%= resort.location %>) calls for about <strong><%= inches.round(1) %>"</strong> of new snow over the next 3 days.</p>
+<p style="margin:0 0 16px;">The mid-mountain forecast at <%= resort.name %> (<%= resort.location %>) calls for about <strong><%= inches.round(1) %>"</strong> of new snow over the next 3 days.</p>
 <p style="margin:0 0 20px;"><a href="https://snowway.app/resorts/<%= resort.slug %>" style="display:inline-block;background:#06b6d4;color:#0f172a;font-weight:bold;text-decoration:none;padding:12px 20px;border-radius:8px;">See the <%= resort.name %> snow report</a></p>
 <% if @alerts.size > 1 %>
   <p style="margin:0 0 8px;font-weight:bold;">Also getting snow:</p>
@@ -11,5 +11,5 @@
     <% end %>
   </table>
 <% end %>
-<p style="margin:0 0 20px;color:#64748b;font-size:13px;">3-day totals are short-range summit forecasts from Open-Meteo, the most reliable window for booking. Conditions change; check the resort before you go.</p>
+<p style="margin:0 0 20px;color:#64748b;font-size:13px;">3-day totals are short-range mid-mountain forecasts from Open-Meteo, the most reliable window for booking. Conditions change; check the resort before you go.</p>
 <%= render "subscriber_mailer/footer" %>

@@ -52,7 +52,7 @@
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= name %> ski resorts &amp; snow report</h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= name %>, ranked below by forecast snow.</p>
-      <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Summit-elevation forecasts from Open-Meteo</p>
+      <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Mid-mountain forecasts from Open-Meteo</p>
     </section>
 
     <% if picks.any? %>

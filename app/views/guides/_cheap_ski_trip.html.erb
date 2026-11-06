@@ -1,0 +1,50 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> the biggest savings come from timing and planning: ski midweek or outside holidays, buy lift access in advance (or a pass if you'll ski enough days), stay in a nearby town or a rental with a kitchen, and rent gear off-mountain. Small choices like packing lunch and carpooling add up fast for families.</p></div>
+
+<h2>Timing</h2>
+<ol>
+  <li><strong>Avoid holiday weeks.</strong> Christmas, New Year's, Presidents' Day, and spring break bring the highest lodging and ticket prices and the biggest crowds.</li>
+  <li><strong>Ski midweek.</strong> Weekdays are usually cheaper and less crowded than weekends.</li>
+  <li><strong>Consider early or late season.</strong> Lodging is often cheaper outside peak months. Check snow history first with the <%= link_to "Powder Calendar", powder_calendar_path %> so you're not trading savings for thin coverage.</li>
+  <li><strong>Book flights and lodging early,</strong> ideally with flexible cancellation so you can adjust.</li>
+</ol>
+
+<h2>Lift tickets and passes</h2>
+<ol start="5">
+  <li><strong>Never buy lift tickets at the ticket window</strong> if you can avoid it. Many resorts price tickets lower when bought online in advance.</li>
+  <li><strong>Do the pass math.</strong> If you'll ski more than a handful of days in a season, a multi-resort pass can cost less than daily tickets. Compare options on <%= link_to "Ikon vs Epic", ikon_vs_epic_path %>.</li>
+  <li><strong>Buy passes early.</strong> Season pass prices typically rise as the season approaches.</li>
+  <li><strong>Look for kids' and beginner deals.</strong> Many resorts and passes offer discounted or free tickets for young kids, and beginner-area-only tickets cost less than full access.</li>
+  <li><strong>Try smaller mountains.</strong> Independent and local areas are often much cheaper than destination resorts and great for learning.</li>
+</ol>
+
+<h2>Lodging</h2>
+<ol start="10">
+  <li><strong>Stay in a nearby town</strong> rather than slopeside, and drive or take a shuttle to the lifts.</li>
+  <li><strong>Choose a place with a kitchen</strong> so you can cook breakfast and dinner.</li>
+  <li><strong>Split a bigger rental</strong> with friends or another family.</li>
+  <li><strong>Read the fine print</strong> on resort and parking fees before you book.</li>
+</ol>
+<p>Weighing the convenience of staying at the base? See <%= link_to "is ski-in/ski-out worth it", guide_path("ski-in-ski-out") %>.</p>
+
+<h2>Gear and lessons</h2>
+<ol start="14">
+  <li><strong>Rent in town, not at the base,</strong> and reserve online for discounts.</li>
+  <li><strong>Buy used outerwear</strong> at ski swaps or secondhand stores, and borrow gear from friends for a first trip.</li>
+  <li><strong>Bring your own goggles, gloves, and helmet</strong> if you have them; buying them at the resort costs more.</li>
+  <li><strong>Book group lessons,</strong> which cost less than private lessons and work well for most beginners.</li>
+</ol>
+<p>More on the trade-offs in <%= link_to "rent or buy ski gear", guide_path("rent-or-buy-ski-gear") %>.</p>
+
+<h2>Food and getting around</h2>
+<ol start="18">
+  <li><strong>Pack lunch and snacks.</strong> On-mountain food is expensive; a backpack lunch for a family saves a lot every day.</li>
+  <li><strong>Bring a refillable water bottle</strong> and a thermos of hot cocoa.</li>
+  <li><strong>Carpool and use free shuttles.</strong> Many resorts and towns run free buses, and some charge for parking or reward carpools.</li>
+</ol>
+
+<h2>Put it together</h2>
+<p>Use the budget worksheet in the free <%= link_to "Ski Trip Planner", ski_trip_planner_path %> to estimate costs before you book, and read <%= link_to "how to plan a ski trip", guide_path("how-to-plan-a-ski-trip") %> for the full step-by-step.</p>
+<% faqs << { question: "What is the cheapest time to go on a ski trip?", answer: "Midweek outside holiday periods is usually cheapest. Early and late season can also be cheaper, but check snow history so coverage is good." } %>
+<% faqs << { question: "How can I save money on lift tickets?", answer: "Buy online in advance, look at multi-resort passes if you'll ski several days, check for kids' and beginner discounts, and consider smaller independent mountains." } %>
+<% faqs << { question: "Is it cheaper to stay in town or slopeside?", answer: "Staying in a nearby town is usually cheaper than slopeside lodging, especially with a kitchen, though you trade some convenience for the savings." } %>

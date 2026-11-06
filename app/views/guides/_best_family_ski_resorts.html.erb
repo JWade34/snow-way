@@ -1,0 +1,51 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> the best family ski resort is the one that makes logistics easy for your family: a separate learning area, a strong kids' ski school, slow beginner lifts, lodging close to the base, and a short trip from the airport. Bigger and snowier isn't automatically better for families. Use the checklist below and ask the resort the questions that matter before you book.</p></div>
+
+<h2>What makes a ski resort family-friendly</h2>
+<h3>1. A real learning area</h3>
+<p>Look for gentle beginner terrain that's separated from faster runs, with magic carpets or slow, low lifts. Beginners learn faster and feel safer when experts aren't flying past them.</p>
+<h3>2. A strong kids' ski school</h3>
+<p>Check which ages each program accepts, whether full-day programs include lunch, and how groups are sorted by ability. Small groups and a dedicated kids' area at the base are good signs.</p>
+<h3>3. Easy beginner progression</h3>
+<p>Once kids can turn and stop, they need lots of green and easy blue terrain to build confidence. A resort with a few beginner runs and then mostly steep terrain can feel limiting after day two.</p>
+<h3>4. Lodging close to the lifts</h3>
+<p>Carrying skis and kids through parking lots wears everyone out. Lodging you can walk from, or true ski-in/ski-out, makes the biggest difference for families with young kids. Read <%= link_to "what ski-in/ski-out really means", guide_path("ski-in-ski-out") %> before paying extra for it.</p>
+<h3>5. A short trip from the airport</h3>
+<p>Long mountain drives after a flight are hard on kids. Snow Way's <%= link_to "resort directories by state and region", regions_path %> list each resort's nearest airport, and city pages show which resorts are closest to major airports.</p>
+<h3>6. Off-snow options</h3>
+<p>Tubing, ice skating, swimming pools, and a walkable village give kids something to do on cold days or after lessons. Not every family member needs to ski every day.</p>
+<h3>7. Reliable snow at the time you can travel</h3>
+<p>If you're locked into school holidays, choose a resort that historically gets good snow in that month. The free <%= link_to "Powder Calendar", powder_calendar_path %> shows each resort's snowiest months.</p>
+
+<h2>Questions to ask before you book</h2>
+<ul>
+  <li>What ages does ski school accept, and do kids' programs sell out during our dates?</li>
+  <li>Are lunch and rental gear included in kids' lesson packages?</li>
+  <li>How far is our lodging from the ski school drop-off, in real walking minutes?</li>
+  <li>Is there a separate beginner area, and which lifts serve it?</li>
+  <li>Is there childcare for kids too young for ski school?</li>
+  <li>Are there blackout dates on our pass for these dates?</li>
+  <li>What is there to do for non-skiers or on a very cold day?</li>
+</ul>
+
+<h2>Big resort or small hill?</h2>
+<table>
+  <thead><tr><th scope="col">Factor</th><th scope="col">Larger destination resort</th><th scope="col">Smaller local area</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Terrain variety</th><td>Lots of runs for every level</td><td>Fewer runs, often easy to navigate</td></tr>
+    <tr><th scope="row">Ski school</th><td>Many programs and age groups</td><td>Simpler programs, often more personal</td></tr>
+    <tr><th scope="row">Lodging and village</th><td>More options near the lifts</td><td>Often drive-in or nearby towns</td></tr>
+    <tr><th scope="row">Crowds and cost</th><td>Busier and usually pricier</td><td>Often quieter and cheaper</td></tr>
+    <tr><th scope="row">Getting lost</th><td>Easier to get separated</td><td>Easier to keep track of kids</td></tr>
+  </tbody>
+</table>
+<p>For a first family trip with young beginners, a smaller or mid-size resort with excellent beginner facilities can beat a famous mountain. Once everyone skis confidently, a bigger resort gives you more to explore.</p>
+
+<h2>Passes and timing</h2>
+<p>If you're planning more than a few days, compare multi-day tickets with a season pass. Some passes include kids' discounts or have blackout dates over holidays. Snow Way's <%= link_to "Ikon vs Epic comparison", ikon_vs_epic_path %> shows which resorts each pass covers.</p>
+
+<h2>Next steps</h2>
+<p>Read <%= link_to "family ski trip planning", guide_path("family-ski-trip") %> for the full plan, then use the free <%= link_to "Ski Trip Planner", ski_trip_planner_path %> to work through the timeline and budget.</p>
+<% faqs << { question: "What makes a ski resort good for families?", answer: "A separate learning area, a strong kids' ski school, slow beginner lifts, plenty of green and easy blue terrain, lodging close to the base, a short airport transfer, and off-snow activities." } %>
+<% faqs << { question: "Are smaller ski resorts better for families?", answer: "Often for first trips. Smaller areas can be quieter, cheaper, and easier to navigate with kids, while larger resorts offer more terrain and lodging once everyone skis confidently." } %>
+<% faqs << { question: "What should I ask a ski resort before a family trip?", answer: "Ask about ski school ages and availability, whether lunch and rentals are included, walking distance from lodging to drop-off, beginner terrain and lifts, childcare, pass blackout dates, and non-ski activities." } %>

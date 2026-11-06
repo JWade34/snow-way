@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_024209) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_025635) do
   create_table "powder_reports", force: :cascade do |t|
     t.date "week_of"
     t.json "data"
@@ -56,6 +56,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_024209) do
     t.datetime "updated_at", null: false
     t.integer "temp_high_f"
     t.integer "temp_low_f"
+    t.decimal "snowfall_summit_inches"
     t.index ["resort_id"], name: "index_snow_forecasts_on_resort_id"
   end
 

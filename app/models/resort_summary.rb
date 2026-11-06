@@ -10,11 +10,21 @@ class ResortSummary
   attr_reader :resort, :as_of
 
   # totals: Resort.projected_totals, passed in so a list of summaries shares one query.
-  def initialize(resort, totals: nil, totals_14: nil, as_of: Date.current)
+  def initialize(resort, totals: nil, totals_14: nil, summit_totals: nil, as_of: Date.current)
     @resort = resort
     @as_of = as_of
     @totals = totals
     @totals_14 = totals_14
+    @summit_totals = summit_totals
+  end
+
+  # 7-day total at the summit (headline numbers are mid-mountain).
+  def summit_total
+    (@summit_totals ||= Resort.projected_summit_totals(as_of)).fetch(resort.id, 0.0)
+  end
+
+  def summit_note
+    summit_total > total ? " (#{inches(summit_total)} at the summit)" : ""
   end
 
   def totals
@@ -83,7 +93,7 @@ class ResortSummary
     return unless conditions?
 
     sky = weather_description ? "#{weather_description.downcase}, " : ""
-    "Right now at the summit it's #{resort.current_temp_f}°F, #{sky}with #{resort.current_wind_mph} mph wind."
+    "Right now at mid-mountain it's #{resort.current_temp_f}°F, #{sky}with #{resort.current_wind_mph} mph wind."
   end
 
   def rank
@@ -133,7 +143,7 @@ class ResortSummary
 
     parts = []
     if total > 0
-      parts << "As of #{long_date(as_of)}, #{resort.name} is forecast to get #{inches(total)} of snow over the next 7 days, " \
+      parts << "As of #{long_date(as_of)}, #{resort.name} is forecast to get #{inches(total)} of snow at mid-mountain over the next 7 days#{summit_note}, " \
                "ranking ##{rank} of #{ranked_count} North American ski resorts Snow Way tracks."
       parts << "The biggest day is #{day_label(biggest_day.forecast_date)} with #{inches(biggest_day.snowfall_inches)}." if biggest_day
     else
@@ -173,7 +183,7 @@ class ResortSummary
   def snow_this_week_answer
     if total > 0
       days = forecasts.count { |f| f.snowfall_inches.to_f > 0 }
-      "Yes. #{resort.name} is forecast to get #{inches(total)} of snow from #{short_date(as_of)} through #{short_date(forecast_through)}, " \
+      "Yes. #{resort.name} is forecast to get #{inches(total)} of snow at mid-mountain#{summit_note} from #{short_date(as_of)} through #{short_date(forecast_through)}, " \
         "with snow on #{days} of the next 7 days#{biggest_day ? " and the most on #{day_label(biggest_day.forecast_date)} (#{inches(biggest_day.snowfall_inches)})" : ""}."
     else
       "No new snow is forecast at #{resort.name} from #{short_date(as_of)} through #{short_date(forecast_through)}. Snow Way updates this forecast every day."

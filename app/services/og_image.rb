@@ -24,7 +24,10 @@ class OgImage
     image = draw(image, "#{@resort.name} snow forecast", 72, 170, size: 60, weight: "Bold", color: WHITE, width: WIDTH - 144)
     image = draw(image, @resort.location, 72, 262, size: 32, weight: "Medium", color: MUTED)
     image = draw(image, "#{@summary.total}\"", 72, 330, size: 150, weight: "ExtraBold", color: CYAN)
-    image = draw(image, "of snow in the next 7 days", 72, 520, size: 34, weight: "SemiBold", color: WHITE)
+    image = draw(image, "mid-mountain snow, next 7 days", 72, 520, size: 34, weight: "SemiBold", color: WHITE)
+    if @summary.summit_total > @summary.total
+      image = draw(image, "#{@summary.summit_total}\" at the summit", WIDTH - 72, 470, size: 30, weight: "Bold", color: CYAN, align: :right)
+    end
     if @summary.total > 0
       image = draw(image, "##{@summary.rank} of #{@summary.ranked_count} resorts", WIDTH - 72, 56, size: 34, weight: "Bold", color: MUTED, align: :right)
     end

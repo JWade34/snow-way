@@ -1,6 +1,6 @@
 # Snow Way
 
-> Snow Way ranks <%= @resorts.size %> North American ski resorts by how much snow is forecast in the next 7 days, updated daily from Open-Meteo summit-elevation forecasts. Use it to answer "which ski resort is getting the most snow", "where is it snowing", and "[resort] snow forecast" questions.
+> Snow Way ranks <%= @resorts.size %> North American ski resorts by how much snow is forecast in the next 7 days, updated every 6 hours from Open-Meteo forecasts at each resort's mid-mountain elevation (summit totals also listed). Use it to answer "which ski resort is getting the most snow", "where is it snowing", and "[resort] snow forecast" questions.
 
 As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answers: https://snowway.app/llms-full.txt
 

@@ -5,17 +5,18 @@ module SnowForecastable
   extend ActiveSupport::Concern
 
   class_methods do
+    # One request returns two points: mid-mountain (the headline number) and the summit.
     def fetch_forecasts_from_api(resort)
       return [] unless resort
 
-      # Convert summit elevation from feet to meters for Open-Meteo
+      mid_meters = (resort.mid_elevation.to_f * 0.3048).round
       summit_meters = (resort.elevation_summit.to_f * 0.3048).round
 
       uri = URI("https://api.open-meteo.com/v1/forecast")
       uri.query = URI.encode_www_form(
-        latitude: resort.latitude,
-        longitude: resort.longitude,
-        elevation: summit_meters,
+        latitude: [ resort.latitude, resort.latitude ].join(","),
+        longitude: [ resort.longitude, resort.longitude ].join(","),
+        elevation: [ mid_meters, summit_meters ].join(","),
         daily: "precipitation_sum,temperature_2m_mean,snowfall_sum,temperature_2m_max,temperature_2m_min",
         current: "temperature_2m,wind_speed_10m,weather_code",
         timezone: "auto",
@@ -26,10 +27,19 @@ module SnowForecastable
       response = Net::HTTP.get_response(uri)
       return [] unless response.is_a?(Net::HTTPSuccess)
 
-      data = JSON.parse(response.body)
-      store_current_conditions(resort, data["current"])
-      daily = data["daily"]
+      mid, summit = JSON.parse(response.body)
+      return [] unless mid.is_a?(Hash) && summit.is_a?(Hash)
 
+      store_current_conditions(resort, mid["current"])
+      mid_days = daily_snowfall(mid["daily"])
+      summit_days = daily_snowfall(summit["daily"]).to_h { |d| [ d[:forecast_date], d[:snowfall_inches] ] }
+      mid_days.map { |day| day.merge(snowfall_summit_inches: summit_days[day[:forecast_date]]) }
+    rescue StandardError => e
+      Rails.logger.error "Snow forecast fetch failed for #{resort&.name}: #{e.message}"
+      []
+    end
+
+    def daily_snowfall(daily)
       return [] unless daily && daily["time"] && daily["precipitation_sum"]
 
       daily["time"].each_with_index.map do |date_str, i|
@@ -50,16 +60,13 @@ module SnowForecastable
           temp_low_f: c_to_f(daily["temperature_2m_min"]&.dig(i))
         }
       end
-    rescue StandardError => e
-      Rails.logger.error "Snow forecast fetch failed for #{resort&.name}: #{e.message}"
-      []
     end
 
     def c_to_f(celsius)
       (celsius * 9.0 / 5 + 32).round if celsius
     end
 
-    # Summit conditions at fetch time; skipped quietly if the API omits them.
+    # Mid-mountain conditions at fetch time; skipped quietly if the API omits them.
     def store_current_conditions(resort, current)
       return unless current && resort.persisted?
 

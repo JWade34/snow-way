@@ -115,6 +115,13 @@ class Resort < ApplicationRecord
       .transform_values { |v| v.to_f.round(1) }
   end
 
+  # { resort_id => inches } at the summit over the forecast window.
+  def self.projected_summit_totals(as_of = Date.current, days: 7)
+    SnowForecast.where(forecast_date: forecast_window(as_of, days: days))
+      .group(:resort_id).sum(:snowfall_summit_inches)
+      .transform_values { |v| v.to_f.round(1) }
+  end
+
   # { resort_id => inches } over the last 48 hours (the two days before today).
   def self.recent_totals(as_of = Date.current)
     SnowForecast.where(forecast_date: (as_of - 2)..(as_of - 1))
@@ -150,6 +157,11 @@ class Resort < ApplicationRecord
 
   def airport_name
     AIRPORTS.fetch(nearest_airport_code, nearest_airport_code)
+  end
+
+  # Halfway between base and summit: the elevation Snow Way's headline forecast uses.
+  def mid_elevation
+    ((elevation_base.to_i + elevation_summit.to_i) / 2.0).round
   end
 
   def vertical_drop

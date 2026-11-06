@@ -6,3 +6,4 @@ Also getting snow:
 <% @alerts.drop(1).each do |r, amount| %>- <%= r.name %> (<%= r.state_province %>): <%= amount.round(1) %>"
 <% end %><% end %>
 Unsubscribe: <%= @unsubscribe_url %>
+<%= ENV.fetch("MAIL_POSTAL_ADDRESS", "Fast City LLC, 6705 W Highway 290, Suite 607 PMB 1096, Austin, TX 78735-8407") %>

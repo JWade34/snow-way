@@ -1,0 +1,54 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> holiday weeks are the busiest and most expensive times to ski, so book lodging, lessons, and rentals early, check your pass for blackout dates, and plan around crowds by skiing early and on weekdays. Christmas can have thinner coverage at some resorts, while Presidents' Day and March often bring a deeper base.</p></div>
+
+<h2>The big ski holidays</h2>
+<table>
+  <thead><tr><th scope="col">Holiday period</th><th scope="col">Crowds</th><th scope="col">Snow, in general</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Christmas and New Year's</th><td>Usually the busiest weeks of the season</td><td>Early season; coverage varies a lot by resort and year</td></tr>
+    <tr><th scope="row">Martin Luther King Jr. weekend</th><td>Busy long weekend</td><td>Midwinter; base is usually building</td></tr>
+    <tr><th scope="row">Presidents' Day week</th><td>Very busy, especially with school breaks</td><td>Often deep midwinter coverage</td></tr>
+    <tr><th scope="row">Spring break (March to April)</th><td>Busy, spread over several weeks</td><td>Often the deepest base; snow can be soft and spring-like</td></tr>
+  </tbody>
+</table>
+<p>Each resort's pattern is different. The free <%= link_to "Powder Calendar", powder_calendar_path %> shows which months historically bring the most snow at every resort Snow Way tracks.</p>
+
+<h2>Christmas and New Year's ski trips</h2>
+<p>The holiday week is magical but busy. Snow conditions can be the biggest wildcard: higher-elevation resorts and those that historically get early-season snow are safer bets than lower areas that rely on later storms.</p>
+<ul>
+  <li><strong>Book early.</strong> Lodging near the slopes and kids' ski school fill up months ahead.</li>
+  <li><strong>Choose snow-reliable resorts.</strong> Look for strong December snowfall in the Powder Calendar and check opening dates.</li>
+  <li><strong>Watch the forecast</strong> a week out on <%= link_to "where it's snowing", where_is_it_snowing_path %>.</li>
+  <li><strong>Expect lift lines</strong> mid-morning; ski first thing and take a late lunch.</li>
+</ul>
+
+<h2>MLK and Presidents' Day weekends</h2>
+<p>These long weekends draw big crowds from nearby cities. If you can, stretch the trip to include weekdays before or after, when lines drop off. Presidents' Day week often lines up with school winter breaks in many areas, making it one of the busiest stretches of the season.</p>
+
+<h2>Spring break ski trips</h2>
+<p>Spring break is spread across March and early April, so crowds are less concentrated than at Christmas. The base is often at its deepest, days are longer and warmer, and spring snow softens by late morning. Bring sunscreen and lighter layers, and plan to ski firm snow early and softer snow later in the day.</p>
+
+<h2>Pass blackout dates</h2>
+<p>Some lower-priced and local pass products restrict skiing on peak holiday dates. Before you plan a holiday trip on a pass, check its blackout calendar. Snow Way's <%= link_to "Ikon vs Epic page", ikon_vs_epic_path %> covers the main passes and which resorts are on each.</p>
+
+<h2>Family tips for holiday trips</h2>
+<ul>
+  <li><strong>Reserve ski school as soon as you book lodging.</strong> Holiday programs sell out first.</li>
+  <li><strong>Reserve rentals online</strong> and pick them up the evening before to skip morning lines.</li>
+  <li><strong>Plan one or two non-ski activities,</strong> like tubing or skating, for rest days.</li>
+  <li><strong>Pick an easy meeting point</strong> and make sure kids carry a card with your phone number.</li>
+  <li><strong>Drive early.</strong> Holiday traffic and storm closures can turn mountain roads into long waits; carry chains or traction devices where required.</li>
+</ul>
+<p>For the full family plan, read <%= link_to "family ski trip planning", guide_path("family-ski-trip") %> and grab the free <%= link_to "Ski Trip Planner", ski_trip_planner_path %>.</p>
+
+<h2>Booking timeline for a holiday ski trip</h2>
+<ol>
+  <li><strong>Late summer to early fall:</strong> buy passes, choose a resort, and book lodging and flights.</li>
+  <li><strong>Six to eight weeks out:</strong> reserve ski school, rentals, and any dinners that need reservations.</li>
+  <li><strong>One week out:</strong> watch the forecast and road conditions.</li>
+  <li><strong>Night before:</strong> pack with the <%= link_to "ski trip packing list", guide_path("ski-trip-packing-list") %>.</li>
+</ol>
+<% faqs << { question: "Is Christmas a good time to go skiing?", answer: "It can be, but it's usually the busiest and most expensive week, and early-season coverage varies by resort. Choose resorts with reliable December snow and book early." } %>
+<% faqs << { question: "When should I book a holiday ski trip?", answer: "Book lodging, flights, and passes in late summer or early fall, and reserve ski school and rentals six to eight weeks ahead, since holiday programs sell out first." } %>
+<% faqs << { question: "Do ski passes have blackout dates?", answer: "Some lower-priced and local pass products restrict skiing on peak holiday dates. Check your pass's blackout calendar before planning a holiday trip." } %>
+<% faqs << { question: "Is spring break good for skiing?", answer: "Often yes. The base is usually deep, days are longer and warmer, and crowds are spread across several weeks, though snow can be soft in the afternoon." } %>

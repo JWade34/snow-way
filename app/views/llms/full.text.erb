@@ -1,13 +1,13 @@
 # Snow Way: ski resort snow forecasts (full data)
 
-> Every North American ski resort Snow Way tracks, ranked by snow forecast over the next 7 days (<%= Resort.forecast_window.first.strftime("%b %-d") %> to <%= Resort.forecast_window.last.strftime("%b %-d, %Y") %>). Forecasts are for each resort's summit elevation, sourced from Open-Meteo and refreshed daily. Source: https://snowway.app
+> Every North American ski resort Snow Way tracks, ranked by snow forecast over the next 7 days (<%= Resort.forecast_window.first.strftime("%b %-d") %> to <%= Resort.forecast_window.last.strftime("%b %-d, %Y") %>). Headline totals are for each resort's mid-mountain elevation (summit totals in parentheses), sourced from Open-Meteo and refreshed every 6 hours. Source: https://snowway.app
 <% @summaries.each_with_index do |summary, i| %>
 <% resort = summary.resort %>
 
 ## <%= i + 1 %>. <%= resort.name %> (<%= resort.location %>)
 
 URL: https://snowway.app/resorts/<%= resort.slug %>
-7-day forecast: <%= summary.total %>"<%= summary.recent > 0 ? " · Last 48 hours: #{summary.recent}\"" : "" %>
+7-day forecast: <%= summary.total %>" mid-mountain (<%= summary.summit_total %>" summit)<%= summary.recent > 0 ? " · Last 48 hours: #{summary.recent}\"" : "" %>
 Summit <%= resort.elevation_summit %> ft · Base <%= resort.elevation_base %> ft · Nearest airport: <%= resort.airport_name %> (<%= resort.nearest_airport_code %>)<%= resort.pass_label ? " · Pass: #{resort.pass_label}" : "" %><%= resort.snowiest_months.any? ? " · Snowiest months: #{resort.snowiest_months.map { |m, _| Date::MONTHNAMES[m] }.join(", ")}" : "" %>
 
 <%= summary.answer %>

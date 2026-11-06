@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     faqs << { question: "How often are Snow Way's snow forecasts updated?",
               answer: "Every 6 hours. Each update pulls a fresh 16-day forecast for all #{@resort_count} resorts." }
     faqs << { question: "Where does Snow Way's snow forecast data come from?",
-              answer: "Forecasts come from Open-Meteo, which blends national weather models, and are calculated for each resort's summit elevation rather than the nearest town." }
+              answer: "Forecasts come from Open-Meteo, which blends national weather models, and are calculated at each resort's mid-mountain elevation (with the summit shown too), not the nearest town." }
     faqs << { question: "How far ahead can you trust a ski resort snow forecast?",
               answer: "Snow forecasts are most reliable within about 3 days and useful out to about 7. Beyond 7 days they show possible storms, not amounts to plan around, which is why Snow Way ranks resorts on the 7-day total." }
     faqs

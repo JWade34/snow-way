@@ -18,7 +18,7 @@ class ResortSummaryTest < ActiveSupport::TestCase
   test "answer is dated and states total, rank, biggest day and recent snow" do
     answer = @vail.answer
     assert_includes answer, Date.current.strftime("%B %-d, %Y")
-    assert_includes answer, "6.5\" of snow over the next 7 days"
+    assert_includes answer, "6.5\" of snow at mid-mountain over the next 7 days"
     assert_includes answer, "ranking #2 of 3"
     assert_includes answer, "with 6.0\""
     assert_includes answer, "2.0\" in the last 48 hours"
