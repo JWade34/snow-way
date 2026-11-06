@@ -103,4 +103,30 @@ class GrowthTest < ActionDispatch::IntegrationTest
     assert_includes body, "Vermont has 3 of the top 10"
     assert_includes body, "snowway.app/social/report.png"
   end
+
+  test "social planner fills the week and the admin queue lists it" do
+    travel_to Time.find_zone("America/Denver").local(2026, 11, 8, 0, 30) do # a Sunday
+      SocialPlanner.plan_week!
+      assert_equal 7, SocialPost.where(kind: "report", format: "story").count
+      assert_equal 1, SocialPost.where(kind: "report", format: "post").count
+      tips = SocialPost.where(kind: "tip").order(:scheduled_for)
+      assert_equal 3, tips.count
+      assert_equal "family", tips.first.tip["category"]
+      assert_equal 3, tips.map(&:tip_slug).uniq.size
+      SocialPlanner.plan_week!
+      assert_equal 11, SocialPost.count, "re-running doesn't duplicate"
+      assert_includes tips.first.caption_text, "snowway.app/guides/"
+      get "/admin/social", headers: @auth
+      assert_response :success
+      assert_includes response.body, "Meta isn't connected yet"
+      get tips.first.image_url(host: "")
+      assert_response :success
+    end
+  end
+
+  test "publish job does nothing until Meta is connected" do
+    SocialPost.create!(kind: "brand", format: "post", scheduled_for: 1.minute.ago)
+    SocialPublishJob.perform_now
+    assert_equal "queued", SocialPost.last.status
+  end
 end

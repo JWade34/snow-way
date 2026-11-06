@@ -1,0 +1,195 @@
+# Tip cards for Instagram/Facebook. Each renders at /social/tip.png?slug=... and links to the matching guide.
+# Keep tips general and true (no prices, dates, or resort-specific claims that go stale). Max 3 bullets, ~60 chars each.
+# category: family | gear | trip | beginner | powder
+- slug: kids-stay-warm
+  category: family
+  headline: Keep kids warm all day
+  bullets:
+    - Mittens beat gloves for little hands
+    - Merino or synthetic base layer, never cotton
+    - Pack a spare pair of socks and gloves
+  guide: kids-ski-gear
+- slug: first-family-trip
+  category: family
+  headline: Your first family ski trip
+  bullets:
+    - Book ski school for the kids, a lesson for you
+    - Stay close to the lifts to save tired legs
+    - Plan half days for the little ones
+  guide: family-ski-trip
+- slug: skiing-with-toddlers
+  category: family
+  headline: Skiing with little kids
+  bullets:
+    - Short sessions, lots of snacks, end on a win
+    - Hot chocolate breaks are part of the plan
+    - Most ski schools start kids around 3 to 5
+  guide: skiing-with-kids
+- slug: pick-family-resort
+  category: family
+  headline: What makes a great family resort
+  bullets:
+    - A big, separate beginner area
+    - Ski school with a strong kids program
+    - Easy lodging near the lifts
+  guide: best-family-ski-resorts
+- slug: holiday-crowds
+  category: family
+  headline: Skiing over the holidays
+  bullets:
+    - Book lessons and rentals early
+    - Ski first chair, break when lines peak
+    - Midweek after New Year's is quieter
+  guide: holiday-ski-trips
+- slug: save-on-trip
+  category: trip
+  headline: Ski trip on a budget
+  bullets:
+    - Buy lift tickets or passes early, never at the window
+    - Pack lunch and refill water on the mountain
+    - Look at smaller resorts near the big names
+  guide: cheap-ski-trip
+- slug: packing-musts
+  category: trip
+  headline: Easy-to-forget ski trip items
+  bullets:
+    - Sunscreen and lip balm (snow glare is real)
+    - Neck gaiter or balaclava
+    - Hand warmers and a phone battery pack
+  guide: ski-trip-packing-list
+- slug: plan-a-trip
+  category: trip
+  headline: Plan a ski trip in 3 steps
+  bullets:
+    - Pick dates, then check snow history for that month
+    - Choose a pass or ticket before you book lodging
+    - Book lessons and rentals ahead in peak weeks
+  guide: how-to-plan-a-ski-trip
+- slug: ski-in-ski-out
+  category: trip
+  headline: Is ski-in/ski-out worth it?
+  bullets:
+    - Huge with kids: no shuttle, no boot hauling
+    - Easy midday breaks and naps
+    - Check the actual walk; listings stretch it
+  guide: ski-in-ski-out
+- slug: all-inclusive
+  category: trip
+  headline: All-inclusive ski trips
+  bullets:
+    - Lodging, lifts, and often lessons in one price
+    - Great for groups who hate planning
+    - Read what's included before you compare
+  guide: all-inclusive-ski-resorts
+- slug: layer-right
+  category: gear
+  headline: How to layer for skiing
+  bullets:
+    - Base layer to move sweat
+    - Mid layer for warmth (fleece or light puffy)
+    - Waterproof shell on top
+  guide: what-to-wear-skiing
+- slug: gloves-vs-mittens
+  category: gear
+  headline: Gloves or mittens?
+  bullets:
+    - Mittens are warmer; fingers share heat
+    - Gloves give better grip for poles and zippers
+    - Cold hands? Try mittens with a liner glove
+  guide: ski-gloves-vs-mittens
+- slug: goggle-lenses
+  category: gear
+  headline: Pick the right goggle lens
+  bullets:
+    - Dark lenses for bluebird sun
+    - Light or yellow lenses for storms and flat light
+    - Interchangeable lenses cover both
+  guide: best-ski-goggles
+- slug: rent-or-buy
+  category: gear
+  headline: Rent or buy your skis?
+  bullets:
+    - Skiing under a week a year? Rent
+    - Buy boots first; fit matters most
+    - Demo before you buy skis
+  guide: rent-or-buy-ski-gear
+- slug: ski-socks
+  category: gear
+  headline: One pair of ski socks. Thin.
+  bullets:
+    - Thick or doubled socks make feet colder
+    - Merino or synthetic, knee high
+    - Nothing tucked into the boot but the sock
+  guide: best-ski-socks
+- slug: helmet-fit
+  category: gear
+  headline: Does your helmet fit?
+  bullets:
+    - Snug all around, no wobble when you shake
+    - No gap between helmet and goggles
+    - Replace it after a hard hit
+  guide: best-ski-helmet
+- slug: bibs-vs-pants
+  category: gear
+  headline: Bibs or pants?
+  bullets:
+    - Bibs keep snow out on deep days and falls
+    - Pants are easier for quick bathroom breaks
+    - Kids stay drier in bibs
+  guide: bibs-vs-pants
+- slug: first-day-ski
+  category: beginner
+  headline: Your first day on skis
+  bullets:
+    - Take a lesson; it's faster than figuring it out
+    - Pizza to slow and stop, french fries to go
+    - Quit before you're exhausted
+  guide: how-to-ski
+- slug: ski-or-board
+  category: beginner
+  headline: Skiing or snowboarding?
+  bullets:
+    - Skiing is usually easier the first few days
+    - Snowboarding often clicks faster after that
+    - Either way, lessons beat YouTube
+  guide: skiing-vs-snowboarding
+- slug: trail-ratings
+  category: beginner
+  headline: Trail colors, decoded
+  bullets:
+    - Green circle = easiest
+    - Blue square = intermediate
+    - Black diamond = advanced (double = expert)
+  guide: ski-trail-ratings
+- slug: adult-lessons
+  category: beginner
+  headline: Learning to ski as an adult
+  bullets:
+    - Group lessons are fine; private is faster
+    - Book a multi-day package if you can
+    - Everyone falls. It's how you learn
+  guide: ski-lessons-for-adults
+- slug: chase-powder
+  category: powder
+  headline: How to chase a powder day
+  bullets:
+    - Trust forecasts 3 to 5 days out, not 10
+    - Book refundable, then go where it's dumping
+    - Get there for first chair
+  guide: how-to-chase-powder
+- slug: ski-powder
+  category: powder
+  headline: Skiing powder for the first time
+  bullets:
+    - Stay centered over your feet; do not sit back
+    - Keep your feet closer together
+    - Keep moving; speed is your friend
+  guide: how-to-ski-powder
+- slug: apres
+  category: trip
+  headline: What is après-ski?
+  bullets:
+    - The after-skiing hang: food, drinks, music
+    - Usually starts when the lifts slow down
+    - Plenty of it is family friendly too
+  guide: what-is-apres-ski

@@ -39,6 +39,14 @@ production:
     class: PowderReportSnapshotJob
     queue: default
     schedule: every thursday at 7am America/Denver
+  social_plan:
+    class: SocialPlanJob
+    queue: default
+    schedule: every day at 1am America/Denver
+  social_publish:
+    class: SocialPublishJob
+    queue: default
+    schedule: every 15 minutes
   thursday_reddit_post_email:
     command: "GrowthMailer.thursday_post.deliver_now"
     queue: default

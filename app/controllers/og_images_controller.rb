@@ -9,7 +9,7 @@ class OgImagesController < ApplicationController
   def social
     format = SocialCard::FORMATS.key?(params[:size]&.to_sym) ? params[:size] : "post"
     expires_in 1.hour, public: true
-    send_data SocialCard.new(params[:kind], format: format).to_png, type: "image/png", disposition: "inline",
-      filename: "snowway-#{params[:kind]}-#{format}-#{Date.current}.png"
+    send_data SocialCard.new(params[:kind], format: format, tip: params[:slug]).to_png, type: "image/png", disposition: "inline",
+      filename: "snowway-#{[params[:kind], params[:slug]].compact.join("-")}-#{format}.png"
   end
 end

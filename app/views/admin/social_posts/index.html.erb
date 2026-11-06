@@ -1,0 +1,37 @@
+<% content_for(:title, "Social") %>
+<h1 class="text-2xl font-extrabold mb-1">Social queue</h1>
+<p class="text-slate-400 text-sm mb-6">
+  <% if @connected %>
+    Connected to Meta. Posts go out on their own at the times below (Mountain time). Skip anything you don't want.
+  <% else %>
+    Meta isn't connected yet, so nothing posts on its own. Until then, tap an image to save it and copy the caption.
+  <% end %>
+  Daily snow report story every morning, plus tips Mon/Wed/Sat and the weekly report Thursday.
+</p>
+<div class="space-y-4">
+  <% @upcoming.each do |post| %>
+    <div class="flex gap-4 bg-slate-800/60 border border-slate-700 rounded-xl p-3">
+      <%= link_to post.image_url(host: ""), target: "_blank", class: "shrink-0" do %>
+        <img src="<%= post.image_url(host: "") %>" alt="" loading="lazy" class="<%= post.story? ? "w-20 h-36" : "w-28 h-36" %> object-cover rounded-lg bg-slate-900">
+      <% end %>
+      <div class="min-w-0 flex-1 text-sm">
+        <p class="font-bold"><%= post.scheduled_for.in_time_zone(SocialPlanner::ZONE).strftime("%a %b %-d, %-l:%M%P") %> · <%= post.kind == "tip" ? "#{post.tip&.dig("category")&.capitalize} tip" : post.kind.capitalize %> <%= post.format %></p>
+        <% unless post.story? %>
+          <textarea readonly rows="4" class="mt-2 w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-300"><%= post.kind == "report" ? "(Written from the live forecast when it posts.)\n\n" + post.caption_text : post.caption_text %></textarea>
+        <% end %>
+        <div class="mt-2 flex gap-3">
+          <% if @connected %><%= button_to "Post now", publish_admin_social_post_path(post), class: "text-cyan-300 underline" %><% end %>
+          <%= button_to "Skip", skip_admin_social_post_path(post), class: "text-slate-400 underline" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% if @recent.any? %>
+  <h2 class="text-lg font-bold mt-10 mb-3">Recent</h2>
+  <ul class="text-sm space-y-1 text-slate-300">
+    <% @recent.each do |post| %>
+      <li><%= post.scheduled_for.in_time_zone(SocialPlanner::ZONE).strftime("%b %-d %-l:%M%P") %> · <%= post.kind %> <%= post.format %> · <strong><%= post.status %></strong><%= " (#{post.error})" if post.error.present? %></li>
+    <% end %>
+  </ul>
+<% end %>

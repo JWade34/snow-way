@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_160853) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_203446) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -138,6 +138,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_160853) do
     t.integer "weather_code"
     t.integer "wind_max_mph"
     t.index ["resort_id"], name: "index_snow_forecasts_on_resort_id"
+  end
+
+  create_table "social_posts", force: :cascade do |t|
+    t.string "kind", null: false
+    t.string "tip_slug"
+    t.string "format", default: "post", null: false
+    t.text "caption"
+    t.datetime "scheduled_for", null: false
+    t.string "status", default: "queued", null: false
+    t.json "result"
+    t.text "error"
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind", "format", "scheduled_for"], name: "index_social_posts_on_kind_and_format_and_scheduled_for", unique: true
+    t.index ["status", "scheduled_for"], name: "index_social_posts_on_status_and_scheduled_for"
   end
 
   create_table "subscribers", force: :cascade do |t|

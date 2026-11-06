@@ -6,7 +6,8 @@ require "vips"
 # Formats: post 1080x1350 (Instagram portrait), square 1080x1080, story 1080x1920.
 class SocialCard
   FORMATS = { post: [ 1080, 1350 ], square: [ 1080, 1080 ], story: [ 1080, 1920 ] }.freeze
-  KINDS = %i[report brand calendar].freeze
+  KINDS = %i[report brand calendar tip].freeze
+  TIP_LABELS = { "family" => "FAMILY TIP", "gear" => "GEAR TIP", "trip" => "TRIP TIP", "beginner" => "FIRST-TIMER TIP", "powder" => "POWDER TIP" }.freeze
   FONT = OgImage::FONT_FAMILY
   TOP = [ 30, 41, 59 ].freeze       # slate-800
   BOTTOM = [ 15, 23, 42 ].freeze    # slate-900
@@ -16,8 +17,13 @@ class SocialCard
   MUTED = OgImage::MUTED
   PAD = 90
 
-  def initialize(kind, format: :post, data: nil)
+  def self.tips
+    @tips ||= YAML.load_file(Rails.root.join("db/social_tips.yml"))
+  end
+
+  def initialize(kind, format: :post, data: nil, tip: nil)
     @kind = KINDS.include?(kind.to_sym) ? kind.to_sym : :brand
+    @tip = tip.is_a?(Hash) ? tip : self.class.tips.find { |t| t["slug"] == tip } || self.class.tips.first
     @w, @h = FORMATS.fetch(format.to_sym, FORMATS[:post])
     @data = data
   end
@@ -45,6 +51,27 @@ class SocialCard
     text("The best month for powder\nat every major ski resort,\non one page.", mid + 40, size: 50, weight: "Medium", color: MUTED, align: :center)
     text("snowway.app/powder-calendar", mid + 300, size: 44, weight: "Bold", color: CYAN, align: :center)
     logo(@h - PAD - 70, size: 56)
+  end
+
+  def draw_tip
+    t = @tip
+    story = @h > 1400
+    y = story ? 380 : 130
+    logo(y, size: 54)
+    text(TIP_LABELS.fetch(t["category"], "SNOW TIP"), y + 120, size: 38, weight: "ExtraBold", color: AMBER, align: :center, spacing: 6)
+    head = render(ERB::Util.h(t["headline"]), 84, "ExtraBold", width: @w - 2 * PAD, align: :center)
+    paste(head, (@w - head.width) / 2, y + 185, WHITE)
+    top = y + 185 + head.height + 40
+    lines = t["bullets"].first(3).map { |b| render(ERB::Util.h(b), 54, "SemiBold", width: @w - 2 * PAD - 80) }
+    gap = 60
+    block = lines.sum(&:height) + gap * (lines.size - 1)
+    y = top + ((@h - PAD - 80 - top - block) / 2).clamp(0, 110)
+    lines.each do |line|
+      @img = @img.draw_circle(CYAN, PAD + 24, y + 36, 14, fill: true)
+      paste(line, PAD + 70, y, WHITE)
+      y += line.height + gap
+    end
+    footer("Full guide: snowway.app/guides/#{t["guide"]}")
   end
 
   def draw_report
