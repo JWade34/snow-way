@@ -147,7 +147,10 @@ class Guide
       keyword: "cheap ski vacations" },
     { slug: "holiday-ski-trips", title: "Christmas and Spring Break Ski Trips: How to Beat the Crowds",
       description: "Planning a ski trip over Christmas, Presidents' Day, or spring break: when to book, snow odds, crowds, blackout dates, and how families can make it work.",
-      keyword: "christmas ski trip" }
+      keyword: "christmas ski trip" },
+    { slug: "all-inclusive-ski-resorts", title: "All-Inclusive Ski Resorts: What's Included and Where to Find Them",
+      description: "What an all-inclusive ski vacation includes, how it compares to booking separately, and where to find all-inclusive ski resorts in North America.",
+      keyword: "all inclusive ski resorts" }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate
