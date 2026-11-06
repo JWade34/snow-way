@@ -70,6 +70,75 @@
     10: 0.4
     11: 6.8
     12: 14.5
+- name: Boreal
+  slug: boreal
+  latitude: 39.3349
+  longitude: -120.3474
+  nearest_airport_code: RNO
+  state_province: California
+  country: USA
+  elevation_base: 7200
+  elevation_summit: 7700
+  website_url: https://www.rideboreal.com
+  monthly_snow_share:
+    1: 20.6
+    2: 19.8
+    3: 20.7
+    4: 7.6
+    5: 2.8
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 1.3
+    11: 9.1
+    12: 17.8
+- name: China Peak
+  slug: china-peak
+  latitude: 37.2347
+  longitude: -119.1567
+  nearest_airport_code: FAT
+  state_province: California
+  country: USA
+  elevation_base: 7030
+  elevation_summit: 8709
+  website_url: https://www.skichinapeak.com
+  monthly_snow_share:
+    1: 22.0
+    2: 18.8
+    3: 22.3
+    4: 6.6
+    5: 3.1
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.3
+    10: 1.5
+    11: 8.7
+    12: 16.6
+- name: Dodge Ridge
+  slug: dodge-ridge
+  latitude: 38.1872
+  longitude: -119.9554
+  nearest_airport_code: SMF
+  state_province: California
+  country: USA
+  elevation_base: 6600
+  elevation_summit: 8200
+  website_url: https://www.dodgeridge.com
+  monthly_snow_share:
+    1: 22.5
+    2: 18.3
+    3: 22.8
+    4: 6.8
+    5: 3.0
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 0.6
+    11: 8.2
+    12: 17.5
 - name: Heavenly
   slug: heavenly
   latitude: 38.9353
@@ -93,6 +162,52 @@
     10: 2.2
     11: 9.6
     12: 18.9
+- name: Homewood
+  slug: homewood
+  latitude: 39.0865
+  longitude: -120.1615
+  nearest_airport_code: RNO
+  state_province: California
+  country: USA
+  elevation_base: 6230
+  elevation_summit: 7881
+  website_url: https://www.skihomewood.com
+  monthly_snow_share:
+    1: 21.4
+    2: 19.3
+    3: 21.1
+    4: 6.6
+    5: 2.3
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 1.1
+    11: 8.0
+    12: 20.0
+- name: June Mountain
+  slug: june-mountain
+  latitude: 37.7615
+  longitude: -119.0829
+  nearest_airport_code: MMH
+  state_province: California
+  country: USA
+  elevation_base: 7545
+  elevation_summit: 10090
+  website_url: https://www.junemountain.com
+  monthly_snow_share:
+    1: 21.9
+    2: 19.8
+    3: 19.4
+    4: 6.3
+    5: 3.4
+    6: 0.5
+    7: 0.0
+    8: 0.0
+    9: 0.5
+    10: 2.6
+    11: 8.3
+    12: 17.3
 - name: Kirkwood
   slug: kirkwood
   latitude: 38.685
@@ -139,6 +254,29 @@
     10: 1.6
     11: 8.6
     12: 16.6
+- name: Mountain High
+  slug: mountain-high
+  latitude: 34.3766
+  longitude: -117.692
+  nearest_airport_code: ONT
+  state_province: California
+  country: USA
+  elevation_base: 6600
+  elevation_summit: 8200
+  website_url: https://www.mthigh.com
+  monthly_snow_share:
+    1: 20.8
+    2: 27.1
+    3: 22.0
+    4: 7.3
+    5: 1.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 5.0
+    12: 16.4
 - name: Northstar
   slug: northstar
   latitude: 39.2746
@@ -208,6 +346,29 @@
     10: 1.9
     11: 9.6
     12: 18.5
+- name: Snow Summit
+  slug: snow-summit
+  latitude: 34.2357
+  longitude: -116.8874
+  nearest_airport_code: ONT
+  state_province: California
+  country: USA
+  elevation_base: 6965
+  elevation_summit: 8174
+  website_url: https://www.bigbearmountainresort.com
+  monthly_snow_share:
+    1: 25.7
+    2: 24.6
+    3: 21.7
+    4: 5.1
+    5: 1.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.1
+    11: 6.1
+    12: 14.8
 - name: Sugar Bowl
   slug: sugar-bowl
   latitude: 39.3047
@@ -461,6 +622,29 @@
     10: 6.9
     11: 10.2
     12: 13.7
+- name: Powderhorn
+  slug: powderhorn
+  latitude: 39.0688
+  longitude: -108.1497
+  nearest_airport_code: GJT
+  state_province: Colorado
+  country: USA
+  elevation_base: 8200
+  elevation_summit: 9850
+  website_url: https://www.powderhorn.com
+  monthly_snow_share:
+    1: 15.3
+    2: 14.7
+    3: 22.0
+    4: 10.0
+    5: 6.1
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 7.9
+    11: 10.3
+    12: 13.1
 - name: Purgatory
   slug: purgatory
   latitude: 37.6303
@@ -484,6 +668,29 @@
     10: 6.3
     11: 10.9
     12: 16.9
+- name: Ski Cooper
+  slug: ski-cooper
+  latitude: 39.3596
+  longitude: -106.3016
+  nearest_airport_code: EGE
+  state_province: Colorado
+  country: USA
+  elevation_base: 10500
+  elevation_summit: 11700
+  website_url: https://www.skicooper.com
+  monthly_snow_share:
+    1: 12.9
+    2: 14.2
+    3: 15.5
+    4: 14.6
+    5: 9.5
+    6: 0.8
+    7: 0.0
+    8: 0.0
+    9: 1.1
+    10: 7.5
+    11: 10.4
+    12: 13.5
 - name: Steamboat
   slug: steamboat
   latitude: 40.4572
@@ -506,6 +713,29 @@
     9: 0.4
     10: 6.7
     11: 12.1
+    12: 15.6
+- name: Sunlight Mountain
+  slug: sunlight-mountain
+  latitude: 39.4004
+  longitude: -107.3395
+  nearest_airport_code: EGE
+  state_province: Colorado
+  country: USA
+  elevation_base: 7885
+  elevation_summit: 9895
+  website_url: https://sunlightmtn.com
+  monthly_snow_share:
+    1: 13.7
+    2: 15.4
+    3: 19.2
+    4: 10.3
+    5: 5.4
+    6: 0.5
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 8.7
+    11: 11.1
     12: 15.6
 - name: Telluride
   slug: telluride
@@ -645,6 +875,29 @@
     10: 4.3
     11: 11.5
     12: 19.5
+- name: Lookout Pass
+  slug: lookout-pass
+  latitude: 47.4572
+  longitude: -115.6969
+  nearest_airport_code: GEG
+  state_province: Idaho
+  country: USA
+  elevation_base: 4500
+  elevation_summit: 6150
+  website_url: https://skilookout.com
+  monthly_snow_share:
+    1: 17.2
+    2: 19.1
+    3: 12.8
+    4: 8.5
+    5: 2.1
+    6: 0.4
+    7: 0.0
+    8: 0.0
+    9: 0.8
+    10: 4.8
+    11: 13.7
+    12: 20.6
 - name: Schweitzer
   slug: schweitzer
   latitude: 48.3679
@@ -668,6 +921,29 @@
     10: 3.6
     11: 14.7
     12: 20.8
+- name: Silver Mountain
+  slug: silver-mountain
+  latitude: 47.496
+  longitude: -116.1183
+  nearest_airport_code: GEG
+  state_province: Idaho
+  country: USA
+  elevation_base: 4100
+  elevation_summit: 6297
+  website_url: https://www.silvermt.com
+  monthly_snow_share:
+    1: 18.8
+    2: 19.3
+    3: 12.7
+    4: 6.9
+    5: 1.1
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 3.5
+    11: 13.1
+    12: 24.1
 - name: Sun Valley
   slug: sun-valley
   latitude: 43.6777
@@ -714,6 +990,52 @@
     10: 3.6
     11: 11.8
     12: 19.7
+- name: Paoli Peaks
+  slug: paoli-peaks
+  latitude: 38.5558
+  longitude: -86.5105
+  nearest_airport_code: SDF
+  state_province: Indiana
+  country: USA
+  elevation_base: 540
+  elevation_summit: 820
+  website_url: https://www.paolipeaks.com
+  monthly_snow_share:
+    1: 40.2
+    2: 31.8
+    3: 9.5
+    4: 4.4
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.1
+    11: 6.1
+    12: 8.0
+- name: Perfect North Slopes
+  slug: perfect-north-slopes
+  latitude: 39.1487
+  longitude: -84.8879
+  nearest_airport_code: CVG
+  state_province: Indiana
+  country: USA
+  elevation_base: 400
+  elevation_summit: 800
+  website_url: https://www.perfectnorth.com
+  monthly_snow_share:
+    1: 37.0
+    2: 30.4
+    3: 10.9
+    4: 5.0
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.5
+    11: 5.6
+    12: 10.5
 - name: Sugarloaf
   slug: sugarloaf
   latitude: 45.0314
@@ -760,6 +1082,236 @@
     10: 2.3
     11: 11.1
     12: 16.7
+- name: Jiminy Peak
+  slug: jiminy-peak
+  latitude: 42.5544
+  longitude: -73.2892
+  nearest_airport_code: ALB
+  state_province: Massachusetts
+  country: USA
+  elevation_base: 1260
+  elevation_summit: 2380
+  website_url: https://www.jiminypeak.com
+  monthly_snow_share:
+    1: 22.0
+    2: 20.1
+    3: 21.0
+    4: 6.8
+    5: 0.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.1
+    11: 9.9
+    12: 18.8
+- name: Wachusett Mountain
+  slug: wachusett-mountain
+  latitude: 42.5018
+  longitude: -71.8851
+  nearest_airport_code: MHT
+  state_province: Massachusetts
+  country: USA
+  elevation_base: 1000
+  elevation_summit: 2006
+  website_url: https://www.wachusett.com
+  monthly_snow_share:
+    1: 22.7
+    2: 22.2
+    3: 22.9
+    4: 8.6
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.6
+    11: 4.6
+    12: 18.4
+- name: Boyne Mountain
+  slug: boyne-mountain
+  latitude: 45.1624
+  longitude: -84.9331
+  nearest_airport_code: PLN
+  state_province: Michigan
+  country: USA
+  elevation_base: 719
+  elevation_summit: 1152
+  website_url: https://www.boynemountain.com
+  monthly_snow_share:
+    1: 22.5
+    2: 18.4
+    3: 13.6
+    4: 8.1
+    5: 0.8
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.4
+    11: 11.0
+    12: 24.2
+- name: Crystal Mountain (Michigan)
+  slug: crystal-mountain-michigan
+  latitude: 44.52
+  longitude: -85.9923
+  nearest_airport_code: TVC
+  state_province: Michigan
+  country: USA
+  elevation_base: 757
+  elevation_summit: 1132
+  website_url: https://www.crystalmountain.com
+  monthly_snow_share:
+    1: 25.5
+    2: 18.3
+    3: 14.6
+    4: 7.1
+    5: 1.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.7
+    11: 10.1
+    12: 21.5
+- name: Mount Bohemia
+  slug: mount-bohemia
+  latitude: 47.3859
+  longitude: -88.0084
+  nearest_airport_code: CMX
+  state_province: Michigan
+  country: USA
+  elevation_base: 661
+  elevation_summit: 1465
+  website_url: https://www.mtbohemia.com
+  monthly_snow_share:
+    1: 21.5
+    2: 20.5
+    3: 13.8
+    4: 10.3
+    5: 1.8
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.0
+    11: 10.1
+    12: 21.1
+- name: Nub's Nob
+  slug: nubs-nob
+  latitude: 45.4721
+  longitude: -84.9035
+  nearest_airport_code: PLN
+  state_province: Michigan
+  country: USA
+  elevation_base: 911
+  elevation_summit: 1338
+  website_url: https://www.nubsnob.com
+  monthly_snow_share:
+    1: 24.3
+    2: 19.5
+    3: 13.0
+    4: 7.4
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.3
+    11: 9.8
+    12: 25.5
+- name: The Highlands
+  slug: the-highlands
+  latitude: 45.4709
+  longitude: -84.937
+  nearest_airport_code: PLN
+  state_province: Michigan
+  country: USA
+  elevation_base: 787
+  elevation_summit: 1316
+  website_url: https://www.highlandsharborsprings.com
+  monthly_snow_share:
+    1: 24.4
+    2: 19.6
+    3: 13.0
+    4: 7.4
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.3
+    11: 9.7
+    12: 25.5
+- name: Afton Alps
+  slug: afton-alps
+  latitude: 44.8569
+  longitude: -92.7836
+  nearest_airport_code: MSP
+  state_province: Minnesota
+  country: USA
+  elevation_base: 700
+  elevation_summit: 1020
+  website_url: https://www.aftonalps.com
+  monthly_snow_share:
+    1: 17.5
+    2: 17.9
+    3: 17.1
+    4: 11.9
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 4.0
+    11: 11.1
+    12: 20.6
+- name: Lutsen Mountains
+  slug: lutsen-mountains
+  latitude: 47.6611
+  longitude: -90.7174
+  nearest_airport_code: DLH
+  state_province: Minnesota
+  country: USA
+  elevation_base: 905
+  elevation_summit: 1678
+  website_url: https://www.lutsen.com
+  monthly_snow_share:
+    1: 15.7
+    2: 14.9
+    3: 14.5
+    4: 15.5
+    5: 0.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.1
+    11: 12.0
+    12: 26.0
+- name: Spirit Mountain
+  slug: spirit-mountain
+  latitude: 46.7181
+  longitude: -92.2087
+  nearest_airport_code: DLH
+  state_province: Minnesota
+  country: USA
+  elevation_base: 620
+  elevation_summit: 1298
+  website_url: https://www.spiritmt.com
+  monthly_snow_share:
+    1: 15.2
+    2: 17.0
+    3: 17.6
+    4: 11.0
+    5: 0.7
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.8
+    11: 10.2
+    12: 27.5
 - name: Big Sky
   slug: big-sky
   latitude: 45.2858
@@ -806,6 +1358,75 @@
     10: 9.1
     11: 10.6
     12: 11.6
+- name: Discovery
+  slug: discovery
+  latitude: 46.2498
+  longitude: -113.2396
+  nearest_airport_code: MSO
+  state_province: Montana
+  country: USA
+  elevation_base: 5770
+  elevation_summit: 8158
+  website_url: https://www.skidiscovery.com
+  monthly_snow_share:
+    1: 11.3
+    2: 17.7
+    3: 12.9
+    4: 13.3
+    5: 8.9
+    6: 3.0
+    7: 0.1
+    8: 0.0
+    9: 1.7
+    10: 7.3
+    11: 10.6
+    12: 13.1
+- name: Montana Snowbowl
+  slug: montana-snowbowl
+  latitude: 47.0137
+  longitude: -114.0005
+  nearest_airport_code: MSO
+  state_province: Montana
+  country: USA
+  elevation_base: 5000
+  elevation_summit: 7600
+  website_url: https://www.montanasnowbowl.com
+  monthly_snow_share:
+    1: 13.1
+    2: 19.2
+    3: 12.1
+    4: 12.4
+    5: 6.2
+    6: 1.9
+    7: 0.0
+    8: 0.0
+    9: 1.0
+    10: 6.6
+    11: 11.5
+    12: 16.1
+- name: Red Lodge Mountain
+  slug: red-lodge-mountain
+  latitude: 45.1905
+  longitude: -109.3369
+  nearest_airport_code: BIL
+  state_province: Montana
+  country: USA
+  elevation_base: 7016
+  elevation_summit: 9416
+  website_url: https://www.redlodgemountain.com
+  monthly_snow_share:
+    1: 8.5
+    2: 14.8
+    3: 13.0
+    4: 16.1
+    5: 14.8
+    6: 1.3
+    7: 0.0
+    8: 0.0
+    9: 3.2
+    10: 9.5
+    11: 8.9
+    12: 9.8
 - name: Whitefish Mountain
   slug: whitefish-mountain
   latitude: 48.4827
@@ -829,6 +1450,52 @@
     10: 5.6
     11: 14.6
     12: 19.9
+- name: Diamond Peak
+  slug: diamond-peak
+  latitude: 39.2536
+  longitude: -119.9206
+  nearest_airport_code: RNO
+  state_province: Nevada
+  country: USA
+  elevation_base: 6700
+  elevation_summit: 8540
+  website_url: https://www.diamondpeak.com
+  monthly_snow_share:
+    1: 21.1
+    2: 19.6
+    3: 19.7
+    4: 6.2
+    5: 2.7
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 2.3
+    11: 8.8
+    12: 19.0
+- name: Lee Canyon
+  slug: lee-canyon
+  latitude: 36.3036
+  longitude: -115.6758
+  nearest_airport_code: LAS
+  state_province: Nevada
+  country: USA
+  elevation_base: 8660
+  elevation_summit: 9350
+  website_url: https://www.leecanyonlv.com
+  monthly_snow_share:
+    1: 24.4
+    2: 21.3
+    3: 23.7
+    4: 5.7
+    5: 4.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.5
+    11: 5.6
+    12: 13.4
 - name: Mt. Rose
   slug: mt-rose
   latitude: 39.3149
@@ -852,6 +1519,29 @@
     10: 2.6
     11: 8.9
     12: 18.8
+- name: Attitash
+  slug: attitash
+  latitude: 44.0824
+  longitude: -71.2312
+  nearest_airport_code: PWM
+  state_province: New Hampshire
+  country: USA
+  elevation_base: 620
+  elevation_summit: 2280
+  website_url: https://www.attitash.com
+  monthly_snow_share:
+    1: 22.0
+    2: 21.3
+    3: 17.5
+    4: 10.0
+    5: 0.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.0
+    11: 10.0
+    12: 17.7
 - name: Bretton Woods
   slug: bretton-woods
   latitude: 44.258
@@ -898,6 +1588,52 @@
     10: 3.1
     11: 12.1
     12: 16.8
+- name: Cranmore
+  slug: cranmore
+  latitude: 44.0575
+  longitude: -71.1092
+  nearest_airport_code: PWM
+  state_province: New Hampshire
+  country: USA
+  elevation_base: 550
+  elevation_summit: 1670
+  website_url: https://www.cranmore.com
+  monthly_snow_share:
+    1: 23.0
+    2: 22.7
+    3: 17.3
+    4: 8.3
+    5: 0.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.6
+    11: 9.0
+    12: 19.0
+- name: Gunstock
+  slug: gunstock
+  latitude: 43.5406
+  longitude: -71.3661
+  nearest_airport_code: MHT
+  state_province: New Hampshire
+  country: USA
+  elevation_base: 867
+  elevation_summit: 2267
+  website_url: https://www.gunstock.com
+  monthly_snow_share:
+    1: 21.9
+    2: 21.2
+    3: 18.8
+    4: 9.7
+    5: 0.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.5
+    11: 6.7
+    12: 20.8
 - name: Loon Mountain
   slug: loon-mountain
   latitude: 44.0364
@@ -921,6 +1657,213 @@
     10: 2.2
     11: 11.5
     12: 17.6
+- name: Mount Sunapee
+  slug: mount-sunapee
+  latitude: 43.3313
+  longitude: -72.0786
+  nearest_airport_code: MHT
+  state_province: New Hampshire
+  country: USA
+  elevation_base: 1230
+  elevation_summit: 2743
+  website_url: https://www.mountsunapee.com
+  monthly_snow_share:
+    1: 21.7
+    2: 19.6
+    3: 18.4
+    4: 10.1
+    5: 0.8
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.1
+    11: 9.6
+    12: 18.7
+- name: Pats Peak
+  slug: pats-peak
+  latitude: 43.1598
+  longitude: -71.7955
+  nearest_airport_code: MHT
+  state_province: New Hampshire
+  country: USA
+  elevation_base: 690
+  elevation_summit: 1460
+  website_url: https://www.patspeak.com
+  monthly_snow_share:
+    1: 22.9
+    2: 21.8
+    3: 20.4
+    4: 7.0
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.3
+    11: 6.6
+    12: 20.9
+- name: Waterville Valley
+  slug: waterville-valley
+  latitude: 43.9643
+  longitude: -71.5259
+  nearest_airport_code: MHT
+  state_province: New Hampshire
+  country: USA
+  elevation_base: 1820
+  elevation_summit: 3840
+  website_url: https://www.waterville.com
+  monthly_snow_share:
+    1: 19.5
+    2: 18.5
+    3: 16.8
+    4: 12.3
+    5: 2.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.6
+    11: 11.3
+    12: 16.8
+- name: Wildcat Mountain
+  slug: wildcat-mountain
+  latitude: 44.2636
+  longitude: -71.2356
+  nearest_airport_code: PWM
+  state_province: New Hampshire
+  country: USA
+  elevation_base: 1950
+  elevation_summit: 4062
+  website_url: https://www.skiwildcat.com
+  monthly_snow_share:
+    1: 18.8
+    2: 16.9
+    3: 16.8
+    4: 13.3
+    5: 3.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 3.6
+    11: 11.7
+    12: 15.9
+- name: Mountain Creek
+  slug: mountain-creek
+  latitude: 41.1913
+  longitude: -74.5071
+  nearest_airport_code: EWR
+  state_province: New Jersey
+  country: USA
+  elevation_base: 449
+  elevation_summit: 1490
+  website_url: https://www.mountaincreek.com
+  monthly_snow_share:
+    1: 21.8
+    2: 26.7
+    3: 24.8
+    4: 3.8
+    5: 0.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 5.8
+    12: 16.9
+- name: Angel Fire
+  slug: angel-fire
+  latitude: 36.3856
+  longitude: -105.2724
+  nearest_airport_code: SAF
+  state_province: New Mexico
+  country: USA
+  elevation_base: 8600
+  elevation_summit: 10677
+  website_url: https://www.angelfireresort.com
+  monthly_snow_share:
+    1: 15.0
+    2: 15.2
+    3: 19.1
+    4: 11.6
+    5: 7.8
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 1.0
+    10: 7.5
+    11: 10.4
+    12: 12.2
+- name: Red River
+  slug: red-river
+  latitude: 36.7073
+  longitude: -105.4097
+  nearest_airport_code: SAF
+  state_province: New Mexico
+  country: USA
+  elevation_base: 8650
+  elevation_summit: 10280
+  website_url: https://www.redriverskiarea.com
+  monthly_snow_share:
+    1: 12.8
+    2: 15.2
+    3: 17.6
+    4: 11.6
+    5: 11.6
+    6: 0.5
+    7: 0.0
+    8: 0.0
+    9: 2.0
+    10: 9.0
+    11: 9.3
+    12: 10.5
+- name: Sipapu
+  slug: sipapu
+  latitude: 36.1539
+  longitude: -105.5496
+  nearest_airport_code: SAF
+  state_province: New Mexico
+  country: USA
+  elevation_base: 8200
+  elevation_summit: 9255
+  website_url: https://www.sipapu.ski
+  monthly_snow_share:
+    1: 18.5
+    2: 19.5
+    3: 21.3
+    4: 9.0
+    5: 4.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.5
+    10: 3.0
+    11: 10.2
+    12: 14.1
+- name: Ski Apache
+  slug: ski-apache
+  latitude: 33.3967
+  longitude: -105.789
+  nearest_airport_code: ELP
+  state_province: New Mexico
+  country: USA
+  elevation_base: 9600
+  elevation_summit: 11500
+  website_url: https://www.skiapache.com
+  monthly_snow_share:
+    1: 24.9
+    2: 23.1
+    3: 16.0
+    4: 7.3
+    5: 0.8
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.3
+    11: 11.1
+    12: 14.5
 - name: Ski Santa Fe
   slug: ski-santa-fe
   latitude: 35.796
@@ -967,6 +1910,29 @@
     10: 8.8
     11: 9.6
     12: 12.0
+- name: Belleayre
+  slug: belleayre
+  latitude: 42.1417
+  longitude: -74.5007
+  nearest_airport_code: ALB
+  state_province: New York
+  country: USA
+  elevation_base: 2025
+  elevation_summit: 3429
+  website_url: https://www.belleayre.com
+  monthly_snow_share:
+    1: 19.7
+    2: 18.1
+    3: 20.4
+    4: 10.1
+    5: 0.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.2
+    11: 11.8
+    12: 17.9
 - name: Gore Mountain
   slug: gore-mountain
   latitude: 43.6727
@@ -990,6 +1956,52 @@
     10: 1.9
     11: 12.1
     12: 16.0
+- name: Greek Peak
+  slug: greek-peak
+  latitude: 42.5074
+  longitude: -76.1431
+  nearest_airport_code: SYR
+  state_province: New York
+  country: USA
+  elevation_base: 1148
+  elevation_summit: 2200
+  website_url: https://www.greekpeak.net
+  monthly_snow_share:
+    1: 22.6
+    2: 22.5
+    3: 16.6
+    4: 7.1
+    5: 0.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.4
+    11: 11.5
+    12: 19.1
+- name: Holiday Valley
+  slug: holiday-valley
+  latitude: 42.2617
+  longitude: -78.6669
+  nearest_airport_code: BUF
+  state_province: New York
+  country: USA
+  elevation_base: 1500
+  elevation_summit: 2250
+  website_url: https://www.holidayvalley.com
+  monthly_snow_share:
+    1: 25.1
+    2: 21.3
+    3: 12.5
+    4: 6.9
+    5: 0.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.2
+    11: 13.5
+    12: 20.3
 - name: Hunter Mountain
   slug: hunter-mountain
   latitude: 42.2024
@@ -1036,6 +2048,190 @@
     10: 3.4
     11: 11.9
     12: 15.3
+- name: Windham Mountain
+  slug: windham-mountain
+  latitude: 42.3003
+  longitude: -74.2572
+  nearest_airport_code: ALB
+  state_province: New York
+  country: USA
+  elevation_base: 1500
+  elevation_summit: 3100
+  website_url: https://www.windhammountainclub.com
+  monthly_snow_share:
+    1: 19.2
+    2: 17.4
+    3: 21.5
+    4: 9.8
+    5: 1.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.6
+    11: 11.7
+    12: 17.8
+- name: Beech Mountain
+  slug: beech-mountain
+  latitude: 36.1937
+  longitude: -81.8775
+  nearest_airport_code: TRI
+  state_province: North Carolina
+  country: USA
+  elevation_base: 4675
+  elevation_summit: 5506
+  website_url: https://www.beechmountainresort.com
+  monthly_snow_share:
+    1: 41.1
+    2: 18.7
+    3: 11.8
+    4: 4.8
+    5: 0.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.1
+    11: 3.8
+    12: 18.5
+- name: Cataloochee
+  slug: cataloochee
+  latitude: 35.5585
+  longitude: -83.0887
+  nearest_airport_code: AVL
+  state_province: North Carolina
+  country: USA
+  elevation_base: 4660
+  elevation_summit: 5400
+  website_url: https://cataloochee.com
+  monthly_snow_share:
+    1: 47.7
+    2: 17.7
+    3: 9.5
+    4: 2.3
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.3
+    11: 1.8
+    12: 20.6
+- name: Sugar Mountain
+  slug: sugar-mountain
+  latitude: 36.1311
+  longitude: -81.8586
+  nearest_airport_code: TRI
+  state_province: North Carolina
+  country: USA
+  elevation_base: 4100
+  elevation_summit: 5300
+  website_url: https://skisugar.com
+  monthly_snow_share:
+    1: 41.1
+    2: 19.5
+    3: 11.7
+    4: 4.3
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.7
+    11: 3.4
+    12: 19.3
+- name: Boston Mills/Brandywine
+  slug: boston-mills-brandywine
+  latitude: 41.2655
+  longitude: -81.5651
+  nearest_airport_code: CLE
+  state_province: Ohio
+  country: USA
+  elevation_base: 660
+  elevation_summit: 870
+  website_url: https://www.bmbw.com
+  monthly_snow_share:
+    1: 27.8
+    2: 22.0
+    3: 12.3
+    4: 9.5
+    5: 0.7
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.6
+    11: 9.4
+    12: 17.7
+- name: Mad River Mountain
+  slug: mad-river-mountain
+  latitude: 40.3187
+  longitude: -83.6766
+  nearest_airport_code: DAY
+  state_province: Ohio
+  country: USA
+  elevation_base: 1160
+  elevation_summit: 1460
+  website_url: https://www.skimadriver.com
+  monthly_snow_share:
+    1: 31.9
+    2: 26.9
+    3: 9.4
+    4: 7.2
+    5: 0.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.1
+    11: 11.1
+    12: 12.1
+- name: Hoodoo
+  slug: hoodoo
+  latitude: 44.4092
+  longitude: -121.8723
+  nearest_airport_code: RDM
+  state_province: Oregon
+  country: USA
+  elevation_base: 4668
+  elevation_summit: 5703
+  website_url: https://skihoodoo.com
+  monthly_snow_share:
+    1: 18.9
+    2: 19.4
+    3: 15.1
+    4: 9.0
+    5: 3.4
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.2
+    10: 2.9
+    11: 11.1
+    12: 19.8
+- name: Mt. Ashland
+  slug: mt-ashland
+  latitude: 42.0846
+  longitude: -122.7081
+  nearest_airport_code: MFR
+  state_province: Oregon
+  country: USA
+  elevation_base: 6350
+  elevation_summit: 7500
+  website_url: https://www.mtashland.com
+  monthly_snow_share:
+    1: 19.7
+    2: 19.8
+    3: 17.6
+    4: 6.8
+    5: 2.9
+    6: 0.4
+    7: 0.0
+    8: 0.0
+    9: 0.1
+    10: 1.4
+    11: 10.3
+    12: 20.9
 - name: Mt. Bachelor
   slug: mt-bachelor
   latitude: 43.9792
@@ -1105,6 +2301,305 @@
     10: 3.0
     11: 11.0
     12: 19.1
+- name: Bear Creek
+  slug: bear-creek
+  latitude: 40.4773
+  longitude: -75.627
+  nearest_airport_code: ABE
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 590
+  elevation_summit: 1100
+  website_url: https://www.bcmountainresort.com
+  monthly_snow_share:
+    1: 28.9
+    2: 30.8
+    3: 23.5
+    4: 2.1
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 3.8
+    12: 10.9
+- name: Blue Mountain Resort
+  slug: blue-mountain-pa
+  latitude: 40.821
+  longitude: -75.5134
+  nearest_airport_code: ABE
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 458
+  elevation_summit: 1540
+  website_url: https://www.skibluemt.com
+  monthly_snow_share:
+    1: 26.9
+    2: 29.9
+    3: 22.0
+    4: 1.9
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 4.3
+    12: 14.9
+- name: Camelback
+  slug: camelback
+  latitude: 41.0502
+  longitude: -75.3534
+  nearest_airport_code: AVP
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 1333
+  elevation_summit: 2133
+  website_url: https://www.skicamelback.com
+  monthly_snow_share:
+    1: 23.8
+    2: 26.3
+    3: 22.3
+    4: 5.5
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 6.3
+    12: 15.7
+- name: Elk Mountain
+  slug: elk-mountain
+  latitude: 41.7235
+  longitude: -75.5542
+  nearest_airport_code: AVP
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 1742
+  elevation_summit: 2667
+  website_url: https://www.elkskier.com
+  monthly_snow_share:
+    1: 23.0
+    2: 21.3
+    3: 18.6
+    4: 7.8
+    5: 0.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.5
+    11: 10.4
+    12: 18.1
+- name: Jack Frost
+  slug: jack-frost
+  latitude: 41.1141
+  longitude: -75.6502
+  nearest_airport_code: AVP
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 1460
+  elevation_summit: 1980
+  website_url: https://www.jfbb.com
+  monthly_snow_share:
+    1: 23.0
+    2: 22.4
+    3: 21.5
+    4: 7.4
+    5: 0.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.3
+    11: 8.7
+    12: 16.4
+- name: Liberty Mountain
+  slug: liberty-mountain
+  latitude: 39.7623
+  longitude: -77.3749
+  nearest_airport_code: MDT
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 570
+  elevation_summit: 1190
+  website_url: https://www.libertymountainresort.com
+  monthly_snow_share:
+    1: 34.2
+    2: 29.7
+    3: 19.8
+    4: 1.1
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 4.9
+    12: 10.3
+- name: Montage Mountain
+  slug: montage-mountain
+  latitude: 41.3515
+  longitude: -75.6613
+  nearest_airport_code: AVP
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 960
+  elevation_summit: 1960
+  website_url: https://www.montagemountainresorts.com
+  monthly_snow_share:
+    1: 23.6
+    2: 23.3
+    3: 20.4
+    4: 5.5
+    5: 0.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 8.6
+    12: 18.5
+- name: Roundtop
+  slug: roundtop
+  latitude: 40.1096
+  longitude: -76.9266
+  nearest_airport_code: MDT
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 740
+  elevation_summit: 1340
+  website_url: https://www.roundtopmountainresort.com
+  monthly_snow_share:
+    1: 33.3
+    2: 27.7
+    3: 20.1
+    4: 3.1
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 5.0
+    12: 10.7
+- name: Seven Springs
+  slug: seven-springs
+  latitude: 40.0215
+  longitude: -79.2963
+  nearest_airport_code: PIT
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 2240
+  elevation_summit: 2994
+  website_url: https://www.7springs.com
+  monthly_snow_share:
+    1: 31.4
+    2: 18.8
+    3: 13.1
+    4: 6.9
+    5: 1.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.7
+    11: 9.7
+    12: 17.8
+- name: Shawnee Mountain
+  slug: shawnee-mountain
+  latitude: 41.0385
+  longitude: -75.0806
+  nearest_airport_code: ABE
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 480
+  elevation_summit: 1150
+  website_url: https://www.shawneemt.com
+  monthly_snow_share:
+    1: 25.7
+    2: 32.6
+    3: 21.8
+    4: 1.7
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 3.3
+    12: 14.8
+- name: Whitetail
+  slug: whitetail
+  latitude: 39.7392
+  longitude: -77.9338
+  nearest_airport_code: IAD
+  state_province: Pennsylvania
+  country: USA
+  elevation_base: 865
+  elevation_summit: 1800
+  website_url: https://www.skiwhitetail.com
+  monthly_snow_share:
+    1: 33.6
+    2: 26.6
+    3: 16.3
+    4: 4.4
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 6.8
+    12: 12.2
+- name: Terry Peak
+  slug: terry-peak
+  latitude: 44.3343
+  longitude: -103.8408
+  nearest_airport_code: RAP
+  state_province: South Dakota
+  country: USA
+  elevation_base: 5900
+  elevation_summit: 7064
+  website_url: https://terrypeak.com
+  monthly_snow_share:
+    1: 11.6
+    2: 11.5
+    3: 14.0
+    4: 21.9
+    5: 7.6
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.9
+    10: 10.9
+    11: 8.3
+    12: 13.2
+- name: Ober Mountain
+  slug: ober-mountain
+  latitude: 35.7034
+  longitude: -83.5593
+  nearest_airport_code: TYS
+  state_province: Tennessee
+  country: USA
+  elevation_base: 2682
+  elevation_summit: 3208
+  website_url: https://obermountain.com
+  monthly_snow_share:
+    1: 39.4
+    2: 17.9
+    3: 12.7
+    4: 5.3
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.5
+    11: 4.4
+    12: 18.8
 - name: Alta
   slug: alta
   latitude: 40.5884
@@ -1128,6 +2623,29 @@
     10: 6.5
     11: 9.9
     12: 12.9
+- name: Beaver Mountain
+  slug: beaver-mountain
+  latitude: 41.9679
+  longitude: -111.5385
+  nearest_airport_code: SLC
+  state_province: Utah
+  country: USA
+  elevation_base: 7200
+  elevation_summit: 8800
+  website_url: https://www.skithebeav.com
+  monthly_snow_share:
+    1: 17.6
+    2: 17.8
+    3: 16.5
+    4: 10.8
+    5: 4.7
+    6: 0.9
+    7: 0.0
+    8: 0.0
+    9: 1.1
+    10: 4.8
+    11: 10.5
+    12: 15.1
 - name: Brian Head
   slug: brian-head
   latitude: 37.7021
@@ -1335,6 +2853,29 @@
     10: 3.3
     11: 9.9
     12: 18.3
+- name: Bolton Valley
+  slug: bolton-valley
+  latitude: 44.4204
+  longitude: -72.8501
+  nearest_airport_code: BTV
+  state_province: Vermont
+  country: USA
+  elevation_base: 1446
+  elevation_summit: 3150
+  website_url: https://www.boltonvalley.com
+  monthly_snow_share:
+    1: 20.3
+    2: 18.9
+    3: 18.2
+    4: 10.1
+    5: 0.7
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 2.2
+    11: 13.0
+    12: 16.7
 - name: Jay Peak
   slug: jay-peak
   latitude: 44.927
@@ -1404,6 +2945,29 @@
     10: 1.9
     11: 12.6
     12: 15.7
+- name: Magic Mountain
+  slug: magic-mountain
+  latitude: 43.2021
+  longitude: -72.7718
+  nearest_airport_code: ALB
+  state_province: Vermont
+  country: USA
+  elevation_base: 1350
+  elevation_summit: 2850
+  website_url: https://www.magicmtn.com
+  monthly_snow_share:
+    1: 21.6
+    2: 19.3
+    3: 19.6
+    4: 9.0
+    5: 0.8
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.8
+    11: 11.2
+    12: 16.7
 - name: Mount Snow
   slug: mount-snow
   latitude: 42.9602
@@ -1542,6 +3106,75 @@
     10: 2.2
     11: 12.9
     12: 15.1
+- name: Massanutten
+  slug: massanutten
+  latitude: 38.403
+  longitude: -78.7515
+  nearest_airport_code: CHO
+  state_province: Virginia
+  country: USA
+  elevation_base: 1770
+  elevation_summit: 2922
+  website_url: https://www.massresort.com
+  monthly_snow_share:
+    1: 39.5
+    2: 25.0
+    3: 16.4
+    4: 3.8
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+    11: 2.8
+    12: 12.6
+- name: Wintergreen
+  slug: wintergreen
+  latitude: 37.9163
+  longitude: -78.941
+  nearest_airport_code: CHO
+  state_province: Virginia
+  country: USA
+  elevation_base: 2512
+  elevation_summit: 3515
+  website_url: https://www.wintergreenresort.com
+  monthly_snow_share:
+    1: 38.8
+    2: 26.2
+    3: 14.6
+    4: 5.2
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.2
+    11: 1.2
+    12: 13.8
+- name: 49 Degrees North
+  slug: 49-degrees-north
+  latitude: 48.3023
+  longitude: -117.5665
+  nearest_airport_code: GEG
+  state_province: Washington
+  country: USA
+  elevation_base: 3923
+  elevation_summit: 5774
+  website_url: https://www.ski49n.com
+  monthly_snow_share:
+    1: 23.5
+    2: 15.1
+    3: 13.0
+    4: 4.5
+    5: 0.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 1.1
+    10: 2.7
+    11: 15.0
+    12: 24.1
 - name: Crystal Mountain
   slug: crystal-mountain
   latitude: 46.9282
@@ -1611,6 +3244,29 @@
     10: 4.3
     11: 14.6
     12: 21.9
+- name: Mt. Spokane
+  slug: mt-spokane
+  latitude: 47.9228
+  longitude: -117.0965
+  nearest_airport_code: GEG
+  state_province: Washington
+  country: USA
+  elevation_base: 3889
+  elevation_summit: 5889
+  website_url: https://www.mtspokane.com
+  monthly_snow_share:
+    1: 22.0
+    2: 17.5
+    3: 12.8
+    4: 5.0
+    5: 0.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.8
+    10: 2.4
+    11: 13.8
+    12: 25.3
 - name: Stevens Pass
   slug: stevens-pass
   latitude: 47.7448
@@ -1657,6 +3313,52 @@
     10: 3.0
     11: 11.4
     12: 21.3
+- name: White Pass
+  slug: white-pass
+  latitude: 46.638
+  longitude: -121.3868
+  nearest_airport_code: SEA
+  state_province: Washington
+  country: USA
+  elevation_base: 4500
+  elevation_summit: 6500
+  website_url: https://www.skiwhitepass.com
+  monthly_snow_share:
+    1: 18.5
+    2: 18.2
+    3: 12.4
+    4: 8.4
+    5: 3.1
+    6: 0.6
+    7: 0.0
+    8: 0.0
+    9: 0.4
+    10: 4.2
+    11: 12.8
+    12: 21.4
+- name: Canaan Valley
+  slug: canaan-valley
+  latitude: 39.0073
+  longitude: -79.4372
+  nearest_airport_code: CKB
+  state_province: West Virginia
+  country: USA
+  elevation_base: 3430
+  elevation_summit: 4270
+  website_url: https://www.canaanresort.com
+  monthly_snow_share:
+    1: 31.3
+    2: 17.2
+    3: 15.0
+    4: 7.0
+    5: 3.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.7
+    11: 9.3
+    12: 14.7
 - name: Snowshoe
   slug: snowshoe
   latitude: 38.4097
@@ -1680,6 +3382,75 @@
     10: 0.9
     11: 8.3
     12: 15.2
+- name: Timberline Mountain
+  slug: timberline-mountain
+  latitude: 39.0425
+  longitude: -79.4004
+  nearest_airport_code: CKB
+  state_province: West Virginia
+  country: USA
+  elevation_base: 3268
+  elevation_summit: 4268
+  website_url: https://timberlinemountain.com
+  monthly_snow_share:
+    1: 31.3
+    2: 17.2
+    3: 15.0
+    4: 7.0
+    5: 3.9
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.7
+    11: 9.3
+    12: 14.7
+- name: Granite Peak
+  slug: granite-peak
+  latitude: 44.9266
+  longitude: -89.6812
+  nearest_airport_code: CWA
+  state_province: Wisconsin
+  country: USA
+  elevation_base: 1242
+  elevation_summit: 1942
+  website_url: https://www.skigranitepeak.com
+  monthly_snow_share:
+    1: 19.6
+    2: 21.0
+    3: 15.4
+    4: 14.8
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.7
+    11: 7.6
+    12: 19.7
+- name: Wilmot Mountain
+  slug: wilmot-mountain
+  latitude: 42.5008
+  longitude: -88.1907
+  nearest_airport_code: MKE
+  state_province: Wisconsin
+  country: USA
+  elevation_base: 770
+  elevation_summit: 960
+  website_url: https://www.wilmotmountain.com
+  monthly_snow_share:
+    1: 28.9
+    2: 19.4
+    3: 13.1
+    4: 9.5
+    5: 0.2
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.8
+    11: 9.9
+    12: 17.3
 - name: Grand Targhee
   slug: grand-targhee
   latitude: 43.7872
@@ -1726,6 +3497,29 @@
     10: 6.8
     11: 12.7
     12: 14.0
+- name: Snow King
+  slug: snow-king
+  latitude: 43.4725
+  longitude: -110.7607
+  nearest_airport_code: JAC
+  state_province: Wyoming
+  country: USA
+  elevation_base: 6237
+  elevation_summit: 7808
+  website_url: https://snowkingmountain.com
+  monthly_snow_share:
+    1: 16.5
+    2: 19.2
+    3: 13.4
+    4: 9.9
+    5: 3.4
+    6: 0.2
+    7: 0.0
+    8: 0.0
+    9: 0.5
+    10: 4.6
+    11: 13.6
+    12: 18.7
 - name: Banff Sunshine
   slug: banff-sunshine
   latitude: 51.115
@@ -1749,6 +3543,29 @@
     10: 11.7
     11: 13.4
     12: 12.0
+- name: Castle Mountain
+  slug: castle-mountain
+  latitude: 49.32
+  longitude: -114.4179
+  nearest_airport_code: YQL
+  state_province: Alberta
+  country: Canada
+  elevation_base: 4675
+  elevation_summit: 7529
+  website_url: https://www.skicastle.ca
+  monthly_snow_share:
+    1: 9.9
+    2: 13.7
+    3: 12.3
+    4: 10.8
+    5: 8.6
+    6: 2.1
+    7: 0.0
+    8: 0.4
+    9: 3.6
+    10: 10.1
+    11: 14.1
+    12: 14.5
 - name: Kicking Horse
   slug: kicking-horse
   latitude: 51.2975
@@ -1795,6 +3612,98 @@
     10: 12.9
     11: 14.1
     12: 11.5
+- name: Marmot Basin
+  slug: marmot-basin
+  latitude: 52.8001
+  longitude: -118.0827
+  nearest_airport_code: YEG
+  state_province: Alberta
+  country: Canada
+  elevation_base: 5571
+  elevation_summit: 8570
+  website_url: https://www.skimarmot.com
+  monthly_snow_share:
+    1: 9.6
+    2: 10.1
+    3: 11.7
+    4: 9.6
+    5: 8.1
+    6: 5.8
+    7: 0.8
+    8: 0.8
+    9: 5.4
+    10: 12.5
+    11: 14.6
+    12: 10.9
+- name: Mt. Norquay
+  slug: mt-norquay
+  latitude: 51.2034
+  longitude: -115.5991
+  nearest_airport_code: YYC
+  state_province: Alberta
+  country: Canada
+  elevation_base: 5348
+  elevation_summit: 6998
+  website_url: https://www.banffnorquay.com
+  monthly_snow_share:
+    1: 7.2
+    2: 11.5
+    3: 13.1
+    4: 11.9
+    5: 7.9
+    6: 2.8
+    7: 0.0
+    8: 0.2
+    9: 5.0
+    10: 12.4
+    11: 14.6
+    12: 13.2
+- name: Nakiska
+  slug: nakiska
+  latitude: 50.944
+  longitude: -115.1519
+  nearest_airport_code: YYC
+  state_province: Alberta
+  country: Canada
+  elevation_base: 5003
+  elevation_summit: 7415
+  website_url: https://www.skinakiska.com
+  monthly_snow_share:
+    1: 5.9
+    2: 9.3
+    3: 11.7
+    4: 13.8
+    5: 10.7
+    6: 8.5
+    7: 0.5
+    8: 0.9
+    9: 5.3
+    10: 11.3
+    11: 11.6
+    12: 10.5
+- name: Apex Mountain
+  slug: apex-mountain
+  latitude: 49.3896
+  longitude: -119.9005
+  nearest_airport_code: YYF
+  state_province: British Columbia
+  country: Canada
+  elevation_base: 5167
+  elevation_summit: 7146
+  website_url: https://apexresort.com
+  monthly_snow_share:
+    1: 15.1
+    2: 14.0
+    3: 12.3
+    4: 8.9
+    5: 3.8
+    6: 2.4
+    7: 0.0
+    8: 0.0
+    9: 1.2
+    10: 8.4
+    11: 15.9
+    12: 17.8
 - name: Big White
   slug: big-white
   latitude: 49.7216
@@ -1818,6 +3727,29 @@
     10: 8.5
     11: 15.6
     12: 15.9
+- name: Cypress Mountain
+  slug: cypress-mountain
+  latitude: 49.3962
+  longitude: -123.2037
+  nearest_airport_code: YVR
+  state_province: British Columbia
+  country: Canada
+  elevation_base: 2710
+  elevation_summit: 4724
+  website_url: https://cypressmountain.com
+  monthly_snow_share:
+    1: 19.7
+    2: 16.2
+    3: 18.9
+    4: 5.5
+    5: 0.3
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.3
+    11: 12.7
+    12: 25.5
 - name: Fernie
   slug: fernie
   latitude: 49.4627
@@ -1841,6 +3773,75 @@
     10: 7.7
     11: 15.7
     12: 18.3
+- name: Grouse Mountain
+  slug: grouse-mountain
+  latitude: 49.3819
+  longitude: -123.0804
+  nearest_airport_code: YVR
+  state_province: British Columbia
+  country: Canada
+  elevation_base: 2860
+  elevation_summit: 4039
+  website_url: https://www.grousemountain.com
+  monthly_snow_share:
+    1: 20.1
+    2: 14.0
+    3: 18.6
+    4: 8.0
+    5: 1.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.7
+    11: 14.7
+    12: 21.8
+- name: Mount Seymour
+  slug: mount-seymour
+  latitude: 49.3673
+  longitude: -122.9454
+  nearest_airport_code: YVR
+  state_province: British Columbia
+  country: Canada
+  elevation_base: 3070
+  elevation_summit: 4120
+  website_url: https://mtseymour.ca
+  monthly_snow_share:
+    1: 20.7
+    2: 14.2
+    3: 18.6
+    4: 8.7
+    5: 1.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.9
+    11: 13.9
+    12: 20.8
+- name: Mount Washington Alpine Resort
+  slug: mount-washington-alpine-resort
+  latitude: 49.7411
+  longitude: -125.3065
+  nearest_airport_code: YQQ
+  state_province: British Columbia
+  country: Canada
+  elevation_base: 3553
+  elevation_summit: 5217
+  website_url: https://www.mountwashington.ca
+  monthly_snow_share:
+    1: 23.9
+    2: 11.2
+    3: 14.0
+    4: 11.1
+    5: 2.1
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 3.3
+    11: 13.4
+    12: 20.8
 - name: Panorama
   slug: panorama
   latitude: 50.46
@@ -1910,6 +3911,29 @@
     10: 9.3
     11: 19.3
     12: 19.1
+- name: SilverStar
+  slug: silverstar
+  latitude: 50.3607
+  longitude: -119.0562
+  nearest_airport_code: YLW
+  state_province: British Columbia
+  country: Canada
+  elevation_base: 3760
+  elevation_summit: 6190
+  website_url: https://www.skisilverstar.com
+  monthly_snow_share:
+    1: 16.1
+    2: 17.2
+    3: 13.9
+    4: 7.7
+    5: 0.8
+    6: 0.1
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 6.0
+    11: 17.2
+    12: 21.0
 - name: Sun Peaks
   slug: sun-peaks
   latitude: 50.8833
@@ -1979,6 +4003,52 @@
     10: 7.8
     11: 16.3
     12: 17.2
+- name: Blue Mountain
+  slug: blue-mountain-ontario
+  latitude: 44.4968
+  longitude: -80.3051
+  nearest_airport_code: YYZ
+  state_province: Ontario
+  country: Canada
+  elevation_base: 755
+  elevation_summit: 1476
+  website_url: https://www.bluemountain.ca
+  monthly_snow_share:
+    1: 22.4
+    2: 20.2
+    3: 13.0
+    4: 9.8
+    5: 0.4
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.9
+    11: 11.7
+    12: 21.5
+- name: Mount St. Louis Moonstone
+  slug: mount-st-louis-moonstone
+  latitude: 44.6235
+  longitude: -79.6679
+  nearest_airport_code: YYZ
+  state_province: Ontario
+  country: Canada
+  elevation_base: 751
+  elevation_summit: 1253
+  website_url: https://mountstlouis.com
+  monthly_snow_share:
+    1: 21.9
+    2: 21.3
+    3: 11.0
+    4: 8.9
+    5: 0.1
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 1.1
+    11: 12.8
+    12: 22.9
 - name: Le Massif de Charlevoix
   slug: le-massif
   latitude: 47.2833

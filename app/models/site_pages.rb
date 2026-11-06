@@ -7,7 +7,7 @@ module SitePages
   def static_paths
     %w[/ /resorts /where-is-it-snowing /ski-resorts /ikon-vs-epic /ski-resort-opening-dates /guides /widget /weather
        /snowboard-size-chart /ski-size-chart /about /affiliate-disclosure
-       /epic-pass-resorts /ikon-pass-resorts /powder-report /powder-calendar]
+       /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts /powder-report /powder-calendar]
   end
 
   def resort_paths(resorts = Resort.order(:name))
@@ -40,7 +40,7 @@ module SitePages
 
   # Pages whose content changes with each forecast refresh.
   def forecast_urls
-    (%w[/ /resorts /where-is-it-snowing /powder-report /ski-resorts /ikon-vs-epic /epic-pass-resorts /ikon-pass-resorts] +
+    (%w[/ /resorts /where-is-it-snowing /powder-report /ski-resorts /ikon-vs-epic /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts] +
       Resort.order(:name).map { |r| "/resorts/#{r.slug}" } + region_paths + hub_paths).map { |p| url(p) }
   end
 end

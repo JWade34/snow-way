@@ -800,3 +800,794 @@ resorts:
     opening_date:
     opening_status:
     opening_source:
+  seven-springs:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  perfect-north-slopes:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mountain-creek:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  wachusett-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  ober-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  sugar-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  belleayre:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  white-pass:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  mountain-high:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  snow-summit:
+    pass: ikon
+    pass_note: 'Listed under Big Bear Mountain Resort: unlimited on Ikon Pass and
+      Ikon Base Pass (Base blackout dates apply)'
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  boyne-mountain:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  blue-mountain-pa:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  camelback:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  holiday-valley:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  windham-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  wintergreen:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  massanutten:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  beech-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  cataloochee:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  liberty-mountain:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  whitetail:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  roundtop:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  jack-frost:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  bear-creek:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  montage-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  shawnee-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  attitash:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  wildcat-mountain:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mount-sunapee:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  waterville-valley:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  cranmore:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  gunstock:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  pats-peak:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  bolton-valley:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  magic-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  jiminy-peak:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  greek-peak:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  lutsen-mountains:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  granite-peak:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mount-bohemia:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  the-highlands:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  crystal-mountain-michigan:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  nubs-nob:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  wilmot-mountain:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  afton-alps:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  spirit-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  timberline-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  canaan-valley:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  elk-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  boston-mills-brandywine:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass (Boston Mills and Brandywine
+      listed separately)
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mad-river-mountain:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  paoli-peaks:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  sunlight-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  powderhorn:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  ski-cooper:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  beaver-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  mt-spokane:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  49-degrees-north:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  lookout-pass:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  silver-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  mt-ashland:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  hoodoo:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  china-peak:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  dodge-ridge:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  homewood:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  diamond-peak:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  boreal:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  lee-canyon:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  red-river:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  angel-fire:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  sipapu:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  ski-apache:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  discovery:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  red-lodge-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  montana-snowbowl:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  snow-king:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  terry-peak:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  june-mountain:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base blackout dates apply)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  blue-mountain-ontario:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base blackout dates apply)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mount-st-louis-moonstone:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  marmot-basin:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; 2 days on Mountain Collective
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date:
+    opening_status:
+    opening_source:
+  mt-norquay:
+    pass: ikon
+    pass_note: 'Listed under SkiBig3: 7 days on Ikon Pass, 5 on Ikon Base Pass'
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  nakiska:
+    pass: epic
+    pass_note: 'Partner resort (Resorts of the Canadian Rockies): 7 total days combined
+      across RCR resorts on Epic Pass; not on Epic Local'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  castle-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  apex-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  mount-washington-alpine-resort:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  cypress-mountain:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  grouse-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mount-seymour:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  silverstar:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:

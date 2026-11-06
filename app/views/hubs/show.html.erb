@@ -8,7 +8,7 @@
 <% faqs << { question: "Which ski resort near #{city} is getting the most snow this week?", answer: @totals.fetch(snowiest.id, 0.0) > 0 ? "As of #{Date.current.strftime("%B %-d, %Y")}, #{snowiest.name} has the most snow forecast near #{city}: #{inches(@totals[snowiest.id])} over the next 7 days." : "As of #{Date.current.strftime("%B %-d, %Y")}, none of the ski resorts near #{city} have new snow in the 7-day forecast." } %>
 <% faqs << { question: "How many ski resorts are within 100 miles of #{city}?", answer: within_100.any? ? "#{pluralize(within_100.size, "ski resort")} Snow Way tracks #{within_100.size == 1 ? "is" : "are"} within 100 miles (straight line) of #{@hub.airport}: #{within_100.map { |r, _| r.name }.to_sentence}." : "None of the resorts Snow Way tracks are within 100 straight-line miles of #{@hub.airport}; the closest is #{closest.name} at about #{closest_mi} miles." } %>
 
-<% content_for(:title, "Ski Resorts Near #{city}: Distance & Snow | Snow Way") %>
+<% content_for(:title, fit_title("Ski Resorts Near #{city}: Distance & Snow | Snow Way", "Ski Resorts Near #{city} | Snow Way")) %>
 <% content_for(:description, "#{nearby.size} ski resorts within #{SkiHub::RADIUS_MILES} miles of #{city} (#{@hub.airport}), sorted by distance with this week's snow forecast. #{faqs[1][:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [

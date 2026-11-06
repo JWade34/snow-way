@@ -1,4 +1,4 @@
-<% content_for(:title, "#{@resort.name} Snow Report & 14-Day Forecast | Snow Way") %>
+<% content_for(:title, fit_title("#{@resort.name} Snow Report & 14-Day Forecast | Snow Way", "#{@resort.name} Snow Report & Forecast | Snow Way", "#{@resort.name} Snow Report | Snow Way")) %>
 <% content_for(:description, "#{@summary.answer} Summit #{number_with_delimiter(@resort.elevation_summit)} ft, nearest airport #{@resort.nearest_airport_code}.".truncate(300)) %>
 
 <% page_url = "https://snowway.app/resorts/#{@resort.slug}" %>

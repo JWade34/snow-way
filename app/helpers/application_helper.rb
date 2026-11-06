@@ -31,6 +31,11 @@ module ApplicationHelper
     }
   end
 
+  # First candidate that fits Google's ~70-character title display; the last one is used regardless.
+  def fit_title(*candidates)
+    candidates.find { |t| t.length <= 70 } || candidates.last
+  end
+
   def squish_text(text)
     text.squish
   end

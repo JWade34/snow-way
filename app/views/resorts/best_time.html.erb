@@ -12,7 +12,7 @@
 <% end %>
 <% faqs << { question: "Is #{@resort.name} getting snow right now?", answer: @summary.answer } %>
 
-<% content_for(:title, "Best Time to Ski #{@resort.name}: Snowiest Months | Snow Way") %>
+<% content_for(:title, fit_title("Best Time to Ski #{@resort.name}: Snowiest Months | Snow Way", "Best Time to Ski #{@resort.name} | Snow Way")) %>
 <% content_for(:description, (faqs.first[:answer]).truncate(158)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
