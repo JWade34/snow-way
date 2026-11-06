@@ -132,7 +132,22 @@ class Guide
       keyword: "family ski trip" },
     { slug: "ski-in-ski-out", title: "Ski-In/Ski-Out Lodging: What It Means and Is It Worth It?",
       description: "What ski-in/ski-out really means, how it differs from slopeside and shuttle lodging, when it's worth the price, and how to find it.",
-      keyword: "ski in ski out resorts" }
+      keyword: "ski in ski out resorts" },
+    { slug: "skiing-with-kids", title: "Skiing With Kids: An Age-by-Age Guide for Parents",
+      description: "Skiing with kids by age: when to start, ski school vs teaching them yourself, gear, keeping them warm and happy, and how to plan the day.",
+      keyword: "skiing with kids" },
+    { slug: "best-family-ski-resorts", title: "Best Family Ski Resorts: How to Choose the Right One",
+      description: "How to choose a family ski resort: beginner terrain, ski school, lodging near the lifts, travel time, crowds, and the questions to ask before you book.",
+      keyword: "best family ski resorts" },
+    { slug: "kids-ski-gear", title: "Kids' Ski Gear: What to Buy, What to Rent, and Sizing",
+      description: "Kids' ski and snowboard gear guide: helmets, goggles, layers, mittens, boots and skis, seasonal leases, and how to size gear that kids outgrow fast.",
+      keyword: "kids ski gear", affiliate: true },
+    { slug: "cheap-ski-trip", title: "How to Save Money on a Ski Trip: 20 Practical Ways",
+      description: "How to plan a cheap ski trip: when to go, passes vs tickets, lodging, food, rentals, and the easy ways families and first-timers save money.",
+      keyword: "cheap ski vacations" },
+    { slug: "holiday-ski-trips", title: "Christmas and Spring Break Ski Trips: How to Beat the Crowds",
+      description: "Planning a ski trip over Christmas, Presidents' Day, or spring break: when to book, snow odds, crowds, blackout dates, and how families can make it work.",
+      keyword: "christmas ski trip" }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate
