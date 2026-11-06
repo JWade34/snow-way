@@ -1,0 +1,13 @@
+# Justin's first-hand notes, shown as "Local's take" boxes on resort pages and guides.
+# Only Justin's own words go here. Leave a resort out until he's written about it.
+#
+# resorts:
+#   vail:
+#     take: "One or two sentences in Justin's voice."
+#     tips:
+#       - "A specific, practical tip."
+# guides:
+#   family-ski-trip:
+#     take: "..."
+resorts: {}
+guides: {}

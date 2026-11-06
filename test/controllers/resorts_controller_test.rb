@@ -1,4 +1,5 @@
 require "test_helper"
+require "minitest/mock"
 
 class ResortsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
@@ -22,5 +23,13 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_includes types, "BreadcrumbList"
     faq = graph.find { |n| n["@type"] == "FAQPage" }
     assert_equal "What is the snow report for Vail today?", faq["mainEntity"].first["name"]
+  end
+
+  test "local's take box renders when Justin has notes for a resort" do
+    LocalTake.stub(:for_resort, { take: "Test note.", tips: [ "Test tip." ] }.with_indifferent_access) do
+      get resort_url(resorts(:vail))
+    end
+    assert_select "#local-take-heading", /Local's take on Vail/
+    assert_select "section li", "Test tip."
   end
 end

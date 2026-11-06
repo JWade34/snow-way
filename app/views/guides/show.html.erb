@@ -23,6 +23,7 @@
       <%= image_tag src, alt: alt, width: w, height: h, fetchpriority: "high", class: "w-full h-auto rounded-xl mb-6 aspect-[16/9] object-cover" %>
       <%= @guide.affiliate? ? affiliate_disclosure : tag.div(class: "mb-2") %>
       <%= body %>
+      <%= render "shared/local_take", take: LocalTake.for_guide(@guide.slug), subject: @guide.title.split(":").first %>
       <%= render "shared/planner_cta" if %w[ski-trip-packing-list what-to-wear-skiing how-to-ski how-to-snowboard how-to-chase-powder ski-lessons-for-adults rent-or-buy-ski-gear how-to-plan-a-ski-trip family-ski-trip ski-in-ski-out skiing-with-kids best-family-ski-resorts kids-ski-gear cheap-ski-trip holiday-ski-trips all-inclusive-ski-resorts].include?(@guide.slug) %>
     <%= render "shared/calendar_cta" %>
       <%= render "shared/faq", faqs: faqs, heading: "FAQ" %>

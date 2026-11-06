@@ -1,0 +1,18 @@
+<%# locals: (take:, subject:) -%>
+<% if take.present? && take[:take].present? %>
+  <section class="mb-10 bg-gradient-to-br from-cyan-500/10 to-slate-800/50 border border-cyan-500/30 rounded-xl p-5" aria-labelledby="local-take-heading">
+    <div class="flex items-center gap-3 mb-3">
+      <%= image_tag "justin-roof-rail.webp", alt: "Justin McKelvey", width: 612, height: 612, loading: "lazy", class: "w-12 h-12 rounded-full object-cover" %>
+      <div>
+        <h2 id="local-take-heading" class="font-bold text-lg leading-tight">Local's take on <%= subject %></h2>
+        <p class="text-slate-400 text-xs">From <%= link_to "Justin McKelvey", author_path, rel: "author", class: "underline" %>, former Vail and Salt Lake City local</p>
+      </div>
+    </div>
+    <p class="text-slate-200 leading-relaxed"><%= take[:take] %></p>
+    <% if take[:tips].present? %>
+      <ul class="mt-3 space-y-1 text-slate-300 text-sm list-disc pl-5">
+        <% take[:tips].each do |tip| %><li><%= tip %></li><% end %>
+      </ul>
+    <% end %>
+  </section>
+<% end %>

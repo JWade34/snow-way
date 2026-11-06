@@ -10,10 +10,10 @@ Last updated: 2026-11-05
 - [ ] **AvantLink + REI (gear links).** Sign up at avantlink.com as an affiliate (website: snowway.app) → apply to REI (and evo, Backcountry, Christy Sports while you're there) → once REI approves, find your **Website ID** and **REI Merchant ID** → add `AVANTLINK_WEBSITE_ID` and `AVANTLINK_REI_MID` on Railway.
   Every gear link across the 37 guides and both size calculators starts tracking. Tell Claude when evo approves and it'll add evo links.
 - [ ] **Test the emails:** sign up yourself at snowway.app/powder-calendar (use a different email than before). You should get the welcome email with the download link within a minute.
-- [ ] **Add a mailing address for email footers.** US anti-spam law (CAN-SPAM) asks commercial email to include a postal address. A PO box or business address works. Add it on Railway as `MAIL_POSTAL_ADDRESS` (for example `Snow Way, PO Box 123, Austin, TX 78701`).
 
 ## Your expertise (the biggest edge no competitor can copy)
 
+- [ ] **Fill in `docs/locals-take-template.md`** (Colorado, Utah, California, and Nevada resorts listed, with 4 quick prompts each; skip any you haven't ridden). Or just dictate: "Alta: ..." works. Each one becomes a "Local's take" box on that resort's page. The box design is built and waiting.
 - [ ] **Send Claude your real tips, as voice memo transcripts or bullet notes.** Google and AI tools reward first-hand experience, and you lived in Vail and have ridden all over North and South America. Claude will add a "Justin's take" box to the matching resort pages, guides, and the Trip Planner PDF. Ideas:
   - Vail local tips: best days and times, where locals go on a powder day, parking, how you'd spend a 3-day trip
   - Resorts you've ridden (name each one) plus one honest line apiece: who it's for, what to skip
@@ -23,7 +23,8 @@ Last updated: 2026-11-05
 
 ## Decisions for you
 
-- [ ] **Summit vs mid-mountain forecasts.** Snow Way forecasts at each resort's summit, which shows more snow than the mid-mountain numbers other sites use (this week: Whistler ~50" on Snow Way vs ~25" quoted by ChatGPT from j2ski). Summit is accurate for the top of the mountain and is labeled, but it can look inflated next to competitors. Options: keep summit (current), switch to mid-mountain, or show both. Claude recommends showing both, with mid-mountain as the headline number.
+- [x] **Summit vs mid-mountain forecasts.** Decided 11/5: mid-mountain is the big number, summit underneath. Shipped.
+- [ ] ~~old~~ Snow Way forecasts at each resort's summit, which shows more snow than the mid-mountain numbers other sites use (this week: Whistler ~50" on Snow Way vs ~25" quoted by ChatGPT from j2ski). Summit is accurate for the top of the mountain and is labeled, but it can look inflated next to competitors. Options: keep summit (current), switch to mid-mountain, or show both. Claude recommends showing both, with mid-mountain as the headline number.
 
 ## This week
 
@@ -50,6 +51,8 @@ Last updated: 2026-11-05
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Mailing address for email footers (Fast City LLC, Austin) — added to every email (2026-11-05)
+- [x] Summit vs mid-mountain: show both, mid-mountain headline (2026-11-05)
 - [x] Resend account, API key on Railway, DNS verified (2026-11-05). Welcome emails and powder alerts are live.
 - [x] Sent snow photos (2026-11-05)
 - [x] Tested the Powder Calendar download in production (2026-11-05)

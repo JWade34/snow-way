@@ -1,12 +1,12 @@
-<% content_for(:title, "Justin McKelvey: Snowboarder, Former Vail Local, Snow Way Founder") %>
-<% content_for(:description, "Justin McKelvey lived in Vail, has ridden across North and South America, and ran snowboard and bike shops before building Snow Way. Bio and every guide he's written.") %>
+<% content_for(:title, "Justin McKelvey: Snowboarder, Former Vail & SLC Local | Snow Way") %>
+<% content_for(:description, "Justin McKelvey lived in Vail and Salt Lake City, has ridden across North and South America, and ran snowboard and bike shops before building Snow Way. Bio and every guide he's written.") %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "ProfilePage", "url" => absolute_url("/authors/justin-mckelvey"), "mainEntity" => { "@id" => "https://justinmckelvey.com/#person" } },
         author_schema.merge(
           "image" => image_url("justin-roof-rail.webp"),
           "jobTitle" => "Founder, Snow Way",
-          "description" => "Snowboarder and former Vail local who has ridden across North and South America; ran snowboard and bike shops before becoming a software builder.",
+          "description" => "Snowboarder and former Vail and Salt Lake City local who has ridden across North and South America; ran snowboard and bike shops before becoming a software builder.",
           "knowsAbout" => [ "Snowboarding", "Skiing", "Ski resorts", "Snow forecasts", "Ski trip planning", "Ski and snowboard gear" ],
           "sameAs" => ApplicationHelper::AUTHOR_SAME_AS,
           "worksFor" => { "@type" => "Organization", "@id" => "https://snowway.app/#organization", "name" => "Snow Way", "url" => "https://snowway.app" }
@@ -21,8 +21,8 @@
       <%= image_tag "justin-roof-rail.webp", alt: "Justin McKelvey snowboarding a rail along the roof of a log cabin", width: 612, height: 612, fetchpriority: "high", class: "w-40 h-40 rounded-2xl object-cover" %>
       <div>
         <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Justin McKelvey</h1>
-        <p class="text-cyan-300 font-semibold mb-2">Snowboarder · former Vail local · founder of Snow Way</p>
-        <p class="text-slate-300">I lived in Vail, I've ridden all over North and South America, and I ran snowboard and bike shops before I taught myself to code. Snow Way is the tool I always wanted: one place to see where the snow is before booking a trip.</p>
+        <p class="text-cyan-300 font-semibold mb-2">Snowboarder · former Vail and Salt Lake City local · founder of Snow Way</p>
+        <p class="text-slate-300">I lived in Vail and Salt Lake City, I've ridden all over North and South America, and I ran snowboard and bike shops before I taught myself to code. Snow Way is the tool I always wanted: one place to see where the snow is before booking a trip.</p>
       </div>
     </section>
 
@@ -30,6 +30,7 @@
       <h2>Experience</h2>
       <ul>
         <li><strong>Lived in Vail, Colorado</strong> and rode it through full seasons, from early-season groomers to back bowl powder days.</li>
+        <li><strong>Lived in Salt Lake City</strong> and rode the Cottonwood Canyons, Park City, and the rest of the Wasatch.</li>
         <li><strong>Has ridden across North and South America,</strong> from the Rockies and the Sierra to the Andes.</li>
         <li><strong>Ran snowboard and bike shops,</strong> fitting boots, setting up boards, and helping customers pick gear.</li>
         <li><strong>Software builder:</strong> former CTO at an AI startup and former Head of Product, with more than 50 products shipped.</li>
