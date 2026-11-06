@@ -60,4 +60,17 @@ class GrowthTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_includes response.body, "Waiting for your OK"
   end
+
+  test "loop feed needs the token or admin login" do
+    ENV["LOOP_API_TOKEN"] = "loop-token-for-tests-123456"
+    get "/admin/loop.json"
+    assert_response :unauthorized
+    get "/admin/loop.json", headers: { "Authorization" => "Bearer wrong" }
+    assert_response :unauthorized
+    get "/admin/loop.json", headers: { "Authorization" => "Bearer loop-token-for-tests-123456" }
+    assert_response :success
+    assert JSON.parse(response.body).key?("pages")
+  ensure
+    ENV.delete("LOOP_API_TOKEN")
+  end
 end

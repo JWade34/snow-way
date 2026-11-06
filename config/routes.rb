@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboard#show"
     get "growth" => "growth#show", as: :growth
+    get "loop.json" => "loop#show", as: :loop, defaults: { format: :json }
     resources :changes, only: [ :index ] do
       member do
         post :approve
