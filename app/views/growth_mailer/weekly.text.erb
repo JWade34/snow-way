@@ -41,5 +41,12 @@ Changes: <%= live %> being measured<%= ", #{waiting} waiting for your OK" if wai
 <% if waiting.positive? %>  Approve or decline: https://snowway.app/admin/changes
 <% end -%>
 <% end -%>
+<% pending = GrowthMailer.pending_affiliates -%>
+<% if pending.any? -%>
+
+Affiliate applications still pending (check each dashboard; send Claude the IDs when one approves):
+<% pending.each do |a| %>  <%= a[:name] %>: <%= a[:url] %>
+<% end -%>
+<% end -%>
 
 Full numbers: https://snowway.app/admin/growth

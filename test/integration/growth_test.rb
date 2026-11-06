@@ -51,6 +51,15 @@ class GrowthTest < ActionDispatch::IntegrationTest
     assert_includes mail.body.encoded, "Search impressions: 440"
   end
 
+  test "weekly email reminds about affiliate applications until their env var is set" do
+    original = ENV.delete("AVANTLINK_WEBSITE_ID")
+    assert_includes GrowthMailer.weekly.body.encoded, "AvantLink"
+    ENV["AVANTLINK_WEBSITE_ID"] = "12345"
+    assert_not_includes GrowthMailer.weekly.body.encoded, "AvantLink"
+  ensure
+    original ? ENV["AVANTLINK_WEBSITE_ID"] = original : ENV.delete("AVANTLINK_WEBSITE_ID")
+  end
+
   test "an override replaces the page title and the changes page lists it" do
     SeoOverride.create!(path: "/resorts/vail", title: "Vail Snow Report Override Title | Snow Way")
     SiteChange.create!(path: "/resorts/vail", kind: "title", after_value: "Vail Snow Report Override Title | Snow Way", reason: "test", status: "proposed")

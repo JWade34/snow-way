@@ -6,8 +6,6 @@
 <% end %>
 
 <% content_for(:head) do %>
-  <%# AvantLink website verification (application 1678401). Remove once the application is confirmed. %>
-  <script type="text/javascript" src="http://classic.avantlink.com/affiliate_app_confirm.php?mode=js&authResponse=bf454a9c914d90212cbcab96fe4c92f9ad1b3d8c"></script>
   <%= json_ld({ "@context" => "https://schema.org" }.merge(faq_schema(@faqs))) if @faqs.any? %>
   <script type="application/ld+json">
   {
