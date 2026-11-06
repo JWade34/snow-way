@@ -5,9 +5,7 @@ Last updated: 2026-11-06
 
 ## Do now (highest payoff first)
 
-- [ ] **Bing API key.** bing.com/webmasters → snowway.app → gear icon → API access → API Key → Generate. Then run in Claude Code: `! railway variables --service snow-way --set "BING_WEBMASTER_API_KEY=paste-key-here"`. Google is already connected.
-
-- [ ] **Turn on your private admin area (2 minutes).** Pick a password (12+ characters) and run this in Claude Code: `! railway variables --service snow-way --set "ADMIN_PASSWORD=your-password-here"`. Railway redeploys; then open snowway.app/admin (user: `justin`). Save it in your phone's browser. Until the password is set, /admin returns "not found".
+- [ ] **Give the Monday growth loop its key (2 minutes, needed before Mon Nov 9).** Run `! pbcopy < ~/.config/snowway/loop_token` (copies the key without showing it). Then claude.ai/code → Environments → **Default** → Environment variables → add `LOOP_API_TOKEN=` and paste. Without it the Monday run just reports "token missing" and changes nothing. Routines: claude.ai/code/routines (Mondays 9am Central all year, plus Thursdays Dec–Feb, add-only).
 
 - [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: Impact → Manage → My Brands → REI → Create Link, copy the tracking link (`https://rei.xxxx.net/c/...`), add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, reapply once Search Console shows traffic.
 - [ ] **Affiliate sign-ups, in order of what they'll earn** (Stay22 lodging is already live and is the biggest earner per click):
@@ -66,6 +64,7 @@ Last updated: 2026-11-06
 
 ## Done
 - [x] Growth tracking (2026-11-06): Google Search Console connected, daily sync, affiliate clicks and signups tracked by page, admin Growth tab, Monday 7am report email
+- [x] Admin password set; Google and Bing connected (2026-11-06). Weekly growth loop scheduled as cloud routines (Mondays + peak-season Thursdays).
 - [x] Private admin (2026-11-06): resorts-ridden checklist, dictate/paste importer, gear closet, subscriber list with CSV download
 - [x] International "snow around the world" section on where-is-it-snowing; Chamonix and La Parva elevations corrected (2026-11-06)
 - [x] Tested the welcome email and Powder Calendar (2026-11-06)

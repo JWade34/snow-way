@@ -28,3 +28,9 @@ Rule from Justin: only make moves that improve a page. Never regress what alread
 ## Monthly
 - ChatGPT citation check (same five questions, `docs/geo-checks/`). Note who gets cited and why.
 - Review slipping pages and seasonal timing (e.g. Southern Hemisphere guides before June, opening dates in October).
+
+## Schedule (cloud routines, claude.ai/code/routines)
+- **Mondays 15:00 UTC** (8am Mountain in winter), after the 7am email: the full loop above.
+- **Thursdays 15:00 UTC, December–February only**: add-only. New FAQ answers, sections, internal links or guides for
+  queries that took off that week. Never edits existing titles, descriptions or copy, and never touches seo_proposals.yml.
+- Both need `LOOP_API_TOKEN` in the routine's cloud environment (Default). Without it they stop and change nothing.
