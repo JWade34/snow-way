@@ -123,7 +123,16 @@ class Guide
       keyword: "best ski jacket for women", affiliate: true },
     { slug: "best-snowboard-for-beginners", title: "Best Snowboard for Beginners: How to Choose Your First Board",
       description: "How to choose a beginner snowboard: soft flex, rocker or hybrid profiles, the right length and width, and when to rent instead.",
-      keyword: "best snowboard for beginners", affiliate: true }
+      keyword: "best snowboard for beginners", affiliate: true },
+    { slug: "how-to-plan-a-ski-trip", title: "How to Plan a Ski Trip: Step-by-Step Guide",
+      description: "How to plan a ski trip: when to go, where to fly, which pass, lodging, rentals, budget, and how to time it around the snow forecast.",
+      keyword: "ski trip" },
+    { slug: "family-ski-trip", title: "Family Ski Trip Planning: How to Ski With Kids",
+      description: "How to plan a family ski trip: picking a family-friendly resort, kids' ski school, gear for kids, lodging, budget, and keeping everyone warm and happy.",
+      keyword: "family ski trip" },
+    { slug: "ski-in-ski-out", title: "Ski-In/Ski-Out Lodging: What It Means and Is It Worth It?",
+      description: "What ski-in/ski-out really means, how it differs from slopeside and shuttle lodging, when it's worth the price, and how to find it.",
+      keyword: "ski in ski out resorts" }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate
