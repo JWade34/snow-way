@@ -10,3 +10,16 @@ namespace :search do
     end
   end
 end
+
+namespace :seo do
+  desc "Apply new entries from db/seo_proposals.yml through ChangeGuard (runs on deploy)"
+  task apply_proposals: :environment do
+    proposals = YAML.load_file(Rails.root.join("db/seo_proposals.yml")) || []
+    proposals.each do |p|
+      p = p.transform_keys(&:to_s)
+      next if SiteChange.exists?(path: p["path"], kind: p["kind"], after_value: p["value"])
+      change = SiteChange.propose!(path: p["path"], kind: p["kind"], value: p["value"], reason: p["reason"], origin: p["origin"] || "claude")
+      puts "#{change.status}: #{change.kind} #{change.path} (#{change.result["guard"]})"
+    end
+  end
+end

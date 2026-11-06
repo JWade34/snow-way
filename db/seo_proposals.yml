@@ -1,0 +1,10 @@
+# Proposals from the weekly improvement loop. Applied on deploy by `bin/rails seo:apply_proposals`.
+# Each entry runs through ChangeGuard: low-traffic pages change automatically; working or high-traffic
+# pages wait for Justin's approval in /admin/changes; pages without enough data are skipped.
+# An entry is applied once (matched on path + kind + value), so old entries can stay as history.
+#
+# - path: /resorts/vail
+#   kind: title            # title | description | content
+#   value: "Vail Snow Report: 7-Day Forecast & Conditions | Snow Way"   # omit for content
+#   reason: "Position 7, 1.2% CTR; searchers use 'snow report' more than 'forecast'."
+[]

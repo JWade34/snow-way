@@ -47,6 +47,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboard#show"
     get "growth" => "growth#show", as: :growth
+    resources :changes, only: [ :index ] do
+      member do
+        post :approve
+        post :revert
+      end
+    end
     resources :visits, only: [ :index, :edit, :update ], param: :slug, path: "resorts"
     patch "resorts" => "visits#checklist", as: :visits_checklist
     get "import" => "imports#new", as: :import

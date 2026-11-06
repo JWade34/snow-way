@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_155703) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_160853) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -95,6 +95,34 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_155703) do
     t.datetime "updated_at", null: false
     t.index ["date", "source", "page", "query"], name: "index_search_stats_unique", unique: true
     t.index ["source", "query", "date"], name: "index_search_stats_on_source_and_query_and_date"
+  end
+
+  create_table "seo_overrides", force: :cascade do |t|
+    t.string "path", null: false
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["path"], name: "index_seo_overrides_on_path", unique: true
+  end
+
+  create_table "site_changes", force: :cascade do |t|
+    t.string "path", null: false
+    t.string "kind", null: false
+    t.text "before_value"
+    t.text "after_value"
+    t.text "reason"
+    t.string "origin", default: "claude", null: false
+    t.string "status", null: false
+    t.json "baseline"
+    t.json "result"
+    t.date "evaluate_on"
+    t.datetime "applied_at"
+    t.datetime "decided_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["path", "created_at"], name: "index_site_changes_on_path_and_created_at"
+    t.index ["status", "evaluate_on"], name: "index_site_changes_on_status_and_evaluate_on"
   end
 
   create_table "snow_forecasts", force: :cascade do |t|

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <% meta_description = (content_for(:description).presence || "Find the ski resort getting the most snow in the next 7 days. Chase the powder with one tap.").to_s.squish.truncate(158, separator: " ") %>
-    <title><%= content_for(:title) || "Snow Way - Chase the Powder" %></title>
+    <% seo = SeoOverride.for_path(request.path) %>
+    <% page_title = seo&.title.presence || content_for(:title) || "Snow Way - Chase the Powder" %>
+    <% meta_description = (seo&.description.presence || content_for(:description).presence || "Find the ski resort getting the most snow in the next 7 days. Chase the powder with one tap.").to_s.squish.truncate(158, separator: " ") %>
+    <title><%= page_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -20,7 +22,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%= request.original_url %>" />
-    <meta property="og:title" content="<%= content_for(:title) || "Snow Way - Chase the Powder" %>" />
+    <meta property="og:title" content="<%= page_title %>" />
     <meta property="og:description" content="<%= meta_description %>" />
     <meta property="og:image" content="<%= content_for(:og_image) || "https://snowway.app/preview.png" %>" />
     <meta property="og:image:width" content="1200" />
@@ -30,7 +32,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="<%= request.original_url %>" />
-    <meta name="twitter:title" content="<%= content_for(:title) || "Snow Way - Chase the Powder" %>" />
+    <meta name="twitter:title" content="<%= page_title %>" />
     <meta name="twitter:description" content="<%= meta_description %>" />
     <meta name="twitter:image" content="<%= content_for(:og_image) || "https://snowway.app/preview.png" %>" />
 

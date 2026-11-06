@@ -27,6 +27,10 @@ production:
     class: SearchStatsSyncJob
     queue: default
     schedule: every day at 5am America/Denver
+  site_change_evaluate:
+    class: SiteChangeEvaluateJob
+    queue: default
+    schedule: every monday at 6am America/Denver
   growth_weekly_email:
     command: "GrowthMailer.weekly.deliver_now"
     queue: default

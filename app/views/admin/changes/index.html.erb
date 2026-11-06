@@ -1,0 +1,38 @@
+<% content_for(:title, "Changes") %>
+<h1 class="text-2xl font-extrabold mb-1">Changes</h1>
+<p class="text-slate-400 text-sm mb-6">Every SEO change the loop makes. Low-traffic pages change automatically; pages that already work wait for you. Each change is measured for 28 days against similar untouched pages, then kept or undone.</p>
+
+<% badge = { "live" => "bg-cyan-500/20 text-cyan-200", "kept" => "bg-emerald-500/20 text-emerald-300", "reverted" => "bg-slate-700 text-slate-300", "needs_review" => "bg-amber-500/20 text-amber-200", "skipped" => "bg-slate-800 text-slate-500" } %>
+<% if @proposed.any? %>
+  <h2 class="text-lg font-bold mb-3">Waiting for your OK</h2>
+  <ul class="space-y-3 mb-10">
+    <% @proposed.each do |c| %>
+      <li class="bg-slate-800/60 border border-amber-500/40 rounded-xl p-4 text-sm">
+        <p class="font-semibold"><%= link_to c.path, c.path, target: "_blank", class: "hover:text-cyan-300" %> · <%= c.kind %></p>
+        <p class="text-slate-400 mt-1"><%= c.reason %></p>
+        <% if c.after_value.present? %><p class="mt-2"><span class="text-slate-500">New:</span> <%= c.after_value %></p><% end %>
+        <p class="text-xs text-amber-200 mt-1"><%= c.result&.dig("guard") %></p>
+        <div class="flex gap-3 mt-3">
+          <%= button_to "Approve", approve_admin_change_path(c), class: "bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-1.5" %>
+          <%= button_to "Decline", revert_admin_change_path(c), class: "bg-slate-700 rounded-lg px-4 py-1.5" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2 class="text-lg font-bold mb-3">History</h2>
+<ul class="divide-y divide-slate-800 border border-slate-800 rounded-xl text-sm">
+  <% @changes.each do |c| %>
+    <li class="px-4 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span><%= link_to c.path, c.path, target: "_blank", class: "font-semibold hover:text-cyan-300" %> <span class="text-slate-500">· <%= c.kind %> · <%= c.origin %> · <%= (c.applied_at || c.created_at).strftime("%b %-d") %></span></span>
+        <span class="text-xs rounded-full px-2 py-1 <%= badge[c.status] %>"><%= c.status.humanize %><%= " until #{c.evaluate_on.strftime("%b %-d")}" if c.status == "live" %></span>
+      </div>
+      <% if c.after_value.present? %><p class="text-slate-300 mt-1"><%= c.after_value %></p><% end %>
+      <p class="text-slate-500 text-xs mt-1"><%= c.reason %><%= " · #{c.result["note"]}" if c.result&.dig("note") %><%= " · #{c.result["guard"]}" if c.status == "skipped" %></p>
+      <% if c.status.in?(%w[live kept]) %><%= button_to "Undo", revert_admin_change_path(c), class: "text-xs text-red-300 underline mt-1" %><% end %>
+    </li>
+  <% end %>
+  <% if @changes.empty? %><li class="px-4 py-6 text-center text-slate-400">No changes yet. The weekly loop starts once pages have enough search data.</li><% end %>
+</ul>

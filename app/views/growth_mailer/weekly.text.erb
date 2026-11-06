@@ -30,4 +30,16 @@ Opportunities (page 1–2, few clicks):
 Too early for page-level trends. Google needs a few weeks of data on a new site.
 <% end -%>
 
+<% decided = SiteChange.where(decided_at: 7.days.ago..).where(status: %w[kept reverted needs_review]) -%>
+<% waiting = SiteChange.where(status: "proposed").count -%>
+<% live = SiteChange.where(status: "live").count -%>
+<% if decided.any? || waiting.positive? || live.positive? -%>
+
+Changes: <%= live %> being measured<%= ", #{waiting} waiting for your OK" if waiting.positive? %>
+<% decided.each do |c| %>  <%= c.status.humanize %>: <%= c.kind %> on <%= c.path %> (<%= c.result&.dig("note") %>)
+<% end -%>
+<% if waiting.positive? %>  Approve or decline: https://snowway.app/admin/changes
+<% end -%>
+<% end -%>
+
 Full numbers: https://snowway.app/admin/growth
