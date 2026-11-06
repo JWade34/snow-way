@@ -34,3 +34,8 @@ Rule from Justin: only make moves that improve a page. Never regress what alread
 - **Thursdays 15:00 UTC, December–February only**: add-only. New FAQ answers, sections, internal links or guides for
   queries that took off that week. Never edits existing titles, descriptions or copy, and never touches seo_proposals.yml.
 - Both need `LOOP_API_TOKEN` in the routine's cloud environment (Default). Without it they stop and change nothing.
+
+## Routine IDs
+- Monday loop: trig_01TNEf8zpaYbCiH79Ph4v9ru · Thursday (Dec–Feb): trig_01TDn5xU3nK2f8EGKGe2tH8V
+- One-off pass price + opening status recheck, 2026-11-16: trig_01WwRgiDJ5qhUJHRLAwtX3QT
+- All run in the Default environment with no connectors. Check a run: RemoteTrigger list_runs → get_run_log.
