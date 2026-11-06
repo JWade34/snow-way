@@ -23,7 +23,7 @@ module SitePages
   end
 
   def guide_paths
-    Guide.all.map { |g| "/guides/#{g.slug}" }
+    GuideTopic.all.map { |t| "/guides/#{t.slug}" } + Guide.all.map { |g| "/guides/#{g.slug}" }
   end
 
   def report_paths

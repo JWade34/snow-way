@@ -1,0 +1,35 @@
+<% content_for(:title, fit_title("#{@topic.name}: #{@guides.size} Guides | Snow Way", "#{@topic.name} | Snow Way")) %>
+<% content_for(:description, "#{@topic.intro} #{@guides.size} guides from Snow Way.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "CollectionPage", "name" => @topic.name, "description" => @topic.intro, "url" => absolute_url("/guides/#{@topic.slug}"),
+          "author" => author_schema, "hasPart" => @guides.map { |g| { "@type" => "Article", "headline" => g.title, "url" => absolute_url("/guides/#{g.slug}") } } },
+        breadcrumb_schema([ [ "Guides", "/guides" ], [ @topic.name, nil ] ]),
+        { "@type" => "ItemList", "name" => @topic.name, "numberOfItems" => @guides.size,
+          "itemListElement" => @guides.each_with_index.map { |g, i| { "@type" => "ListItem", "position" => i + 1, "name" => g.title, "url" => absolute_url("/guides/#{g.slug}") } } }
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ @topic.name, nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= @topic.name %></h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= @topic.intro %></p>
+      <p class="text-slate-400 text-xs mt-3">By <%= link_to "Justin McKelvey", author_path, rel: "author", class: "underline" %>, former Vail and Salt Lake City local.</p>
+    </section>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+      <% @guides.each do |g| %>
+        <li><%= link_to guide_path(g), class: "block h-full bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-5 transition" do %>
+          <h2 class="font-bold mb-1"><%= g.title %></h2><p class="text-slate-300 text-sm"><%= g.description %></p>
+        <% end %></li>
+      <% end %>
+    </ul>
+    <% if @topic.slug == "trip-planning" %>
+      <%= render "shared/planner_cta", suffix: "topic" %>
+    <% elsif %w[gear snowboarding skiing].include?(@topic.slug) %>
+      <p class="mb-10 text-sm">Find your size: <%= link_to "snowboard size calculator", snowboard_size_chart_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "ski size calculator", ski_size_chart_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+    <% end %>
+    <nav aria-label="Other guide topics" class="text-sm text-slate-400">More topics: <%= safe_join(GuideTopic.all.reject { |t| t.slug == @topic.slug }.map { |t| link_to(t.name, guide_topic_path(t.slug), class: "text-cyan-300 underline underline-offset-2") }, " · ") %></nav>
+  </main>
+</div>

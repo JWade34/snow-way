@@ -17,4 +17,10 @@ class ResortTest < ActiveSupport::TestCase
     assert created.none? { |r| r.slug == "vail" }
     assert Resort.exists?(slug: "beaver-creek")
   end
+
+  test "every guide belongs to at least one topic hub" do
+    orphans = Guide.all.map(&:slug) - GuideTopic.all.flat_map(&:guide_slugs)
+    assert_empty orphans, "add these guides to a topic in GuideTopic::TOPICS"
+    assert_empty GuideTopic.all.flat_map(&:guide_slugs) - Guide.all.map(&:slug), "topic lists a guide that doesn't exist"
+  end
 end

@@ -42,3 +42,12 @@
 .guide p > a, .guide li > a, .guide td > a { @apply text-cyan-300 underline underline-offset-2 hover:text-cyan-200; }
 .guide .tldr { @apply bg-slate-800/40 border border-slate-700 rounded-xl p-5 mb-8; }
 .guide .tldr p { @apply mb-0 text-slate-200; }
+
+/* Guide tables: bordered, readable, and scrollable on small screens */
+.guide table { @apply block w-full overflow-x-auto mb-8 text-sm border border-slate-700 rounded-xl border-separate border-spacing-0; }
+.guide caption { @apply text-left text-slate-400 text-xs px-3 py-2 caption-top; }
+.guide thead th { @apply bg-slate-800/80 text-slate-200 text-left font-semibold px-3 py-2 border-b border-slate-700 whitespace-nowrap; }
+.guide tbody th { @apply text-left font-semibold text-white align-top px-3 py-2 border-b border-slate-800 min-w-[9rem]; }
+.guide tbody td { @apply text-slate-300 align-top px-3 py-2 border-b border-slate-800 min-w-[9rem]; }
+.guide tbody tr:last-child th, .guide tbody tr:last-child td { @apply border-b-0; }
+.guide tbody tr:nth-child(even) { @apply bg-slate-800/30; }

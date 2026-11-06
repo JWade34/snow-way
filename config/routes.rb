@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "ski-resorts" => "regions#index", as: :regions
   get "ski-resorts/:id" => "regions#show", as: :region
   get "ski-resorts-near/:id" => "hubs#show", as: :hub
+  get "guides/:topic" => "guides#topic", as: :guide_topic, constraints: { topic: Regexp.union(GuideTopic::TOPICS.keys) }
   resources :guides, only: [ :index, :show ]
   get "snowboard-size-chart" => "tools#snowboard_size", as: :snowboard_size_chart
   get "ski-size-chart" => "tools#ski_size", as: :ski_size_chart

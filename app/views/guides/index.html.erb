@@ -10,6 +10,13 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski &amp; snowboard guides</h1>
     <p class="text-slate-300 mb-8">Straight answers for skiers and snowboarders: sizing, first-day how-tos, gear buying guides, and head-to-head comparisons.</p>
+    <h2 class="text-xl font-bold mb-3">Browse by topic</h2>
+    <ul class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-10">
+      <% GuideTopic.all.each do |t| %>
+        <li><%= link_to guide_topic_path(t.slug), class: "block h-full bg-slate-800/60 hover:bg-slate-700/60 border border-slate-700 hover:border-cyan-500 rounded-xl p-3 text-center transition" do %><span class="font-bold block text-sm"><%= t.name.sub(/ Guides\z/, "").sub("Ski & Snowboard ", "") %></span><span class="text-slate-400 text-xs"><%= t.guides.size %> guides</span><% end %></li>
+      <% end %>
+    </ul>
+
     <h2 class="text-xl font-bold mb-3">Tools and free downloads</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
       <li><%= link_to snowboard_size_chart_path, class: "block bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-xl p-5 transition" do %><span class="font-bold text-lg block">Snowboard size calculator</span><span class="text-slate-300 text-sm">Board length by height, weight, and style, plus width by boot size.</span><% end %></li>
