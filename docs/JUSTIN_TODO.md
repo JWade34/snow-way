@@ -5,7 +5,7 @@ Last updated: 2026-11-05
 
 ## Do now (highest payoff first)
 
-- [ ] **REI (via Impact).** Site verification tag is live on snowway.app; click **Add Website / Verify** in Impact, then apply to REI. Once approved, copy your REI **tracking link** from Impact (looks like `https://rei.xxxx.net/c/1234567/123456/12345`) and add it on Railway as `REI_IMPACT_LINK`. Every gear link then tracks.
+- [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: Impact → Manage → My Brands → REI → Create Link, copy the tracking link (`https://rei.xxxx.net/c/...`), add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, reapply once Search Console shows traffic.
 - [ ] **Amazon Associates (optional, good for accessories).** affiliate-program.amazon.com → add your tag on Railway as `AMAZON_ASSOCIATE_TAG` (e.g. `snowway-20`). If REI is also live, accessories go to Amazon and core gear to REI automatically. Note: Amazon closes accounts without 3 sales in the first 180 days (you can reapply).
 - [ ] **AvantLink (evo, Backcountry, Christy Sports).** Optional extra shops; tell Claude when one approves.
 - [ ] **"What I ride" list.** Your actual board, boots, bindings, goggles, jacket, and what you think of each. Real gear reviews from a former shop owner rank where generic roundups don't; Claude builds the page.
