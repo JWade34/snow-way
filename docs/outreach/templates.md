@@ -11,7 +11,7 @@ Check each sub's self-promo rules first. Lead with the data, link once, at the e
 
 **Title:** Where the snow is this week: [Resort] leads with [X]" forecast
 
-> Pulled the 7-day summit forecasts for [89] resorts this morning.
+> Pulled the 7-day summit forecasts for [179] resorts this morning.
 >
 > Top 5:
 > 1. [Resort] ([Region]) [X]"
@@ -36,7 +36,7 @@ Regional subs: swap the top 5 for that state's resorts from snowway.app/ski-reso
 
 > Hi [Name],
 >
-> I run Snow Way, a free site that ranks [89] North American ski resorts by forecast snowfall every 6 hours.
+> I run Snow Way, a free site that ranks [179] North American ski resorts by forecast snowfall every 6 hours.
 >
 > This week [Resort] tops the list with [X]" expected over 7 days, and [Region resort] is the snowiest in [your area] at [X]". [One more real detail, e.g. "Epic resorts are averaging twice the snow of Ikon resorts right now."]
 >

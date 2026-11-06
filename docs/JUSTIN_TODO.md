@@ -9,8 +9,7 @@ Last updated: 2026-11-05
   A lodging map then appears on all 179 resort pages automatically.
 - [ ] **AvantLink + REI (gear links).** Sign up at avantlink.com as an affiliate (website: snowway.app) → apply to REI (and evo, Backcountry, Christy Sports while you're there) → once REI approves, find your **Website ID** and **REI Merchant ID** → add `AVANTLINK_WEBSITE_ID` and `AVANTLINK_REI_MID` on Railway.
   Every gear link across the 37 guides and both size calculators starts tracking. Tell Claude when evo approves and it'll add evo links.
-- [ ] **Email service for powder alerts.** Resend (resend.com) or Postmark. Verify the snowway.app domain (they'll give you DNS records), create an API key, add it on Railway as `RESEND_API_KEY` (or `POSTMARK_API_TOKEN`), and tell Claude. Alerts and a welcome email get switched on for everyone already on the list.
-- [ ] **Test the Powder Calendar in production.** Go to snowway.app/powder-calendar, enter your email, and download the PDF. (Claude tested locally; it skipped production so test emails wouldn't land in your real list.)
+- [ ] **Email service for powder alerts (you said: later).** Resend (resend.com) or Postmark. Verify the snowway.app domain (they'll give you DNS records), create an API key, add it on Railway as `RESEND_API_KEY` (or `POSTMARK_API_TOKEN`), and tell Claude. Alerts and a welcome email get switched on for everyone already on the list.
 
 ## Decisions for you
 
@@ -23,6 +22,10 @@ Last updated: 2026-11-05
 - [ ] **Amazon Associates (small gear: hand warmers, wax kits, balaclavas, socks).** Optional. Sign up at affiliate-program.amazon.com and send Claude your tag.
 - [ ] **Rental delivery partners.** Email Ski Butlers and Black Tie Ski Rentals using template 4 in `docs/outreach/templates.md`.
 - [ ] **Wikidata item for Snow Way.** Create an item (instance of: website; official website: https://snowway.app; founder: Justin McKelvey). This helps Google and AI tools treat Snow Way as a known entity.
+
+## Nice to have
+
+- [ ] **More of your snow photos.** Drop 5–10 snowboarding or mountain shots (JPG, any size) into a folder and tell Claude where. They'll go on guides, the powder report, and share images. Claude already used `snowboarding-cabin-roof-rail.jpeg` and `ski-lift-selfie-goggles.jpeg` from your profile folder.
 
 ## Every week (Thursday)
 
@@ -37,6 +40,7 @@ Last updated: 2026-11-05
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Tested the Powder Calendar download in production (2026-11-05)
 - [x] Submitted sitemap to Google Search Console and Bing (2026-11-05)
 
 ---

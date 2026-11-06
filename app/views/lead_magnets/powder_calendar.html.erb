@@ -9,7 +9,7 @@
   <% end %>
 <% end %>
 <% faqs << { question: "What's in the Snow Way Powder Calendar?", answer: "A free PDF with every resort Snow Way tracks: its three snowiest months, #{season} opening date, Epic or Ikon pass access, and nearest airport, grouped by state and province." } %>
-<% content_for(:title, "Free #{season} Powder Calendar: Best Month to Ski 89 Resorts | Snow Way") %>
+<% content_for(:title, fit_title("Free #{season} Powder Calendar: Best Month to Ski #{@resorts.size} Resorts | Snow Way", "Free #{season} Powder Calendar | Snow Way")) %>
 <% content_for(:description, "Free PDF: the snowiest months, #{season} opening dates, passes, and airports for #{@resorts.size} North American ski resorts. Plan your trip for the best snow.") %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
@@ -18,16 +18,36 @@
 <% end %>
 <div class="min-h-screen">
   <%= render "shared/header" %>
-  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+  <main id="main" class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Powder Calendar", nil ] ] %>
-    <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">Free PDF</p>
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">The <%= season %> Powder Calendar: the best month to ski <%= @resorts.size %> resorts</h1>
-    <p class="text-slate-300 mb-6">Plan your trip around the snow. One printable cheat sheet with every resort's snowiest months, this season's opening date, Epic or Ikon access, and the airport to fly into.</p>
-
-    <section class="mb-10 bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-5" aria-labelledby="get-heading">
-      <h2 id="get-heading" class="text-lg font-bold mb-3">Get the free Powder Calendar</h2>
-      <%= render "shared/calendar_form" %>
+    <section class="grid md:grid-cols-2 gap-8 items-center mb-12">
+      <div>
+        <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">Free PDF · <%= @resorts.size %> resorts</p>
+        <h1 class="text-3xl md:text-4xl font-extrabold mb-3">The <%= season %> Powder Calendar</h1>
+        <p class="text-slate-300 mb-4">Know when the snow really falls before you book. A month-by-month snow heatmap for every resort, plus early-season, holiday, midwinter, and spring picks, opening dates, and which pass gets you in.</p>
+        <ul class="text-slate-200 text-sm space-y-1.5 mb-6 [&_li]:flex [&_li]:gap-2">
+          <li>❄️ Nov–Apr snow heatmap for <%= @resorts.size %> resorts</li>
+          <li>🎯 Best bets for early season, holidays, and spring</li>
+          <li>🎟️ Epic, Ikon, and Indy access + <%= season %> opening dates</li>
+        </ul>
+        <div class="bg-gradient-to-r from-cyan-500/15 to-slate-800/40 border border-cyan-500/30 rounded-xl p-4">
+          <h2 class="font-bold mb-2">Get it free, instantly</h2>
+          <%= render "shared/calendar_form" %>
+        </div>
+      </div>
+      <div class="relative h-80 md:h-[26rem]" aria-hidden="true">
+        <%= image_tag "powder-calendar-glance.webp", alt: "", width: 260, height: 336, loading: "lazy", class: "absolute right-0 top-6 w-52 md:w-60 rounded-lg shadow-2xl rotate-6 border border-slate-700" %>
+        <%= image_tag "powder-calendar-cover.webp", alt: "", width: 260, height: 336, fetchpriority: "high", class: "absolute left-4 md:left-6 top-0 w-56 md:w-64 rounded-lg shadow-2xl -rotate-3 border border-slate-700" %>
+      </div>
     </section>
+
+    <figure class="mb-12 grid sm:grid-cols-[1fr_1.4fr] gap-5 items-center bg-slate-800/40 border border-slate-700 rounded-xl p-4">
+      <%= image_tag "justin-chairlift-storm.webp", alt: "Justin McKelvey grinning on a chairlift in a snowstorm, goggles on and snow on his jacket", width: 960, height: 720, loading: "lazy", class: "rounded-lg w-full h-auto" %>
+      <figcaption class="text-slate-300">
+        <p class="font-bold text-white text-lg mb-1">Built for days like this.</p>
+        <p class="text-sm">I'm Justin. I ran snowboard and bike shops before I taught myself to code, and I built Snow Way so finding the deep days takes one look instead of ten tabs. The Powder Calendar is the cheat sheet I wish I'd had for planning trips.</p>
+      </figcaption>
+    </figure>
 
     <h2 class="text-xl font-bold mb-3">Preview: Colorado</h2>
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-3">

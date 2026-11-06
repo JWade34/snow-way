@@ -6,6 +6,7 @@
           "description" => "Free ski resort snow reports and forecasts that rank North American resorts by how much snow is coming.",
           "founder" => { "@id" => "https://justinmckelvey.com/#person" } },
         { "@type" => "Person", "@id" => "https://justinmckelvey.com/#person", "name" => "Justin McKelvey", "url" => "https://justinmckelvey.com",
+          "image" => image_url("justin-roof-rail.webp"), "description" => "Former snowboard and bike shop owner turned software builder; creator of Snow Way.",
           "sameAs" => [ "https://www.linkedin.com/in/justinmckelvey", "https://x.com/justinmckelvey" ] },
         { "@type" => "AboutPage", "url" => absolute_url("/about"), "about" => { "@id" => "https://snowway.app/#organization" } },
         breadcrumb_schema([ [ "About", nil ] ]) ] }) %>
@@ -18,7 +19,11 @@
       <h1 class="text-3xl md:text-4xl font-extrabold mb-6">About Snow Way</h1>
       <div class="tldr"><p>Snow Way answers one question: <strong>which ski resort is getting the most snow?</strong> It ranks <%= @resort_count %> North American resorts by forecast snowfall, updated every 6 hours, and it's free.</p></div>
       <h2>Who builds it</h2>
-      <p>Snow Way is built by <a href="https://justinmckelvey.com">Justin McKelvey</a>, a software builder and skier who wanted one place to see where the powder is before booking a trip.</p>
+      <figure class="my-6 grid sm:grid-cols-2 gap-4 items-center">
+        <%= image_tag "justin-roof-rail.webp", alt: "Justin McKelvey snowboarding a rail along the roof of a log cabin", width: 612, height: 612, loading: "lazy", class: "rounded-xl w-full h-auto" %>
+        <%= image_tag "justin-chairlift-storm.webp", alt: "Justin McKelvey grinning on a chairlift in a snowstorm", width: 960, height: 720, loading: "lazy", class: "rounded-xl w-full h-auto" %>
+      </figure>
+      <p>Snow Way is built by <a href="https://justinmckelvey.com">Justin McKelvey</a>. He ran snowboard and bike shops before teaching himself to code, and went on to ship more than 50 software products. He built Snow Way because finding the deep days shouldn't take ten browser tabs.</p>
       <h2>Where the data comes from</h2>
       <ul>
         <li><strong>Forecasts:</strong> <a href="https://open-meteo.com">Open-Meteo</a>, which blends national weather models. Snow Way requests each resort's forecast at its summit elevation, not the nearest town.</li>
