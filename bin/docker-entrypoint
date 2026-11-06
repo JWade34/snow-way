@@ -10,6 +10,7 @@ fi
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
   ./bin/rails db:prepare
   ./bin/rails resorts:sync
+  ./bin/rails search:backfill_if_empty || true
 fi
 
 exec "${@}"

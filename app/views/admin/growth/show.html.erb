@@ -9,6 +9,9 @@
 <p class="text-slate-400 text-xs mb-6">
   <%= @report.range.first.strftime("%b %-d") %>–<%= @report.range.last.strftime("%b %-d") %> vs the <%= @days %> days before.
   Search data through <%= @report.last_synced_on&.strftime("%b %-d") || "— (not synced yet)" %>; Google reports ~2–3 days behind.
+  <% SearchStatsSyncJob.status.each do |source, s| %>
+    <span class="<%= s["ok"] ? "text-slate-400" : "text-red-300" %>"><%= source.capitalize %> sync <%= time_ago_in_words(s["at"]) %> ago: <%= s["message"] %>.</span>
+  <% end %>
   <% unless SearchConsole.configured? %><span class="text-amber-300">Google not connected.</span><% end %>
   <% unless BingWebmaster.configured? %><span class="text-amber-300">Bing not connected.</span><% end %>
 </p>
