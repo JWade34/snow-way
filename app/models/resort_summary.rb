@@ -178,10 +178,20 @@ class ResortSummary
     list << { question: "When does #{resort.name} open for the #{season_label} season?", answer: opening_answer } if resort.opening_date
     list << { question: "What is the closest airport to #{resort.name}?", answer: airport_answer }
     list << { question: "How high is #{resort.name}?", answer: elevation_answer } if resort.vertical_drop
+    list << { question: "Where can I see #{resort.name} webcams and the trail map?", answer: links_answer } if links_answer
     list
   end
 
   private
+
+  def links_answer
+    links = ResortLinks.for(resort)
+    parts = []
+    parts << "live mountain webcams" if links["webcams"]
+    parts << "the current trail map" if links["trail_map"]
+    return nil if parts.empty?
+    "#{resort.name} posts #{parts.to_sentence} on its official website; Snow Way links to both from this page, next to the snow report. Check the webcams before you drive up: they show real snow on the ground, which forecasts can't."
+  end
 
   def snow_report_answer
     new_snow = last_24h > 0 ? "#{resort.name} got about #{inches(last_24h)} of new snow in the last 24 hours and #{inches(recent)} over 48 hours." : "#{resort.name} has had no measurable new snow in the last 24 hours#{recent > 0 ? " (#{inches(recent)} over 48 hours)" : ""}."

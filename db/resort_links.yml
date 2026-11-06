@@ -1,0 +1,432 @@
+# Official webcam and trail map pages, keyed by resort slug. Only links verified to load on the resort's own site.
+# Checked 2026-11-06. Leave a resort out rather than guess.
+49-degrees-north:
+  webcams: https://www.ski49n.com/webcams/
+  trail_map: https://www.ski49n.com/mountain-info/trail-map-stats
+akakura-kanko:
+  trail_map: https://akr-ski.com/wp-content/themes/akakurakanko/images/slope-map.png
+alta:
+  webcams: https://www.alta.com/weather
+appi:
+  webcams: https://www.appi.co.jp/live-camera/
+arapahoe-basin:
+  webcams: https://www.arapahoebasin.com/mountain-cams/
+  trail_map: https://www.arapahoebasin.com/trail-maps/
+aspen-snowmass:
+  webcams: https://www.aspensnowmass.com/four-mountains/mountain-cams
+  trail_map: https://www.aspensnowmass.com/four-mountains/trail-maps
+banff-sunshine:
+  webcams: https://www.skibanff.com/webcams
+  trail_map: https://www.skibanff.com/the-mountain/lifts-terrain/trail-maps
+bear-creek:
+  webcams: https://www.bcmountainresort.com/activities/ski-snowboarding/mountain-webcam/
+bear-mountain:
+  webcams: https://www.bigbearmountainresort.com/webcams
+  trail_map: https://www.bigbearmountainresort.com/mountain-information/trail-maps
+beaver-mountain:
+  trail_map: https://www.skithebeav.com/wp-content/uploads/2020/11/beaver-trail-map-2021.png
+beech-mountain:
+  webcams: https://www.beechmountainresort.com/mountain/webcams/
+  trail_map: https://www.beechmountainresort.com/mountain/winter-trail-map/
+big-sky:
+  webcams: https://www.bigskyresort.com/current-conditions/webcams
+  trail_map: https://www.bigskyresort.com/trail-maps
+big-white:
+  webcams: https://www.bigwhite.com/mountain-conditions/webcams
+  trail_map: https://www.bigwhite.com/explore/mountain-info/maps
+blue-mountain-ontario:
+  webcams: https://www.bluemountain.ca/mountain/webcams
+  trail_map: https://www.bluemountain.ca/about-us/maps
+bogus-basin:
+  webcams: https://bogusbasin.org/your-mountain/conditions-webcams/
+  trail_map: https://bogusbasin.org/your-mountain/maps-statistics/
+bolton-valley:
+  webcams: https://www.boltonvalley.com/the-resort/live-webcams/
+  trail_map: https://www.boltonvalley.com/winter/trail-maps-snow-reports/
+boreal:
+  webcams: https://www.rideboreal.com/explore/webcams/
+boyne-mountain:
+  webcams: https://www.boynemountain.com/mountain-report
+  trail_map: https://www.boynemountain.com/mountain-maps
+bretton-woods:
+  webcams: https://www.brettonwoods.com/live-cam-forecast/
+  trail_map: https://www.brettonwoods.com/plan-visit/maps/
+bridger-bowl:
+  webcams: https://bridgerbowl.com/weather/webcams
+  trail_map: https://bridgerbowl.com/mountain/trail-map
+brighton:
+  webcams: https://www.brightonresort.com/conditions
+  trail_map: https://www.brightonresort.com/trail-maps
+brundage:
+  webcams: https://brundage.com/live-cams/
+  trail_map: https://brundage.com/winter-maps/
+camelback:
+  webcams: https://www.camelbackresort.com/resort-information/live-cameras
+  trail_map: https://www.camelbackresort.com/trail-map
+canaan-valley:
+  webcams: https://www.canaanresort.com/resort-webcam
+  trail_map: https://www.canaanresort.com/general-uploads/Files/2026-Canaan-Valley-Trail-Map-Final-2.pdf
+cannon-mountain:
+  webcams: https://www.cannonmt.com/webcam
+  trail_map: https://www.cannonmt.com/trail-map
+castle-mountain:
+  webcams: https://www.skicastle.ca/webcams/
+  trail_map: https://www.skicastle.ca/wintermaps/
+cataloochee:
+  webcams: https://cataloochee.com/the-mountain/webcams/
+  trail_map: https://cataloochee.com/the-mountain/trail-map/
+cerro-castor:
+  trail_map: https://www.cerrocastor.com/es_ar/mapa-de-pistas.html
+cerro-catedral:
+  webcams: https://catedralaltapatagonia.com/webcams/
+chamonix:
+  webcams: https://www.chamonix.com/webcams
+chapelco:
+  webcams: https://www.cerrochapelco.com.ar/webcams-cerro-chapelco/
+  trail_map: https://www.cerrochapelco.com.ar/mapa-de-pistas/
+china-peak:
+  webcams: https://www.skichinapeak.com/webcam/
+  trail_map: https://www.skichinapeak.com/trail-map
+copper-mountain:
+  webcams: https://www.coppercolorado.com/the-mountain/webcams/
+  trail_map: https://www.coppercolorado.com/the-mountain/trail-area-maps/
+corralco:
+  webcams: https://webcam.corralco.com/
+  trail_map: https://corralco.com/montana/mapa-de-pista/
+courchevel:
+  webcams: https://courchevel.com/en/livecams/webcam/
+  trail_map: https://courchevel.com/en/pistes-et-remontees/
+cranmore:
+  webcams: https://cranmore.com/cams
+  trail_map: https://cranmore.com/trail-map
+crystal-mountain:
+  webcams: https://www.crystalmountainresort.com/the-mountain/mountain-report-and-webcams
+  trail_map: https://www.crystalmountainresort.com/the-mountain/trail-maps
+crystal-mountain-michigan:
+  webcams: https://www.crystalmountain.com/ski/cams-conditions/webcams
+  trail_map: https://www.crystalmountain.com/ski/our-mountain/winter-trail-maps
+cypress-mountain:
+  webcams: https://www.cypressmountain.com/webcams
+  trail_map: https://www.cypressmountain.com/trail-maps-and-stats
+deer-valley:
+  webcams: https://www.deervalley.com/explore-the-mountain/webcams
+  trail_map: https://www.deervalley.com/explore-the-mountain/interactive-grooming-map
+discovery:
+  webcams: https://www.skidiscovery.com/webcam/
+  trail_map: https://www.skidiscovery.com/trail-maps/
+dodge-ridge:
+  webcams: https://dodgeridge.com/webcams/
+  trail_map: https://dodgeridge.com/trail-maps/
+el-colorado:
+  webcams: https://www.elcolorado.cl/live-cam
+  trail_map: https://www.elcolorado.cl/mapa-de-pistas
+eldora:
+  webcams: https://www.eldora.com/the-mountain/current-conditions/webcams/
+  trail_map: https://www.eldora.com/the-mountain/maps/alpine-trail-map/
+elk-mountain:
+  webcams: https://www.elkskier.com/webcams/
+  trail_map: https://www.elkskier.com/trail-maps/
+fernie:
+  webcams: https://skifernie.com/conditions/mountain-cam/
+  trail_map: https://skifernie.com/trailmap/
+furano:
+  trail_map: https://www.princehotels.com/en/ski/furano/mountain_map.jpg
+grand-targhee:
+  webcams: https://www.grandtarghee.com/the-mountain/cams-conditions/webcams
+  trail_map: https://www.grandtarghee.com/the-mountain/mountain-information/trail-maps
+granite-peak:
+  webcams: https://www.skigranitepeak.com/mountain-info/live-web-cams
+  trail_map: https://www.skigranitepeak.com/mountain-info/trail-map-mountain-stats
+greek-peak:
+  webcams: https://www.greekpeak.net/ski-ride/webcams/
+grouse-mountain:
+  webcams: https://www.grousemountain.com/web-cams
+  trail_map: https://www.grousemountain.com/maps/winter-map
+gunstock:
+  webcams: https://www.gunstock.com/discover/webcams/
+  trail_map: https://www.gunstock.com/winter/trail-map/
+holiday-valley:
+  webcams: https://www.holidayvalley.com/webcams/
+  trail_map: https://www.holidayvalley.com/trailmap/
+ischgl:
+  webcams: https://www.ischgl.com/en/plan-your-trip/webcams
+jackson-hole:
+  webcams: https://www.jacksonhole.com/mountain-report
+  trail_map: https://www.jacksonhole.com/maps
+jay-peak:
+  trail_map: https://jaypeakresort.com/skiing-riding/snow-report-maps/trail-map
+jiminy-peak:
+  webcams: https://www.jiminypeak.com/webcams/
+  trail_map: https://www.jiminypeak.com/the-mountain/mountain-information/jiminy-maps/
+june-mountain:
+  webcams: https://www.junemountain.com/mountain-information/live-cams
+  trail_map: https://www.junemountain.com/mountain-information/trail-map
+kicking-horse:
+  webcams: https://kickinghorseresort.com/conditions/mountain-cam/
+  trail_map: https://kickinghorseresort.com/trailmap/
+killington:
+  webcams: https://killington.com/webcams
+  trail_map: https://killington.com/winter-trail-map
+kiroro:
+  webcams: https://www.kiroro.co.jp/livecamera/
+  trail_map: https://www.kiroro.co.jp/guide_map/
+kitzbuhel:
+  webcams: https://www.kitzski.at/de/aktuelle-info/webcams.html
+la-parva:
+  webcams: https://laparva.cl/en/mountain-report/web-cameras/
+  trail_map: https://laparva.cl/es/reporte-de-montana/mapas/
+lake-louise:
+  webcams: https://www.skilouise.com/mountain-cam/
+  trail_map: https://www.skilouise.com/wp-content/uploads/2024/02/959-3d-trail-map-feb-23-24-1.jpg
+las-lenas:
+  trail_map: https://laslenas.com/mapa-de-pistas/
+le-massif:
+  webcams: https://www.lemassif.com/fr/montagne/ete/meteo-et-webcams
+  trail_map: https://www.lemassif.com/fr/montagne/hiver/remontees-pistes-et-damage
+lookout-pass:
+  webcams: https://skilookout.com/webcams/
+  trail_map: https://skilookout.com/trail-map/
+loon-mountain:
+  webcams: https://www.loonmtn.com/mountain-report
+  trail_map: https://www.loonmtn.com/mountain-maps
+loveland:
+  webcams: https://skiloveland.com/webcams/
+  trail_map: https://skiloveland.com/the-mountain/trail-map-mountain-stats/
+lutsen-mountains:
+  webcams: https://www.lutsen.com/mountain-info/our-webcam
+  trail_map: https://www.lutsen.com/mountain-info/trail-map-mountain-stats
+mad-river-glen:
+  webcams: https://www.madriverglen.com/live-web-cam/
+  trail_map: https://www.madriverglen.com/trail-maps/
+magic-mountain:
+  trail_map: https://www.magicmtn.com/trail-map
+mammoth-mountain:
+  webcams: https://www.mammothmountain.com/on-the-mountain/mammoth-webcam
+  trail_map: https://www.mammothmountain.com/on-the-mountain/winter-trail-map
+marmot-basin:
+  trail_map: https://www.skimarmot.com/mountain/trail-map-lift-status/
+massanutten:
+  webcams: https://www.massresort.com/snow-sports/conditions-webcams/
+monarch-mountain:
+  webcams: https://skimonarch.com/conditions/cams/
+  trail_map: https://skimonarch.com/mountain-maps/
+mont-sainte-anne:
+  webcams: https://mont-sainte-anne.com/webcams-controls/
+  trail_map: https://mont-sainte-anne.com/cartes-des-pistes-ski-alpin/
+mont-tremblant:
+  webcams: https://www.tremblant.ca/mountain-village/webcams
+  trail_map: https://www.tremblant.ca/mountain-village/maps
+montage-mountain:
+  webcams: https://www.montagemountainresorts.com/live-cams/
+mount-bohemia:
+  trail_map: https://www.mtbohemia.com/trail-maps/
+mount-seymour:
+  webcams: https://mtseymour.ca/the-mountain/todays-conditions-hours
+  trail_map: https://mtseymour.ca/the-mountain/trail-map
+mount-st-louis-moonstone:
+  webcams: https://www.mountstlouis.com/webcams/
+mountain-creek:
+  trail_map: https://mountaincreek.com/wp-content/uploads/2023/12/TrailMap_2023-24.jpg
+mountain-high:
+  webcams: https://www.mthigh.com/site/mountain/mountain-info/livecams
+  trail_map: https://www.mthigh.com/site/mountain/mountain-info/interactive-trailmap.html
+mt-ashland:
+  webcams: https://www.mtashland.com/webcams/
+  trail_map: https://www.mtashland.com/trail-maps/
+mt-bachelor:
+  webcams: https://www.mtbachelor.com/the-mountain/webcams/
+  trail_map: https://www.mtbachelor.com/the-mountain/maps/winter-lift-trail-map/
+mt-hood-meadows:
+  webcams: https://www.skihood.com/mountain-report
+  trail_map: https://www.skihood.com/explore/trail-maps
+mt-norquay:
+  webcams: https://banffnorquay.com/webcam/
+  trail_map: https://banffnorquay.com/trail-map/
+mt-spokane:
+  webcams: https://www.mtspokane.com/webcams
+  trail_map: https://www.mtspokane.com/trail-maps
+nakiska:
+  webcams: https://skinakiska.com/conditions/mountain-cam/
+nevados-de-chillan:
+  webcams: https://www.nevadosdechillan.com/camaras
+  trail_map: https://www.nevadosdechillan.com/mapas-de-pistas
+niseko-united:
+  webcams: https://www.niseko.ne.jp/en/livecamera/
+  trail_map: https://www.niseko.ne.jp/en/map/
+nozawa-onsen:
+  webcams: https://nozawaski.com/winter/course/livecam_map/
+  trail_map: https://nozawaski.com/winter/course/map/
+nubs-nob:
+  webcams: https://www.nubsnob.com/cam/
+  trail_map: https://www.nubsnob.com/trail-maps/
+ober-mountain:
+  webcams: https://www.obergatlinburg.com/webcams
+  trail_map: https://www.obergatlinburg.com/mountain-maps
+palisades-tahoe:
+  webcams: https://www.palisadestahoe.com/mountain-information/webcams
+  trail_map: https://www.palisadestahoe.com/mountain-information/trail-maps
+panorama:
+  webcams: https://www.panoramaresort.com/panorama-today/mountain-webcams
+  trail_map: https://www.panoramaresort.com/while-you-are-here/map
+perfect-north-slopes:
+  webcams: https://perfectnorth.com/snow-cams/
+  trail_map: https://perfectnorth.com/trail-map/
+perisher:
+  webcams: https://www.perisher.com.au/reports-cams/cams
+  trail_map: https://www.perisher.com.au/plan-your-trip/new-to-perisher/trail-maps
+portillo:
+  webcams: https://skiportillo.com/montana/clima-y-condiciones/
+  trail_map: https://skiportillo.com/montana/mapa-de-pista/
+powder-mountain:
+  webcams: https://powdermountain.com/conditions
+  trail_map: https://powdermountain.com/trail-map
+red-lodge-mountain:
+  webcams: https://www.redlodgemountain.com/webcam/
+  trail_map: https://www.redlodgemountain.com/wp-content/uploads/RLM-Trail-Map-2425.jpg
+red-river:
+  webcams: https://www.redriverskiarea.com/explore/about/webcams/
+  trail_map: https://www.redriverskiarea.com/winter/winter-mountain/interactive-trail-map/
+revelstoke:
+  webcams: https://www.revelstokemountainresort.com/mountain/conditions/webcams/
+  trail_map: https://www.revelstokemountainresort.com/discover/about/trail-maps/
+rusutsu:
+  webcams: https://rusutsu.com/live-mountain-cams/
+  trail_map: https://rusutsu.com/trail-map/
+schweitzer:
+  webcams: https://www.schweitzer.com/mountain-info/webcam
+  trail_map: https://www.schweitzer.com/mountain-info/maps
+sierra-at-tahoe:
+  webcams: https://sierraattahoe.com/live-cams/
+  trail_map: https://sierraattahoe.com/maps-and-stats/
+silver-mountain:
+  webcams: https://www.silvermt.com/mountain/about/webcams
+  trail_map: https://www.silvermt.com/mountain/trail-map
+silverstar:
+  webcams: https://www.skisilverstar.com/the-mountain/webcams/
+  trail_map: https://www.skisilverstar.com/the-mountain/mountain-maps/winter-maps/
+sipapu:
+  trail_map: https://www.sipapu.ski/wp-content/uploads/sites/6/sipapu-map-new-2022.jpg
+ski-apache:
+  webcams: https://skiapache.com/mountain-info/live-webcams/
+  trail_map: https://skiapache.com/mountain-info/
+ski-cooper:
+  webcams: https://www.skicooper.com/weather-webcams/
+  trail_map: https://www.skicooper.com/mountain-stats-map/
+ski-santa-fe:
+  webcams: https://www.skisantafe.com/conditions/webcams
+  trail_map: https://www.skisantafe.com/api/media/file/2024-ski-santa-fe-trail-map-and-legend.pdf
+smugglers-notch:
+  webcams: https://www.smuggs.com/conditions-stats/web-cams/
+  trail_map: https://www.smuggs.com/resort-info/trail-map/
+snow-summit:
+  webcams: https://www.bigbearmountainresort.com/webcams
+  trail_map: https://www.bigbearmountainresort.com/mountain-information/trail-maps
+snowbasin:
+  webcams: https://www.snowbasin.com/the-mountain/web-cams
+  trail_map: https://www.snowbasin.com/the-mountain/trail-maps/
+snowbird:
+  webcams: https://www.snowbird.com/the-mountain/webcams/view-all-webcams/
+  trail_map: https://www.snowbird.com/the-mountain/maps/winter-trail-map/
+snowshoe:
+  webcams: https://www.snowshoemtn.com/media-room/skidder-slope-live-cam
+  trail_map: https://www.snowshoemtn.com/mountain-info/maps
+solitude:
+  webcams: https://www.solitudemountain.com/mountain-and-village/webcams
+  trail_map: https://www.solitudemountain.com/mountain-and-village/mountain-information/maps
+st-anton:
+  webcams: https://www.stantonamarlberg.com/de/webcams
+  trail_map: https://www.stantonamarlberg.com/de/service/lifte-pisten
+st-moritz:
+  webcams: https://www.mountains.ch/de/webcam
+steamboat:
+  webcams: https://www.steamboat.com/the-mountain/live-cams
+  trail_map: https://www.steamboat.com/the-mountain/trail-map/adventure-map
+stratton:
+  webcams: https://www.stratton.com/the-mountain/webcams
+  trail_map: https://www.stratton.com/the-mountain/interactive-trail-map
+sugar-bowl:
+  webcams: https://www.sugarbowl.com/webcams
+  trail_map: https://www.sugarbowl.com/interactive-map
+sugar-mountain:
+  webcams: https://skisugar.com/cams/
+  trail_map: https://skisugar.com/trailmap/
+sugarbush:
+  webcams: https://www.sugarbush.com/mountain/webcams
+  trail_map: https://www.sugarbush.com/-/media/sugarbush/24-25-mountains/24-25-mountain-landing-page/trail-maps.jpg
+sugarloaf:
+  webcams: https://www.sugarloaf.com/mountain-report
+  trail_map: https://www.sugarloaf.com/mountain-info
+summit-at-snoqualmie:
+  webcams: https://www.summitatsnoqualmie.com/webcams
+  trail_map: https://www.summitatsnoqualmie.com/trail-maps
+sun-peaks:
+  webcams: https://www.sunpeaksresort.com/ski-ride/weather-conditions-cams/webcams
+  trail_map: https://www.sunpeaksresort.com/ski-ride/the-mountain/trail-maps-stats
+sun-valley:
+  webcams: https://www.sunvalley.com/the-mountain/web-cams
+  trail_map: https://www.sunvalley.com/the-mountain/maps-guides
+sundance:
+  webcams: https://www.sundanceresort.com/webcams/
+  trail_map: https://www.sundanceresort.com/maps/
+sunday-river:
+  webcams: https://www.sundayriver.com/mountain-report
+  trail_map: https://www.sundayriver.com/resort-maps
+sunlight-mountain:
+  webcams: https://sunlightmtn.com/weather-report/
+  trail_map: https://sunlightmtn.com/explore/trail-maps/
+taos-ski-valley:
+  webcams: https://www.skitaos.com/weather
+  trail_map: https://www.skitaos.com/mountain
+telluride:
+  webcams: https://tellurideskiresort.com/webcams/
+  trail_map: https://tellurideskiresort.com/wp-content/uploads/2425_TSR_Trail-Map_layered-trailmap.jpg
+terry-peak:
+  webcams: https://terrypeak.com/the-mountain/live-web-cams/
+the-highlands:
+  webcams: https://www.highlandsharborsprings.com/mountain-report
+  trail_map: https://www.highlandsharborsprings.com/resort-maps
+thredbo:
+  webcams: https://www.thredbo.com.au/weather/snow-cams/
+  trail_map: https://www.thredbo.com.au/the-mountain/mountain-map/
+tignes:
+  webcams: https://www.tignes.net/webcams
+  trail_map: https://www.tignes.net/ski/domaine-skiable/plan-des-pistes
+timberline:
+  webcams: https://timberlinelodge.com/webcams/
+  trail_map: https://timberlinelodge.com/mountain/trail-map/
+timberline-mountain:
+  webcams: https://timberlinemountain.com/snow-cams/
+  trail_map: https://timberlinemountain.com/trail-map/
+val-disere:
+  webcams: https://www.valdisere.com/live/webcams/
+  trail_map: https://www.valdisere.com/live/plan-des-pistes/
+val-gardena:
+  webcams: https://www.valgardena.it/de/webcams-groeden/
+  trail_map: https://www.valgardena.it/de/winterurlaub-dolomiten/pisten-lifte-groeden/
+valle-nevado:
+  webcams: https://www.vallenevado.com/es/camaras/
+  trail_map: https://www.vallenevado.com/es/montana/mapas/invierno/
+verbier:
+  webcams: https://verbier4vallees.ch/en/useful-information/webcams
+  trail_map: https://verbier4vallees.ch/en/useful-information/interactive-map
+wachusett-mountain:
+  webcams: https://www.wachusett.com/the-mountain/media-center/webcams/
+  trail_map: https://www.wachusett.com/the-mountain/about-wachusett/trail-map/
+waterville-valley:
+  webcams: https://www.waterville.com/cams/
+  trail_map: https://www.waterville.com/maps/
+white-pass:
+  webcams: https://skiwhitepass.com/mountain-cams
+  trail_map: https://skiwhitepass.com/the-mountain/trail-maps
+whitewater:
+  webcams: https://whitewatermountainresort.com/webcams
+  trail_map: https://whitewatermountainresort.com/trail-maps
+winter-park:
+  webcams: https://www.winterparkresort.com/the-mountain/mountain-cams
+  trail_map: https://www.winterparkresort.com/the-mountain/mountain-information/maps
+wolf-creek:
+  webcams: https://wolfcreekski.com/webcams/
+  trail_map: https://wolfcreekski.com/area-maps/
+zermatt:
+  webcams: https://www.matterhornparadise.ch/en/information/webcams
+  trail_map: https://www.matterhornparadise.ch/en/experience/skiing/piste-map
