@@ -31,7 +31,7 @@
         "itemListElement" => [
           { "@type" => "ListItem", "position" => 1, "name" => "Snow Way", "item" => "https://snowway.app/" },
           { "@type" => "ListItem", "position" => 2, "name" => "Ski Resorts", "item" => "https://snowway.app/ski-resorts" },
-          { "@type" => "ListItem", "position" => 3, "name" => @resort.state_province, "item" => "https://snowway.app/ski-resorts/#{@resort.region_slug}" },
+          { "@type" => "ListItem", "position" => 3, "name" => @resort.region_name, "item" => "https://snowway.app/ski-resorts/#{@resort.region_slug}" },
           { "@type" => "ListItem", "position" => 4, "name" => "#{@resort.name} Snow Report", "item" => page_url }
         ]
       },
@@ -51,7 +51,7 @@
     <!-- Resort Header -->
     <div class="text-center mb-10">
       <nav aria-label="Breadcrumb" class="text-slate-400 text-xs mb-3">
-        <%= link_to "Ski Resorts", regions_path, class: "hover:text-white transition" %> <span aria-hidden="true">/</span> <%= link_to @resort.state_province, region_path(@resort.region_slug), class: "hover:text-white transition" %>
+        <%= link_to "Ski Resorts", regions_path, class: "hover:text-white transition" %> <span aria-hidden="true">/</span> <%= link_to @resort.region_name, region_path(@resort.region_slug), class: "hover:text-white transition" %>
       </nav>
       <p class="text-slate-400 text-sm uppercase tracking-widest mb-2"><%= @resort.location %></p>
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %> <span class="block text-2xl md:text-3xl text-slate-300 font-bold mt-1">Snow Report &amp; Forecast</span></h1>
@@ -137,7 +137,7 @@
     <% hubs = SkiHub.all.select { |h| h.nearby.any? { |r, _| r.id == @resort.id } } %>
     <% groups = Region.groups.select { |g| g.resorts.any? { |r| r.id == @resort.id } } %>
     <p class="mb-3 text-sm text-slate-300">
-      <%= link_to "#{@resort.state_province} snow report and ski resorts", region_path(@resort.region_slug), class: "text-cyan-300 underline underline-offset-2" %>
+      <%= link_to "#{@resort.region_name} snow report and ski resorts", region_path(@resort.region_slug), class: "text-cyan-300 underline underline-offset-2" %>
       <% groups.each do |g| %> · <%= link_to "#{g.name} ski resorts", region_path(g), class: "text-cyan-300 underline underline-offset-2" %><% end %>
       <% if @resort.opening_date %> · <%= link_to "Opening dates for every resort", opening_dates_path, class: "text-cyan-300 underline underline-offset-2" %><% end %>
     </p>
@@ -225,7 +225,7 @@
     <!-- Nearby resorts: internal links within the state cluster -->
     <% if @summary.state_peers.any? %>
       <section class="mb-10">
-        <h2 class="text-xl font-bold mb-4">Other <%= @resort.state_province %> Ski Resorts This Week</h2>
+        <h2 class="text-xl font-bold mb-4">Other <%= @resort.region_name %> Ski Resorts This Week</h2>
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <% @summary.state_peers.each do |peer| %>
             <li>

@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def where_is_it_snowing
     @totals = Resort.projected_totals
     @recent = Resort.recent_totals
-    @resorts = Resort.all.to_a
+    @resorts = Resort.north_america.to_a
     @ranked = @resorts.sort_by { |r| -@totals.fetch(r.id, 0.0) }
     @fresh = @resorts.select { |r| @recent.fetch(r.id, 0.0) > 0 }.sort_by { |r| -@recent[r.id] }
     @region_leaders = @resorts.group_by(&:state_province)
@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
   def ikon_vs_epic
     @totals = Resort.projected_totals
-    resorts = Resort.order(:name).to_a
+    resorts = Resort.north_america.order(:name).to_a
     @epic = resorts.select(&:on_epic?).sort_by { |r| -@totals.fetch(r.id, 0.0) }
     @ikon = resorts.select(&:on_ikon?).sort_by { |r| -@totals.fetch(r.id, 0.0) }
     @prices = Resort.pass_prices
@@ -26,13 +26,16 @@ class PagesController < ApplicationController
     @totals = Resort.projected_totals
     @recent = Resort.recent_totals
     pool = @pass == "indy" ? Resort.all.select { |r| Array(r.other_passes).include?("indy") } : Resort.where(pass: [ @pass, "both" ]).to_a
-    @resorts = pool.sort_by { |r| [ -@totals.fetch(r.id, 0.0), r.name ] }
+    na, abroad = pool.partition(&:north_american?)
+    @resorts = na.sort_by { |r| [ -@totals.fetch(r.id, 0.0), r.name ] }
+    @abroad = abroad.sort_by { |r| [ r.country, r.name ] }
     @prices = Resort.pass_prices
     @updated_at = SnowForecast.maximum(:created_at)
   end
 
   def about
-    @resort_count = Resort.count
+    @resort_count = Resort.north_america.count
+    @international_count = Resort.international.count
   end
 
   def author
@@ -44,8 +47,8 @@ class PagesController < ApplicationController
 
   def opening_dates
     @totals = Resort.projected_totals
-    @resorts = Resort.where.not(opening_date: nil).order(:opening_date, :name)
-    @unknown = Resort.where(opening_date: nil).order(:name)
+    @resorts = Resort.north_america.where.not(opening_date: nil).order(:opening_date, :name)
+    @unknown = Resort.north_america.where(opening_date: nil).order(:name)
     @checked_on = Resort.maximum(:facts_checked_on)
   end
 end

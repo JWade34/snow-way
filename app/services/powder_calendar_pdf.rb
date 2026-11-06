@@ -14,7 +14,7 @@ class PowderCalendarPdf
   # Heat scale for a month's share of the season's snow.
   HEAT = [ [ 20, "0E7490", "FFFFFF" ], [ 15, "06B6D4", "FFFFFF" ], [ 10, "67E8F9", DARK ], [ 5, "CFFAFE", DARK ], [ 0, "F8FAFC", "94A3B8" ] ].freeze
 
-  def initialize(resorts = Resort.all.to_a, as_of: Date.current)
+  def initialize(resorts = Resort.north_america.to_a, as_of: Date.current)
     @resorts = resorts.sort_by { |r| [ r.country == "USA" ? 0 : 1, r.state_province, r.name ] }
     @as_of = as_of
   end

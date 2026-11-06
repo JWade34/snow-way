@@ -12,6 +12,6 @@ class GuidesController < ApplicationController
     @guide = Guide.find(params[:id])
     @topic = GuideTopic.primary_for(@guide.slug)
     @totals = Resort.projected_totals
-    @top = Resort.where(id: @totals.sort_by { |_, v| -v }.first(5).map(&:first)).to_a.sort_by { |r| -@totals[r.id] }
+    @top = Resort.north_america.where(id: @totals.slice(*Resort.north_america.ids).sort_by { |_, v| -v }.first(5).map(&:first)).to_a.sort_by { |r| -@totals[r.id] }
   end
 end

@@ -4,13 +4,13 @@ class ResortsController < ApplicationController
   def index
     @resorts = case params[:sort]
     when "name"
-      Resort.order(:name)
+      Resort.north_america.order(:name)
     when "state"
-      Resort.order(:state_province, :name)
+      Resort.north_america.order(:state_province, :name)
     when "recent"
-      Resort.by_recent_snow
+      Resort.north_america.by_recent_snow
     else
-      Resort.by_most_snow
+      Resort.north_america.by_most_snow
     end
   end
 

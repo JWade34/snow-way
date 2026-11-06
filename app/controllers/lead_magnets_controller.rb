@@ -6,7 +6,7 @@ class LeadMagnetsController < ApplicationController
   }.freeze
 
   def powder_calendar
-    @resorts = Resort.order(:name).to_a
+    @resorts = Resort.north_america.order(:name).to_a
     @regions = @resorts.group_by(&:state_province)
   end
 

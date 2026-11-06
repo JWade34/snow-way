@@ -1,6 +1,6 @@
 # Snow Way: ski resort snow forecasts (full data)
 
-> Every North American ski resort Snow Way tracks, ranked by snow forecast over the next 7 days (<%= Resort.forecast_window.first.strftime("%b %-d") %> to <%= Resort.forecast_window.last.strftime("%b %-d, %Y") %>). Headline totals are for each resort's mid-mountain elevation (summit totals in parentheses), sourced from Open-Meteo and refreshed every 6 hours. Source: https://snowway.app
+> Every North American ski resort Snow Way tracks, ranked by snow forecast (international resorts follow, ranked separately) over the next 7 days (<%= Resort.forecast_window.first.strftime("%b %-d") %> to <%= Resort.forecast_window.last.strftime("%b %-d, %Y") %>). Headline totals are for each resort's mid-mountain elevation (summit totals in parentheses), sourced from Open-Meteo and refreshed every 6 hours. Source: https://snowway.app
 <% @summaries.each_with_index do |summary, i| %>
 <% resort = summary.resort %>
 

@@ -9,6 +9,9 @@
 <% faqs << { question: "What ski resorts are on the #{@pass_name}?", answer: "Snow Way tracks #{@resorts.size} #{@pass_name} resorts in North America for #{Date.current.month >= 7 ? Date.current.year : Date.current.year - 1}-#{((Date.current.month >= 7 ? Date.current.year : Date.current.year - 1) + 1).to_s.last(2)}: #{@resorts.map(&:name).sort.to_sentence}. The full pass also includes smaller and international resorts; see #{official} for the complete list." } %>
 <% faqs << { question: "How much is the #{@pass_name}?", answer: "The adult #{@pass_name} was #{price} as of #{@prices[:checked_on]&.strftime("%B %-d, %Y")}. #{@prices[:passes].dig(@pass, "price_note").to_s.include?("November 15") && Date.current <= Date.new(Date.current.year, 11, 15) ? "Prices go up after November 15. " : ""}Check #{official} for current prices." } if price %>
 <% faqs << { question: "Which states have the most #{@pass_name} resorts?", answer: "Among the resorts Snow Way tracks: #{by_region.first(4).map { |region, rs| "#{region} (#{rs.size})" }.to_sentence}." } %>
+<% if @abroad.any? %>
+  <% faqs << { question: "Which international resorts are on the #{@pass_name}?", answer: "Outside North America, Snow Way tracks #{@abroad.size} #{@pass_name} resorts: #{@abroad.group_by(&:country).map { |c, rs| "#{rs.map(&:name).to_sentence} (#{c})" }.join("; ")}. Day limits differ by resort; check #{official} before you book." } %>
+<% end %>
 <% faqs << { question: "Is the Epic Pass or Ikon Pass better?", answer: "It depends on where you'll ski. Compare which pass's resorts are getting more snow this week, and what each costs, on Snow Way's Ikon vs Epic page." } unless @pass == "indy" %>
 <% faqs << { question: "What is the Indy Pass?", answer: "The Indy Pass gives a set number of days at a large network of independent ski areas, mostly smaller and mid-size mountains that aren't on the Epic or Ikon Pass. Check indyskipass.com for the full list and current price." } if @pass == "indy" %>
 
@@ -50,6 +53,15 @@
         </tbody>
       </table>
     </div>
+
+    <% if @abroad.any? %>
+      <h2 class="text-xl font-bold mb-3"><%= @pass_name %> resorts outside North America</h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10 text-sm">
+        <% @abroad.each do |r| %>
+          <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3"><%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %> <span class="text-slate-400">· <%= r.country %></span><% if r.pass_note.present? %><span class="block text-xs text-slate-400"><%= r.pass_note %></span><% end %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <h2 class="text-xl font-bold mb-3"><%= @pass_name %> resorts by state and province</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10 text-sm">

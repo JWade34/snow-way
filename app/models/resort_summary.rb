@@ -97,11 +97,16 @@ class ResortSummary
   end
 
   def rank
-    totals.values.count { |v| v > total } + 1
+    pool_totals.values.count { |v| v > total } + 1
   end
 
   def ranked_count
-    totals.size
+    pool_totals.size
+  end
+
+  # Totals for the resorts this one is ranked against (North America, or international).
+  def pool_totals
+    @pool_totals ||= totals.slice(*resort.ranking_pool.ids)
   end
 
   def biggest_day
@@ -128,7 +133,7 @@ class ResortSummary
   # Same state/province resorts with their totals, most snow first.
   def state_peers
     @state_peers ||= begin
-      peers = Resort.where(state_province: resort.state_province).where.not(id: resort.id).to_a
+      peers = resort.region_peers.to_a
       peers.sort_by { |r| -totals.fetch(r.id, 0.0) }.first(PEER_LIMIT)
     end
   end
@@ -144,10 +149,13 @@ class ResortSummary
     parts = []
     if total > 0
       parts << "As of #{long_date(as_of)}, #{resort.name} is forecast to get #{inches(total)} of snow at mid-mountain over the next 7 days#{summit_note}, " \
-               "ranking ##{rank} of #{ranked_count} North American ski resorts Snow Way tracks."
+               "ranking ##{rank} of #{ranked_count} #{resort.market_label} ski resorts Snow Way tracks."
       parts << "The biggest day is #{day_label(biggest_day.forecast_date)} with #{inches(biggest_day.snowfall_inches)}." if biggest_day
     else
       parts << "As of #{long_date(as_of)}, #{resort.name} has no new snow in the forecast for the next 7 days."
+      if resort.southern_hemisphere? && (5..10).exclude?(as_of.month)
+        parts << "It's in the Southern Hemisphere, where the ski season runs roughly June to October."
+      end
     end
     parts << "It picked up #{inches(recent)} in the last 48 hours." if recent > 0
     parts << conditions_sentence if conditions_sentence
@@ -163,7 +171,7 @@ class ResortSummary
       { question: "When is snow expected at #{resort.name}?", answer: next_snow_answer },
       { question: "How much snow has #{resort.name} gotten in the last 48 hours?", answer: recent_answer }
     ]
-    list << { question: "How does #{resort.name} compare to other #{resort.state_province} ski resorts this week?", answer: peers_answer } if state_peers.any?
+    list << { question: "How does #{resort.name} compare to other #{resort.region_name} ski resorts this week?", answer: peers_answer } if state_peers.any?
     list << { question: "What's the weather at #{resort.name} this week?", answer: weather_answer } if weather_answer
     list << { question: "What is the 14-day snow forecast for #{resort.name}?", answer: fourteen_day_answer } if extended_forecasts.any?
     list << { question: "Is #{resort.name} on the Epic or Ikon Pass?", answer: pass_answer } if resort.pass.present?
@@ -210,7 +218,7 @@ class ResortSummary
   def peers_answer
     others = state_peers.map { |r| "#{r.name} (#{inches(total_for(r))})" }.to_sentence
     lead = total > 0 ? "#{resort.name} is forecast to get #{inches(total)} over the next 7 days." : "#{resort.name} has no new snow in the 7-day forecast."
-    "#{lead} Other #{resort.state_province} resorts: #{others}."
+    "#{lead} Other #{resort.region_name} resorts: #{others}."
   end
 
   def weather_answer

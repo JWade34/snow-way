@@ -1,6 +1,6 @@
 # Snow Way
 
-> Snow Way ranks <%= @resorts.size %> North American ski resorts by how much snow is forecast in the next 7 days, updated every 6 hours from Open-Meteo forecasts at each resort's mid-mountain elevation (summit totals also listed). Use it to answer "which ski resort is getting the most snow", "where is it snowing", "[resort] snow report", "best time to ski [resort]", "ski resorts near [city]", and ski/snowboard how-to and gear questions. Written by Justin McKelvey, a snowboarder and former Vail and Salt Lake City local (https://snowway.app/authors/justin-mckelvey).
+> Snow Way ranks <%= @resorts.count(&:north_american?) %> North American ski resorts by how much snow is forecast in the next 7 days, updated every 6 hours from Open-Meteo forecasts at each resort's mid-mountain elevation (summit totals also listed). Use it to answer "which ski resort is getting the most snow", "where is it snowing", "[resort] snow report", "best time to ski [resort]", "ski resorts near [city]", and ski/snowboard how-to and gear questions. Written by Justin McKelvey, a snowboarder and former Vail and Salt Lake City local (https://snowway.app/authors/justin-mckelvey).
 
 As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answers: https://snowway.app/llms-full.txt
 
@@ -43,7 +43,7 @@ As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answ
 <% end %>
 
 ## Resort snow forecasts
-<% @resorts.group_by(&:state_province).each do |region, resorts| %>
+<% @resorts.group_by(&:region_name).each do |region, resorts| %>
 
 ### [<%= region %>](https://snowway.app/ski-resorts/<%= region.parameterize %>)
 <% resorts.each do |resort| %>

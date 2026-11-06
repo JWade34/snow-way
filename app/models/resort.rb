@@ -77,10 +77,22 @@ class Resort < ApplicationRecord
     "ATL" => "Hartsfield–Jackson Atlanta International",
     "LAX" => "Los Angeles International",
     "JFK" => "John F. Kennedy International",
-    "BOS" => "Boston Logan International"
+    "BOS" => "Boston Logan International",
+    "CTS" => "New Chitose (Sapporo)", "HND" => "Tokyo Haneda",
+    "GVA" => "Geneva Airport", "ZRH" => "Zurich Airport", "INN" => "Innsbruck Airport", "VCE" => "Venice Marco Polo",
+    "SCL" => "Santiago International (Arturo Merino Benítez)", "CCP" => "Concepción Carriel Sur", "ZCO" => "Temuco La Araucanía",
+    "BRC" => "San Carlos de Bariloche", "MDZ" => "Mendoza El Plumerillo", "CPC" => "Chapelco (San Martín de los Andes)",
+    "USH" => "Ushuaia International", "CBR" => "Canberra Airport", "ZQN" => "Queenstown Airport", "CHC" => "Christchurch Airport"
   }.freeze
 
+  # Rankings, "North American" wording, opening dates, and the Powder Calendar cover these countries only.
+  # Resorts elsewhere get full pages but are grouped by country and ranked separately.
+  NA_COUNTRIES = %w[USA Canada].freeze
+
   has_many :snow_forecasts, dependent: :destroy
+
+  scope :north_america, -> { where(country: NA_COUNTRIES) }
+  scope :international, -> { where.not(country: NA_COUNTRIES) }
 
   validates :name, :slug, :latitude, :longitude, :nearest_airport_code, presence: true
   validates :slug, uniqueness: true
@@ -129,8 +141,36 @@ class Resort < ApplicationRecord
       .transform_values { |v| v.to_f.round(1) }
   end
 
+  def north_american?
+    NA_COUNTRIES.include?(country)
+  end
+
+  def southern_hemisphere?
+    latitude.to_f.negative?
+  end
+
+  # The directory a resort belongs to: its state or province in North America, its country elsewhere.
+  def region_name
+    north_american? ? state_province : country
+  end
+
   def region_slug
-    state_province.parameterize
+    region_name.parameterize
+  end
+
+  # Resorts in the same directory region.
+  def region_peers
+    scope = north_american? ? Resort.where(state_province: state_province) : Resort.where(country: country)
+    scope.where.not(id: id)
+  end
+
+  # Resorts this one is ranked against: North America, or everywhere else.
+  def ranking_pool
+    north_american? ? Resort.north_america : Resort.international
+  end
+
+  def market_label
+    north_american? ? "North American" : "international"
   end
 
   def pass_label
@@ -145,9 +185,22 @@ class Resort < ApplicationRecord
     %w[ikon both].include?(pass)
   end
 
-  # Months ranked by share of a typical season's snowfall (modeled), e.g. [[1, 16.6], [3, 16.7], ...]
+  # Months lifts typically run: Nov-May in the north, Jun-Oct in the south.
+  def ski_season_months
+    southern_hemisphere? ? (6..10).to_a : [ 11, 12, 1, 2, 3, 4, 5 ]
+  end
+
+  # Ski-season months ranked by share of a typical season's snowfall (modeled), e.g. [[1, 16.6], [3, 16.7], ...]
+  # Shoulder months can model snowy at high summits while lifts are closed, so they're left out.
   def snowiest_months(limit = 3)
-    (monthly_snow_share || {}).map { |m, v| [ m.to_i, v.to_f ] }.sort_by { |_, v| -v }.first(limit)
+    (monthly_snow_share || {}).map { |m, v| [ m.to_i, v.to_f ] }
+      .select { |m, _| ski_season_months.include?(m) }
+      .sort_by { |_, v| -v }.first(limit)
+  end
+
+  # First full month of the season, used for "good snow early?" answers.
+  def early_season_month
+    southern_hemisphere? ? 6 : 12
   end
 
   # Use slug in URLs instead of id
@@ -213,6 +266,6 @@ class Resort < ApplicationRecord
 
   # Get top resort by projected snowfall
   def self.top_powder_destination
-    by_most_snow.first
+    north_america.by_most_snow.first
   end
 end

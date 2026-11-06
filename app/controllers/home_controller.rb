@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
     @top_resort = Resort.top_powder_destination
-    @top_resorts = Resort.by_most_snow.limit(5)
-    @resort_count = Resort.count
+    @top_resorts = Resort.north_america.by_most_snow.limit(5)
+    @resort_count = Resort.north_america.count
     @faqs = build_faqs
   end
 

@@ -2,7 +2,7 @@
   <%= image_tag "powder-calendar-cover.webp", alt: "", width: 260, height: 336, loading: "lazy", class: "w-16 sm:w-20 rounded shadow-lg -rotate-3 shrink-0" %>
   <div class="flex-1">
     <p id="calendar-cta-heading" class="font-bold text-lg">Free: the <%= PowderCalendarPdf.season_label %> Powder Calendar</p>
-    <p class="text-slate-300 text-sm">When the snow really falls at all <%= Resort.count %> resorts, plus early-season, holiday, and spring picks.</p>
+    <p class="text-slate-300 text-sm">When the snow really falls at all <%= Resort.north_america.count %> North American resorts, plus early-season, holiday, and spring picks.</p>
   </div>
   <%= link_to "Get it free →", powder_calendar_path, class: "shrink-0 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-2 text-center transition text-sm" %>
 </aside>

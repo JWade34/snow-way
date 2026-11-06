@@ -2,13 +2,15 @@
 <% months = (1..12).map { |m| [ m, share[m].to_f ] } %>
 <% top3 = @resort.snowiest_months(3) %>
 <% month_name = ->(m) { Date::MONTHNAMES[m] } %>
-<% season = months.rotate(6).select { |_, v| v >= 5 }.map(&:first) %>
-<% dec_share = months.find { |m, _| m == 12 }[1] %>
+<% rotation = @resort.southern_hemisphere? ? 0 : 6 %>
+<% season = months.rotate(rotation).select { |m, v| v >= 5 && @resort.ski_season_months.include?(m) }.map(&:first) %>
+<% early = @resort.early_season_month %>
+<% dec_share = months.find { |m, _| m == early }[1] %>
 <% faqs = [] %>
 <% if top3.any? %>
   <% faqs << { question: "What is the best time to ski #{@resort.name}?", answer: "For the best snow, ski #{@resort.name} in #{top3.map { |m, _| month_name.(m) }.to_sentence}. Those months bring #{top3.sum { |_, v| v }.round}% of a typical season's snowfall at the summit, based on 10 seasons of modeled weather data (2015–2025)." } %>
   <% faqs << { question: "What is the snowiest month at #{@resort.name}?", answer: "#{month_name.(top3.first[0])} is typically the snowiest month at #{@resort.name}, with about #{top3.first[1].round}% of the season's snow." } %>
-  <% faqs << { question: "Does #{@resort.name} have good snow in December?", answer: "December brings about #{dec_share.round}% of #{@resort.name}'s typical seasonal snowfall#{top3.map(&:first).include?(12) ? ", making it one of the snowiest months" : (dec_share >= 10 ? ", a solid month though not the peak" : ", so early-season coverage can be thin")}. Check the live forecast before booking." } %>
+  <% faqs << { question: "Does #{@resort.name} have good snow in #{month_name.(early)}?", answer: "#{month_name.(early)} brings about #{dec_share.round}% of #{@resort.name}'s typical seasonal snowfall#{top3.map(&:first).include?(early) ? ", making it one of the snowiest months" : (dec_share >= 10 ? ", a solid month though not the peak" : ", so early-season coverage can be thin")}. Check the live forecast before booking." } %>
 <% end %>
 <% faqs << { question: "Is #{@resort.name} getting snow right now?", answer: @summary.answer } %>
 
@@ -19,7 +21,7 @@
         { "@type" => "Article", "headline" => "Best Time to Ski #{@resort.name}", "url" => absolute_url("/resorts/#{@resort.slug}/best-time-to-ski"),
           "author" => author_schema, "dateModified" => Date.current.iso8601,
           "about" => { "@type" => "SkiResort", "name" => @resort.name } },
-        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ @resort.state_province, "/ski-resorts/#{@resort.region_slug}" ], [ @resort.name, "/resorts/#{@resort.slug}" ], [ "Best Time to Ski", nil ] ]),
+        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ @resort.region_name, "/ski-resorts/#{@resort.region_slug}" ], [ @resort.name, "/resorts/#{@resort.slug}" ], [ "Best Time to Ski", nil ] ]),
         faq_schema(faqs)
       ] }) %>
 <% end %>
@@ -27,7 +29,7 @@
 <div class="min-h-screen">
   <%= render "shared/header" %>
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-    <%= render "shared/breadcrumbs", crumbs: [ [ @resort.state_province, region_path(@resort.region_slug) ], [ @resort.name, resort_path(@resort) ], [ "Best Time to Ski", nil ] ] %>
+    <%= render "shared/breadcrumbs", crumbs: [ [ @resort.region_name, region_path(@resort.region_slug) ], [ @resort.name, resort_path(@resort) ], [ "Best Time to Ski", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best time to ski <%= @resort.name %></h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
@@ -39,7 +41,7 @@
       <div class="border border-slate-700 rounded-xl p-4 mb-3" role="img" aria-label="<%= @resort.name %> share of seasonal snowfall by month: <%= months.select { |_, v| v >= 1 }.map { |m, v| "#{month_name.(m)} #{v.round}%" }.join(", ") %>">
         <div class="flex items-end gap-1 sm:gap-2 h-44">
           <% max = months.map(&:last).max.to_f.nonzero? || 1 %>
-          <% months.rotate(6).each do |m, v| %>
+          <% months.rotate(rotation).each do |m, v| %>
             <div class="flex-1 flex flex-col items-center justify-end h-full">
               <span class="text-[10px] sm:text-xs text-slate-300 mb-1"><%= v >= 1 ? "#{v.round}%" : "" %></span>
               <div class="w-full rounded-t <%= top3.map(&:first).include?(m) ? "bg-cyan-400" : "bg-slate-600" %>" style="height: <%= (v / max * 100).round %>%"></div>
@@ -62,9 +64,9 @@
     <% end %>
 
     <%= render "shared/calendar_cta" %>
-    <% peers = Resort.where(state_province: @resort.state_province).where.not(id: @resort.id).order(:name).limit(10) %>
+    <% peers = @resort.region_peers.order(:name).limit(10) %>
     <% if peers.any? %>
-      <h2 class="text-xl font-bold mb-3">Best time to ski other <%= @resort.state_province %> resorts</h2>
+      <h2 class="text-xl font-bold mb-3">Best time to ski other <%= @resort.region_name %> resorts</h2>
       <ul class="flex flex-wrap gap-2 mb-10 text-sm">
         <% peers.each do |r| %><li><%= link_to r.name, best_time_resort_path(r), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2" %></li><% end %>
       </ul>

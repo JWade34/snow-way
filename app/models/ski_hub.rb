@@ -41,7 +41,7 @@ class SkiHub
 
   attr_reader :slug, :city, :airport, :lat, :lon
 
-  def self.all(resorts = Resort.all.to_a)
+  def self.all(resorts = Resort.north_america.to_a)
     HUBS.map { |h| new(**h, resorts: resorts) }.select { |hub| hub.nearby.size >= MIN_RESORTS }
   end
 

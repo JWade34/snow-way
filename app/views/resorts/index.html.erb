@@ -1,5 +1,5 @@
 <% content_for(:title, "Ski Resort Snow Forecast Rankings: Most Snow This Week | Snow Way") %>
-<% content_for(:description, "#{Resort.count} North American ski resorts ranked by forecast snowfall for the next 7 days, updated every 6 hours. Find where the powder is before you book.") %>
+<% content_for(:description, "#{Resort.north_america.count} North American ski resorts ranked by forecast snowfall for the next 7 days, updated every 6 hours. Find where the powder is before you book.") %>
 
 <div class="min-h-screen">
   <%= render "shared/header" %>
@@ -11,11 +11,11 @@
       <p class="text-slate-400">North American ski resorts ranked by forecast snowfall over the next 7 days. See also <%= link_to "where it's snowing this week", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> and <%= link_to "resorts by state", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     </div>
 
-    <% top_totals = Resort.projected_totals.sort_by { |_, v| -v }.first(3) %>
+    <% top_totals = Resort.projected_totals.slice(*Resort.north_america.ids).sort_by { |_, v| -v }.first(3) %>
     <% top_resorts = Resort.where(id: top_totals.map(&:first)).index_by(&:id) %>
     <% if top_totals.any? && top_totals.first.last > 0 %>
       <section class="mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
-        <p class="text-slate-200 leading-relaxed">As of <%= Date.current.strftime("%B %-d, %Y") %>, <%= top_resorts[top_totals.first.first].name %> has the most snow forecast of the <%= Resort.count %> resorts Snow Way tracks: <%= inches(top_totals.first.last) %> at mid-mountain over the next 7 days<% if top_totals.size > 1 %>, followed by <%= top_totals.drop(1).map { |id, v| "#{top_resorts[id].name} (#{inches(v)})" }.to_sentence %><% end %>.</p>
+        <p class="text-slate-200 leading-relaxed">As of <%= Date.current.strftime("%B %-d, %Y") %>, <%= top_resorts[top_totals.first.first].name %> has the most snow forecast of the <%= Resort.north_america.count %> North American resorts Snow Way tracks: <%= inches(top_totals.first.last) %> at mid-mountain over the next 7 days<% if top_totals.size > 1 %>, followed by <%= top_totals.drop(1).map { |id, v| "#{top_resorts[id].name} (#{inches(v)})" }.to_sentence %><% end %>.</p>
       </section>
     <% end %>
 

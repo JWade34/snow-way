@@ -1591,3 +1591,195 @@ resorts:
     opening_date:
     opening_status:
     opening_source:
+  niseko-united:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass (Niseko United); also 2 days
+      on Mountain Collective
+    pass_source: https://www.ikonpass.com/en/destinations/niseko-united
+    other_passes:
+    - mountain_collective
+  rusutsu:
+    pass: epic
+    pass_note: 5 consecutive days on Epic Pass (partner resort; physical pass card required)
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+  kiroro:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  furano:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations/furano-ski-resort
+    other_passes: []
+  hakuba-valley:
+    pass: epic
+    pass_note: 5 consecutive days on Epic Pass across Hakuba Valley's 10 resorts (physical
+      pass card required)
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+  nozawa-onsen:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  myoko-suginohara:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations/myoko-suginohara-ski-resort
+    other_passes: []
+  akakura-kanko:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists (Ikon's Myoko listing is Suginohara)
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  appi:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations/appi-resort
+    other_passes: []
+  chamonix:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass (Chamonix Mont-Blanc Valley);
+      also 2 days on Mountain Collective
+    pass_source: https://www.ikonpass.com/en/destinations/chamonix-mont-blanc-valley
+    other_passes:
+    - mountain_collective
+  val-disere:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  tignes:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  courchevel:
+    pass: epic
+    pass_note: 7 consecutive days on Epic Pass at Les 3 Vallées (partner resort; physical
+      pass card required)
+    pass_source: https://www.epicpass.com/regions/europe.aspx
+    other_passes: []
+  zermatt:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass (Zermatt Matterhorn)
+    pass_source: https://www.ikonpass.com/en/destinations/zermatt-matterhorn
+    other_passes: []
+  verbier:
+    pass: epic
+    pass_note: 5 consecutive days on Epic Pass at Verbier 4 Vallées (partner resort)
+    pass_source: https://www.epicpass.com/regions/europe.aspx
+    other_passes: []
+  st-moritz:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations/stmoritz
+    other_passes: []
+  st-anton:
+    pass: epic
+    pass_note: 3 consecutive days on Epic Pass at Ski Arlberg, only with a stay booked
+      directly at a participating Arlberg lodging partner
+    pass_source: https://www.epicpass.com/regions/europe.aspx
+    other_passes: []
+  kitzbuhel:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations/kitzbuhel
+    other_passes: []
+  ischgl:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass (Silvretta Arena Ischgl/Samnaun)
+    pass_source: https://www.ikonpass.com/en/destinations/ischgl
+    other_passes: []
+  cortina-dampezzo:
+    pass: ikon
+    pass_note: 'Part of Dolomiti Superski: 7 days on Ikon Pass, 5 on Ikon Base Pass,
+      shared across all Dolomiti Superski areas'
+    pass_source: https://www.ikonpass.com/en/destinations/dolomiti-superski
+    other_passes: []
+  val-gardena:
+    pass: ikon
+    pass_note: 'Part of Dolomiti Superski: 7 days on Ikon Pass, 5 on Ikon Base Pass,
+      shared across all Dolomiti Superski areas'
+    pass_source: https://www.ikonpass.com/en/destinations/dolomiti-superski
+    other_passes: []
+  valle-nevado:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass; also 2 days on Mountain Collective
+    pass_source: https://www.ikonpass.com/en/destinations/valle-nevado
+    other_passes:
+    - mountain_collective
+  portillo:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  la-parva:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  el-colorado:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  nevados-de-chillan:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  corralco:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+  cerro-catedral:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  las-lenas:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  chapelco:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  cerro-castor:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+  thredbo:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass (blackout dates apply on Base)
+    pass_source: https://www.ikonpass.com/en/destinations/thredbo
+    other_passes: []
+  perisher:
+    pass: epic
+    pass_note: Unlimited on Epic Pass for the 2027 Australian season (listed as "Perisher
+      - 2027 Access")
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+  coronet-peak:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass, shared across Coronet Peak,
+      The Remarkables and Mt Hutt; also 2 days on Mountain Collective (Coronet Peak
+      + The Remarkables)
+    pass_source: https://www.ikonpass.com/en/destinations/coronet-peak-remarkables-mt-hutt
+    other_passes:
+    - mountain_collective
+  mt-hutt:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass, shared across Coronet Peak,
+      The Remarkables and Mt Hutt
+    pass_source: https://www.ikonpass.com/en/destinations/coronet-peak-remarkables-mt-hutt
+    other_passes: []

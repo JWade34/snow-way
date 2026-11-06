@@ -3,9 +3,9 @@ class Region
   attr_reader :name, :country, :resorts
 
   def self.all
-    Resort.order(:name).to_a.group_by(&:state_province)
+    Resort.order(:name).to_a.group_by(&:region_name)
       .map { |name, resorts| new(name, resorts.first.country, resorts) }
-      .sort_by { |r| [ r.country == "USA" ? 0 : 1, r.name ] }
+      .sort_by { |r| [ { "USA" => 0, "Canada" => 1 }.fetch(r.country, 2), r.name ] }
   end
 
   # Multi-state regions people search for ("best ski resorts in New England", "...in Canada").
@@ -14,7 +14,10 @@ class Region
     "Canada" => ->(r) { r.country == "Canada" },
     "Lake Tahoe" => ->(r) { %w[palisades-tahoe northstar heavenly kirkwood sierra-at-tahoe sugar-bowl homewood diamond-peak boreal mt-rose].include?(r.slug) },
     "Summit County, Colorado" => ->(r) { %w[breckenridge keystone copper-mountain arapahoe-basin loveland].include?(r.slug) },
-    "Southern California" => ->(r) { %w[bear-mountain snow-summit mountain-high].include?(r.slug) }
+    "Southern California" => ->(r) { %w[bear-mountain snow-summit mountain-high].include?(r.slug) },
+    "The Alps" => ->(r) { %w[France Switzerland Austria Italy].include?(r.country) },
+    "South America" => ->(r) { %w[Chile Argentina].include?(r.country) },
+    "Southern Hemisphere" => ->(r) { r.southern_hemisphere? }
   }.freeze
 
   def self.groups
@@ -38,6 +41,10 @@ class Region
 
   def group?
     @group
+  end
+
+  def international?
+    resorts.none?(&:north_american?)
   end
 
   def slug
