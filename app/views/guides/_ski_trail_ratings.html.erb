@@ -1,0 +1,62 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> in North America, ski runs are rated with four main symbols: a green circle (easiest), a blue square (intermediate), a black diamond (advanced), and a double black diamond (expert). Terrain parks are usually marked with an orange shape. Ratings are relative to each resort, so a black diamond at one mountain can be much easier or harder than a black at another.</p></div>
+
+<h2>The North American trail rating system</h2>
+<p>Every run on a North American trail map carries a symbol that tells you how difficult it is compared with other runs at that resort. The symbols are posted on the map and on signs at the top of each run.</p>
+<table>
+  <thead>
+    <tr><th scope="col">Symbol</th><th scope="col">Difficulty</th><th scope="col">What to expect</th><th scope="col">Who it's for</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Green circle</th><td>Easiest</td><td>Gentle, wide, usually groomed</td><td>Beginners</td></tr>
+    <tr><th scope="row">Blue square</th><td>Intermediate</td><td>Moderate pitch, mostly groomed</td><td>Skiers who can link turns and control speed</td></tr>
+    <tr><th scope="row">Black diamond</th><td>Advanced</td><td>Steep, may have moguls, trees, or ungroomed snow</td><td>Confident, experienced skiers</td></tr>
+    <tr><th scope="row">Double black diamond</th><td>Expert</td><td>Very steep, narrow, cliffs, chutes, or hazards</td><td>Experts only</td></tr>
+    <tr><th scope="row">Orange (terrain park)</th><td>Varies</td><td>Jumps, rails, boxes, sized small to large</td><td>Freestyle skiers and riders</td></tr>
+  </tbody>
+</table>
+
+<h3>Green circle</h3>
+<p>Greens are the easiest runs on the mountain: gentle slopes, wide trails, and usually smooth groomed snow. They're where you'll spend your first days once you leave the beginner area. If you're just starting, see <%= link_to "how to ski", guide_path("how-to-ski") %> and <%= link_to "how to stop on skis", guide_path("how-to-stop-on-skis") %>.</p>
+
+<h3>Blue square</h3>
+<p>Blues are intermediate runs and make up a large share of most resorts. They're steeper than greens but usually groomed. You're ready for blues when you can link turns, control your speed, and stop on demand on green terrain.</p>
+
+<h3>Black diamond</h3>
+<p>Black diamonds are advanced runs. Expect steeper pitches and conditions that may include moguls, glades (trees), or ungroomed snow. Some blacks are groomed steeps; others are bump runs. If moguls are your challenge, read <%= link_to "how to ski moguls", guide_path("how-to-ski-moguls") %>.</p>
+
+<h3>Double black diamond</h3>
+<p>Double blacks are expert terrain: very steep slopes, narrow chutes, cliffs, rocks, and tight trees. Some are accessed by hiking or through gates. Only ski them if you're comfortable on any black at that resort and know how to fall and stop safely on steep slopes.</p>
+
+<h3>Terrain parks</h3>
+<p>Terrain parks are usually marked with an orange rectangle or oval and are often sized small, medium, and large. Park features have their own etiquette: inspect jumps before hitting them, call your drop-in, and don't stop below a landing.</p>
+
+<h2>Ratings are relative to each resort</h2>
+<p>There's no single national standard for how steep a black diamond must be. Each resort rates its runs against its own terrain. That means:</p>
+<ul>
+  <li>A black at a small hill may feel like a blue at a big western mountain.</li>
+  <li>A blue at a mountain known for steep terrain can be as challenging as a black elsewhere.</li>
+  <li>Conditions change difficulty. Ice, deep powder, flat light, or moguls can make any run harder on a given day.</li>
+</ul>
+<p>When you visit a new resort, start on a run one level below your usual and work up. Check today's grooming report and the snow conditions on the <%= link_to "resort's snow report", resorts_path %> before you go.</p>
+
+<h2>How Europe rates runs differently</h2>
+<p>European resorts typically use colors rather than shapes:</p>
+<ul>
+  <li><strong>Green:</strong> easiest (used in some countries, such as France)</li>
+  <li><strong>Blue:</strong> easy</li>
+  <li><strong>Red:</strong> intermediate</li>
+  <li><strong>Black:</strong> difficult</li>
+</ul>
+<p>Some areas also mark off-piste itineraries or "ski routes" that are not groomed or patrolled like regular runs. Because the scales differ, a European blue is often closer to a North American green or easy blue, and a red is roughly comparable to a blue or easy black. Treat any comparison as a rough guide.</p>
+
+<h2>Other trail map signs to know</h2>
+<ul>
+  <li><strong>Slow zone:</strong> areas near lift bases, beginner terrain, or merges where you must ski slowly.</li>
+  <li><strong>Closed:</strong> never duck a rope or enter a closed run; closures protect you from hazards like avalanches or grooming equipment.</li>
+  <li><strong>Experts only / gated terrain:</strong> extreme terrain that may require avalanche gear or a partner.</li>
+</ul>
+<% faqs << { question: "What is a black diamond ski run?", answer: "A black diamond is an advanced run in North America. Expect steep terrain and sometimes moguls, trees, or ungroomed snow. It's rated relative to the other runs at that resort." } %>
+<% faqs << { question: "What does a double black diamond mean?", answer: "A double black diamond is expert terrain: very steep slopes, chutes, cliffs, or tight trees. It's the hardest rating on most North American trail maps." } %>
+<% faqs << { question: "Are ski trail ratings the same at every resort?", answer: "No. Each resort rates its runs relative to its own terrain, so a black at one mountain can be easier or harder than a black at another." } %>
+<% faqs << { question: "What is the order of ski run difficulty?", answer: "From easiest to hardest in North America: green circle, blue square, black diamond, double black diamond. Terrain parks are rated separately, usually with orange symbols." } %>

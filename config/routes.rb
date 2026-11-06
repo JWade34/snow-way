@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "ikon-vs-epic" => "pages#ikon_vs_epic", as: :ikon_vs_epic
   get "epic-pass-resorts" => "pages#pass_resorts", defaults: { pass: "epic" }, as: :epic_pass_resorts
   get "ikon-pass-resorts" => "pages#pass_resorts", defaults: { pass: "ikon" }, as: :ikon_pass_resorts
+  get "indy-pass-resorts" => "pages#pass_resorts", defaults: { pass: "indy" }, as: :indy_pass_resorts
   get "ski-resort-opening-dates" => "pages#opening_dates", as: :opening_dates
   get "about" => "pages#about", as: :about
   get "powder-report" => "powder_reports#current", as: :powder_report

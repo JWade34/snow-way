@@ -87,7 +87,31 @@ class Guide
       keyword: "best snowboard brands", affiliate: true },
     { slug: "best-ski-brands", title: "Best Ski Brands: A Guide to the Major Ski Makers",
       description: "A guide to the major ski brands: where they're from, what each is known for, and how to choose skis by brand for your style.",
-      keyword: "best ski brands", affiliate: true }
+      keyword: "best ski brands", affiliate: true },
+    { slug: "what-is-apres-ski", title: "What Is Après-Ski? Meaning, Etiquette, and What to Wear",
+      description: "What après-ski means, where the tradition comes from, what people do and wear after skiing, and how to enjoy it on your next trip.",
+      keyword: "apres ski" },
+    { slug: "ski-trail-ratings", title: "Ski Trail Ratings Explained: Green, Blue, Black Diamond",
+      description: "Ski trail difficulty ratings explained: green circle, blue square, black diamond, double black diamond, terrain parks, and how ratings vary by resort.",
+      keyword: "black diamond ski" },
+    { slug: "how-to-ski-moguls", title: "Mogul Skiing: How to Ski Moguls Step by Step",
+      description: "How to ski moguls: what bumps are, the line and rhythm to use, absorbing with your legs, pole plants, and drills to get comfortable in mogul fields.",
+      keyword: "mogul skiing" },
+    { slug: "ski-terms", title: "Ski Terms Glossary: 70+ Words Skiers and Snowboarders Use",
+      description: "A glossary of ski and snowboard terms, from après and bluebird to corduroy, crud, sidecountry, and sticks, explained in plain English.",
+      keyword: "ski terms" },
+    { slug: "how-to-stop-on-skis", title: "How to Stop on Skis: Wedge, Hockey Stop, and More",
+      description: "How to stop on skis, from the beginner wedge (pizza) to the hockey stop, plus how to control speed on steeper runs.",
+      keyword: "how to stop on skis" },
+    { slug: "how-to-ski-powder", title: "How to Ski Powder: Technique and Gear for Deep Snow",
+      description: "How to ski powder: stance, turn shape, speed, and the gear that makes deep snow easier, plus safety basics for powder days.",
+      keyword: "how to ski powder", affiliate: true },
+    { slug: "how-to-carve-on-a-snowboard", title: "How to Turn and Carve on a Snowboard",
+      description: "How to turn and carve on a snowboard: from skidded turns to clean carves, edge pressure, body position, and drills to practice.",
+      keyword: "how to carve on a snowboard" },
+    { slug: "ski-lessons-for-adults", title: "Ski Lessons for Adults: What to Book and What to Expect",
+      description: "Ski lessons for adults: group vs private, what a first lesson covers, how long it takes to learn to ski, and how to choose a ski school.",
+      keyword: "ski lessons for adults" }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate

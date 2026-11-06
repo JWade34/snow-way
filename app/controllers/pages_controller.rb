@@ -21,11 +21,12 @@ class PagesController < ApplicationController
   end
 
   def pass_resorts
-    @pass = params[:pass] == "ikon" ? "ikon" : "epic"
-    @pass_name = @pass == "ikon" ? "Ikon Pass" : "Epic Pass"
+    @pass = params[:pass].presence_in(%w[epic ikon indy]) || "epic"
+    @pass_name = { "epic" => "Epic Pass", "ikon" => "Ikon Pass", "indy" => "Indy Pass" }.fetch(@pass)
     @totals = Resort.projected_totals
     @recent = Resort.recent_totals
-    @resorts = Resort.where(pass: [ @pass, "both" ]).to_a.sort_by { |r| [ -@totals.fetch(r.id, 0.0), r.name ] }
+    pool = @pass == "indy" ? Resort.all.select { |r| Array(r.other_passes).include?("indy") } : Resort.where(pass: [ @pass, "both" ]).to_a
+    @resorts = pool.sort_by { |r| [ -@totals.fetch(r.id, 0.0), r.name ] }
     @prices = Resort.pass_prices
     @updated_at = SnowForecast.maximum(:created_at)
   end
