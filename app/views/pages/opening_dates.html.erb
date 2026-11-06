@@ -55,6 +55,7 @@
       <p class="text-slate-300 text-sm mb-10"><%= safe_join(@unknown.map { |r| link_to(r.name, resort_path(r), class: "hover:text-cyan-300") }, ", ") %></p>
     <% end %>
 
+    <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "Opening day FAQ" %>
   </main>
 </div>

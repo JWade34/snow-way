@@ -61,6 +61,7 @@
       </ul>
     <% end %>
 
+    <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "#{@resort.name} season FAQ" %>
     <p class="text-sm text-slate-400"><%= link_to "#{@resort.name} snow forecast", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Ski resorts in #{@resort.state_province}", region_path(@resort.region_slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
   </main>

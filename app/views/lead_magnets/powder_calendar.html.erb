@@ -1,0 +1,49 @@
+<% season = PowderCalendarPdf.season_label %>
+<% month_name = ->(m) { Date::MONTHNAMES[m] } %>
+<% best_month = ->(resorts) { resorts.filter_map { |r| r.snowiest_months(1).first&.first }.tally.max_by { |_, n| n }&.first } %>
+<% faqs = [] %>
+<% { "Colorado" => "Colorado", "Utah" => "Utah", "California" => "California", "Vermont" => "Vermont" }.each do |region, label| %>
+  <% rs = @regions[region] || [] %>
+  <% if (m = best_month.(rs)) %>
+    <% faqs << { question: "What is the best month to ski in #{label}?", answer: "#{month_name.(m)} is the snowiest month at the most #{label} resorts Snow Way tracks (#{rs.count { |r| r.snowiest_months(1).first&.first == m }} of #{rs.size}), based on 10 seasons of summit snowfall data. Most #{label} resorts get the bulk of their snow from #{rs.flat_map { |r| r.snowiest_months(3).map(&:first) }.tally.sort_by { |_, n| -n }.first(3).map { |mm, _| month_name.(mm) }.sort_by { |n| Date::MONTHNAMES.index(n).then { |i| i < 7 ? i + 12 : i } }.to_sentence}." } %>
+  <% end %>
+<% end %>
+<% faqs << { question: "What's in the Snow Way Powder Calendar?", answer: "A free PDF with every resort Snow Way tracks: its three snowiest months, #{season} opening date, Epic or Ikon pass access, and nearest airport, grouped by state and province." } %>
+<% content_for(:title, "Free #{season} Powder Calendar: Best Month to Ski 89 Resorts | Snow Way") %>
+<% content_for(:description, "Free PDF: the snowiest months, #{season} opening dates, passes, and airports for #{@resorts.size} North American ski resorts. Plan your trip for the best snow.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "#{season} Powder Calendar", "url" => absolute_url("/powder-calendar") },
+        breadcrumb_schema([ [ "Powder Calendar", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Powder Calendar", nil ] ] %>
+    <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">Free PDF</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">The <%= season %> Powder Calendar: the best month to ski <%= @resorts.size %> resorts</h1>
+    <p class="text-slate-300 mb-6">Plan your trip around the snow. One printable cheat sheet with every resort's snowiest months, this season's opening date, Epic or Ikon access, and the airport to fly into.</p>
+
+    <section class="mb-10 bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-5" aria-labelledby="get-heading">
+      <h2 id="get-heading" class="text-lg font-bold mb-3">Get the free Powder Calendar</h2>
+      <%= render "shared/calendar_form" %>
+    </section>
+
+    <h2 class="text-xl font-bold mb-3">Preview: Colorado</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-3">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Colorado resorts: snowiest months, opening date, and pass</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">Snowiest months</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Pass</th><th scope="col" class="px-3 py-2">Opens</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% (@regions["Colorado"] || []).first(6).each do |r| %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, best_time_resort_path(r), class: "hover:text-cyan-300" %></th><td class="px-3 py-2"><%= r.snowiest_months.map { |m, _| Date::ABBR_MONTHNAMES[m] }.join(", ") %></td><td class="px-3 py-2 hidden sm:table-cell"><%= r.pass_label || "—" %></td><td class="px-3 py-2"><%= r.opening_date&.strftime("%b %-d") || "TBA" %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-400 text-sm mb-10">The full PDF covers all <%= @resorts.size %> resorts across <%= @regions.size %> states and provinces.</p>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Best time to ski: quick answers" %>
+    <p class="text-sm text-slate-400">Snowiest months come from 10 seasons of Open-Meteo historical data at each summit. Opening dates and passes are checked against official sources. See any resort's <%= link_to "best time to ski page", best_time_resort_path("vail"), class: "text-cyan-300 underline underline-offset-2" %> for its month-by-month chart.</p>
+  </main>
+</div>

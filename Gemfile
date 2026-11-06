@@ -73,3 +73,6 @@ gem "litestream", "~> 0.14.0"
 gem "aws-sdk-s3", "~> 1.210", require: false
 
 gem "ruby-vips", "~> 2.3"
+
+gem "prawn", "~> 2.4"
+gem "prawn-table", "~> 0.2.2"

@@ -1,5 +1,9 @@
-<%= turbo_stream.update "alert-form" do %>
-  <% if @saved %>
+<%= turbo_stream.update(@magnet ? "calendar-form" : "alert-form") do %>
+  <% if @saved && @magnet %>
+    <p class="text-lg font-bold mb-2">Your Powder Calendar is ready ❄️</p>
+    <%= link_to "Download the #{PowderCalendarPdf.season_label} Powder Calendar (PDF)", powder_calendar_download_path(@subscriber.token), class: "inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-3 transition", data: { turbo: false } %>
+    <p class="text-slate-300 text-sm mt-3">You're also on the powder alert list for big storms. Unsubscribe anytime.</p>
+  <% elsif @saved %>
     <p class="text-lg font-bold mb-1">You're on the list ❄️</p>
     <p class="text-slate-300 text-sm">We'll email <%= @subscriber.email %> when <%= @subscriber.resort ? "#{@subscriber.resort.name} is forecast #{@subscriber.threshold_inches}\"+" : "a big storm lines up" %>.</p>
   <% else %>

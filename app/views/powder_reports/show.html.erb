@@ -49,6 +49,7 @@ end %>
     <% end %>
 
     <%= render "shared/alert_form" unless @archived %>
+    <%= render "shared/calendar_cta" %>
 
     <% if @archive.any? %>
       <h2 class="text-xl font-bold mb-3">Past powder reports</h2>

@@ -1,0 +1,7 @@
+<aside class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4" aria-labelledby="calendar-cta-heading">
+  <div class="flex-1">
+    <p id="calendar-cta-heading" class="font-bold text-lg">Free: the <%= PowderCalendarPdf.season_label %> Powder Calendar</p>
+    <p class="text-slate-300 text-sm">Snowiest months, opening dates, and passes for all <%= Resort.count %> resorts in one printable PDF.</p>
+  </div>
+  <%= link_to "Get it free →", powder_calendar_path, class: "shrink-0 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 text-center transition" %>
+</aside>

@@ -4,8 +4,9 @@ class SubscribersController < ApplicationController
   def create
     @subscriber = Subscriber.find_or_initialize_by(email: params.dig(:subscriber, :email).to_s.strip.downcase,
                                                    resort_id: params.dig(:subscriber, :resort_id).presence)
+    @magnet = params.dig(:subscriber, :magnet).presence_in(%w[powder-calendar])
     @subscriber.assign_attributes(threshold_inches: params.dig(:subscriber, :threshold_inches).presence || 6,
-                                  source: request.referer.to_s.truncate(255))
+                                  source: (@magnet || request.referer.to_s).truncate(255))
     @saved = @subscriber.save
     respond_to do |format|
       format.turbo_stream

@@ -81,4 +81,20 @@ class SitePagesTest < ActionDispatch::IntegrationTest
     get "/powder-report"
     assert_select "a[href=?]", "/powder-report/#{report.week_of.iso8601}"
   end
+
+  test "powder calendar signup returns a working PDF download" do
+    post subscribers_path, params: { subscriber: { email: "cal@example.com", magnet: "powder-calendar" } }, as: :turbo_stream
+    subscriber = Subscriber.find_by!(email: "cal@example.com")
+    assert_equal "powder-calendar", subscriber.source
+    assert_includes response.body, powder_calendar_download_path(subscriber.token)
+    get powder_calendar_download_path(subscriber.token)
+    assert_response :success
+    assert_equal "application/pdf", response.media_type
+    assert response.body.start_with?("%PDF")
+  end
+
+  test "calendar download requires a valid token" do
+    get powder_calendar_download_path("nope")
+    assert_response :not_found
+  end
 end
