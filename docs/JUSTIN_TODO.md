@@ -6,9 +6,9 @@ Last updated: 2026-11-05
 ## Do now (highest payoff first)
 
 - [ ] **Stay22 (lodging map).** Sign up at stay22.com → copy your affiliate ID (AID) → Railway → snow-way service → Variables → add `STAY22_AID=<your id>` → redeploy.
-  A lodging map then appears on all 89 resort pages automatically.
+  A lodging map then appears on all 179 resort pages automatically.
 - [ ] **AvantLink + REI (gear links).** Sign up at avantlink.com as an affiliate (website: snowway.app) → apply to REI (and evo, Backcountry, Christy Sports while you're there) → once REI approves, find your **Website ID** and **REI Merchant ID** → add `AVANTLINK_WEBSITE_ID` and `AVANTLINK_REI_MID` on Railway.
-  Every gear link across the 29 guides and both size calculators starts tracking. Tell Claude when evo approves and it'll add evo links.
+  Every gear link across the 37 guides and both size calculators starts tracking. Tell Claude when evo approves and it'll add evo links.
 - [ ] **Email service for powder alerts.** Resend (resend.com) or Postmark. Verify the snowway.app domain (they'll give you DNS records), create an API key, add it on Railway as `RESEND_API_KEY` (or `POSTMARK_API_TOKEN`), and tell Claude. Alerts and a welcome email get switched on for everyone already on the list.
 - [ ] **Test the Powder Calendar in production.** Go to snowway.app/powder-calendar, enter your email, and download the PDF. (Claude tested locally; it skipped production so test emails wouldn't land in your real list.)
 
