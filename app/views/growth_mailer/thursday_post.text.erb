@@ -1,0 +1,42 @@
+<% inch = ->(r) { "#{r["inches"].to_f.round}\"" } -%>
+<% abbr = { "Washington" => "WA", "Oregon" => "OR", "California" => "CA", "Colorado" => "CO", "Utah" => "UT", "Vermont" => "VT", "New Hampshire" => "NH", "Maine" => "ME", "New York" => "NY", "Wyoming" => "WY", "Montana" => "MT", "Idaho" => "ID", "Alaska" => "AK", "New Mexico" => "NM", "British Columbia" => "BC", "Alberta" => "AB", "Quebec" => "QC", "Ontario" => "ON", "Michigan" => "MI", "Nevada" => "NV", "Arizona" => "AZ" } -%>
+<% lead = @top.first -%>
+<% if lead.nil? || lead["inches"].to_f <= 0 -%>
+Quiet week: nothing much in the 7-day forecast. Skip Reddit this week (a "no snow" post doesn't get traction).
+<% else -%>
+Copy, paste, post from your personal account. Check the sub's self-promo rules, reply to comments, and don't post the same text twice in one day.
+
+==== r/skiing or r/snowboarding ====
+
+TITLE:
+Where the snow is this week: <%= lead["name"] %> leads with <%= inch.(lead) %> forecast
+
+BODY:
+Pulled the 7-day mid-mountain forecasts for <%= @data["tracked"] %> North American resorts this morning.
+
+Top 5:
+<% @top.each_with_index do |r, i| %><%= i + 1 %>. <%= r["name"] %> (<%= abbr[r["region"]] || r["region"] %>) <%= inch.(r) %>
+<% end %>
+
+<% if @region && @region_rows.size >= 3 %><%= @region %> has <%= @region_rows.size %> of the top 10 this week.<% else %><%= @data["snowing_count"] %> of <%= @data["tracked"] %> resorts have snow in the forecast.<% end %> [Add one thing you noticed, e.g. which big region is dry.]
+
+I built a free site that ranks this every 6 hours because I got tired of checking 10 tabs before booking. Full list here if it helps: snowway.app/powder-report
+
+Anyone getting out at <%= lead["name"] %> this week?
+<% if @region && @region_rows.size >= 3 -%>
+
+==== Regional sub (<%= @region %>) ====
+
+TITLE:
+<%= @region %> has <%= @region_rows.size %> of the top 10 snowiest resorts in North America this week
+
+BODY:
+7-day mid-mountain forecasts, pulled this morning:
+<% @region_rows.each do |r| %>- <%= r["name"] %> <%= inch.(r) %>
+<% end %>
+Full ranking for every resort: snowway.app/powder-report
+<% end -%>
+
+Image to attach (save, then add to the post): https://snowway.app/social/report.png
+Story version for Instagram: https://snowway.app/social/report.png?size=story
+<% end -%>

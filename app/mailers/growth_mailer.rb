@@ -18,4 +18,16 @@ class GrowthMailer < ApplicationMailer
     mail to: ENV.fetch("REPORT_EMAIL", "justin@superdupr.com"),
          subject: "Snow Way week of #{report.range.first.strftime("%b %-d")}: #{@totals[:clicks]} search clicks, #{@totals[:signups]} signups, #{@totals[:affiliate_clicks]} affiliate clicks"
   end
+
+  # Thursday: a ready-to-paste Reddit post built from this week's powder report. Justin posts it by hand
+  # (automated promo posting breaks Reddit's rules and can get snowway.app banned sitewide).
+  def thursday_post(data = PowderReport.build_data)
+    @data = data
+    @top = data["top"].first(5)
+    leaders = data["top"].group_by { |r| r["region"] }.max_by { |_, rs| rs.size }
+    @region, @region_rows = leaders&.first, leaders&.last.to_a
+    lead = @top.first
+    mail to: ENV.fetch("REPORT_EMAIL", "justin@superdupr.com"),
+         subject: lead && lead["inches"].to_f > 0 ? "Reddit post ready: #{lead["name"]} leads with #{lead["inches"].round}\"" : "Reddit post: quiet snow week"
+  end
 end

@@ -91,4 +91,16 @@ class GrowthTest < ActionDispatch::IntegrationTest
       assert_equal "\x89PNG".b, response.body.b[0, 4]
     end
   end
+
+  test "thursday email drafts a reddit post from the powder report" do
+    data = { "tracked" => 179, "snowing_count" => 40, "top" => [
+      { "name" => "Stowe", "region" => "Vermont", "inches" => 12.4 }, { "name" => "Jay Peak", "region" => "Vermont", "inches" => 10.0 },
+      { "name" => "Mt. Baker", "region" => "Washington", "inches" => 9.0 }, { "name" => "Sugarbush", "region" => "Vermont", "inches" => 8.0 },
+      { "name" => "Alta", "region" => "Utah", "inches" => 7.0 } ] }
+    body = GrowthMailer.thursday_post(data).body.encoded
+    assert_includes body, "Stowe leads with 12\" forecast"
+    assert_includes body, "1. Stowe (VT) 12\""
+    assert_includes body, "Vermont has 3 of the top 10"
+    assert_includes body, "snowway.app/social/report.png"
+  end
 end

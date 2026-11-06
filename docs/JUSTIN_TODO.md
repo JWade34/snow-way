@@ -25,7 +25,7 @@ Last updated: 2026-11-06
 ## Every week (Thursday)
 
 - [ ] Open snowway.app/powder-report (a new snapshot is archived every Thursday at 7am MT).
-- [ ] Post it to one or two subreddits (template 1). Rotate: r/skiing, r/snowboarding, r/COsnow, r/skiing_utah, r/icecoast.
+- [ ] Post it to one or two subreddits. A ready-to-paste draft (title, body, regional version, image link) lands in your inbox Thursday 7:15am MT. Rotate: r/skiing, r/snowboarding, r/COsnow, r/skiing_utah, r/icecoast.
 - [ ] Pitch the week's top resorts to two or three local outlets in the snowiest region (template 2).
 - [ ] Send the widget pitch to five ski clubs, lodges, or rental shops (template 3).
 
