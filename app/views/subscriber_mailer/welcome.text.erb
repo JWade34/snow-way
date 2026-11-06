@@ -1,0 +1,12 @@
+Welcome to Snow Way!
+<% if @magnet %>
+Your <%= LeadMagnetsController::MAGNETS[@magnet][:label] %>: <%= @download_url %>
+<% end %>
+You're also on the powder alert list. <% if @subscriber.resort %>We'll email you when <%= @subscriber.resort.name %> is forecast <%= @subscriber.threshold_inches %>"+ of snow in the next 3 days.<% else %>We'll email you when a big storm (12"+ in 3 days) lines up anywhere Snow Way tracks.<% end %>
+
+Where it's snowing this week: https://snowway.app/where-is-it-snowing
+
+See you on the chair,
+Justin, Snow Way
+
+Unsubscribe: <%= @unsubscribe_url %>

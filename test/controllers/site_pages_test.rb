@@ -115,4 +115,18 @@ class SitePagesTest < ActionDispatch::IntegrationTest
     get lead_magnet_download_path("ski-trip-planner", subscriber.token)
     assert_equal "application/pdf", response.media_type
   end
+
+  test "signup sends a welcome email and unsubscribe works by GET and one-click POST" do
+    assert_enqueued_emails 1 do
+      post subscribers_path, params: { subscriber: { email: "welcome@example.com" } }, as: :turbo_stream
+    end
+    subscriber = Subscriber.find_by!(email: "welcome@example.com")
+    get unsubscribe_path(subscriber.token)
+    assert_response :success
+    assert subscriber.reload.unsubscribed_at
+    subscriber.update_column(:unsubscribed_at, nil)
+    post unsubscribe_path(subscriber.token)
+    assert_response :success
+    assert subscriber.reload.unsubscribed_at
+  end
 end

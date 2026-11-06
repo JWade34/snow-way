@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_001643) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_024209) do
   create_table "powder_reports", force: :cascade do |t|
     t.date "week_of"
     t.json "data"
@@ -68,6 +68,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_001643) do
     t.string "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_alerted_at"
+    t.datetime "unsubscribed_at"
+    t.datetime "welcomed_at"
     t.index ["email", "resort_id"], name: "index_subscribers_on_email_and_resort_id", unique: true
     t.index ["resort_id"], name: "index_subscribers_on_resort_id"
     t.index ["token"], name: "index_subscribers_on_token", unique: true

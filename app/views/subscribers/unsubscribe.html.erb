@@ -1,0 +1,12 @@
+<% content_for(:title, "Unsubscribed | Snow Way") %>
+<% content_for(:description, "You've been unsubscribed from Snow Way powder alerts. You can sign up again anytime from any resort page.") %>
+<% content_for(:hide_promo, "1") %>
+<% content_for(:head) do %><meta name="robots" content="noindex"><% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-xl mx-auto px-4 sm:px-6 py-16 text-center">
+    <h1 class="text-3xl font-extrabold mb-3"><%= @subscriber ? "You're unsubscribed" : "Link not found" %></h1>
+    <p class="text-slate-300 mb-6"><%= @subscriber ? "#{@subscriber.email} won't get any more powder alerts from Snow Way." : "That unsubscribe link isn't valid. If you're still getting emails, reply to one and we'll remove you." %></p>
+    <%= link_to "Back to the snow report", root_path, class: "inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-3" %>
+  </main>
+</div>

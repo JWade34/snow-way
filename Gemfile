@@ -76,3 +76,5 @@ gem "ruby-vips", "~> 2.3"
 
 gem "prawn", "~> 2.4"
 gem "prawn-table", "~> 0.2.2"
+
+gem "resend", "~> 1.19"

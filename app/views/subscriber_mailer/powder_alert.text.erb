@@ -1,0 +1,8 @@
+<% resort, inches = @alerts.first %>
+POWDER ALERT: <%= resort.name %> is forecast <%= inches.round(1) %>" in the next 3 days.
+Snow report: https://snowway.app/resorts/<%= resort.slug %>
+<% if @alerts.size > 1 %>
+Also getting snow:
+<% @alerts.drop(1).each do |r, amount| %>- <%= r.name %> (<%= r.state_province %>): <%= amount.round(1) %>"
+<% end %><% end %>
+Unsubscribe: <%= @unsubscribe_url %>

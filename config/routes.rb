@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "powder-report" => "powder_reports#current", as: :powder_report
   get "powder-report/:id" => "powder_reports#show", as: :powder_report_archive, constraints: { id: /\d{4}-\d{2}-\d{2}/ }
   resources :subscribers, only: [ :create ]
+  match "unsubscribe/:token" => "subscribers#unsubscribe", via: [ :get, :post ], as: :unsubscribe
   get "powder-calendar" => "lead_magnets#powder_calendar", as: :powder_calendar
   get "powder-calendar/download/:token" => "lead_magnets#download", as: :powder_calendar_download, defaults: { magnet: "powder-calendar" }
   get "downloads/:magnet/:token" => "lead_magnets#download", as: :lead_magnet_download

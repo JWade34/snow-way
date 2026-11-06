@@ -58,7 +58,9 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "snowway.app" }
+  config.action_mailer.default_url_options = { host: "snowway.app", protocol: "https" }
+  # Resend delivers mail once RESEND_API_KEY is set; without it, mail is dropped (signups still work).
+  config.action_mailer.delivery_method = ENV["RESEND_API_KEY"].present? ? :resend : :test
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
