@@ -98,7 +98,7 @@
       <p class="text-slate-400 text-xs mt-3">Modeled mid-mountain (<%= number_with_delimiter(@resort.mid_elevation) %> ft) snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>. For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     </section>
 
-    <%= render "shared/local_take", take: LocalTake.for_resort(@resort.slug), subject: @resort.name %>
+    <%= render "shared/local_take", take: LocalTake.for_resort(@resort.slug), subject: @resort.name, local: %w[Colorado Utah].include?(@resort.state_province) %>
 
     <!-- 7-Day Forecast -->
     <div class="mb-10">

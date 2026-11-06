@@ -41,5 +41,17 @@ Rails.application.routes.draw do
   get "llms-full.txt" => "llms#full", defaults: { format: :text }
   get "#{IndexNow::KEY}.txt" => ->(_env) { [ 200, { "content-type" => "text/plain" }, [ IndexNow::KEY ] ] }
 
+  get "what-i-ride" => "pages#gear", as: :gear
+
+  namespace :admin do
+    root "dashboard#show"
+    resources :visits, only: [ :index, :edit, :update ], param: :slug, path: "resorts"
+    patch "resorts" => "visits#checklist", as: :visits_checklist
+    get "import" => "imports#new", as: :import
+    post "import" => "imports#create"
+    resources :gear_items, path: "gear", except: [ :show ]
+    resources :subscribers, only: [ :index ]
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

@@ -17,7 +17,7 @@
       <% resorts.each_with_index do |resort, i| %>
         <tr class="hover:bg-slate-800/40">
           <td class="px-3 py-2 text-slate-400"><%= i + 1 %></td>
-          <td class="px-3 py-2"><%= link_to resort.name, resort_path(resort), class: "font-semibold text-white hover:text-cyan-300 underline-offset-2 hover:underline" %><span class="block text-xs text-slate-400"><%= resort.state_province %></span></td>
+          <td class="px-3 py-2"><%= link_to resort.name, resort_path(resort), class: "font-semibold text-white hover:text-cyan-300 underline-offset-2 hover:underline" %><span class="block text-xs text-slate-400"><%= resort.north_american? ? resort.state_province : [ resort.state_province, resort.country ].compact_blank.uniq.join(", ") %></span></td>
           <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(totals.fetch(resort.id, 0.0)) %></td>
           <% if extra %><td class="px-3 py-2 text-right text-slate-200"><%= extra.call(resort) %></td><% end %>
           <td class="px-3 py-2 text-right text-slate-300 hidden sm:table-cell"><%= number_with_delimiter(resort.elevation_summit) %> ft</td>

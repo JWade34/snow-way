@@ -10,13 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_045538) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_145753) do
+  create_table "gear_items", force: :cascade do |t|
+    t.string "category", null: false
+    t.string "brand"
+    t.string "model", null: false
+    t.string "season"
+    t.string "size"
+    t.string "status", default: "riding", null: false
+    t.text "notes"
+    t.text "public_note"
+    t.boolean "public", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["public", "category"], name: "index_gear_items_on_public_and_category"
+  end
+
   create_table "powder_reports", force: :cascade do |t|
     t.date "week_of"
     t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["week_of"], name: "index_powder_reports_on_week_of", unique: true
+  end
+
+  create_table "resort_visits", force: :cascade do |t|
+    t.integer "resort_id", null: false
+    t.text "take"
+    t.text "tips"
+    t.string "when_ridden"
+    t.integer "rating"
+    t.boolean "published", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resort_id"], name: "index_resort_visits_on_resort_id", unique: true
   end
 
   create_table "resorts", force: :cascade do |t|
@@ -79,6 +106,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_045538) do
     t.index ["token"], name: "index_subscribers_on_token", unique: true
   end
 
+  add_foreign_key "resort_visits", "resorts"
   add_foreign_key "snow_forecasts", "resorts"
   add_foreign_key "subscribers", "resorts"
 end

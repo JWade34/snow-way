@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<% (SitePages.static_paths + SitePages.region_paths + SitePages.hub_paths).each do |path| %>
+<% (SitePages.static_paths + SitePages.optional_paths + SitePages.region_paths + SitePages.hub_paths).each do |path| %>
   <url><loc><%= SitePages.url(path) %></loc><lastmod><%= @latest.iso8601 %></lastmod></url>
 <% end %>
 <% @resorts.each do |resort| %>

@@ -1,0 +1,5 @@
+<% content_for(:title, @item.name) %>
+<p class="text-sm mb-2"><%= link_to "← Gear closet", admin_gear_items_path, class: "text-slate-400 hover:text-cyan-300" %></p>
+<h1 class="text-2xl font-extrabold mb-5"><%= @item.name %></h1>
+<%= render "form" %>
+<%= button_to "Remove from closet", admin_gear_item_path(@item), method: :delete, class: "mt-8 text-sm text-red-300 underline" %>

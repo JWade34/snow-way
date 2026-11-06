@@ -1,0 +1,21 @@
+<% content_for(:title, "Paste or dictate") %>
+<h1 class="text-2xl font-extrabold mb-1">Paste or dictate</h1>
+<p class="text-slate-400 text-sm mb-4">Talk or type, one resort per line. Everything saves as a draft; nothing goes live until you publish it.</p>
+<pre class="bg-slate-800/60 border border-slate-700 rounded-lg p-3 text-xs text-slate-300 mb-5 whitespace-pre-wrap">Vail, Beaver Creek, Breck, Keystone and A-Basin
+Alta: skiers only, and the best snow in Utah if you can handle the road.
+- Get up the canyon before 7:30 on a powder day
+Mammoth: the longest season in California, go in April.</pre>
+
+<% if @import %>
+  <div class="mb-6 space-y-2 text-sm">
+    <p class="text-emerald-300">Marked ridden: <%= @import.marked.any? ? @import.marked.to_sentence : "none" %></p>
+    <% if @import.written.any? %><p class="text-cyan-200">Draft takes saved for: <%= safe_join(@import.written.map { |n| r = Resort.find_by(name: n); r ? link_to(n, edit_admin_visit_path(r.slug), class: "underline") : n }, ", ") %>. Open each to review and publish.</p><% end %>
+    <% if @import.unmatched.any? %><p class="text-amber-200">Didn't recognize: <%= @import.unmatched.uniq.to_sentence %>. Try the full resort name, or it may be a resort Snow Way doesn't track yet (send Claude the list).</p><% end %>
+  </div>
+<% end %>
+
+<%= form_with url: admin_import_path, method: :post do %>
+  <%= label_tag :text, "Your notes", class: "sr-only" %>
+  <%= text_area_tag :text, @import ? nil : @text, rows: 14, autofocus: true, placeholder: "Tap the mic on your keyboard and start talking…", class: "w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 mb-3" %>
+  <button class="bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2">Save drafts</button>
+<% end %>

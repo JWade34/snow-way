@@ -9,6 +9,10 @@
 <% if @fresh.any? %>
   <% faqs << { question: "Which ski resorts got fresh snow in the last 48 hours?", answer: "#{@fresh.first(5).map { |r| "#{r.name} (#{inches(@recent[r.id])})" }.to_sentence} picked up the most new snow over the last 48 hours." } %>
 <% end %>
+<% abroad_snowing = @abroad.select { |r| @totals.fetch(r.id, 0.0) > 0 } %>
+<% if abroad_snowing.any? %>
+  <% faqs << { question: "Where is it snowing outside North America this week?", answer: "As of #{today}, #{abroad_snowing.first(3).map { |r| "#{r.name} in #{r.country} (#{inches(@totals[r.id])})" }.to_sentence} #{abroad_snowing.size == 1 ? "has" : "have"} the most snow forecast over the next 7 days among the #{@abroad.size} international resorts Snow Way tracks in Japan, the Alps, South America, Australia, and New Zealand." } %>
+<% end %>
 <% if @region_leaders.any? %>
   <% faqs << { question: "Which state is getting the most snow this week?", answer: "#{@region_leaders.first[0]} has the snowiest resort this week: #{@region_leaders.first[1].name}, with #{inches(@totals[@region_leaders.first[1].id])} forecast over 7 days." } %>
 <% end %>
@@ -63,6 +67,21 @@
         <% end %>
       </ul>
     <% end %>
+
+    <h2 id="international" class="text-xl font-bold mb-2">Snow around the world</h2>
+    <p class="text-slate-300 text-sm mb-4">
+      <% if abroad_snowing.any? %>
+        <%= abroad_snowing.size %> of <%= @abroad.size %> international resorts have snow in the 7-day forecast.
+      <% else %>
+        No snow is forecast this week at the <%= @abroad.size %> international resorts Snow Way tracks.
+      <% end %>
+      Southern Hemisphere resorts (Chile, Argentina, Australia, New Zealand) ski from about June to October; Japan and the Alps line up with North America's winter.
+    </p>
+    <div class="mb-4">
+      <%= render "shared/snow_table", resorts: @abroad.first(10), totals: @totals, caption: "International ski resorts by 7-day forecast snowfall",
+            extra: ->(r) { inches(@recent.fetch(r.id, 0.0)) }, extra_label: "Last 48h" %>
+    </div>
+    <p class="text-sm text-slate-400 mb-10">Browse <%= link_to "Japan", region_path("japan"), class: "text-cyan-300 underline underline-offset-2" %>, <%= link_to "the Alps", region_path("the-alps"), class: "text-cyan-300 underline underline-offset-2" %>, <%= link_to "South America", region_path("south-america"), class: "text-cyan-300 underline underline-offset-2" %>, or the <%= link_to "Southern Hemisphere", region_path("southern-hemisphere"), class: "text-cyan-300 underline underline-offset-2" %>.</p>
 
     <%= render "shared/alert_form" %>
     <%= render "shared/faq", faqs: faqs, heading: "Where it's snowing: quick answers" %>

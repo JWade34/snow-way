@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Admin" %> | Snow Way admin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="icon" href="/icon.png" type="image/png">
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="bg-slate-900 text-white min-h-screen font-sans" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+    <header class="border-b border-slate-800 px-4 sm:px-6 py-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+      <%= link_to admin_root_path, class: "font-extrabold text-lg tracking-tight" do %><span>SNOW</span><span class="text-cyan-400">WAY</span> <span class="text-slate-400 font-semibold text-sm">admin</span><% end %>
+      <nav class="flex flex-wrap gap-4 text-slate-300">
+        <%= link_to "Resorts I've ridden", admin_visits_path, class: "hover:text-cyan-300" %>
+        <%= link_to "Paste / dictate", admin_import_path, class: "hover:text-cyan-300" %>
+        <%= link_to "Gear closet", admin_gear_items_path, class: "hover:text-cyan-300" %>
+        <%= link_to "Subscribers", admin_subscribers_path, class: "hover:text-cyan-300" %>
+        <%= link_to "View site ↗", root_path, class: "hover:text-cyan-300" %>
+      </nav>
+    </header>
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6">
+      <% if notice %><p class="mb-5 bg-cyan-500/10 border border-cyan-500/40 text-cyan-100 rounded-lg px-4 py-3 text-sm"><%= notice %></p><% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

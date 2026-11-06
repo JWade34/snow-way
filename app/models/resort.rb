@@ -90,6 +90,7 @@ class Resort < ApplicationRecord
   NA_COUNTRIES = %w[USA Canada].freeze
 
   has_many :snow_forecasts, dependent: :destroy
+  has_one :visit, class_name: "ResortVisit", dependent: :destroy
 
   scope :north_america, -> { where(country: NA_COUNTRIES) }
   scope :international, -> { where.not(country: NA_COUNTRIES) }

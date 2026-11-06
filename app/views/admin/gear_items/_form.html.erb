@@ -1,0 +1,22 @@
+<% input = "w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2" %>
+<%= form_with model: @item, url: (@item.persisted? ? admin_gear_item_path(@item) : admin_gear_items_path), class: "space-y-4" do |f| %>
+  <% if @item.errors.any? %><p class="text-red-300 text-sm"><%= @item.errors.full_messages.to_sentence %></p><% end %>
+  <div class="grid grid-cols-2 gap-4">
+    <div><%= f.label :category, class: "block text-sm font-semibold mb-1" %><%= f.select :category, GearItem::CATEGORIES, {}, class: input %></div>
+    <div><%= f.label :status, class: "block text-sm font-semibold mb-1" %><%= f.select :status, GearItem::STATUSES.invert, {}, class: input %></div>
+    <div><%= f.label :brand, class: "block text-sm font-semibold mb-1" %><%= f.text_field :brand, placeholder: "Burton", class: input %></div>
+    <div><%= f.label :model, class: "block text-sm font-semibold mb-1" %><%= f.text_field :model, placeholder: "Custom Camber", required: true, class: input %></div>
+    <div><%= f.label :season, "Year / season", class: "block text-sm font-semibold mb-1" %><%= f.text_field :season, placeholder: "2024", class: input %></div>
+    <div><%= f.label :size, class: "block text-sm font-semibold mb-1" %><%= f.text_field :size, placeholder: "158W", class: input %></div>
+  </div>
+  <div><%= f.label :notes, "Private notes (where you bought it, what you paid, condition, stories)", class: "block text-sm font-semibold mb-1" %><%= f.text_area :notes, rows: 3, class: input %></div>
+  <div><%= f.label :public_note, "What you'd tell a friend about it (shown if public)", class: "block text-sm font-semibold mb-1" %><%= f.text_area :public_note, rows: 3, placeholder: "Stiff enough for Vail's back bowls, forgiving enough for a park lap.", class: input %></div>
+  <label class="flex items-start gap-3 bg-slate-800/60 border border-slate-700 rounded-lg p-3 cursor-pointer">
+    <%= f.check_box :public, class: "accent-cyan-400 w-5 h-5 mt-0.5" %>
+    <span><strong>Show on /what-i-ride</strong><span class="block text-slate-400 text-sm">Shows the name, year, size, and what you'd tell a friend. Private notes never show.</span></span>
+  </label>
+  <div class="flex flex-wrap gap-3">
+    <%= f.submit "Save", class: "bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 cursor-pointer" %>
+    <% unless @item.persisted? %><%= f.submit "Save and add another", name: "another", class: "bg-slate-700 font-bold rounded-lg px-5 py-2 cursor-pointer" %><% end %>
+  </div>
+<% end %>

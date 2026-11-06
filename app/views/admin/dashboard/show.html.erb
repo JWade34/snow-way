@@ -1,0 +1,19 @@
+<% content_for(:title, "Dashboard") %>
+<h1 class="text-2xl font-extrabold mb-1">Hey Justin</h1>
+<p class="text-slate-400 mb-6 text-sm">Everything here is private. Nothing shows on the site until you mark it published or public.</p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+  <% [ [ "Resorts ridden", @ridden, admin_visits_path ], [ "Takes written", "#{@written} (#{@published} live)", admin_visits_path ],
+       [ "Gear items", "#{@gear} (#{@gear_public} public)", admin_gear_items_path ], [ "Subscribers", "#{@subscribers} (+#{@recent_subscribers} this week)", admin_subscribers_path ] ].each do |label, value, path| %>
+    <%= link_to path, class: "block bg-slate-800/60 border border-slate-700 hover:border-cyan-500 rounded-xl p-4" do %>
+      <span class="block text-xs text-slate-400"><%= label %></span>
+      <span class="block text-xl font-bold mt-1"><%= value %></span>
+    <% end %>
+  <% end %>
+</div>
+<h2 class="text-lg font-bold mb-3">The fastest way through all your resorts</h2>
+<ol class="list-decimal pl-5 space-y-2 text-slate-300 text-sm mb-8">
+  <li><strong><%= link_to "Check off every resort you've ridden", admin_visits_path, class: "text-cyan-300 underline" %>.</strong> Takes about two minutes. No writing yet.</li>
+  <li><strong>Write in batches, whenever you feel like it.</strong> On your phone, open <%= link_to "Paste / dictate", admin_import_path, class: "text-cyan-300 underline" %>, tap the mic on your keyboard, and talk: "Alta: skiers only, best snow in Utah." One resort per line. Or write in Notes all week and paste it in.</li>
+  <li><strong>Review and publish.</strong> Each take saves as a draft. Open it, fix anything, check "Publish", and it shows on that resort's page.</li>
+</ol>
+<p class="text-slate-400 text-sm">Start with the resorts people search most (Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler). One honest line beats a paragraph.</p>

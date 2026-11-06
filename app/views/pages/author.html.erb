@@ -45,6 +45,18 @@
       <%= image_tag "photos/sitting-view-800.webp", alt: "", width: 800, height: 533, loading: "lazy", class: "rounded-lg w-full h-28 sm:h-36 object-cover" %>
     </div>
 
+    <% if @takes.any? %>
+      <h2 class="text-xl font-bold mb-4">Resorts Justin has ridden</h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
+        <% @takes.each do |v| %>
+          <li><%= link_to resort_path(v.resort), class: "block bg-slate-800/40 hover:bg-slate-700/50 border border-slate-700 rounded-lg px-4 py-3 text-sm hover:text-cyan-300 transition" do %><strong><%= v.resort.name %></strong> <span class="text-slate-400">· <%= v.resort.region_name %></span><% end %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if GearItem.visible.exists? %>
+      <p class="mb-10"><%= link_to "See the gear Justin rides →", gear_path, class: "text-cyan-300 font-semibold underline" %></p>
+    <% end %>
+
     <h2 class="text-xl font-bold mb-4">Guides by Justin</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
       <% @guides.each do |g| %>

@@ -1,0 +1,43 @@
+<% content_for(:title, "Resorts I've ridden") %>
+<h1 class="text-2xl font-extrabold mb-1">Resorts I've ridden</h1>
+<p class="text-slate-400 text-sm mb-6"><%= @visits.size %> of <%= Resort.count %> checked. Rode one Snow Way doesn't track? Mention it on the <%= link_to "paste page", admin_import_path, class: "underline" %> and it'll show as unmatched so it can be added.</p>
+
+<% if @visits.any? %>
+  <h2 class="text-lg font-bold mb-3">Your takes</h2>
+  <ul class="divide-y divide-slate-800 border border-slate-800 rounded-xl mb-10">
+    <% @visits.each do |v| %>
+      <li class="flex items-center justify-between gap-3 px-4 py-3">
+        <div class="min-w-0">
+          <%= link_to v.resort.name, edit_admin_visit_path(v.resort.slug), class: "font-semibold hover:text-cyan-300" %>
+          <span class="text-xs text-slate-500 ml-1"><%= v.resort.region_name %></span>
+          <% if v.written? %><p class="text-slate-400 text-xs truncate"><%= v.take %></p><% end %>
+        </div>
+        <span class="shrink-0 text-xs rounded-full px-2 py-1 <%= v.published? && v.written? ? "bg-emerald-500/20 text-emerald-300" : v.written? ? "bg-amber-500/20 text-amber-200" : "bg-slate-800 text-slate-400" %>">
+          <%= v.published? && v.written? ? "Live" : v.written? ? "Draft" : "No take yet" %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2 class="text-lg font-bold mb-3">Checklist</h2>
+<%= form_with url: admin_visits_checklist_path, method: :patch, data: { controller: "filter" } do %>
+  <div class="sticky top-0 z-10 bg-slate-900 py-3 flex gap-3">
+    <input type="search" placeholder="Filter resorts…" aria-label="Filter resorts" data-filter-target="input" data-action="input->filter#filter" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm">
+    <button class="bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-2 text-sm">Save</button>
+  </div>
+  <% @groups.each do |region, resorts| %>
+    <fieldset class="mb-5" data-filter-target="group">
+      <legend class="text-sm font-bold text-cyan-300 mb-2"><%= region %></legend>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
+        <% resorts.each do |r| %>
+          <label class="flex items-center gap-2 text-sm rounded px-2 py-1.5 hover:bg-slate-800 cursor-pointer" data-filter-target="item" data-filter-text="<%= "#{r.name} #{region}".downcase %>">
+            <input type="checkbox" name="resort_ids[]" value="<%= r.id %>" <%= "checked" if @ridden_ids.include?(r.id) %> class="accent-cyan-400 w-4 h-4">
+            <%= r.name %>
+          </label>
+        <% end %>
+      </div>
+    </fieldset>
+  <% end %>
+  <button class="bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2">Save checklist</button>
+<% end %>

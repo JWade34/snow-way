@@ -9,6 +9,7 @@ class PagesController < ApplicationController
       .map { |region, rs| [ region, rs.max_by { |r| @totals.fetch(r.id, 0.0) } ] }
       .select { |_, r| @totals.fetch(r.id, 0.0) > 0 }
       .sort_by { |_, r| -@totals.fetch(r.id, 0.0) }
+    @abroad = Resort.international.to_a.sort_by { |r| -@totals.fetch(r.id, 0.0) }
     @updated_at = SnowForecast.maximum(:created_at)
   end
 
@@ -40,9 +41,15 @@ class PagesController < ApplicationController
 
   def author
     @guides = Guide.all
+    @takes = ResortVisit.published.includes(:resort).sort_by { |v| v.resort.name }
   end
 
   def affiliate_disclosure
+  end
+
+  def gear
+    @items = GearItem.visible.ordered.to_a
+    raise ActionController::RoutingError, "No public gear yet" if @items.empty?
   end
 
   def opening_dates

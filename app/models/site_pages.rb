@@ -30,8 +30,13 @@ module SitePages
     PowderReport.order(:week_of).map { |r| "/powder-report/#{r.week_of.iso8601}" }
   end
 
+  # Pages that only exist once Justin publishes something from the admin area.
+  def optional_paths
+    GearItem.visible.exists? ? [ "/what-i-ride" ] : []
+  end
+
   def all_paths
-    static_paths + resort_paths + region_paths + hub_paths + guide_paths + report_paths
+    static_paths + optional_paths + resort_paths + region_paths + hub_paths + guide_paths + report_paths
   end
 
   def url(path)

@@ -4334,7 +4334,7 @@
   state_province: Haute-Savoie
   country: France
   elevation_base: 3396
-  elevation_summit: 12605
+  elevation_summit: 9072
   website_url: https://www.chamonix.com/
   monthly_snow_share:
     1: 18.4
@@ -4655,8 +4655,8 @@
   nearest_airport_code: SCL
   state_province: Santiago Metropolitan Region
   country: Chile
-  elevation_base: 8734
-  elevation_summit: 11909
+  elevation_base: 8704
+  elevation_summit: 11726
   website_url: https://www.laparva.cl/
   monthly_snow_share:
     1: 1.1
