@@ -5,49 +5,23 @@ Last updated: 2026-11-06
 
 ## Do now (highest payoff first)
 
-- [ ] **Give the Monday growth loop its key (2 minutes, needed before Mon Nov 9).** Run `! pbcopy < ~/.config/snowway/loop_token` (copies the key without showing it). Then claude.ai/code → Environments → **Default** → Environment variables → add `LOOP_API_TOKEN=` and paste. Without it the Monday run just reports "token missing" and changes nothing. Routines: claude.ai/code/routines (Mondays 9am Central all year, plus Thursdays Dec–Feb, add-only).
+- [ ] **Resorts you've ridden (2 minutes, no writing).** snowway.app/admin → **Resorts I've ridden** → check them all off. Then whenever you have 5 minutes, **Paste / dictate** one resort per line ("Alta: skiers only, best snow in Utah."; lines starting with "-" become tips). Open each draft, fix it, check **Publish**. Start with Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler. First-hand takes are the one thing no competitor can copy.
+- [ ] **AvantLink** (avantlink.com, apply as a publisher; then apply to REI, evo and Backcountry inside it). One account covers most ski shops at about 5–8%. Send Claude your website ID and each merchant ID once approved.
+- [ ] **Wikidata item for Snow Way** (10 minutes). Instance of: website; official website: https://snowway.app; founder: Justin McKelvey. Helps Google and AI tools treat Snow Way as its own brand, separate from Sno-Way the plow company.
+- [ ] **Snow Way profiles on Instagram and Reddit** (name "Snow Way", link to snowway.app, bio mentioning ski snow forecasts). Same reason: wins searches for our own name. Send Claude the URLs and they go in the site's schema.
+- [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: create a link, add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, AvantLink covers REI.
 
-- [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: Impact → Manage → My Brands → REI → Create Link, copy the tracking link (`https://rei.xxxx.net/c/...`), add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, reapply once Search Console shows traffic.
-- [ ] **Affiliate sign-ups, in order of what they'll earn** (Stay22 lodging is already live and is the biggest earner per click):
-  1. **AvantLink** (avantlink.com, apply as a publisher; then apply to evo, Backcountry, and REI inside it). One account covers most ski shops at about 5–8%. Send Claude your website ID and each merchant ID once approved.
-  2. **Amazon Associates** (details below). Easy approval, about 3%, converts well on small stuff.
-  3. **Discover Cars** (discovercars.com/affiliate). Ski trips mean 4x4 rentals; the "Rent a 4x4" buttons are already on every resort page.
-  4. **Skyscanner** (via Impact). Lowest payout per click; do it last.
-- [ ] **Amazon Associates (optional, good for accessories).** affiliate-program.amazon.com → add your tag on Railway as `AMAZON_ASSOCIATE_TAG` (e.g. `snowway-20`). If REI is also live, accessories go to Amazon and core gear to REI automatically. Note: Amazon closes accounts without 3 sales in the first 180 days (you can reapply).
-- [ ] **AvantLink (evo, Backcountry, Christy Sports).** Optional extra shops; tell Claude when one approves.
-- [ ] **Gear closet.** snowway.app/admin → Gear closet. Log everything you own (riding now, quiver, retired, wishlist) with private notes. Check "Show on /what-i-ride" for anything you'd recommend; the public page appears once one item is public. Private notes never show.
+## When you have time
 
-## Your expertise (the biggest edge no competitor can copy)
-
-- [ ] **Your resorts, the easy way** (replaces the template file):
-  1. snowway.app/admin → **Resorts I've ridden** → check off every resort you've ridden (about 2 minutes, no writing).
-  2. Whenever you have 5 minutes: **Paste / dictate** on your phone, tap the keyboard mic, and talk one resort per line ("Alta: skiers only, best snow in Utah."). Lines starting with "-" become tips for the resort above. Or keep a running note in Apple Notes and paste it in.
-  3. Open each draft, fix anything, check **Publish**. It shows as "Local's take" (Colorado and Utah) or "Justin's take" (everywhere else) on that resort's page and gets listed on your author page.
-  Start with the big ones: Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler.
-- [ ] **Send Claude your real tips, as voice memo transcripts or bullet notes.** Google and AI tools reward first-hand experience, and you lived in Vail and have ridden all over North and South America. Claude will add a "Justin's take" box to the matching resort pages, guides, and the Trip Planner PDF. Ideas:
-  - Vail local tips: best days and times, where locals go on a powder day, parking, how you'd spend a 3-day trip
-  - Resorts you've ridden (name each one) plus one honest line apiece: who it's for, what to skip
-  - South America: which resorts you rode, when you went, how the trip worked. The resort pages and the "Skiing in Chile and Argentina" guide are live and waiting for your take (that traffic peaks June to September)
-  - Your best family-trip and first-trip advice
-- [ ] **Backcountry guides need your eye.** You've ridden a lot of terrain, so read /guides/backcountry-skiing, /guides/splitboarding, and /guides/avalanche-safety-gear. If you tour or split, one or two lines from you (your setup, how you got started) would make them much stronger. If anything feels off on safety, tell Claude and it comes down.
-- [ ] **Confirm photo rights.** The night snowstorm shot and the Mammoth Lakes sign look professionally shot. If a friend or photographer took them, tell Claude their name for a photo credit (or say "remove" and they'll come down).
-
-## Decisions for you
-
-- [x] **Summit vs mid-mountain forecasts.** Decided 11/5: mid-mountain is the big number, summit underneath. Shipped.
-- [ ] ~~old~~ Snow Way forecasts at each resort's summit, which shows more snow than the mid-mountain numbers other sites use (this week: Whistler ~50" on Snow Way vs ~25" quoted by ChatGPT from j2ski). Summit is accurate for the top of the mountain and is labeled, but it can look inflated next to competitors. Options: keep summit (current), switch to mid-mountain, or show both. Claude recommends showing both, with mid-mountain as the headline number.
-
-## This week
-
-- [ ] **Skyscanner (flights) via Impact.** Sign up at impact.com, apply to Skyscanner. Send Claude your tracking link format; it'll swap the Kayak flight buttons on resort pages.
-- [ ] **Discover Cars (4x4 rentals).** Apply at discovercars.com/affiliate (or via Travelpayouts). Send Claude your affiliate ID; it'll swap the "Rent a 4x4" buttons.
-- [ ] **Amazon Associates (small gear: hand warmers, wax kits, balaclavas, socks).** Optional. Sign up at affiliate-program.amazon.com and send Claude your tag.
+- [ ] **Amazon Associates** (affiliate-program.amazon.com). About 3%, good for small stuff (hand warmers, wax, socks). Add the tag on Railway as `AMAZON_ASSOCIATE_TAG` or send it to Claude. Amazon closes accounts without 3 sales in 180 days (you can reapply), so do this after traffic picks up.
+- [ ] **Discover Cars** (discovercars.com/affiliate). "Rent a 4x4" buttons are already on every resort page. Send Claude your ID.
+- [ ] **Skyscanner** (via Impact). Lowest payout per click; do it last. Send Claude your link format.
+- [ ] **Gear closet.** snowway.app/admin → Gear closet. Log what you own with private notes; check "Show on /what-i-ride" for anything you'd recommend. The public page appears once one item is public.
+- [ ] **Send Claude your real tips** (voice memo transcripts or bullets): Vail local tips, South America trip (resort pages and the Chile/Argentina guide are waiting; that traffic peaks June to September), family and first-trip advice.
+- [ ] **Backcountry guides need your eye.** Read /guides/backcountry-skiing, /guides/splitboarding, /guides/avalanche-safety-gear. One or two lines from you would make them stronger. If anything feels off on safety, tell Claude and it comes down.
+- [ ] **Confirm photo rights.** The night snowstorm shot and the Mammoth Lakes sign look professionally shot. Tell Claude a name for credit, or say "remove".
 - [ ] **Rental delivery partners.** Email Ski Butlers and Black Tie Ski Rentals using template 4 in `docs/outreach/templates.md`.
-- [ ] **Wikidata item for Snow Way.** Create an item (instance of: website; official website: https://snowway.app; founder: Justin McKelvey). This helps Google and AI tools treat Snow Way as a known entity.
-
-## Nice to have
-
-- [ ] **A few skiing (not snowboarding) photos**, plus any with recognizable resorts (Vail, Mammoth, Heavenly, South America). Claude matches them to guides and resort pages. Already used: 11 photos (cabin roof rail, chairlift storm selfie, powder jump, night storm, Mammoth sign, sitting above the valley, canyon selfie, snowbank road, green-pants view, sunny selfie, tree trail). Skipped: your friend's selfie, the EpicMix screenshot, and the two quote images.
+- [ ] **A few skiing (not snowboarding) photos**, plus any at recognizable resorts.
 
 ## Every week (Thursday)
 
@@ -64,7 +38,7 @@ Last updated: 2026-11-06
 
 ## Done
 - [x] Growth tracking (2026-11-06): Google Search Console connected, daily sync, affiliate clicks and signups tracked by page, admin Growth tab, Monday 7am report email
-- [x] Admin password set; Google and Bing connected (2026-11-06). Weekly growth loop scheduled as cloud routines (Mondays + peak-season Thursdays).
+- [x] Admin password set; Google and Bing connected; growth loop scheduled (Mondays + peak-season Thursdays) with its key in the Default cloud environment (2026-11-06)
 - [x] Private admin (2026-11-06): resorts-ridden checklist, dictate/paste importer, gear closet, subscriber list with CSV download
 - [x] International "snow around the world" section on where-is-it-snowing; Chamonix and La Parva elevations corrected (2026-11-06)
 - [x] Tested the welcome email and Powder Calendar (2026-11-06)
