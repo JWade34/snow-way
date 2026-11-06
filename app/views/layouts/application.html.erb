@@ -7,7 +7,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#0f172a">
-    <meta name="impact-site-verification" value="3c8b0825-423b-4ea8-bda5-42fd62a7fdb0">
+    <%# Impact (REI affiliate) site verification. Impact issues a new code on each page load, so all recent codes stay. %>
+    <% %w[29169bbd-38ff-4f6f-a0e9-1806846e4776 3c8b0825-423b-4ea8-bda5-42fd62a7fdb0 40dd39db-0918-4813-8855-0aceae2dea1a].each do |code| %>
+    <meta name="impact-site-verification" value="<%= code %>">
+    <% end %>
     <meta name="description" content="<%= meta_description %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
