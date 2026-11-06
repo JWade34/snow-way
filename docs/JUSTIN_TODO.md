@@ -5,10 +5,10 @@ Last updated: 2026-11-05
 
 ## Do now (highest payoff first)
 
-- [ ] **Stay22 (lodging map).** Sign up at stay22.com → copy your affiliate ID (AID) → Railway → snow-way service → Variables → add `STAY22_AID=<your id>` → redeploy.
-  A lodging map then appears on all 179 resort pages automatically.
-- [ ] **AvantLink + REI (gear links).** Sign up at avantlink.com as an affiliate (website: snowway.app) → apply to REI (and evo, Backcountry, Christy Sports while you're there) → once REI approves, find your **Website ID** and **REI Merchant ID** → add `AVANTLINK_WEBSITE_ID` and `AVANTLINK_REI_MID` on Railway.
-  Every gear link across the 37 guides and both size calculators starts tracking. Tell Claude when evo approves and it'll add evo links.
+- [ ] **REI (via Impact).** Site verification tag is live on snowway.app; click **Add Website / Verify** in Impact, then apply to REI. Once approved, copy your REI **tracking link** from Impact (looks like `https://rei.xxxx.net/c/1234567/123456/12345`) and add it on Railway as `REI_IMPACT_LINK`. Every gear link then tracks.
+- [ ] **Amazon Associates (optional, good for accessories).** affiliate-program.amazon.com → add your tag on Railway as `AMAZON_ASSOCIATE_TAG` (e.g. `snowway-20`). If REI is also live, accessories go to Amazon and core gear to REI automatically. Note: Amazon closes accounts without 3 sales in the first 180 days (you can reapply).
+- [ ] **AvantLink (evo, Backcountry, Christy Sports).** Optional extra shops; tell Claude when one approves.
+- [ ] **"What I ride" list.** Your actual board, boots, bindings, goggles, jacket, and what you think of each. Real gear reviews from a former shop owner rank where generic roundups don't; Claude builds the page.
 - [ ] **Test the emails:** sign up yourself at snowway.app/powder-calendar (use a different email than before). You should get the welcome email with the download link within a minute.
 
 ## Your expertise (the biggest edge no competitor can copy)
@@ -51,6 +51,7 @@ Last updated: 2026-11-05
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Stay22 set up (AID `snowway`); lodging map live on all resort pages (2026-11-05)
 - [x] Mailing address for email footers (Fast City LLC, Austin) — added to every email (2026-11-05)
 - [x] Summit vs mid-mountain: show both, mid-mountain headline (2026-11-05)
 - [x] Resend account, API key on Railway, DNS verified (2026-11-05). Welcome emails and powder alerts are live.
