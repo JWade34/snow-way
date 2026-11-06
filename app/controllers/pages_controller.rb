@@ -35,6 +35,10 @@ class PagesController < ApplicationController
     @resort_count = Resort.count
   end
 
+  def author
+    @guides = Guide.all
+  end
+
   def affiliate_disclosure
   end
 

@@ -5,7 +5,7 @@
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "Article", "headline" => @guide.title, "description" => @guide.description, "url" => absolute_url("/guides/#{@guide.slug}"),
-          "author" => { "@type" => "Person", "@id" => "https://justinmckelvey.com/#person", "name" => "Justin McKelvey", "url" => "https://justinmckelvey.com" },
+          "author" => author_schema,
           "publisher" => { "@type" => "Organization", "name" => "Snow Way", "url" => "https://snowway.app" },
           "datePublished" => "2026-11-05", "dateModified" => "2026-11-05" },
         breadcrumb_schema([ [ "Guides", "/guides" ], [ @guide.title, nil ] ]),
@@ -18,7 +18,7 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ @guide.title, nil ] ] %>
     <article class="guide">
       <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= @guide.title %></h1>
-      <p class="text-slate-400 text-sm mb-4">By <a href="https://justinmckelvey.com" class="text-slate-300 hover:text-white underline-offset-2 hover:underline">Justin McKelvey</a> · Updated <time datetime="2026-11-05">November 5, 2026</time></p>
+      <p class="text-slate-400 text-sm mb-4">By <%= link_to "Justin McKelvey", author_path, rel: "author", class: "text-slate-300 hover:text-white underline-offset-2 hover:underline" %> · Updated <time datetime="2026-11-05">November 5, 2026</time></p>
       <% src, w, h, alt = @guide.hero %>
       <%= image_tag src, alt: alt, width: w, height: h, fetchpriority: "high", class: "w-full h-auto rounded-xl mb-6 aspect-[16/9] object-cover" %>
       <%= @guide.affiliate? ? affiliate_disclosure : tag.div(class: "mb-2") %>

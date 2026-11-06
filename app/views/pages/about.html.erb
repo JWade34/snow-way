@@ -23,7 +23,7 @@
         <%= image_tag "justin-roof-rail.webp", alt: "Justin McKelvey snowboarding a rail along the roof of a log cabin", width: 612, height: 612, loading: "lazy", class: "rounded-xl w-full h-auto" %>
         <%= image_tag "justin-chairlift-storm.webp", alt: "Justin McKelvey grinning on a chairlift in a snowstorm", width: 960, height: 720, loading: "lazy", class: "rounded-xl w-full h-auto" %>
       </figure>
-      <p>Snow Way is built by <a href="https://justinmckelvey.com">Justin McKelvey</a>. He ran snowboard and bike shops before teaching himself to code, and went on to ship more than 50 software products. He built Snow Way because finding the deep days shouldn't take ten browser tabs.</p>
+      <p>Snow Way is built by <%= link_to "Justin McKelvey", author_path, rel: "author" %>. He lived in Vail, has ridden across North and South America, and ran snowboard and bike shops before teaching himself to code, and went on to ship more than 50 software products. He built Snow Way because finding the deep days shouldn't take ten browser tabs. <%= link_to "Read Justin's full bio", author_path %>.</p>
       <h2>From the slopes</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-6">
         <%= image_tag "photos/powder-jump-800.webp", alt: "Justin snowboarding off a powder jump in the trees", width: 800, height: 419, loading: "lazy", class: "rounded-lg w-full h-40 object-cover" %>

@@ -32,6 +32,15 @@ module ApplicationHelper
   end
 
   # First candidate that fits Google's ~70-character title display; the last one is used regardless.
+  AUTHOR_URL = "https://snowway.app/authors/justin-mckelvey".freeze
+  AUTHOR_SAME_AS = [ "https://justinmckelvey.com", "https://www.linkedin.com/in/justinmckelvey", "https://x.com/justinmckelvey",
+                     "https://instagram.com/justinmckelvey", "https://youtube.com/@justinmckelvey" ].freeze
+
+  # The one Person object every article, guide, and report points to.
+  def author_schema
+    { "@type" => "Person", "@id" => "https://justinmckelvey.com/#person", "name" => "Justin McKelvey", "url" => AUTHOR_URL }
+  end
+
   def fit_title(*candidates)
     candidates.find { |t| t.length <= 70 } || candidates.last
   end

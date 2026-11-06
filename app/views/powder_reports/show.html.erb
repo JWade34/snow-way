@@ -14,7 +14,7 @@ end %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "NewsArticle", "headline" => headline, "description" => summary, "url" => absolute_url(path), "datePublished" => as_of.iso8601, "dateModified" => (@archived ? as_of : Date.current).iso8601,
-          "author" => { "@type" => "Person", "@id" => "https://justinmckelvey.com/#person", "name" => "Justin McKelvey", "url" => "https://justinmckelvey.com" },
+          "author" => author_schema,
           "publisher" => { "@type" => "Organization", "@id" => "https://snowway.app/#organization", "name" => "Snow Way", "logo" => { "@type" => "ImageObject", "url" => "https://snowway.app/icon.png" } } },
         breadcrumb_schema(@archived ? [ [ "Powder Report", "/powder-report" ], [ label, nil ] ] : [ [ "Powder Report", nil ] ]) ] }) %>
 <% end %>

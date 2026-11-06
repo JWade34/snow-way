@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "indy-pass-resorts" => "pages#pass_resorts", defaults: { pass: "indy" }, as: :indy_pass_resorts
   get "ski-resort-opening-dates" => "pages#opening_dates", as: :opening_dates
   get "about" => "pages#about", as: :about
+  get "authors/justin-mckelvey" => "pages#author", as: :author
   get "powder-report" => "powder_reports#current", as: :powder_report
   get "powder-report/:id" => "powder_reports#show", as: :powder_report_archive, constraints: { id: /\d{4}-\d{2}-\d{2}/ }
   resources :subscribers, only: [ :create ]

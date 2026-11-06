@@ -1,0 +1,61 @@
+<% content_for(:title, "Justin McKelvey: Snowboarder, Former Vail Local, Snow Way Founder") %>
+<% content_for(:description, "Justin McKelvey lived in Vail, has ridden across North and South America, and ran snowboard and bike shops before building Snow Way. Bio and every guide he's written.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "ProfilePage", "url" => absolute_url("/authors/justin-mckelvey"), "mainEntity" => { "@id" => "https://justinmckelvey.com/#person" } },
+        author_schema.merge(
+          "image" => image_url("justin-roof-rail.webp"),
+          "jobTitle" => "Founder, Snow Way",
+          "description" => "Snowboarder and former Vail local who has ridden across North and South America; ran snowboard and bike shops before becoming a software builder.",
+          "knowsAbout" => [ "Snowboarding", "Skiing", "Ski resorts", "Snow forecasts", "Ski trip planning", "Ski and snowboard gear" ],
+          "sameAs" => ApplicationHelper::AUTHOR_SAME_AS,
+          "worksFor" => { "@type" => "Organization", "@id" => "https://snowway.app/#organization", "name" => "Snow Way", "url" => "https://snowway.app" }
+        ),
+        breadcrumb_schema([ [ "About", "/about" ], [ "Justin McKelvey", nil ] ]) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "About", about_path ], [ "Justin McKelvey", nil ] ] %>
+    <section class="grid sm:grid-cols-[auto_1fr] gap-6 items-center mb-10">
+      <%= image_tag "justin-roof-rail.webp", alt: "Justin McKelvey snowboarding a rail along the roof of a log cabin", width: 612, height: 612, fetchpriority: "high", class: "w-40 h-40 rounded-2xl object-cover" %>
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Justin McKelvey</h1>
+        <p class="text-cyan-300 font-semibold mb-2">Snowboarder · former Vail local · founder of Snow Way</p>
+        <p class="text-slate-300">I lived in Vail, I've ridden all over North and South America, and I ran snowboard and bike shops before I taught myself to code. Snow Way is the tool I always wanted: one place to see where the snow is before booking a trip.</p>
+      </div>
+    </section>
+
+    <div class="guide">
+      <h2>Experience</h2>
+      <ul>
+        <li><strong>Lived in Vail, Colorado</strong> and rode it through full seasons, from early-season groomers to back bowl powder days.</li>
+        <li><strong>Has ridden across North and South America,</strong> from the Rockies and the Sierra to the Andes.</li>
+        <li><strong>Ran snowboard and bike shops,</strong> fitting boots, setting up boards, and helping customers pick gear.</li>
+        <li><strong>Software builder:</strong> former CTO at an AI startup and former Head of Product, with more than 50 products shipped.</li>
+      </ul>
+      <h2>How Justin writes Snow Way guides</h2>
+      <p>Guides are written for real trips: how to pick a month, a mountain, and gear without wasting money. Gear guides explain how to choose rather than claiming product tests, and forecasts and rankings come straight from data, never from paid placement. See the <%= link_to "affiliate disclosure", affiliate_disclosure_path %> and <%= link_to "how Snow Way works", about_path %>.</p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-2 my-8" aria-hidden="true">
+      <%= image_tag "photos/powder-jump-800.webp", alt: "", width: 800, height: 419, loading: "lazy", class: "rounded-lg w-full h-28 sm:h-36 object-cover" %>
+      <%= image_tag "justin-chairlift-storm.webp", alt: "", width: 960, height: 720, loading: "lazy", class: "rounded-lg w-full h-28 sm:h-36 object-cover" %>
+      <%= image_tag "photos/sitting-view-800.webp", alt: "", width: 800, height: 533, loading: "lazy", class: "rounded-lg w-full h-28 sm:h-36 object-cover" %>
+    </div>
+
+    <h2 class="text-xl font-bold mb-4">Guides by Justin</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
+      <% @guides.each do |g| %>
+        <li><%= link_to g.title, guide_path(g), class: "block bg-slate-800/40 hover:bg-slate-700/50 border border-slate-700 rounded-lg px-4 py-3 text-sm hover:text-cyan-300 transition" %></li>
+      <% end %>
+    </ul>
+
+    <h2 class="text-xl font-bold mb-3">Find Justin elsewhere</h2>
+    <ul class="flex flex-wrap gap-2 text-sm">
+      <% { "justinmckelvey.com" => "https://justinmckelvey.com", "LinkedIn" => "https://www.linkedin.com/in/justinmckelvey", "X" => "https://x.com/justinmckelvey", "Instagram" => "https://instagram.com/justinmckelvey", "YouTube" => "https://youtube.com/@justinmckelvey" }.each do |label, url| %>
+        <li><a href="<%= url %>" rel="me noopener" target="_blank" class="inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2"><%= label %></a></li>
+      <% end %>
+    </ul>
+  </main>
+</div>

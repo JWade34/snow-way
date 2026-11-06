@@ -17,7 +17,7 @@
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "Article", "headline" => "Best Time to Ski #{@resort.name}", "url" => absolute_url("/resorts/#{@resort.slug}/best-time-to-ski"),
-          "author" => { "@type" => "Person", "name" => "Justin McKelvey", "url" => "https://justinmckelvey.com" }, "dateModified" => Date.current.iso8601,
+          "author" => author_schema, "dateModified" => Date.current.iso8601,
           "about" => { "@type" => "SkiResort", "name" => @resort.name } },
         breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ @resort.state_province, "/ski-resorts/#{@resort.region_slug}" ], [ @resort.name, "/resorts/#{@resort.slug}" ], [ "Best Time to Ski", nil ] ]),
         faq_schema(faqs)
