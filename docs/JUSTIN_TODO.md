@@ -6,10 +6,10 @@ Last updated: 2026-11-06
 ## Do now (highest payoff first)
 
 - [ ] **Resorts you've ridden (2 minutes, no writing).** snowway.app/admin → **Resorts I've ridden** → check them all off. Then whenever you have 5 minutes, **Paste / dictate** one resort per line ("Alta: skiers only, best snow in Utah."; lines starting with "-" become tips). Open each draft, fix it, check **Publish**. Start with Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler. First-hand takes are the one thing no competitor can copy.
-- [ ] **AvantLink** (avantlink.com, apply as a publisher; then apply to REI, evo and Backcountry inside it). One account covers most ski shops at about 5–8%. Send Claude your website ID and each merchant ID once approved.
-- [ ] **Wikidata item for Snow Way** (10 minutes). Instance of: website; official website: https://snowway.app; founder: Justin McKelvey. Helps Google and AI tools treat Snow Way as its own brand, separate from Sno-Way the plow company.
+- [ ] **AvantLink** (avantlink.com, apply as a publisher; then apply to evo, Backcountry and other ski shops inside it). REI is on Impact (already applied), so skip REI here. One account covers most other ski shops at about 5–8%. Send Claude your website ID and each merchant ID once approved.
+- [ ] **Wikidata item for Snow Way** (10 minutes). Steps are in Claude's chat from 2026-11-06 (Special:NewItem, label Snow Way, instance of website, official website). Send Claude the Q-number. Helps Google and AI tools treat Snow Way as its own brand, separate from Sno-Way the plow company.
 - [ ] **Snow Way profiles on Instagram and Reddit** (name "Snow Way", link to snowway.app, bio mentioning ski snow forecasts). Same reason: wins searches for our own name. Send Claude the URLs and they go in the site's schema.
-- [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: create a link, add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, AvantLink covers REI.
+- [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: create a link, add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, reapply once Search Console shows traffic.
 
 ## When you have time
 
