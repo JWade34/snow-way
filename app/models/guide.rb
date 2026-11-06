@@ -48,7 +48,46 @@ class Guide
       keyword: "best base layer for skiing", affiliate: true },
     { slug: "best-ski-pants", title: "Best Ski Pants: How to Choose Waterproofing, Insulation, and Fit",
       description: "How to choose the best ski pants or bibs: waterproof ratings, insulated vs shell, fit over boots, and features worth paying for.",
-      keyword: "best ski pants", affiliate: true }
+      keyword: "best ski pants", affiliate: true },
+    { slug: "goofy-vs-regular", title: "Goofy vs Regular Snowboard Stance: Which Are You?",
+      description: "Goofy vs regular snowboard stance explained: what each means, four quick ways to tell which you are, and how to set your bindings.",
+      keyword: "goofy vs regular snowboard" },
+    { slug: "camber-vs-rocker", title: "Camber vs Rocker: Which Profile Is Right for You?",
+      description: "Camber vs rocker for snowboards and skis: how each profile rides, hybrid options, and which to choose for your ability and terrain.",
+      keyword: "camber vs rocker" },
+    { slug: "bibs-vs-pants", title: "Bibs vs Pants for Skiing and Snowboarding: Which to Buy",
+      description: "Ski and snowboard bibs vs pants: warmth, snow protection, bathroom breaks, fit, and which is better for powder, park, and kids.",
+      keyword: "snowboard bibs vs pants", affiliate: true },
+    { slug: "ski-gloves-vs-mittens", title: "Ski Gloves vs Mittens: Which Are Warmer?",
+      description: "Ski gloves vs mittens compared: warmth, dexterity, lobster and three-finger options, liners, and which to choose for cold hands.",
+      keyword: "ski gloves vs mittens", affiliate: true },
+    { slug: "balaclava-vs-ski-mask", title: "Balaclava vs Ski Mask vs Neck Gaiter: What's the Difference?",
+      description: "Balaclava vs ski mask vs neck gaiter: what each covers, which is warmest, how they fit with a helmet and goggles, and when to use each.",
+      keyword: "balaclava vs ski mask", affiliate: true },
+    { slug: "freestyle-vs-freeride-snowboarding", title: "Freestyle vs Freeride vs All-Mountain Snowboarding",
+      description: "Freestyle vs freeride vs all-mountain snowboarding: what each style means, the board and setup for each, and which suits you.",
+      keyword: "snowboard freestyle vs freeride" },
+    { slug: "best-snowboard-boots", title: "Best Snowboard Boots: How to Choose Fit, Flex, and Lacing",
+      description: "How to choose snowboard boots for men and women: sizing and fit, flex for your style, traditional vs quick-pull vs BOA lacing, and break-in.",
+      keyword: "best snowboard boots", affiliate: true },
+    { slug: "best-snowboard-bindings", title: "Best Snowboard Bindings: How to Choose Size, Flex, and Setup",
+      description: "How to choose snowboard bindings: sizing to your boots, flex, strap vs rear-entry, mounting compatibility, and stance angles.",
+      keyword: "best snowboard bindings", affiliate: true },
+    { slug: "best-ski-socks", title: "Best Ski Socks: How to Choose Thickness, Fit, and Material",
+      description: "How to choose ski socks: thin vs thick, merino vs synthetic, height and fit in your boots, and why one pair beats two.",
+      keyword: "best ski socks", affiliate: true },
+    { slug: "snowboard-jacket", title: "Snowboard Jacket Guide: How to Choose Waterproofing and Fit",
+      description: "How to choose a snowboard jacket: waterproof and breathability ratings, insulated vs shell, fit, and features like powder skirts and vents.",
+      keyword: "snowboard jacket", affiliate: true },
+    { slug: "snowboard-pants", title: "Snowboard Pants Guide: How to Choose Fit, Warmth, and Waterproofing",
+      description: "How to choose snowboard pants for men and women: fit and length, insulated vs shell, waterproofing, reinforcement, and pants vs bibs.",
+      keyword: "snowboard pants", affiliate: true },
+    { slug: "best-snowboard-brands", title: "Best Snowboard Brands: A Guide to the Major Makers",
+      description: "A guide to the major snowboard brands: who makes what, what each is known for, and how to pick a brand for your riding style.",
+      keyword: "best snowboard brands", affiliate: true },
+    { slug: "best-ski-brands", title: "Best Ski Brands: A Guide to the Major Ski Makers",
+      description: "A guide to the major ski brands: where they're from, what each is known for, and how to choose skis by brand for your style.",
+      keyword: "best ski brands", affiliate: true }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate
@@ -75,5 +114,13 @@ class Guide
 
   def partial
     "guides/#{slug.underscore}"
+  end
+
+  CATEGORIES = { "how-to" => "How-to guides", "comparison" => "Comparisons", "gear" => "Gear: how to choose" }.freeze
+
+  def category
+    return "comparison" if slug.include?("-vs-")
+    return "gear" if slug.start_with?("best-") || slug.start_with?("snowboard-jacket", "snowboard-pants")
+    "how-to"
   end
 end
