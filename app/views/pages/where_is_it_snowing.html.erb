@@ -17,7 +17,7 @@
   <% faqs << { question: "Which state is getting the most snow this week?", answer: "#{@region_leaders.first[0]} has the snowiest resort this week: #{@region_leaders.first[1].name}, with #{inches(@totals[@region_leaders.first[1].id])} forecast over 7 days." } %>
 <% end %>
 
-<% content_for(:title, "Where Is It Snowing? North America's Snowiest Ski Resorts | Snow Way") %>
+<% content_for(:title, "Where Is It Snowing This Week? Snowiest Ski Resorts | Snow Way") %>
 <% content_for(:description, (faqs.first || faqs.last)[:answer].truncate(155)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [

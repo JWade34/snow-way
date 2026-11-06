@@ -10,7 +10,7 @@
   <% faqs << { question: "When does #{r.name} open for #{season}?", answer: "#{r.name} is scheduled to open on #{r.opening_date.strftime("%B %-d, %Y")}. Opening dates can move with the snow." } %>
 <% end %>
 
-<% content_for(:title, "Ski Resort Opening Dates #{season} | Snow Way") %>
+<% content_for(:title, @checked_on ? "Ski Resort Opening Dates #{season} (Updated #{@checked_on.strftime("%b %-d")}) | Snow Way" : "Ski Resort Opening Dates #{season} | Snow Way") %>
 <% content_for(:description, "#{season} ski resort opening dates for #{@resorts.size} North American resorts, with live snow forecasts. #{faqs.first[:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [

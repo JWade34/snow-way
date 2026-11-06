@@ -1,19 +1,29 @@
 # Justin's to-do list for Snow Way
 
 Claude keeps this file current. Newest items at the top of each section. Check things off as you go.
-Last updated: 2026-11-05
+Last updated: 2026-11-06
 
 ## Do now (highest payoff first)
 
+- [ ] **Turn on your private admin area (2 minutes).** Pick a password (12+ characters) and run this in Claude Code: `! railway variables --service snow-way --set "ADMIN_PASSWORD=your-password-here"`. Railway redeploys; then open snowway.app/admin (user: `justin`). Save it in your phone's browser. Until the password is set, /admin returns "not found".
+
 - [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: Impact → Manage → My Brands → REI → Create Link, copy the tracking link (`https://rei.xxxx.net/c/...`), add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, reapply once Search Console shows traffic.
+- [ ] **Affiliate sign-ups, in order of what they'll earn** (Stay22 lodging is already live and is the biggest earner per click):
+  1. **AvantLink** (avantlink.com, apply as a publisher; then apply to evo, Backcountry, and REI inside it). One account covers most ski shops at about 5–8%. Send Claude your website ID and each merchant ID once approved.
+  2. **Amazon Associates** (details below). Easy approval, about 3%, converts well on small stuff.
+  3. **Discover Cars** (discovercars.com/affiliate). Ski trips mean 4x4 rentals; the "Rent a 4x4" buttons are already on every resort page.
+  4. **Skyscanner** (via Impact). Lowest payout per click; do it last.
 - [ ] **Amazon Associates (optional, good for accessories).** affiliate-program.amazon.com → add your tag on Railway as `AMAZON_ASSOCIATE_TAG` (e.g. `snowway-20`). If REI is also live, accessories go to Amazon and core gear to REI automatically. Note: Amazon closes accounts without 3 sales in the first 180 days (you can reapply).
 - [ ] **AvantLink (evo, Backcountry, Christy Sports).** Optional extra shops; tell Claude when one approves.
-- [ ] **"What I ride" list.** Your actual board, boots, bindings, goggles, jacket, and what you think of each. Real gear reviews from a former shop owner rank where generic roundups don't; Claude builds the page.
-- [ ] **Test the emails:** sign up yourself at snowway.app/powder-calendar (use a different email than before). You should get the welcome email with the download link within a minute.
+- [ ] **Gear closet.** snowway.app/admin → Gear closet. Log everything you own (riding now, quiver, retired, wishlist) with private notes. Check "Show on /what-i-ride" for anything you'd recommend; the public page appears once one item is public. Private notes never show.
 
 ## Your expertise (the biggest edge no competitor can copy)
 
-- [ ] **Fill in `docs/locals-take-template.md`** (Colorado, Utah, California, and Nevada resorts listed, with 4 quick prompts each; skip any you haven't ridden). Or just dictate: "Alta: ..." works. Each one becomes a "Local's take" box on that resort's page. The box design is built and waiting.
+- [ ] **Your resorts, the easy way** (replaces the template file):
+  1. snowway.app/admin → **Resorts I've ridden** → check off every resort you've ridden (about 2 minutes, no writing).
+  2. Whenever you have 5 minutes: **Paste / dictate** on your phone, tap the keyboard mic, and talk one resort per line ("Alta: skiers only, best snow in Utah."). Lines starting with "-" become tips for the resort above. Or keep a running note in Apple Notes and paste it in.
+  3. Open each draft, fix anything, check **Publish**. It shows as "Local's take" (Colorado and Utah) or "Justin's take" (everywhere else) on that resort's page and gets listed on your author page.
+  Start with the big ones: Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler.
 - [ ] **Send Claude your real tips, as voice memo transcripts or bullet notes.** Google and AI tools reward first-hand experience, and you lived in Vail and have ridden all over North and South America. Claude will add a "Justin's take" box to the matching resort pages, guides, and the Trip Planner PDF. Ideas:
   - Vail local tips: best days and times, where locals go on a powder day, parking, how you'd spend a 3-day trip
   - Resorts you've ridden (name each one) plus one honest line apiece: who it's for, what to skip
@@ -49,9 +59,13 @@ Last updated: 2026-11-05
 ## Every month
 
 - [ ] Google Search Console → Performance: note top queries and pages; tell Claude about any surprises.
+- [ ] Ask Claude to "run the ChatGPT citation check" (same five questions each month; baseline in `docs/geo-checks/2026-11-06.md`: not cited yet, as expected for a new site).
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Private admin (2026-11-06): resorts-ridden checklist, dictate/paste importer, gear closet, subscriber list with CSV download
+- [x] International "snow around the world" section on where-is-it-snowing; Chamonix and La Parva elevations corrected (2026-11-06)
+- [x] Tested the welcome email and Powder Calendar (2026-11-06)
 - [x] Worldwide (2026-11-05): 35 international resorts (Japan, the Alps, Chile, Argentina, Australia, New Zealand), country pages, and Skiing in Japan / the Alps / Chile and Argentina guides
 - [x] Phase 4 shipped (2026-11-05): Lake Tahoe, Summit County, and Southern California region pages; "ski resorts near me" page (location stays in the browser); backcountry skiing, splitboarding, and avalanche safety gear guides
 - [x] Stay22 set up (AID `snowway`); lodging map live on all resort pages (2026-11-05)
