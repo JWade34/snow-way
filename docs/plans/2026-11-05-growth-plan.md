@@ -48,3 +48,15 @@ Rule for gear content: "how to choose" guides only. No "we tested" claims unless
 - Paid alerts tier ($3–5/mo) once the list is meaningful
 - End-of-season "most snow 2026-27" data report for backlinks
 - Monthly: GSC queries review, AI-mention check (DataForSEO LLM mentions), refresh pass facts and prices
+
+## Phase 4: broader snow sports (decided 2026-11-05)
+Keyword data (US/mo, peak, KD):
+- [resort] weather: park city 74K, vail/breckenridge/mammoth 60.5K, KD 0-4 → shipped as mountain weather on resort pages
+- [state] snow forecast: colorado 6.6K ($8.80 CPC), tahoe 6.6K (27K), utah 2.4K, KD 37-45 → add Tahoe + Summit County region groups, "forecast" in state titles
+- [resort] webcam (breck 14.8K, vail 8.1K, KD 0), trail map (4-5K, KD 21), lift tickets (5.4K, KD 26) → official-link research per resort
+- ski resorts near me 74K (201K peak) → geolocation page
+- Winter adventures: snowmobiling 90.5K (KD 17), snow tubing near me 60.5K (246K peak, KD 7), snowshoeing 60.5K (KD 0), cross-country skiing 40.5K (KD 29) → topic hub + guides (in progress)
+- Gear: heated jacket 60.5K (201K peak, KD 6), snow boots women 49.5K, best snow boots 4.4K (KD 3), ski rack 2.9K, roof box 2.9K → guides (in progress)
+- Backcountry: splitboard 9.9K, backcountry skiing 8.1K, avalanche beacon 5.4K, KD 0-9 → careful safety-first guides
+- International: niseko 14.8K, skiing in japan 5.4K, alps 4.4K ($3.63), heli skiing 2.9K ($6.39), valle nevado 9.9K (22K Jul), chile/argentina 2.9K each, south america ski resorts 1.6K → worldwide resorts (needs hemisphere-aware rankings; site copy says "North American")
+- Where to stay in [resort] (vail hotels 18.1K) → with Justin's local takes + Stay22
