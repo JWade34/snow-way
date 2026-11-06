@@ -1,13 +1,13 @@
 <% today = Date.current %>
-<% opened = @resorts.select { |r| r.opening_status == "opened" || r.opening_date <= today } %>
+<% opened = @resorts.select { |r| r.opening_status == "opened" } %>
 <% upcoming = @resorts.reject { |r| opened.include?(r) } %>
 <% season_year = today.month >= 7 ? today.year : today.year - 1 %>
 <% season = "#{season_year}-#{(season_year + 1).to_s.last(2)}" %>
 <% faqs = [] %>
 <% faqs << { question: "When do ski resorts open for the #{season} season?", answer: @resorts.any? ? "Of the resorts Snow Way tracks, #{@resorts.first.name} has the earliest #{season} opening date (#{@resorts.first.opening_date.strftime("%B %-d")}). Most western resorts open between mid-November and early December, depending on snow." : "Most western resorts open between mid-November and early December, depending on snow." } %>
-<% faqs << { question: "Which ski resorts are open right now?", answer: opened.any? ? "As of #{today.strftime("%B %-d, %Y")}, these resorts have opened for #{season}: #{opened.map(&:name).to_sentence}." : "As of #{today.strftime("%B %-d, %Y")}, none of the resorts Snow Way tracks have reported opening for #{season} yet." } %>
+<% faqs << { question: "Which ski resorts are open right now?", answer: opened.any? ? "As of #{@checked_on&.strftime("%B %-d, %Y")}, these resorts had opened for #{season}: #{opened.map(&:name).to_sentence}." : "As of #{today.strftime("%B %-d, %Y")}, none of the resorts Snow Way tracks have reported opening for #{season} yet." } %>
 <% upcoming.select { |r| %w[vail breckenridge park-city mammoth-mountain palisades-tahoe whistler-blackcomb jackson-hole].include?(r.slug) }.each do |r| %>
-  <% faqs << { question: "When does #{r.name} open for #{season}?", answer: "#{r.name} is scheduled to open on #{r.opening_date.strftime("%B %-d, %Y")}, according to the resort. Opening dates can move with the snow." } %>
+  <% faqs << { question: "When does #{r.name} open for #{season}?", answer: "#{r.name} is scheduled to open on #{r.opening_date.strftime("%B %-d, %Y")}. Opening dates can move with the snow." } %>
 <% end %>
 
 <% content_for(:title, "Ski Resort Opening Dates #{season} | Snow Way") %>
@@ -26,7 +26,7 @@
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resort opening dates <%= season %></h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
-      <p class="text-slate-400 text-xs mt-3"><%= @checked_on ? "Dates checked #{@checked_on.strftime("%B %-d, %Y")} from each resort's announcements." : "Dates come from each resort's announcements." %> Resorts can open early or delay with conditions.</p>
+      <p class="text-slate-400 text-xs mt-3"><%= @checked_on ? "Dates checked #{@checked_on.strftime("%B %-d, %Y")} from resort announcements, the Ikon and Vail Resorts opening lists, and local news, with a source for each." : "Dates come from resort announcements, with a source for each." %> Resorts can open early or delay with conditions.</p>
     </section>
 
     <% [ [ "Open now", opened ], [ "Scheduled openings", upcoming ] ].each do |label, list| %>
@@ -40,9 +40,9 @@
             <% list.each do |r| %>
               <tr>
                 <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><span class="block text-xs text-slate-400 font-normal"><%= r.state_province %></span></th>
-                <td class="px-3 py-2 text-slate-200"><%= r.opening_date.strftime("%a, %b %-d") %></td>
+                <td class="px-3 py-2 text-slate-200"><%= r.opening_date.strftime("%a, %b %-d") %><% if label != "Open now" && r.opening_date < today %><span class="block text-xs text-amber-300">Date passed; confirm with resort</span><% end %></td>
                 <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
-                <td class="px-3 py-2 hidden sm:table-cell"><% if r.opening_source.present? %><%= link_to "Resort", r.opening_source, rel: "noopener nofollow", target: "_blank", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% end %></td>
+                <td class="px-3 py-2 hidden sm:table-cell"><% if r.opening_source.present? %><%= link_to "Source", r.opening_source, rel: "noopener nofollow", target: "_blank", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% end %></td>
               </tr>
             <% end %>
           </tbody>

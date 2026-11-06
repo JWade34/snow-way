@@ -2,14 +2,14 @@
 <% epic_avg, ikon_avg = avg.(@epic), avg.(@ikon) %>
 <% has_data = @epic.any? && @ikon.any? %>
 <% prices = @prices[:passes] %>
-<% price = ->(key) { (p = prices[key]) && p["adult_price_usd"] ? number_to_currency(p["adult_price_usd"], precision: 0) : nil } %>
+<% price = ->(key) { (p = prices[key]) && p["adult_price_usd"] ? "#{"from " if p["from"]}#{number_to_currency(p["adult_price_usd"], precision: 0)}" : nil } %>
 <% leader = epic_avg >= ikon_avg ? "Epic" : "Ikon" %>
 <% faqs = [] %>
 <% if has_data %>
   <% faqs << { question: "Which pass is getting more snow this week, Ikon or Epic?", answer: "As of #{Date.current.strftime("%B %-d, %Y")}, #{leader} Pass resorts average more snow in the 7-day forecast: #{inches([ epic_avg, ikon_avg ].max)} vs #{inches([ epic_avg, ikon_avg ].min)} across the #{@epic.size} Epic and #{@ikon.size} Ikon resorts Snow Way tracks. The snowiest Epic resort is #{@epic.first.name} (#{inches(@totals.fetch(@epic.first.id, 0.0))}); the snowiest Ikon resort is #{@ikon.first.name} (#{inches(@totals.fetch(@ikon.first.id, 0.0))})." } %>
 <% end %>
 <% if price.("epic") && price.("ikon") %>
-  <% faqs << { question: "How much do the Ikon Pass and Epic Pass cost for #{Date.current.month >= 7 ? Date.current.year : Date.current.year - 1}-#{((Date.current.month >= 7 ? Date.current.year : Date.current.year - 1) + 1).to_s.last(2)}?", answer: "Adult prices as of #{@prices[:checked_on]&.strftime("%B %-d, %Y")}: Epic Pass #{price.("epic")}#{price.("epic_local") ? ", Epic Local Pass #{price.("epic_local")}" : ""}, Ikon Pass #{price.("ikon")}#{price.("ikon_base") ? ", Ikon Base Pass #{price.("ikon_base")}" : ""}. Prices change by sale deadline; check the official sites before buying." } %>
+  <% faqs << { question: "How much do the Ikon Pass and Epic Pass cost for #{Date.current.month >= 7 ? Date.current.year : Date.current.year - 1}-#{((Date.current.month >= 7 ? Date.current.year : Date.current.year - 1) + 1).to_s.last(2)}?", answer: squish_text("Adult prices as of #{@prices[:checked_on]&.strftime("%B %-d, %Y")}: Epic Pass #{price.("epic")}#{price.("epic_local") ? ", Epic Local Pass #{price.("epic_local")}" : ""}, Ikon Pass #{price.("ikon")}#{price.("ikon_base") ? ", Ikon Base Pass #{price.("ikon_base")}" : ""}. #{prices.dig("epic", "price_note").to_s.include?("November 15") && Date.current <= Date.new(Date.current.year, 11, 15) ? " Epic prices go up after November 15." : ""} Prices change by sale deadline; check the official sites before buying.") } %>
 <% end %>
 <% faqs << { question: "What is the main difference between the Ikon Pass and the Epic Pass?", answer: "The Epic Pass is sold by Vail Resorts and covers mostly resorts it owns, usually with unlimited days. The Ikon Pass is sold by Alterra Mountain Company and covers a mix of owned and partner resorts, many with a set number of days. The better pass is the one with more resorts you'll actually ski." } %>
 <% faqs << { question: "Which Snow Way resorts are on each pass?", answer: "Epic Pass: #{@epic.map(&:name).to_sentence}. Ikon Pass: #{@ikon.map(&:name).to_sentence}." } if has_data %>

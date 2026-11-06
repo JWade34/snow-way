@@ -31,6 +31,10 @@ module ApplicationHelper
     }
   end
 
+  def squish_text(text)
+    text.squish
+  end
+
   def inches(value)
     "#{value.to_f.round(1)}\""
   end

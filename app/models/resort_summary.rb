@@ -170,14 +170,27 @@ class ResortSummary
 
   def pass_answer
     case resort.pass
-    when "independent" then "#{resort.name} is not on the Epic Pass or the Ikon Pass for #{season_label}."
-    else "#{resort.name} is on the #{resort.pass_label} for #{season_label}#{resort.pass_note.present? ? " (#{resort.pass_note})" : ""}."
+    when "independent" then "#{resort.name} is not on the Epic Pass or the Ikon Pass for #{season_label}.#{other_passes_sentence}"
+    else "#{resort.name} is on the #{resort.pass_label} for #{season_label}#{resort.pass_note.present? ? " (#{resort.pass_note})" : ""}.#{other_passes_sentence}"
     end
   end
 
+  OTHER_PASS_NAMES = { "mountain_collective" => "Mountain Collective", "indy" => "Indy Pass" }.freeze
+
+  def other_passes_sentence
+    names = Array(resort.other_passes).filter_map { |p| OTHER_PASS_NAMES[p] }
+    names.any? ? " It is also on the #{names.to_sentence}." : ""
+  end
+
   def opening_answer
-    verb = resort.opening_status == "opened" ? "opened" : "is scheduled to open"
-    "#{resort.name} #{verb} on #{resort.opening_date.strftime("%B %-d, %Y")}, according to the resort. Opening dates depend on snow and can change."
+    date = resort.opening_date.strftime("%B %-d, %Y")
+    if resort.opening_status == "opened"
+      "#{resort.name} opened for the #{season_label} season on #{date}."
+    elsif resort.opening_date < as_of
+      "#{resort.name} was scheduled to open on #{date}. Check the resort's website to confirm it opened on time."
+    else
+      "#{resort.name} is scheduled to open on #{date}. Opening dates depend on snow and can change."
+    end
   end
 
   def season_label

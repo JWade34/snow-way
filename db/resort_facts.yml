@@ -1,0 +1,802 @@
+# Sourced, time-sensitive resort facts for the 2026-27 season. Every value cites an official or news source.
+# Pass lists: epicpass.com, ikonpass.com, mountaincollective.com, indyskipass.com. Re-verify before each season
+# and when prices change (Epic prices rise after Nov 15). Unverified values stay null.
+checked_on: 2026-11-05
+passes:
+  epic:
+    adult_price_usd: 1169
+    price_note: 'Adult (31+) price shown 2026-11-05; site banner says prices go up
+      after November 15. Young adult/teen 13-30: $929'
+    source: https://www.epicpass.com/passes/epic-pass.aspx
+  epic_local:
+    adult_price_usd: 869
+    price_note: 'Adult (31+) price shown 2026-11-05; prices go up after November 15.
+      Young adult/teen 13-30: $689'
+    source: https://www.epicpass.com/passes/epic-local-pass.aspx
+  ikon:
+    adult_price_usd: 1529
+    price_note: Listed as "From $1,529" for adult 23+ on 2026-11-05; no price-increase
+      deadline shown
+    source: https://www.ikonpass.com/en/shop-passes/ikon-pass
+    from: true
+  ikon_base:
+    adult_price_usd: 1099
+    price_note: Listed as "From $1,099" for adult 23+ on 2026-11-05; no price-increase
+      deadline shown
+    source: https://www.ikonpass.com/en/shop-passes/ikon-base-pass
+    from: true
+resorts:
+  alyeska:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-28
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  arizona-snowbowl:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://www.snowbowl.ski/
+  bear-mountain:
+    pass: ikon
+    pass_note: 'Listed under Big Bear Mountain Resort: unlimited on Ikon Pass and
+      Ikon Base Pass (Base blackout dates apply)'
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  heavenly:
+    pass: epic
+    pass_note: Unlimited on Epic Pass; unlimited on Epic Local Pass excluding peak
+      dates
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  kirkwood:
+    pass: epic
+    pass_note: Unlimited on Epic Pass; unlimited on Epic Local Pass excluding peak
+      dates
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-12-04
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  mammoth-mountain:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-05
+    opening_status: opened
+    opening_source: https://www.mammothmountain.com/
+  northstar:
+    pass: epic
+    pass_note: Unlimited on Epic Pass; unlimited on Epic Local Pass excluding peak
+      dates
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  palisades-tahoe:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-25
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  sierra-at-tahoe:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  sugar-bowl:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; 2 days on Mountain Collective
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-27
+    opening_status: scheduled
+    opening_source: https://www.sugarbowl.com/
+  arapahoe-basin:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-10-28
+    opening_status: opened
+    opening_source: https://www.denver7.com/news/local-news/colorados-ski-board-season-begins-as-arapahoe-basin-officially-opens-wednesday
+  aspen-snowmass:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass; 5 on Ikon Base Pass (Snowmass access only on Base)
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-26
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  beaver-creek:
+    pass: epic
+    pass_note: 'Unlimited on Epic Pass; Epic Local Pass: 10 total days combined across
+      Vail, Beaver Creek and Whistler Blackcomb, excludes peak dates'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-25
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  breckenridge:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-06
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  copper-mountain:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-06
+    opening_status: scheduled
+    opening_source: https://unofficialnetworks.com/2026/09/08/copper-mountain-announces-november-6th-as-opening-day-of-2026-27-winter-season/
+  crested-butte:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-25
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  eldora:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-13
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  keystone:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-10-30
+    opening_status: opened
+    opening_source: https://unofficialnetworks.com/2026/10/30/keystone-resort-opens-43-acres-halloween-weekend/
+  loveland:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  monarch-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  purgatory:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://www.purgatory.ski/
+  steamboat:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass, 5 days on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  telluride:
+    pass: epic
+    pass_note: 'Partner resort: 7 total days on Epic Pass (physical pass card required);
+      not on Epic Local'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-26
+    opening_status: scheduled
+    opening_source: https://www.denver7.com/news/recreation/heres-when-colorado-ski-resorts-could-open-for-2026-2027-season
+  vail:
+    pass: epic
+    pass_note: 'Unlimited on Epic Pass; Epic Local Pass: 10 total days combined across
+      Vail, Beaver Creek and Whistler Blackcomb, excludes peak dates'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-13
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  winter-park:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  wolf-creek:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-10-31
+    opening_status: opened
+    opening_source: https://unofficialnetworks.com/2026/10/30/wolf-creek-opening-date/
+  bogus-basin:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  brundage:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  schweitzer:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass, 5 days on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-27
+    opening_status: scheduled
+    opening_source: https://www.schweitzer.com/
+  sun-valley:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass; not on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-26
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  tamarack:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  sugarloaf:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  sunday-river:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-15
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  big-sky:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-25
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  bridger-bowl:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  whitefish-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mt-rose:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-06
+    opening_status: scheduled
+    opening_source: https://www.skirose.com/
+  bretton-woods:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  cannon-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  loon-mountain:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  ski-santa-fe:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  taos-ski-valley:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-26
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  gore-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  hunter-mountain:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  whiteface:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; 2 days on Mountain Collective
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date:
+    opening_status:
+    opening_source:
+  mt-bachelor:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-12-04
+    opening_status: scheduled
+    opening_source: https://www.mtbachelor.com/
+  mt-hood-meadows:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  timberline:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  alta:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass; not on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  brian-head:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-06
+    opening_status: scheduled
+    opening_source: https://www.deseret.com/lifestyle/2026/10/07/utah-ski-resorts-opening-dates-new-terrain-upgraded-chairlifts/
+  brighton:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  deer-valley:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass; not on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-12-05
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  park-city:
+    pass: epic
+    pass_note: Unlimited on Epic Pass; unlimited on Epic Local Pass excluding peak
+      dates
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  powder-mountain:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-12-11
+    opening_status: scheduled
+    opening_source: https://www.deseret.com/lifestyle/2026/10/07/utah-ski-resorts-opening-dates-new-terrain-upgraded-chairlifts/
+  snowbasin:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass; not on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-27
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  snowbird:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-27
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  solitude:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  sundance:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  jay-peak:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  killington:
+    pass: ikon
+    pass_note: 'Listed as Killington-Pico: 7 days on Ikon Pass, 5 on Ikon Base Pass'
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mad-river-glen:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mount-snow:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-10-26-Vail-Resorts-Serves-Up-New-Culinary-and-Apres-Experiences-at-its-World-Class-Ski-Resorts-this-Winter
+  okemo:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-10-26-Vail-Resorts-Serves-Up-New-Culinary-and-Apres-Experiences-at-its-World-Class-Ski-Resorts-this-Winter
+  smugglers-notch:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  stowe:
+    pass: epic
+    pass_note: Unlimited on Epic Pass; unlimited on Epic Local Pass excluding peak
+      dates
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-10-26-Vail-Resorts-Serves-Up-New-Culinary-and-Apres-Experiences-at-its-World-Class-Ski-Resorts-this-Winter
+  stratton:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-25
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  sugarbush:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  crystal-mountain:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass, 5 days on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-27
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  mission-ridge:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  mt-baker:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  stevens-pass:
+    pass: epic
+    pass_note: Unlimited on Epic Pass and Epic Local Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-12-04
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  summit-at-snoqualmie:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  snowshoe:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-25
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  grand-targhee:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; 2 days on Mountain Collective
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://www.grandtarghee.com/
+  jackson-hole:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass; not on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-27
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  banff-sunshine:
+    pass: ikon
+    pass_note: 'Listed under SkiBig3: 7 days on Ikon Pass, 5 on Ikon Base Pass'
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date:
+    opening_status:
+    opening_source:
+  kicking-horse:
+    pass: epic
+    pass_note: 'Partner resort (Resorts of the Canadian Rockies): 7 total days combined
+      across RCR resorts on Epic Pass; not on Epic Local'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  lake-louise:
+    pass: ikon
+    pass_note: 'Listed under SkiBig3: 7 days on Ikon Pass, 5 on Ikon Base Pass'
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-01
+    opening_status: opened
+    opening_source: https://snowstash.com/news/2026/10/lake-louise-opening-day-2026-27
+  big-white:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+      ; https://www.indyskipass.com/our-resorts
+    other_passes:
+    - indy
+    opening_date:
+    opening_status:
+    opening_source:
+  fernie:
+    pass: epic
+    pass_note: 'Partner resort (Resorts of the Canadian Rockies): 7 total days combined
+      across RCR resorts on Epic Pass; not on Epic Local'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-12-04
+    opening_status: scheduled
+    opening_source: https://www.skifernie.com/
+  panorama:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-12-04
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  red-mountain:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-12-12
+    opening_status: scheduled
+    opening_source: https://www.redresort.com/
+  revelstoke:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-12-05
+    opening_status: scheduled
+    opening_source: https://www.revelstokemountainresort.com/
+  sun-peaks:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://www.sunpeaksresort.com/
+  whistler-blackcomb:
+    pass: epic
+    pass_note: 'Unlimited on Epic Pass; Epic Local Pass: 10 total days combined across
+      Vail, Beaver Creek and Whistler Blackcomb, excludes peak dates'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date: 2026-11-20
+    opening_status: scheduled
+    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+  whitewater:
+    pass: independent
+    pass_note: Not on Epic or Ikon 2026-27 resort lists
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
+  le-massif:
+    pass: ikon
+    pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
+    pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
+    other_passes:
+    - mountain_collective
+    opening_date: 2026-12-05
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  mont-tremblant:
+    pass: ikon
+    pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
+      Dec 26-30, Jan 16-17, Feb 13-14)
+    pass_source: https://www.ikonpass.com/en/destinations
+    other_passes: []
+    opening_date: 2026-11-26
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
+  mont-sainte-anne:
+    pass: epic
+    pass_note: 'Partner resort (Resorts of the Canadian Rockies): 7 total days combined
+      across RCR resorts on Epic Pass; not on Epic Local'
+    pass_source: https://www.epicpass.com/passes/epic-pass.aspx
+    other_passes: []
+    opening_date:
+    opening_status:
+    opening_source:
