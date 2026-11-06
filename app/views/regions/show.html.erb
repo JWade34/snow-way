@@ -78,6 +78,7 @@
             <th scope="col" class="px-3 py-2 text-right hidden md:table-cell">Vertical</th>
             <th scope="col" class="px-3 py-2 hidden sm:table-cell">Airport</th>
             <th scope="col" class="px-3 py-2 hidden md:table-cell">Pass</th>
+            <th scope="col" class="px-3 py-2 hidden lg:table-cell">Best month</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-800">
@@ -91,6 +92,7 @@
               <td class="px-3 py-2 text-right text-slate-300 hidden md:table-cell"><%= number_with_delimiter(r.vertical_drop) %> ft</td>
               <td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.nearest_airport_code %></td>
               <td class="px-3 py-2 text-slate-300 hidden md:table-cell"><%= r.pass_label || "—" %></td>
+              <td class="px-3 py-2 hidden lg:table-cell"><% if (m = r.snowiest_months(1).first) %><%= link_to Date::MONTHNAMES[m.first], best_time_resort_path(r), class: "text-cyan-300 underline underline-offset-2" %><% else %>—<% end %></td>
             </tr>
           <% end %>
         </tbody>
@@ -103,6 +105,12 @@
     <% if nearby_hubs.any? %>
       <p class="text-sm text-slate-400 mb-2">Ski resorts near: <%= safe_join(nearby_hubs.map { |h| link_to(h.city, hub_path(h), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, ", ") %></p>
     <% end %>
+    <% unless @region.group? %>
+      <% Region.groups.select { |g| g.resorts.any? { |r| r.state_province == name } }.each do |g| %>
+        <p class="text-sm text-slate-400 mb-2">Part of <%= link_to "#{g.name}: #{g.resorts.size} ski resorts", region_path(g), class: "text-cyan-300 underline underline-offset-2" %></p>
+      <% end %>
+    <% end %>
+    <p class="text-sm text-slate-400 mb-2">Plan around the snow: <%= link_to "best time to ski each resort", powder_calendar_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "opening dates", opening_dates_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <p class="text-sm text-slate-400"><%= link_to "All states and provinces", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Where is it snowing this week?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
   </main>
 </div>

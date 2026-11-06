@@ -132,6 +132,16 @@
       </section>
     <% end %>
 
+    <% hubs = SkiHub.all.select { |h| h.nearby.any? { |r, _| r.id == @resort.id } } %>
+    <% groups = Region.groups.select { |g| g.resorts.any? { |r| r.id == @resort.id } } %>
+    <p class="mb-3 text-sm text-slate-300">
+      <%= link_to "#{@resort.state_province} snow report and ski resorts", region_path(@resort.region_slug), class: "text-cyan-300 underline underline-offset-2" %>
+      <% groups.each do |g| %> · <%= link_to "#{g.name} ski resorts", region_path(g), class: "text-cyan-300 underline underline-offset-2" %><% end %>
+      <% if @resort.opening_date %> · <%= link_to "Opening dates for every resort", opening_dates_path, class: "text-cyan-300 underline underline-offset-2" %><% end %>
+    </p>
+    <% if hubs.any? %>
+      <p class="mb-3 text-sm text-slate-300">Nearby cities: <%= safe_join(hubs.map { |h| link_to("ski resorts near #{h.city}", hub_path(h), class: "text-cyan-300 underline underline-offset-2") }, " · ") %></p>
+    <% end %>
     <p class="mb-10 text-sm">
       <%= link_to "Best time to ski #{@resort.name}: snowiest months →", best_time_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>
       <% if @resort.pass_label %>

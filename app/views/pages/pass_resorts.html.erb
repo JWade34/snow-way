@@ -36,7 +36,7 @@
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
       <table class="w-full text-sm">
         <caption class="sr-only"><%= @pass_name %> resorts with 7-day snow forecast, pass access, and opening date</caption>
-        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">7-day</th><th scope="col" class="px-3 py-2 text-right">48h</th><th scope="col" class="px-3 py-2 hidden md:table-cell">Access</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Opens</th></tr></thead>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">7-day</th><th scope="col" class="px-3 py-2 text-right">48h</th><th scope="col" class="px-3 py-2 hidden md:table-cell">Access</th><th scope="col" class="px-3 py-2 hidden sm:table-cell"><%= link_to "Opens", opening_dates_path, class: "underline underline-offset-2" %></th></tr></thead>
         <tbody class="divide-y divide-slate-800">
           <% @resorts.each do |r| %>
             <tr class="hover:bg-slate-800/40">

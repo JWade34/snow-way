@@ -9,7 +9,11 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts by state and province</h1>
-    <p class="text-slate-300 mb-8">Snow Way tracks <%= Resort.count %> ski resorts across <%= @regions.size %> states and provinces. Pick a region for a directory with this week's snow forecast for every resort.</p>
+    <% leader_region = @regions.max_by { |r| r.resorts.map { |x| @totals.fetch(x.id, 0.0) }.max } %>
+    <% leader = leader_region.resorts.max_by { |x| @totals.fetch(x.id, 0.0) } %>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed">Snow Way tracks <%= Resort.count %> ski resorts across <%= @regions.size %> states and provinces<% if @totals.fetch(leader.id, 0.0) > 0 %>. As of <%= Date.current.strftime("%B %-d, %Y") %>, <%= leader_region.name %> has the snowiest resort this week: <%= leader.name %>, with <%= inches(@totals[leader.id]) %> forecast at mid-mountain over 7 days<% end %>. Pick a region for a directory with this week's snow forecast for every resort.</p>
+    </section>
     <% @regions.group_by(&:country).each do |country, regions| %>
       <h2 class="text-xl font-bold mb-4"><%= country == "USA" ? "United States" : country %></h2>
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">

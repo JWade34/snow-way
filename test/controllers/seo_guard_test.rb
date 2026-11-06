@@ -50,4 +50,18 @@ class SeoGuardTest < ActionDispatch::IntegrationTest
       assert_includes [ 200, 301, 302 ], response.status, "broken internal link: #{href}"
     end
   end
+
+  test "every guide opens with a short-answer box and every data page leads with an answer" do
+    @pages.each do |path, doc|
+      next unless path.start_with?("/guides/") && Guide.all.any? { |g| path == "/guides/#{g.slug}" }
+      assert doc.at(".tldr"), "#{path}: guide is missing its .tldr short answer"
+    end
+  end
+
+  test "llms.txt lists every guide, topic hub, and region group" do
+    get "/llms.txt"
+    (Guide.all.map { |g| "/guides/#{g.slug}" } + GuideTopic.all.map { |t| "/guides/#{t.slug}" } + Region.groups.map { |g| "/ski-resorts/#{g.slug}" }).each do |path|
+      assert_includes response.body, "https://snowway.app#{path})", "llms.txt is missing #{path}"
+    end
+  end
 end

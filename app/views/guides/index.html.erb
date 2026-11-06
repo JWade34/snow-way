@@ -9,7 +9,9 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski &amp; snowboard guides</h1>
-    <p class="text-slate-300 mb-8">Straight answers for skiers and snowboarders: sizing, first-day how-tos, gear buying guides, and head-to-head comparisons.</p>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed">Snow Way has <%= @guides.size %> guides for skiers and snowboarders across five topics: trip planning, skiing, snowboarding, gear, and comparisons, plus free ski and snowboard size calculators and two free printable PDFs. Every guide is written by <%= link_to "Justin McKelvey", author_path, rel: "author", class: "text-cyan-300 underline underline-offset-2" %>, a former Vail and Salt Lake City local.</p>
+    </section>
     <h2 class="text-xl font-bold mb-3">Browse by topic</h2>
     <ul class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-10">
       <% GuideTopic.all.each do |t| %>

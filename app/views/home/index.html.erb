@@ -62,6 +62,7 @@
     <h1 class="text-xl md:text-2xl font-bold text-center text-slate-200 max-w-2xl mb-2">Which ski resort is getting the most snow this week?</h1>
     <p class="text-slate-400 text-sm md:text-base text-center max-w-xl mb-10">
       Snow Way ranks <%= @resort_count %> North American ski resorts by forecast snowfall for the next 7 days, updated every 6 hours.
+      <% if @top_resort %>Right now, <strong class="text-slate-200"><%= @top_resort.name %></strong> leads with <%= @top_resort.projected_snowfall_7_day %>" at mid-mountain.<% end %>
     </p>
     <% if @top_resort %>
       <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">#1 for powder this week</p>

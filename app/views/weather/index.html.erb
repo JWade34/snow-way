@@ -9,6 +9,7 @@
     <div class="mb-8">
       <h1 class="text-3xl font-extrabold mb-2">Live Conditions</h1>
       <p class="text-slate-400">Current weather at top powder destinations</p>
+      <section class="mt-4 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed">Live temperature, wind, and conditions at the 10 ski resorts with the most snow forecast this week, as of <%= Time.current.strftime("%B %-d, %Y at %-l:%M %p %Z") %>. For the full rankings see <%= link_to "where it's snowing this week", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2" %>.</p></section>
     </div>
 
     <!-- Weather Grid -->

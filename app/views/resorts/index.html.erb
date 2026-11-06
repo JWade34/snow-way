@@ -11,6 +11,14 @@
       <p class="text-slate-400">North American ski resorts ranked by forecast snowfall over the next 7 days. See also <%= link_to "where it's snowing this week", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> and <%= link_to "resorts by state", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     </div>
 
+    <% top_totals = Resort.projected_totals.sort_by { |_, v| -v }.first(3) %>
+    <% top_resorts = Resort.where(id: top_totals.map(&:first)).index_by(&:id) %>
+    <% if top_totals.any? && top_totals.first.last > 0 %>
+      <section class="mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+        <p class="text-slate-200 leading-relaxed">As of <%= Date.current.strftime("%B %-d, %Y") %>, <%= top_resorts[top_totals.first.first].name %> has the most snow forecast of the <%= Resort.count %> resorts Snow Way tracks: <%= inches(top_totals.first.last) %> at mid-mountain over the next 7 days<% if top_totals.size > 1 %>, followed by <%= top_totals.drop(1).map { |id, v| "#{top_resorts[id].name} (#{inches(v)})" }.to_sentence %><% end %>.</p>
+      </section>
+    <% end %>
+
     <!-- Sort Controls -->
     <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
       <%= link_to "Most Snow", resorts_path, class: "px-4 py-2 rounded-lg text-sm font-medium transition whitespace-nowrap #{params[:sort].nil? ? 'bg-cyan-500 text-slate-900' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}" %>
