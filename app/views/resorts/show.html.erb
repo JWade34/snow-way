@@ -150,26 +150,7 @@
       <% end %>
     </p>
 
-    <!-- Nearby resorts: internal links within the state cluster -->
-    <% if @summary.state_peers.any? %>
-      <section class="mb-10">
-        <h2 class="text-xl font-bold mb-4">Other <%= @resort.state_province %> Ski Resorts This Week</h2>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <% @summary.state_peers.each do |peer| %>
-            <li>
-              <%= link_to resort_path(peer), class: "flex items-center justify-between bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-4 py-3 transition" do %>
-                <span class="font-semibold"><%= peer.name %> snow forecast</span>
-                <span class="text-cyan-400 font-bold"><%= @summary.total_for(peer) %>"</span>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </section>
-    <% end %>
-
-    <%= render "shared/alert_form", resort: @resort %>
-
-    <%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %>
+    <%= render "shared/conditions_gear", summary: @summary %>
 
     <!-- Home Airport Selector -->
     <div class="mb-6">
@@ -238,6 +219,27 @@
         <p class="text-slate-400 text-xs mt-2">Lodging map by Stay22. Bookings may earn Snow Way a commission. <%= link_to "Disclosure", affiliate_disclosure_path, class: "underline" %></p>
       <% end %>
     </div>
+
+    <!-- Nearby resorts: internal links within the state cluster -->
+    <% if @summary.state_peers.any? %>
+      <section class="mb-10">
+        <h2 class="text-xl font-bold mb-4">Other <%= @resort.state_province %> Ski Resorts This Week</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <% @summary.state_peers.each do |peer| %>
+            <li>
+              <%= link_to resort_path(peer), class: "flex items-center justify-between bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-4 py-3 transition" do %>
+                <span class="font-semibold"><%= peer.name %> snow forecast</span>
+                <span class="text-cyan-400 font-bold"><%= @summary.total_for(peer) %>"</span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
+
+    <%= render "shared/alert_form", resort: @resort %>
+
+    <%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %>
 
     <!-- Resort Website -->
     <div class="text-center mb-10">

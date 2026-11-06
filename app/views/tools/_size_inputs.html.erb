@@ -40,3 +40,14 @@
   <p class="text-3xl md:text-4xl font-extrabold text-cyan-300" data-size-calculator-target="result">Calculating…</p>
   <p class="text-slate-300 text-sm mt-2" data-size-calculator-target="detail"></p>
 </div>
+<% shop = kind == :snowboard ? [ [ "All-mountain snowboards", "all mountain snowboard" ], [ "Beginner snowboards", "beginner snowboard" ], [ "Snowboard boots", "snowboard boots" ], [ "Snowboard bindings", "snowboard bindings" ] ] : [ [ "All-mountain skis", "all mountain skis" ], [ "Powder skis", "powder skis" ], [ "Ski boots", "ski boots" ], [ "Ski poles", "ski poles" ] ] %>
+<div class="mt-4">
+  <p class="text-slate-300 text-sm mb-2">Shop your size:</p>
+  <ul class="flex flex-wrap gap-2">
+    <% shop.each do |label, query| %>
+      <li><%= link_to label, Affiliate.gear_url(query), rel: "sponsored nofollow noopener", target: "_blank", class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-cyan-500 rounded-lg px-3 py-2 text-sm transition" %></li>
+    <% end %>
+  </ul>
+  <p class="text-slate-400 text-xs mt-2">Shopping links may earn Snow Way a commission. Renting? See <%= link_to "rent or buy", guide_path("rent-or-buy-ski-gear"), class: "underline" %>.</p>
+</div>
+

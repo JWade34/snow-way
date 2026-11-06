@@ -1,0 +1,24 @@
+<%# locals: (summary:) -%>
+<%# Gear matched to this week's forecast at this resort: storm, cold, or bright and dry. -%>
+<% resort = summary.resort %>
+<% lows = summary.forecasts.filter_map(&:temp_low_f) %>
+<% cold = (lows.min && lows.min <= 10) || (summary.conditions? && resort.current_temp_f.to_i <= 15) %>
+<% storm = summary.total >= 6 %>
+<% sets = [] %>
+<% sets << [ "Storm coming: gear for a powder week", [ [ "powder skis", "powder skis" ], [ "low-light goggle lenses", "low light ski goggles" ], [ "waterproof ski jackets", "waterproof ski jacket" ] ], [ "How to ski powder", guide_path("how-to-ski-powder") ] ] if storm %>
+<% sets << [ "Cold week: stay warm", [ [ "heated gloves", "heated ski gloves" ], [ "hand warmers", "hand warmers" ], [ "balaclavas", "ski balaclava" ], [ "merino base layers", "merino base layer" ] ], [ "What to wear skiing", guide_path("what-to-wear-skiing") ] ] if cold %>
+<% sets << [ "Dry, bright week: dial in your kit", [ [ "goggles for bright days", "ski goggles" ], [ "lightweight shell jackets", "ski shell jacket" ], [ "ski socks", "ski socks" ] ], [ "How to choose ski goggles", guide_path("best-ski-goggles") ] ] if sets.empty? %>
+<section class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="gear-heading">
+  <h2 id="gear-heading" class="text-xl font-bold mb-1">Gear for this week at <%= resort.name %></h2>
+  <p class="text-slate-400 text-sm mb-4">Matched to the <%= storm ? "#{inches(summary.total)} of snow" : "weather" %> in the forecast<%= cold ? " and lows near #{lows.min}°F" : "" %>.</p>
+  <% sets.each do |title, links, (guide_label, guide_url)| %>
+    <h3 class="font-semibold text-cyan-300 text-sm mb-2"><%= title %></h3>
+    <ul class="flex flex-wrap gap-2 mb-3">
+      <% links.each do |label, query| %>
+        <li><%= link_to label, Affiliate.gear_url(query), rel: "sponsored nofollow noopener", target: "_blank", class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-cyan-500 rounded-lg px-3 py-2 text-sm transition" %></li>
+      <% end %>
+      <li><%= link_to "#{guide_label} →", guide_url, class: "inline-block px-3 py-2 text-sm text-cyan-300 underline underline-offset-2" %></li>
+    </ul>
+  <% end %>
+  <p class="text-slate-400 text-xs">Shopping links may earn Snow Way a commission. <%= link_to "Disclosure", affiliate_disclosure_path, class: "underline" %></p>
+</section>
