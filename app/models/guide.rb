@@ -171,7 +171,16 @@ class Guide
       keyword: "snowmobiling" },
     { slug: "snow-tubing", title: "Snow Tubing: How to Find a Tubing Hill and What to Expect",
       description: "Snow tubing guide for families: how to find snow tubing near you, ticket and age basics, what to wear, safety rules, and how it differs from sledding.",
-      keyword: "snow tubing near me" }
+      keyword: "snow tubing near me" },
+    { slug: "backcountry-skiing", title: "Backcountry Skiing for Beginners: How to Start Safely",
+      description: "How to get into backcountry skiing safely: avalanche education first, essential gear, touring setups, finding partners and guides, and resort sidecountry rules.",
+      keyword: "backcountry skiing" },
+    { slug: "splitboarding", title: "Splitboarding for Beginners: Gear, Technique, and Safety",
+      description: "How splitboarding works: what a splitboard is, bindings and skins, transitions, touring technique, avalanche safety, and how to start with a guide.",
+      keyword: "splitboard", affiliate: true },
+    { slug: "avalanche-safety-gear", title: "Avalanche Safety Gear: Beacon, Probe, and Shovel Explained",
+      description: "What avalanche safety gear you need: transceiver (beacon), probe, and shovel, how they work together, airbag packs, practice, and why training matters most.",
+      keyword: "avalanche beacon", affiliate: true }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate

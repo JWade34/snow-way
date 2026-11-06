@@ -11,14 +11,14 @@ class GuideTopic
       name: "Skiing Guides",
       intro: "Learn to ski and get better: first-day basics, stopping, moguls, powder, trail ratings, lessons, and the terms skiers use.",
       guides: %w[how-to-ski how-to-stop-on-skis how-to-ski-moguls how-to-ski-powder ski-lessons-for-adults ski-trail-ratings
-                 ski-terms how-to-wax-skis skiing-vs-snowboarding what-to-wear-skiing]
+                 ski-terms how-to-wax-skis skiing-vs-snowboarding what-to-wear-skiing backcountry-skiing]
     },
     "snowboarding" => {
       name: "Snowboarding Guides",
       intro: "Learn to snowboard and dial in your setup: first day, turning and carving, stance, riding styles, and choosing a board, boots, and bindings.",
       guides: %w[how-to-snowboard how-to-carve-on-a-snowboard goofy-vs-regular freestyle-vs-freeride-snowboarding camber-vs-rocker
                  best-snowboard-for-beginners best-snowboard best-snowboard-boots best-snowboard-bindings best-snowboard-brands
-                 snowboard-jacket snowboard-pants skiing-vs-snowboarding]
+                 snowboard-jacket snowboard-pants skiing-vs-snowboarding splitboarding]
     },
     "gear" => {
       name: "Ski & Snowboard Gear Guides",
@@ -26,12 +26,12 @@ class GuideTopic
       guides: %w[rent-or-buy-ski-gear best-all-mountain-skis best-ski-boots best-ski-brands best-snowboard best-snowboard-for-beginners
                  best-snowboard-boots best-snowboard-bindings best-snowboard-brands best-ski-helmet best-ski-goggles best-ski-gloves
                  best-heated-gloves best-ski-socks best-base-layer-for-skiing best-ski-pants best-womens-ski-jacket snowboard-jacket
-                 snowboard-pants ski-boot-bag kids-ski-gear how-to-wax-skis best-heated-jacket best-snow-boots ski-rack-roof-box]
+                 snowboard-pants ski-boot-bag kids-ski-gear how-to-wax-skis best-heated-jacket best-snow-boots ski-rack-roof-box avalanche-safety-gear]
     },
     "winter-adventures" => {
       name: "Winter Adventures Beyond the Lifts",
-      intro: "More ways to play in the snow: snowshoeing, cross-country skiing, snowmobiling, and snow tubing, with gear and safety basics for each.",
-      guides: %w[snowshoeing cross-country-skiing snowmobiling snow-tubing best-snow-boots best-heated-jacket]
+      intro: "More ways to play in the snow: snowshoeing, cross-country skiing, snowmobiling, snow tubing, and backcountry touring, with gear and safety basics for each.",
+      guides: %w[snowshoeing cross-country-skiing snowmobiling snow-tubing backcountry-skiing splitboarding avalanche-safety-gear best-snow-boots best-heated-jacket]
     },
     "comparisons" => {
       name: "Ski & Snowboard Comparisons",
