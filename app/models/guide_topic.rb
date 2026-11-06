@@ -26,7 +26,12 @@ class GuideTopic
       guides: %w[rent-or-buy-ski-gear best-all-mountain-skis best-ski-boots best-ski-brands best-snowboard best-snowboard-for-beginners
                  best-snowboard-boots best-snowboard-bindings best-snowboard-brands best-ski-helmet best-ski-goggles best-ski-gloves
                  best-heated-gloves best-ski-socks best-base-layer-for-skiing best-ski-pants best-womens-ski-jacket snowboard-jacket
-                 snowboard-pants ski-boot-bag kids-ski-gear how-to-wax-skis]
+                 snowboard-pants ski-boot-bag kids-ski-gear how-to-wax-skis best-heated-jacket best-snow-boots ski-rack-roof-box]
+    },
+    "winter-adventures" => {
+      name: "Winter Adventures Beyond the Lifts",
+      intro: "More ways to play in the snow: snowshoeing, cross-country skiing, snowmobiling, and snow tubing, with gear and safety basics for each.",
+      guides: %w[snowshoeing cross-country-skiing snowmobiling snow-tubing best-snow-boots best-heated-jacket]
     },
     "comparisons" => {
       name: "Ski & Snowboard Comparisons",

@@ -150,7 +150,28 @@ class Guide
       keyword: "christmas ski trip" },
     { slug: "all-inclusive-ski-resorts", title: "All-Inclusive Ski Resorts: What's Included and Where to Find Them",
       description: "What an all-inclusive ski vacation includes, how it compares to booking separately, and where to find all-inclusive ski resorts in North America.",
-      keyword: "all inclusive ski resorts" }
+      keyword: "all inclusive ski resorts" },
+    { slug: "best-heated-jacket", title: "Heated Jackets: Are They Worth It and How to Choose",
+      description: "How to choose a heated jacket for skiing and winter: battery life, heat zones, warmth when off, washing, airline rules for batteries, and who they're for.",
+      keyword: "heated jacket", affiliate: true },
+    { slug: "best-snow-boots", title: "Best Snow Boots: How to Choose Warm, Waterproof Winter Boots",
+      description: "How to choose snow boots for men and women: insulation ratings, waterproofing, traction, fit with thick socks, and boots for town vs trail.",
+      keyword: "best snow boots", affiliate: true },
+    { slug: "ski-rack-roof-box", title: "Ski Racks and Roof Boxes: How to Carry Skis and Boards on Your Car",
+      description: "Ski racks vs roof boxes vs hitch racks: how to carry skis and snowboards, fit for your car, capacity, security, and what to know before buying.",
+      keyword: "ski rack for car", affiliate: true },
+    { slug: "snowshoeing", title: "Snowshoeing for Beginners: How to Start and What You Need",
+      description: "How to go snowshoeing: choosing snowshoes by weight and terrain, what to wear, technique on hills, where to go, and winter safety basics.",
+      keyword: "snowshoeing", affiliate: true },
+    { slug: "cross-country-skiing", title: "Cross-Country Skiing for Beginners: Classic vs Skate",
+      description: "How to start cross-country skiing: classic vs skate technique, gear and rentals, where to ski, first-day tips, and how it compares to downhill.",
+      keyword: "cross country skiing" },
+    { slug: "snowmobiling", title: "Snowmobiling for Beginners: Tours, Rentals, Gear, and Safety",
+      description: "How to try snowmobiling: guided tours vs rentals, what to wear, basic riding and safety, avalanche terrain awareness, and how to book a trip.",
+      keyword: "snowmobiling" },
+    { slug: "snow-tubing", title: "Snow Tubing: How to Find a Tubing Hill and What to Expect",
+      description: "Snow tubing guide for families: how to find snow tubing near you, ticket and age basics, what to wear, safety rules, and how it differs from sledding.",
+      keyword: "snow tubing near me" }
   ].freeze
 
   attr_reader :slug, :title, :description, :keyword, :affiliate

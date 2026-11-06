@@ -1,0 +1,62 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Short answer:</strong> the easiest way to try snowmobiling is a guided tour: the outfitter provides the sled, helmet, and usually outerwear, plus a guide who knows the trails. Rentals for self-guided riding come next, once you have some experience. Rules on age, licensing, and trail permits vary by state and province, so check locally, and take avalanche training before riding in the mountains off groomed trails.</p></div>
+
+<h2>Guided tours vs rentals</h2>
+<table>
+  <caption>Guided snowmobile tours vs self-guided rentals</caption>
+  <thead><tr><th scope="col">Compare</th><th scope="col">Guided tour</th><th scope="col">Rental</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Best for</th><td>First-timers, families, visitors</td><td>Riders with some experience</td></tr>
+    <tr><th scope="row">Route</th><td>Guide leads on known trails</td><td>You plan and navigate</td></tr>
+    <tr><th scope="row">Gear</th><td>Helmet and often clothing included</td><td>Helmet usually included; check what else is</td></tr>
+    <tr><th scope="row">Responsibility</th><td>Guide manages pace and safety</td><td>You're responsible for the sled and your safety</td></tr>
+  </tbody>
+</table>
+<p>Many tours offer single or double sleds, so a passenger can ride along. Tours are common near ski towns, which makes snowmobiling an easy add-on to a <%= link_to "family ski trip", guide_path("family-ski-trip") %> or a non-ski day.</p>
+
+<h2>Licensing, age, and permit rules</h2>
+<p>Rules differ by state, province, and land manager, so confirm before you go. Things that often vary:</p>
+<ul>
+  <li><strong>Minimum age</strong> to drive a sled, and whether younger riders can be passengers.</li>
+  <li><strong>Driver's license or safety course requirements</strong> for operators.</li>
+  <li><strong>Trail permits or registration</strong> for riding on public trail systems.</li>
+  <li><strong>Where sleds are allowed:</strong> some public lands, wilderness areas, and ski resort terrain are closed to motorized travel.</li>
+</ul>
+<p>Tour operators usually handle permits and tell you what drivers need. For self-guided riding, check the state or provincial trail program and the land manager's rules.</p>
+
+<h2>What to wear and bring</h2>
+<p>Riding is colder than skiing because you sit still in a fast wind. Dress warmer than you think you need.</p>
+<ul>
+  <li><strong>Helmet:</strong> required on tours and strongly recommended everywhere. Full-face or with goggles.</li>
+  <li><strong>Insulated, waterproof jacket and pants or bibs:</strong> tours often provide snowmobile suits.</li>
+  <li><strong>Layers:</strong> a warm base layer and insulating mid layer. See <%= link_to "what to wear skiing", guide_path("what-to-wear-skiing") %> for the layering system. A <%= link_to "heated jacket", guide_path("best-heated-jacket") %> can help on long, cold rides.</li>
+  <li><strong>Warm gloves or mittens</strong> and a neck gaiter or balaclava for wind.</li>
+  <li><strong>Insulated, waterproof boots.</strong> See <%= link_to "how to choose snow boots", guide_path("best-snow-boots") %>.</li>
+  <li><strong>Goggles</strong> if your helmet doesn't have a visor.</li>
+</ul>
+
+<h2>Basic riding and safety</h2>
+<ol>
+  <li><strong>Get a briefing.</strong> Learn the throttle, brake, kill switch, and how to steer by shifting your body weight before you move.</li>
+  <li><strong>Start slow</strong> and stay at a speed where you can stop within the distance you can see.</li>
+  <li><strong>Stay on the right side</strong> of groomed trails and expect oncoming sleds around corners.</li>
+  <li><strong>Keep a safe gap</strong> from the sled ahead.</li>
+  <li><strong>Never ride impaired,</strong> and never ride alone in remote areas.</li>
+  <li><strong>Watch for hazards:</strong> hidden rocks and stumps in shallow snow, road crossings, wire fences, and thin ice on lakes or rivers. Avoid frozen water unless you know it's safe.</li>
+  <li><strong>Carry basics:</strong> water, snacks, a phone or communication device, and extra warm layers.</li>
+</ol>
+
+<h2>Avalanche terrain awareness</h2>
+<p>Snowmobiles can reach steep mountain terrain quickly, and that's where avalanches happen. Open slopes steep enough to slide, and the gullies and flats below them, are avalanche terrain. If you plan to ride off groomed trails in the mountains:</p>
+<ul>
+  <li><strong>Take an avalanche education course</strong> designed for motorized users before you go.</li>
+  <li><strong>Carry and practice with rescue gear:</strong> an avalanche transceiver (beacon), probe, and shovel, for every rider.</li>
+  <li><strong>Check the regional avalanche forecast</strong> every day you ride.</li>
+  <li><strong>Ride with partners,</strong> and expose only one rider at a time on a slope.</li>
+</ul>
+<p>Guided tours on established trails stay out of avalanche terrain, which is another reason they're the right choice for a first ride.</p>
+<p>Check <%= link_to "where it's snowing this week", where_is_it_snowing_path %> for fresh snow, and see more <%= link_to "winter adventures", guide_topic_path("winter-adventures") %>.</p>
+<% faqs << { question: "Do you need experience to go snowmobiling?", answer: "No, if you book a guided tour. Guides give a briefing on the controls and lead you on known trails. Rentals for self-guided riding are better once you have some experience." } %>
+<% faqs << { question: "Do you need a license to drive a snowmobile?", answer: "It depends on where you ride. Age, license, and safety-course rules vary by state, province, and land manager, so check local rules or ask your tour operator." } %>
+<% faqs << { question: "What should I wear snowmobiling?", answer: "Dress warmer than for skiing: a helmet, insulated waterproof jacket and pants or a snowmobile suit, warm layers, gloves or mittens, a face covering, and insulated waterproof boots." } %>
+<% faqs << { question: "Is snowmobiling dangerous in the mountains?", answer: "Riding off groomed trails in the mountains can expose you to avalanche terrain. Take an avalanche course, carry a beacon, probe, and shovel, check the avalanche forecast, and never ride alone." } %>
