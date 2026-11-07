@@ -40,6 +40,9 @@
 .guide ol { @apply list-decimal; }
 .guide strong { @apply text-white; }
 .guide p > a, .guide li > a, .guide td > a { @apply text-cyan-300 underline underline-offset-2 hover:text-cyan-200; }
+/* Affiliate disclosure links read as part of the sentence: same color as the text, underlined. */
+a[href$="/affiliate-disclosure"] { color: inherit !important; text-decoration-line: underline !important; text-underline-offset: 2px; }
+a[href$="/affiliate-disclosure"]:hover { opacity: 0.8; }
 .guide .tldr { @apply bg-slate-800/40 border border-slate-700 rounded-xl p-5 mb-8; }
 .guide .tldr p { @apply mb-0 text-slate-200; }
 
