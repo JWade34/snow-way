@@ -5,7 +5,6 @@ Last updated: 2026-11-07
 
 ## Do now (highest payoff first)
 
-- [ ] **Turn off "Spark" in the Stay22 dashboard (1 minute).** Spark auto-links place names and was rewriting our own resort links into hotel links. The site now undoes it, but turning it off is cleaner and makes pages faster. Keep "Lift" (booking-link conversion) on; that's what earns.
 - [ ] **Read one "where to stay" page (5 minutes).** New for 25 resorts, e.g. snowway.app/resorts/vail/where-to-stay. You know Vail, Breck, Park City and Mammoth best: if a neighborhood note is off, tell Claude and it gets fixed. A line of your own advice per resort makes these much stronger.
 - [ ] **Resorts you've ridden (2 minutes, no writing).** snowway.app/admin → **Resorts I've ridden** → check them all off. Then whenever you have 5 minutes, **Paste / dictate** one resort per line ("Alta: skiers only, best snow in Utah."; lines starting with "-" become tips). Open each draft, fix it, check **Publish**. Start with Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler. First-hand takes are the one thing no competitor can copy.
 - [ ] **AvantLink: website verified, in staff review (2026-11-06).** When approved, apply to evo, Backcountry and other ski shops inside it (REI is on Impact, skip it here) and send Claude your website ID plus each merchant ID. The Monday growth email lists every pending application until it is wired in.
@@ -41,6 +40,7 @@ Last updated: 2026-11-07
 
 ## Done
 - [x] Wikidata item Q142069934 created with statements (website, official site, skiing / ski resort / weather forecasting, US, English, 2026); linked from the site schema (2026-11-06). Add Instagram/Reddit profiles to it once they exist.
+- [x] Stay22 Spark turned off (2026-11-07). Lift stays on for booking links; the site guard against auto-links stays in place.
 - [x] Growth tracking (2026-11-06): Google Search Console connected, daily sync, affiliate clicks and signups tracked by page, admin Growth tab, Monday 7am report email
 - [x] Admin password set; Google and Bing connected; growth loop scheduled (Mondays + peak-season Thursdays) with its key in the Default cloud environment (2026-11-06)
 - [x] Private admin (2026-11-06): resorts-ridden checklist, dictate/paste importer, gear closet, subscriber list with CSV download
