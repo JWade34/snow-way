@@ -81,6 +81,17 @@
         var stay22 = function () {
           if (stay22Loaded) return
           stay22Loaded = true
+          // Let Me Allez's auto-linking rewrites place names, including our own internal links ("Winter Park
+          // snow forecast"), into hotel links. Keep internal navigation internal: undo any rewrite of a link
+          // that pointed at Snow Way. Outbound booking links (Kayak, Booking.com) still convert.
+          new MutationObserver(function (mutations) {
+            mutations.forEach(function (m) {
+              var old = m.oldValue || ''
+              if (m.target.tagName === 'A' && (old.charAt(0) === '/' || old.indexOf(location.origin) === 0) && m.target.getAttribute('href') !== old) {
+                m.target.setAttribute('href', old)
+              }
+            })
+          }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['href'], attributeOldValue: true })
           window.Stay22 = window.Stay22 || {};
           window.Stay22.params = { lmaID: '6aed51010d63b07675116823' };
           var s = document.createElement('script'); s.async = true; s.src = 'https://lma.stay22.com/letmeallez.js';
