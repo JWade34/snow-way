@@ -1,13 +1,20 @@
 <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-cyan-400 text-slate-900 font-bold px-4 py-2 rounded-lg">Skip to content</a>
-<header class="relative z-10 px-4 sm:px-6 py-4 flex items-center justify-between gap-4 border-b border-slate-800">
+<% links = [ [ "Rankings", resorts_path ], [ "Where It's Snowing", where_is_it_snowing_path ], [ "Powder Report", powder_report_path ], [ "By State", regions_path ], [ "Compare", comparisons_path ], [ "Guides", guides_path ] ] %>
+<header class="relative z-20 px-4 sm:px-6 py-3 flex items-center justify-between gap-4 border-b border-slate-800">
   <%= link_to root_path, class: "text-2xl font-extrabold tracking-tight shrink-0" do %>
     <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
   <% end %>
-  <nav aria-label="Main" class="flex gap-4 overflow-x-auto text-sm whitespace-nowrap">
-    <%= link_to "Rankings", resorts_path, class: "text-slate-300 hover:text-white transition py-2" %>
-    <%= link_to "Where It's Snowing", where_is_it_snowing_path, class: "text-slate-300 hover:text-white transition py-2" %>
-    <%= link_to "Powder Report", powder_report_path, class: "text-slate-300 hover:text-white transition py-2" %>
-    <%= link_to "By State", regions_path, class: "text-slate-300 hover:text-white transition py-2" %>
-    <%= link_to "Guides", guides_path, class: "text-slate-300 hover:text-white transition py-2" %>
+  <nav aria-label="Main" class="hidden md:flex gap-5 text-sm whitespace-nowrap">
+    <% links.each do |label, path| %><%= link_to label, path, class: "text-slate-300 hover:text-white transition py-2" %><% end %>
   </nav>
+  <details class="md:hidden relative">
+    <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-center gap-2 text-sm font-semibold text-slate-200 border border-slate-700 rounded-lg px-3 py-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </summary>
+    <nav aria-label="Main menu" class="absolute right-0 mt-2 w-56 bg-slate-800 border border-slate-700 rounded-xl p-2 shadow-xl flex flex-col text-base">
+      <% links.each do |label, path| %><%= link_to label, path, class: "text-slate-200 hover:bg-slate-700 rounded-lg px-3 py-2" %><% end %>
+      <%= link_to "Snowiest Resorts", snowiest_resorts_path, class: "text-slate-200 hover:bg-slate-700 rounded-lg px-3 py-2" %>
+      <%= link_to "Free Powder Calendar", powder_calendar_path, class: "text-cyan-300 hover:bg-slate-700 rounded-lg px-3 py-2" %>
+    </nav>
+  </details>
 </header>

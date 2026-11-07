@@ -5,15 +5,20 @@ export default class extends Controller {
 
   connect() {
     this.snowflakes = []
+    // Respect "reduce motion", and keep phones light: fewer, smaller flakes.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    this.small = window.innerWidth < 640
     this.createSnowflakes()
   }
 
   disconnect() {
+    clearInterval(this.interval)
     this.snowflakes.forEach(flake => flake.remove())
   }
 
   createSnowflakes() {
-    const count = 50
+    const count = this.small ? 18 : 50
+    this.max = this.small ? 24 : 60
 
     for (let i = 0; i < count; i++) {
       setTimeout(() => {
@@ -23,7 +28,7 @@ export default class extends Controller {
 
     // Keep creating new snowflakes
     this.interval = setInterval(() => {
-      if (this.snowflakes.length < 60) {
+      if (this.snowflakes.length < this.max) {
         this.createSnowflake()
       }
     }, 500)
@@ -31,7 +36,7 @@ export default class extends Controller {
 
   createSnowflake() {
     const flake = document.createElement("div")
-    const size = Math.random() * 8 + 4
+    const size = Math.random() * (this.small ? 6 : 8) + 4
     const startX = Math.random() * 100
     const duration = Math.random() * 10 + 10
     const delay = Math.random() * 5
@@ -42,7 +47,7 @@ export default class extends Controller {
       top: -20px;
       left: ${startX}%;
       font-size: ${size}px;
-      color: rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2});
+      color: rgba(255, 255, 255, ${Math.random() * (this.small ? 0.35 : 0.5) + 0.15});
       animation: snowfall ${duration}s linear ${delay}s infinite;
       pointer-events: none;
       z-index: 1;
@@ -52,7 +57,7 @@ export default class extends Controller {
     this.snowflakes.push(flake)
 
     // Remove old snowflakes if too many
-    if (this.snowflakes.length > 70) {
+    if (this.snowflakes.length > this.max + 10) {
       const old = this.snowflakes.shift()
       old.remove()
     }

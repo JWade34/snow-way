@@ -2,7 +2,7 @@
        class="fixed bottom-3 inset-x-3 sm:inset-x-auto sm:right-4 sm:bottom-4 sm:max-w-md z-40 bg-slate-950/95 backdrop-blur border border-cyan-500/40 rounded-xl shadow-2xl p-3 flex items-center gap-3"
        aria-label="Free Powder Calendar">
   <%= image_tag "powder-calendar-cover.webp", alt: "", width: 260, height: 336, class: "w-10 h-auto rounded shadow-lg -rotate-6 shrink-0 ml-1", loading: "lazy" %>
-  <p class="flex-1 text-sm leading-snug"><span class="font-bold text-white">Free <%= PowderCalendarPdf.season_label %> Powder Calendar</span><span class="block text-slate-300 text-xs">When the snow really falls at <%= Resort.count %> resorts</span></p>
+  <p class="flex-1 text-sm leading-snug"><span class="font-bold text-white">Free <%= PowderCalendarPdf.season_label %> Powder Calendar</span><span class="block text-slate-300 text-xs">When the snow really falls at <%= Resort.north_america.count %> resorts</span></p>
   <%= link_to "Get it", powder_calendar_path, class: "shrink-0 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-3 py-2 text-sm transition", data: { action: "promo#dismiss" } %>
   <button type="button" data-action="promo#dismiss" class="shrink-0 text-slate-400 hover:text-white p-1" aria-label="Dismiss">
     <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M6 6l12 12M18 6L6 18"/></svg>
