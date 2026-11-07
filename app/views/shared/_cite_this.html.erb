@@ -1,0 +1,9 @@
+<%# locals: (title:, url:, dated: Date.current) -%>
+<%# Makes the page easy for journalists, bloggers and AI assistants to cite correctly. %>
+<% citation = "Snow Way, \"#{title},\" #{dated.strftime("%B %-d, %Y")}, #{url}" %>
+<section class="not-prose mb-10 bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-sm" aria-labelledby="cite-heading">
+  <h2 id="cite-heading" class="font-bold mb-1">Cite this data</h2>
+  <p class="text-slate-300 mb-2">Free to use with a link back. Suggested citation:</p>
+  <p class="font-mono text-xs bg-slate-900/70 rounded-lg p-3 text-slate-200 select-all break-words"><%= citation %></p>
+  <p class="text-slate-400 text-xs mt-2">Licensed <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank" class="underline underline-offset-2">CC BY 4.0</a>. Journalists: reach Justin through the <%= link_to "about page", about_path, class: "underline underline-offset-2" %>.</p>
+</section>

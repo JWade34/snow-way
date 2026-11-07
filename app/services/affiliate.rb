@@ -67,6 +67,25 @@ module Affiliate
     }.to_query
   end
 
+  # Kayak searches convert through Stay22 Let Me Allez, like Booking.com.
+  def flights_url(airport, checkin: Date.current + 2, checkout: Date.current + 5)
+    "https://www.kayak.com/flights/#{airport}/#{checkin.iso8601}/#{checkout.iso8601}?sort=bestflight_a"
+  end
+
+  def cars_url(airport, checkin: Date.current + 2, checkout: Date.current + 5)
+    "https://www.kayak.com/cars/#{airport}/#{checkin.iso8601}/#{checkout.iso8601}?sort=price_a"
+  end
+
+  # Big-storm window for a resort: the snowiest forecast day and a 3-night stay starting the day before it.
+  STORM_INCHES = 12
+
+  def storm(summary)
+    return unless summary.total.to_f >= STORM_INCHES
+    peak = summary.forecasts.max_by { |f| f.snowfall_inches.to_f } or return
+    checkin = [ peak.forecast_date - 1, Date.current ].max
+    { total: summary.total, peak: peak.forecast_date, checkin: checkin, checkout: checkin + 3 }
+  end
+
   # Stay22 lodging map centered on a resort; nil until STAY22_AID is configured.
   def stay22_map_url(resort, checkin: Date.current + 2, checkout: Date.current + 5)
     return unless stay22_aid

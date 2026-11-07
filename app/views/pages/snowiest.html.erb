@@ -83,6 +83,7 @@
 
     <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "Snowiest ski resorts FAQ" %>
+    <%= render "shared/cite_this", title: "Snowiest Ski Resorts in North America", url: "https://snowway.app/snowiest-ski-resorts", dated: AverageSnowfall.checked_on || Date.current %>
     <p class="text-sm text-slate-400"><%= link_to "Where is it snowing right now", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Weekly powder report", powder_report_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Compare resorts", comparisons_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
   </main>
 </div>

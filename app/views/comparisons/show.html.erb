@@ -88,6 +88,14 @@
     </div>
     <p class="text-slate-400 text-xs mb-10">Forecasts are mid-mountain from Open-Meteo, updated every 6 hours. Snowiest months come from 10 seasons of modeled weather data.<% if avg_a || avg_b %> *Average annual snowfall is resort-reported (sources: <%= safe_join([ [ a, avg_a ], [ b, avg_b ] ].select { |_, d| d }.map { |r, d| link_to("#{r.name}, #{d["publisher"]}", d["source"], rel: "nofollow noopener", target: "_blank", class: "underline") }, ", ") %>).<% end %></p>
 
+    <div class="grid sm:grid-cols-2 gap-4 mb-10">
+      <% [ [ a, sa ], [ b, sb ] ].each do |r, s| %>
+        <div>
+          <%= render "shared/storm_deal", resort: r, summary: s, css: "mb-3" %>
+          <%= render "shared/trip_deals", resort: r, heading: "Plan a #{r.name} trip", css: "" %>
+        </div>
+      <% end %>
+    </div>
     <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "#{c.title} FAQ" %>
 

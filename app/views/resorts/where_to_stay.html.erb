@@ -34,6 +34,8 @@
       <p class="text-slate-200 leading-relaxed"><%= @lodging.summary %></p>
     </section>
 
+    <%= render "shared/storm_deal", resort: @resort, summary: @summary, css: "mb-6" %>
+    <%= render "shared/trip_bar", resort: @resort %>
     <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
       <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Fly into</dt><dd class="font-semibold"><%= @resort.nearest_airport_code %></dd></div>
       <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Pass</dt><dd class="font-semibold"><%= @resort.pass_label || "Check resort" %></dd></div>

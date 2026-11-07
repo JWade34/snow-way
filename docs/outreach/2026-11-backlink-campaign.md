@@ -428,3 +428,117 @@ Fact check before sending: Alyeska in Alaska is listed at 650" (summit figure), 
 - Ryan Spencer's ski industry beat covers Summit Daily, Vail Daily and Steamboat Pilot (same regional desk). Pitch him once, not three times.
 - Podcasts 5, 6, 7, 14 and 15 have no verified direct email. Their routes are listed as the show gives them.
 - The snowiest page ranks the resorts in db/average_snowfall.yml, which covers fewer than all 179 resorts, so use "on our list" rather than "of 179" in pitch (d).
+
+---
+
+## 6. Roundup and "best of" articles (AI answer sources)
+
+Research date: 2026-11-07. Goal: get Snow Way added to the lists that ChatGPT, Perplexity and Google AI Overviews pull from when someone asks for the best ski apps, the best snow forecast sites, OpenSnow alternatives, or how to find where it's snowing. Same rule as above: every contact was read off the publisher's own page that day, nothing guessed. "Not verified" means we couldn't read a contact and Justin should look by hand.
+
+**What the AI answers cite right now (checked 11/7):**
+
+- ChatGPT, "best ski apps and snow forecast websites, any OpenSnow alternatives?": cites Broski's 2026/27 guide (#1 below), SKI Magazine's Weather Toolbox (#2), and recommends Snowiest.app as the "best free alternative." Snowiest got a SnowBrains feature in Feb 2026 (#10). That's the path to copy.
+- ChatGPT, "best websites to check ski conditions and find which resorts are getting the most snow this week": recommends SnowBrains Weather, OnTheSnow, OpenSnow, SnowSync, Snow Maps and Snow-Forecast. SnowBrains Weather, SnowSync and Snow Maps are the closest competitors to the "where is it snowing most this week" ranking. Snow Way wasn't named on this phrasing.
+- Google AI Overview, "best snow forecast app": OpenSnow, Snow-Forecast, OnTheSnow, and Monkeysnow, which got in by way of a single r/skiing post ("Free & Open Source Snow Forecast"). A Reddit thread alone can get a free tool into the overview.
+
+**Pitch angle for all of these:** every list below has the same gap. They list forecast apps (OpenSnow, Snow-Forecast, Windy) and trackers (Slopes, Ski Tracks), but nothing that just ranks resorts by where it's going to snow most this week, for free, with no account. That's the one-line reason in draft (a).
+
+Legend for the competitors column: OS = OpenSnow, OTS = OnTheSnow, SF = Snow-Forecast, ST = Ski Tracks, SL = Slopes, J2 = J2Ski. None of the lists we read mention J2Ski.
+
+### 6a. Articles and pages (25)
+
+| # | Article | URL | Publisher | Date / updated | Updated yearly? | Author / editor | Contact route | Lists competitors | Notes |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Best Ski and Snowboard Apps for the 2026/27 Season | https://www.broski.app/guides/best-ski-apps | Broski (app maker) | Oct 12, 2026 | Yes, season in the title | "Broski" byline | hello@broski.app (printed in footer and "How we chose") | OS, OTS, SF, ST, SL | **Cited by ChatGPT.** Vendor list (their own app is #1), but they say store listings were rechecked in October, so they do update it. Top priority |
+| 2 | Weather Toolbox | https://www.skimag.com/ski-resort-life/weather-toolbox/ | SKI Magazine (Outside) | Dec 4, 2024 (per ChatGPT's source date) | Not verified | Not verified (page sits behind an Outside login redirect for our reader) | Not verified. Section 2 also couldn't find a current SKI tip contact; look up by hand | Not verified | **Cited by ChatGPT.** Worth the hand lookup |
+| 3 | Best Ski Apps: Track Runs, Snow Reports & Resort Guides | https://appsavvytraveller.com/ski-apps/ | App Savvy Traveller | Published Sep 27, 2025; updated Sep 10, 2026 | Yes, updated within the year | "Rupert" (guide), checked and edited by Steven Cook, Founder & Editor | Contact form for outdated info: https://appsavvytraveller.com/contact-us/ ; team page https://appsavvytraveller.com/authors-editorial-team/ | OS, OTS, ST, SL | Active, recently updated, has a form for exactly this. High priority |
+| 4 | 11 Best Ski Apps in 2026 (Tested) | https://cardmunch.com/apps/best-ski-apps/ | Cardmunch | Aug 21, 2026 | Year in title | Paul Warren | https://cardmunch.com/contact/ | OS, OTS, ST, SL | Recent, likely refreshed for 2027 |
+| 5 | Best Apps for Ski and Snowboard Trips (2026) | https://www.flowtrip.app/blog/best-apps-ski-snowboard-trips-2026 | FlowTrip (group trip app) | Updated Oct 30, 2026; page says next review December 2026 | Yes | Not stated | Contact link in the site footer (no email printed) | OS, OTS, SL | Group and family trip planning angle. Vendor list, but a December review is on the calendar, so send before then |
+| 6 | Tried & Tested: The Best Skiing Apps 2026 (iPhone & Android) | https://www.skibasics.com/news/best-skiing-apps/ | Ski Basics (UK) | Jan 8, 2026 | Yes (the 2024 edition was "The 11 Best Skiing Apps for 2024") | Not stated | info@skibasics.co.uk; https://skibasics.com/contact/ | OS, OTS, ST, SL | Has a "snow conditions and weather" section with only OTS, OpenSnow and Windy |
+| 7 | Best ski apps for 2025-26 | https://www.onthesnow.co.uk/news/best-ski-apps-for-2025-26/ | OnTheSnow UK | Oct 24, 2025 | Yes (2023/24, 2024/25, 2025-26 editions) | Alicia Taylor | https://www.onthesnow.co.uk/news/contact-us/ | OTS, SL | Competitor-owned. Low odds, listed because AI answers lean on it |
+| 8 | The Best Skiing Apps | https://www.onthesnow.com/news/the-best-skiing-apps/ | OnTheSnow | Aug 5, 2025 | Refreshed, no update date shown | Spencer Spellman | https://www.onthesnow.com/news/contact (same as section 2, #29) | OTS, ST, SL | Competitor-owned. Same note as #7 |
+| 9 | 5 of the Best Apps for Skiing and Snowboarding | https://snowbrains.com/5-best-apps-for-skiing-and-snowboarding | SnowBrains | Feb 11, 2026 | Not stated | John Cunningham | https://snowbrains.com/contact/ ; contact@snowbrains.com (section 2, #28); snowbrains1@gmail.com is printed for link submissions (subject "Snow Brains Linkage") | OS, SL | Coordinate with the press pitch to SnowBrains so it's one email, not two |
+| 10 | Snowiest.app: A Free, Multi-Model Snow Forecast Tool to Help You Plan a Ski Trip | https://snowbrains.com/snowiest-app-a-free-multi-model-snow-forecast-tool-to-help-you-plan-a-ski-trip/ | SnowBrains | Feb 13, 2026 | No (feature story) | Greg Wedow | Same as #9 | None (feature on one indie tool) | **The model.** A free, one-person forecast site got a full feature with no sponsorship, and ChatGPT now names it. Pitch Greg Wedow the same kind of story |
+| 11 | Where Do I Find the Snow? Using Meteorological Data to Find Fresh Powder | https://snowbrains.com/where-do-i-find-the-snow-using-meteorological-data-to-find-fresh-powder | SnowBrains | Oct 20, 2026 | No | Clay Malott | Same as #9 | None (Windy, SpotWX) | Matches "how to find where it's snowing." Ask whether a free weekly ranking would help readers as a first step before Windy |
+| 12 | We Found the Best Apps for Skiers That You'll Actually Use | https://www.powder.com/gear/best-apps-for-skiers (syndicated at https://www.yardbarker.com/skiing/articles/we_found_the_best_apps_for_skiers_that_youll_actually_use/s1_17376_41160541 and on Yahoo Tech) | Powder | Last updated Nov 1, 2024 | Not stated | Max Ritter | Not verified (powder.com blocks our reader; Section 2 notes Powder's status is unclear) | OS, OTS, SL | Ranks well and is syndicated, so it's widely read by AI. Look up Max Ritter by hand |
+| 13 | Ski App Review: OpenSnow | https://www.peakrankings.com/content/opensnow-review | PeakRankings | Sep 22 (year not shown) | No | Sam Weintraub, founder | admin@peakrankings.com (https://www.peakrankings.com/contact); media and partnerships via the About page | OS | They carry an OpenSnow affiliate link, so pitch Snow Way as a free "where to go this week" companion, not a replacement. Also see YouTube #1 |
+| 14 | These are the must-have snowboarding, skiing, and winter sports apps | https://themanual.com/outdoors/best-skiing-and-snowboarding-apps | The Manual | Jun 26, 2023 | No | Tom Kilpatrick | Author page https://www.themanual.com/users/tomkilpatrick/ | OS, SL | Older, but ranks. Ask for a refresh |
+| 15 | 15 Best Ski Apps To Maximize Your Skiing Experience [2026] | https://technicalustad.com/best-ski-apps/ | TechnicalUstad | May 3, 2023; title now says 2026 | Yes, by title | Sarah Khan | https://technicalustad.com/contact-us/ ; author page https://technicalustad.com/author/sarah/ | OS, OTS, ST, SL, SF | Long list, easy add |
+| 16 | 13 Best Ski Apps for Android and iOS | https://www.regendus.com/best-ski-apps/ | REGENDUS | Mar 20, 2024 | Not stated | Hashir Zuniga | https://www.regendus.com/contact/ ; author page https://www.regendus.com/author/admin/ | OS, OTS, ST, SL | ChatGPT pulled an image from this page, so it's in the retrieval set |
+| 17 | 8 iPhone Apps Every Skier and Snowboarder Needs | https://www.makeuseof.com/iphone-apps-every-skier-and-snowboarder-needs/ | MakeUseOf | Apr 1, 2021 | No | Tosha Harasewich | Author page https://www.makeuseof.com/author/tosha-harasewich/ | OS, SL | Big domain, stale article. Long shot |
+| 18 | Most Accurate Snow Forecast Website in 2026: A Complete Guide | https://snowpredictions.com/blog/most-accurate-snow-forecast-website | Snow Predictions (indie competitor) | Apr 4, 2026 | Year in title | Samiul Islam, founder | contact@snowpredictions.com (printed on the page) | OS, OTS, SF | Another one-person tool. Not a list placement, but a friendly indie-to-indie note could get a mention |
+| 19 | Practical ski apps for winter sports enthusiasts | https://www.snowtrex.co.uk/magazine/holidays-winter-sports/ski-apps/ | SnowTrex (UK tour operator) | Dec 18, 2023 | No | SnowTrex | No email printed; only legal notice and FAQ links | OS, SF | Europe-focused. Low priority |
+| 20 | Top 5 Best Ski Apps to Use This Ski Season | https://blog.maisonsport.com/blog/top-5-ski-apps/ | Maison Sport (instructor booking) | Oct 28, 2022; modified Feb 13, 2024 | Touched up | "admin" | Contact form https://maisonsport.com/en/contact | SF, SL | Europe-focused. Low priority |
+| 21 | The Best Ski Apps You Need For Winter | https://www.alps2alps.com/blog/ultimate-guide-best-ski-apps | Alps2Alps (transfers) | Jul 21, 2017 | No | Denis Elkin, CMO | info@alps2alps.com (printed); author page https://www.alps2alps.com/blog/author/denis | OS, ST | Long list of 30+ apps, easy add, old |
+| 22 | Our Favorite Apps for Skiers | https://www.powder7.com/ski-blog/our-favorite-skiing-apps/ | Powder7 (Golden, CO shop) | Oct 13, 2021 | No | Alex S. | Contact Us link in the site header; (720) 674-5443; author page https://www.powder7.com/ski-blog/author/alex-s/ | OS | Colorado shop, so this could double as a widget lead |
+| 23 | Top Five Ski Apps for the Winter Ahead | https://getskitickets.com/?p=26319 | GetSkiTickets (Denver) | Oct 4, 2021 | No | Jack McNary | info@getskitickets.com (printed) | OS, ST | Colorado ticket reseller. Could also embed the widget |
+| 24 | The Top Apps For Skiers In 2024 | https://www.skipeak.net/blog/the-top-apps-for-skiers-in-2024 | Ski Peak (UK) | Not dated (2024 in title) | Possibly, by title | Not stated | Contact page on skipeak.net (email hidden from our reader); +44 1428 608070 | ST, SL | No forecast app listed at all, so there's an open slot |
+| 25 | Five Websites That Every Skier Should Bookmark | https://gearinstitute.com/five-websites-that-every-skier-should-bookmark/ | Gear Institute | Oct 13, 2014 | No | No byline | https://gearinstitute.com/contact-us/ | OTS | Matches "best websites to check ski conditions." Very old; ask if they'd refresh it |
+
+Not a pitch target, but worth knowing: OpenSnow's own "Best Snow Forecast App" page (https://opensnow.com/news/post/best-snow-forecast-app, Sam Collentine, Oct 30, 2024) ranks on page one for "best snow forecast app."
+
+### 6b. Reddit and forum threads (10, list only)
+
+Do not post or reply. Reddit blocks our reader, so these came through an archive mirror (reddit.sentinel-team.org) and Google results. Dates are approximate (from snapshot dates and post IDs). We couldn't open any sub's sidebar, so **self-promotion rules aren't verified**. Read each sub's rules before Justin ever posts.
+
+What the threads show: "I built a free snow tool" posts are common in r/skiing, r/icecoast, r/snowboarding and r/tahoe. They do well when the maker asks for feedback, answers "where does the data come from?", and adds resorts people ask for. They go badly when it reads like another app pitch (see #7). No past-year threads turned up for r/COsnow, r/skiing_utah or r/skiingtips.
+
+| # | Sub | Thread | URL | Approx. date | Note |
+|---|---|---|---|---|---|
+| 1 | r/skiing | Is OpenSnow actually that good and accurate or just pumping money into marketing and influencer partnerships | https://reddit.com/r/skiing/comments/1pt5pum/is_opensnow_actually_that_good_and_accurate_or/ | Dec 2025 | Mixed answers. Several people cancelled after the price increase and moved to free sources. The "free alternative" audience in one thread |
+| 2 | r/skiing | Pro Bono Snow Tracking Project - SNOW.fyi | https://reddit.com/r/skiing/comments/1qr3peo/pro_bono_snow_tracking_project_snowfyi/ | Jan 2026 | Maker post. Commenters called it a replacement for pricier forecast services |
+| 3 | r/icecoast | Passion Project for Skiers: SNOW.fyi | https://reddit.com/r/icecoast/comments/1qdl8g3/passion_project_for_skiers_snowfyi/ | Jan 2026 | 63 points, 66 comments. Asks: more small East Coast hills, where the data comes from |
+| 4 | r/snowboarding | Annoyed by snow forecast apps, so I built SNOW.fyi | https://reddit.com/r/snowboarding/comments/1qxqf12/annoyed_by_snow_forecast_apps_so_i_built_snowfyi/ | Feb 2026 | Accuracy pushback (Snowbowl and Meadows numbers didn't match) |
+| 5 | r/icecoast | I built an east coast ski conditions site for icecoasters, looking for honest feedback! | https://reddit.com/r/icecoast/comments/1r2cd2a/i_built_an_east_coast_ski_conditions_site_for/ | Feb 2026 | icecoast.ski. Commenters compared it to OnTheSnow and asked for more resorts |
+| 6 | r/skiing | I made site that compares historical snow depth in popular resorts worldwide | https://reddit.com/r/skiing/comments/1r8ub71/i_made_site_that_compares_historical_snow_depth/ | Feb 2026 | snowlines.site. Data accuracy questioned (Snowbird) |
+| 7 | r/icecoast | Feedback on beta build site | https://reddit.com/r/icecoast/comments/1s4ng1x/feedback_on_beta_build_site/ | Mar 2026 | WhereToSkiNext. Only reply: "Oh god not another one." The warning sign for this sub |
+| 8 | r/skiing | Free & Open Source Snow Forecast | Search the title in r/skiing (Google only gave a redirect link) | 2026 | Monkeysnow's post. **Google's AI Overview cites this thread** for "best snow forecast app" |
+| 9 | r/snowboarding | Open Source Snow Forecast Website | Search the title in r/snowboarding (Google redirect only) | ~Feb 2026 | Another maker post. Comments mention SnowSearch, a ski trip explorer |
+| 10 | r/Aspen | Best Site for Snow Forecast? | Search the title in r/Aspen (Google redirect only) | ~late 2025 | Real question: someone obsessively checking forecasts before a March trip. Shows on page one for "reddit best snow forecast app" |
+
+Older but still ranking (outside the past year): r/tahoe "What snow forecasting site do you use?" (about 4 years old, "Opensnow was my go to, but now it's pay") and r/COsnow "OnTheSnow Alternative" (about 4 years old). Forums: SkiTalk "Best weather Apps for Skiers" (https://www.skitalk.com/threads/best-weather-apps-for-skiers.37232/, Mar 2025) and FirstTracks "Open Snow Subscription Change 2025" (https://www.firsttracksonline.com/boards/threads/open-snow-subscription-change-2025.15405/latest, Sep 2025 to May 2026, members cancelling over the $49.99 price).
+
+### 6c. YouTube channels (5)
+
+| # | Channel | Relevant video | Contact route | Note |
+|---|---|---|---|---|
+| 1 | PeakRankings (https://www.youtube.com/@PeakRankings) | "OpenSnow Ski App: Worth the Hype?" (2023, 8.1K views); "The Ski Season Is HERE (Here's Where It's Actually Good)" (Nov 6, 2026, 23K views in a day) | admin@peakrankings.com (printed on https://www.peakrankings.com/contact); media and partnerships via their About page | Biggest fit. They already do "where it's actually good" videos. OpenSnow affiliate, so pitch it as a free companion |
+| 2 | SRG Skiing (https://www.youtube.com/@SRGSkiing) | "Are Skiing Apps Getting Out of Hand?" (Oct 17, 2026, ~7K views) | outreach@srgskiing.com (printed on https://www.srgskiing.com/home/) | Two skiers, current video on the exact topic. A no-account, no-subscription site fits their angle |
+| 3 | DesFit (https://www.youtube.com/@DesFit) | "Apple Watch Skiing & Snowboarding - How It Works! (Slopes App Review)" (2024, 45.7K views) | Not verified. YouTube's About page didn't load for our reader; check the About tab for a business email | Fitness and wearables tech reviewer who covers ski apps |
+| 4 | The Savvy Professor (https://www.youtube.com/@TheSavvyProfessor) | "Best Ski-tracking Apps: iPhone & Android" (2023, 7.9K views) | Not verified. Check the About tab | Ranks #1 on YouTube for "best ski apps" |
+| 5 | CBS News Sacramento (https://www.youtube.com/@cbssacramento) | "This new app uses AI to help skiers find the best snow" (Feb 2026), reported by Brady Halbleib | Not verified. Use the station's news tip page | Local TV does "new tool helps skiers find snow" stories. Better as a press pitch in a Sierra storm week |
+
+### 6d. Drafts in Justin's voice
+
+**(a) To an article author, asking to be considered in the next update** (91 words)
+
+**Subject:** For your next ski apps update: a free "where is it snowing" ranking
+
+> Hi [Name],
+>
+> I read your [article title] and liked [one real detail from their piece].
+>
+> I built Snow Way, a free site that ranks about 180 North American ski resorts by forecast snow for the next 7 days. It updates every 6 hours and answers one question: where's it going to snow most this week? No account, no subscription.
+>
+> The ranking: snowway.app/where-is-it-snowing
+> Free forecast widget for any resort: snowway.app/widget
+>
+> If it's a fit for your next update, I'd love for you to take a look. Glad to answer anything.
+>
+> Thanks,
+> Justin
+
+**(b) Follow-up** (only with something new, 5 to 7 days later)
+
+**Subject:** Re: For your next ski apps update: a free "where is it snowing" ranking
+
+> Hi [Name],
+>
+> Following up with one new thing: [real update, e.g. "this week's top resort is forecast for [N] inches, and the ranking now has [new feature]"].
+>
+> If you're not updating the list until later in the season, I'm glad to wait.
+>
+> Thanks,
+> Justin
+
+**Order to send:** #1 Broski, #3 App Savvy Traveller, #4 Cardmunch, #5 FlowTrip (before their December review), then SnowBrains as one combined note (#9 to #11, a Snowiest-style feature pitch to Greg Wedow), then PeakRankings and SRG Skiing. Hand-lookups needed: SKI Weather Toolbox (#2) and Powder's Max Ritter (#12).

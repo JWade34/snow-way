@@ -94,6 +94,7 @@
           <%= link_to "All rankings", resorts_path, class: "border border-slate-600 hover:border-slate-400 font-semibold py-3 rounded-xl transition" %>
         </div>
       </section>
+      <%= render "shared/storm_deal", resort: @top_resort, summary: @top_summary, css: "mb-6" %>
     <% else %>
       <section class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 text-center mb-6">
         <h2 class="text-xl font-bold mb-2">No big storms in the forecast yet</h2>

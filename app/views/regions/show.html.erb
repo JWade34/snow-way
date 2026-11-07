@@ -58,6 +58,7 @@
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= place %>, ranked below by forecast snow.</p>
       <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Mid-mountain forecasts from Open-Meteo</p>
     </section>
+    <%= render "shared/storm_deal", resort: leader, summary: ResortSummary.new(leader) %>
     <% if %w[colorado utah california vermont].include?(@region.slug) %>
       <p class="text-sm -mt-5 mb-8">Skiing with kids? See the <%= link_to "best #{@region.name} ski resorts for families", guide_path("#{@region.slug}-ski-resorts-for-families"), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     <% end %>

@@ -1,0 +1,14 @@
+<%# locals: (resort:) -%>
+<%# Phone-only booking bar. Slides in after the hero, hides while typing or at the alert form. Desktop uses the sidebar. %>
+<% checkin, checkout = Date.current + 2, Date.current + 5 %>
+<% content_for :trip_bar do %>
+  <nav aria-label="Plan a trip to <%= resort.name %>" data-booking data-controller="trip-bar" hidden
+       class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur border-t border-slate-700 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+    <div class="flex gap-2 text-sm font-semibold">
+      <a href="<%= Affiliate.hotels_url(resort, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center bg-cyan-500 text-slate-900 rounded-lg py-2.5">Hotels</a>
+      <a href="<%= Affiliate.flights_url(resort.nearest_airport_code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center border border-slate-600 rounded-lg py-2.5">Flights to <%= resort.nearest_airport_code %></a>
+      <a href="#alert-form" class="shrink-0 border border-slate-600 rounded-lg px-3 py-2.5" aria-label="Powder alerts for <%= resort.name %>">🔔</a>
+    </div>
+  </nav>
+  <div class="lg:hidden h-16" aria-hidden="true"></div>
+<% end %>

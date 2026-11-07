@@ -52,6 +52,7 @@ end %>
 
     <%= render "shared/alert_form" unless @archived %>
     <%= render "shared/calendar_cta" %>
+    <%= render "shared/cite_this", title: "Powder Report, week of #{label}", url: "https://snowway.app/powder-report/#{as_of.iso8601}", dated: as_of %>
 
     <% if @archive.any? %>
       <h2 class="text-xl font-bold mb-3">Past powder reports</h2>

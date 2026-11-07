@@ -63,6 +63,7 @@
         <%= @resort.projected_snowfall_7_day %><span class="text-4xl">"</span>
       </div>
       <p class="text-slate-400">mid-mountain, next 7 days</p>
+      <% if @summary.updated_at %><p class="text-slate-500 text-xs mt-1">Forecast as of <%= updated_label(@summary.updated_at) %></p><% end %>
       <% if @summary.summit_total > 0 %>
         <p class="text-slate-300 mt-1"><span class="font-bold text-white"><%= inches(@summary.summit_total) %></span> at the summit</p>
       <% end %>
@@ -72,6 +73,8 @@
       <p class="mt-4 text-sm"><a href="#alert-form" class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">🔔 Email me when <%= @resort.name %> gets a big storm</a></p>
     </div>
 
+    <%= render "shared/storm_deal", resort: @resort, summary: @summary %>
+    <%= render "shared/trip_bar", resort: @resort %>
     <nav aria-label="On this page" class="-mx-6 px-6 mb-8 overflow-x-auto">
       <ul class="flex gap-2 text-sm whitespace-nowrap justify-start sm:justify-center">
         <% [ [ "Snow report", "#report-heading" ], [ "7-day weather", "#forecast" ], [ "Where to stay", "#stay" ], [ "Getting there", "#trip" ], [ "Gear for this week", "#gear" ], [ "FAQ", "#faq" ] ].each do |label, href| %>

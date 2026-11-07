@@ -1,0 +1,22 @@
+<%# locals: (heading:, intro: nil, cars: false, codes: %w[DEN SLC RNO EGE HDN BZN JAC]) -%>
+<% checkin, checkout = Date.current + 14, Date.current + 18 %>
+<% places = { "DEN" => "Colorado (Denver)", "SLC" => "Utah (Salt Lake City)", "RNO" => "Lake Tahoe (Reno)", "EGE" => "Vail & Beaver Creek (Eagle)",
+              "HDN" => "Steamboat (Hayden)", "BZN" => "Big Sky (Bozeman)", "JAC" => "Jackson Hole", "ASE" => "Aspen", "BTV" => "Vermont (Burlington)" } %>
+<section data-booking class="not-prose my-8 bg-slate-800/40 border border-slate-700 rounded-xl p-4" aria-label="<%= heading %>">
+  <p class="font-bold mb-1"><%= heading %></p>
+  <% if intro %><p class="text-slate-300 text-sm mb-3"><%= intro %></p><% end %>
+  <ul class="grid sm:grid-cols-2 gap-2 text-sm">
+    <% codes.each do |code| %>
+      <li class="flex items-center gap-2 bg-slate-900/50 rounded-lg px-3 py-2">
+        <span class="flex-1"><span class="font-semibold"><%= code %></span> <span class="text-slate-400"><%= places[code] %></span></span>
+        <% if cars %>
+          <a href="<%= Affiliate.cars_url(code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-cyan-300 hover:text-cyan-200 font-semibold">AWD/4x4 ↗</a>
+        <% else %>
+          <a href="<%= Affiliate.flights_url(code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-cyan-300 hover:text-cyan-200 font-semibold">Flights ↗</a>
+          <a href="<%= Affiliate.cars_url(code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-slate-300 hover:text-white">Cars ↗</a>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= affiliate_disclosure("Searches open with dates two weeks out; change them on the next page. Bookings may earn Snow Way a commission.", css: "mt-2") %>
+</section>

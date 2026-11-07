@@ -12,6 +12,11 @@
   <% faqs << { question: "What is the snowiest month at #{@resort.name}?", answer: "#{month_name.(top3.first[0])} is typically the snowiest month at #{@resort.name}, with about #{top3.first[1].round}% of the season's snow." } %>
   <% faqs << { question: "Does #{@resort.name} have good snow in #{month_name.(early)}?", answer: "#{month_name.(early)} brings about #{dec_share.round}% of #{@resort.name}'s typical seasonal snowfall#{top3.map(&:first).include?(early) ? ", making it one of the snowiest months" : (dec_share >= 10 ? ", a solid month though not the peak" : ", so early-season coverage can be thin")}. Check the live forecast before booking." } %>
 <% end %>
+<% odds = PowderOdds.for(@resort) %>
+<% if odds&.values&.any?(&:positive?) %>
+  <% best_m, best_v = odds.max_by { |_, v| v } %>
+  <% faqs << { question: "What month has the most powder days at #{@resort.name}?", answer: "#{month_name.(best_m)}. In a typical #{month_name.(best_m)}, #{@resort.name} gets 1 inch or more of fresh snow on about #{best_v}% of days (roughly #{(best_v * Time.days_in_month(best_m, 2026) / 100.0).round} days), based on 10 seasons of modeled weather data at mid-mountain." } %>
+<% end %>
 <% faqs << { question: "Is #{@resort.name} getting snow right now?", answer: @summary.answer } %>
 
 <% content_for(:title, fit_title("Best Time to Ski #{@resort.name}: Snowiest Months | Snow Way", "Best Time to Ski #{@resort.name} | Snow Way")) %>
@@ -55,6 +60,23 @@
         Weather models undercount total mountain snowfall, so this shows the seasonal pattern, not inch totals. For season totals, see <%= link_to "#{@resort.name}'s website", @resort.website_url, rel: "noopener", target: "_blank", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.
       </p>
 
+      <% if odds&.values&.any?(&:positive?) %>
+        <h2 class="text-xl font-bold mb-2">Chance of a fresh-snow day at <%= @resort.name %></h2>
+        <p class="text-slate-400 text-sm mb-4">Share of days with 1"+ of new snow, by month. Higher means more powder mornings.</p>
+        <div class="overflow-x-auto border border-slate-700 rounded-xl mb-3">
+          <table class="w-full text-sm">
+            <caption class="sr-only"><%= @resort.name %> chance of a fresh-snow day by month</caption>
+            <thead class="bg-slate-800/70 text-slate-300"><tr><th scope="col" class="px-3 py-2 text-left">Month</th><th scope="col" class="px-3 py-2 text-left">Fresh-snow days</th><th scope="col" class="px-3 py-2 text-left">About</th></tr></thead>
+            <tbody class="divide-y divide-slate-800">
+              <% odds.each do |m, v| %>
+                <tr class="<%= "bg-cyan-500/10" if m == odds.max_by { |_, x| x }.first %>"><th scope="row" class="px-3 py-2 text-left font-semibold"><%= month_name.(m) %></th><td class="px-3 py-2"><span class="inline-block align-middle h-2 rounded bg-cyan-400 mr-2" style="width: <%= [ v * 2, 2 ].max %>px"></span><%= v %>%</td><td class="px-3 py-2 text-slate-300"><%= (v * Time.days_in_month(m, 2026) / 100.0).round %> days</td></tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-slate-400 text-xs mb-10">Source: <%= PowderOdds.source %>. Models undercount mountain snow, so real powder days are likely more frequent; use this to compare months and resorts.</p>
+      <% end %>
+
       <h2 class="text-xl font-bold mb-3">How to time your trip</h2>
       <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-10">
         <li><strong class="text-white">Deepest snow:</strong> <%= top3.map { |m, _| month_name.(m) }.to_sentence %> get the most snowfall, which usually means the best coverage and the most powder days.</li>
@@ -63,6 +85,7 @@
       </ul>
     <% end %>
 
+    <%= render "shared/trip_deals", resort: @resort, heading: "Found your month? Plan a trip to #{@resort.name}", css: "mb-10" %>
     <%= render "shared/calendar_cta" %>
     <% peers = @resort.region_peers.order(:name).limit(10) %>
     <% if peers.any? %>
@@ -73,6 +96,7 @@
     <% end %>
 
     <%= render "shared/faq", faqs: faqs, heading: "#{@resort.name} season FAQ" %>
+    <%= render "shared/cite_this", title: "Best Time to Ski #{@resort.name}", url: "https://snowway.app/resorts/#{@resort.slug}/best-time-to-ski" %>
     <p class="text-sm text-slate-400"><%= link_to "#{@resort.name} snow forecast", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Ski resorts in #{@resort.state_province}", region_path(@resort.region_slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
   </main>
 </div>

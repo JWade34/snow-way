@@ -27,6 +27,18 @@
       <%= image_tag src, alt: alt, width: w, height: h, fetchpriority: "high", class: "w-full h-auto rounded-xl mb-6 aspect-[16/9] object-cover" %>
       <%= @guide.affiliate? ? affiliate_disclosure : tag.div(class: "mb-2") %>
       <%= body %>
+      <% airport_deals = {
+           "ski-trip-drive-or-fly" => { heading: "Flying? Compare flights and cars to the main ski airports", intro: "Mountain airports are closer to the slopes; big hubs usually have cheaper fares." },
+           "winter-driving-to-ski-resorts" => { heading: "Rent an AWD or 4x4 at the ski airports", intro: "Ask for AWD or 4WD with snow-rated tires when you book.", cars: true },
+           "ski-trip-cost" => { heading: "Price flights for your dates", intro: "Flights are often the biggest swing in a family ski budget. Compare a hub and a mountain airport." },
+           "how-to-plan-a-ski-trip" => { heading: "Compare flights to the main ski airports" },
+           "family-ski-trip" => { heading: "Compare flights to the main ski airports" },
+           "colorado-ski-resorts-for-families" => { heading: "Flights and cars for a Colorado ski trip", codes: %w[DEN EGE HDN ASE] },
+           "utah-ski-resorts-for-families" => { heading: "Flights and cars for a Utah ski trip", intro: "Most Utah resorts are within about an hour of Salt Lake City's airport.", codes: %w[SLC] },
+           "california-ski-resorts-for-families" => { heading: "Flights and cars for a Lake Tahoe ski trip", codes: %w[RNO] },
+           "vermont-ski-resorts-for-families" => { heading: "Flights and cars for a Vermont ski trip", codes: %w[BTV] }
+         }[@guide.slug] %>
+      <%= render "shared/airport_deals", **airport_deals if airport_deals %>
       <%= render "shared/local_take", take: LocalTake.for_guide(@guide.slug), subject: @guide.title.split(":").first %>
       <%= render "shared/planner_cta" if %w[ski-trip-packing-list what-to-wear-skiing how-to-ski how-to-snowboard how-to-chase-powder ski-lessons-for-adults rent-or-buy-ski-gear how-to-plan-a-ski-trip family-ski-trip ski-in-ski-out skiing-with-kids best-family-ski-resorts kids-ski-gear cheap-ski-trip holiday-ski-trips all-inclusive-ski-resorts ski-trip-cost ski-trip-drive-or-fly winter-driving-to-ski-resorts colorado-ski-resorts-for-families utah-ski-resorts-for-families california-ski-resorts-for-families vermont-ski-resorts-for-families].include?(@guide.slug) %>
     <%= render "shared/calendar_cta" %>

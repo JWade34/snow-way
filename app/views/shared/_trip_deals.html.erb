@@ -1,0 +1,11 @@
+<%# locals: (resort:, heading: nil, css: "mb-8") -%>
+<% checkin, checkout = Date.current + 2, Date.current + 5 %>
+<section data-booking class="<%= css %> bg-slate-800/40 border border-slate-700 rounded-xl p-4" aria-label="Plan a trip to <%= resort.name %>">
+  <p class="font-bold mb-3"><%= heading || "Plan a trip to #{resort.name}" %></p>
+  <div class="grid grid-cols-3 gap-2 text-sm font-semibold">
+    <a href="<%= Affiliate.hotels_url(resort, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-center bg-cyan-500 hover:bg-cyan-400 text-slate-900 rounded-lg py-2 transition">Hotels</a>
+    <a href="<%= Affiliate.flights_url(resort.nearest_airport_code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-center border border-slate-600 hover:border-cyan-400 rounded-lg py-2 transition">Flights to <%= resort.nearest_airport_code %></a>
+    <a href="<%= Affiliate.cars_url(resort.nearest_airport_code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-center border border-slate-600 hover:border-cyan-400 rounded-lg py-2 transition">4x4 rental</a>
+  </div>
+  <%= affiliate_disclosure("Prices for #{checkin.strftime("%b %-d")} to #{checkout.strftime("%b %-d")}; change dates on the next page. Bookings may earn Snow Way a commission.", css: "mt-2") %>
+</section>

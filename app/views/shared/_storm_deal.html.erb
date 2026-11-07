@@ -1,0 +1,14 @@
+<%# locals: (resort:, summary:, css: "mb-8") -%>
+<%# Shown only when a big storm (12"+ in 7 days) is forecast: the moment people actually book a powder trip. %>
+<% if (storm = Affiliate.storm(summary)) %>
+  <aside data-booking class="<%= css %> bg-gradient-to-r from-cyan-500/15 to-slate-800/40 border border-cyan-400/40 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center gap-3" aria-label="Big storm coming to <%= resort.name %>">
+    <p class="flex-1 text-sm text-left">
+      <span class="block font-bold text-white text-base">❄️ Big storm: <%= inches(storm[:total]) %> forecast for <%= resort.name %></span>
+      <span class="text-slate-300">Heaviest snow <%= storm[:peak] == Date.current ? "today" : storm[:peak].strftime("%A") %>. Rooms for <%= storm[:checkin].strftime("%b %-d") %> to <%= storm[:checkout].strftime("%b %-d") %> go fast on powder weeks.</span>
+    </p>
+    <div class="flex gap-2 shrink-0">
+      <a href="<%= Affiliate.hotels_url(resort, checkin: storm[:checkin], checkout: storm[:checkout]) %>" target="_blank" rel="sponsored nofollow noopener" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-2 text-sm text-center transition">Find a room</a>
+      <a href="<%= Affiliate.flights_url(resort.nearest_airport_code, checkin: storm[:checkin], checkout: storm[:checkout]) %>" target="_blank" rel="sponsored nofollow noopener" class="border border-slate-600 hover:border-cyan-400 rounded-lg px-4 py-2 text-sm text-center transition">Flights to <%= resort.nearest_airport_code %></a>
+    </div>
+  </aside>
+<% end %>

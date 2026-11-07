@@ -47,6 +47,9 @@
     <% if t["kids_note"].present? %><p class="text-slate-300 leading-relaxed mb-3"><strong class="text-white">Kids:</strong> <%= t["kids_note"] %></p><% end %>
     <p class="text-slate-400 text-xs mb-10">Sources: <%= safe_join(sources.map { |s| link_to("#{s["publisher"]} (#{s["date"]})", s["url"], rel: "nofollow noopener", target: "_blank", class: "underline underline-offset-2") }, ", ") %>. Snow Way doesn't sell tickets; always confirm the price for your dates with <%= link_to "#{name}", @resort.website_url, rel: "noopener", target: "_blank", class: "underline underline-offset-2" %> before you go.</p>
 
+    <%= render "shared/storm_deal", resort: @resort, summary: @summary %>
+    <%= render "shared/trip_deals", resort: @resort, heading: "Book the rest of your #{name} trip", css: "mb-10" %>
+    <%= render "shared/trip_bar", resort: @resort %>
     <h2 class="text-xl font-bold mb-3">How to pay less for <%= name %> lift tickets</h2>
     <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-10">
       <li><strong class="text-white">Buy online, early.</strong> Most big resorts now use date-based pricing, and the walk-up window is the most expensive way to ski.</li>

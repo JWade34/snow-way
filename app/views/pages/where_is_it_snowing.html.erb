@@ -85,6 +85,7 @@
 
     <%= render "shared/alert_form" %>
     <%= render "shared/faq", faqs: faqs, heading: "Where it's snowing: quick answers" %>
+    <%= render "shared/cite_this", title: "Where Is It Snowing This Week? Snowiest Ski Resorts", url: "https://snowway.app/where-is-it-snowing" %>
     <p class="text-sm text-slate-400 mb-2">Also: <%= link_to "live weather at the top resorts", weather_index_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "ski resort opening dates", opening_dates_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "this week's Powder Report", powder_report_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <p class="text-sm text-slate-400">See the <%= link_to "full powder rankings", resorts_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> or browse <%= link_to "ski resorts by state", regions_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
   </main>
