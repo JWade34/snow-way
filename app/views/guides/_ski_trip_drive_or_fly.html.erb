@@ -1,0 +1,103 @@
+<%# locals: (faqs:) -%>
+<% airports = [
+  [ "EGE", "Eagle County Regional", %w[vail beaver-creek], "About 35 miles west of Vail, so you skip most of I-70 from Denver." ],
+  [ "ASE", "Aspen/Pitkin County", %w[aspen-snowmass], "Minutes from Aspen and Snowmass. Mountain weather means flights can be delayed or diverted." ],
+  [ "HDN", "Yampa Valley (Hayden)", %w[steamboat], "About 25 miles from Steamboat, with seasonal direct flights from big hubs." ],
+  [ "JAC", "Jackson Hole", %w[jackson-hole], "Inside Grand Teton National Park, roughly 30 minutes from Teton Village." ],
+  [ "BZN", "Bozeman Yellowstone", %w[big-sky], "About 50 miles to Big Sky, roughly an hour through Gallatin Canyon in good conditions." ],
+  [ "SLC", "Salt Lake City", %w[snowbird solitude park-city], "A major hub with many resorts within about an hour. Canyon roads can still back up on storm days." ],
+  [ "RNO", "Reno-Tahoe", %w[palisades-tahoe heavenly northstar], "Roughly an hour to most Lake Tahoe resorts, depending on which side of the lake." ]
+] %>
+<% resorts = Resort.where(slug: airports.flat_map { |a| a[2] }).index_by(&:slug) %>
+<div class="tldr"><p><strong>Short answer:</strong> drive if the resort is within about 6 to 8 hours and you have four or more people, since one tank of gas costs far less than four round-trip flights plus a rental car and ski bag fees. Fly if the drive is a full day or more, or if it crosses mountain passes in winter, and pick an airport close to the resort (like Salt Lake City for Utah, Reno for Tahoe, or Eagle and Hayden for Vail and Steamboat) so the flight actually saves time. Renting skis at the resort removes most of the hassle of flying.</p></div>
+
+<h2>The quick decision: hours, people, and passes</h2>
+<ul>
+  <li><strong>Under 4 hours door to door:</strong> drive. By the time you get to the airport early, fly, collect bags and pick up a rental car, flying rarely saves time on short trips.</li>
+  <li><strong>4 to 8 hours:</strong> it depends on group size and the route. A family of four or five usually saves a lot by driving. A couple flying on a cheap fare may not.</li>
+  <li><strong>More than 8 hours, or two days of driving:</strong> fly, unless the drive is part of the fun. Two full days in the car each way eats most of a week-long ski trip.</li>
+  <li><strong>Mountain passes in winter:</strong> add buffer time. A storm can close or slow a pass for hours, and traction rules may apply. See <%= link_to "driving to ski resorts in winter", guide_path("winter-driving-to-ski-resorts") %>.</li>
+</ul>
+
+<h2>Drive vs fly compared</h2>
+<table>
+  <caption>Driving vs flying to a ski resort: what changes with each choice</caption>
+  <thead><tr><th scope="col">Factor</th><th scope="col">Drive</th><th scope="col">Fly</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Cost for a family</th><td>Mostly fixed: gas, tolls, and maybe one hotel night on the way. Adding people adds almost nothing.</td><td>Scales with each person: one ticket per seat, checked bags, plus a rental car or shuttle at the other end.</td></tr>
+    <tr><th scope="row">Gear</th><td>Bring everything, including your own skis, boots and a cooler.</td><td>Ski bags usually count as checked bags with normal fees. Many families rent skis at the resort instead.</td></tr>
+    <tr><th scope="row">Time</th><td>Predictable in good weather; slow or stopped in storms and on holiday weekends.</td><td>Faster for long distances, but add airport time and the ground transfer from the airport.</td></tr>
+    <tr><th scope="row">Weather risk</th><td>Snow on the road, chain or traction rules, pass closures.</td><td>Delays and diversions, especially at small mountain airports.</td></tr>
+    <tr><th scope="row">Flexibility</th><td>Leave when you want, chase a storm, stop anywhere.</td><td>Locked to flight times; changes can cost money.</td></tr>
+    <tr><th scope="row">At the resort</th><td>You have your car. Check parking costs and whether you need it.</td><td>Many resort towns run free shuttles, so you may not need a rental car at all.</td></tr>
+  </tbody>
+</table>
+
+<h2>Do the cost math for your family</h2>
+<p>Prices change too much to quote, so plug in your own numbers. Total each column, then compare.</p>
+<h3>Driving</h3>
+<ul>
+  <li><strong>Gas:</strong> round-trip miles divided by your car's highway mpg, times the current price per gallon. Mountain driving and a loaded roof box lower your mpg.</li>
+  <li><strong>Overnight stop:</strong> one hotel night each way if the drive is longer than you can do safely in a day.</li>
+  <li><strong>Food on the road,</strong> tolls, and resort parking.</li>
+  <li><strong>Winter prep:</strong> snow tires, chains or socks if you need them. You keep these for future trips.</li>
+</ul>
+<h3>Flying</h3>
+<ul>
+  <li><strong>Airfare times the number of travelers.</strong> On US airlines, kids 2 and older generally need their own seat.</li>
+  <li><strong>Checked bags:</strong> winter clothing takes space, so families often check more bags than usual.</li>
+  <li><strong>Ski bags:</strong> most airlines treat a ski or snowboard bag as a standard checked bag with the usual fee, and some let a ski bag plus a boot bag count as one item. Southwest, for example, <a href="https://support.southwest.com/helpcenter/article/flying-with-ski-snow-bag-policy" rel="nofollow noopener" target="_blank">counts up to two bags of ski gear as one item</a>. Check your airline's sports equipment page before you pack.</li>
+  <li><strong>Ground transport:</strong> rental car (an AWD or 4WD vehicle usually costs more) or a shuttle, priced per person each way.</li>
+  <li><strong>Airport parking</strong> at home.</li>
+</ul>
+<p>The free <%= link_to "Ski Trip Planner", ski_trip_planner_path %> has a budget sheet for this, and the <%= link_to "ski trip cost guide", guide_path("ski-trip-cost") %> walks through every other category.</p>
+
+<h2>Mountain airport or big hub?</h2>
+<p>Small airports near the slopes save hours of driving but usually cost more and see more weather delays. Big hubs have more flights and lower fares but a longer drive to the snow.</p>
+<h3>Colorado: Denver vs the mountain airports</h3>
+<p>Denver (DEN) has the most flights and often the lowest fares, but the drive west on I-70 can be slow on weekends and in storms. Summit County resorts like <%= link_to "Breckenridge", resort_path("breckenridge") %> and <%= link_to "Keystone", resort_path("keystone") %> are the shortest drives from Denver. For resorts deeper in the mountains, flying closer can make sense:</p>
+<table>
+  <caption>Airports near the slopes: which resorts they serve and how far</caption>
+  <thead><tr><th scope="col">Airport</th><th scope="col">Serves</th><th scope="col">Getting to the snow</th></tr></thead>
+  <tbody>
+    <% airports.each do |code, name, slugs, note| %>
+      <tr>
+        <th scope="row"><%= code %> (<%= name %>)</th>
+        <td><%= safe_join(slugs.filter_map { |s| resorts[s] && link_to(resorts[s].name, resort_path(resorts[s])) }, ", ") %></td>
+        <td><%= note %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>Distances are approximate driving distances in good conditions. Check a live map before you go.</p>
+<h3>Utah: fly into Salt Lake City</h3>
+<p>Utah is the easiest fly-in ski trip in the US. <a href="https://www.skiutah.com/explore/access/" rel="nofollow noopener" target="_blank">Ski Utah</a> says about ten resorts are within an hour of Salt Lake City International Airport, including <%= link_to "Snowbird", resort_path("snowbird") %>, <%= link_to "Solitude", resort_path("solitude") %>, and <%= link_to "Park City", resort_path("park-city") %>. If you stay in the Cottonwood Canyons, you may not need a car at all, but check the canyon traction rules if you drive. See <%= link_to "Utah ski resorts", region_path("utah") %>.</p>
+<h3>Tahoe: Reno vs a long drive</h3>
+<p>Reno-Tahoe (RNO) is the closest major airport to most Lake Tahoe resorts. Driving from the Bay Area is popular, but Friday and Sunday traffic over the Sierra, plus California chain controls in storms, can stretch the trip well beyond the map estimate.</p>
+<h3>Montana and Wyoming</h3>
+<p>For <%= link_to "Big Sky", resort_path("big-sky") %>, Bozeman (BZN) is the usual gateway. For <%= link_to "Jackson Hole", resort_path("jackson-hole") %>, flying into Jackson (JAC) puts you close to the slopes, though fares are often higher than at larger airports farther away.</p>
+
+<h2>Winter driving: budget time and risk honestly</h2>
+<ul>
+  <li><strong>Add buffer time.</strong> Plan for the trip to take longer than the map says, especially on Friday evenings, Saturday mornings, Sunday afternoons and holidays.</li>
+  <li><strong>Watch the forecast.</strong> A storm that brings powder also brings closures. Leaving a day early or late can make a big difference.</li>
+  <li><strong>Know the traction rules.</strong> Colorado, California and Utah all have rules about tires, chains or AWD in winter. Our <%= link_to "winter driving guide", guide_path("winter-driving-to-ski-resorts") %> covers them with links to each state's official page.</li>
+  <li><strong>Don't push tired.</strong> Long drives after a ski day are risky. Split the drive or stay an extra night.</li>
+</ul>
+
+<h2>Flying? Rent skis instead of hauling them</h2>
+<p>Renting at the resort is the easiest way to make flying simpler and often cheaper for a family:</p>
+<ul>
+  <li><strong>No ski bags</strong> to check, carry, fit in a rental car, or lose.</li>
+  <li><strong>Kids outgrow gear every season,</strong> so renting means they always ski on the right size. Check sizes with the <%= link_to "ski size chart", ski_size_chart_path %> and <%= link_to "ski boot size chart", ski_boot_size_chart_path %>.</li>
+  <li><strong>Carry on what matters most:</strong> boots that fit well, helmet, goggles and gloves. These are hard to replace if a bag goes missing.</li>
+</ul>
+<p>Read <%= link_to "rent or buy ski gear", guide_path("rent-or-buy-ski-gear") %> for the full trade-offs, and the <%= link_to "ski trip packing list", guide_path("ski-trip-packing-list") %> for what to bring either way.</p>
+
+<h2>Plan the rest of the trip</h2>
+<p>Once you know how you're getting there, pick dates with good snow odds on the <%= link_to "Powder Calendar", powder_calendar_path %>, compare resorts side by side on <%= link_to "resort comparisons", comparisons_path %>, and see <%= link_to "how to plan a family ski trip", guide_path("family-ski-trip") %>.</p>
+<% faqs << { question: "Is it cheaper to drive or fly to a ski resort with kids?", answer: "For a family of four or more, driving is usually cheaper when the resort is within about a day's drive, because gas costs the same no matter how many people are in the car. Flying adds a ticket per person, checked bag and ski bag fees, and a rental car or shuttle." } %>
+<% faqs << { question: "How far is too far to drive for a ski trip?", answer: "Many families draw the line at about 6 to 8 hours each way. Beyond that, or if the route crosses mountain passes in winter, flying usually saves enough time to be worth the cost." } %>
+<% faqs << { question: "What is the best airport for a ski trip?", answer: "Salt Lake City is the easiest, with many Utah resorts within about an hour. Reno works well for Lake Tahoe. In Colorado, Denver has the most flights, while Eagle, Aspen and Hayden put you much closer to Vail, Beaver Creek, Aspen and Steamboat." } %>
+<% faqs << { question: "Should I bring skis on the plane or rent them?", answer: "Most families are better off renting skis at the resort and carrying on boots, helmets and goggles. Ski bags usually count as checked bags with normal fees, and kids outgrow gear quickly anyway." } %>
+<% faqs << { question: "Do I need a rental car at a ski resort?", answer: "Not always. Many resort towns run free shuttles and some lodging is walkable to the lifts. You'll want a car, ideally AWD or 4WD with good tires, if you're staying outside town or visiting more than one resort." } %>

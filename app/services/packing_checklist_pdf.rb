@@ -20,6 +20,12 @@ class PackingChecklistPdf
     "The week before" => [ "Check the 7-day snow forecast (snowway.app)", "Reserve rentals and lessons", "Tune and wax skis or board", "Download the resort trail map" ]
   }.freeze
 
+  # Extra items for each kid, shown in the interactive checklist when "Packing for kids" is on.
+  KIDS = [ "Kids' helmet and goggles that fit together", "Two pairs of waterproof mittens per child", "One-piece snowsuit or bibs for little ones",
+           "Thin merino or synthetic base layers (no cotton)", "Ski school confirmation and lunch details", "Name labels on gloves, goggles and helmets",
+           "Snacks for the lift line and car", "Hand warmers sized for small mittens", "Kids' sunscreen stick and lip balm",
+           "Dry change of clothes for after skiing", "Favorite stuffed animal or tablet for the drive or flight" ].freeze
+
   def render
     pdf = Prawn::Document.new(page_size: "LETTER", margin: 48, info: { Title: "Snow Way Ski Trip Packing Checklist", Author: "Snow Way" })
     pdf.font_families.update("Jakarta" => { normal: FONT_DIR.join("PlusJakartaSans-Medium.ttf").to_s, bold: FONT_DIR.join("PlusJakartaSans-Bold.ttf").to_s })

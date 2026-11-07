@@ -1,0 +1,31 @@
+<%# locals: (kids: false) -%>
+<% sections = PackingChecklistPdf::SECTIONS.to_a %>
+<section class="not-prose my-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5 print:bg-white print:text-black" data-controller="packing-list" aria-labelledby="packing-list-heading">
+  <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+    <h2 id="packing-list-heading" class="text-xl font-bold">Interactive ski trip packing checklist</h2>
+    <p class="text-sm text-slate-300" aria-live="polite"><span data-packing-list-target="count">0</span> of <span data-packing-list-target="total">0</span> packed</p>
+  </div>
+  <div class="h-2 bg-slate-700 rounded-full mb-4 overflow-hidden print:hidden"><div class="h-full bg-cyan-400 transition-all" style="width:0%" data-packing-list-target="bar"></div></div>
+  <div class="flex flex-wrap gap-3 mb-5 text-sm print:hidden">
+    <label class="inline-flex items-center gap-2 bg-slate-900/60 rounded-lg px-3 py-2 cursor-pointer"><input type="checkbox" data-packing-list-target="kidsToggle" data-action="packing-list#toggleKids" <%= "checked" if kids %> class="accent-cyan-400"> Packing for kids</label>
+    <button type="button" data-action="packing-list#print" class="bg-slate-700 hover:bg-slate-600 rounded-lg px-3 py-2 font-semibold">Print</button>
+    <button type="button" data-action="packing-list#reset" class="text-slate-400 hover:text-white px-2">Reset</button>
+  </div>
+  <div class="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+    <% sections.each do |section, items| %>
+      <fieldset>
+        <legend class="font-bold text-cyan-300 mb-2"><%= section %></legend>
+        <% items.each do |item| %>
+          <label class="flex items-start gap-2 py-1 text-sm cursor-pointer"><input type="checkbox" value="<%= item %>" data-action="packing-list#save" class="mt-1 accent-cyan-400 shrink-0"> <span><%= item %></span></label>
+        <% end %>
+      </fieldset>
+    <% end %>
+    <fieldset data-packing-list-target="kids" <%= "hidden" unless kids %>>
+      <legend class="font-bold text-cyan-300 mb-2">For the kids</legend>
+      <% PackingChecklistPdf::KIDS.each do |item| %>
+        <label class="flex items-start gap-2 py-1 text-sm cursor-pointer"><input type="checkbox" value="<%= item %>" data-action="packing-list#save" class="mt-1 accent-cyan-400 shrink-0"> <span><%= item %></span></label>
+      <% end %>
+    </fieldset>
+  </div>
+  <p class="text-slate-400 text-xs mt-4 print:hidden">Your checks are saved on this device. Want it as a PDF? <a href="#packing-checklist-form" class="text-cyan-300 underline underline-offset-2">Get the printable checklist</a>.</p>
+</section>

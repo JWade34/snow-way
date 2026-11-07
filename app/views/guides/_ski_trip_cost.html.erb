@@ -1,0 +1,92 @@
+<%# locals: (faqs:) -%>
+<% tickets = LiftTickets.publishable.sort_by { |_, d| -(d["window_high"] || d["window_low"]) } %>
+<% resorts = Resort.where(slug: tickets.map(&:first)).index_by(&:slug) %>
+<% top = tickets.filter_map { |_, d| d["window_high"] }.max %>
+<div class="tldr"><p><strong>Short answer:</strong> a family ski trip costs the sum of six things: lift tickets, lodging, travel, rentals, lessons and food, and lift tickets plus lodging are usually the biggest share. Reported 2026-27 walk-up window prices at big destination resorts reach $<%= top %> per adult per day at the top end, but buying online in advance, using a multi-resort pass, or choosing a smaller mountain can cut that sharply. Use the worksheet below with your own dates and family size rather than trusting a single average.</p></div>
+
+<h2>The family ski trip budget worksheet</h2>
+<p>Every trip is different, so build your budget from the pieces. Multiply each line by the number of people and days that apply.</p>
+<table>
+  <caption>Ski trip budget worksheet: what to price and what moves the number</caption>
+  <thead><tr><th scope="col">Category</th><th scope="col">How to estimate it</th><th scope="col">Biggest savings lever</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Lift tickets</th><td>Adults × ski days × daily price, plus kids at their rate</td><td>Buy online in advance or buy a pass</td></tr>
+    <tr><th scope="row">Lodging</th><td>Nightly rate × nights, plus cleaning, resort and parking fees</td><td>Stay in a nearby town, book a kitchen</td></tr>
+    <tr><th scope="row">Travel</th><td>Gas or airfare × travelers, bags, rental car or shuttle</td><td>Drive if you have a big family; fly to a close airport</td></tr>
+    <tr><th scope="row">Rentals</th><td>Skis, boots, helmet × people × days</td><td>Rent in town and reserve online</td></tr>
+    <tr><th scope="row">Lessons</th><td>Kids' ski school days, adult lessons</td><td>Group lessons over private; book early</td></tr>
+    <tr><th scope="row">Food</th><td>Three meals × people × days, plus snacks on the mountain</td><td>Cook breakfast and dinner, pack lunch</td></tr>
+  </tbody>
+</table>
+<p>The free <%= link_to "Ski Trip Planner", ski_trip_planner_path %> has a budget sheet that adds these up for you.</p>
+
+<h2>Lift tickets: what resorts are charging for 2026-27</h2>
+<p>Lift tickets are usually the line that surprises families most. Here are reported 2026-27 adult window prices, with the source for each. The window (walk-up) price is the highest you can pay. Buying online in advance is usually cheaper, and many big resorts use dynamic pricing, so the price changes by date and how early you buy.</p>
+<table>
+  <caption>Reported 2026-27 adult single-day lift ticket window prices by resort</caption>
+  <thead><tr><th scope="col">Resort</th><th scope="col">Reported window price</th><th scope="col">Source</th></tr></thead>
+  <tbody>
+    <% tickets.each do |slug, d| %>
+      <% r = resorts[slug] or next %>
+      <% src = Array(d["sources"]).first %>
+      <tr>
+        <th scope="row"><%= link_to r.name, lift_tickets_resort_path(r) %></th>
+        <td><% if d["window_low"] && d["window_high"] %>$<%= d["window_low"] %> to $<%= d["window_high"] %><% elsif d["window_high"] %>Up to $<%= d["window_high"] %><% else %>From $<%= d["window_low"] %><% end %></td>
+        <td><a href="<%= src["url"] %>" rel="nofollow noopener" target="_blank"><%= src["publisher"] %></a>, <%= Date.parse(src["date"].to_s).strftime("%b %-d, %Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>"Up to" prices are the reported top rate, typically on peak holiday dates. Click a resort for its lift ticket page with notes on advance pricing and kids' tickets.</p>
+<h3>How to pay less for lift tickets</h3>
+<ul>
+  <li><strong>Buy online, early.</strong> Advance prices are lower than the window at most big resorts.</li>
+  <li><strong>Price a pass.</strong> If your family will ski more than a few days this season, a multi-resort pass can beat daily tickets. Compare them on <%= link_to "Ikon vs Epic", ikon_vs_epic_path %>.</li>
+  <li><strong>Check kids' rates.</strong> Many resorts and passes discount or include young children.</li>
+  <li><strong>Ski smaller mountains.</strong> Independent ski areas often charge a fraction of destination resort prices.</li>
+  <li><strong>Avoid holiday weeks,</strong> when dynamic prices hit their peak.</li>
+</ul>
+
+<h2>Lodging</h2>
+<p>Lodging is often the other big line. What drives the price:</p>
+<ul>
+  <li><strong>Distance to the lifts.</strong> Slopeside costs the most; a nearby town with a free shuttle costs much less. See <%= link_to "is ski-in/ski-out worth it", guide_path("ski-in-ski-out") %>.</li>
+  <li><strong>Dates.</strong> Christmas through New Year's, Presidents' Day and spring break are the most expensive weeks.</li>
+  <li><strong>Fees.</strong> Cleaning, resort and parking fees can add a lot to a vacation rental. Compare the total, not the nightly rate.</li>
+  <li><strong>A kitchen</strong> costs a bit more but saves on every meal.</li>
+</ul>
+<p>Many resort pages on Snow Way have a where-to-stay guide, for example <% if Lodging.slugs.include?("park-city") %><%= link_to "where to stay in Park City", where_to_stay_resort_path("park-city") %><% else %><%= link_to "Park City", resort_path("park-city") %><% end %>.</p>
+
+<h2>Travel</h2>
+<p>For a family, travel cost depends mostly on whether you drive or fly. Driving costs roughly the same for two people or six; flying multiplies by every seat and adds bags, ski bags and a rental car. Our guide to <%= link_to "driving vs flying to a ski resort", guide_path("ski-trip-drive-or-fly") %> walks through the math.</p>
+
+<h2>Rentals and gear</h2>
+<ul>
+  <li><strong>Rent in town</strong> rather than at the base, and reserve online for discounts.</li>
+  <li><strong>Multi-day rentals</strong> usually cost less per day than single days.</li>
+  <li><strong>Bring what you own:</strong> goggles, gloves, helmets and layers are expensive to buy at the resort.</li>
+  <li><strong>For kids,</strong> seasonal rental programs can beat renting by the day if you ski often. See <%= link_to "kids' ski gear", guide_path("kids-ski-gear") %>.</li>
+</ul>
+
+<h2>Lessons and ski school</h2>
+<ul>
+  <li><strong>Group lessons cost less than private</strong> and work well for most kids and beginners.</li>
+  <li><strong>Full-day kids' programs</strong> often include lunch and supervision, which can replace a day of childcare.</li>
+  <li><strong>Book early.</strong> Ski school sells out on holidays, and some resorts price lessons dynamically too.</li>
+  <li><strong>Beginner packages</strong> that bundle a lesson, rentals and a learning-area ticket are often the cheapest way to start.</li>
+</ul>
+
+<h2>Food</h2>
+<ul>
+  <li><strong>On-mountain food is expensive.</strong> Packing lunch and snacks for a family saves money every day.</li>
+  <li><strong>Cook breakfast and dinner</strong> if you have a kitchen, and shop at a grocery store on the way in, since resort-town groceries often cost more.</li>
+  <li><strong>Bring refillable water bottles</strong> and a thermos.</li>
+</ul>
+
+<h2>Where to go from here</h2>
+<p>For 20 ways to bring every line down, read <%= link_to "how to save money on a ski trip", guide_path("cheap-ski-trip") %>. To pick dates with the best snow odds, check the <%= link_to "Powder Calendar", powder_calendar_path %>.</p>
+<% faqs << { question: "How much does a ski trip cost for a family of four?", answer: "It depends mostly on lift tickets and lodging. Add up lift tickets for each skier and day, lodging with all fees, travel, rentals, lessons and food. Reported 2026-27 window prices at big destination resorts reach $#{top} per adult per day at peak, but advance purchase, passes and smaller mountains cost much less." } %>
+<% faqs << { question: "Why are lift tickets so expensive?", answer: "Big resorts use dynamic pricing and set their highest prices at the ticket window to push skiers toward buying online in advance or buying a season pass. Buying early online, or skiing a smaller independent mountain, usually costs much less." } %>
+<% faqs << { question: "Is a ski pass cheaper than buying lift tickets?", answer: "If your family will ski more than a few days in a season, a multi-resort pass is often cheaper than daily tickets. Compare the pass price to the number of days you'll actually ski and check blackout dates." } %>
+<% faqs << { question: "What is the most expensive part of a ski trip?", answer: "Lift tickets and lodging are usually the two biggest costs. Holiday weeks raise both, so moving your trip to a non-holiday week is one of the biggest savings." } %>
+<% faqs << { question: "How can I budget for a ski trip?", answer: "Use a worksheet with six lines: lift tickets, lodging, travel, rentals, lessons and food. Price each with your real dates and family size, then compare options like driving vs flying or staying in town vs slopeside." } %>
