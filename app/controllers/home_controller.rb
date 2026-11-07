@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     @top_resort = Resort.top_powder_destination
     @top_resorts = Resort.north_america.by_most_snow.limit(5)
     @resort_count = Resort.north_america.count
+    @search_resorts = Resort.order(:name).pluck(:name, :slug)
     @faqs = build_faqs
   end
 
