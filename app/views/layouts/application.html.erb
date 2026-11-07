@@ -86,12 +86,19 @@
           // that pointed at Snow Way. Outbound booking links (Kayak, Booking.com) still convert.
           new MutationObserver(function (mutations) {
             mutations.forEach(function (m) {
+              // Auto-inserted links around plain place names ("Spark") go back to plain text.
+              m.addedNodes && m.addedNodes.forEach(function (n) {
+                if (n.tagName === 'A' && /stay22\.com\/allez\/roam/.test(n.href) && !n.closest('[data-booking]')) {
+                  n.replaceWith(document.createTextNode(n.textContent))
+                }
+              })
+              if (m.type !== 'attributes') return
               var old = m.oldValue || ''
               if (m.target.tagName === 'A' && (old.charAt(0) === '/' || old.indexOf(location.origin) === 0) && m.target.getAttribute('href') !== old) {
                 m.target.setAttribute('href', old)
               }
             })
-          }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['href'], attributeOldValue: true })
+          }).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['href'], attributeOldValue: true })
           window.Stay22 = window.Stay22 || {};
           window.Stay22.params = { lmaID: '6aed51010d63b07675116823' };
           var s = document.createElement('script'); s.async = true; s.src = 'https://lma.stay22.com/letmeallez.js';
