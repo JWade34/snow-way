@@ -78,6 +78,17 @@
         }
         // Stay22 Let Me Allez (Lift/Spark/Nova) turns booking links into affiliate links. It costs ~2s of CPU,
         // so it loads on the visitor's first interaction (booking buttons are below the fold), never on page load.
+        // Let Me Allez also hijacks taps on links (even our own menu links) and redirects them through its
+        // affiliate proxy. Catch taps on Snow Way links first, at the window in the capture phase, so its
+        // handlers never see them. The browser (or Turbo) then navigates normally. Outbound links are untouched.
+        ;['click', 'auxclick', 'mousedown', 'pointerdown', 'touchstart', 'touchend', 'pointerup', 'mouseup'].forEach(function (evt) {
+          window.addEventListener(evt, function (e) {
+            var a = e.target && e.target.closest && e.target.closest('a[href]')
+            if (!a || a.closest('[data-booking]')) return
+            var href = a.getAttribute('href') || ''
+            if (href.charAt(0) === '/' || href.charAt(0) === '#' || a.origin === location.origin) e.stopImmediatePropagation()
+          }, true)
+        })
         var stay22Loaded = false
         var stay22 = function () {
           if (stay22Loaded) return
