@@ -1,0 +1,104 @@
+<% name = @resort.name %>
+<% checkin, checkout = Date.current + 2, Date.current + 5 %>
+<% airport = "#{@resort.airport_name} (#{@resort.nearest_airport_code})" %>
+<% slopeside = @lodging.slopeside %>
+<% cheapest = @lodging.cheapest %>
+<% total = @summary.has_forecast? ? @summary.total : nil %>
+<% faqs = [
+  { question: "Where should I stay in #{name}?", answer: @lodging.summary },
+  ({ question: "Is there ski-in/ski-out lodging at #{name}?", answer: "Yes. For lodging at or steps from the lifts, look in #{slopeside.map(&:name).to_sentence}. Expect to pay the most for these areas, especially over holidays." } if slopeside.any?),
+  { question: "Where is the cheapest place to stay near #{name}?", answer: "#{cheapest.name} is usually the lowest-cost area: #{cheapest.note}" },
+  { question: "What airport do you fly into for #{name}?", answer: "The closest major airport to #{name} is #{airport}. Snow Way lists it as the nearest airport with regular flights." },
+  { question: "When should I book lodging for #{name}?", answer: "Book Christmas to New Year's, Martin Luther King Jr. weekend, Presidents' Day weekend, and spring break months ahead, since slopeside lodging sells out first. For other weeks, refundable bookings let you hold a room and still move your trip toward the best snow forecast." }
+].compact %>
+<% content_for(:title, fit_title("Where to Stay in #{name}: Best Areas & Hotels Near the Lifts | Snow Way", "Where to Stay in #{name}: Best Areas & Hotels | Snow Way", "Where to Stay in #{name} | Snow Way")) %>
+<% content_for(:description, "Where to stay in #{name}: #{@lodging.summary}") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Where to Stay in #{name}", "url" => absolute_url(where_to_stay_resort_path(@resort)),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "about" => { "@type" => "SkiResort", "name" => name, "url" => absolute_url(resort_path(@resort)) },
+          "mentions" => @lodging.areas.map { |a| { "@type" => "Place", "name" => a.name } },
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ @resort.region_name, "/ski-resorts/#{@resort.region_slug}" ], [ name, "/resorts/#{@resort.slug}" ], [ "Where to Stay", nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ @resort.region_name, region_path(@resort.region_slug) ], [ name, resort_path(@resort) ], [ "Where to Stay", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Where to stay in <%= name %></h1>
+    <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= @lodging.summary %></p>
+    </section>
+
+    <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Fly into</dt><dd class="font-semibold"><%= @resort.nearest_airport_code %></dd></div>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Pass</dt><dd class="font-semibold"><%= @resort.pass_label || "Check resort" %></dd></div>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Base elevation</dt><dd class="font-semibold"><%= number_with_delimiter(@resort.elevation_base) %> ft</dd></div>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Snow next 7 days</dt><dd class="font-semibold text-cyan-300"><%= total ? inches(total) : "–" %></dd></div>
+    </dl>
+
+    <h2 class="text-xl font-bold mb-4">Best areas to stay near <%= name %></h2>
+    <div class="space-y-4 mb-6">
+      <% @lodging.areas.each do |area| %>
+        <section class="bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="area-<%= area.name.parameterize %>">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+            <h3 id="area-<%= area.name.parameterize %>" class="text-lg font-bold"><%= area.name %></h3>
+            <span class="text-slate-400 text-sm" title="Relative cost for <%= name %>"><%= area.price %></span>
+          </div>
+          <p class="text-cyan-300 text-sm font-semibold mb-2"><%= area.access_label %> · Best for: <%= area.best_for.downcase_first %></p>
+          <p class="text-slate-300 text-sm leading-relaxed mb-3"><%= area.note %></p>
+          <a href="<%= Affiliate.hotels_url(@resort, checkin: checkin, checkout: checkout, place: area.search) %>" target="_blank" rel="sponsored nofollow noopener" class="inline-block border border-slate-600 hover:border-cyan-500 hover:text-cyan-300 rounded-lg px-4 py-2 text-sm font-semibold transition">See places to stay in <%= area.name %> ↗</a>
+        </section>
+      <% end %>
+    </div>
+    <%= affiliate_disclosure("Hotel searches show prices for #{checkin.strftime("%b %-d")} to #{checkout.strftime("%b %-d")}; change dates on the next page. Bookings may earn Snow Way a commission.", css: "mb-10") %>
+
+    <h2 class="text-xl font-bold mb-3"><%= name %> lodging areas compared</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Where to stay near <%= name %>: lift access, relative cost, and who each area suits</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Area</th><th scope="col" class="px-3 py-2">Getting to the lifts</th><th scope="col" class="px-3 py-2">Cost</th><th scope="col" class="px-3 py-2">Best for</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% @lodging.areas.each do |area| %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= area.name %></th><td class="px-3 py-2"><%= area.access_label %></td><td class="px-3 py-2"><%= area.price %></td><td class="px-3 py-2 text-slate-300"><%= area.best_for %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <% if (map_url = Affiliate.stay22_map_url(@resort, checkin: checkin, checkout: checkout)) %>
+      <h2 class="text-xl font-bold mb-3">Map of hotels and rentals near <%= name %></h2>
+      <div class="relative rounded-xl border border-slate-700 bg-slate-800/40 overflow-hidden" style="height:420px">
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-slate-400 text-sm">
+          <p>Hotels and rentals near <%= name %> load here.</p>
+          <a href="<%= Affiliate.hotels_url(@resort, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="mt-3 text-cyan-300 underline underline-offset-4">Or search places to stay now ↗</a>
+        </div>
+        <iframe data-interaction-src="<%= map_url %>" title="Lodging near <%= name %>" width="100%" height="420" class="relative block" style="background:transparent" loading="lazy"></iframe>
+      </div>
+      <%= affiliate_disclosure("Lodging map by Stay22. Bookings may earn Snow Way a commission.", css: "mt-2 mb-10") %>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">Tips for booking a <%= name %> trip</h2>
+    <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-10">
+      <li><strong class="text-white">Holidays sell out first.</strong> Christmas week, MLK and Presidents' Day weekends, and spring break fill slopeside lodging months ahead. Other weeks often have deals close in.</li>
+      <li><strong class="text-white">Book refundable, then watch the snow.</strong> Hold a room you can cancel, then check the <%= link_to "#{name} snow forecast", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> a week out. The <%= link_to "best time to ski #{name}", best_time_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> page shows which months are usually snowiest.</li>
+      <li><strong class="text-white">Know what "ski-in/ski-out" means.</strong> Some listings are a long walk or a shuttle from the lifts. Read <%= link_to "what ski-in/ski-out really means", guide_path("ski-in-ski-out"), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> before paying extra.</li>
+      <li><strong class="text-white">Traveling with kids?</strong> Stay close to ski school drop-off. See the <%= link_to "family ski trip guide", guide_path("family-ski-trip"), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> and the free <%= link_to "ski trip planner", ski_trip_planner_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</li>
+    </ul>
+
+    <%= render "shared/alert_form", resort: @resort %>
+    <%= render "shared/faq", faqs: faqs, heading: "Where to stay in #{name}: FAQ" %>
+
+    <% others = Resort.where(slug: Lodging.slugs - [ @resort.slug ]).order(:name) %>
+    <h2 class="text-lg font-bold mb-3">Where to stay at other ski resorts</h2>
+    <ul class="flex flex-wrap gap-2 mb-8 text-sm">
+      <% others.each do |r| %><li><%= link_to r.name, where_to_stay_resort_path(r), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2" %></li><% end %>
+    </ul>
+    <p class="text-sm text-slate-400"><%= link_to "#{name} snow report", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Ski resorts in #{@resort.region_name}", region_path(@resort.region_slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+    <p class="text-xs text-slate-500 mt-4">Cost tiers are relative within <%= name %>, not quoted prices. Bus and shuttle routes can change by season, so confirm lift access with your lodging before you book.</p>
+  </main>
+</div>

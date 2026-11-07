@@ -1,0 +1,118 @@
+<% faqs = [
+  { question: "How do I find my ski boot size?", answer: "Ski boots use mondopoint sizing, which is your foot length in centimeters. Stand on a piece of paper with your heel against a wall, mark the tip of your longest toe, and measure. A 27 cm foot is a mondo 27.0, which is about a US men's 9 or US women's 10." },
+  { question: "How do I convert my shoe size to a ski boot size?", answer: "As a rule of thumb, add 18 to your US men's shoe size or 17 to your US women's shoe size to get mondopoint. A US men's 10 is about mondo 28.0, and a US women's 8 is about mondo 25.0. Measuring your foot is more accurate than converting." },
+  { question: "Should ski boots be a size smaller than shoes?", answer: "Ski boots should fit snugger than shoes. Many skiers end up in a boot about the same as or a half size below their foot length. In a new boot your toes should just touch the front when standing straight and pull back slightly when you flex forward into skiing position." },
+  { question: "What does ski boot flex mean?", answer: "Flex is how stiff the boot is when you lean forward. Lower numbers are softer and more forgiving; higher numbers are stiffer and more responsive. Beginners usually ski 60 to 80 flex (men's) or 50 to 70 (women's); experts often ski 120 or more." },
+  { question: "Why are 26.0 and 26.5 the same boot?", answer: "Most ski boots come in full-size shells, so the 26.0 and 26.5 share the same plastic shell. The half size changes the liner or footbed, not the shell length. That's why a shell fit matters more than the number on the box." }
+] %>
+<% content_for(:title, "Ski Boot Size Chart: Mondopoint to US Shoe Size | Snow Way") %>
+<% content_for(:description, "Ski boot size chart and calculator: convert US men's and women's shoe sizes to mondopoint, plus flex by ability, last width, and how a ski boot should fit.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebApplication", "name" => "Ski Boot Size Calculator", "url" => absolute_url("/ski-boot-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
+        { "@type" => "HowTo", "name" => "How to measure your ski boot size", "step" => [
+          { "@type" => "HowToStep", "text" => "Put a piece of paper on the floor against a wall." },
+          { "@type" => "HowToStep", "text" => "Stand on it in a thin sock with your heel touching the wall." },
+          { "@type" => "HowToStep", "text" => "Mark the tip of your longest toe and measure from the wall in centimeters." },
+          { "@type" => "HowToStep", "text" => "Measure both feet and use the longer one. That number is your mondopoint size." } ] },
+        breadcrumb_schema([ [ "Guides", "/guides" ], [ "Ski Boot Size Chart", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<% select_class = "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400" %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ "Ski Boot Size Chart", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski boot size chart &amp; calculator</h1>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p></section>
+
+    <section class="mb-10 bg-slate-800/30 border border-slate-700 rounded-xl p-5" data-controller="boot-size" aria-labelledby="calc-heading">
+      <h2 id="calc-heading" class="text-xl font-bold mb-4">Ski boot size calculator</h2>
+      <form class="grid grid-cols-1 sm:grid-cols-3 gap-3" data-action="input->boot-size#calculate change->boot-size#calculate" onsubmit="return false">
+        <label class="text-sm text-slate-300">I know my
+          <select data-boot-size-target="mode" class="<%= select_class %> mt-1">
+            <option value="us" selected>US shoe size</option>
+            <option value="cm">Foot length (cm)</option>
+          </select>
+        </label>
+        <label class="text-sm text-slate-300">Size or length
+          <input type="number" step="0.5" min="1" max="34" value="9" data-boot-size-target="value" class="<%= select_class %> mt-1" inputmode="decimal">
+        </label>
+        <label class="text-sm text-slate-300">Sizing
+          <select data-boot-size-target="gender" class="<%= select_class %> mt-1">
+            <option value="mens" selected>Men's / unisex</option>
+            <option value="womens">Women's</option>
+          </select>
+        </label>
+      </form>
+      <p class="mt-4 text-2xl font-extrabold text-cyan-300" data-boot-size-target="result" aria-live="polite">Mondo 27.0</p>
+      <p class="text-slate-400 text-sm mt-1" data-boot-size-target="detail"></p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-3">Ski boot size chart (mondopoint to US and EU)</h2>
+    <p class="text-slate-300 text-sm mb-4">Mondopoint is foot length in cm. Shoe sizes vary by brand, so use this as a starting point and measure your feet.</p>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski boot mondopoint sizes with approximate US men's, US women's, and EU shoe sizes</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Mondo (foot cm)</th><th scope="col" class="px-3 py-2">US men's</th><th scope="col" class="px-3 py-2">US women's</th><th scope="col" class="px-3 py-2">EU (approx.)</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% SizeChart.mondo_rows.each do |row| %>
+            <% fmt = ->(n) { n.to_f.then { |f| f % 1 == 0 ? f.to_i.to_s : f.to_s } } %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-bold text-cyan-300"><%= "%.1f" % row[:mondo] %></th><td class="px-3 py-2"><%= row[:mens] >= 4 ? fmt.(row[:mens]) : "–" %></td><td class="px-3 py-2"><%= row[:womens] <= 12 ? fmt.(row[:womens]) : "–" %></td><td class="px-3 py-2"><%= fmt.(row[:eu]) %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold mb-3">Ski boot flex chart by ability</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-3">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Typical ski boot flex ratings by ability for men and women</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Ability</th><th scope="col" class="px-3 py-2">Men's flex</th><th scope="col" class="px-3 py-2">Women's flex</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% SizeChart::BOOT_FLEX.each do |level, mens, womens| %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= level %></th><td class="px-3 py-2"><%= mens %></td><td class="px-3 py-2"><%= womens %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-400 text-xs mb-10">Flex isn't standardized across brands. Heavier or more aggressive skiers can go stiffer; lighter skiers and cold days (plastic stiffens) favor softer.</p>
+
+    <h2 class="text-xl font-bold mb-3">Ski boot width (last)</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski boot last widths and who each fits</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Last</th><th scope="col" class="px-3 py-2">Width at forefoot</th><th scope="col" class="px-3 py-2">Fits</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% SizeChart::BOOT_LAST.each do |last, width, fits| %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= last %></th><td class="px-3 py-2"><%= width %></td><td class="px-3 py-2 text-slate-300"><%= fits %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="guide">
+      <h2>How to measure your feet for ski boots</h2>
+      <ol>
+        <li>Put a sheet of paper on the floor against a wall.</li>
+        <li>Stand on it in a thin ski sock with your heel touching the wall and your weight on that foot.</li>
+        <li>Mark the tip of your longest toe and measure from the wall in centimeters.</li>
+        <li>Measure both feet and use the longer one. That's your mondopoint size.</li>
+      </ol>
+      <h2>How a ski boot should fit</h2>
+      <ul>
+        <li><strong>Standing straight:</strong> your toes lightly touch the front of the liner.</li>
+        <li><strong>Flexed into a ski stance:</strong> your toes pull back slightly and your heel stays down.</li>
+        <li><strong>Shell check:</strong> with the liner out, you should fit about one to two fingers (1.5–2 cm) behind your heel. More than that and the boot is too big.</li>
+        <li><strong>No pain points:</strong> snug everywhere is right; sharp pressure on one spot is a fit problem a boot fitter can usually fix.</li>
+      </ul>
+      <p>Liners pack out after a few days of skiing, so a boot that feels a little too snug in the shop usually ends up right. A boot that feels comfortable like a sneaker will likely end up too big.</p>
+      <h2>Snowboard boots are different</h2>
+      <p>Snowboard boots use regular US shoe sizes and usually fit true to size or a half size down. Your boot size also sets your board width; the <%= link_to "snowboard size calculator", snowboard_size_chart_path %> checks both.</p>
+      <h2>Next steps</h2>
+      <p>Read <%= link_to "how to choose ski boots", guide_path("best-ski-boots") %> for flex, fit and when to see a boot fitter, then size your skis with the <%= link_to "ski size calculator", ski_size_chart_path %>. Sizing kids? See <%= link_to "kids' ski gear and sizing", guide_path("kids-ski-gear") %>. Browse <%= gear_link "ski boots", "ski boots" %> and <%= gear_link "ski socks", "ski socks" %>.</p>
+      <p class="text-slate-400 text-xs">Conversions are approximate. A boot brand's own size chart and a shell fit take priority.</p>
+    </div>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Ski boot sizing FAQ" %>
+  </main>
+</div>

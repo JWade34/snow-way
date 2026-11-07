@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :resorts, only: [ :index, :show ] do
     get "best-time-to-ski", on: :member, to: "resorts#best_time", as: :best_time
+    get "where-to-stay", on: :member, to: "resorts#where_to_stay", as: :where_to_stay
   end
   resources :weather, only: [ :index ]
 
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   resources :guides, only: [ :index, :show ]
   get "snowboard-size-chart" => "tools#snowboard_size", as: :snowboard_size_chart
   get "ski-size-chart" => "tools#ski_size", as: :ski_size_chart
+  get "ski-boot-size-chart" => "tools#ski_boot_size", as: :ski_boot_size_chart
 
   get "widget" => "embeds#widget", as: :widget
   get "embed/powder-rankings" => "embeds#powder_rankings", as: :embed_powder_rankings

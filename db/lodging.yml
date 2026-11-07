@@ -1,0 +1,192 @@
+# Where to stay near each resort: /resorts/:slug/where-to-stay.
+# Areas are neighborhoods and towns (stable geography), never specific hotels or nightly prices.
+# access: slopeside (ski-in/ski-out or steps from a lift), walk (short walk to a lift),
+#         shuttle (bus, shuttle or gondola to the lifts), drive (plan to drive in each day).
+# price: relative cost for that resort ($ cheapest to $$$$ priciest), not a dollar figure.
+# search: the place name sent to the hotel search.
+
+jackson-hole:
+  summary: Stay in Teton Village to walk to the tram and lifts, or stay in the town of Jackson for more restaurants and lower prices and ride the START bus or drive about 12 miles to the mountain.
+  areas:
+    - { name: "Teton Village", search: "Teton Village, Wyoming", access: slopeside, price: "$$$$", best_for: "First chair, the tram, and skiing straight from your door", note: "The resort base. Hotels and condos sit right at the lifts, with a handful of restaurants and après bars. Quiet at night compared to town." }
+    - { name: "Town of Jackson", search: "Jackson, Wyoming", access: shuttle, price: "$$", best_for: "Restaurants, nightlife, and the widest range of prices", note: "About 12 miles from Teton Village. START buses run between town and the resort, or it's about a 25-minute drive. Also closest to Snow King for a night ski." }
+    - { name: "Wilson", search: "Wilson, Wyoming", access: drive, price: "$$$", best_for: "Cabins and rentals between town and the mountain", note: "A small community at the base of Teton Pass, a short drive to Teton Village. Good for groups who want a house and a car." }
+
+vail:
+  summary: Stay in Vail Village or Lionshead to walk to the gondolas, in East or West Vail to save a bit and ride the free town bus, or down valley in Avon or Edwards for the lowest prices.
+  areas:
+    - { name: "Vail Village", search: "Vail Village, Vail, Colorado", access: slopeside, price: "$$$$", best_for: "Walking to Gondola One, restaurants, and après", note: "The car-free heart of Vail with the most shops and restaurants. Many hotels are a few minutes' walk from the lifts." }
+    - { name: "Lionshead Village", search: "Lionshead Village, Vail, Colorado", access: slopeside, price: "$$$", best_for: "Families and a slightly calmer base", note: "The western base area with the Eagle Bahn Gondola. A little quieter than Vail Village and connected to it by a walkway and the free bus." }
+    - { name: "East Vail and West Vail", search: "West Vail, Colorado", access: shuttle, price: "$$$", best_for: "Condos and rentals at lower prices inside Vail", note: "Residential neighborhoods on either end of town. The free Town of Vail bus runs to the villages." }
+    - { name: "Avon, Eagle-Vail and Edwards", search: "Avon, Colorado", access: drive, price: "$$", best_for: "Saving money and splitting time with Beaver Creek", note: "About 10 to 20 minutes west on I-70. More hotels and grocery stores, with regional buses or a short drive to Vail. Avon is also the gateway to Beaver Creek." }
+
+mammoth-mountain:
+  summary: Stay at The Village at Mammoth to ride the gondola up to Canyon Lodge, near Main Lodge or Eagle Lodge for slopeside access, or in town condos with free shuttles to the lifts.
+  areas:
+    - { name: "The Village at Mammoth", search: "The Village at Mammoth, Mammoth Lakes, California", access: walk, price: "$$$", best_for: "Restaurants and a gondola to the mountain", note: "The pedestrian village in town with shops and après. The Village Gondola runs up to Canyon Lodge." }
+    - { name: "Main Lodge area", search: "Main Lodge, Mammoth Lakes, California", access: slopeside, price: "$$$", best_for: "First tracks on the upper mountain", note: "The original base area, higher up the road. Lodging here puts you right at the lifts, with fewer restaurants nearby." }
+    - { name: "Eagle Lodge and Juniper Springs", search: "Juniper Springs, Mammoth Lakes, California", access: slopeside, price: "$$$", best_for: "Families and quieter slopeside condos", note: "Condos on the south side near Eagle Express, often ski-in/ski-out, and a good starting point on busy weekends." }
+    - { name: "Town of Mammoth Lakes", search: "Mammoth Lakes, California", access: shuttle, price: "$$", best_for: "Value and a kitchen", note: "Condos and motels around town. Free shuttles connect town with the base lodges in winter." }
+
+breckenridge:
+  summary: Stay at the Peak 8 or Peak 9 bases for ski-in/ski-out, on or near Main Street to walk to the BreckConnect Gondola and the free town bus, or in Frisco, Dillon or Silverthorne for lower prices and a free Summit Stage bus.
+  areas:
+    - { name: "Peak 8 and Peak 9 bases", search: "Peak 8, Breckenridge, Colorado", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and kids' ski school", note: "Slopeside hotels and condos at the two main base areas. Peak 8 has the main ski school and children's center." }
+    - { name: "Main Street and downtown", search: "Main Street, Breckenridge, Colorado", access: walk, price: "$$$", best_for: "Restaurants, après, and a historic town", note: "Victorian main street with the most dining. Walk or ride the free Breck Free Ride bus to the BreckConnect Gondola." }
+    - { name: "Frisco, Dillon and Silverthorne", search: "Frisco, Colorado", access: drive, price: "$$", best_for: "Saving money and skiing several Summit County resorts", note: "About 10 to 20 minutes away. The free Summit Stage bus links these towns with Breckenridge, Keystone and Copper." }
+
+aspen-snowmass:
+  summary: Stay in downtown Aspen to walk to the Aspen Mountain gondola and the best restaurants, at Snowmass Base Village for ski-in/ski-out on the biggest of the four mountains, or down valley in Basalt or Carbondale for value.
+  areas:
+    - { name: "Downtown Aspen", search: "Aspen, Colorado", access: walk, price: "$$$$", best_for: "Restaurants, nightlife, and Aspen Mountain", note: "The Silver Queen Gondola leaves from the edge of downtown. Free buses run to Aspen Highlands, Buttermilk and Snowmass." }
+    - { name: "Snowmass Village", search: "Snowmass Village, Colorado", access: slopeside, price: "$$$", best_for: "Families and ski-in/ski-out", note: "Base Village and the Snowmass Mall sit at the lifts of the largest mountain, with lots of beginner and intermediate terrain." }
+    - { name: "Basalt, El Jebel and Carbondale", search: "Basalt, Colorado", access: drive, price: "$$", best_for: "Lower prices and longer stays", note: "About 20 to 40 minutes down valley. RFTA buses run up valley to Aspen and Snowmass." }
+
+park-city:
+  summary: Stay in Canyons Village for slopeside lodging, in Old Town near Main Street to walk to the Town Lift, or at Kimball Junction for lower prices. Park City's free buses connect them all.
+  areas:
+    - { name: "Canyons Village", search: "Canyons Village, Park City, Utah", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out on the Canyons side", note: "The large base village on the west side of Park City Mountain, with the Cabriolet and Red Pine Gondola." }
+    - { name: "Park City Mountain base and Old Town", search: "Old Town, Park City, Utah", access: walk, price: "$$$$", best_for: "Main Street restaurants and après", note: "Historic Main Street with the Town Lift up to the mountain. The main base area is a short walk or bus ride away." }
+    - { name: "Kimball Junction", search: "Kimball Junction, Park City, Utah", access: shuttle, price: "$$", best_for: "Value hotels near I-80", note: "Chain hotels and stores about 10 minutes from the slopes. Free Park City Transit buses run to the base areas." }
+
+deer-valley:
+  summary: Stay at Snow Park or Silver Lake for slopeside lodging, at Empire Pass for the quietest ski-in/ski-out, or in Old Town Park City and ride the free bus.
+  areas:
+    - { name: "Snow Park base", search: "Deer Valley, Park City, Utah", access: slopeside, price: "$$$$", best_for: "Ski school and an easy start", note: "Deer Valley's main base area, with lodges and condos near the lifts." }
+    - { name: "Silver Lake Village", search: "Silver Lake Village, Park City, Utah", access: slopeside, price: "$$$$", best_for: "Mid-mountain ski-in/ski-out", note: "A mid-mountain village with slopeside lodges and restaurants." }
+    - { name: "Empire Pass", search: "Empire Pass, Park City, Utah", access: slopeside, price: "$$$$", best_for: "Quiet, high-end ski-in/ski-out", note: "Upper-mountain lodging with direct slope access and few crowds." }
+    - { name: "Old Town Park City", search: "Old Town, Park City, Utah", access: shuttle, price: "$$$", best_for: "Restaurants and nightlife", note: "Main Street is minutes from Snow Park by free Park City Transit bus. Deer Valley is skiers only, so snowboarders often split time with Park City Mountain." }
+
+steamboat:
+  summary: Stay at the base area near Gondola Square for ski-in/ski-out, in condos around the mountain with shuttles, or in downtown Steamboat Springs about 3 miles away with free city buses.
+  areas:
+    - { name: "Gondola Square and the base area", search: "Steamboat Ski Area, Steamboat Springs, Colorado", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and après at the base", note: "Hotels and condos at the main base, with the gondola, ski school and most on-mountain dining." }
+    - { name: "Mountain area condos", search: "Mount Werner Circle, Steamboat Springs, Colorado", access: shuttle, price: "$$", best_for: "Families who want a kitchen", note: "Condo complexes on the roads around the base. Many run their own shuttles, and the free city bus covers the area." }
+    - { name: "Downtown Steamboat Springs", search: "Downtown Steamboat Springs, Colorado", access: shuttle, price: "$$", best_for: "Restaurants, hot springs, and a real ranch town", note: "About 3 miles from the ski area. Free Steamboat Springs Transit buses run between downtown and the mountain." }
+
+big-sky:
+  summary: Stay in Mountain Village for ski-in/ski-out, in Big Sky Town Center or Meadow Village for more restaurants and lower prices with a bus up to the lifts, or in Bozeman about an hour away.
+  areas:
+    - { name: "Mountain Village", search: "Mountain Village, Big Sky, Montana", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and first chair", note: "The resort base with slopeside hotels and condos. Everything you need for a ski day is a short walk." }
+    - { name: "Big Sky Town Center and Meadow Village", search: "Big Sky Town Center, Big Sky, Montana", access: shuttle, price: "$$$", best_for: "Restaurants, groceries, and condos", note: "The town area down the mountain road, about 15 minutes from the lifts. Skyline buses run up to Mountain Village." }
+    - { name: "Bozeman", search: "Bozeman, Montana", access: drive, price: "$$", best_for: "Lowest prices and a college-town base", note: "About an hour's drive through Gallatin Canyon, near Bozeman Yellowstone International. Also close to Bridger Bowl." }
+
+telluride:
+  summary: Stay in the town of Telluride to walk to Lift 7 or Lift 8 and the free gondola, in Mountain Village for ski-in/ski-out, or in Ridgway or Montrose for lower prices about an hour or more away.
+  areas:
+    - { name: "Town of Telluride", search: "Telluride, Colorado", access: walk, price: "$$$", best_for: "A historic mining town with restaurants and bars", note: "The free gondola and in-town lifts get you on the mountain without a car." }
+    - { name: "Mountain Village", search: "Mountain Village, Colorado", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and families", note: "A car-free village on the mountain with slopeside hotels and condos, linked to town by the free gondola." }
+    - { name: "Ridgway and Montrose", search: "Ridgway, Colorado", access: drive, price: "$$", best_for: "Saving money on a longer trip", note: "Ridgway is about 45 minutes away and Montrose about 90. Montrose has the larger airport (MTJ)." }
+
+whistler-blackcomb:
+  summary: Stay in Whistler Village to walk to the Whistler Village Gondola, in the Upper Village at the base of Blackcomb, or in Creekside for a quieter base with its own gondola. Squamish is cheaper but about an hour's drive.
+  areas:
+    - { name: "Whistler Village", search: "Whistler Village, Whistler, British Columbia", access: walk, price: "$$$$", best_for: "Après, restaurants, and both mountains", note: "The pedestrian village with lifts to Whistler and Blackcomb. Busy and lively at night." }
+    - { name: "Upper Village", search: "Upper Village, Whistler, British Columbia", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out on Blackcomb", note: "A quieter village at the base of Blackcomb, a short walk from the main village." }
+    - { name: "Whistler Creekside", search: "Whistler Creekside, Whistler, British Columbia", access: slopeside, price: "$$$", best_for: "Families and a quieter start", note: "The original base area south of the village, with the Creekside Gondola." }
+    - { name: "Squamish", search: "Squamish, British Columbia", access: drive, price: "$$", best_for: "Lowest prices", note: "About an hour south on the Sea-to-Sky Highway. Allow extra time for snowy driving." }
+
+keystone:
+  summary: Stay in River Run Village for slopeside lodging and après, at Mountain House for the gentlest start, in Lakeside Village for value with the free resort shuttle, or in Dillon or Silverthorne on the free Summit Stage bus.
+  areas:
+    - { name: "River Run Village", search: "River Run Village, Keystone, Colorado", access: slopeside, price: "$$$", best_for: "Gondola access, kids' programs, and après", note: "The main base village with the River Run Gondola and most restaurants." }
+    - { name: "Mountain House", search: "Mountain House, Keystone, Colorado", access: slopeside, price: "$$$", best_for: "Beginners and families", note: "The original base area, close to easy terrain and ski school." }
+    - { name: "Lakeside Village", search: "Lakeside Village, Keystone, Colorado", access: shuttle, price: "$$", best_for: "Value condos and ice skating on the lake", note: "Condos around Keystone Lake, linked to the base areas by free resort shuttles." }
+    - { name: "Dillon and Silverthorne", search: "Dillon, Colorado", access: drive, price: "$$", best_for: "Lowest prices and skiing other Summit County resorts", note: "About 10 minutes away. The free Summit Stage bus runs to Keystone." }
+
+beaver-creek:
+  summary: Stay in Beaver Creek Village for ski-in/ski-out at the main base, in Bachelor Gulch or Arrowhead for slopeside luxury, or in Avon to ride the Riverfront Gondola for less.
+  areas:
+    - { name: "Beaver Creek Village", search: "Beaver Creek Village, Colorado", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out, ski school, and the village", note: "A gated, car-free village at the lifts with outdoor escalators, an ice rink and fine dining." }
+    - { name: "Bachelor Gulch and Arrowhead", search: "Bachelor Gulch, Colorado", access: slopeside, price: "$$$$", best_for: "Quiet slopeside luxury", note: "Smaller villages on the mountain's west side, connected to Beaver Creek by lifts." }
+    - { name: "Avon", search: "Avon, Colorado", access: walk, price: "$$", best_for: "Value with gondola access", note: "The town at the bottom of the mountain. The Riverfront Express Gondola runs from Avon up to the slopes." }
+    - { name: "Edwards and Eagle", search: "Edwards, Colorado", access: drive, price: "$$", best_for: "Longer stays and lower prices", note: "Down valley toward Eagle County Airport, about 10 to 30 minutes away." }
+
+winter-park:
+  summary: Stay in Winter Park's Base Village for ski-in/ski-out, in the town of Winter Park or Fraser for value with free shuttles, or farther out in Granby.
+  areas:
+    - { name: "Base Village", search: "Winter Park Resort, Colorado", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and ski school", note: "Condos and hotels at the base, with the gondola and restaurants." }
+    - { name: "Town of Winter Park", search: "Winter Park, Colorado", access: shuttle, price: "$$", best_for: "Restaurants and condos with a kitchen", note: "About 2 miles from the base. Free shuttles run between town and the resort." }
+    - { name: "Fraser and Granby", search: "Fraser, Colorado", access: drive, price: "$", best_for: "Lowest prices and cabins", note: "Fraser is just past Winter Park; Granby is about 30 minutes away. Plan to drive." }
+
+copper-mountain:
+  summary: Stay in Center Village for ski-in/ski-out and restaurants, in East or West Village for easy access to expert or beginner terrain, or in Frisco or Silverthorne for lower prices on the free Summit Stage bus.
+  areas:
+    - { name: "Center Village", search: "Center Village, Copper Mountain, Colorado", access: slopeside, price: "$$$", best_for: "Restaurants, après, and the American Eagle lift", note: "The main village with most dining and the busiest base." }
+    - { name: "East Village and West Village", search: "Copper Mountain, Colorado", access: slopeside, price: "$$$", best_for: "Experts (East) and beginners (West)", note: "Copper's terrain gets harder from west to east, so where you stay can match your level." }
+    - { name: "Frisco and Silverthorne", search: "Frisco, Colorado", access: drive, price: "$$", best_for: "Lowest prices", note: "About 10 to 15 minutes away, with the free Summit Stage bus to Copper." }
+
+sun-valley:
+  summary: Stay in Ketchum to walk to restaurants and ride the free Mountain Rides bus to Bald Mountain, in Sun Valley Village near Dollar Mountain's beginner terrain, near the Warm Springs base for slopeside condos, or in Hailey for lower prices.
+  areas:
+    - { name: "Ketchum", search: "Ketchum, Idaho", access: shuttle, price: "$$$", best_for: "Restaurants and the River Run base", note: "The town at the foot of Bald Mountain. Free Mountain Rides buses run to River Run and Warm Springs." }
+    - { name: "Sun Valley Village", search: "Sun Valley, Idaho", access: shuttle, price: "$$$$", best_for: "Classic resort lodges and Dollar Mountain", note: "Home to the historic Sun Valley Lodge and close to Dollar Mountain, the beginner hill." }
+    - { name: "Warm Springs", search: "Warm Springs, Ketchum, Idaho", access: slopeside, price: "$$$", best_for: "Slopeside condos on Bald Mountain", note: "Condos near the Warm Springs base on the north side of Baldy." }
+    - { name: "Hailey", search: "Hailey, Idaho", access: drive, price: "$$", best_for: "Lowest prices, near the airport", note: "About 12 miles south, close to Friedman Memorial Airport (SUN)." }
+
+taos-ski-valley:
+  summary: Stay in the base village at Taos Ski Valley for slopeside lodging, or in Arroyo Seco or the town of Taos for more restaurants and lower prices, about 20 miles from the lifts.
+  areas:
+    - { name: "Taos Ski Valley base village", search: "Taos Ski Valley, New Mexico", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and ski week lessons", note: "A small alpine village at the lifts with lodges, condos and a few restaurants." }
+    - { name: "Arroyo Seco", search: "Arroyo Seco, New Mexico", access: drive, price: "$$", best_for: "Casitas and a small village feel", note: "A small village on the road between town and the ski area." }
+    - { name: "Town of Taos", search: "Taos, New Mexico", access: drive, price: "$$", best_for: "Restaurants, art galleries, and the plaza", note: "About 20 miles from the ski area on a winding canyon road. Plan on a 35 to 45 minute drive." }
+
+palisades-tahoe:
+  summary: Stay in The Village at Palisades for slopeside lodging at the Olympic Valley base, near the Alpine base for a quieter stay, or in Tahoe City or Truckee for more choice and lower prices.
+  areas:
+    - { name: "The Village at Palisades", search: "Olympic Valley, California", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and après in Olympic Valley", note: "The pedestrian village at the Palisades base, with the Funitel, KT-22 and the base-to-base gondola to Alpine." }
+    - { name: "Alpine side", search: "Alpine Meadows, California", access: shuttle, price: "$$$", best_for: "A quieter, more local base", note: "Homes and condos near the Alpine base. The base-to-base gondola links the two mountains." }
+    - { name: "Tahoe City", search: "Tahoe City, California", access: shuttle, price: "$$", best_for: "Lakeside lodging and restaurants", note: "About 15 minutes away on Lake Tahoe's north shore, with bus service toward the resort." }
+    - { name: "Truckee", search: "Truckee, California", access: drive, price: "$$", best_for: "Value and skiing other North Lake Tahoe resorts", note: "A historic railroad town about 20 minutes away, close to Northstar and Sugar Bowl." }
+
+heavenly:
+  summary: Stay near Heavenly Village or the Stateline casinos to walk to the Heavenly Gondola, near the Nevada-side bases for quieter slope access, or elsewhere in South Lake Tahoe for lower prices.
+  areas:
+    - { name: "Heavenly Village", search: "Heavenly Village, South Lake Tahoe, California", access: walk, price: "$$$", best_for: "Walking to the gondola, restaurants, and après", note: "The pedestrian village where the Heavenly Gondola starts." }
+    - { name: "Stateline casino hotels", search: "Stateline, Nevada", access: walk, price: "$$", best_for: "Big hotels, nightlife, and value", note: "Casino hotels on the Nevada side, a short walk from the gondola." }
+    - { name: "Kingsbury Grade (Nevada bases)", search: "Kingsbury, Nevada", access: shuttle, price: "$$$", best_for: "Condos near Stagecoach and Boulder lodges", note: "Quieter condos on the Nevada side, close to the Stagecoach and Boulder base areas." }
+    - { name: "South Lake Tahoe", search: "South Lake Tahoe, California", access: drive, price: "$", best_for: "Lowest prices and lake views", note: "Motels, cabins and rentals around town. Resort shuttles serve many of the main areas." }
+
+stowe:
+  summary: Stay at Spruce Peak Village for slopeside lodging, at an inn on the Mountain Road between town and the resort with the free shuttle, or in Stowe village for New England charm and lower prices.
+  areas:
+    - { name: "Spruce Peak Village", search: "Spruce Peak, Stowe, Vermont", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out, families, and the base village", note: "The resort village at the foot of Spruce Peak, connected to Mt. Mansfield by a gondola." }
+    - { name: "Mountain Road (Route 108)", search: "Mountain Road, Stowe, Vermont", access: shuttle, price: "$$$", best_for: "Classic Vermont inns and lodges", note: "Inns and lodges line the road between town and the mountain. The free Mountain Road shuttle runs in winter." }
+    - { name: "Stowe village", search: "Stowe, Vermont", access: drive, price: "$$", best_for: "Restaurants and a classic New England town", note: "About 7 miles from the lifts. Plan to drive or catch the shuttle." }
+
+killington:
+  summary: Stay slopeside at the Snowshed and Ramshead bases, along the Killington Access Road for the most condos, inns and après bars, or in Rutland for the lowest prices.
+  areas:
+    - { name: "Snowshed and Ramshead bases", search: "Killington Grand Resort Hotel, Killington, Vermont", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and beginner terrain", note: "Slopeside lodging at the base areas closest to the easy terrain and ski school." }
+    - { name: "Killington Access Road", search: "Killington, Vermont", access: shuttle, price: "$$", best_for: "Après bars, condos, and inns", note: "The main road up to the resort is lined with lodging and nightlife. Shuttles run up and down the road." }
+    - { name: "Rutland", search: "Rutland, Vermont", access: drive, price: "$", best_for: "Lowest prices", note: "About 20 to 30 minutes away. Also near Pico Mountain." }
+
+banff-sunshine:
+  summary: Stay in the town of Banff for restaurants and ski shuttles to Sunshine, Norquay and Lake Louise, at Sunshine Mountain Lodge for on-mountain ski-in/ski-out, or in Canmore for lower prices just outside the national park.
+  areas:
+    - { name: "Town of Banff", search: "Banff, Alberta", access: shuttle, price: "$$$", best_for: "Restaurants, hot springs, and skiing all three Banff resorts", note: "About 20 minutes from Sunshine Village. Ski shuttles run from town hotels to Sunshine, Norquay and Lake Louise." }
+    - { name: "Sunshine Mountain Lodge", search: "Sunshine Village, Banff, Alberta", access: slopeside, price: "$$$$", best_for: "On-mountain ski-in/ski-out", note: "Lodging up at Sunshine Village, reached by the gondola, for first and last runs." }
+    - { name: "Canmore", search: "Canmore, Alberta", access: drive, price: "$$", best_for: "Lower prices and condos with kitchens", note: "Just outside the park, about 20 minutes east of Banff on the way from Calgary." }
+    - { name: "Lake Louise village", search: "Lake Louise, Alberta", access: drive, price: "$$$", best_for: "Skiing Lake Louise and a quieter base", note: "About 45 minutes from Sunshine, right by the Lake Louise ski resort." }
+
+snowbird:
+  summary: Stay at Snowbird's slopeside lodges or at Alta's lodges next door for ski-in/ski-out, or at the mouth of Little Cottonwood Canyon or in Salt Lake City for lower prices. Expect canyon traffic and occasional road closures after big storms.
+  areas:
+    - { name: "Snowbird base", search: "Snowbird, Utah", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out next to the tram", note: "Slopeside lodges at Snowbird's base. Staying in the canyon means you're already up when the road is closed for avalanche control." }
+    - { name: "Alta lodges", search: "Alta, Utah", access: slopeside, price: "$$$", best_for: "Skiers only, a classic lodge experience", note: "Small lodges a mile up the canyon at Alta. Alta is skiers only, and many lodges include meals." }
+    - { name: "Cottonwood Heights and Sandy", search: "Sandy, Utah", access: drive, price: "$$", best_for: "Value close to the canyon", note: "Hotels near the mouth of Little Cottonwood Canyon, about 20 to 30 minutes from the lifts without traffic. UTA ski buses run up the canyon." }
+    - { name: "Salt Lake City", search: "Salt Lake City, Utah", access: drive, price: "$", best_for: "Lowest prices and skiing several Utah resorts", note: "About 45 minutes away, close to the airport and other Wasatch resorts." }
+
+bear-mountain:
+  summary: Stay in Moonridge for cabins closest to Bear Mountain, in Big Bear Lake Village for restaurants near Snow Summit, or in Big Bear City for lower prices. Free shuttles connect the two mountains.
+  areas:
+    - { name: "Moonridge", search: "Moonridge, Big Bear Lake, California", access: walk, price: "$$", best_for: "Cabins closest to Bear Mountain", note: "The neighborhood around Bear Mountain's base, mostly cabins and vacation rentals." }
+    - { name: "Big Bear Lake Village", search: "Big Bear Lake Village, California", access: shuttle, price: "$$$", best_for: "Restaurants, shops, and Snow Summit", note: "The walkable village on the lake, a few minutes from Snow Summit. Shuttles run to both mountains." }
+    - { name: "Big Bear City", search: "Big Bear City, California", access: drive, price: "$", best_for: "Lowest prices", note: "East of the lake, about 10 to 15 minutes from the slopes." }
+
+mont-tremblant:
+  summary: Stay in the pedestrian village at the base of Tremblant for ski-in/ski-out, in condos around Lac Tremblant with resort shuttles, or in the town of Mont-Tremblant for lower prices.
+  areas:
+    - { name: "Tremblant pedestrian village", search: "Tremblant Pedestrian Village, Mont-Tremblant, Quebec", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out, restaurants, and après", note: "The colorful car-free village at the base, with the gondola and most dining." }
+    - { name: "Lac Tremblant area", search: "Lac Tremblant, Mont-Tremblant, Quebec", access: shuttle, price: "$$", best_for: "Condos and families", note: "Condo complexes near the lake and the base, many with shuttles to the village." }
+    - { name: "Town of Mont-Tremblant", search: "Mont-Tremblant, Quebec", access: drive, price: "$", best_for: "Lowest prices and local restaurants", note: "The town center (Saint-Jovite), about 15 minutes from the ski area." }

@@ -6,12 +6,16 @@ module SitePages
 
   def static_paths
     %w[/ /resorts /where-is-it-snowing /ski-resorts /ikon-vs-epic /ski-resort-opening-dates /guides /widget /weather
-       /snowboard-size-chart /ski-size-chart /about /authors/justin-mckelvey /affiliate-disclosure
+       /snowboard-size-chart /ski-size-chart /ski-boot-size-chart /about /authors/justin-mckelvey /affiliate-disclosure
        /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts /powder-report /powder-calendar /ski-trip-planner /ski-resorts-near-me]
   end
 
   def resort_paths(resorts = Resort.order(:name))
-    resorts.flat_map { |r| [ "/resorts/#{r.slug}", "/resorts/#{r.slug}/best-time-to-ski" ] }
+    resorts.flat_map { |r| [ "/resorts/#{r.slug}", "/resorts/#{r.slug}/best-time-to-ski" ] } + lodging_paths(resorts)
+  end
+
+  def lodging_paths(resorts = Resort.order(:name))
+    resorts.select { |r| Lodging.slugs.include?(r.slug) }.map { |r| "/resorts/#{r.slug}/where-to-stay" }
   end
 
   def region_paths

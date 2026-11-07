@@ -238,6 +238,9 @@
       </p>
       <% if (map_url = Affiliate.stay22_map_url(@resort)) %>
         <h3 id="stay" class="text-lg font-bold mt-8 mb-3 scroll-mt-6">Places to stay near <%= @resort.name %></h3>
+        <% if Lodging.for(@resort) %>
+          <p class="text-sm mb-3"><%= link_to "Where to stay in #{@resort.name}: best areas compared →", where_to_stay_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+        <% end %>
         <div class="relative rounded-xl border border-slate-700 bg-slate-800/40 overflow-hidden" style="height:420px">
           <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-slate-400 text-sm">
             <p>Hotels and rentals near <%= @resort.name %> load here.</p>
@@ -295,6 +298,9 @@
           <a href="https://www.kayak.com/flights/<%= @resort.nearest_airport_code %>/<%= checkin %>/<%= checkout %>?sort=bestflight_a" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center border border-slate-600 hover:border-cyan-500 rounded-lg py-2 transition">Flights to <%= @resort.nearest_airport_code %></a>
           <a href="https://www.kayak.com/cars/<%= @resort.nearest_airport_code %>/<%= checkin %>/<%= checkout %>?sort=price_a" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center border border-slate-600 hover:border-cyan-500 rounded-lg py-2 transition">Rent a 4x4</a>
         </div>
+        <% if Lodging.for(@resort) %>
+          <%= link_to "Best areas to stay →", where_to_stay_resort_path(@resort), class: "block text-xs text-cyan-300 hover:text-cyan-200 mt-2" %>
+        <% end %>
         <%= affiliate_disclosure("Bookings may earn Snow Way a commission.", css: "mt-2") %>
       </div>
       <a href="#alert-form" class="block bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-4 hover:border-cyan-400 transition">

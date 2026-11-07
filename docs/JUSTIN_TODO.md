@@ -1,10 +1,12 @@
 # Justin's to-do list for Snow Way
 
 Claude keeps this file current. Newest items at the top of each section. Check things off as you go.
-Last updated: 2026-11-06
+Last updated: 2026-11-07
 
 ## Do now (highest payoff first)
 
+- [ ] **Turn off "Spark" in the Stay22 dashboard (1 minute).** Spark auto-links place names and was rewriting our own resort links into hotel links. The site now undoes it, but turning it off is cleaner and makes pages faster. Keep "Lift" (booking-link conversion) on; that's what earns.
+- [ ] **Read one "where to stay" page (5 minutes).** New for 25 resorts, e.g. snowway.app/resorts/vail/where-to-stay. You know Vail, Breck, Park City and Mammoth best: if a neighborhood note is off, tell Claude and it gets fixed. A line of your own advice per resort makes these much stronger.
 - [ ] **Resorts you've ridden (2 minutes, no writing).** snowway.app/admin → **Resorts I've ridden** → check them all off. Then whenever you have 5 minutes, **Paste / dictate** one resort per line ("Alta: skiers only, best snow in Utah."; lines starting with "-" become tips). Open each draft, fix it, check **Publish**. Start with Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler. First-hand takes are the one thing no competitor can copy.
 - [ ] **AvantLink: website verified, in staff review (2026-11-06).** When approved, apply to evo, Backcountry and other ski shops inside it (REI is on Impact, skip it here) and send Claude your website ID plus each merchant ID. The Monday growth email lists every pending application until it is wired in.
 - [ ] **Snow Way profiles on Instagram and Reddit** (name "Snow Way", link to snowway.app, bio mentioning ski snow forecasts). Same reason: wins searches for our own name. Send Claude the URLs and they go in the site's schema.

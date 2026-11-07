@@ -35,11 +35,13 @@
   <% picks << [ "Biggest Ikon Pass mountain", ikon_big, "#{number_with_delimiter(ikon_big.vertical_drop)} ft vertical" ] if ikon_big && ikon.size > 1 %>
   <% faqs.insert(2, { question: "What are the best ski resorts in #{place}?", answer: "It depends on what you want. By the numbers: #{picks.map { |pick, r, why| "#{pick.sub(/ \(.*\)/, "").then { |l| l[0].downcase + l[1..] }}: #{r.name} (#{why})" }.join("; ")}. Snow Way ranks every #{name} resort by this week's snow forecast below." }) %>
 <% end %>
-<% content_for(:title, fit_title("#{name} Snow Report, Forecast & Best Ski Resorts | Snow Way", "#{name} Snow Report & Forecast | Snow Way", "#{name} Snow Report | Snow Way")) %>
+<% best = @region.resorts.size >= 3 %>
+<% heading = best ? "Best Ski Resorts in #{place}: Snow Report & Forecast" : "#{name} Ski Resorts: Snow Report & Forecast" %>
+<% content_for(:title, best ? fit_title("#{heading} | Snow Way", "Best Ski Resorts in #{place} & Snow Report | Snow Way", "Best Ski Resorts in #{place} | Snow Way", "#{name} Snow Report | Snow Way") : fit_title("#{heading} | Snow Way", "#{name} Snow Report | Snow Way")) %>
 <% content_for(:description, "#{name} snow report and all #{@region.resorts.size} ski resorts: 48-hour snowfall, 7- and 14-day forecasts, elevation, airport, and pass. #{faqs.first[:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
-        { "@type" => "CollectionPage", "name" => "#{name} Ski Resorts & Snow Report", "url" => absolute_url("/ski-resorts/#{@region.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
+        { "@type" => "CollectionPage", "name" => heading, "url" => absolute_url("/ski-resorts/#{@region.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
         breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ name, nil ] ]),
         { "@type" => "ItemList", "name" => "Ski resorts in #{place}", "numberOfItems" => @resorts.size,
           "itemListElement" => @resorts.each_with_index.map { |r, i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
@@ -51,11 +53,14 @@
   <%= render "shared/header" %>
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ name, nil ] ] %>
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= name %> snow report, forecast &amp; ski resorts</h1>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= best ? "Best ski resorts in #{place}" : "#{name} ski resorts" %>: snow report &amp; forecast</h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= place %>, ranked below by forecast snow.</p>
       <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Mid-mountain forecasts from Open-Meteo</p>
     </section>
+    <% if @region.slug == "colorado" %>
+      <p class="text-sm -mt-5 mb-8">Skiing with kids? See the <%= link_to "best Colorado ski resorts for families", guide_path("colorado-ski-resorts-for-families"), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
+    <% end %>
 
     <% if picks.any? %>
       <h2 class="text-xl font-bold mb-4">Best <%= label %> ski resorts by the numbers</h2>

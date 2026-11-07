@@ -44,6 +44,32 @@ module SizeChart
     "Regular"
   end
 
+  # Ski boots: mondopoint is foot length in cm. US men's = mondo - 18, US women's = mondo - 17 (common conversion).
+  # The boot calculator in app/javascript/controllers/boot_size_controller.js mirrors these numbers.
+  def mondo_rows
+    (22.0..31.0).step(0.5).map do |mondo|
+      { mondo: mondo, mens: mondo - 18, womens: mondo - 17, eu: ((mondo * 1.5 + 2) * 2).round / 2.0 }
+    end
+  end
+
+  def mondo_from_us(size, womens: false)
+    size + (womens ? 17 : 18)
+  end
+
+  # Typical flex ranges by ability; brands rate flex differently, so treat these as starting points.
+  BOOT_FLEX = [
+    [ "Beginner", "60–80", "50–70" ],
+    [ "Intermediate", "80–100", "70–90" ],
+    [ "Advanced", "100–120", "90–110" ],
+    [ "Expert", "120–140", "110–130" ]
+  ].freeze
+
+  BOOT_LAST = [
+    [ "Narrow", "97–98 mm", "Low-volume, narrow feet and heels" ],
+    [ "Medium", "99–101 mm", "Most feet; the most common last" ],
+    [ "Wide", "102–106 mm", "Wide forefoot or high instep" ]
+  ].freeze
+
   def heights
     (58..78).step(2).map { |inches| [ inches / 12, inches % 12 ] }
   end

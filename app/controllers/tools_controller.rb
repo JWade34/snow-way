@@ -4,4 +4,7 @@ class ToolsController < ApplicationController
 
   def ski_size
   end
+
+  def ski_boot_size
+  end
 end
