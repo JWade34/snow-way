@@ -13,6 +13,8 @@ Last updated: 2026-11-07
 
 ## When you have time
 
+- [ ] **Turn on AI citation tracking (5 minutes, a few cents a week).** Get an API key from perplexity.ai/settings/api (add $5 credit) and/or platform.openai.com/api-keys, then set `PERPLEXITY_API_KEY` and/or `OPENAI_API_KEY` on Railway yourself. Every Sunday night the site asks both engines 25 questions we want to own and records whether they cite snowway.app. Results: snowway.app/admin/ai and the Monday email. Visits from ChatGPT, Perplexity, Claude and Gemini are already being counted without any key.
+
 - [ ] **Turn on Instagram/Facebook auto-posting (about 15 minutes, Claude walks you through it).** The queue is already built and filling up at snowway.app/admin/social (daily snow report story, tips Mon/Wed/Sat, weekly report Thursday). Steps: 1) make a "Snow Way" Facebook Page and link @snowway.app to it, 2) developers.facebook.com → create a Business app (stays in development mode, no Meta review needed for your own accounts), 3) generate a long-lived Page token with Instagram publishing permissions, 4) set `META_ACCESS_TOKEN`, `IG_USER_ID` and `FB_PAGE_ID` on Railway yourself. Until then you can post from the queue by hand.
 
 - [ ] **Amazon Associates** (affiliate-program.amazon.com). About 3%, good for small stuff (hand warmers, wax, socks). Add the tag on Railway as `AMAZON_ASSOCIATE_TAG` or send it to Claude. Amazon closes accounts without 3 sales in 180 days (you can reapply), so do this after traffic picks up.

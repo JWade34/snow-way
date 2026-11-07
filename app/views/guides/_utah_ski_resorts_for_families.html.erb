@@ -1,0 +1,63 @@
+<%# locals: (faqs:) -%>
+<% picks = [
+  [ "park-city", "Best all-around for families", "A huge mountain right next to a walkable historic Main Street, about 40 minutes from Salt Lake City International (SLC). Park City's free town buses link Main Street, the resort bases and lodging, so you can skip the rental car." ],
+  [ "deer-valley", "Best for an easy, polished trip", "Groomed cruisers, attentive service, and a ski school that families come back to year after year. Deer Valley is skiers-only, so snowboarders in your group will need to ride elsewhere." ],
+  [ "snowbasin", "Best for wide-open terrain without the crowds", "The 2002 Olympic downhill venue, roughly 20 miles from Ogden, with gondola access, big day lodges and a dedicated family zone. It tends to be quieter than the Cottonwood Canyon resorts on weekends." ],
+  [ "solitude", "Best for a low-key Cottonwood Canyon base", "A small pedestrian village in Big Cottonwood Canyon and a separate Moonbeam base where most beginner terrain and the kids' program start. Big Cottonwood is usually less congested than Little Cottonwood." ],
+  [ "brighton", "Best for young kids on a budget", "A relaxed, local mountain at the top of Big Cottonwood Canyon with easy learning terrain and night skiing. Brighton lets young kids ski free with an adult, so check the current age cutoff before you buy tickets." ],
+  [ "alta", "Best for families who all ski", "Legendary snow, a beginner area at the Albion base, and an old-school feel. Alta is skiers-only and sits in Little Cottonwood Canyon, so plan around canyon traffic on powder days." ],
+  [ "snowbird", "Best for teens and strong skiers", "The Aerial Tram, steep terrain and deep snow next door to Alta in Little Cottonwood Canyon. Good for families with confident older kids; younger beginners will be happier at Brighton or Solitude." ]
+] %>
+<% budget = [
+  [ "beaver-mountain", "Run by the Seeholzer family for generations, up Logan Canyon in northern Utah. Small, friendly and affordable, with short lift lines." ],
+  [ "brian-head", "Southern Utah's family mountain, about three hours from Las Vegas. One of the highest bases in the state, with easy terrain for beginners." ],
+  [ "sundance", "A small resort in Provo Canyon founded by Robert Redford, with a quiet base and a manageable size for kids." ]
+] %>
+<% resorts = Resort.where(slug: (picks + budget).map(&:first)).index_by(&:slug) %>
+<div class="tldr"><p><strong>Short answer:</strong> the best Utah ski resorts for families are Park City for an all-around trip, Deer Valley for an easy, polished stay, Snowbasin for open terrain without crowds, Solitude and Brighton in Big Cottonwood Canyon for young kids, and Alta and Snowbird for families of strong skiers. On a budget, Beaver Mountain, Brian Head and Sundance are smaller, cheaper and easy to manage with kids.</p></div>
+
+<h2>Best Utah ski resorts for families</h2>
+<ol>
+  <% picks.each do |slug, label, why| %>
+    <% r = resorts[slug] or next %>
+    <li><strong><%= link_to r.name, resort_path(r) %>: <%= label.downcase_first %>.</strong> <%= why %><% if Lodging.slugs.include?(slug) %> See <%= link_to "where to stay in #{r.name}", where_to_stay_resort_path(r) %>.<% end %></li>
+  <% end %>
+</ol>
+
+<h2>Utah family resorts compared</h2>
+<table>
+  <caption>Utah family ski resorts: pass, airport, base elevation, and vertical drop</caption>
+  <thead><tr><th scope="col">Resort</th><th scope="col">Pass</th><th scope="col">Fly into</th><th scope="col">Base elevation</th><th scope="col">Vertical</th></tr></thead>
+  <tbody>
+    <% picks.each do |slug, _, _| %>
+      <% r = resorts[slug] or next %>
+      <tr><th scope="row"><%= link_to r.name, resort_path(r) %></th><td><%= r.pass_label %></td><td><%= r.nearest_airport_code %></td><td><%= number_with_delimiter(r.elevation_base) %> ft</td><td><%= r.vertical_drop ? "#{number_with_delimiter(r.vertical_drop)} ft" : "–" %></td></tr>
+    <% end %>
+  </tbody>
+</table>
+<p>Pass coverage is for the 2026-27 season. Check <%= link_to "Ikon vs Epic", ikon_vs_epic_path %> for blackout dates and kids' pass options.</p>
+
+<h2>Smaller, cheaper Utah ski areas for families</h2>
+<ul>
+  <% budget.each do |slug, why| %>
+    <% r = resorts[slug] or next %>
+    <li><strong><%= link_to r.name, resort_path(r) %>:</strong> <%= why %></li>
+  <% end %>
+</ul>
+
+<h2>Utah tips for families</h2>
+<h3>Plan around Little Cottonwood Canyon</h3>
+<p>Alta and Snowbird share one road, SR-210 up Little Cottonwood Canyon. On powder mornings and weekends the line to get up the canyon can take an hour or more, and a traction law (snow tires, 4WD/AWD or chains) is often in effect. During heavy storms the road can close for avalanche control, and resorts may call an "interlodge," when everyone must stay inside buildings until it is safe. With young kids, stay in the canyon or pick a day with no storm, and check UDOT's Cottonwood Canyons updates before you drive.</p>
+<h3>Alta and Deer Valley are skiers-only</h3>
+<p>Alta and Deer Valley do not allow snowboards. If anyone in your family rides, choose Park City, Snowbasin, Solitude, Brighton or Snowbird instead, or split your days.</p>
+<h3>Use the Ski Utah Passport for older kids</h3>
+<p>Ski Utah's Passport program gives 4th, 5th and 6th graders a few days at each participating Utah resort, and kids from out of state can use it too. Holiday blackouts apply at some resorts, so check the rules before you plan around it.</p>
+<h3>Pick your month</h3>
+<p>Utah snow usually builds from late December and peaks January through March. Each resort's "best time to ski" page shows its snowiest months, for example <%= link_to "best time to ski Park City", best_time_resort_path("park-city") %>. The <%= link_to "Utah snow report", region_path("utah") %> ranks every resort on this week's forecast. Book kids' ski school early for Christmas, Presidents' Day and spring break.</p>
+
+<h2>Next steps</h2>
+<p>Read <%= link_to "how to choose a family ski resort", guide_path("best-family-ski-resorts") %> and <%= link_to "skiing with kids by age", guide_path("skiing-with-kids") %>, check <%= link_to "kids' ski gear and sizing", guide_path("kids-ski-gear") %>, then use the free <%= link_to "Ski Trip Planner", ski_trip_planner_path %> to plan the timeline and budget.</p>
+<% faqs << { question: "What is the best ski resort in Utah for families?", answer: "Park City is a top all-around pick for families thanks to its size, walkable Main Street, free town buses and short drive from Salt Lake City. Deer Valley, Snowbasin, Solitude and Brighton are also strong family choices, each for different reasons." } %>
+<% faqs << { question: "Which Utah ski resort is best for beginners and young kids?", answer: "Brighton and Solitude in Big Cottonwood Canyon have gentle learning terrain and a relaxed feel, and Park City and Deer Valley have large ski schools. Smaller areas like Beaver Mountain and Brian Head are cheaper and easy to navigate for a first day." } %>
+<% faqs << { question: "Which Utah ski resorts don't allow snowboarding?", answer: "Alta and Deer Valley are skiers-only. Families with snowboarders should look at Park City, Snowbasin, Solitude, Brighton or Snowbird." } %>
+<% faqs << { question: "How do families avoid Little Cottonwood Canyon traffic?", answer: "Go midweek, avoid the first morning after a big storm, stay at Alta or Snowbird so you don't drive the canyon each day, or ski Big Cottonwood Canyon, Park City or Snowbasin instead. Check UDOT's Cottonwood Canyons updates for traction laws and closures before you go." } %>

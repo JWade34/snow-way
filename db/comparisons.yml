@@ -1,0 +1,199 @@
+# Head-to-head resort comparisons: /compare/:slug (e.g. /compare/aspen-vs-vail).
+# Written verdicts only; numbers (pass, elevation, vertical, forecast, snowiest months) come from live resort data.
+# Keep pass names out of the prose so pass changes never make a page wrong.
+
+- slug: aspen-vs-vail
+  a: aspen-snowmass
+  b: vail
+  verdict: Pick Vail for one enormous connected mountain and its Back Bowls. Pick Aspen Snowmass for four very different mountains on one ticket and a real historic town.
+  a_if: ["You want variety: Snowmass for long cruisers, Aspen Highlands for steeps, Buttermilk for beginners and park, Aspen Mountain for classic runs", "A walkable downtown with top restaurants and nightlife matters to you", "You're happy to ride free buses between mountains"]
+  b_if: ["You want the most terrain on a single mountain, including the Back Bowls and Blue Sky Basin", "You like a European-style pedestrian village at the lifts", "You'd rather drive in from Denver or fly into Eagle (EGE)"]
+
+- slug: vail-vs-breckenridge
+  a: vail
+  b: breckenridge
+  verdict: Vail has bigger terrain and the Back Bowls. Breckenridge is closer to Denver, has a lively historic main street, and some of the highest lift-served terrain in North America.
+  a_if: ["You want huge bowls and the most acreage", "You want a polished resort village", "You can fly into Eagle (EGE) or don't mind a longer drive"]
+  b_if: ["You want a shorter drive from Denver", "A real town with restaurants and bars on Main Street matters more than a resort village", "You like high alpine terrain above treeline"]
+
+- slug: vail-vs-beaver-creek
+  a: vail
+  b: beaver-creek
+  verdict: The two are about 20 minutes apart. Vail is bigger and busier with more nightlife; Beaver Creek is quieter, more polished, and easier with kids.
+  a_if: ["You want the most terrain and the Back Bowls", "You want après and nightlife in the village", "You like a busier scene"]
+  b_if: ["You want shorter lift lines and immaculate grooming", "You're skiing with kids or want an easy, relaxed trip", "Afternoon cookies at the base sound like a good tradition"]
+
+- slug: breckenridge-vs-keystone
+  a: breckenridge
+  b: keystone
+  verdict: Breckenridge is bigger, higher and livelier, with a historic town. Keystone is calmer, often cheaper to stay at, and one of Colorado's best family resorts.
+  a_if: ["You want more terrain and high alpine bowls", "You want a walkable town with restaurants and nightlife", "Your group has strong skiers or riders"]
+  b_if: ["You're traveling with young kids", "You want a relaxed base village and gentle terrain", "You want lodging that's often easier on the budget"]
+
+- slug: park-city-vs-deer-valley
+  a: park-city
+  b: deer-valley
+  verdict: Neighbors in the same town with very different feels. Park City is huge, open to snowboarders, and has Main Street at its base; Deer Valley is skiers only, known for grooming and service.
+  a_if: ["Anyone in your group snowboards", "You want the most terrain and a mix of everything", "You want Main Street restaurants and nightlife steps from a lift"]
+  b_if: ["Everyone skis (Deer Valley doesn't allow snowboards)", "You want corduroy groomers and fewer crowds", "Upscale lodges and on-mountain dining are part of the trip"]
+
+- slug: jackson-hole-vs-big-sky
+  a: jackson-hole
+  b: big-sky
+  verdict: Both are big, steep, and remote. Jackson Hole is famous for steeps and a lively western town; Big Sky has more room to spread out and Lone Peak's tram.
+  a_if: ["You want legendary steeps like Corbet's Couloir and the aerial tram", "You want a real town (Jackson) with restaurants and nightlife", "You can fly straight into Jackson Hole Airport (JAC)"]
+  b_if: ["You want huge terrain with fewer people per run", "You like skiing off Lone Peak's summit", "You'd rather fly into Bozeman (BZN), about an hour away"]
+
+- slug: alta-vs-snowbird
+  a: alta
+  b: snowbird
+  verdict: Next-door neighbors at the top of Little Cottonwood Canyon with famously deep snow. Alta is skiers only and old-school; Snowbird has the tram, steep terrain, and allows snowboarders.
+  a_if: ["Everyone in your group skis (no snowboards at Alta)", "You want classic lodges and a laid-back, old-school feel", "You love traversing to find untracked snow"]
+  b_if: ["Anyone snowboards", "You want the aerial tram and big, steep lines", "You want slopeside hotels with more amenities"]
+
+- slug: mammoth-vs-palisades-tahoe
+  a: mammoth-mountain
+  b: palisades-tahoe
+  verdict: Mammoth is high, huge, and known for a long season, an easy drive from Southern California. Palisades Tahoe has Olympic history, steep terrain, and two connected mountains near Reno and the Bay Area.
+  a_if: ["You're coming from Southern California", "You want a high-elevation mountain and a long season", "You want lots of open, wide terrain"]
+  b_if: ["You're coming from the Bay Area or flying into Reno (RNO)", "You want steep, technical terrain", "You want to explore Lake Tahoe and other nearby resorts"]
+
+- slug: steamboat-vs-winter-park
+  a: steamboat
+  b: winter-park
+  verdict: Steamboat is a destination trip with famous tree skiing and a ranch town. Winter Park is one of the closest big resorts to Denver and a favorite for bumps at Mary Jane.
+  a_if: ["You want a destination trip with tree skiing and a real western town", "You'd rather fly into Yampa Valley (HDN) and skip I-70", "Hot springs after skiing sounds right"]
+  b_if: ["You're driving from Denver", "You love moguls (Mary Jane)", "You want a simpler, often cheaper trip"]
+
+- slug: telluride-vs-aspen
+  a: telluride
+  b: aspen-snowmass
+  verdict: Telluride is remote, dramatic and uncrowded, with a historic town in a box canyon. Aspen Snowmass offers four mountains, more lodging, and a bigger town scene.
+  a_if: ["You want quiet slopes and big scenery", "You love steep, expert terrain", "A small historic town linked by a free gondola appeals to you"]
+  b_if: ["You want four mountains for different moods and levels", "You want more restaurants, shops and nightlife", "You want more flight options into Aspen (ASE)"]
+
+- slug: whistler-vs-banff
+  a: whistler-blackcomb
+  b: banff-sunshine
+  verdict: Whistler is one giant two-mountain resort with a big village and coastal snow. Banff gives you three Rockies resorts (Sunshine, Lake Louise, Norquay), colder, drier snow, and national park scenery.
+  a_if: ["You want the most terrain at one resort", "You want a lively pedestrian village", "You're flying into Vancouver (YVR)"]
+  b_if: ["You want to ski several resorts on one trip", "You prefer drier Rockies snow and mountain-town scenery", "You're flying into Calgary (YYC)"]
+
+- slug: stowe-vs-killington
+  a: stowe
+  b: killington
+  verdict: Stowe is the classic New England ski village on Vermont's highest peak. Killington is the biggest resort in the East, with a long season and the biggest après scene.
+  a_if: ["You want a charming New England village and inns", "You want a quieter, more scenic trip", "You like classic trails on Mt. Mansfield"]
+  b_if: ["You want the most terrain in the East", "You want a lively après and nightlife scene", "You want one of the longest seasons in the region"]
+
+- slug: copper-vs-breckenridge
+  a: copper-mountain
+  b: breckenridge
+  verdict: Copper's terrain is naturally divided by ability and it's easy to get around. Breckenridge has more terrain, higher bowls, and a real town.
+  a_if: ["Your group skis at very different levels", "You want a simpler base village", "You want terrain park and progression options"]
+  b_if: ["You want a historic town with restaurants and nightlife", "You want high alpine bowls", "You want the most terrain in Summit County"]
+
+- slug: heavenly-vs-northstar
+  a: heavenly
+  b: northstar
+  verdict: Heavenly has big Lake Tahoe views and nightlife at Stateline. Northstar is a family favorite on the north side with a village and lots of groomers.
+  a_if: ["You want lake views from the slopes", "You want casinos, shows and nightlife after skiing", "You're staying in South Lake Tahoe"]
+  b_if: ["You're skiing with kids", "You want a resort village and well-groomed cruisers", "You're staying in Truckee or North Lake Tahoe"]
+
+- slug: keystone-vs-copper
+  a: keystone
+  b: copper-mountain
+  verdict: Both are Summit County resorts about 20 minutes apart. Keystone is built around families and gentle terrain; Copper splits beginner and expert terrain neatly and has strong park and progression options.
+  a_if: ["You have young kids", "You want a gondola from a lively base village", "You want lots of gentle terrain"]
+  b_if: ["Your group has a mix of levels", "You want strong terrain parks", "You want beginner and expert runs that stay out of each other's way"]
+
+- slug: park-city-vs-snowbird
+  a: park-city
+  b: snowbird
+  verdict: Park City is about a huge mountain and a great town. Snowbird is about deep snow and steep terrain in Little Cottonwood Canyon.
+  a_if: ["You want a town with restaurants and nightlife", "You want lots of groomers and variety", "You want an easy drive from Salt Lake City"]
+  b_if: ["You're chasing deep powder", "You want steep, challenging terrain and the tram", "You don't mind canyon traffic on storm days"]
+
+- slug: sun-valley-vs-jackson-hole
+  a: sun-valley
+  b: jackson-hole
+  verdict: Sun Valley is classic and sunny, famous for Bald Mountain's long, consistent pitch and the world's first chairlifts. Jackson Hole is steeper and wilder, with a bigger nightlife scene.
+  a_if: ["You love long, consistent groomers", "You want a relaxed, historic resort town", "You prefer sunny days and smaller crowds"]
+  b_if: ["You want steep, expert terrain", "You want the tram and big-mountain lines", "You want a busier western town"]
+
+- slug: crested-butte-vs-telluride
+  a: crested-butte
+  b: telluride
+  verdict: Two remote southwest Colorado favorites. Crested Butte is known for extreme terrain and a funky, colorful town; Telluride pairs steep terrain with a dramatic box canyon and a free gondola.
+  a_if: ["You want legendary extreme terrain", "You want a laid-back, colorful town", "You want a trip that feels off the beaten path"]
+  b_if: ["You want big scenery and a historic town", "You want a ski-in/ski-out Mountain Village option", "You want more upscale lodging"]
+
+- slug: sugarbush-vs-stowe
+  a: sugarbush
+  b: stowe
+  verdict: Sugarbush has two mountains in the Mad River Valley and fewer crowds. Stowe has the famous village and Vermont's highest peak.
+  a_if: ["You want quieter slopes", "You like a valley of small inns and farms", "You want two mountains to explore"]
+  b_if: ["You want a classic New England village", "You want Mt. Mansfield's terrain", "You want more lodging and dining choices"]
+
+- slug: big-sky-vs-whitefish
+  a: big-sky
+  b: whitefish-mountain
+  verdict: Big Sky is huge and dramatic, built around Lone Peak. Whitefish is relaxed and affordable, with a fun town near Glacier National Park and its famous rime-covered "snow ghost" trees.
+  a_if: ["You want the most terrain and Lone Peak's steeps", "You want ski-in/ski-out lodging", "You're flying into Bozeman (BZN)"]
+  b_if: ["You want a laid-back, more affordable trip", "You want a fun mountain town", "You're flying into Glacier Park International (FCA)"]
+
+- slug: vail-vs-park-city
+  a: vail
+  b: park-city
+  verdict: Two of the biggest resorts in the country. Vail has the Back Bowls and a European-style village; Park City has a historic main street and a short drive from Salt Lake City's airport.
+  a_if: ["You want the Back Bowls and Blue Sky Basin", "You want a polished resort village", "You're driving from Denver or flying into Eagle (EGE)"]
+  b_if: ["You want the easiest airport-to-slopes trip", "You want a historic town with nightlife", "You want to add a day at other Utah resorts nearby"]
+
+- slug: arapahoe-basin-vs-loveland
+  a: arapahoe-basin
+  b: loveland
+  verdict: Both are high, local favorites on the Continental Divide, an easy drive from Denver. A-Basin is steeper with a famous parking-lot tailgate scene; Loveland is simpler, often cheaper, and right off I-70.
+  a_if: ["You want steep, high-alpine terrain", "Tailgating at the Beach sounds like a great afternoon", "You want one of Colorado's longest seasons"]
+  b_if: ["You want an easy, budget-friendly day trip", "You want quick access right off I-70", "You're skiing with beginners or kids"]
+
+- slug: brighton-vs-solitude
+  a: brighton
+  b: solitude
+  verdict: Neighbors at the top of Big Cottonwood Canyon. Brighton is a snowboard and park favorite with night skiing; Solitude is quieter with a small village and big bowls.
+  a_if: ["You snowboard or love terrain parks", "You want night skiing", "You want a casual, local vibe"]
+  b_if: ["You want quieter slopes", "You want a small slopeside village", "You want bowls like Honeycomb Canyon"]
+
+- slug: winter-park-vs-copper
+  a: winter-park
+  b: copper-mountain
+  verdict: Two big resorts near Denver. Winter Park is known for Mary Jane's bumps and a relaxed town; Copper has neatly divided terrain and strong park options in Summit County.
+  a_if: ["You love moguls", "You want a route that avoids the busiest stretch of I-70", "You want a relaxed town base"]
+  b_if: ["Your group skis at different levels", "You want to visit other Summit County resorts", "You want strong terrain parks"]
+
+- slug: killington-vs-okemo
+  a: killington
+  b: okemo
+  verdict: Killington is the East's biggest resort with a big après scene. Okemo is a family favorite known for grooming and an easygoing feel.
+  a_if: ["You want the most terrain and variety", "You want nightlife", "You want a long season"]
+  b_if: ["You're skiing with kids", "You love groomed cruisers", "You want a quieter, family-friendly trip"]
+
+- slug: sunday-river-vs-sugarloaf
+  a: sunday-river
+  b: sugarloaf
+  verdict: Maine's two biggest resorts. Sunday River spreads across several peaks and is closer to Portland and Boston; Sugarloaf is more remote, with big, above-treeline snowfields.
+  a_if: ["You want a shorter drive", "You want lots of groomers across several peaks", "You're skiing with kids"]
+  b_if: ["You want above-treeline terrain rare in the East", "You want a ski-in/ski-out village", "You don't mind a longer drive"]
+
+- slug: breckenridge-vs-steamboat
+  a: breckenridge
+  b: steamboat
+  verdict: Breckenridge is high, lively and close to Denver. Steamboat is a destination trip known for tree skiing, a ranch town, and its own airport.
+  a_if: ["You want a shorter drive from Denver", "You want high alpine terrain", "You want a busy Main Street"]
+  b_if: ["You want famous tree skiing", "You'd rather fly into Yampa Valley (HDN)", "You want a laid-back western town"]
+
+- slug: steamboat-vs-vail
+  a: steamboat
+  b: vail
+  verdict: Steamboat is a relaxed western destination with great tree skiing. Vail is bigger, with the Back Bowls and a polished resort village.
+  a_if: ["You love tree skiing", "You want a real ranch town and hot springs", "You want a more laid-back trip"]
+  b_if: ["You want the biggest terrain and bowls", "You want a European-style village", "You want more lodging and dining at the base"]

@@ -142,6 +142,15 @@ class Guide
     { slug: "colorado-ski-resorts-for-families", title: "Best Colorado Ski Resorts for Families (and Kids)",
       description: "The best Colorado ski resorts for families: Keystone, Beaver Creek, Snowmass, Steamboat and more, plus cheaper small hills, I-70 and altitude tips.",
       keyword: "best family ski resorts in colorado" },
+    { slug: "utah-ski-resorts-for-families", title: "Best Utah Ski Resorts for Families (and Kids)",
+      description: "Utah family ski resorts ranked: Park City, Deer Valley, Snowbasin, Solitude, Brighton and Alta, plus budget picks, canyon traffic and skier-only tips.",
+      keyword: "best family ski resorts in utah" },
+    { slug: "california-ski-resorts-for-families", title: "Best California Ski Resorts for Families (and Kids)",
+      description: "California family ski resorts ranked: Northstar, Mammoth, Palisades Tahoe, Heavenly and more, plus budget picks near LA and chain control tips.",
+      keyword: "best family ski resorts in california" },
+    { slug: "vermont-ski-resorts-for-families", title: "Best Vermont Ski Resorts for Families (and Kids)",
+      description: "Vermont family ski resorts ranked: Smugglers' Notch, Okemo, Stratton, Jay Peak, Stowe and Killington, plus budget picks and cold-weather tips.",
+      keyword: "best family ski resorts in vermont" },
     { slug: "kids-ski-gear", title: "Kids' Ski Gear: What to Buy, What to Rent, and Sizing",
       description: "Kids' ski and snowboard gear guide: helmets, goggles, layers, mittens, boots and skis, seasonal leases, and how to size gear that kids outgrow fast.",
       keyword: "kids ski gear", affiliate: true },
@@ -219,6 +228,27 @@ class Guide
 
   def partial
     "guides/#{slug.underscore}"
+  end
+
+  DATES_FILE = Rails.root.join("db/guide_dates.yml")
+
+  def self.dates
+    @dates = nil if Rails.env.development?
+    @dates ||= File.exist?(DATES_FILE) ? YAML.load_file(DATES_FILE) : {}
+  end
+
+  def published_on
+    Date.parse(self.class.dates.dig(slug, "published") || "2026-11-05")
+  end
+
+  def updated_on
+    Date.parse(self.class.dates.dig(slug, "updated") || published_on.iso8601)
+  end
+
+  # Guides that share a topic with this one, closest topic first.
+  def related(limit: 8)
+    GuideTopic.all.select { |t| t.guide_slugs.include?(slug) }.flat_map(&:guide_slugs).uniq
+      .reject { |s| s == slug }.first(limit).filter_map { |s| Guide.all.find { |g| g.slug == s } }
   end
 
   CATEGORIES = { "how-to" => "How-to guides", "comparison" => "Comparisons", "gear" => "Gear: how to choose" }.freeze

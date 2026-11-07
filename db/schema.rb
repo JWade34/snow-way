@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_203446) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_07_200000) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -18,6 +18,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_203446) do
     t.datetime "created_at", null: false
     t.index ["created_at"], name: "index_affiliate_clicks_on_created_at"
     t.index ["page_path", "created_at"], name: "index_affiliate_clicks_on_page_path_and_created_at"
+  end
+
+  create_table "ai_citation_checks", force: :cascade do |t|
+    t.date "checked_on", null: false
+    t.string "engine", null: false
+    t.string "query", null: false
+    t.boolean "cited", default: false, null: false
+    t.boolean "mentioned", default: false, null: false
+    t.json "snowway_urls", default: []
+    t.json "sources", default: []
+    t.text "answer_excerpt"
+    t.string "error"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checked_on", "engine", "query"], name: "index_ai_citation_checks_on_checked_on_and_engine_and_query", unique: true
+  end
+
+  create_table "ai_referrals", force: :cascade do |t|
+    t.date "visited_on", null: false
+    t.string "source", null: false
+    t.string "path", null: false
+    t.integer "visits", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["visited_on", "source", "path"], name: "index_ai_referrals_on_visited_on_and_source_and_path", unique: true
   end
 
   create_table "gear_items", force: :cascade do |t|

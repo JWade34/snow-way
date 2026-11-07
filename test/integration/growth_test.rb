@@ -129,4 +129,25 @@ class GrowthTest < ActionDispatch::IntegrationTest
     SocialPublishJob.perform_now
     assert_equal "queued", SocialPost.last.status
   end
+
+  test "AI referrals are counted by source and shown in admin" do
+    get "/resorts/vail", headers: { "HTTP_REFERER" => "https://chatgpt.com/" }
+    get "/resorts/vail?utm_source=chatgpt.com"
+    get "/resorts/vail", headers: { "HTTP_REFERER" => "https://www.perplexity.ai/search?q=x" }
+    get "/resorts/vail", headers: { "HTTP_REFERER" => "https://www.google.com/" }
+    assert_equal({ "chatgpt" => 2, "perplexity" => 1 }, AiReferral.totals_by_source)
+    get "/admin/ai", headers: @auth
+    assert_response :success
+    assert_select "h1", "AI visibility"
+  end
+
+  test "AI citation check records whether snowway.app is cited" do
+    AiCitations.record("perplexity", "vail snow forecast", Date.current) { { text: "Snow Way says 10 inches", sources: [ "https://snowway.app/resorts/vail", "https://www.opensnow.com/x" ] } }
+    AiCitations.record("perplexity", "aspen vs vail", Date.current) { raise "HTTP 401" }
+    checks = AiCitationCheck.latest_run.to_a
+    assert_equal 50, AiCitationCheck.rate(checks.select(&:cited) + checks.reject(&:cited).reject(&:error) + [ AiCitationCheck.new(cited: false) ])
+    assert checks.find(&:cited).mentioned
+    assert_equal({ "opensnow.com" => 1 }, AiCitationCheck.competitors(checks))
+    assert_nothing_raised { AiCitationJob.perform_now }
+  end
 end

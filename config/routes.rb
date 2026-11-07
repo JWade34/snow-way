@@ -4,11 +4,15 @@ Rails.application.routes.draw do
   resources :resorts, only: [ :index, :show ] do
     get "best-time-to-ski", on: :member, to: "resorts#best_time", as: :best_time
     get "where-to-stay", on: :member, to: "resorts#where_to_stay", as: :where_to_stay
+    get "lift-tickets", on: :member, to: "resorts#lift_tickets", as: :lift_tickets
   end
   resources :weather, only: [ :index ]
 
   get "where-is-it-snowing" => "pages#where_is_it_snowing", as: :where_is_it_snowing
   get "ikon-vs-epic" => "pages#ikon_vs_epic", as: :ikon_vs_epic
+  get "compare" => "comparisons#index", as: :comparisons
+  get "compare/:id" => "comparisons#show", as: :comparison
+  get "snowiest-ski-resorts" => "pages#snowiest", as: :snowiest_resorts
   get "epic-pass-resorts" => "pages#pass_resorts", defaults: { pass: "epic" }, as: :epic_pass_resorts
   get "ikon-pass-resorts" => "pages#pass_resorts", defaults: { pass: "ikon" }, as: :ikon_pass_resorts
   get "indy-pass-resorts" => "pages#pass_resorts", defaults: { pass: "indy" }, as: :indy_pass_resorts
@@ -36,10 +40,12 @@ Rails.application.routes.draw do
 
   get "widget" => "embeds#widget", as: :widget
   get "embed/powder-rankings" => "embeds#powder_rankings", as: :embed_powder_rankings
+  get "embed/resorts/:id" => "embeds#resort", as: :embed_resort
   get "og/resorts/:id.png" => "og_images#resort", as: :resort_og_image
   get "social/:kind.png" => "og_images#social", as: :social_card, constraints: { kind: /report|brand|calendar|tip/ }
 
   get "sitemap.xml" => "sitemaps#index", defaults: { format: :xml }
+  get "feed.xml" => "feeds#show", as: :feed
   get "llms.txt" => "llms#index", defaults: { format: :text }
   get "llms-full.txt" => "llms#full", defaults: { format: :text }
   get "#{IndexNow::KEY}.txt" => ->(_env) { [ 200, { "content-type" => "text/plain" }, [ IndexNow::KEY ] ] }
@@ -50,6 +56,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboard#show"
     get "growth" => "growth#show", as: :growth
+    get "ai" => "ai#show", as: :ai
     get "loop.json" => "loop#show", as: :loop, defaults: { format: :json }
     resources :changes, only: [ :index ] do
       member do

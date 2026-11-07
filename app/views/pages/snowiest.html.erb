@@ -1,0 +1,88 @@
+<% today = Date.current.strftime("%B %-d, %Y") %>
+<% top = @ranked.first %>
+<% us = @ranked.select { |r, _| r.country == "USA" } %>
+<% by_state = @ranked.group_by { |r, _| r.state_province }.transform_values(&:first) %>
+<% leader = @week.first %>
+<% faqs = [] %>
+<% if top %>
+  <% faqs << { question: "What is the snowiest ski resort in North America?", answer: "#{top[0].name} in #{top[0].state_province} reports the most snow of any resort Snow Way tracks, about #{top[1]["inches"]} inches a year on average. #{@ranked[1..2].map { |r, d| "#{r.name} (#{d["inches"]}\")" }.to_sentence} are next." } %>
+  <% faqs << { question: "What is the snowiest ski resort in the United States?", answer: "#{us.first[0].name}, #{us.first[0].state_province}, with a resort-reported average of about #{us.first[1]["inches"]} inches of snow a year." } if us.any? && us.first != top %>
+  <% %w[Colorado Utah California Washington Vermont Wyoming Montana British\ Columbia].each do |state| %>
+    <% r, d = by_state[state] %>
+    <% next unless r %>
+    <% faqs << { question: "What is the snowiest ski resort in #{state}?", answer: "#{r.name} reports the most snow in #{state}: about #{d["inches"]} inches a year on average." } %>
+  <% end %>
+<% end %>
+<% faqs.insert([ faqs.size, 1 ].min, { question: "Which ski resort is getting the most snow this week?", answer: leader && @totals[leader.id].to_f > 0 ? "As of #{today}, #{leader.name} leads North America with #{inches(@totals[leader.id])} of snow forecast over the next 7 days, followed by #{@week[1..2].map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}." : "As of #{today}, no North American resort has significant new snow in its 7-day forecast." }) %>
+<% content_for(:title, "Snowiest Ski Resorts in North America, Ranked | Snow Way") %>
+<% content_for(:description, "The snowiest ski resorts in the US and Canada ranked by resort-reported average annual snowfall, with sources, plus where it's snowing most this week.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Dataset", "name" => "Snowiest ski resorts in North America by average annual snowfall", "url" => absolute_url(snowiest_resorts_path),
+          "description" => "Resort-reported average annual snowfall for North American ski resorts, each with a cited source, compiled by Snow Way.",
+          "creator" => { "@id" => "https://snowway.app/#organization" }, "license" => "https://creativecommons.org/licenses/by/4.0/",
+          "dateModified" => (AverageSnowfall.checked_on || Date.current).to_s, "isAccessibleForFree" => true,
+          "variableMeasured" => "Average annual snowfall (inches)" },
+        breadcrumb_schema([ [ "Snowiest Ski Resorts", nil ] ]),
+        ({ "@type" => "ItemList", "name" => "Snowiest ski resorts in North America", "numberOfItems" => @ranked.size,
+           "itemListElement" => @ranked.first(25).each_with_index.map { |(r, _), i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url(resort_path(r)) } } } if @ranked.any?),
+        faq_schema(faqs)
+      ].compact }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Snowiest Ski Resorts", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Snowiest ski resorts in North America</h1>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= (faqs.first(2).map { |f| f[:answer] }).join(" ") %></p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-2">Most snow this week</h2>
+    <p class="text-slate-400 text-sm mb-4">7-day mid-mountain forecast, updated <%= updated_label(@updated_at) %>.</p>
+    <ol class="space-y-2 mb-10">
+      <% @week.each_with_index do |r, i| %>
+        <li><%= link_to resort_path(r), class: "flex items-center justify-between bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-4 py-3 transition" do %><span><span class="text-slate-400 mr-2"><%= i + 1 %>.</span><span class="font-semibold"><%= r.name %></span> <span class="text-slate-400 text-sm"><%= r.state_province %></span></span><span class="text-cyan-300 font-bold"><%= inches(@totals[r.id]) %></span><% end %></li>
+      <% end %>
+    </ol>
+
+    <% if @ranked.any? %>
+      <h2 class="text-xl font-bold mb-2">Snowiest resorts by average annual snowfall</h2>
+      <p class="text-slate-400 text-sm mb-4">Resort-reported averages, each linked to its source. Resorts measure in different places (often mid-mountain or summit), so treat close numbers as a tie.</p>
+      <div class="overflow-x-auto border border-slate-700 rounded-xl mb-3">
+        <table class="w-full text-sm">
+          <caption class="sr-only">North American ski resorts ranked by average annual snowfall</caption>
+          <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">#</th><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">State/province</th><th scope="col" class="px-3 py-2">Avg snowfall</th><th scope="col" class="px-3 py-2">Source</th></tr></thead>
+          <tbody class="divide-y divide-slate-800">
+            <% @ranked.each_with_index do |(r, d), i| %>
+              <tr><td class="px-3 py-2 text-slate-400"><%= i + 1 %></td><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300" %></th><td class="px-3 py-2 text-slate-300"><%= r.state_province %></td><td class="px-3 py-2 font-bold text-cyan-300"><%= d["inches"] %>"<% if d["note"].present? %> <span class="text-slate-400 font-normal text-xs">(<%= d["note"] %>)</span><% end %></td><td class="px-3 py-2"><%= link_to d["publisher"].presence || "Source", d["source"], rel: "nofollow noopener", target: "_blank", class: "text-cyan-300 underline underline-offset-2 text-xs" %></td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-400 text-xs mb-10">Sources checked <%= AverageSnowfall.checked_on %>. Free to cite with a link to snowway.app/snowiest-ski-resorts.</p>
+
+      <h2 class="text-xl font-bold mb-3">Snowiest ski resort in each state and province</h2>
+      <ul class="grid sm:grid-cols-2 gap-2 mb-10 text-sm">
+        <% by_state.sort_by { |_, (_, d)| -d["inches"].to_i }.each do |state, (r, d)| %>
+          <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2 flex justify-between"><span><span class="text-slate-400"><%= state %>:</span> <%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %></span><span class="text-cyan-300 font-bold"><%= d["inches"] %>"</span></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">Why some resorts get so much more snow</h2>
+    <div class="guide mb-10">
+      <ul>
+        <li><strong>Moisture from the ocean.</strong> Coastal ranges like the Cascades and Coast Mountains catch storms straight off the Pacific, so they pile up the biggest totals, though the snow is often heavier.</li>
+        <li><strong>Lake-effect and orographic lift.</strong> Utah's Wasatch squeezes moisture out of storms crossing the Great Basin, and Great Lakes resorts get lake-effect bands.</li>
+        <li><strong>Elevation and aspect.</strong> Higher, north-facing terrain keeps snow cold and holds it longer.</li>
+        <li><strong>Timing matters as much as totals.</strong> Each resort's "best time to ski" page shows its snowiest months, and the free <%= link_to "Powder Calendar", powder_calendar_path %> puts every resort's best month on one page.</li>
+      </ul>
+    </div>
+
+    <%= render "shared/calendar_cta" %>
+    <%= render "shared/faq", faqs: faqs, heading: "Snowiest ski resorts FAQ" %>
+    <p class="text-sm text-slate-400"><%= link_to "Where is it snowing right now", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Weekly powder report", powder_report_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Compare resorts", comparisons_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+  </main>
+</div>

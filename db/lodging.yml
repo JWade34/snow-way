@@ -190,3 +190,185 @@ mont-tremblant:
     - { name: "Tremblant pedestrian village", search: "Tremblant Pedestrian Village, Mont-Tremblant, Quebec", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out, restaurants, and après", note: "The colorful car-free village at the base, with the gondola and most dining." }
     - { name: "Lac Tremblant area", search: "Lac Tremblant, Mont-Tremblant, Quebec", access: shuttle, price: "$$", best_for: "Condos and families", note: "Condo complexes near the lake and the base, many with shuttles to the village." }
     - { name: "Town of Mont-Tremblant", search: "Mont-Tremblant, Quebec", access: drive, price: "$", best_for: "Lowest prices and local restaurants", note: "The town center (Saint-Jovite), about 15 minutes from the ski area." }
+
+crested-butte:
+  summary: Stay in Mount Crested Butte for slopeside lodging at the base, in the historic town of Crested Butte about 3 miles away with the free Mountain Express bus, or in Gunnison for the lowest prices.
+  areas:
+    - { name: "Mount Crested Butte base area", search: "Mount Crested Butte, Colorado", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and first chair", note: "Hotels and condos around Mountaineer Square at the base of the lifts. Quieter at night than town." }
+    - { name: "Town of Crested Butte", search: "Crested Butte, Colorado", access: shuttle, price: "$$$", best_for: "Restaurants, bars, and a colorful old mining town", note: "About 3 miles below the ski area. The free Mountain Express bus runs between town and Mountaineer Square all winter." }
+    - { name: "Gunnison", search: "Gunnison, Colorado", access: drive, price: "$$", best_for: "Lowest prices and the closest airport", note: "About 30 miles south, near Gunnison-Crested Butte Regional Airport. Regional RTA buses run up the valley to Crested Butte." }
+
+mt-bachelor:
+  summary: Mt. Bachelor has no slopeside lodging, so stay on Bend's west side for the shortest drive, in downtown Bend for restaurants and breweries, or in Sunriver for a resort-style base about 18 miles from the lifts.
+  areas:
+    - { name: "West Bend and Century Drive", search: "Bend, Oregon", access: drive, price: "$$$", best_for: "The shortest drive to the mountain", note: "Neighborhoods and rentals on the road out of town toward the mountain. The resort is about 22 miles from downtown Bend, and a winter shuttle runs from a park-and-ride in Bend." }
+    - { name: "Downtown Bend and the Old Mill District", search: "Downtown Bend, Oregon", access: drive, price: "$$", best_for: "Restaurants, breweries, and nightlife", note: "The busiest part of town for food and après. Plan on a 30 to 40 minute drive to the lifts." }
+    - { name: "Sunriver", search: "Sunriver, Oregon", access: drive, price: "$$", best_for: "Families and vacation homes with a kitchen", note: "A resort community south of Bend, about 18 miles from Mt. Bachelor. Lots of rental homes and condos." }
+
+revelstoke:
+  summary: Stay in the base village at Revelstoke Mountain Resort for ski-in/ski-out, or in downtown Revelstoke about 6 km away for more restaurants and lower prices, with a resort shuttle to the gondola.
+  areas:
+    - { name: "Revelstoke Mountain Resort base village", search: "Revelstoke Mountain Resort, Revelstoke, British Columbia", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and first gondola", note: "Hotels and condos right at the base of the gondola. A small village, so most dining is in town." }
+    - { name: "Downtown Revelstoke", search: "Revelstoke, British Columbia", access: shuttle, price: "$$", best_for: "Restaurants, breweries, and a real mountain town", note: "About 6 km from the base. A resort shuttle runs between downtown and the mountain daily in winter, or it's about a 10 to 15 minute drive." }
+    - { name: "Arrow Heights", search: "Arrow Heights, Revelstoke, British Columbia", access: drive, price: "$$", best_for: "Rentals and houses for groups", note: "A residential neighborhood between downtown and the resort. Mostly vacation rentals, a short drive to the lifts." }
+
+sugarbush:
+  summary: Stay slopeside at Lincoln Peak, in condos along the Sugarbush Access Road, or in the villages of Warren and Waitsfield for classic Vermont inns. The free Mad Bus connects much of the Mad River Valley in winter.
+  areas:
+    - { name: "Lincoln Peak base", search: "Sugarbush Resort, Warren, Vermont", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and the main base", note: "Lodging at Sugarbush's main base area, with the ski school and most on-mountain dining." }
+    - { name: "Sugarbush Access Road", search: "Sugarbush Access Road, Warren, Vermont", access: shuttle, price: "$$$", best_for: "Condos and inns close to the lifts", note: "Condos and lodges along the road up to Lincoln Peak, with restaurants and après spots. The free Mad Bus serves the Access Road in winter." }
+    - { name: "Warren village", search: "Warren, Vermont", access: drive, price: "$$", best_for: "A quiet, classic Vermont village", note: "A small village a few minutes' drive below the resort, with a general store and a handful of inns." }
+    - { name: "Waitsfield", search: "Waitsfield, Vermont", access: shuttle, price: "$$", best_for: "Restaurants, shops, and lower prices", note: "The valley's main village on Route 100. The free Mad Bus links Waitsfield with Lincoln Peak in winter, and Mount Ellen is a short drive." }
+
+sunday-river:
+  summary: Stay slopeside at South Ridge or Jordan Bowl, in condos and inns along Sunday River Road, or in the town of Bethel about 6 miles away for New England charm and lower prices.
+  areas:
+    - { name: "South Ridge and the main base", search: "Sunday River, Newry, Maine", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out, ski school, and après", note: "Slopeside hotels and condos at the busiest base area, close to beginner terrain and the main lodge." }
+    - { name: "Jordan Bowl", search: "Jordan Bowl, Newry, Maine", access: slopeside, price: "$$$", best_for: "A quieter slopeside stay on the far end of the resort", note: "Slopeside lodging at the far end of Sunday River's eight peaks. Fewer crowds, but a long way from the main base." }
+    - { name: "Sunday River Road", search: "Newry, Maine", access: shuttle, price: "$$", best_for: "Condos and inns close to the mountain", note: "Condos and inns along the access road. Sunday River runs a complimentary guest shuttle around the resort, and many lodges run their own." }
+    - { name: "Bethel", search: "Bethel, Maine", access: drive, price: "$", best_for: "Lowest prices and a classic Maine town", note: "About 6 miles from the resort, with inns, motels, restaurants and a grocery store. Plan to drive in each day." }
+
+snowshoe:
+  summary: Stay in the Village at Snowshoe at the top of the mountain for walk-to-lift lodging and the most restaurants, in slopeside condos around the resort with a free shuttle, or down the mountain in Slatyfork or Marlinton for cabins and lower prices.
+  areas:
+    - { name: "The Village at Snowshoe", search: "Village at Snowshoe, Snowshoe, West Virginia", access: walk, price: "$$$$", best_for: "Restaurants, après, and walking to the lifts", note: "Snowshoe's village sits at the top of the mountain, so most runs start right from the village. Most dining and nightlife on the mountain is here." }
+    - { name: "Mountain condos and lodges", search: "Snowshoe, West Virginia", access: shuttle, price: "$$$", best_for: "Families who want a kitchen", note: "Condo complexes spread around the resort, some slopeside. Snowshoe runs a free daily shuttle around the mountain." }
+    - { name: "Slatyfork", search: "Slatyfork, West Virginia", access: drive, price: "$$", best_for: "Cabins and rentals at the base of the mountain", note: "The small community at the foot of the mountain road, with groceries and vacation rentals. Expect a steep drive up to the village." }
+    - { name: "Marlinton", search: "Marlinton, West Virginia", access: drive, price: "$", best_for: "Lowest prices", note: "A small town about 30 minutes away with inns and motels." }
+
+okemo:
+  summary: Stay slopeside at Jackson Gore or near the main base and Solitude Village, or in the village of Ludlow at the foot of the mountain for restaurants and lower prices.
+  areas:
+    - { name: "Jackson Gore", search: "Jackson Gore, Ludlow, Vermont", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and families", note: "Okemo's newer base area, with slopeside lodging and its own lifts and ski school." }
+    - { name: "Main base and Solitude Village", search: "Okemo Mountain, Ludlow, Vermont", access: slopeside, price: "$$$", best_for: "Slopeside condos at the original base", note: "Condos at and above the main base area, many ski-in/ski-out." }
+    - { name: "Ludlow village", search: "Ludlow, Vermont", access: drive, price: "$$", best_for: "Restaurants, inns, and lower prices", note: "The small town just below the mountain, a few minutes' drive from the main base." }
+
+mount-snow:
+  summary: Stay slopeside at the Mount Snow base area, in condos and inns along Route 100 in West Dover, or in Wilmington for a classic Vermont village. The free MOOver bus runs the whole corridor.
+  areas:
+    - { name: "Mount Snow base area", search: "Mount Snow, West Dover, Vermont", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and the main lodge", note: "Slopeside hotels and condos at the main base, close to beginner terrain and après." }
+    - { name: "West Dover and Route 100", search: "West Dover, Vermont", access: shuttle, price: "$$", best_for: "Condos, inns, and families", note: "Lodging along Route 100 just below the mountain. The free MOOver bus runs between West Dover and Wilmington and around the base area in winter." }
+    - { name: "Wilmington", search: "Wilmington, Vermont", access: shuttle, price: "$$", best_for: "Restaurants, shops, and a classic Vermont village", note: "About 15 to 20 minutes south on Route 100. Ride the free MOOver or drive to the base." }
+
+stratton:
+  summary: Stay in Stratton Village at the base for ski-in/ski-out and car-free days, in condos and homes around the mountain with the resort shuttle, or in Bondville or Manchester for lower prices and more to do off the slopes.
+  areas:
+    - { name: "Stratton Village", search: "Stratton Mountain, Vermont", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out, après, and a pedestrian village", note: "The base village with shops, restaurants and the gondola, all within a short walk." }
+    - { name: "Stratton Mountain condos and homes", search: "Stratton Mountain, Vermont", access: shuttle, price: "$$$", best_for: "Families and groups who want space", note: "Condo complexes and rental homes spread around the resort. Stratton runs winter shuttles between the lodging areas and the village." }
+    - { name: "Bondville and Jamaica", search: "Bondville, Vermont", access: drive, price: "$$", best_for: "Inns and rentals at lower prices", note: "Small villages on Route 30 near the bottom of the Stratton access road, a short drive to the base." }
+    - { name: "Manchester", search: "Manchester, Vermont", access: drive, price: "$$", best_for: "Restaurants, outlet shopping, and a classic New England town", note: "About a 30-minute drive. More hotels and dining, and close to Bromley for a second ski day." }
+
+loon-mountain:
+  summary: Stay at The Mountain Club on Loon, the only slopeside lodging, in the town of Lincoln just down the Kancamagus Highway for condos and restaurants, or in North Woodstock for lower prices.
+  areas:
+    - { name: "The Mountain Club on Loon", search: "Mountain Club on Loon, Lincoln, New Hampshire", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out", note: "The only slopeside lodging at Loon, a resort hotel right at the base." }
+    - { name: "Lincoln", search: "Lincoln, New Hampshire", access: drive, price: "$$", best_for: "Condos, restaurants, and families", note: "The town at the foot of Loon on the Kancamagus Highway, with most of the area's condos and hotels a few minutes from the lifts." }
+    - { name: "North Woodstock", search: "North Woodstock, New Hampshire", access: drive, price: "$", best_for: "Lowest prices and small inns", note: "A small village next door to Lincoln, close to Franconia Notch and Cannon Mountain." }
+
+sugarloaf:
+  summary: Stay slopeside in Sugarloaf's base village, in condos around the mountain served by the Sugarloaf Explorer shuttle, or in Kingfield about 20 minutes away for lower prices.
+  areas:
+    - { name: "Sugarloaf base village", search: "Sugarloaf, Carrabassett Valley, Maine", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and après", note: "Hotels and condos at the base, with restaurants and bars a short walk from the lifts." }
+    - { name: "Mountainside condos", search: "Carrabassett Valley, Maine", access: shuttle, price: "$$", best_for: "Families who want a kitchen", note: "Condo clusters spread across the mountain, many ski-in/ski-out. The Sugarloaf Explorer shuttle serves the condos and lodging around the resort." }
+    - { name: "Carrabassett Valley along Route 27", search: "Carrabassett Valley, Maine", access: drive, price: "$$", best_for: "Rentals and inns below the mountain", note: "Lodging along the valley road below the resort, a short drive to the base." }
+    - { name: "Kingfield", search: "Kingfield, Maine", access: drive, price: "$", best_for: "Lowest prices and a small New England town", note: "The closest town, about 15 to 20 minutes south, with inns and a few restaurants." }
+
+whitefish-mountain:
+  summary: Stay in the village at the base of Whitefish Mountain Resort for ski-in/ski-out, in downtown Whitefish about 8 miles away with the free SNOW Bus, or in Kalispell or Columbia Falls for lower prices.
+  areas:
+    - { name: "Base village at Whitefish Mountain Resort", search: "Whitefish Mountain Resort, Whitefish, Montana", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and first chair", note: "Hotels and condos at the base of the mountain, with a few restaurants and bars." }
+    - { name: "Downtown Whitefish", search: "Whitefish, Montana", access: shuttle, price: "$$", best_for: "Restaurants, breweries, and a lively ski town", note: "About 8 miles from the base. The free SNOW Bus runs between downtown and the resort every day in winter." }
+    - { name: "Kalispell and Columbia Falls", search: "Kalispell, Montana", access: drive, price: "$", best_for: "Lowest prices and chain hotels", note: "Larger towns to the south and east, near Glacier Park International Airport. Plan on a 30 to 45 minute drive." }
+
+grand-targhee:
+  summary: Stay at Grand Targhee's base village for ski-in/ski-out, in Driggs, Idaho, about 12 miles away for lower prices, or in Victor or Jackson to split time between Targhee and Jackson Hole.
+  areas:
+    - { name: "Grand Targhee base village", search: "Grand Targhee Resort, Alta, Wyoming", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and deep powder days", note: "A small cluster of slopeside lodges at the base, the only lodging on the mountain. Quiet at night." }
+    - { name: "Driggs", search: "Driggs, Idaho", access: drive, price: "$$", best_for: "Lower prices and a small-town base", note: "The closest town, about 12 miles away on the Idaho side, roughly a 20-minute drive. Ask about the resort's winter shuttle schedule." }
+    - { name: "Victor", search: "Victor, Idaho", access: drive, price: "$$", best_for: "Splitting time with Jackson Hole", note: "South of Driggs at the foot of Teton Pass, between Grand Targhee and Jackson." }
+    - { name: "Jackson", search: "Jackson, Wyoming", access: drive, price: "$$$", best_for: "Restaurants and skiing both resorts", note: "Over Teton Pass, about an hour or more each way in winter, and the pass can close in storms." }
+
+schweitzer:
+  summary: Stay in Schweitzer Village for ski-in/ski-out, in downtown Sandpoint about 11 miles away for restaurants on Lake Pend Oreille, or on the north end of town for the lowest prices.
+  areas:
+    - { name: "Schweitzer Village", search: "Schweitzer Mountain, Sandpoint, Idaho", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and first chair", note: "Lodges and condos in the village at the base of the lifts, with a handful of restaurants and bars." }
+    - { name: "Downtown Sandpoint", search: "Sandpoint, Idaho", access: shuttle, price: "$$", best_for: "Restaurants, shops, and a lake town", note: "About 11 miles from the village. SPOT buses run a winter mountain route between town and Schweitzer, or it's about a 25-minute drive." }
+    - { name: "Ponderay and north Sandpoint", search: "Ponderay, Idaho", access: drive, price: "$", best_for: "Lowest prices and chain hotels", note: "Hotels along Highway 95 at the north end of town, close to the turnoff for the mountain road." }
+
+big-white:
+  summary: Stay in Big White's car-free village for ski-in/ski-out, in condos and chalets around the mountain served by the free village shuttle, or in Kelowna about an hour away for lower prices.
+  areas:
+    - { name: "Big White Village", search: "Big White, British Columbia", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out, restaurants, and families", note: "A car-free village at mid-mountain, billed as Canada's largest ski-in/ski-out village. Most lodging puts you right on a run." }
+    - { name: "Mountain condos and chalets", search: "Big White, British Columbia", access: slopeside, price: "$$$", best_for: "Groups and longer stays with a kitchen", note: "Condos and chalets spread across the mountain, many ski-in/ski-out. A free shuttle runs around the village daily in winter." }
+    - { name: "Kelowna", search: "Kelowna, British Columbia", access: drive, price: "$$", best_for: "Lowest prices, wineries, and the airport", note: "About 56 km (35 miles) away, roughly an hour's drive up a mountain road. Airport shuttles run to the resort in ski season." }
+
+sun-peaks:
+  summary: Stay in the Sun Peaks village for ski-in/ski-out, in condos and chalets around East Village and the outer neighborhoods with the resort shuttle, or in Kamloops about 45 minutes away for lower prices.
+  areas:
+    - { name: "Sun Peaks Village", search: "Sun Peaks, British Columbia", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out, restaurants, and a pedestrian village", note: "A car-free village at the base where almost all lodging is ski-in/ski-out." }
+    - { name: "East Village and outlying chalets", search: "Sun Peaks, British Columbia", access: shuttle, price: "$$", best_for: "Chalets and rentals for families and groups", note: "Neighborhoods spread out from the main village, some slopeside. A shuttle connects the main village, East Village and the Burfield base." }
+    - { name: "Kamloops", search: "Kamloops, British Columbia", access: drive, price: "$", best_for: "Lowest prices and the closest airport", note: "About 56 km (35 miles) away, roughly a 45-minute drive." }
+
+lake-louise:
+  summary: Lake Louise has no slopeside lodging, so stay in Lake Louise village a few kilometres from the lifts, in the town of Banff about 60 km away with free ski shuttles, or in Canmore for lower prices.
+  areas:
+    - { name: "Lake Louise village", search: "Lake Louise, Alberta", access: shuttle, price: "$$$", best_for: "The shortest trip to the lifts and a quiet base", note: "A small hamlet about 3 to 5 km from the ski area. The ski resort runs free shuttles from village hotels." }
+    - { name: "Town of Banff", search: "Banff, Alberta", access: shuttle, price: "$$$", best_for: "Restaurants, nightlife, and skiing all three Banff resorts", note: "About 60 km (36 miles) east. Free ski shuttles run from Banff hotels to Lake Louise all season." }
+    - { name: "Canmore", search: "Canmore, Alberta", access: drive, price: "$$", best_for: "Lower prices and condos with kitchens", note: "Just outside the national park, about an hour's drive from Lake Louise." }
+
+fernie:
+  summary: Stay slopeside at the Fernie Alpine Resort base, in downtown Fernie about 5 km away for restaurants and bars, or along Highway 3 for the lowest prices.
+  areas:
+    - { name: "Fernie Alpine Resort base", search: "Fernie Alpine Resort, Fernie, British Columbia", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and first chair", note: "Lodges and condos at the base of the lifts, with a few restaurants and après bars." }
+    - { name: "Downtown Fernie", search: "Fernie, British Columbia", access: shuttle, price: "$$", best_for: "Restaurants, bars, and a historic mountain town", note: "About 5 km (3 miles) from the resort. A ski shuttle runs between downtown and the base in winter, or it's a short drive." }
+    - { name: "Highway 3 motels", search: "Fernie, British Columbia", access: drive, price: "$", best_for: "Lowest prices", note: "Motels and chain hotels along the highway through town, a short drive to the resort." }
+
+kicking-horse:
+  summary: Stay in the small base village at Kicking Horse for ski-in/ski-out, in the town of Golden about 14 km away for restaurants and lower prices, or in Lake Louise to combine trips.
+  areas:
+    - { name: "Kicking Horse base village", search: "Kicking Horse Mountain Resort, Golden, British Columbia", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and first gondola", note: "Lodges, condos and chalets at the base of the gondola. Only a few restaurants, so stock up in town." }
+    - { name: "Golden", search: "Golden, British Columbia", access: shuttle, price: "$$", best_for: "Restaurants, groceries, and value", note: "About 14 km below the resort. A shuttle runs between Golden and the mountain in winter, or it's about a 20-minute drive." }
+    - { name: "Lake Louise village", search: "Lake Louise, Alberta", access: drive, price: "$$$", best_for: "Combining Kicking Horse with the Banff resorts", note: "About an hour east of Golden on the Trans-Canada Highway, close to Lake Louise ski resort." }
+
+northstar:
+  summary: Stay in the Village at Northstar for ski-in/ski-out and the gondola, in condos and homes around the resort with free resort shuttles, or in Truckee or Kings Beach about 7 miles away for lower prices.
+  areas:
+    - { name: "The Village at Northstar", search: "Northstar, Truckee, California", access: slopeside, price: "$$$$", best_for: "Restaurants, the ice rink, and the gondola", note: "The pedestrian village at the base, with the gondola, shops and most of the après." }
+    - { name: "Northstar mountain neighborhoods", search: "Northstar, Truckee, California", access: shuttle, price: "$$$", best_for: "Ski-in/ski-out homes and condos for groups", note: "Condos and homes spread around the resort, many ski-in/ski-out. Free resort shuttles run to the village." }
+    - { name: "Truckee", search: "Truckee, California", access: drive, price: "$$", best_for: "Restaurants and skiing several Tahoe resorts", note: "About 7 miles north on Highway 267. TART buses run between Truckee and Northstar in winter." }
+    - { name: "Kings Beach and North Lake Tahoe", search: "Kings Beach, California", access: drive, price: "$$", best_for: "Lake views and lower prices", note: "About 7 miles south on the lakeshore. TART buses on Highway 267 connect the lake with Northstar." }
+
+kirkwood:
+  summary: Stay in Kirkwood Village for slopeside condos in a remote mountain valley, in cabins around Timber Creek and the valley, or in South Lake Tahoe about 45 minutes to an hour away for more restaurants and nightlife.
+  areas:
+    - { name: "Kirkwood Village", search: "Kirkwood, California", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and deep powder days", note: "A small base village of condos and townhomes, many within walking distance of the lifts. Few restaurants, so bring groceries." }
+    - { name: "Timber Creek and valley cabins", search: "Kirkwood, California", access: drive, price: "$$", best_for: "Cabins and rentals for groups", note: "Homes and cabins spread around the Kirkwood valley, a short drive or walk to the base areas." }
+    - { name: "South Lake Tahoe", search: "South Lake Tahoe, California", access: drive, price: "$$", best_for: "Restaurants, casinos, and splitting time with Heavenly", note: "About 45 minutes to an hour over mountain highways, and longer in storms. Check road conditions before you go." }
+
+snowbasin:
+  summary: Snowbasin has no on-mountain lodging, so stay in Huntsville about 8 miles away for the shortest drive, in Eden for condos near Powder Mountain, or in Ogden for hotels, restaurants and the lowest prices.
+  areas:
+    - { name: "Huntsville", search: "Huntsville, Utah", access: drive, price: "$$$", best_for: "The shortest drive to the lifts", note: "A small town in Ogden Valley about 8 miles from Snowbasin, mostly condos and vacation rentals." }
+    - { name: "Eden and Wolf Creek", search: "Eden, Utah", access: drive, price: "$$", best_for: "Condos and skiing both Snowbasin and Powder Mountain", note: "About 14 miles from Snowbasin at the north end of Ogden Valley, close to Powder Mountain." }
+    - { name: "Ogden", search: "Ogden, Utah", access: drive, price: "$", best_for: "Hotels, restaurants, and nightlife", note: "About 19 miles away. Historic 25th Street has the best dining and après in the area." }
+
+solitude:
+  summary: Stay in Solitude Village for ski-in/ski-out in a car-free base, or at the mouth of Big Cottonwood Canyon or in Salt Lake City for lower prices and UTA ski buses. Expect canyon traffic and occasional road closures after big storms.
+  areas:
+    - { name: "Solitude Village", search: "Solitude, Utah", access: slopeside, price: "$$$$", best_for: "Ski-in/ski-out and a quiet, car-free base", note: "A small pedestrian village at the base with a slopeside inn and condos a short walk from the lifts. Staying up the canyon means you skip the morning traffic." }
+    - { name: "Cottonwood Heights and Holladay", search: "Cottonwood Heights, Utah", access: drive, price: "$$", best_for: "Value close to the canyon", note: "Hotels and rentals near the mouth of Big Cottonwood Canyon. UTA ski buses run up the canyon to Solitude and Brighton in winter." }
+    - { name: "Salt Lake City", search: "Salt Lake City, Utah", access: drive, price: "$", best_for: "Lowest prices and skiing several Wasatch resorts", note: "About 45 minutes away without traffic, close to the airport and the other Cottonwood Canyon resorts." }
+
+purgatory:
+  summary: Stay in Purgatory Village at the base for ski-in/ski-out, in condos a couple of miles up the highway with a winter shuttle, or in Durango about 25 miles south for restaurants and lower prices.
+  areas:
+    - { name: "Purgatory Village", search: "Purgatory, Durango, Colorado", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and families", note: "Hotels and condos at the base area, with the ski school and a few restaurants. Free shuttles run between the resort's lots and lodging." }
+    - { name: "Cascade Village", search: "Cascade Village, Durango, Colorado", access: shuttle, price: "$$", best_for: "Condos with a kitchen near the mountain", note: "A condo complex about 2 miles north of the resort on Highway 550, with a winter ski shuttle to the base." }
+    - { name: "Durango", search: "Durango, Colorado", access: drive, price: "$", best_for: "Restaurants, nightlife, and a historic Western town", note: "About 25 miles south, roughly a 30 to 40 minute drive. Durango has the closest airport." }
+
+windham-mountain:
+  summary: Stay slopeside at the base of Windham Mountain, in the village of Windham a minute or two down the road, or around Hunter and Tannersville to split time with Hunter Mountain.
+  areas:
+    - { name: "Windham Mountain base", search: "Windham Mountain, Windham, New York", access: slopeside, price: "$$$", best_for: "Ski-in/ski-out and families", note: "Slopeside condos and lodging at the base of the lifts." }
+    - { name: "Windham village", search: "Windham, New York", access: drive, price: "$$", best_for: "Inns, restaurants, and a small Catskills village", note: "Main Street is a short drive from the base, with inns, B&Bs and a handful of restaurants." }
+    - { name: "Hunter and Tannersville", search: "Tannersville, New York", access: drive, price: "$$", best_for: "Skiing both Windham and Hunter Mountain", note: "About 20 minutes away, with more restaurants and rentals." }

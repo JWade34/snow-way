@@ -31,6 +31,10 @@ production:
     class: SiteChangeEvaluateJob
     queue: default
     schedule: every monday at 6am America/Denver
+  ai_citation_check:
+    class: AiCitationJob
+    queue: default
+    schedule: every sunday at 9pm America/Denver
   growth_weekly_email:
     command: "GrowthMailer.weekly.deliver_now"
     queue: default

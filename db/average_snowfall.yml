@@ -1,0 +1,155 @@
+checked_on: 2026-11-07
+resorts:
+  alyeska: { inches: 650, note: "summit figure; Wikipedia lists 512 in mid and 208 in base", source: "https://en.wikipedia.org/wiki/Alyeska_Resort", publisher: "Wikipedia" }
+  mt-baker: { inches: 641, note: null, source: "https://en.wikipedia.org/wiki/Mt._Baker_Ski_Area", publisher: "Wikipedia" }
+  alta: { inches: 545, note: null, source: "https://en.wikipedia.org/wiki/Alta_Ski_Area", publisher: "Wikipedia" }
+  timberline: { inches: 540, note: "Wikipedia states yearly snowfall of 45 ft", source: "https://en.wikipedia.org/wiki/Timberline_Lodge_ski_area", publisher: "Wikipedia" }
+  grand-targhee: { inches: 500, note: "Wikipedia: averages over 500 in", source: "https://en.wikipedia.org/wiki/Grand_Targhee_Resort", publisher: "Wikipedia" }
+  sugar-bowl: { inches: 500, note: null, source: "https://en.wikipedia.org/wiki/Sugar_Bowl_Ski_Resort", publisher: "Wikipedia" }
+  solitude: { inches: 500, note: null, source: "https://en.wikipedia.org/wiki/Solitude_Mountain_Resort", publisher: "Wikipedia" }
+  snowbird: { inches: 500, note: "Wikipedia: average, more than 500 in", source: "https://en.wikipedia.org/wiki/Snowbird,_Utah", publisher: "Wikipedia" }
+  sierra-at-tahoe: { inches: 480, note: null, source: "https://en.wikipedia.org/wiki/Sierra-at-Tahoe", publisher: "Wikipedia" }
+  whitewater: { inches: 472, note: "converted from 12 m", source: "https://en.wikipedia.org/wiki/Whitewater_Ski_Resort", publisher: "Wikipedia" }
+  mount-seymour: { inches: 472, note: "converted from 1,200 cm", source: "https://en.wikipedia.org/wiki/Mount_Seymour", publisher: "Wikipedia" }
+  mt-bachelor: { inches: 462, note: null, source: "https://en.wikipedia.org/wiki/Mount_Bachelor_ski_area", publisher: "Wikipedia" }
+  jackson-hole: { inches: 459, note: null, source: "https://en.wikipedia.org/wiki/Jackson_Hole_Mountain_Resort", publisher: "Wikipedia" }
+  stevens-pass: { inches: 450, note: null, source: "https://en.wikipedia.org/wiki/Stevens_Pass_Ski_Area", publisher: "Wikipedia" }
+  summit-at-snoqualmie: { inches: 435, note: null, source: "https://en.wikipedia.org/wiki/The_Summit_at_Snoqualmie", publisher: "Wikipedia" }
+  mt-hood-meadows: { inches: 430, note: null, source: "https://en.wikipedia.org/wiki/Mount_Hood_Meadows", publisher: "Wikipedia" }
+  wolf-creek: { inches: 430, note: null, source: "https://en.wikipedia.org/wiki/Wolf_Creek_ski_area", publisher: "Wikipedia" }
+  loveland: { inches: 422, note: null, source: "https://en.wikipedia.org/wiki/Loveland_Ski_Area", publisher: "Wikipedia" }
+  brighton: { inches: 419, note: "OnTheSnow average; Wikipedia infobox lists 700 in, which matches the 2022-23 record season, not an average", source: "https://www.onthesnow.com/utah/brighton-resort/historical-snowfall", publisher: "OnTheSnow" }
+  whistler-blackcomb: { inches: 415, note: "Wikipedia states 11.7 m/year (415 in)", source: "https://en.wikipedia.org/wiki/Whistler_Blackcomb", publisher: "Wikipedia" }
+  revelstoke: { inches: 413, note: "converted from 10.5 m", source: "https://en.wikipedia.org/wiki/Revelstoke_Mountain_Resort", publisher: "Wikipedia" }
+  beaver-mountain: { inches: 400, note: null, source: "https://en.wikipedia.org/wiki/Beaver_Mountain", publisher: "Wikipedia" }
+  lookout-pass: { inches: 400, note: "Wikipedia: average annual snowfall exceeding 400 in", source: "https://en.wikipedia.org/wiki/Lookout_Pass_Ski_and_Recreation_Area", publisher: "Wikipedia" }
+  monarch-mountain: { inches: 400, note: null, source: "https://en.wikipedia.org/wiki/Monarch_Mountain_(ski_area)", publisher: "Wikipedia" }
+  steamboat: { inches: 400, note: null, source: "https://en.wikipedia.org/wiki/Steamboat_Ski_Resort", publisher: "Wikipedia" }
+  homewood: { inches: 400, note: null, source: "https://en.wikipedia.org/wiki/Homewood_Mountain_Resort", publisher: "Wikipedia" }
+  boreal: { inches: 400, note: null, source: "https://en.wikipedia.org/wiki/Boreal_Mountain_Resort", publisher: "Wikipedia" }
+  palisades-tahoe: { inches: 400, note: "Wikipedia adds annual snowfall can surpass 500 in", source: "https://en.wikipedia.org/wiki/Palisades_Tahoe", publisher: "Wikipedia" }
+  mammoth-mountain: { inches: 400, note: null, source: "https://en.wikipedia.org/wiki/Mammoth_Mountain_Ski_Area", publisher: "Wikipedia" }
+  winter-park: { inches: 370, note: "infobox figure; article body lists 317.5 in", source: "https://en.wikipedia.org/wiki/Winter_Park_Resort", publisher: "Wikipedia" }
+  mt-ashland: { inches: 368, note: null, source: "https://en.wikipedia.org/wiki/Mount_Ashland_Ski_Area", publisher: "Wikipedia" }
+  heavenly: { inches: 360, note: null, source: "https://en.wikipedia.org/wiki/Heavenly_Mountain_Resort", publisher: "Wikipedia" }
+  hoodoo: { inches: 360, note: null, source: "https://en.wikipedia.org/wiki/Hoodoo_(ski_area)", publisher: "Wikipedia" }
+  powder-mountain: { inches: 360, note: null, source: "https://en.wikipedia.org/wiki/Powder_Mountain", publisher: "Wikipedia" }
+  brian-head: { inches: 360, note: null, source: "https://en.wikipedia.org/wiki/Brian_Head_Ski_Resort", publisher: "Wikipedia" }
+  banff-sunshine: { inches: 360, note: "converted from 914 cm", source: "https://en.wikipedia.org/wiki/Banff_Sunshine", publisher: "Wikipedia" }
+  jay-peak: { inches: 359, note: "most snowfall of any ski area in the Northeastern U.S. per Wikipedia", source: "https://en.wikipedia.org/wiki/Jay_Peak_Resort", publisher: "Wikipedia" }
+  park-city: { inches: 355, note: "infobox figure; article body lists 365 in", source: "https://en.wikipedia.org/wiki/Park_City_Mountain_Resort", publisher: "Wikipedia" }
+  breckenridge: { inches: 355, note: null, source: "https://en.wikipedia.org/wiki/Breckenridge_Ski_Resort", publisher: "Wikipedia" }
+  vail: { inches: 354, note: "infobox figure; article body also cites 360 in (30-year) and 370 in", source: "https://en.wikipedia.org/wiki/Vail_Ski_Resort", publisher: "Wikipedia" }
+  kirkwood: { inches: 354, note: "resort-cited figure in article body; infobox lists about 500 in", source: "https://en.wikipedia.org/wiki/Kirkwood_Mountain_Resort", publisher: "Wikipedia" }
+  mount-washington-alpine-resort: { inches: 354, note: "converted from 9 m", source: "https://en.wikipedia.org/wiki/Mount_Washington_Alpine_Resort", publisher: "Wikipedia" }
+  arapahoe-basin: { inches: 350, note: null, source: "https://en.wikipedia.org/wiki/Arapahoe_Basin", publisher: "Wikipedia" }
+  snowbasin: { inches: 350, note: null, source: "https://en.wikipedia.org/wiki/Snowbasin", publisher: "Wikipedia" }
+  crystal-mountain: { inches: 350, note: null, source: "https://en.wikipedia.org/wiki/Crystal_Mountain_(Washington)", publisher: "Wikipedia" }
+  white-pass: { inches: 350, note: null, source: "https://en.wikipedia.org/wiki/White_Pass_Ski_Area", publisher: "Wikipedia" }
+  northstar: { inches: 350, note: null, source: "https://en.wikipedia.org/wiki/Northstar_California", publisher: "Wikipedia" }
+  mt-rose: { inches: 350, note: null, source: "https://en.wikipedia.org/wiki/Mount_Rose_Ski_Tahoe", publisher: "Wikipedia" }
+  bridger-bowl: { inches: 350, note: null, source: "https://en.wikipedia.org/wiki/Bridger_Bowl_Ski_Area", publisher: "Wikipedia" }
+  fernie: { inches: 344, note: "converted from 875 cm", source: "https://en.wikipedia.org/wiki/Fernie_Alpine_Resort", publisher: "Wikipedia" }
+  castle-mountain: { inches: 335, note: "converted from 8.5 m", source: "https://en.wikipedia.org/wiki/Castle_Mountain_Resort", publisher: "Wikipedia" }
+  telluride: { inches: 330, note: null, source: "https://en.wikipedia.org/wiki/Telluride_Ski_Resort", publisher: "Wikipedia" }
+  beaver-creek: { inches: 323, note: null, source: "https://en.wikipedia.org/wiki/Beaver_Creek_Resort", publisher: "Wikipedia" }
+  smugglers-notch: { inches: 312, note: null, source: "https://en.wikipedia.org/wiki/Smugglers'_Notch_Resort", publisher: "Wikipedia" }
+  copper-mountain: { inches: 310, note: null, source: "https://en.wikipedia.org/wiki/Copper_Mountain_(Colorado)", publisher: "Wikipedia" }
+  49-degrees-north: { inches: 301, note: null, source: "https://en.wikipedia.org/wiki/49_Degrees_North_Ski_Area", publisher: "Wikipedia" }
+  eldora: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/Eldora_Mountain_Resort", publisher: "Wikipedia" }
+  montana-snowbowl: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/Montana_Snowbowl", publisher: "Wikipedia" }
+  china-peak: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/China_Peak", publisher: "Wikipedia" }
+  aspen-snowmass: { inches: 300, note: "Aspen Mountain figure; no Snowmass figure on Wikipedia", source: "https://en.wikipedia.org/wiki/Aspen_Mountain_(ski_area)", publisher: "Wikipedia" }
+  crested-butte: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/Crested_Butte_Mountain_Resort", publisher: "Wikipedia" }
+  taos-ski-valley: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/Taos_Ski_Valley,_New_Mexico", publisher: "Wikipedia" }
+  silver-mountain: { inches: 300, note: "infobox figure; article body lists 239 in", source: "https://en.wikipedia.org/wiki/Silver_Mountain_(Idaho)", publisher: "Wikipedia" }
+  dodge-ridge: { inches: 300, note: "Wikipedia gives a range of 300 to 500 in", source: "https://en.wikipedia.org/wiki/Dodge_Ridge_Ski_Area", publisher: "Wikipedia" }
+  brundage: { inches: 300, note: "Wikipedia gives a range of 300 to 350 in", source: "https://en.wikipedia.org/wiki/Brundage_Mountain", publisher: "Wikipedia" }
+  tamarack: { inches: 300, note: "summit of West Mountain", source: "https://en.wikipedia.org/wiki/Tamarack_Resort", publisher: "Wikipedia" }
+  whitefish-mountain: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/Whitefish_Mountain_Resort", publisher: "Wikipedia" }
+  schweitzer: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/Schweitzer_Mountain", publisher: "Wikipedia" }
+  mount-bohemia: { inches: 300, note: null, source: "https://en.wikipedia.org/wiki/Mount_Bohemia", publisher: "Wikipedia" }
+  kicking-horse: { inches: 295, note: "converted from 7.5 m; Wikipedia says 730 cm (290 in) at mid-mountain", source: "https://en.wikipedia.org/wiki/Kicking_Horse_Resort", publisher: "Wikipedia" }
+  red-mountain: { inches: 295, note: "converted from 750 cm", source: "https://en.wikipedia.org/wiki/Red_Mountain_Resort", publisher: "Wikipedia" }
+  big-white: { inches: 295, note: "converted from 750 cm", source: "https://en.wikipedia.org/wiki/Big_White_Ski_Resort", publisher: "Wikipedia" }
+  deer-valley: { inches: 294, note: "peak figure; base under 150 in", source: "https://en.wikipedia.org/wiki/Deer_Valley", publisher: "Wikipedia" }
+  silverstar: { inches: 276, note: "converted from 700 cm", source: "https://en.wikipedia.org/wiki/Silver_Star_Mountain_Resort", publisher: "Wikipedia" }
+  purgatory: { inches: 260, note: null, source: "https://en.wikipedia.org/wiki/Purgatory_Resort", publisher: "Wikipedia" }
+  arizona-snowbowl: { inches: 260, note: null, source: "https://en.wikipedia.org/wiki/Arizona_Snowbowl", publisher: "Wikipedia" }
+  le-massif: { inches: 254, note: "converted from 645 cm", source: "https://en.wikipedia.org/wiki/Le_Massif", publisher: "Wikipedia" }
+  sugarbush: { inches: 250, note: "infobox figure; article body lists 262 in", source: "https://en.wikipedia.org/wiki/Sugarbush_Resort", publisher: "Wikipedia" }
+  mad-river-glen: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/Mad_River_Glen", publisher: "Wikipedia" }
+  killington: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/Killington_Ski_Resort", publisher: "Wikipedia" }
+  mt-spokane: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/Mount_Spokane_Ski_and_Snowboard_Park", publisher: "Wikipedia" }
+  red-lodge-mountain: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/Red_Lodge_Mountain", publisher: "Wikipedia" }
+  bogus-basin: { inches: 250, note: "article body says historically 200 to 250 in", source: "https://en.wikipedia.org/wiki/Bogus_Basin", publisher: "Wikipedia" }
+  ski-cooper: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/Ski_Cooper", publisher: "Wikipedia" }
+  sunlight-mountain: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/Sunlight_Ski_Area", publisher: "Wikipedia" }
+  powderhorn: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/Powderhorn_Resort", publisher: "Wikipedia" }
+  june-mountain: { inches: 250, note: null, source: "https://en.wikipedia.org/wiki/June_Mountain_ski_area", publisher: "Wikipedia" }
+  cypress-mountain: { inches: 245, note: "converted from 622 cm", source: "https://en.wikipedia.org/wiki/Cypress_Mountain_Ski_Area", publisher: "Wikipedia" }
+  apex-mountain: { inches: 236, note: "converted from 600 cm", source: "https://en.wikipedia.org/wiki/Apex_Mountain_Resort", publisher: "Wikipedia" }
+  keystone: { inches: 230, note: null, source: "https://en.wikipedia.org/wiki/Keystone_Resort", publisher: "Wikipedia" }
+  ski-santa-fe: { inches: 225, note: "infobox figure; article body lists 325 in", source: "https://en.wikipedia.org/wiki/Ski_Santa_Fe", publisher: "Wikipedia" }
+  stowe: { inches: 224, note: "summit, per OnTheSnow cited by Wikipedia", source: "https://en.wikipedia.org/wiki/Stowe_Mountain_Resort", publisher: "Wikipedia" }
+  sun-peaks: { inches: 220, note: "converted from 559 cm", source: "https://en.wikipedia.org/wiki/Sun_Peaks_Resort", publisher: "Wikipedia" }
+  discovery: { inches: 215, note: null, source: "https://en.wikipedia.org/wiki/Discovery_Ski_Area", publisher: "Wikipedia" }
+  angel-fire: { inches: 210, note: null, source: "https://en.wikipedia.org/wiki/Angel_Fire_Resort", publisher: "Wikipedia" }
+  panorama: { inches: 205, note: "converted from 520 cm", source: "https://en.wikipedia.org/wiki/Panorama_Mountain_Resort", publisher: "Wikipedia" }
+  mission-ridge: { inches: 200, note: null, source: "https://en.wikipedia.org/wiki/Mission_Ridge_Ski_Area", publisher: "Wikipedia" }
+  sugarloaf: { inches: 200, note: "10-year average", source: "https://en.wikipedia.org/wiki/Sugarloaf_(ski_resort)", publisher: "Wikipedia" }
+  bretton-woods: { inches: 200, note: null, source: "https://en.wikipedia.org/wiki/Bretton_Woods_Mountain_Resort", publisher: "Wikipedia" }
+  wildcat-mountain: { inches: 200, note: "Wikipedia: over 200 in", source: "https://en.wikipedia.org/wiki/Wildcat_Mountain_Ski_Area", publisher: "Wikipedia" }
+  timberline-mountain: { inches: 200, note: null, source: "https://en.wikipedia.org/wiki/Timberline_Mountain", publisher: "Wikipedia" }
+  okemo: { inches: 199, note: "Wikipedia states 16.6 ft", source: "https://en.wikipedia.org/wiki/Okemo_Mountain", publisher: "Wikipedia" }
+  whiteface: { inches: 190, note: null, source: "https://en.wikipedia.org/wiki/Whiteface_Mountain", publisher: "Wikipedia" }
+  mont-sainte-anne: { inches: 187, note: "converted from 475 cm", source: "https://en.wikipedia.org/wiki/Mont-Sainte-Anne", publisher: "Wikipedia" }
+  sipapu: { inches: 185, note: null, source: "https://en.wikipedia.org/wiki/Sipapu_Ski_&_Summer_Resort", publisher: "Wikipedia" }
+  holiday-valley: { inches: 180, note: "Wikipedia states 15 ft", source: "https://en.wikipedia.org/wiki/Holiday_Valley_(ski_resort)", publisher: "Wikipedia" }
+  stratton: { inches: 180, note: null, source: "https://en.wikipedia.org/wiki/Stratton_Mountain_Resort", publisher: "Wikipedia" }
+  snowshoe: { inches: 180, note: null, source: "https://en.wikipedia.org/wiki/Snowshoe_Mountain", publisher: "Wikipedia" }
+  lake-louise: { inches: 179, note: "converted from 454 cm", source: "https://en.wikipedia.org/wiki/Lake_Louise_Ski_Resort", publisher: "Wikipedia" }
+  mont-tremblant: { inches: 178, note: "converted from 452 cm", source: "https://en.wikipedia.org/wiki/Mont_Tremblant_Resort", publisher: "Wikipedia" }
+  marmot-basin: { inches: 173, note: "converted from 440 cm", source: "https://en.wikipedia.org/wiki/Marmot_Basin", publisher: "Wikipedia" }
+  sun-valley: { inches: 164, note: "OnTheSnow figure cited by Wikipedia", source: "https://en.wikipedia.org/wiki/Sun_Valley,_Idaho", publisher: "Wikipedia" }
+  lee-canyon: { inches: 161, note: null, source: "https://en.wikipedia.org/wiki/Lee_Canyon_(ski_resort)", publisher: "Wikipedia" }
+  cannon-mountain: { inches: 160, note: null, source: "https://en.wikipedia.org/wiki/Cannon_Mountain_Ski_Area", publisher: "Wikipedia" }
+  sunday-river: { inches: 155, note: null, source: "https://en.wikipedia.org/wiki/Sunday_River_(ski_resort)", publisher: "Wikipedia" }
+  blue-mountain-ontario: { inches: 154, note: null, source: "https://en.wikipedia.org/wiki/Blue_Mountain_(ski_resort)", publisher: "Wikipedia" }
+  mount-snow: { inches: 150, note: "infobox figure; article body lists 158 in", source: "https://en.wikipedia.org/wiki/Mount_Snow", publisher: "Wikipedia" }
+  gore-mountain: { inches: 150, note: null, source: "https://en.wikipedia.org/wiki/Gore_Mountain_(ski_resort)", publisher: "Wikipedia" }
+  waterville-valley: { inches: 148, note: null, source: "https://en.wikipedia.org/wiki/Waterville_Valley_Resort", publisher: "Wikipedia" }
+  magic-mountain: { inches: 145, note: null, source: "https://en.wikipedia.org/wiki/Magic_Mountain_Ski_Area", publisher: "Wikipedia" }
+  seven-springs: { inches: 135, note: null, source: "https://en.wikipedia.org/wiki/Seven_Springs_Mountain_Resort", publisher: "Wikipedia" }
+  crystal-mountain-michigan: { inches: 132, note: null, source: "https://en.wikipedia.org/wiki/Crystal_Mountain_(Michigan)", publisher: "Wikipedia" }
+  nubs-nob: { inches: 123, note: null, source: "https://en.wikipedia.org/wiki/Nub's_Nob", publisher: "Wikipedia" }
+  greek-peak: { inches: 122, note: null, source: "https://en.wikipedia.org/wiki/Greek_Peak_Mountain_Resort", publisher: "Wikipedia" }
+  mount-st-louis-moonstone: { inches: 120, note: "Wikipedia states 305 cm (120 in)", source: "https://en.wikipedia.org/wiki/Mount_St._Louis_Moonstone", publisher: "Wikipedia" }
+  grouse-mountain: { inches: 120, note: "converted from 305 cm", source: "https://en.wikipedia.org/wiki/Grouse_Mountain", publisher: "Wikipedia" }
+  hunter-mountain: { inches: 120, note: null, source: "https://en.wikipedia.org/wiki/Hunter_Mountain_(ski_area)", publisher: "Wikipedia" }
+  gunstock: { inches: 120, note: null, source: "https://en.wikipedia.org/wiki/Gunstock_Mountain_Resort", publisher: "Wikipedia" }
+  attitash: { inches: 120, note: null, source: "https://en.wikipedia.org/wiki/Attitash_Mountain_Resort", publisher: "Wikipedia" }
+  mt-norquay: { inches: 118, note: "converted from 300 cm", source: "https://en.wikipedia.org/wiki/Mount_Norquay", publisher: "Wikipedia" }
+  canaan-valley: { inches: 117, note: "Wikipedia: more than 117 in", source: "https://en.wikipedia.org/wiki/Canaan_Valley_Resort_State_Park", publisher: "Wikipedia" }
+  lutsen-mountains: { inches: 115, note: "Wikipedia: approximately 115 in", source: "https://en.wikipedia.org/wiki/Lutsen_Mountains", publisher: "Wikipedia" }
+  jiminy-peak: { inches: 108, note: null, source: "https://en.wikipedia.org/wiki/Jiminy_Peak_(ski_area)", publisher: "Wikipedia" }
+  wachusett-mountain: { inches: 100, note: null, source: "https://en.wikipedia.org/wiki/Wachusett_Mountain_(ski_area)", publisher: "Wikipedia" }
+  mount-sunapee: { inches: 100, note: null, source: "https://en.wikipedia.org/wiki/Mount_Sunapee_Resort", publisher: "Wikipedia" }
+  snow-summit: { inches: 100, note: null, source: "https://en.wikipedia.org/wiki/Snow_Summit", publisher: "Wikipedia" }
+  bear-mountain: { inches: 100, note: null, source: "https://en.wikipedia.org/wiki/Bear_Mountain_(ski_area)", publisher: "Wikipedia" }
+  nakiska: { inches: 98, note: "converted from 250 cm", source: "https://en.wikipedia.org/wiki/Nakiska", publisher: "Wikipedia" }
+  spirit-mountain: { inches: 90, note: null, source: "https://en.wikipedia.org/wiki/Spirit_Mountain_(ski_area)", publisher: "Wikipedia" }
+  windham-mountain: { inches: 86, note: "OnTheSnow figure cited by Wikipedia", source: "https://en.wikipedia.org/wiki/Windham_Mountain_Club", publisher: "Wikipedia" }
+  mountain-creek: { inches: 65, note: "converted from 165 cm", source: "https://en.wikipedia.org/wiki/Mountain_Creek", publisher: "Wikipedia" }
+  granite-peak: { inches: 60, note: null, source: "https://en.wikipedia.org/wiki/Granite_Peak_Ski_Area", publisher: "Wikipedia" }
+  elk-mountain: { inches: 60, note: null, source: "https://en.wikipedia.org/wiki/Elk_Mountain_Ski_Area", publisher: "Wikipedia" }
+  montage-mountain: { inches: 60, note: null, source: "https://en.wikipedia.org/wiki/Montage_Mountain_Ski_Resort", publisher: "Wikipedia" }
+  camelback: { inches: 50, note: null, source: "https://en.wikipedia.org/wiki/Camelback_Mountain_Resort", publisher: "Wikipedia" }
+  cataloochee: { inches: 48, note: null, source: "https://en.wikipedia.org/wiki/Cataloochee_Ski_Area", publisher: "Wikipedia" }
+  wilmot-mountain: { inches: 48, note: null, source: "https://en.wikipedia.org/wiki/Wilmot_Mountain", publisher: "Wikipedia" }
+  mad-river-mountain: { inches: 36, note: null, source: "https://en.wikipedia.org/wiki/Mad_River_Mountain", publisher: "Wikipedia" }
+  wintergreen: { inches: 35, note: null, source: "https://en.wikipedia.org/wiki/Wintergreen_Resort", publisher: "Wikipedia" }
+  blue-mountain-pa: { inches: 33, note: null, source: "https://en.wikipedia.org/wiki/Blue_Mountain_Resort", publisher: "Wikipedia" }
+  bear-creek: { inches: 30, note: null, source: "https://en.wikipedia.org/wiki/Bear_Creek_Mountain_Resort", publisher: "Wikipedia" }
+  paoli-peaks: { inches: 25, note: null, source: "https://en.wikipedia.org/wiki/Paoli_Peaks", publisher: "Wikipedia" }
+  perfect-north-slopes: { inches: 23, note: null, source: "https://en.wikipedia.org/wiki/Perfect_North_Slopes", publisher: "Wikipedia" }

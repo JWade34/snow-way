@@ -20,6 +20,8 @@ class Admin::LoopController < Admin::BaseController
         .having("SUM(impressions) >= 5").pluck(:page, :query, Arel.sql("SUM(impressions)"), Arel.sql("SUM(clicks)"), Arel.sql("SUM(position * impressions) / SUM(impressions)"))
         .sort_by { |r| -r[2] }.first(500).map { |page, q, i, c, pos| { page: page, query: q, impressions: i, clicks: c, position: pos.to_f.round(1) } },
       query_gaps: report.query_gaps(limit: 50),
+      ai: { referrals_28d: AiReferral.totals_by_source, top_pages_28d: AiReferral.top_pages,
+            citations: AiCitationCheck.latest_run.map { |c| c.slice(:checked_on, :engine, :query, :cited, :mentioned, :snowway_urls, :error) } },
       changes: SiteChange.recent_first.limit(100).as_json(only: %i[path kind after_value reason status result applied_at evaluate_on])
     }
   end

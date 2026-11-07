@@ -1,5 +1,5 @@
 class ResortsController < ApplicationController
-  before_action :set_resort, only: [ :show, :best_time, :where_to_stay ]
+  before_action :set_resort, only: [ :show, :best_time, :where_to_stay, :lift_tickets ]
 
   def index
     @resorts = case params[:sort]
@@ -25,6 +25,11 @@ class ResortsController < ApplicationController
 
   def where_to_stay
     @lodging = Lodging.for(@resort) or raise ActiveRecord::RecordNotFound
+    @summary = ResortSummary.new(@resort)
+  end
+
+  def lift_tickets
+    @tickets = LiftTickets.for(@resort) or raise ActiveRecord::RecordNotFound
     @summary = ResortSummary.new(@resort)
   end
 

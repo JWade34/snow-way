@@ -1,6 +1,6 @@
 class EmbedsController < ApplicationController
   # The embed is meant to be framed on other sites.
-  after_action :allow_framing, only: :powder_rankings
+  after_action :allow_framing, only: [ :powder_rankings, :resort ]
 
   def widget
   end
@@ -11,6 +11,12 @@ class EmbedsController < ApplicationController
     totals = totals.slice(*Resort.north_america.ids)
     @resorts = Resort.where(id: totals.sort_by { |_, v| -v }.first(@limit).map(&:first)).to_a.sort_by { |r| -totals[r.id] }
     @totals = totals
+    render layout: "embed"
+  end
+
+  def resort
+    @resort = Resort.includes(:snow_forecasts).find_by!(slug: params[:id])
+    @summary = ResortSummary.new(@resort)
     render layout: "embed"
   end
 

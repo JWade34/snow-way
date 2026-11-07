@@ -7,7 +7,7 @@ module SitePages
   def static_paths
     %w[/ /resorts /where-is-it-snowing /ski-resorts /ikon-vs-epic /ski-resort-opening-dates /guides /widget /weather
        /snowboard-size-chart /ski-size-chart /ski-boot-size-chart /about /authors/justin-mckelvey /affiliate-disclosure
-       /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts /powder-report /powder-calendar /ski-trip-planner /ski-resorts-near-me]
+       /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts /powder-report /powder-calendar /ski-trip-planner /ski-resorts-near-me /compare /snowiest-ski-resorts]
   end
 
   def resort_paths(resorts = Resort.order(:name))
@@ -15,7 +15,12 @@ module SitePages
   end
 
   def lodging_paths(resorts = Resort.order(:name))
-    resorts.select { |r| Lodging.slugs.include?(r.slug) }.map { |r| "/resorts/#{r.slug}/where-to-stay" }
+    resorts.select { |r| Lodging.slugs.include?(r.slug) }.map { |r| "/resorts/#{r.slug}/where-to-stay" } +
+      resorts.select { |r| LiftTickets.slugs.include?(r.slug) }.map { |r| "/resorts/#{r.slug}/lift-tickets" }
+  end
+
+  def comparison_paths
+    Comparison.all.map { |c| "/compare/#{c.slug}" }
   end
 
   def region_paths
@@ -40,7 +45,7 @@ module SitePages
   end
 
   def all_paths
-    static_paths + optional_paths + resort_paths + region_paths + hub_paths + guide_paths + report_paths
+    static_paths + optional_paths + resort_paths + comparison_paths + region_paths + hub_paths + guide_paths + report_paths
   end
 
   def url(path)

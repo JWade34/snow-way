@@ -172,6 +172,10 @@
         <%= link_to "#{@resort.pass_label}: compare Ikon vs Epic →", ikon_vs_epic_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>
       <% end %>
     </p>
+    <% comparisons = Comparison.for_resort(@resort) %>
+    <% if comparisons.any? %>
+      <p class="-mt-7 mb-10 text-sm text-slate-300">Compare: <%= safe_join(comparisons.map { |x| link_to(x.title, comparison_path(x), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>
+    <% end %>
 
     <div id="gear" class="scroll-mt-6"><%= render "shared/conditions_gear", summary: @summary %></div>
 
@@ -238,8 +242,11 @@
       </p>
       <% if (map_url = Affiliate.stay22_map_url(@resort)) %>
         <h3 id="stay" class="text-lg font-bold mt-8 mb-3 scroll-mt-6">Places to stay near <%= @resort.name %></h3>
-        <% if Lodging.for(@resort) %>
-          <p class="text-sm mb-3"><%= link_to "Where to stay in #{@resort.name}: best areas compared →", where_to_stay_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+        <% if Lodging.for(@resort) || LiftTickets.for(@resort) %>
+          <p class="text-sm mb-3 flex flex-wrap gap-x-4 gap-y-1">
+            <% if Lodging.for(@resort) %><%= link_to "Where to stay in #{@resort.name}: best areas compared →", where_to_stay_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% end %>
+            <% if LiftTickets.for(@resort) %><%= link_to "#{@resort.name} lift ticket prices →", lift_tickets_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% end %>
+          </p>
         <% end %>
         <div class="relative rounded-xl border border-slate-700 bg-slate-800/40 overflow-hidden" style="height:420px">
           <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-slate-400 text-sm">
@@ -300,6 +307,9 @@
         </div>
         <% if Lodging.for(@resort) %>
           <%= link_to "Best areas to stay →", where_to_stay_resort_path(@resort), class: "block text-xs text-cyan-300 hover:text-cyan-200 mt-2" %>
+        <% end %>
+        <% if LiftTickets.for(@resort) %>
+          <%= link_to "Lift ticket prices →", lift_tickets_resort_path(@resort), class: "block text-xs text-cyan-300 hover:text-cyan-200 mt-1" %>
         <% end %>
         <%= affiliate_disclosure("Bookings may earn Snow Way a commission.", css: "mt-2") %>
       </div>

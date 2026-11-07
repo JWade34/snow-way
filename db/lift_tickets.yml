@@ -1,0 +1,313 @@
+# Sourced lift ticket prices for Snow Way "[resort] lift tickets" pages.
+# Conventions:
+# - window_high from TownLift (2026-09-04) is a reported peak-day adult price for 2026-27.
+# - window_high from SnowBrains (2026-08-19) is the adult window price for ONE date, Saturday Dec 26, 2026,
+#   collected as of Aug 16, 2026. It is a holiday-date price, not a confirmed season maximum.
+# - Official resort pages carry no publish date; their "date" is the date we read them (2026-11-07).
+# - OnTheSnow "date" is the page's own "Last Updated" stamp for the daily ticket table.
+# - No Vail Resorts-owned site was fetched; Vail-owned resorts use news coverage only.
+checked_on: 2026-11-07
+resorts:
+  vail:
+    season: "2026-27"
+    window_low: null
+    window_high: 374
+    note: "Reported top (peak-day) adult rate for 2026-27 is $374. Vail Resorts uses dynamic pricing. In Dec 2025 Vail Resorts cut prices for tickets bought 30 or more days ahead, averaging over 30 percent off; that program was announced for the 2025-26 season. 2025-26 peak was $356."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://www.stormskiing.com/p/as-steamboat-vail-lift-tickets-hit", publisher: "The Storm Skiing Journal", date: "2026-08-27" }
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+      - { url: "https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices", publisher: "The Storm Skiing Journal", date: "2025-12-09" }
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+  beaver-creek:
+    season: "2026-27"
+    window_low: null
+    window_high: 392
+    note: "Reported peak-day adult price for 2026-27 is $392, the highest on TownLift's list. 2025-26 peak was $356. Vail Resorts discounts tickets bought 30 or more days ahead (announced Dec 2025, averaging over 30 percent off)."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+      - { url: "https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices", publisher: "The Storm Skiing Journal", date: "2025-12-09" }
+  park-city:
+    season: "2026-27"
+    window_low: null
+    window_high: 369
+    note: "Peak-day adult ticket at Park City Mountain will cost $369 for 2026-27, per TownLift; dynamic pricing means tickets are considerably cheaper bought ahead and on lower-demand dates. 2025-26 peak was $351 (SnowBrains)."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+  breckenridge:
+    season: "2026-27"
+    window_low: null
+    window_high: 332
+    note: "Reported peak-day adult price for 2026-27 is $332. 2025-26 peak was $321. Vail Resorts discounts tickets bought 30 or more days ahead (announced Dec 2025, averaging over 30 percent off)."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+      - { url: "https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices", publisher: "The Storm Skiing Journal", date: "2025-12-09" }
+  keystone:
+    season: "2025-26"
+    window_low: null
+    window_high: 292
+    note: "2025-26 single-day peak rate was $292. No 2026-27 figure found in news coverage."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+      - { url: "https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices", publisher: "The Storm Skiing Journal", date: "2025-12-09" }
+  heavenly:
+    season: "2025-26"
+    window_low: null
+    window_high: 305
+    note: "2025-26 single-day peak rate was $305. No 2026-27 figure found in news coverage."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+      - { url: "https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices", publisher: "The Storm Skiing Journal", date: "2025-12-09" }
+  crested-butte:
+    season: "2025-26"
+    window_low: null
+    window_high: 239
+    note: "2025-26 single-day peak rate was $239. No 2026-27 figure found in news coverage."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+      - { url: "https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices", publisher: "The Storm Skiing Journal", date: "2025-12-09" }
+  stowe:
+    season: "2025-26"
+    window_low: null
+    window_high: 235
+    note: "2025-26 single-day peak rate was $235. No 2026-27 figure found in news coverage."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/vail-resorts-peak-lift-ticket-prices-hit-record-356-with-six-mountains-now-overs-300/", publisher: "SnowBrains", date: "2025-08-26" }
+      - { url: "https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices", publisher: "The Storm Skiing Journal", date: "2025-12-09" }
+  deer-valley:
+    season: "2026-27"
+    window_low: null
+    window_high: 349
+    note: "Peak-day adult price is $349 for 2026-27. Window price for Sat Dec 26, 2026 was $349, or $309 online (save $40). Dynamic pricing; cheaper bought ahead and on lower-demand dates. 2025-26 peak walk-up was $329."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  steamboat:
+    season: "2026-27"
+    window_low: null
+    window_high: 344
+    note: "Window price for Sat Dec 26, 2026 was $344, or $258 online (25% off). TownLift also lists Steamboat's 2026-27 peak at $344."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+  winter-park:
+    season: "2026-27"
+    window_low: null
+    window_high: 267
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $267, or $207 online (22% off). Not a confirmed season maximum."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  jackson-hole:
+    season: "2026-27"
+    window_low: null
+    window_high: 339
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $339, or $255 online (15% off). Official site says single-day adult tickets start at $85 and the earlier you buy, the more you save (season not stated on page)."
+    advance_cheaper: true
+    kids_note: "Children 4 and under ski free, per the official lift ticket page."
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+      - { url: "https://www.jacksonhole.com/lift-tickets", publisher: "Jackson Hole Mountain Resort (official)", date: "2026-11-07" }
+  big-sky:
+    season: "2026-27"
+    window_low: null
+    window_high: 289
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $289, or $260 online (10% off). Not a confirmed season maximum."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  mammoth-mountain:
+    season: "2026-27"
+    window_low: null
+    window_high: 269
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $269, or $209 online (save $60). Not a confirmed season maximum."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  palisades-tahoe:
+    season: "2026-27"
+    window_low: null
+    window_high: 289
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $289, or $246 online (15% off). Not a confirmed season maximum."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  snowbird:
+    season: "2026-27"
+    window_low: null
+    window_high: 239
+    note: "TownLift lists Snowbird's 2026-27 peak at $239. SnowBrains lists the Sat Dec 26, 2026 window price at $238, or $215 online (15% off)."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  alta:
+    season: "2025-26"
+    window_low: null
+    window_high: 209
+    note: "Last season's window price was $209 (SnowBrains). As of Aug 16, 2026, Alta said 2026-27 pricing would be released in the fall."
+    advance_cheaper: null
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  solitude:
+    season: "2026-27"
+    window_low: null
+    window_high: 199
+    note: "Solitude's 2026-27 peak ticket is $199, per TownLift."
+    advance_cheaper: null
+    kids_note: null
+    sources:
+      - { url: "https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/", publisher: "TownLift", date: "2026-09-04" }
+  brighton:
+    season: "2026-27"
+    window_low: null
+    window_high: 195
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $195, or $136 online (30% off). Not a confirmed season maximum."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  killington:
+    season: "2026-27"
+    window_low: null
+    window_high: 225
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $225, or $203 online (10% off). Not a confirmed season maximum."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+  sugarloaf:
+    season: "2026-27"
+    window_low: null
+    window_high: 150
+    note: "Window price for Sat Dec 26 and Dec 28, 2026 was $150, or $90 online (40% off). Official site: the earlier you buy, the more you save."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+      - { url: "https://www.sugarloaf.com/lift-tickets", publisher: "Sugarloaf (official)", date: "2026-11-07" }
+  taos-ski-valley:
+    season: "2026-27"
+    window_low: null
+    window_high: 185
+    note: "Window price for Sat Dec 26, 2026 (holiday date) was $185. Official tickets page says adult (18-64) prices start at $75 when booked 72 hours in advance."
+    advance_cheaper: true
+    kids_note: "Children 6 and under ski free (adults 80+ too), per the official tickets page."
+    sources:
+      - { url: "https://snowbrains.com/2026-27-lift-ticket-prices/", publisher: "SnowBrains", date: "2026-08-19" }
+      - { url: "https://www.skitaos.com/tickets", publisher: "Taos Ski Valley (official)", date: "2026-11-07" }
+  loveland:
+    season: "2026-27"
+    window_low: 119
+    window_high: 159
+    note: "Official 2026-27 adult (15+) window rates: $119 early season (open to Dec 13, 2026), $159 regular season (Dec 14, 2026 to Apr 4, 2027), late season TBA. Limited discounted pre-purchase tickets are sold online; regular-season advance tickets not available within 24 hours of the date."
+    advance_cheaper: true
+    kids_note: "Child (6-14) window $40 early season, $45 regular season. Ages 5 and under ski free (ticket still required from the window). Senior (60+) $109 regular season."
+    sources:
+      - { url: "https://skiloveland.com/lift-tickets/", publisher: "Loveland Ski Area (official)", date: "2026-11-07" }
+  mt-bachelor:
+    season: "2026-27"
+    window_low: 164
+    window_high: 224
+    note: "Official tentative 2026-27 full-day adult window rates: $164 (Tier 1) to $224 (Tier 4, holiday). Day-of online tickets are $25 less than window; advance online single-day tickets as low as $99."
+    advance_cheaper: true
+    kids_note: "Youth (6-12) full day $104 to $137 window. Ages 5 and under free. Kids 6-12 ski free with an advance online Kids Ski Free 3-of-5, 4-of-6 or 5-of-8 day adult ticket."
+    sources:
+      - { url: "https://www.mtbachelor.com/tickets-passes/lift-tickets", publisher: "Mt. Bachelor (official)", date: "2026-11-07" }
+  aspen-snowmass:
+    season: "2026-27"
+    window_low: null
+    window_high: null
+    note: "Sources conflict. Denver Gazette (Sep 9, 2026) called $209 the standard price. OnTheSnow (updated Oct 23, 2026) lists 2026/27 adult 1-day at $279 weekday and $309 weekend. Official site: book 30+ days ahead for up to 25% off, or 7+ days ahead for up to 20% off (not guaranteed)."
+    advance_cheaper: true
+    kids_note: "Kids 6 and under ski free every day, all season (official). OnTheSnow lists child (7-12) and junior (13-17) at $195 weekday, $216 weekend."
+    sources:
+      - { url: "https://www.denvergazette.com/2026/09/09/aspen-lift-tickets-priced-at-3-75-for-early-season-date-but-why/", publisher: "Denver Gazette", date: "2026-09-09" }
+      - { url: "https://www.onthesnow.com/colorado/aspen-snowmass/lift-tickets.html", publisher: "OnTheSnow", date: "2026-10-23" }
+      - { url: "https://www.aspensnowmass.com/plan-your-stay/advance-purchase", publisher: "Aspen Snowmass (official)", date: "2026-11-07" }
+  telluride:
+    season: "2025-26"
+    window_low: null
+    window_high: null
+    note: "No 2026-27 daily price found. OnTheSnow's daily table (last updated Oct 2, 2025, so 2025-26) listed adult 1-day at $245. Official site advises buying online before arrival for the best rate of the season."
+    advance_cheaper: true
+    kids_note: "OnTheSnow (2025-26): ages 0-5 free, junior (6-12) $125."
+    sources:
+      - { url: "https://www.onthesnow.com/colorado/telluride/lift-tickets.html", publisher: "OnTheSnow", date: "2025-10-02" }
+      - { url: "https://tellurideskiresort.com/ski/", publisher: "Telluride Ski Resort (official)", date: "2026-11-07" }
+  copper-mountain:
+    season: "2025-26"
+    window_low: null
+    window_high: null
+    note: "No 2026-27 daily price found. OnTheSnow's daily table (last updated Oct 3, 2025, so 2025-26) listed adult (13+) at $264 weekday and $274 weekend; it says buying online is generally cheaper than the window."
+    advance_cheaper: true
+    kids_note: "Copper's 2026-27 season pass includes a free kid's pass (17 and under) with an adult pass, per the official site. This applies to season passes, not day tickets."
+    sources:
+      - { url: "https://www.onthesnow.com/colorado/copper-mountain-resort/lift-tickets.html", publisher: "OnTheSnow", date: "2025-10-03" }
+      - { url: "https://www.coppercolorado.com/tickets-passes/lift-tickets", publisher: "Copper Mountain (official)", date: "2026-11-07" }
+  arapahoe-basin:
+    season: "2025-26"
+    window_low: null
+    window_high: null
+    note: "No 2026-27 daily price found. OnTheSnow's daily table (last updated Oct 10, 2025, sample December pricing) listed adult (23+) at $119 weekday and $140 weekend, and says to buy online in advance for the best deals."
+    advance_cheaper: true
+    kids_note: "OnTheSnow (2025-26): child (5-12) $72 weekday, $84 weekend."
+    sources:
+      - { url: "https://www.onthesnow.com/colorado/arapahoe-basin-ski-area/lift-tickets.html", publisher: "OnTheSnow", date: "2025-10-10" }
+  sun-valley:
+    season: "2025-26"
+    window_low: null
+    window_high: null
+    note: "No 2026-27 daily price found. OnTheSnow's daily table (last updated Oct 2, 2025) listed a Dec 22 sample online price of $253 for adults (13-64)."
+    advance_cheaper: null
+    kids_note: "OnTheSnow (2025-26 sample): child (5-12) $127."
+    sources:
+      - { url: "https://www.onthesnow.com/idaho/sun-valley/lift-tickets.html", publisher: "OnTheSnow", date: "2025-10-02" }
+  snowbasin:
+    season: "2025-26"
+    window_low: null
+    window_high: null
+    note: "No 2026-27 daily price found. OnTheSnow's daily table (last updated Oct 8, 2025) listed adult (13-64) at $169 weekday and $219 weekend. Official site: buy online ahead of your visit for the best price; the earlier you buy, the more you save."
+    advance_cheaper: true
+    kids_note: "Children 4 and under ski free with a Basin Access Card (official)."
+    sources:
+      - { url: "https://www.onthesnow.com/utah/snowbasin/lift-tickets.html", publisher: "OnTheSnow", date: "2025-10-08" }
+      - { url: "https://www.snowbasin.com/tickets-passes/lift-tickets", publisher: "Snowbasin (official)", date: "2026-11-07" }
+  sunday-river:
+    season: "2025-26"
+    window_low: null
+    window_high: null
+    note: "No 2026-27 daily price found. Official site says full-day tickets must be purchased online and the earlier you buy, the more you save. OnTheSnow sample online pricing (last updated Nov 4, 2025) listed adult (19-64) at $81 weekday and $117 weekend."
+    advance_cheaper: true
+    kids_note: null
+    sources:
+      - { url: "https://www.sundayriver.com/lift-tickets/full-day", publisher: "Sunday River (official)", date: "2026-11-07" }
+      - { url: "https://www.onthesnow.com/maine/sunday-river/lift-tickets.html", publisher: "OnTheSnow", date: "2025-11-04" }

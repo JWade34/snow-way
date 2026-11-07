@@ -72,4 +72,28 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", /Best ski resorts in Colorado/
     assert_select "title", /Best Ski Resorts in Colorado/
   end
+
+  test "comparison, snowiest and lift ticket pages render" do
+    Resort.create!(name: "Aspen Snowmass", slug: "aspen-snowmass", latitude: 39.2, longitude: -106.9, nearest_airport_code: "ASE",
+                   state_province: "Colorado", country: "USA", elevation_base: 8104, elevation_summit: 12510, website_url: "https://www.aspensnowmass.com")
+    get comparison_url("aspen-vs-vail")
+    assert_response :success
+    assert_select "h1", /Aspen Snowmass vs Vail/
+    get comparisons_url
+    assert_select "a[href=?]", comparison_path("aspen-vs-vail")
+    get snowiest_resorts_url
+    assert_response :success
+    get lift_tickets_resort_url(resorts(:vail))
+    assert_response :success
+    assert_select "h1", /Vail lift tickets/
+    get lift_tickets_resort_url(resorts(:alyeska))
+    assert_response :not_found
+  end
+
+  test "atom feed lists guides" do
+    get "/feed.xml"
+    assert_response :success
+    assert_equal "application/atom+xml", response.media_type
+    assert_includes response.body, "https://snowway.app/guides/how-to-ski"
+  end
 end

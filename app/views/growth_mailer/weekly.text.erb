@@ -41,6 +41,16 @@ Changes: <%= live %> being measured<%= ", #{waiting} waiting for your OK" if wai
 <% if waiting.positive? %>  Approve or decline: https://snowway.app/admin/changes
 <% end -%>
 <% end -%>
+<% ai = AiReferral.totals_by_source(since: 7.days.ago.to_date) -%>
+<% checks = AiCitationCheck.latest_run.to_a -%>
+
+AI visibility:
+  Visits from AI assistants this week: <%= ai.values.sum %><%= " (#{ai.map { |s, n| "#{s} #{n}" }.join(", ")})" if ai.any? %>
+<% if checks.any? -%>
+  Cited in AI answers: <%= checks.count(&:cited) %> of <%= checks.reject(&:error).size %> checks (<%= checks.first.checked_on.strftime("%b %-d") %>). Details: https://snowway.app/admin/ai
+<% else -%>
+  Citation checks are off until PERPLEXITY_API_KEY or OPENAI_API_KEY is set on Railway.
+<% end -%>
 <% pending = GrowthMailer.pending_affiliates -%>
 <% if pending.any? -%>
 

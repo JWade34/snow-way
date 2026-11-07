@@ -7,13 +7,19 @@
   <url><loc><%= SitePages.url("/resorts/#{resort.slug}") %></loc><lastmod><%= (@forecast_updated[resort.id] || resort.updated_at).to_date.iso8601 %></lastmod></url>
   <url><loc><%= SitePages.url("/resorts/#{resort.slug}/best-time-to-ski") %></loc><lastmod><%= resort.updated_at.to_date.iso8601 %></lastmod></url>
 <% end %>
+<% SitePages.comparison_paths.each do |path| %>
+  <url><loc><%= SitePages.url(path) %></loc><lastmod><%= @latest.iso8601 %></lastmod></url>
+<% end %>
 <% SitePages.lodging_paths(@resorts).each do |path| %>
   <url><loc><%= SitePages.url(path) %></loc><lastmod>2026-11-07</lastmod></url>
 <% end %>
 <% SitePages.report_paths.each do |path| %>
   <url><loc><%= SitePages.url(path) %></loc><lastmod><%= path.split("/").last %></lastmod></url>
 <% end %>
-<% SitePages.guide_paths.each do |path| %>
-  <url><loc><%= SitePages.url(path) %></loc><lastmod>2026-11-05</lastmod></url>
+<% GuideTopic.all.each do |t| %>
+  <url><loc><%= SitePages.url("/guides/#{t.slug}") %></loc><lastmod><%= t.guides.map(&:updated_on).max&.iso8601 || "2026-11-05" %></lastmod></url>
+<% end %>
+<% Guide.all.each do |g| %>
+  <url><loc><%= SitePages.url("/guides/#{g.slug}") %></loc><lastmod><%= g.updated_on.iso8601 %></lastmod></url>
 <% end %>
 </urlset>

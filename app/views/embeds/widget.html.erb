@@ -7,7 +7,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Snow Forecast Widget", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Free snow forecast widget</h1>
-    <p class="text-slate-300 mb-8">Show your visitors which ski resorts are getting the most snow this week. The widget updates itself every 6 hours. Free for ski clubs, lodges, shops, blogs, and anyone who loves powder.</p>
+    <p class="text-slate-300 mb-8">Show your visitors which ski resorts are getting the most snow this week, or the forecast for your own mountain. The widget updates itself every 6 hours. Free for ski clubs, lodges, shops, blogs, and anyone who loves powder.</p>
     <div class="grid md:grid-cols-2 gap-6 items-start">
       <div>
         <h2 class="text-xl font-bold mb-3">Preview</h2>
@@ -20,5 +20,27 @@
         <p class="text-slate-400 text-sm mt-2">Change <code>limit=5</code> to show 3–10 resorts. Please keep the credit link.</p>
       </div>
     </div>
+
+    <section class="mt-12" data-controller="widget-picker" aria-labelledby="resort-widget-heading">
+      <h2 id="resort-widget-heading" class="text-2xl font-bold mb-2">One resort's snow forecast</h2>
+      <p class="text-slate-300 mb-4">Run a lodge, rental shop, or ski club near one mountain? Show that resort's 7-day snow forecast and the last 48 hours of snow, day by day.</p>
+      <label class="block text-sm text-slate-300 mb-6 max-w-sm">Resort
+        <select data-widget-picker-target="select" data-action="change->widget-picker#update" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white mt-1">
+          <% Resort.order(:name).each do |r| %><option value="<%= r.slug %>" <%= "selected" if r.slug == "breckenridge" %>><%= r.name %></option><% end %>
+        </select>
+      </label>
+      <div class="grid md:grid-cols-2 gap-6 items-start">
+        <div>
+          <h3 class="font-bold mb-3">Preview</h3>
+          <iframe data-widget-picker-target="preview" title="Resort snow forecast widget preview" width="100%" height="250" style="border:0;border-radius:12px;max-width:420px" loading="lazy"></iframe>
+        </div>
+        <div>
+          <h3 class="font-bold mb-3">Copy this code</h3>
+          <label for="resort-widget-code" class="sr-only">Resort widget embed code</label>
+          <textarea id="resort-widget-code" data-widget-picker-target="code" readonly rows="7" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-xs font-mono text-slate-200"></textarea>
+          <p class="text-slate-400 text-sm mt-2">Free, no signup. Please keep the credit link.</p>
+        </div>
+      </div>
+    </section>
   </main>
 </div>

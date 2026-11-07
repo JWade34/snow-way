@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Snow Way: powder reports and ski guides</title>
+  <subtitle>Weekly North American powder rankings and ski trip guides by Justin McKelvey.</subtitle>
+  <link href="https://snowway.app/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://snowway.app/" rel="alternate" type="text/html"/>
+  <id>https://snowway.app/feed.xml</id>
+  <updated><%= @updated.utc.iso8601 %></updated>
+  <author><name>Justin McKelvey</name><uri>https://snowway.app/authors/justin-mckelvey</uri></author>
+<% @entries.each do |e| %>
+  <entry>
+    <title><%= e[:title] %></title>
+    <link href="<%= e[:url] %>" rel="alternate" type="text/html"/>
+    <id><%= e[:url] %></id>
+    <updated><%= e[:updated].utc.iso8601 %></updated>
+    <summary><%= e[:summary] %></summary>
+  </entry>
+<% end %>
+</feed>

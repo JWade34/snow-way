@@ -1,0 +1,23 @@
+<% content_for(:title, "#{@resort.name} snow forecast | Snow Way") %>
+<% content_for(:canonical, "https://snowway.app/resorts/#{@resort.slug}") %>
+<% days = @summary.forecasts %>
+<% max = [ days.map { |d| d.snowfall_inches.to_f }.max.to_f, 1.0 ].max %>
+<div class="p-4">
+  <div class="flex items-baseline justify-between gap-2 mb-1">
+    <a href="https://snowway.app/resorts/<%= @resort.slug %>" target="_blank" rel="noopener" class="font-bold text-white hover:text-cyan-300"><%= @resort.name %></a>
+    <span class="text-xs text-slate-400">Next 7 days</span>
+  </div>
+  <p class="text-3xl font-extrabold text-cyan-300 mb-3"><%= inches(@summary.total) %> <span class="text-sm font-semibold text-slate-300">of snow forecast</span></p>
+  <div class="flex items-end gap-1 h-20 mb-1" role="img" aria-label="Daily snow forecast for <%= @resort.name %>: <%= days.map { |d| "#{d.forecast_date.strftime("%a")} #{inches(d.snowfall_inches.to_f)}" }.join(", ") %>">
+    <% days.each do |d| %>
+      <% v = d.snowfall_inches.to_f %>
+      <div class="flex-1 flex flex-col items-center justify-end h-full">
+        <span class="text-[10px] text-slate-300"><%= v >= 0.5 ? v.round : "" %></span>
+        <div class="w-full rounded-t <%= v >= 0.5 ? "bg-cyan-400" : "bg-slate-700" %>" style="height: <%= [ (v / max * 100).round, 4 ].max %>%"></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="flex gap-1 mb-3"><% days.each do |d| %><span class="flex-1 text-center text-[10px] text-slate-400"><%= d.forecast_date.strftime("%a") %></span><% end %></div>
+  <p class="text-xs text-slate-300 mb-2">Last 48 hours: <%= inches(@summary.recent) %></p>
+  <p class="text-xs text-slate-400">Snow forecast by <a href="https://snowway.app/resorts/<%= @resort.slug %>" target="_blank" rel="noopener" class="text-cyan-300 underline underline-offset-2 hover:text-cyan-200">Snow Way</a>, updated every 6 hours</p>
+</div>

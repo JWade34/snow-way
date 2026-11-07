@@ -1,0 +1,63 @@
+<%# locals: (faqs:) -%>
+<% picks = [
+  [ "smugglers-notch", "Best all-around for families", "Built around families, with Treasures child care for babies and toddlers, Snow Sport University lessons for kids and teens, and a slopeside village where you can park the car for the week." ],
+  [ "okemo", "Best for young beginners", "Wide, well-groomed trails, two base areas, and a beginner area with carpet lifts at Jackson Gore. Heated bubble chairs help on cold days. Easy to reach from I-91 in southern Vermont." ],
+  [ "stratton", "Best for a polished village trip", "A pedestrian village at the base with shops, fire pits and an ice rink, and a gondola to the summit. One of the closer big resorts to New York and Boston." ],
+  [ "jay-peak", "Best for rainy or bitter-cold days", "The Pump House indoor waterpark gives kids something to do when it's too cold to ski, plus an aerial tram and plenty of natural snow near the Canadian border." ],
+  [ "stowe", "Best for a classic ski town", "A free ice rink in Spruce Peak Village, the free Over Easy Gondola linking Spruce Peak and Mount Mansfield, and a historic New England town a few miles down the road." ],
+  [ "killington", "Best for teens and mixed-ability groups", "The biggest ski area in the East, with dedicated learning areas at Ramshead and Snowshed for kids and beginners and plenty of terrain for strong skiers." ],
+  [ "sugarbush", "Best for a quieter big mountain", "Two mountains, Lincoln Peak and Mount Ellen, in the Mad River Valley, with varied terrain and a laid-back feel. A good pick if your family wants room to spread out." ]
+] %>
+<% budget = [
+  [ "bolton-valley", "The closest big ski area to Burlington, small and friendly, with night skiing on select evenings." ],
+  [ "magic-mountain", "An independent ski area in Londonderry, southern Vermont, with a local feel and small crowds." ],
+  [ "mad-river-glen", "A skier-owned cooperative famous for its single chair and old-school trails. It's skiers-only, so no snowboarders." ]
+] %>
+<% resorts = Resort.where(slug: (picks + budget).map(&:first)).index_by(&:slug) %>
+<div class="tldr"><p><strong>Short answer:</strong> the best Vermont ski resorts for families are Smugglers' Notch for kids' programs and child care, Okemo for young beginners, Stratton for a polished village, Jay Peak for its indoor waterpark, Stowe for a classic ski town, and Killington and Sugarbush for mixed-ability groups. On a budget, Bolton Valley, Magic Mountain and Mad River Glen are smaller and more relaxed.</p></div>
+
+<h2>Best Vermont ski resorts for families</h2>
+<ol>
+  <% picks.each do |slug, label, why| %>
+    <% r = resorts[slug] or next %>
+    <li><strong><%= link_to r.name, resort_path(r) %>: <%= label.downcase_first %>.</strong> <%= why %><% if Lodging.slugs.include?(slug) %> See <%= link_to "where to stay in #{r.name}", where_to_stay_resort_path(r) %>.<% end %></li>
+  <% end %>
+</ol>
+
+<h2>Vermont family resorts compared</h2>
+<table>
+  <caption>Vermont family ski resorts: pass, airport, base elevation, and vertical drop</caption>
+  <thead><tr><th scope="col">Resort</th><th scope="col">Pass</th><th scope="col">Fly into</th><th scope="col">Base elevation</th><th scope="col">Vertical</th></tr></thead>
+  <tbody>
+    <% picks.each do |slug, _, _| %>
+      <% r = resorts[slug] or next %>
+      <tr><th scope="row"><%= link_to r.name, resort_path(r) %></th><td><%= r.pass_label %></td><td><%= r.nearest_airport_code %></td><td><%= number_with_delimiter(r.elevation_base) %> ft</td><td><%= r.vertical_drop ? "#{number_with_delimiter(r.vertical_drop)} ft" : "–" %></td></tr>
+    <% end %>
+  </tbody>
+</table>
+<p>Pass coverage is for the 2026-27 season. Check <%= link_to "Ikon vs Epic", ikon_vs_epic_path %> for blackout dates and kids' pass options.</p>
+
+<h2>Smaller, cheaper Vermont ski areas for families</h2>
+<ul>
+  <% budget.each do |slug, why| %>
+    <% r = resorts[slug] or next %>
+    <li><strong><%= link_to r.name, resort_path(r) %>:</strong> <%= why %></li>
+  <% end %>
+</ul>
+
+<h2>Vermont tips for families</h2>
+<h3>Dress for cold and ice</h3>
+<p>Vermont winters are cold, and January days below zero with wind chill are common. Freeze-thaw cycles can leave trails firm and icy. Pack face masks, hand warmers and extra layers, take frequent lodge breaks with small kids, and keep edges sharp. Consider shorter ski days in midwinter and plan for softer snow in March.</p>
+<h3>Know your interstate: I-89 or I-91</h3>
+<p>I-89 runs through northern Vermont and is the way to Stowe, Smugglers' Notch, Bolton Valley, Sugarbush and Mad River Glen, with Burlington (BTV) the closest airport. I-91 runs up the eastern edge and serves Okemo, Stratton, Magic Mountain and, much farther north, Jay Peak. Killington is reached on US-4. In winter, Route 108 through Smugglers' Notch closes between Stowe and Smuggs, so don't plan on driving over the notch.</p>
+<h3>Use family programs and the Fifth Grade Passport</h3>
+<p>Smugglers' Notch is the standout for family programs: Treasures child care takes babies from 6 weeks old, and Snow Sport University runs lessons and camps for kids and teens. Book childcare and lessons when you book lodging. Ski Vermont's Fifth Grade Passport gives fifth graders from any state free days at participating Vermont areas when they ski with a paying adult; check the current fee and holiday restrictions.</p>
+<h3>Pick your month</h3>
+<p>Most Vermont resorts are at their best from mid-January through mid-March, when the base is deepest. Each resort's "best time to ski" page shows its snowiest months, for example <%= link_to "best time to ski Stowe", best_time_resort_path("stowe") %>. The <%= link_to "Vermont snow report", region_path("vermont") %> ranks every resort on this week's forecast.</p>
+
+<h2>Next steps</h2>
+<p>Read <%= link_to "how to choose a family ski resort", guide_path("best-family-ski-resorts") %> and <%= link_to "skiing with kids by age", guide_path("skiing-with-kids") %>, check <%= link_to "kids' ski gear and sizing", guide_path("kids-ski-gear") %>, then use the free <%= link_to "Ski Trip Planner", ski_trip_planner_path %> to plan the timeline and budget.</p>
+<% faqs << { question: "What is the best ski resort in Vermont for families?", answer: "Smugglers' Notch is a top pick for families thanks to its Treasures child care, Snow Sport University kids' programs and slopeside village. Okemo, Stratton, Jay Peak, Stowe, Killington and Sugarbush are also strong family choices, each for different reasons." } %>
+<% faqs << { question: "Which Vermont ski resort is best for beginners and kids?", answer: "Smugglers' Notch and Okemo both have strong kids' programs and gentle learning terrain, and Killington has dedicated learning areas at Ramshead and Snowshed. Smaller areas like Bolton Valley and Magic Mountain are more relaxed for a first day." } %>
+<% faqs << { question: "Which Vermont ski resort has an indoor waterpark?", answer: "Jay Peak has the Pump House, an indoor waterpark at the resort's Tramside base. It's a good backup on bitter-cold or rainy days." } %>
+<% faqs << { question: "Is it too cold to ski in Vermont with kids?", answer: "January can be very cold, so dress kids in layers with face and neck coverage, use hand warmers, and take regular breaks indoors. February and March are usually milder, with a deeper snow base." } %>

@@ -1,0 +1,65 @@
+<%# locals: (faqs:) -%>
+<% picks = [
+  [ "northstar", "Best all-around for young kids", "A village with an ice rink and fire pits at its center, gondola access from the village, and lots of gentle, well-groomed terrain near Truckee on Lake Tahoe's north side." ],
+  [ "mammoth-mountain", "Best for a big-mountain family trip", "Huge terrain for every level, a long season, and a real town with lodging and restaurants. It's about 5 hours from Los Angeles, and June Mountain, a quieter sister resort, is about 30 minutes away." ],
+  [ "palisades-tahoe", "Best for mixed-ability families", "Host of the 1960 Winter Olympics, with two mountains, Palisades and Alpine Meadows, linked by the Base to Base Gondola. Strong skiers get famous steeps while kids stick to easier runs, and the Olympic Valley village is walkable." ],
+  [ "heavenly", "Best for a lake view and a lively town", "Views of Lake Tahoe from the slopes and a gondola that starts in town in South Lake Tahoe, so you can walk from lodging to the lift. The mountain spans the California and Nevada state line." ],
+  [ "sierra-at-tahoe", "Best for a relaxed day near South Lake Tahoe", "A local family favorite off US-50 near South Lake Tahoe. It was rebuilt and reopened after the 2021 Caldor Fire, and parts of the mountain are more open than before the fire." ],
+  [ "sugar-bowl", "Best for a classic, car-free base", "One of California's most historic ski areas, on Donner Summit near I-80, with a small village you can't drive into. Good snow and a quieter feel than the bigger Tahoe resorts." ],
+  [ "june-mountain", "Best for skipping the crowds", "Mammoth's smaller, mellow sister resort on the June Lake Loop, with short lines and family-friendly terrain. Mammoth lift tickets generally work here too." ]
+] %>
+<% budget = [
+  [ "boreal", "Right off I-80 on Donner Summit, with night skiing and beginner terrain parks. An easy first day for Bay Area and Sacramento families." ],
+  [ "dodge-ridge", "A family-focused ski area off Highway 108 near Pinecrest, about 30 miles east of Sonora, with a children's center in the base lodge." ],
+  [ "china-peak", "About 65 miles northeast of Fresno near Huntington Lake. Smaller crowds than Tahoe, but check Highway 168 conditions before you go." ],
+  [ "snow-summit", "Big Bear's family mountain, about two hours from Los Angeles without traffic. One Big Bear ticket also works at Bear Mountain next door." ],
+  [ "mountain-high", "About 90 minutes from downtown Los Angeles near Wrightwood, just off I-15. Handy for a quick day of lessons." ]
+] %>
+<% resorts = Resort.where(slug: (picks + budget).map(&:first)).index_by(&:slug) %>
+<div class="tldr"><p><strong>Short answer:</strong> the best California ski resorts for families are Northstar for young kids, Mammoth for a big-mountain trip, Palisades Tahoe for mixed-ability groups, Heavenly for lake views and a lively town, and Sierra-at-Tahoe, Sugar Bowl and June Mountain for a quieter day. On a budget, Boreal, Dodge Ridge and China Peak are smaller and easier, and Snow Summit and Mountain High are the closest family hills to Los Angeles.</p></div>
+
+<h2>Best California ski resorts for families</h2>
+<ol>
+  <% picks.each do |slug, label, why| %>
+    <% r = resorts[slug] or next %>
+    <li><strong><%= link_to r.name, resort_path(r) %>: <%= label.downcase_first %>.</strong> <%= why %><% if Lodging.slugs.include?(slug) %> See <%= link_to "where to stay in #{r.name}", where_to_stay_resort_path(r) %>.<% end %></li>
+  <% end %>
+</ol>
+
+<h2>California family resorts compared</h2>
+<table>
+  <caption>California family ski resorts: pass, airport, base elevation, and vertical drop</caption>
+  <thead><tr><th scope="col">Resort</th><th scope="col">Pass</th><th scope="col">Fly into</th><th scope="col">Base elevation</th><th scope="col">Vertical</th></tr></thead>
+  <tbody>
+    <% picks.each do |slug, _, _| %>
+      <% r = resorts[slug] or next %>
+      <tr><th scope="row"><%= link_to r.name, resort_path(r) %></th><td><%= r.pass_label %></td><td><%= r.nearest_airport_code %></td><td><%= number_with_delimiter(r.elevation_base) %> ft</td><td><%= r.vertical_drop ? "#{number_with_delimiter(r.vertical_drop)} ft" : "–" %></td></tr>
+    <% end %>
+  </tbody>
+</table>
+<p>Pass coverage is for the 2026-27 season. Check <%= link_to "Ikon vs Epic", ikon_vs_epic_path %> for blackout dates and kids' pass options.</p>
+
+<h2>Smaller, cheaper California ski areas for families</h2>
+<ul>
+  <% budget.each do |slug, why| %>
+    <% r = resorts[slug] or next %>
+    <li><strong><%= link_to r.name, resort_path(r) %>:</strong> <%= why %></li>
+  <% end %>
+</ul>
+
+<h2>California tips for families</h2>
+<h3>Carry chains and know the chain controls</h3>
+<p>Sierra storms can drop feet of snow in a day, and Caltrans sets chain controls on I-80 over Donner Summit and US-50 over Echo Summit. Under R2, chains or traction devices are required on every vehicle except 4WD and AWD vehicles with snow tires on all four wheels; under R3, everyone needs them. Carry chains even with AWD, and check Caltrans QuickMap before you leave.</p>
+<h3>Time your Tahoe drive</h3>
+<p>Friday afternoon and Sunday afternoon traffic between the Bay Area and Tahoe can double the drive, and storms can close I-80 entirely. Leave early, travel midweek, or stay close to the lifts. Flying into Reno (RNO) puts you closer to Tahoe than the Bay Area airports.</p>
+<h3>Southern California drive times</h3>
+<p>From Los Angeles, Mountain High is about 90 minutes and Big Bear (Snow Summit and Bear Mountain) is about two hours without traffic. Mammoth is about 5 hours, so treat it as a multi-day trip rather than a day trip. Weekend traffic up to Big Bear can be heavy after a storm.</p>
+<h3>Pick your month</h3>
+<p>California snow varies a lot from year to year, but most Sierra resorts are most reliable from January through March, and Mammoth often skis well into spring. Each resort's "best time to ski" page shows its snowiest months, for example <%= link_to "best time to ski Mammoth", best_time_resort_path("mammoth-mountain") %>. The <%= link_to "California snow report", region_path("california") %> ranks every resort on this week's forecast. Book kids' ski school early for holidays.</p>
+
+<h2>Next steps</h2>
+<p>Read <%= link_to "how to choose a family ski resort", guide_path("best-family-ski-resorts") %> and <%= link_to "skiing with kids by age", guide_path("skiing-with-kids") %>, check <%= link_to "kids' ski gear and sizing", guide_path("kids-ski-gear") %>, then use the free <%= link_to "Ski Trip Planner", ski_trip_planner_path %> to plan the timeline and budget.</p>
+<% faqs << { question: "What is the best ski resort in California for families?", answer: "Northstar is a top pick for families with young kids thanks to its village, ice rink and gentle terrain. Mammoth, Palisades Tahoe, Heavenly, Sierra-at-Tahoe, Sugar Bowl and June Mountain are also strong family choices, each for different reasons." } %>
+<% faqs << { question: "Which California ski resort is best for beginners and kids?", answer: "Northstar, Sierra-at-Tahoe and June Mountain have friendly beginner terrain and a relaxed feel. Smaller areas like Boreal, Dodge Ridge and China Peak are cheaper and easier to navigate for a first day." } %>
+<% faqs << { question: "What is the closest family ski resort to Los Angeles?", answer: "Mountain High near Wrightwood is about 90 minutes from downtown Los Angeles, and Big Bear's Snow Summit and Bear Mountain are about two hours away without traffic. Mammoth is about 5 hours, better for a longer trip." } %>
+<% faqs << { question: "Do I need chains to drive to Lake Tahoe ski resorts?", answer: "Often, yes. Caltrans sets chain controls on I-80 and US-50 during storms. 4WD and AWD vehicles with snow tires are usually exempt under R2 controls but not R3, so carry chains anyway and check Caltrans QuickMap before you drive." } %>

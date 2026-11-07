@@ -1,0 +1,23 @@
+<% content_for(:title, "Compare Ski Resorts: Head-to-Head Snow, Terrain & Passes | Snow Way") %>
+<% content_for(:description, "Compare popular ski resorts side by side: Aspen vs Vail, Park City vs Deer Valley, Alta vs Snowbird and more, with live snow forecasts, terrain, passes and airports.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "CollectionPage", "name" => "Compare Ski Resorts", "url" => absolute_url(comparisons_path) },
+        breadcrumb_schema([ [ "Compare Ski Resorts", nil ] ]),
+        { "@type" => "ItemList", "numberOfItems" => @comparisons.size,
+          "itemListElement" => @comparisons.each_with_index.map { |x, i| { "@type" => "ListItem", "position" => i + 1, "name" => x.title, "url" => absolute_url(comparison_path(x)) } } }
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Compare Ski Resorts", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Compare ski resorts</h1>
+    <p class="text-slate-300 mb-8">Deciding between two mountains? Each comparison has a plain verdict, who each resort suits, and live numbers: this week's snow forecast, snowiest months, elevation, vertical, pass, and airport. For pass questions, see <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
+    <ul class="grid sm:grid-cols-2 gap-3 mb-10">
+      <% @comparisons.each do |x| %>
+        <li><%= link_to comparison_path(x), class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-4 transition" do %><span class="font-bold block"><%= x.title %></span><span class="text-slate-400 text-sm"><%= x.verdict.split(". ").first %>.</span><% end %></li>
+      <% end %>
+    </ul>
+  </main>
+</div>

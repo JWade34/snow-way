@@ -1,0 +1,69 @@
+<% name = @resort.name %>
+<% t = @tickets %>
+<% sources = Array(t["sources"]) %>
+<% latest = sources.max_by { |s| s["date"].to_s } %>
+<% price = t["window_low"] && t["window_high"] ? "$#{t["window_low"]} to $#{t["window_high"]}" : "$#{t["window_high"] || t["window_low"]}" %>
+<% headline = t["window_low"] && t["window_high"] ? "#{name} adult day tickets at the ticket window run about #{price} for 2026-27" : "The highest reported #{name} adult day ticket price at the window for 2026-27 is #{price}" %>
+<% pass = @resort.pass_label %>
+<% faqs = [
+  { question: "How much is a lift ticket at #{name}?", answer: "#{headline}, per #{latest["publisher"]} (#{latest["date"]}). Prices change by date, and buying online ahead is #{t["advance_cheaper"] ? "usually cheaper" : "worth checking"}." },
+  ({ question: "Is it cheaper to buy #{name} lift tickets online?", answer: "Yes. #{name} prices tickets bought online in advance below the walk-up window price. The earlier you buy and the quieter the date, the more you save." } if t["advance_cheaper"]),
+  ({ question: "Do kids ski free at #{name}?", answer: t["kids_note"] } if t["kids_note"].present?),
+  ({ question: "Is #{name} on the Epic or Ikon Pass?", answer: pass == "Independent" ? "#{name} isn't on the Epic or Ikon Pass for 2026-27. Check the resort's own season passes and multi-day tickets." : "#{name} is on the #{pass} for 2026-27. If you'll ski more than a few days, a pass often costs less than day tickets." } if pass),
+  { question: "When are #{name} lift tickets most expensive?", answer: "Holiday periods (Christmas to New Year's, MLK and Presidents' Day weekends) and Saturdays are usually the priciest days. Midweek days in early December, January and April are usually the cheapest." }
+].compact %>
+<% content_for(:title, fit_title("#{name} Lift Tickets 2026-27: Prices & How to Save | Snow Way", "#{name} Lift Tickets: Prices & How to Save | Snow Way", "#{name} Lift Tickets | Snow Way")) %>
+<% content_for(:description, "#{name} lift ticket prices for 2026-27: #{headline.sub(/\A#{Regexp.escape(name)} /, "")}. How to pay less, kids' tickets, and pass options.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "#{name} Lift Tickets 2026-27", "url" => absolute_url(lift_tickets_resort_path(@resort)),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "dateModified" => LiftTickets.checked_on.to_s, "citation" => sources.map { |s| s["url"] },
+          "about" => { "@type" => "SkiResort", "name" => name, "url" => absolute_url(resort_path(@resort)) },
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ski Resorts by State", "/ski-resorts" ], [ @resort.region_name, "/ski-resorts/#{@resort.region_slug}" ], [ name, "/resorts/#{@resort.slug}" ], [ "Lift Tickets", nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ @resort.region_name, region_path(@resort.region_slug) ], [ name, resort_path(@resort) ], [ "Lift Tickets", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= name %> lift tickets 2026-27</h1>
+    <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
+    </section>
+
+    <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Adult window price</dt><dd class="font-bold text-cyan-300 text-lg"><%= price %></dd></div>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Cheaper online ahead</dt><dd class="font-semibold"><%= t["advance_cheaper"] ? "Yes" : "Check resort" %></dd></div>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Pass</dt><dd class="font-semibold"><%= pass || "Check resort" %></dd></div>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Snow next 7 days</dt><dd class="font-semibold"><%= inches(@summary.total) %></dd></div>
+    </dl>
+
+    <h2 class="text-xl font-bold mb-3">What the latest reports say</h2>
+    <p class="text-slate-300 leading-relaxed mb-3"><%= t["note"] %></p>
+    <% if t["kids_note"].present? %><p class="text-slate-300 leading-relaxed mb-3"><strong class="text-white">Kids:</strong> <%= t["kids_note"] %></p><% end %>
+    <p class="text-slate-400 text-xs mb-10">Sources: <%= safe_join(sources.map { |s| link_to("#{s["publisher"]} (#{s["date"]})", s["url"], rel: "nofollow noopener", target: "_blank", class: "underline underline-offset-2") }, ", ") %>. Snow Way doesn't sell tickets; always confirm the price for your dates with <%= link_to "#{name}", @resort.website_url, rel: "noopener", target: "_blank", class: "underline underline-offset-2" %> before you go.</p>
+
+    <h2 class="text-xl font-bold mb-3">How to pay less for <%= name %> lift tickets</h2>
+    <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-10">
+      <li><strong class="text-white">Buy online, early.</strong> Most big resorts now use date-based pricing, and the walk-up window is the most expensive way to ski.</li>
+      <li><strong class="text-white">Ski midweek and avoid holidays.</strong> Saturdays and holiday weeks cost the most.</li>
+      <% if pass && pass != "Independent" %><li><strong class="text-white">Compare a pass.</strong> <%= name %> is on the <%= pass %>. Even a limited-day pass can beat a few day tickets; see <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</li><% end %>
+      <li><strong class="text-white">Buy multi-day.</strong> Per-day prices usually drop with each day you add.</li>
+      <li><strong class="text-white">Time it with the snow.</strong> If your dates are flexible, check the <%= link_to "#{name} snow forecast", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> and the <%= link_to "best time to ski #{name}", best_time_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> before you buy. More money-saving ideas are in <%= link_to "how to save money on a ski trip", guide_path("cheap-ski-trip"), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</li>
+    </ul>
+
+    <%= render "shared/alert_form", resort: @resort %>
+    <%= render "shared/faq", faqs: faqs, heading: "#{name} lift tickets FAQ" %>
+
+    <% others = Resort.where(slug: LiftTickets.slugs - [ @resort.slug ]).order(:name) %>
+    <h2 class="text-lg font-bold mb-3">Lift ticket prices at other resorts</h2>
+    <ul class="flex flex-wrap gap-2 mb-8 text-sm">
+      <% others.each do |r| %><li><%= link_to r.name, lift_tickets_resort_path(r), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2" %></li><% end %>
+    </ul>
+    <p class="text-sm text-slate-400"><%= link_to "#{name} snow report", resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% if Lodging.slugs.include?(@resort.slug) %> · <%= link_to "Where to stay in #{name}", where_to_stay_resort_path(@resort), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% end %></p>
+  </main>
+</div>

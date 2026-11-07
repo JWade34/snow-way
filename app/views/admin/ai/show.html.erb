@@ -1,0 +1,41 @@
+<h1 class="text-2xl font-bold mb-6">AI visibility</h1>
+
+<section class="mb-10">
+  <h2 class="text-lg font-bold mb-2">Visits from AI assistants (last 28 days)</h2>
+  <% if @by_source.any? %>
+    <ul class="flex flex-wrap gap-3 mb-4">
+      <% @by_source.each do |source, n| %><li class="bg-slate-800 rounded-lg px-4 py-2"><span class="text-slate-400"><%= source %></span> <strong><%= n %></strong></li><% end %>
+    </ul>
+    <table class="w-full text-sm"><thead class="text-left text-slate-400"><tr><th class="py-1">Page</th><th class="py-1">Visits</th></tr></thead>
+      <tbody><% @top_pages.each do |path, n| %><tr class="border-t border-slate-800"><td class="py-1"><%= link_to path, path, class: "hover:text-cyan-300" %></td><td class="py-1"><%= n %></td></tr><% end %></tbody>
+    </table>
+  <% else %>
+    <p class="text-slate-400 text-sm">No AI referrals yet. Visits from ChatGPT, Perplexity, Claude, Gemini, Copilot and others are counted here as they arrive.</p>
+  <% end %>
+</section>
+
+<section>
+  <h2 class="text-lg font-bold mb-2">Do AI answers cite Snow Way?</h2>
+  <% if !AiCitations.configured? %>
+    <p class="text-slate-400 text-sm mb-4">Weekly check is off. Set <code>PERPLEXITY_API_KEY</code> and/or <code>OPENAI_API_KEY</code> on Railway to turn it on (runs Sunday nights, about 25 questions per engine, a few cents a week).</p>
+  <% end %>
+  <% if @history.any? %>
+    <p class="text-sm text-slate-300 mb-4">Citation rate by week: <%= safe_join(@history.map { |d, e, cited, total| "#{d.strftime("%b %-d")} #{e} #{cited}/#{total}" }, " · ") %></p>
+  <% end %>
+  <% if @checks.any? %>
+    <% competitors = AiCitationCheck.competitors(@checks) %>
+    <p class="text-sm text-slate-300 mb-4">Cited instead of us: <%= competitors.map { |d, n| "#{d} (#{n})" }.join(", ") %></p>
+    <table class="w-full text-sm">
+      <thead class="text-left text-slate-400"><tr><th class="py-1">Question</th><th class="py-1">Engine</th><th class="py-1">Cited?</th><th class="py-1">Our page</th></tr></thead>
+      <tbody>
+        <% @checks.each do |c| %>
+          <tr class="border-t border-slate-800 align-top">
+            <td class="py-1 pr-3"><%= c.query %></td><td class="py-1 pr-3 text-slate-400"><%= c.engine %></td>
+            <td class="py-1 pr-3"><%= c.error ? "error" : (c.cited ? "✅ yes" : (c.mentioned ? "named, no link" : "no")) %></td>
+            <td class="py-1 text-xs text-slate-400"><%= Array(c.snowway_urls).first&.sub("https://snowway.app", "") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>

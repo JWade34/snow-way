@@ -1,0 +1,103 @@
+<% c = @comparison %>
+<% a, b = c.a, c.b %>
+<% sa, sb = @summaries %>
+<% avg_a, avg_b = AverageSnowfall.for(a), AverageSnowfall.for(b) %>
+<% month_list = ->(r) { r.snowiest_months(3).map { |m, _| Date::ABBR_MONTHNAMES[m] }.join(", ").presence || "–" } %>
+<% opening = ->(r) { r.opening_date ? "#{r.opening_status == "opened" ? "Opened" : "Scheduled"} #{r.opening_date.strftime("%b %-d")}" : "–" } %>
+<% higher = [ a, b ].max_by(&:elevation_summit) %>
+<% verticals = [ a, b ].select(&:vertical_drop) %>
+<% bigger = verticals.size == 2 ? verticals.max_by(&:vertical_drop) : nil %>
+<% today = Date.current.strftime("%B %-d, %Y") %>
+<% snow_answer = if avg_a && avg_b
+     more, less = [ [ a, avg_a ], [ b, avg_b ] ].sort_by { |_, d| -d["inches"].to_i }
+     "On average, #{more[0].name} reports more snow: about #{more[1]["inches"]} inches a year, compared with about #{less[1]["inches"]} inches at #{less[0].name} (resort-reported averages)."
+   else
+     "Snowfall varies by season. #{a.name}'s snowiest months are typically #{month_list.(a)}; #{b.name}'s are #{month_list.(b)}."
+   end %>
+<% week_answer = "As of #{today}, #{a.name} has #{inches(sa.total)} of snow forecast over the next 7 days and #{b.name} has #{inches(sb.total)}." %>
+<% faqs = [
+  { question: "Which is better, #{a.name} or #{b.name}?", answer: c.verdict },
+  { question: "Which gets more snow, #{a.name} or #{b.name}?", answer: "#{snow_answer} #{week_answer}" },
+  { question: "Which is higher, #{a.name} or #{b.name}?", answer: "#{higher.name} has the higher summit at #{number_with_delimiter(higher.elevation_summit)} ft. #{a.name} tops out at #{number_with_delimiter(a.elevation_summit)} ft and #{b.name} at #{number_with_delimiter(b.elevation_summit)} ft." },
+  ({ question: "Which has more vertical, #{a.name} or #{b.name}?", answer: "#{bigger.name} has more vertical: #{number_with_delimiter(bigger.vertical_drop)} ft from base to summit, versus #{number_with_delimiter((verticals - [ bigger ]).first.vertical_drop)} ft at #{(verticals - [ bigger ]).first.name}." } if bigger),
+  { question: "Are #{a.name} and #{b.name} on the Epic or Ikon Pass?", answer: "#{a.name}: #{a.pass_label || "check the resort"}. #{b.name}: #{b.pass_label || "check the resort"}. Pass coverage is for the 2026-27 season; see Ikon vs Epic for blackout dates." },
+  { question: "What airports serve #{a.name} and #{b.name}?", answer: "#{a.name}: #{a.airport_name} (#{a.nearest_airport_code}). #{b.name}: #{b.airport_name} (#{b.nearest_airport_code})." }
+].compact %>
+<% content_for(:title, fit_title("#{c.title}: Snow, Terrain & Which to Pick | Snow Way", "#{c.title}: Which Is Better? | Snow Way", "#{c.title} | Snow Way")) %>
+<% content_for(:description, "#{c.title} compared: #{c.verdict}") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "#{c.title}: which ski resort should you pick?", "url" => absolute_url(comparison_path(c)),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "dateModified" => Date.current.iso8601,
+          "about" => [ a, b ].map { |r| { "@type" => "SkiResort", "name" => r.name, "url" => absolute_url(resort_path(r)) } },
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Compare Ski Resorts", "/compare" ], [ c.title, nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Compare Ski Resorts", comparisons_path ], [ c.title, nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= c.title %>: which should you pick?</h1>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= c.verdict %> <%= week_answer %></p>
+    </section>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-10">
+      <% [ [ a, c.a_if ], [ b, c.b_if ] ].each do |r, reasons| %>
+        <section class="bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="pick-<%= r.slug %>">
+          <h2 id="pick-<%= r.slug %>" class="text-lg font-bold mb-3">Pick <%= r.name %> if…</h2>
+          <ul class="list-disc pl-5 space-y-2 text-slate-300 text-sm">
+            <% reasons.each do |why| %><li><%= why %></li><% end %>
+          </ul>
+          <p class="text-sm mt-4 flex flex-wrap gap-x-4 gap-y-1">
+            <%= link_to "#{r.name} snow report", resort_path(r), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>
+            <% if Lodging.slugs.include?(r.slug) %><%= link_to "Where to stay", where_to_stay_resort_path(r), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><% end %>
+          </p>
+        </section>
+      <% end %>
+    </div>
+
+    <h2 class="text-xl font-bold mb-3"><%= c.title %> by the numbers</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-3">
+      <table class="w-full text-sm">
+        <caption class="sr-only"><%= c.title %> compared: pass, airport, elevation, vertical, snowfall and forecast</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Stat</th><th scope="col" class="px-3 py-2"><%= a.name %></th><th scope="col" class="px-3 py-2"><%= b.name %></th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% rows = [
+               [ "Snow next 7 days", inches(sa.total), inches(sb.total) ],
+               [ "Snow next 14 days", inches(@totals_14.fetch(a.id, 0.0)), inches(@totals_14.fetch(b.id, 0.0)) ],
+               ([ "Average annual snowfall*", avg_a ? "#{avg_a["inches"]}\"" : "–", avg_b ? "#{avg_b["inches"]}\"" : "–" ] if avg_a || avg_b),
+               [ "Snowiest months", month_list.(a), month_list.(b) ],
+               [ "Pass (2026-27)", a.pass_label || "–", b.pass_label || "–" ],
+               [ "Summit elevation", "#{number_with_delimiter(a.elevation_summit)} ft", "#{number_with_delimiter(b.elevation_summit)} ft" ],
+               [ "Base elevation", "#{number_with_delimiter(a.elevation_base)} ft", "#{number_with_delimiter(b.elevation_base)} ft" ],
+               [ "Vertical drop", a.vertical_drop ? "#{number_with_delimiter(a.vertical_drop)} ft" : "–", b.vertical_drop ? "#{number_with_delimiter(b.vertical_drop)} ft" : "–" ],
+               [ "Nearest airport", "#{a.airport_name} (#{a.nearest_airport_code})", "#{b.airport_name} (#{b.nearest_airport_code})" ],
+               [ "Opening day", opening.(a), opening.(b) ],
+               [ "Location", [ a.state_province, a.country == "USA" ? nil : a.country ].compact.join(", "), [ b.state_province, b.country == "USA" ? nil : b.country ].compact.join(", ") ]
+             ].compact %>
+          <% rows.each do |label, va, vb| %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold text-slate-300"><%= label %></th><td class="px-3 py-2"><%= va %></td><td class="px-3 py-2"><%= vb %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-400 text-xs mb-10">Forecasts are mid-mountain from Open-Meteo, updated every 6 hours. Snowiest months come from 10 seasons of modeled weather data.<% if avg_a || avg_b %> *Average annual snowfall is resort-reported (sources: <%= safe_join([ [ a, avg_a ], [ b, avg_b ] ].select { |_, d| d }.map { |r, d| link_to("#{r.name}, #{d["publisher"]}", d["source"], rel: "nofollow noopener", target: "_blank", class: "underline") }, ", ") %>).<% end %></p>
+
+    <%= render "shared/calendar_cta" %>
+    <%= render "shared/faq", faqs: faqs, heading: "#{c.title} FAQ" %>
+
+    <% related = (Comparison.for_resort(a) + Comparison.for_resort(b)).uniq(&:slug).reject { |x| x.slug == c.slug } %>
+    <% if related.any? %>
+      <h2 class="text-lg font-bold mb-3">More ski resort comparisons</h2>
+      <ul class="flex flex-wrap gap-2 mb-8 text-sm">
+        <% related.each do |x| %><li><%= link_to x.title, comparison_path(x), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2" %></li><% end %>
+      </ul>
+    <% end %>
+    <p class="text-sm text-slate-400"><%= link_to "All comparisons", comparisons_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %> · <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
+  </main>
+</div>

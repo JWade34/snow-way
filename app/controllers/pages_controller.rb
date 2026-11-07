@@ -13,6 +13,15 @@ class PagesController < ApplicationController
     @updated_at = SnowForecast.maximum(:created_at)
   end
 
+  def snowiest
+    @averages = AverageSnowfall.all
+    na = Resort.north_america.index_by(&:slug)
+    @ranked = @averages.filter_map { |slug, d| [ na[slug], d ] if na[slug] }.sort_by { |_, d| -d["inches"].to_i }
+    @totals = Resort.projected_totals.slice(*Resort.north_america.ids)
+    @week = Resort.where(id: @totals.sort_by { |_, v| -v }.first(10).map(&:first)).to_a.sort_by { |r| -@totals[r.id] }
+    @updated_at = SnowForecast.maximum(:created_at)
+  end
+
   def ikon_vs_epic
     @totals = Resort.projected_totals
     resorts = Resort.north_america.order(:name).to_a
