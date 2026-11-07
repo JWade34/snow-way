@@ -72,6 +72,14 @@
       <p class="mt-4 text-sm"><a href="#alert-form" class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">🔔 Email me when <%= @resort.name %> gets a big storm</a></p>
     </div>
 
+    <nav aria-label="On this page" class="-mx-6 px-6 mb-8 overflow-x-auto">
+      <ul class="flex gap-2 text-sm whitespace-nowrap justify-start sm:justify-center">
+        <% [ [ "Snow report", "#report-heading" ], [ "7-day weather", "#forecast" ], [ "Where to stay", "#stay" ], [ "Getting there", "#trip" ], [ "Gear for this week", "#gear" ], [ "FAQ", "#faq" ] ].each do |label, href| %>
+          <li><a href="<%= href %>" class="inline-block bg-slate-800/60 hover:bg-slate-700 border border-slate-700 hover:border-cyan-500 rounded-full px-3 py-1.5 transition"><%= label %></a></li>
+        <% end %>
+      </ul>
+    </nav>
+
     <!-- Answer: the direct, dated summary search engines and AI assistants quote -->
     <section class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="outlook-heading">
       <h2 id="outlook-heading" class="text-sm font-bold text-cyan-400 uppercase tracking-widest mb-2"><%= @resort.name %> snow outlook</h2>
@@ -114,7 +122,7 @@
     <%= render "shared/local_take", take: LocalTake.for_resort(@resort.slug), subject: @resort.name, local: %w[Colorado Utah].include?(@resort.state_province) %>
 
     <!-- 7-Day Forecast -->
-    <div class="mb-10">
+    <div id="forecast" class="mb-10 scroll-mt-6">
       <h2 class="text-xl font-bold mb-4"><%= @resort.name %> 7-day snow &amp; weather forecast</h2>
       <div class="flex gap-2 overflow-x-auto pb-2">
         <% @daily_forecasts.each do |forecast| %>
@@ -165,7 +173,7 @@
       <% end %>
     </p>
 
-    <%= render "shared/conditions_gear", summary: @summary %>
+    <div id="gear" class="scroll-mt-6"><%= render "shared/conditions_gear", summary: @summary %></div>
 
     <!-- Home Airport Selector -->
     <div class="mb-6">
@@ -173,7 +181,7 @@
     </div>
 
     <!-- Book Your Trip -->
-    <div class="mb-10">
+    <div id="trip" class="mb-10 scroll-mt-6">
       <h2 class="text-xl font-bold mb-4">Book Your Trip</h2>
 
       <% departure_date = (Date.today + 2.days).strftime("%Y-%m-%d") %>
@@ -229,7 +237,7 @@
         Dates: <%= departure_date %> to <%= return_date %> (adjust on booking site)
       </p>
       <% if (map_url = Affiliate.stay22_map_url(@resort)) %>
-        <h3 class="text-lg font-bold mt-8 mb-3">Places to stay near <%= @resort.name %></h3>
+        <h3 id="stay" class="text-lg font-bold mt-8 mb-3 scroll-mt-6">Places to stay near <%= @resort.name %></h3>
         <div class="relative rounded-xl border border-slate-700 bg-slate-800/40 overflow-hidden" style="height:420px">
           <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-slate-400 text-sm">
             <p>Hotels and rentals near <%= @resort.name %> load here.</p>
@@ -260,7 +268,7 @@
 
     <%= render "shared/alert_form", resort: @resort %>
 
-    <%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %>
+    <div id="faq" class="scroll-mt-6"><%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %></div>
 
     <!-- Resort Website -->
     <div class="text-center mb-10">
