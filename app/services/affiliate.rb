@@ -58,6 +58,15 @@ module Affiliate
     ENV.fetch("STAY22_AID", "snowway").presence
   end
 
+  # Hotel search near a resort. Booking.com links are converted to Stay22 affiliate links by
+  # Let Me Allez (loaded site-wide), so this earns the same as the map. Kayak links do not.
+  def hotels_url(resort, checkin: Date.current + 2, checkout: Date.current + 5)
+    "https://www.booking.com/searchresults.html?" + {
+      ss: [ resort.name, resort.state_province ].compact.join(", "), checkin: checkin.iso8601, checkout: checkout.iso8601,
+      group_adults: 2, no_rooms: 1
+    }.to_query
+  end
+
   # Stay22 lodging map centered on a resort; nil until STAY22_AID is configured.
   def stay22_map_url(resort, checkin: Date.current + 2, checkout: Date.current + 5)
     return unless stay22_aid

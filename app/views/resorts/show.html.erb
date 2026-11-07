@@ -47,7 +47,8 @@
 <div class="min-h-screen">
   <%= render "shared/header" %>
 
-  <main id="main" class="max-w-4xl mx-auto px-6 py-8">
+  <main id="main" class="max-w-6xl mx-auto px-6 py-8 lg:grid lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-10">
+   <div class="min-w-0">
     <!-- Resort Header -->
     <div class="text-center mb-10">
       <nav aria-label="Breadcrumb" class="text-slate-400 text-xs mb-3">
@@ -64,6 +65,10 @@
       <% if @summary.summit_total > 0 %>
         <p class="text-slate-300 mt-1"><span class="font-bold text-white"><%= inches(@summary.summit_total) %></span> at the summit</p>
       <% end %>
+      <% if @summary.total.to_f.zero? && @summary.last_7_days.to_f >= 1 %>
+        <p class="text-amber-300 mt-2 font-semibold"><%= inches(@summary.last_7_days) %> fell in the past 7 days</p>
+      <% end %>
+      <p class="mt-4 text-sm"><a href="#alert-form" class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">🔔 Email me when <%= @resort.name %> gets a big storm</a></p>
     </div>
 
     <!-- Answer: the direct, dated summary search engines and AI assistants quote -->
@@ -205,7 +210,7 @@
         </a>
 
         <!-- Hotels -->
-        <a href="https://www.kayak.com/hotels/<%= @resort.name.parameterize %>/<%= departure_date %>/<%= return_date %>/2guests?sort=distance_a"
+        <a href="<%= Affiliate.hotels_url(@resort, checkin: Date.today + 2, checkout: Date.today + 5) %>"
            target="_blank"
            rel="sponsored nofollow noopener"
            class="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-5 transition group text-center">
@@ -224,7 +229,13 @@
       </p>
       <% if (map_url = Affiliate.stay22_map_url(@resort)) %>
         <h3 class="text-lg font-bold mt-8 mb-3">Places to stay near <%= @resort.name %></h3>
-        <iframe data-interaction-src="<%= map_url %>" title="Lodging near <%= @resort.name %>" width="100%" height="420" class="rounded-xl border border-slate-700 bg-slate-800/40"></iframe>
+        <div class="relative rounded-xl border border-slate-700 bg-slate-800/40 overflow-hidden" style="height:420px">
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-slate-400 text-sm">
+            <p>Hotels and rentals near <%= @resort.name %> load here.</p>
+            <a href="<%= Affiliate.hotels_url(@resort, checkin: Date.today + 2, checkout: Date.today + 5) %>" target="_blank" rel="sponsored nofollow noopener" class="mt-3 text-cyan-300 underline underline-offset-4">Or search places to stay now ↗</a>
+          </div>
+          <iframe data-interaction-src="<%= map_url %>" title="Lodging near <%= @resort.name %>" width="100%" height="420" class="relative block" style="background:transparent" loading="lazy"></iframe>
+        </div>
         <%= affiliate_disclosure("Lodging map by Stay22. Bookings may earn Snow Way a commission.", css: "mt-2") %>
       <% end %>
     </div>
@@ -262,5 +273,30 @@
         </svg>
       </a>
     </div>
+   </div>
+
+   <aside class="hidden lg:block" aria-label="Plan a trip">
+    <div class="sticky top-6 space-y-4">
+      <% checkin, checkout = Date.current + 2, Date.current + 5 %>
+      <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+        <p class="font-bold mb-1">Plan a trip to <%= @resort.name %></p>
+        <p class="text-slate-400 text-xs mb-3">Prices for <%= checkin.strftime("%b %-d") %> to <%= checkout.strftime("%b %-d") %>; change dates on the next page.</p>
+        <a href="<%= Affiliate.hotels_url(@resort, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-3 py-2 text-sm transition">Find a place to stay</a>
+        <div class="flex gap-2 mt-2 text-xs">
+          <a href="https://www.kayak.com/flights/<%= @resort.nearest_airport_code %>/<%= checkin %>/<%= checkout %>?sort=bestflight_a" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center border border-slate-600 hover:border-cyan-500 rounded-lg py-2 transition">Flights to <%= @resort.nearest_airport_code %></a>
+          <a href="https://www.kayak.com/cars/<%= @resort.nearest_airport_code %>/<%= checkin %>/<%= checkout %>?sort=price_a" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center border border-slate-600 hover:border-cyan-500 rounded-lg py-2 transition">Rent a 4x4</a>
+        </div>
+        <%= affiliate_disclosure("Bookings may earn Snow Way a commission.", css: "mt-2") %>
+      </div>
+      <a href="#alert-form" class="block bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-4 hover:border-cyan-400 transition">
+        <p class="font-bold text-sm">🔔 <%= @resort.name %> powder alerts</p>
+        <p class="text-slate-400 text-xs mt-1">One email when a big storm lines up. Free.</p>
+      </a>
+      <%= link_to powder_calendar_path, class: "flex items-center gap-3 bg-slate-800/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-3 transition" do %>
+        <%= image_tag "powder-calendar-cover.webp", alt: "", width: 260, height: 336, class: "w-10 h-auto rounded shrink-0", loading: "lazy" %>
+        <span class="text-xs"><span class="block font-bold text-sm text-white">Free Powder Calendar</span>Best month for snow at every resort</span>
+      <% end %>
+    </div>
+   </aside>
   </main>
 </div>
