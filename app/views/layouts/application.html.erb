@@ -20,7 +20,8 @@
     <link rel="canonical" href="<%= request.original_url.split('?').first %>" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="<%= content_for(:og_type) || "website" %>" />
+    <%= yield :og_extra %>
     <meta property="og:url" content="<%= request.original_url %>" />
     <meta property="og:title" content="<%= page_title %>" />
     <meta property="og:description" content="<%= meta_description %>" />
@@ -36,23 +37,24 @@
     <meta name="twitter:description" content="<%= meta_description %>" />
     <meta name="twitter:image" content="<%= content_for(:og_image) || "https://snowway.app/preview.png" %>" />
 
-    <!-- JSON-LD: WebSite -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Snow Way",
-      "alternateName": ["SnowWay", "snowway.app", "Snow Way ski snow forecasts"],
-      "url": "https://snowway.app",
-      "sameAs": ["https://www.wikidata.org/wiki/Q142069934", "https://www.instagram.com/snowway.app/"],
-      "description": "Find the ski resort getting the most snow in the next 7 days. Chase the powder with one tap.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://snowway.app/resorts?sort=name&q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
+    <!-- JSON-LD: site entity graph (same @ids everywhere, so every page links to one brand and one author) -->
+    <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+          { "@type" => "WebSite", "@id" => "https://snowway.app/#website", "name" => "Snow Way", "url" => "https://snowway.app",
+            "alternateName" => [ "SnowWay", "snowway.app", "Snow Way ski snow forecasts" ],
+            "description" => "Find the ski resort getting the most snow in the next 7 days. Chase the powder with one tap.",
+            "publisher" => { "@id" => "https://snowway.app/#organization" }, "inLanguage" => "en-US",
+            "potentialAction" => { "@type" => "SearchAction", "target" => "https://snowway.app/resorts?sort=name&q={search_term_string}", "query-input" => "required name=search_term_string" } },
+          { "@type" => "Organization", "@id" => "https://snowway.app/#organization", "name" => "Snow Way", "url" => "https://snowway.app",
+            "logo" => { "@type" => "ImageObject", "url" => "https://snowway.app/icon.png" },
+            "sameAs" => [ "https://www.wikidata.org/wiki/Q142069934", "https://www.instagram.com/snowway.app/" ],
+            "founder" => { "@id" => "https://justinmckelvey.com/#person" } },
+          { "@type" => "Person", "@id" => "https://justinmckelvey.com/#person", "name" => "Justin McKelvey", "url" => "https://snowway.app/authors/justin-mckelvey",
+            "sameAs" => [ "https://justinmckelvey.com", "https://www.linkedin.com/in/justinmckelvey", "https://x.com/justinmckelvey", "https://instagram.com/justinmckelvey", "https://youtube.com/@justinmckelvey" ],
+            "knowsAbout" => [ "Skiing", "Snowboarding", "Ski resorts", "Snow forecasting", "Ski trip planning" ] }
+        ] }) %>
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="alternate" type="text/plain" href="https://snowway.app/llms.txt" title="LLM-friendly site index" />
+    <link rel="alternate" type="text/plain" href="https://snowway.app/llms-full.txt" title="LLM-friendly full data" />
 
     <%= yield :head %>
 

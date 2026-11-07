@@ -24,7 +24,8 @@
         "description" => @summary.answer,
         "about" => { "@id" => "#{page_url}#resort" },
         "dateModified" => @summary.updated_at&.iso8601,
-        "isPartOf" => { "@type" => "WebSite", "name" => "Snow Way", "url" => "https://snowway.app" }
+        "isPartOf" => { "@id" => "https://snowway.app/#website" },
+        "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".snow-outlook" ] }
       }.compact,
       {
         "@type" => "BreadcrumbList",
@@ -55,7 +56,7 @@
         <%= link_to "Ski Resorts", regions_path, class: "hover:text-white transition" %> <span aria-hidden="true">/</span> <%= link_to @resort.region_name, region_path(@resort.region_slug), class: "hover:text-white transition" %>
       </nav>
       <p class="text-slate-400 text-sm uppercase tracking-widest mb-2"><%= @resort.location %></p>
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %> <span class="block text-2xl md:text-3xl text-slate-300 font-bold mt-1">Snow Report &amp; Forecast</span></h1>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %> <span class="block text-2xl md:text-3xl text-slate-300 font-bold mt-1">Snow Report, Weather &amp; Forecast</span></h1>
 
       <!-- Big Snow Number -->
       <div class="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-cyan-300 mb-2">
@@ -74,7 +75,7 @@
     <!-- Answer: the direct, dated summary search engines and AI assistants quote -->
     <section class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="outlook-heading">
       <h2 id="outlook-heading" class="text-sm font-bold text-cyan-400 uppercase tracking-widest mb-2"><%= @resort.name %> snow outlook</h2>
-      <p class="text-slate-200 leading-relaxed"><%= @summary.answer %></p>
+      <p class="snow-outlook text-slate-200 leading-relaxed"><%= @summary.answer %></p>
       <% if @summary.updated_at %>
         <p class="text-slate-400 text-xs mt-3">
           Updated <time datetime="<%= @summary.updated_at.iso8601 %>"><%= @summary.updated_at.in_time_zone("America/Denver").strftime("%b %-d, %Y at %-l:%M %p MT") %></time>

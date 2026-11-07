@@ -20,3 +20,19 @@ Q: <%= faq[:question] %>
 A: <%= faq[:answer] %>
 <% end %>
 <% end %>
+
+# Snow Way guides
+
+Evergreen ski and snowboard guides by Justin McKelvey (former snowboard shop owner). Each entry: URL, summary, and the guide's FAQ.
+<% @guides.each do |g| %>
+
+## <%= g[:title] %>
+
+URL: https://snowway.app/guides/<%= g[:slug] %>
+<%= g[:description] %>
+<% g[:faqs].each do |faq| %>
+
+Q: <%= faq[:question] %>
+A: <%= strip_tags(faq[:answer].to_s).squish %>
+<% end %>
+<% end %>

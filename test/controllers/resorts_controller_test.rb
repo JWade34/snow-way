@@ -11,12 +11,12 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     get resort_url(resorts(:vail))
     assert_response :success
     assert_select "title", /Vail Snow Report, Weather & 14-Day Forecast/
-    assert_select "h1", /Snow Report & Forecast/
+    assert_select "h1", /Snow Report, Weather & Forecast/
     assert_select "section", /ranking #2 of 3/
     assert_select "a[href=?]", resort_path(resorts(:breckenridge))
 
     ld = css_select('script[type="application/ld+json"]').map { |s| JSON.parse(s.text) }
-    graph = ld.find { |d| d["@graph"] }["@graph"]
+    graph = ld.flat_map { |d| d["@graph"] || [ d ] }
     types = graph.map { |n| n["@type"] }
     assert_includes types, "SkiResort"
     assert_includes types, "FAQPage"
