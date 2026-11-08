@@ -9,5 +9,7 @@
 # guides:
 #   family-ski-trip:
 #     take: "..."
-resorts: {}
+resorts:
+  mammoth-mountain:
+    take: "I rode Mammoth for a long weekend and it was pretty good. A little crowded, but that's to be expected on a weekend at a great spot. I was supposed to leave Monday morning, but overnight it dumped 16 inches, so I stayed and rode by myself after my friends and the crowds left. It was one of the most epic days of my life: an empty mountain, blue skies and a foot and a half of fresh snow. I'll never forget the stoke everyone else had. The collective vibe was off the charts fun. I rode all day until my legs gave out."
 guides: {}
