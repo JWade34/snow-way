@@ -1,5 +1,25 @@
 # Building Snow Way in public: social plan
 
+## Tracker (check off as you post)
+Paste the post link after each one so we can see what pulled.
+
+| # | Episode | Recorded | Posted (date + link) | Best result |
+|---|---|---|---|---|
+| 1 | Why I'm building a ski site (Mammoth Monday) | [ ] | | |
+| 2 | 66 to 4,026 Google impressions | [ ] | | |
+| 3 | ChatGPT recommends my site | [ ] | | |
+| 4 | iPhone menu sent people to Hotels.com | [ ] | | |
+| 5 | The homepage said 0 inches | [ ] | | |
+| 6 | 467 saw us on Google, zero clicked | [ ] | | |
+| 7 | 10 years of weather for 179 resorts | [ ] | | |
+| 8 | Solo founder outreach | [ ] | | |
+| 9 | First affiliate click, first subscriber | [ ] | | |
+| 10 | Testing the forecast in person | [ ] | | |
+
+**Weekly habit:** [ ] Mon numbers screenshot · [ ] Wed build moment · [ ] Fri Build Log · [ ] storm-day clip
+
+**Setup (once):** [ ] pin a "Building Snow Way in public" post on LinkedIn and X · [ ] add "Building @snowway.app" to your bios · [ ] Instagram highlight "Build Log"
+
 **Goal:** show how fun it is to build a real product with AI, from zero to traffic, as a snowboarder who ran a shop and taught himself to code. It does two jobs at once: it grows Snow Way, and it shows people exactly what Justin can build (his consulting audience).
 
 **Series name:** "Snow Way Build Log" (weekly episodes: "Build Log #1", "#2"...). Simple, searchable, easy to binge.

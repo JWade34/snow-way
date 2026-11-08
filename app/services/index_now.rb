@@ -8,6 +8,7 @@ module IndexNow
   ENDPOINT = URI("https://api.indexnow.org/indexnow")
   CACHE_KEY = "index_now:last_submitted_on".freeze
   SUBMITTED_KEY = "index_now:submitted_urls".freeze
+  CHANGED_KEY = "index_now:changed_urls".freeze
 
   module_function
 
@@ -32,6 +33,17 @@ module IndexNow
     return false if fresh.empty?
 
     submit(fresh).tap { |ok| Rails.cache.write(SUBMITTED_KEY, (submitted + fresh).uniq) if ok }
+  end
+
+  # Resubmits pages whose content changed (url => date last edited). Each url/date pair is sent once.
+  def submit_changed(url_dates)
+    return false unless Rails.env.production?
+
+    sent = Rails.cache.read(CHANGED_KEY) || {}
+    fresh = url_dates.reject { |url, date| sent[url] == date.to_s }
+    return false if fresh.empty?
+
+    submit(fresh.keys).tap { |ok| Rails.cache.write(CHANGED_KEY, sent.merge(fresh.transform_values(&:to_s))) if ok }
   end
 
   def submit(urls)

@@ -16,6 +16,8 @@ Last updated: 2026-11-08
 
 ## When you have time
 
+- [ ] **Build in public: "Snow Way Build Log" series.** Plan, first 10 episodes and tracker in `docs/social/build-in-public.md`. One Build Log every Friday is the minimum. Say "give me this week's build log" for the numbers and moments.
+
 - [x] **AI citation tracking: on (2026-11-08).** Claude copied the Perplexity and OpenAI keys from the hub to Snow Way on Railway. First check runs Sunday 9pm MT; results at snowway.app/admin/ai and in the Monday email.
 
 - [ ] **Turn on Instagram/Facebook auto-posting (about 15 minutes, Claude walks you through it).** The queue is already built and filling up at snowway.app/admin/social (daily snow report story, tips Mon/Wed/Sat, weekly report Thursday). Steps: 1) make a "Snow Way" Facebook Page and link @snowway.app to it, 2) developers.facebook.com → create a Business app (stays in development mode, no Meta review needed for your own accounts), 3) generate a long-lived Page token with Instagram publishing permissions, 4) set `META_ACCESS_TOKEN`, `IG_USER_ID` and `FB_PAGE_ID` on Railway yourself. Until then you can post from the queue by hand.
