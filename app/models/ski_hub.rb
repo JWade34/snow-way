@@ -64,6 +64,19 @@ class SkiHub
       .sort_by { |_, miles| miles }
   end
 
+  # Estimated driving time and road distance from db/drive_times.yml: { "minutes" => 70, "miles" => 54 } or nil.
+  def drive(resort)
+    self.class.drive_times.dig("hubs", slug, resort.slug)
+  end
+
+  def self.drive_times
+    @drive_times = nil if Rails.env.development?
+    @drive_times ||= begin
+      file = Rails.root.join("db/drive_times.yml")
+      File.exist?(file) ? YAML.load_file(file) : {}
+    end
+  end
+
   def self.miles_between(lat1, lon1, lat2, lon2)
     rad = Math::PI / 180
     dlat = (lat2 - lat1) * rad

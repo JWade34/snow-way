@@ -1,15 +1,29 @@
 <% city = @hub.city %>
 <% nearby = @hub.nearby %>
+<% drive = ->(r) { @hub.drive(r) } %>
+<% fmt = ->(min) { m = (min / 15.0).round * 15; h, mm = m.divmod(60); h.zero? ? "#{mm} min" : (mm.zero? ? "#{h} hr" : "#{h} hr #{mm} min") } %>
+<% if nearby.all? { |r, _| drive.(r) } %><% nearby = nearby.sort_by { |r, _| drive.(r)["minutes"] } %><% end %>
 <% closest, closest_mi = nearby.first %>
 <% snowiest, _ = nearby.max_by { |r, _| @totals.fetch(r.id, 0.0) } %>
-<% within_100 = nearby.select { |_, mi| mi <= 100 } %>
+<% day_trips = nearby.select { |r, _| (d = drive.(r)) && d["minutes"] <= 150 } %>
+<% weekend = nearby.select { |r, _| (d = drive.(r)) && d["minutes"] > 150 && d["minutes"] <= 270 } %>
+<% biggest = ->(list) { list.map(&:first).select(&:vertical_drop).max_by(&:vertical_drop) } %>
+<% best_day = biggest.(day_trips) %>
+<% best_weekend = biggest.(weekend) %>
+<% jan_powder = nearby.map(&:first).select { |r| (d = drive.(r)) && d["minutes"] <= 270 }.filter_map { |r| (o = PowderOdds.for(r)) && o[1] ? [ r, o[1] ] : nil }.max_by { |_, v| v } %>
+<% epic = nearby.map(&:first).select { |r| r.pass_label.to_s.include?("Epic") } %>
+<% ikon = nearby.map(&:first).select { |r| r.pass_label.to_s.include?("Ikon") } %>
+<% closest_drive = drive.(closest) %>
 <% faqs = [] %>
-<% faqs << { question: "What is the closest ski resort to #{city}?", answer: "#{closest.name} is the closest ski resort Snow Way tracks to #{city}, about #{closest_mi} miles in a straight line from #{@hub.airport}. Driving distance is longer." } %>
+<% faqs << { question: "What is the closest ski resort to #{city}?", answer: closest_drive ? "#{closest.name} is the closest ski resort to #{city}, about #{fmt.(closest_drive["minutes"])} by car (#{closest_drive["miles"]} road miles from #{@hub.airport}) without traffic." : "#{closest.name} is the closest ski resort Snow Way tracks to #{city}, about #{closest_mi} miles in a straight line from #{@hub.airport}. Driving distance is longer." } %>
 <% faqs << { question: "Which ski resort near #{city} is getting the most snow this week?", answer: @totals.fetch(snowiest.id, 0.0) > 0 ? "As of #{Date.current.strftime("%B %-d, %Y")}, #{snowiest.name} has the most snow forecast near #{city}: #{inches(@totals[snowiest.id])} over the next 7 days." : "As of #{Date.current.strftime("%B %-d, %Y")}, none of the ski resorts near #{city} have new snow in the 7-day forecast." } %>
-<% faqs << { question: "How many ski resorts are within 100 miles of #{city}?", answer: within_100.any? ? "#{pluralize(within_100.size, "ski resort")} Snow Way tracks #{within_100.size == 1 ? "is" : "are"} within 100 miles (straight line) of #{@hub.airport}: #{within_100.map { |r, _| r.name }.to_sentence}." : "None of the resorts Snow Way tracks are within 100 straight-line miles of #{@hub.airport}; the closest is #{closest.name} at about #{closest_mi} miles." } %>
+<% if best_day %><% faqs << { question: "What is the best day trip ski resort from #{city}?", answer: "For the most terrain on a day trip, #{best_day.name} has the biggest vertical drop (#{number_with_delimiter(best_day.vertical_drop)} ft) of the resorts within about 2.5 hours of #{city}, roughly #{fmt.(drive.(best_day)["minutes"])} each way. #{day_trips.size > 1 ? "Other day trips: #{(day_trips.map(&:first) - [ best_day ]).first(4).map(&:name).to_sentence}." : ""}".strip } %><% end %>
+<% if best_weekend %><% faqs << { question: "Where should I ski for a weekend trip from #{city}?", answer: "For a weekend, #{best_weekend.name} is the biggest mountain within about 4.5 hours of #{city} (#{number_with_delimiter(best_weekend.vertical_drop)} ft of vertical, about #{fmt.(drive.(best_weekend)["minutes"])} away). #{weekend.size > 1 ? "Also worth the drive: #{(weekend.map(&:first) - [ best_weekend ]).first(4).map(&:name).to_sentence}." : ""}".strip } %><% end %>
+<% if epic.any? || ikon.any? %><% faqs << { question: "Which ski resorts near #{city} are on the Epic or Ikon Pass?", answer: [ ("Epic Pass: #{epic.map(&:name).to_sentence}." if epic.any?), ("Ikon Pass: #{ikon.map(&:name).to_sentence}." if ikon.any?), "Pass lineups are for the 2026-27 season." ].compact.join(" ") } %><% end %>
+<% if jan_powder %><% faqs << { question: "Which ski resort near #{city} gets the most powder days?", answer: "Within a weekend drive of #{city}, #{jan_powder[0].name} has the most fresh-snow days in January: about #{jan_powder[1]}% of January days get 1 inch or more of new snow, based on 10 seasons of weather data." } %><% end %>
 
-<% content_for(:title, fit_title("Ski Resorts Near #{city}: Distance & Snow | Snow Way", "Ski Resorts Near #{city} | Snow Way")) %>
-<% content_for(:description, "#{nearby.size} ski resorts within #{SkiHub::RADIUS_MILES} miles of #{city} (#{@hub.airport}), sorted by distance with this week's snow forecast. #{faqs[1][:answer]}".truncate(300)) %>
+<% content_for(:title, fit_title("Ski Resorts Near #{city}: Drive Times, Snow & Day Trips | Snow Way", "Ski Resorts Near #{city}: Drive Times & Snow | Snow Way", "Ski Resorts Near #{city} | Snow Way")) %>
+<% content_for(:description, "#{nearby.size} ski resorts near #{city} with drive times and this week's snow. Closest: #{closest.name}#{closest_drive ? " (about #{fmt.(closest_drive["minutes"])})" : ""}.#{best_day ? " Best day trip: #{best_day.name}." : ""} #{faqs[1][:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "CollectionPage", "name" => "Ski Resorts Near #{city}", "url" => absolute_url("/ski-resorts-near/#{@hub.slug}"), "dateModified" => @updated_at&.iso8601 }.compact,
@@ -24,23 +38,39 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ "Near #{city}", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts near <%= city %></h1>
-    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+    <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs[0][:answer] %> <%= faqs[1][:answer] %></p>
-      <p class="text-slate-400 text-xs mt-3">Distances are straight-line miles from <%= Resort::AIRPORTS.fetch(@hub.airport, @hub.airport) %> (<%= @hub.airport %>), not driving distance. Snow updated <%= updated_label(@updated_at) %>.</p>
+      <p class="text-slate-400 text-xs mt-3"><%= closest_drive ? "Drive times are estimates from #{Resort::AIRPORTS.fetch(@hub.airport, @hub.airport)} (#{@hub.airport}) without traffic or snow, based on OpenStreetMap routing; allow extra time on storm days and weekends." : "Distances are straight-line miles from #{Resort::AIRPORTS.fetch(@hub.airport, @hub.airport)} (#{@hub.airport}), not driving distance." %> Snow updated <%= updated_label(@updated_at) %>.</p>
     </section>
 
-    <h2 class="text-xl font-bold mb-4">Resorts within <%= SkiHub::RADIUS_MILES %> miles of <%= city %>, nearest first</h2>
+    <% picks = [ ([ "Closest", closest, closest_drive ? fmt.(closest_drive["minutes"]) : "~#{closest_mi} mi" ]),
+                 ([ "Best day trip", best_day, "#{number_with_delimiter(best_day.vertical_drop)} ft vertical" ] if best_day),
+                 ([ "Best weekend trip", best_weekend, "#{number_with_delimiter(best_weekend.vertical_drop)} ft vertical" ] if best_weekend),
+                 ([ "Most snow this week", snowiest, inches(@totals.fetch(snowiest.id, 0.0)) ] if @totals.fetch(snowiest.id, 0.0) > 0),
+                 ([ "Most January powder days", jan_powder[0], "#{jan_powder[1]}% of days" ] if jan_powder) ].compact %>
+    <h2 class="text-xl font-bold mb-3">Quick picks near <%= city %></h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 text-sm">
+      <% picks.each do |label, r, stat| %>
+        <%= link_to resort_path(r), class: "block bg-slate-800/40 border border-slate-700 hover:border-cyan-500 rounded-lg p-3 transition" do %>
+          <span class="block text-slate-400 text-xs"><%= label %></span>
+          <span class="block font-bold text-white"><%= r.name %></span>
+          <span class="block text-cyan-300 text-xs"><%= stat %></span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h2 class="text-xl font-bold mb-4">Ski resorts near <%= city %>, by drive time</h2>
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
       <table class="w-full text-sm">
         <caption class="sr-only">Ski resorts near <%= city %> by distance with 7-day snow forecast</caption>
         <thead class="bg-slate-800/70 text-slate-300 text-left">
-          <tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">Distance</th><th scope="col" class="px-3 py-2 text-right">7-day snow</th><th scope="col" class="px-3 py-2 text-right hidden sm:table-cell">Summit</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Pass</th></tr>
+          <tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">Drive</th><th scope="col" class="px-3 py-2 text-right">7-day snow</th><th scope="col" class="px-3 py-2 text-right hidden sm:table-cell">Summit</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Pass</th></tr>
         </thead>
         <tbody class="divide-y divide-slate-800">
           <% nearby.each do |r, mi| %>
             <tr class="hover:bg-slate-800/40">
               <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %><span class="block text-xs text-slate-400 font-normal"><%= r.state_province %></span></th>
-              <td class="px-3 py-2 text-right text-slate-200">~<%= mi %> mi</td>
+              <td class="px-3 py-2 text-right text-slate-200 whitespace-nowrap"><% if (d = drive.(r)) %><%= fmt.(d["minutes"]) %><span class="block text-xs text-slate-400"><%= d["miles"] %> mi</span><% else %>~<%= mi %> mi<% end %></td>
               <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
               <td class="px-3 py-2 text-right text-slate-300 hidden sm:table-cell"><%= number_with_delimiter(r.elevation_summit) %> ft</td>
               <td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.pass_label || "—" %></td>
