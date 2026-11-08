@@ -1,20 +1,22 @@
 # Justin's to-do list for Snow Way
 
 Claude keeps this file current. Newest items at the top of each section. Check things off as you go.
-Last updated: 2026-11-07
+Last updated: 2026-11-08
 
 ## Do now (highest payoff first)
+
+- [ ] **Search Console: request indexing for 2 pages (2 minutes).** URL Inspection → paste each → "Request indexing": snowway.app/guides/best-snowboard-brands (new 2026-27 picks, our biggest query) and snowway.app/guides/best-ski-brands.
 
 - [ ] **Backlink outreach: send 5 to 10 emails a day (15 minutes a day).** Everything is in `docs/outreach/2026-11-backlink-campaign.md`: 50 lodges, shops and clubs near the top resorts (start with the "warmest" ones that already show snow info), 30 press contacts, 15 podcasts, 16 directories, and drafts in your voice with follow-ups. Personalize the first line, send from your own inbox, log replies in the table at the top. Say "make Gmail drafts" and Claude will create them for you to review and send. Links from other sites are the biggest thing holding rankings back.
 - [ ] **Read one "where to stay" page (5 minutes).** New for 25 resorts, e.g. snowway.app/resorts/vail/where-to-stay. You know Vail, Breck, Park City and Mammoth best: if a neighborhood note is off, tell Claude and it gets fixed. A line of your own advice per resort makes these much stronger.
 - [ ] **Resorts you've ridden (2 minutes, no writing).** snowway.app/admin → **Resorts I've ridden** → check them all off. Then whenever you have 5 minutes, **Paste / dictate** one resort per line ("Alta: skiers only, best snow in Utah."; lines starting with "-" become tips). Open each draft, fix it, check **Publish**. Start with Vail, Breckenridge, Park City, Mammoth, Jackson Hole, Whistler. First-hand takes are the one thing no competitor can copy.
 - [ ] **AvantLink: website verified, in staff review (2026-11-06).** When approved, apply to evo, Backcountry and other ski shops inside it (REI is on Impact, skip it here) and send Claude your website ID plus each merchant ID. The Monday growth email lists every pending application until it is wired in.
-- [ ] **Snow Way profiles on Instagram and Reddit** (name "Snow Way", link to snowway.app, bio mentioning ski snow forecasts). Same reason: wins searches for our own name. Send Claude the URLs and they go in the site's schema.
+- [ ] **Set up the rest of the Snow Way profiles (Instagram is done).** Exact names, bios, images and order are in `docs/social-profiles.md`: Facebook Page first (needed for auto-posting), then Reddit, YouTube, Pinterest, X, TikTok, Bluesky. Send Claude each URL so it goes in the site schema. This is what makes Google stop confusing "Snow Way" with Sno-Way plows.
 - [ ] **REI (via Impact): application in review (submitted 2026-11-05).** When approved: create a link, add it on Railway as `REI_IMPACT_LINK` (or send it to Claude). If declined, reapply once Search Console shows traffic.
 
 ## When you have time
 
-- [ ] **Turn on AI citation tracking (5 minutes, a few cents a week).** Get an API key from perplexity.ai/settings/api (add $5 credit) and/or platform.openai.com/api-keys, then set `PERPLEXITY_API_KEY` and/or `OPENAI_API_KEY` on Railway yourself. Every Sunday night the site asks both engines 25 questions we want to own and records whether they cite snowway.app. Results: snowway.app/admin/ai and the Monday email. Visits from ChatGPT, Perplexity, Claude and Gemini are already being counted without any key.
+- [x] **AI citation tracking: on (2026-11-08).** Claude copied the Perplexity and OpenAI keys from the hub to Snow Way on Railway. First check runs Sunday 9pm MT; results at snowway.app/admin/ai and in the Monday email.
 
 - [ ] **Turn on Instagram/Facebook auto-posting (about 15 minutes, Claude walks you through it).** The queue is already built and filling up at snowway.app/admin/social (daily snow report story, tips Mon/Wed/Sat, weekly report Thursday). Steps: 1) make a "Snow Way" Facebook Page and link @snowway.app to it, 2) developers.facebook.com → create a Business app (stays in development mode, no Meta review needed for your own accounts), 3) generate a long-lived Page token with Instagram publishing permissions, 4) set `META_ACCESS_TOKEN`, `IG_USER_ID` and `FB_PAGE_ID` on Railway yourself. Until then you can post from the queue by hand.
 
