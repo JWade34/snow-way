@@ -1,0 +1,112 @@
+<% m = @month %>
+<% top = @ranked.first(25) %>
+<% pick = ->(states) { @ranked.find { |r, _| Array(states).include?(r.state_province) } } %>
+<% line = ->((r, o)) { "#{r.name} (snow on about #{m.powder_days(o)} of #{m.days} days)" } %>
+<% avg = ->(n) { v = Resort.north_america.filter_map { |r| PowderOdds.for(r)&.dig(n) }; v.any? ? (v.sum.to_f / v.size).round : 0 } %>
+<% month_avgs = SkiMonth.all.to_h { |x| [ x.slug, avg.(x.number) ] } %>
+<% rank_of_month = month_avgs.values.sort.reverse.index(month_avgs[m.slug]) + 1 %>
+<% northeast = pick.(%w[Vermont New\ Hampshire Maine New\ York]) %>
+<% opening = m.number == 11 || m.number == 12 ? Resort.north_america.select { |r| r.opening_date && r.opening_date.month == m.number && r.opening_date.year == m.year }.sort_by(&:opening_date) : [] %>
+<% live = m.number == Date.current.month %>
+<% week = live ? @ranked.map(&:first).sort_by { |r| -@totals.fetch(r.id, 0.0) }.first(5).select { |r| @totals.fetch(r.id, 0.0) > 0 } : [] %>
+<% answer = top.any? ? "The best places to ski in #{m.name}, ranked by how often it snows: #{top.first(3).map(&line).to_sentence}. That's from 10 seasons of daily weather history, counting days with an inch or more of new snow." : nil %>
+<% faqs = [] %>
+<% faqs << { question: "Where is the best place to ski in #{m.name}?", answer: answer } if answer %>
+<% { "Colorado" => "Colorado", "Utah" => "Utah", "California" => "California", "Canada" => %w[British\ Columbia Alberta Quebec] }.each do |label, states| %>
+  <% if (r, o = pick.(states)) && r %><% faqs << { question: "Where is the best skiing in #{label} in #{m.name}?", answer: "#{r.name}. In a typical #{m.name} it gets an inch or more of new snow on about #{o}% of days, roughly #{m.powder_days(o)} days, the most of any #{label == "Canada" ? "Canadian" : label} resort Snow Way tracks." } %><% end %>
+<% end %>
+<% if northeast %><% faqs << { question: "Where is the best East Coast skiing in #{m.name}?", answer: "#{northeast[0].name}, #{northeast[0].state_province}, with new snow on about #{m.powder_days(northeast[1])} of #{m.days} days in a typical #{m.name}, the most in the Northeast." } %><% end %>
+<% faqs << { question: "Is #{m.name} a good month to ski?", answer: "Across #{Resort.north_america.count} North American resorts, #{m.name} averages new snow on #{month_avgs[m.slug]}% of days, #{rank_of_month.ordinalize} of the six main ski months (#{SkiMonth.all.max_by { |x| month_avgs[x.slug] }.name} is snowiest at #{month_avgs.values.max}%).#{m.number == 11 ? " Many resorts are still opening, so check opening dates before you book." : ""}#{m.number == 4 ? " High, northern resorts keep the best snow; many smaller resorts close in early April." : ""}" } %>
+<% if week.any? %><% faqs << { question: "Where is it snowing right now?", answer: "As of #{Date.current.strftime("%B %-d, %Y")}, the most snow in the 7-day forecast is at #{week.first(3).map { |r| "#{r.name} (#{inches(@totals[r.id])})" }.to_sentence}." } %><% end %>
+
+<% content_for(:title, fit_title("Best Places to Ski in #{m.name} #{m.year}: Ranked by Snow | Snow Way", "Best Places to Ski in #{m.name} #{m.year} | Snow Way")) %>
+<% content_for(:description, "#{answer} Best #{m.name} picks for Colorado, Utah, California, the East and Canada.".squish.truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Best places to ski in #{m.name} #{m.year}", "url" => absolute_url(ski_month_path(m)),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "dateModified" => Date.current.iso8601, "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Best Places to Ski in #{m.name}", nil ] ]),
+        { "@type" => "ItemList", "name" => "Best places to ski in #{m.name}", "numberOfItems" => top.size,
+          "itemListElement" => top.each_with_index.map { |(r, _), i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url(resort_path(r)) } } },
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Best Places to Ski in #{m.name}", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best places to ski in <%= m.name %> <%= m.year %></h1>
+    <nav class="flex flex-wrap gap-2 mb-5 text-sm" aria-label="Other months">
+      <% SkiMonth.all.each do |x| %>
+        <%= link_to x.name, ski_month_path(x), class: "px-3 py-1 rounded-full border #{x.slug == m.slug ? "bg-cyan-500 text-slate-900 border-cyan-500 font-bold" : "border-slate-600 hover:border-cyan-400"}", "aria-current": (x.slug == m.slug ? "page" : nil) %>
+      <% end %>
+    </nav>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+      <p class="text-slate-400 text-xs mt-3">"Snow days" = days with 1 inch or more of new snow at mid-mountain, averaged over 10 seasons. A measure of how often it snows, not how deep.</p>
+    </section>
+
+    <% if week.any? %>
+      <h2 class="text-xl font-bold mb-2">Snowing this week</h2>
+      <p class="text-slate-400 text-sm mb-4">7-day forecast, updated <%= updated_label(@updated_at) %>.</p>
+      <ol class="space-y-2 mb-10">
+        <% week.each_with_index do |r, i| %>
+          <li><%= link_to resort_path(r), class: "flex items-center justify-between bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-4 py-3 transition" do %><span><span class="text-slate-400 mr-2"><%= i + 1 %>.</span><span class="font-semibold"><%= r.name %></span> <span class="text-slate-400 text-sm"><%= r.state_province %></span></span><span class="text-cyan-300 font-bold"><%= inches(@totals[r.id]) %></span><% end %></li>
+        <% end %>
+      </ol>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-2">The <%= top.size %> snowiest resorts in <%= m.name %></h2>
+    <p class="text-slate-400 text-sm mb-4">North America, ranked by how many <%= m.name %> days get new snow in a typical season.</p>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski resorts ranked by snow days in <%= m.name %></caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">#</th><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">Where</th><th scope="col" class="px-3 py-2 text-right">Snow days</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Pass</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% top.each_with_index do |(r, o), i| %>
+            <tr><td class="px-3 py-2 text-slate-400"><%= i + 1 %></td><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, best_time_resort_path(r), class: "hover:text-cyan-300" %></th><td class="px-3 py-2 text-slate-300"><%= r.state_province %></td><td class="px-3 py-2 text-right whitespace-nowrap"><span class="font-bold text-cyan-300"><%= m.powder_days(o) %></span> <span class="text-slate-400 text-xs hidden sm:inline">of <%= m.days %> (<%= o %>%)</span></td><td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.pass_label %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold mb-3">Best in each state and province in <%= m.name %></h2>
+    <ul class="grid sm:grid-cols-2 gap-2 mb-10 text-sm">
+      <% SkiMonth::REGIONS.filter_map { |s| (x = pick.(s)) && [ s, *x ] }.each do |state, r, o| %>
+        <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2 flex justify-between gap-2"><span><span class="text-slate-400"><%= state %>:</span> <%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %></span><span class="text-cyan-300 font-bold whitespace-nowrap"><%= m.powder_days(o) %> days</span></li>
+      <% end %>
+    </ul>
+
+    <% if opening.any? %>
+      <h2 class="text-xl font-bold mb-3">Opening in <%= m.name %> <%= m.year %></h2>
+      <p class="text-slate-400 text-sm mb-4">Scheduled opening days. Resorts move them with the weather, so check before you go. Full list: <%= link_to "ski resort opening dates", opening_dates_path, class: "text-cyan-300 underline underline-offset-2" %>.</p>
+      <ul class="grid sm:grid-cols-2 gap-2 mb-10 text-sm">
+        <% opening.each do |r| %>
+          <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2 flex justify-between gap-2"><%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %><span class="text-slate-300 whitespace-nowrap"><%= r.opening_date.strftime("%b %-d") %></span></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">How <%= m.name %> compares</h2>
+    <p class="text-slate-300 text-sm mb-3">Share of days with new snow, averaged across <%= Resort.north_america.count %> North American resorts.</p>
+    <ul class="space-y-1.5 mb-10 text-sm">
+      <% max = [ month_avgs.values.max, 1 ].max %>
+      <% SkiMonth.all.each do |x| %>
+        <li class="flex items-center gap-3"><span class="w-20 shrink-0 <%= x.slug == m.slug ? "font-bold text-white" : "text-slate-400" %>"><%= x.name %></span><span class="flex-1 bg-slate-800 rounded h-3"><span class="block h-3 rounded <%= x.slug == m.slug ? "bg-cyan-400" : "bg-slate-600" %>" style="width: <%= (month_avgs[x.slug] * 100.0 / max).round %>%"></span></span><span class="w-10 text-right"><%= month_avgs[x.slug] %>%</span></li>
+      <% end %>
+    </ul>
+
+    <% if (r, _ = top.find { |x, _| Lodging.slugs.include?(x.slug) } || top.first) && r %>
+      <%= render "shared/trip_deals", resort: r, heading: "Plan a #{m.name} trip to #{r.name}" %>
+    <% end %>
+    <%= render "shared/calendar_cta" %>
+
+    <%= render "shared/faq", faqs: faqs, heading: "#{m.name} skiing questions" %>
+
+    <p class="text-slate-400 text-xs mb-6">How we count: <%= PowderOdds.source %>. Weather models undercount mountain snow, so real snow days are likely more frequent; use this to compare resorts and months. Each resort's page shows its own month-by-month odds.</p>
+    <p class="text-sm text-slate-300 mb-10">More: <%= link_to "Snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Where is it snowing?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Getting to the resorts", trip_routes_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+    <%= render "shared/cite_this", title: "Best places to ski in #{m.name} #{m.year}", url: absolute_url(ski_month_path(m)) %>
+  </main>
+</div>

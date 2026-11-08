@@ -110,4 +110,14 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     get "/getting-there/nowhere-to-nothing"
     assert_response :not_found
   end
+
+  test "best places to ski by month pages render for each ski month" do
+    SkiMonth.all.each do |month|
+      get "/best-places-to-ski-in-#{month.slug}"
+      assert_response :success
+      assert_includes response.body, "Best places to ski in #{month.name}"
+    end
+    get "/best-places-to-ski-in-july"
+    assert_response :not_found
+  end
 end

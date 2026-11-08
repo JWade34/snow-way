@@ -74,7 +74,8 @@
             </tbody>
           </table>
         </div>
-        <p class="text-slate-400 text-xs mb-10">Source: <%= PowderOdds.source %>. Models undercount mountain snow, so real powder days are likely more frequent; use this to compare months and resorts.</p>
+        <p class="text-slate-400 text-xs mb-3">Source: <%= PowderOdds.source %>. Models undercount mountain snow, so real powder days are likely more frequent; use this to compare months and resorts.</p>
+        <p class="text-sm text-slate-300 mb-10">Compare every resort by month: <%= safe_join(SkiMonth.all.map { |x| link_to(x.name, ski_month_path(x), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>
       <% end %>
 
       <h2 class="text-xl font-bold mb-3">How to time your trip</h2>
