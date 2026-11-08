@@ -12,3 +12,17 @@ document.addEventListener("click", (event) => {
     window.posthog.capture("affiliate_click", { page: window.location.pathname, href: link.href, label: data.get("label") })
   }
 }, { capture: true })
+
+// Records email signups in PostHog (which page and which form), never the email address itself,
+// so we can see which pages and offers turn visitors into subscribers.
+document.addEventListener("submit", (event) => {
+  const form = event.target
+  if (!form || !form.action || !/\/subscribers/.test(form.action)) return
+  if (!(window.posthog && window.posthog.capture)) return
+  const magnet = form.querySelector('[name="subscriber[magnet]"]')
+  const resort = form.querySelector('[name="subscriber[resort_id]"]')
+  window.posthog.capture("email_signup", {
+    page: window.location.pathname,
+    form: (magnet && magnet.value) || (resort && resort.value ? "resort_alert" : "storm_alert")
+  })
+}, { capture: true })

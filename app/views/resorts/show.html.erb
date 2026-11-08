@@ -304,6 +304,7 @@
         <p class="font-bold mb-1">Plan a trip to <%= @resort.name %></p>
         <p class="text-slate-400 text-xs mb-3">Prices for <%= checkin.strftime("%b %-d") %> to <%= checkout.strftime("%b %-d") %>; change dates on the next page.</p>
         <a href="<%= Affiliate.hotels_url(@resort, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-3 py-2 text-sm transition">Find a place to stay</a>
+        <a href="<%= Affiliate.vrbo_url(@resort, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="block text-center text-xs text-cyan-300 underline underline-offset-2 mt-1.5">or rent a condo or house on Vrbo</a>
         <div class="flex gap-2 mt-2 text-xs">
           <a href="https://www.kayak.com/flights/<%= @resort.nearest_airport_code %>/<%= checkin %>/<%= checkout %>?sort=bestflight_a" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center border border-slate-600 hover:border-cyan-500 rounded-lg py-2 transition">Flights to <%= @resort.nearest_airport_code %></a>
           <a href="https://www.kayak.com/cars/<%= @resort.nearest_airport_code %>/<%= checkin %>/<%= checkout %>?sort=price_a" target="_blank" rel="sponsored nofollow noopener" class="flex-1 text-center border border-slate-600 hover:border-cyan-500 rounded-lg py-2 transition">Rent a 4x4</a>

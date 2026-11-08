@@ -67,6 +67,20 @@ module Affiliate
     }.to_query
   end
 
+  # Vacation rentals (condos, houses). Converted to a commissionable link by the Stay22 script, like Booking.com.
+  def vrbo_url(resort, checkin: Date.current + 2, checkout: Date.current + 5, place: nil)
+    "https://www.vrbo.com/search?" + {
+      destination: place || [ resort.name, resort.state_province ].compact.join(", "), startDate: checkin.iso8601, endDate: checkout.iso8601, adults: 2
+    }.to_query
+  end
+
+  # Second hotel option (Expedia), also converted by the Stay22 script.
+  def expedia_hotels_url(resort, checkin: Date.current + 2, checkout: Date.current + 5)
+    "https://www.expedia.com/Hotel-Search?" + {
+      destination: [ resort.name, resort.state_province ].compact.join(", "), startDate: checkin.iso8601, endDate: checkout.iso8601, adults: 2
+    }.to_query
+  end
+
   # Kayak searches convert through Stay22 Let Me Allez, like Booking.com.
   def flights_url(airport, checkin: Date.current + 2, checkout: Date.current + 5)
     "https://www.kayak.com/flights/#{airport}/#{checkin.iso8601}/#{checkout.iso8601}?sort=bestflight_a"
