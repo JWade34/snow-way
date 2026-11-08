@@ -82,13 +82,13 @@
     <h2 class="text-xl font-bold mb-3">Ways to get from <%= pg.origin_name %> to <%= pg.destination %></h2>
     <div class="grid sm:grid-cols-2 gap-3 mb-4">
       <section data-booking class="bg-slate-800/40 border border-cyan-500/40 rounded-xl p-4">
-        <h3 class="font-bold mb-1">🚙 Drive yourself</h3>
+        <h3 class="font-bold mb-1"><span class="mr-1.5" aria-hidden="true">🚙</span>Drive yourself</h3>
         <p class="text-slate-300 text-sm mb-3">The most flexible option, and the only way to chase the best snow day by day. In winter, rent an AWD or 4WD vehicle with good tires.</p>
         <a href="<%= Affiliate.cars_url(o["airport"], checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-2 text-sm transition">Compare 4x4 rentals at <%= o["airport"] %></a>
       </section>
       <% pg.options.each do |opt| %>
         <section class="bg-slate-800/40 border border-slate-700 rounded-xl p-4">
-          <h3 class="font-bold mb-1"><%= { "shuttle" => "🚐", "bus" => "🚌", "train" => "🚆", "fly" => "✈️" }.fetch(opt["kind"], "➡️") %> <%= opt["name"] %></h3>
+          <h3 class="font-bold mb-1"><span class="mr-1.5" aria-hidden="true"><%= { "shuttle" => "🚐", "bus" => "🚌", "train" => "🚆", "fly" => "✈️" }.fetch(opt["kind"], "➡️") %></span><%= opt["name"] %></h3>
           <p class="text-slate-300 text-sm mb-2"><%= opt["note"] %></p>
           <% if opt["url"].present? %><a href="<%= opt["url"] %>" target="_blank" rel="nofollow noopener" class="text-cyan-300 text-sm underline underline-offset-2">Schedules and fares ↗</a><% end %>
         </section>
@@ -96,7 +96,7 @@
     </div>
     <% if pg.fly_closer.any? %>
       <div data-booking class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-4">
-        <h3 class="font-bold mb-1">✈️ Fly closer</h3>
+        <h3 class="font-bold mb-1"><span class="mr-1.5" aria-hidden="true">✈️</span>Fly closer</h3>
         <ul class="text-slate-300 text-sm space-y-1 mb-3"><% pg.fly_closer.each do |f| %><li><strong class="text-white"><%= f["airport"] %>:</strong> <%= f["note"] %></li><% end %></ul>
         <a href="<%= Affiliate.flights_url(r.nearest_airport_code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-cyan-300 text-sm underline underline-offset-2">Compare flights to <%= r.nearest_airport_code %> ↗</a>
       </div>
