@@ -1,0 +1,143 @@
+<% pg = @page %>
+<% r = pg.primary %>
+<% o = pg.origin %>
+<% fmt = ->(min) { m = (min / 5.0).round * 5; h, mm = m.divmod(60); h.zero? ? "#{mm} minutes" : (mm.zero? ? "#{h} hr" : "#{h} hr #{mm} min") } %>
+<% air = pg.drive(r, from: "airport") %>
+<% city = pg.drive(r, from: "city") %>
+<% checkin, checkout = Date.current + 2, Date.current + 5 %>
+<% summary = ResortSummary.new(r) %>
+<% snow = @totals.fetch(r.id, 0.0) %>
+<% multi = pg.resorts.size > 1 %>
+<% answer = if air
+     lead = multi ? "#{pg.resorts.map { |x| "#{x.name} is about #{fmt.(pg.drive(x)["minutes"])}" }.to_sentence} by car from #{o["airport_name"]} (#{o["airport"]})" : "#{pg.destination} is about #{air["miles"]} miles from #{o["airport_name"]} (#{o["airport"]}), roughly #{fmt.(air["minutes"])} by car without traffic or snow"
+     "#{lead}#{pg.via.present? ? " via #{pg.via}" : ""}.#{city && !multi ? " From downtown #{o["name"]} it's about #{city["miles"]} miles (#{fmt.(city["minutes"])})." : ""} Allow extra time on weekend mornings and storm days."
+   end %>
+<% faqs = [] %>
+<% faqs << { question: "How long is the drive from #{pg.origin_name} to #{pg.destination}?", answer: answer } if answer %>
+<% shuttles = pg.options.select { |x| %w[shuttle bus train].include?(x["kind"]) } %>
+<% if shuttles.any? %><% faqs << { question: "Is there a shuttle or bus from #{pg.origin_name} to #{pg.destination}?", answer: "Yes. #{shuttles.map { |x| "#{x["name"]}: #{x["note"].to_s.sub(/\.\z/, "")}" }.join(". ")}. Check each operator for current schedules and fares." } %><% end %>
+<% if pg.winter_driving.any? %><% faqs << { question: "Do I need snow tires or chains to drive to #{pg.destination}?", answer: pg.winter_driving.first } %><% end %>
+<% if pg.fly_closer.any? %><% faqs << { question: "Can I fly closer to #{pg.destination}?", answer: pg.fly_closer.map { |f| "#{f["airport"]}: #{f["note"].to_s.sub(/\.\z/, "")}." }.join(" ") } %><% end %>
+<% faqs << { question: "How much snow is #{pg.destination} getting this week?", answer: "As of #{Date.current.strftime("%B %-d, %Y")}, #{pg.resorts.map { |x| "#{x.name} has #{inches(@totals.fetch(x.id, 0.0))}" }.to_sentence} of snow forecast over the next 7 days." } %>
+
+<% content_for(:title, fit_title("#{pg.title}: Drive Time, Shuttles & Winter Driving | Snow Way", "#{pg.title}: Drive Time & Shuttles | Snow Way", "#{pg.title} | Snow Way")) %>
+<% content_for(:description, "#{answer} Shuttles, buses and winter driving rules for #{pg.title}.".squish.truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "#{pg.title}: drive time, shuttles and winter driving", "url" => absolute_url(trip_route_path(pg)),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "dateModified" => Date.current.iso8601, "citation" => pg.sources.map { |s| s["url"] },
+          "about" => pg.resorts.map { |x| { "@type" => "SkiResort", "name" => x.name, "url" => absolute_url(resort_path(x)) } },
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Getting There", "/getting-there" ], [ pg.title, nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Getting There", trip_routes_path ], [ pg.title, nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= pg.title %>: drive time, shuttles and winter driving</h1>
+    <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+      <p class="text-slate-400 text-xs mt-3">Drive times are estimates from OpenStreetMap routing, without traffic or snow. Snow forecast updated <%= updated_label(@updated_at) %>.</p>
+    </section>
+
+    <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
+      <% if air %>
+        <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">From <%= o["airport"] %> airport</dt><dd class="font-bold text-cyan-300 text-lg"><%= fmt.(air["minutes"]) %></dd><dd class="text-slate-400 text-xs"><%= air["miles"] %> miles</dd></div>
+      <% end %>
+      <% if city %>
+        <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">From downtown <%= o["name"] %></dt><dd class="font-bold text-lg"><%= fmt.(city["minutes"]) %></dd><dd class="text-slate-400 text-xs"><%= city["miles"] %> miles</dd></div>
+      <% end %>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Snow next 7 days</dt><dd class="font-bold text-lg"><%= inches(snow) %></dd><dd class="text-slate-400 text-xs"><%= r.name %></dd></div>
+      <div class="bg-slate-800/40 border border-slate-700 rounded-lg p-3"><dt class="text-slate-400 text-xs">Main route</dt><dd class="font-semibold text-sm leading-snug"><%= pg.via.presence || "See below" %></dd></div>
+    </dl>
+
+    <% if snow >= Affiliate::STORM_INCHES %>
+      <p class="mb-6 bg-amber-500/10 border border-amber-400/40 rounded-xl p-4 text-sm text-amber-100"><strong>Storm on the way:</strong> <%= r.name %> has <%= inches(snow) %> of snow forecast this week. Expect chain or traction rules, slower roads and possible closures; check road conditions before you leave.</p>
+    <% end %>
+
+    <% if multi %>
+      <h2 class="text-xl font-bold mb-3">Drive times to each resort</h2>
+      <div class="overflow-x-auto border border-slate-700 rounded-xl mb-8">
+        <table class="w-full text-sm">
+          <caption class="sr-only">Drive times from <%= pg.origin_name %> to each resort</caption>
+          <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">From <%= o["airport"] %></th><th scope="col" class="px-3 py-2 text-right">Miles</th><th scope="col" class="px-3 py-2 text-right">Snow next 7 days</th></tr></thead>
+          <tbody class="divide-y divide-slate-800">
+            <% pg.resorts.each do |x| %><% d = pg.drive(x) %>
+              <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to x.name, resort_path(x), class: "underline underline-offset-2 hover:text-cyan-300" %></th><td class="px-3 py-2 text-right"><%= d ? fmt.(d["minutes"]) : "–" %></td><td class="px-3 py-2 text-right"><%= d ? d["miles"] : "–" %></td><td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(x.id, 0.0)) %></td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <% if pg.main_route.present? %>
+      <h2 class="text-xl font-bold mb-3">The route</h2>
+      <p class="text-slate-300 leading-relaxed mb-8"><%= pg.main_route %></p>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">Ways to get from <%= pg.origin_name %> to <%= pg.destination %></h2>
+    <div class="grid sm:grid-cols-2 gap-3 mb-4">
+      <section data-booking class="bg-slate-800/40 border border-cyan-500/40 rounded-xl p-4">
+        <h3 class="font-bold mb-1">🚙 Drive yourself</h3>
+        <p class="text-slate-300 text-sm mb-3">The most flexible option, and the only way to chase the best snow day by day. In winter, rent an AWD or 4WD vehicle with good tires.</p>
+        <a href="<%= Affiliate.cars_url(o["airport"], checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-2 text-sm transition">Compare 4x4 rentals at <%= o["airport"] %></a>
+      </section>
+      <% pg.options.each do |opt| %>
+        <section class="bg-slate-800/40 border border-slate-700 rounded-xl p-4">
+          <h3 class="font-bold mb-1"><%= { "shuttle" => "🚐", "bus" => "🚌", "train" => "🚆", "fly" => "✈️" }.fetch(opt["kind"], "➡️") %> <%= opt["name"] %></h3>
+          <p class="text-slate-300 text-sm mb-2"><%= opt["note"] %></p>
+          <% if opt["url"].present? %><a href="<%= opt["url"] %>" target="_blank" rel="nofollow noopener" class="text-cyan-300 text-sm underline underline-offset-2">Schedules and fares ↗</a><% end %>
+        </section>
+      <% end %>
+    </div>
+    <% if pg.fly_closer.any? %>
+      <div data-booking class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-4">
+        <h3 class="font-bold mb-1">✈️ Fly closer</h3>
+        <ul class="text-slate-300 text-sm space-y-1 mb-3"><% pg.fly_closer.each do |f| %><li><strong class="text-white"><%= f["airport"] %>:</strong> <%= f["note"] %></li><% end %></ul>
+        <a href="<%= Affiliate.flights_url(r.nearest_airport_code, checkin: checkin, checkout: checkout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-cyan-300 text-sm underline underline-offset-2">Compare flights to <%= r.nearest_airport_code %> ↗</a>
+      </div>
+    <% else %>
+      <div class="mb-8"></div>
+    <% end %>
+
+    <% if pg.winter_driving.any? %>
+      <h2 class="text-xl font-bold mb-3">Winter driving: what to know</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-4">
+        <% pg.winter_driving.each do |w| %><li><%= w %></li><% end %>
+      </ul>
+      <p class="text-sm text-slate-400 mb-8">More tips in our <%= link_to "guide to winter driving to ski resorts", guide_path("winter-driving-to-ski-resorts"), class: "text-cyan-300 underline underline-offset-2" %>.</p>
+    <% end %>
+    <% if pg.tip.present? %>
+      <p class="mb-8 bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-4 text-sm text-slate-200"><strong class="text-white">Tip:</strong> <%= pg.tip %></p>
+    <% end %>
+
+    <%= render "shared/storm_deal", resort: r, summary: summary %>
+    <%= render "shared/trip_deals", resort: r, heading: "Book your #{pg.destination} trip", css: "mb-10" %>
+    <%= render "shared/trip_bar", resort: r %>
+
+    <p class="text-sm text-slate-300 mb-10 flex flex-wrap gap-x-4 gap-y-1">
+      <% pg.resorts.each do |x| %>
+        <%= link_to "#{x.name} snow forecast", resort_path(x), class: "text-cyan-300 underline underline-offset-2" %>
+        <% if Lodging.slugs.include?(x.slug) %><%= link_to "Where to stay in #{x.name}", where_to_stay_resort_path(x), class: "text-cyan-300 underline underline-offset-2" %><% end %>
+      <% end %>
+      <%= link_to "Ski resorts near #{pg.origin_name}", hub_path(SkiHub.all.find { |h| h.airport == o["airport"] } || "denver"), class: "text-cyan-300 underline underline-offset-2" %>
+    </p>
+
+    <%= render "shared/faq", faqs: faqs, heading: "#{pg.title} FAQ" %>
+
+    <% if pg.sources.any? %>
+      <h2 class="text-lg font-bold mb-2">Sources</h2>
+      <ul class="text-xs text-slate-400 space-y-1 mb-8"><% pg.sources.each do |s| %><li><a href="<%= s["url"] %>" rel="nofollow noopener" target="_blank" class="underline"><%= s["title"] %></a></li><% end %></ul>
+    <% end %>
+
+    <% if pg.related.any? %>
+      <h2 class="text-lg font-bold mb-3">More trips from <%= pg.origin_name %></h2>
+      <ul class="flex flex-wrap gap-2 mb-8 text-sm"><% pg.related.each do |x| %><li><%= link_to x.title, trip_route_path(x), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2" %></li><% end %></ul>
+    <% end %>
+    <p class="text-sm text-slate-400"><%= link_to "All ski trip routes", trip_routes_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+  </main>
+</div>

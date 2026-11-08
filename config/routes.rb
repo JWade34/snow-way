@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get "compare" => "comparisons#index", as: :comparisons
   get "compare/:id" => "comparisons#show", as: :comparison
   get "snowiest-ski-resorts" => "pages#snowiest", as: :snowiest_resorts
+  get "getting-there" => "trip_routes#index", as: :trip_routes
+  get "getting-there/:id" => "trip_routes#show", as: :trip_route
   get "epic-pass-resorts" => "pages#pass_resorts", defaults: { pass: "epic" }, as: :epic_pass_resorts
   get "ikon-pass-resorts" => "pages#pass_resorts", defaults: { pass: "ikon" }, as: :ikon_pass_resorts
   get "indy-pass-resorts" => "pages#pass_resorts", defaults: { pass: "indy" }, as: :indy_pass_resorts

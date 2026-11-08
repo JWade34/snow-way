@@ -96,4 +96,18 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "application/atom+xml", response.media_type
     assert_includes response.body, "https://snowway.app/guides/how-to-ski"
   end
+
+  test "getting there route pages render with drive times and FAQ" do
+    get "/getting-there"
+    assert_response :success
+    pages = RoutePage.all
+    assert pages.any?, "fixtures should cover at least one route"
+    pages.each do |page|
+      get "/getting-there/#{page.slug}"
+      assert_response :success
+      assert_includes response.body, "#{page.title} FAQ"
+    end
+    get "/getting-there/nowhere-to-nothing"
+    assert_response :not_found
+  end
 end

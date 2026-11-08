@@ -1,0 +1,362 @@
+# "Getting there" pages. Every fact is sourced (see sources). Drive times come from db/route_drives.yml. Researched 2026-11-08.
+---
+denver-to-breckenridge:
+  origin: denver
+  destination: Breckenridge
+  resorts:
+  - breckenridge
+  via: I-70 and CO-9
+  main_route: I-70 west through the Eisenhower-Johnson Memorial Tunnel (the Continental Divide, up to 11,158 ft), exit 203 at Frisco, then CO-9 south into Breckenridge.
+  winter_driving:
+  - 'Colorado''s Traction Law is enforced on I-70 between Morrison and Dotsero from September 1 to May 31: tires need at least 3/16 inch of tread and must be all-weather or winter tires (M+S or mountain-snowflake), or you must carry chains or an approved traction device. AWD or 4WD is recommended.'
+  - 'In bad storms CDOT can call the Passenger Vehicle Chain Law, the last step before a closure: every vehicle needs chains or an approved device.'
+  - Fines start at $100 plus a $33 surcharge, and $500 plus $157 if your car blocks a lane.
+  - CDOT says I-70 is busiest on holidays, school breaks and January and February weekends. Westbound peaks Friday 2 to 7 pm; eastbound peaks Sunday 3 to 6 pm, building from late morning.
+  options:
+  - name: Snowstang ski bus (CDOT)
+    kind: bus
+    note: Weekend and holiday ski bus from Denver Union Station, Federal Center and Wooly Mammoth park-and-ride to Breckenridge, A-Basin, Copper and Loveland. Last season it ran December to early May for $25 round trip ($12.50 kids), as listed; 2026-27 dates aren't posted yet.
+    url: https://www.ridebustang.com/
+  - name: Bustang West Line and Pegasus (CDOT)
+    kind: bus
+    note: Daily coach and express van along I-70 from Union Station, stopping in Frisco, where the free Summit Stage bus connects to Breckenridge.
+    url: https://www.ridebustang.com/
+  - name: Summit Express
+    kind: shuttle
+    note: Shared and private shuttles from Denver International Airport to Summit County and the Vail Valley.
+    url: https://www.summitexpress.com/
+  tip: 'CDOT''s advice for beating I-70 traffic: go midweek or early, stay through Sunday night, or take Snowstang or Pegasus.'
+  sources:
+  - title: 'CDOT: Traction Law'
+    url: https://www.codot.gov/travel/winter-driving/tractionlaw
+  - title: 'CDOT: How to avoid I-70 ski traffic'
+    url: https://www.codot.gov/programs/dmo/how-to-avoid-i-70-ski-traffic-like-a-pro
+  - title: 'CDOT: Snowstang 2025-26'
+    url: https://www.codot.gov/news/2025/december/snowstang-services-2025-2026
+  - title: 'Wikipedia: Interstate 70 in Colorado'
+    url: https://en.wikipedia.org/wiki/Interstate_70_in_Colorado
+  - title: 'Wikipedia: Colorado State Highway 9'
+    url: https://en.wikipedia.org/wiki/Colorado_State_Highway_9
+  - title: Summit Express
+    url: https://www.summitexpress.com/
+denver-to-vail:
+  origin: denver
+  destination: Vail
+  resorts:
+  - vail
+  via: I-70 over Vail Pass
+  main_route: I-70 west through the Eisenhower-Johnson Tunnel, past Frisco and over Vail Pass (about 10,660 ft) to exit 176 for Vail Village. West Vail is exit 173 and East Vail exit 180.
+  winter_driving:
+  - 'Colorado''s Traction Law is enforced on I-70 between Morrison and Dotsero from September 1 to May 31: tires need at least 3/16 inch of tread and must be all-weather or winter tires (M+S or mountain-snowflake), or you must carry chains or an approved traction device. AWD or 4WD is recommended.'
+  - 'In bad storms CDOT can call the Passenger Vehicle Chain Law, the last step before a closure: every vehicle needs chains or an approved device.'
+  - CDOT says I-70 is busiest on holidays, school breaks and January and February weekends. Westbound peaks Friday 2 to 7 pm; eastbound peaks Sunday 3 to 6 pm, building from late morning.
+  options:
+  - name: Bustang West Line (CDOT)
+    kind: bus
+    note: Coach from Denver Union Station toward Glenwood Springs, with stops including Federal Center, Idaho Springs, Frisco, Vail, Avon and Eagle.
+    url: https://www.ridebustang.com/
+  - name: Pegasus (CDOT)
+    kind: bus
+    note: Year-round express van from Union Station to Avon, stopping at Federal Center, Idaho Springs, Frisco and Vail.
+    url: https://www.ridebustang.com/
+  - name: Summit Express
+    kind: shuttle
+    note: Shared and private shuttles from Denver International Airport to Summit County and the Vail Valley.
+    url: https://www.summitexpress.com/
+  fly_closer:
+  - airport: Eagle County Regional (EGE)
+    note: The closest airport to Vail, in Gypsum. Last winter it had 4 airlines and 16 nonstop destinations; the 2026-27 list isn't published yet.
+  tip: CDOT points to Pegasus, which runs year-round from Union Station, as a way to skip driving I-70 yourself.
+  sources:
+  - title: 'CDOT: Traction Law'
+    url: https://www.codot.gov/travel/winter-driving/tractionlaw
+  - title: 'CDOT: How to avoid I-70 ski traffic'
+    url: https://www.codot.gov/programs/dmo/how-to-avoid-i-70-ski-traffic-like-a-pro
+  - title: 'Wikipedia: Interstate 70 in Colorado'
+    url: https://en.wikipedia.org/wiki/Interstate_70_in_Colorado
+  - title: 'Wikipedia: Bustang'
+    url: https://en.wikipedia.org/wiki/Bustang
+  - title: Fly EGE
+    url: https://flyege.com/
+  - title: 'Vail Daily: Eagle County airport winter 2025-26'
+    url: https://www.vaildaily.com/news/eagle-county-airport-winter-2025-26-new/
+denver-to-aspen:
+  origin: denver
+  destination: Aspen
+  resorts:
+  - aspen-snowmass
+  via: I-70 to Glenwood Springs, then CO-82
+  main_route: I-70 west through the Eisenhower-Johnson Tunnel, over Vail Pass and through Glenwood Canyon to exit 116 at Glenwood Springs, then CO-82 up the valley to Aspen.
+  winter_driving:
+  - CO-82 over Independence Pass (the summer shortcut from Twin Lakes) is closed for the winter and usually reopens around Memorial Day. CDOT says to take I-70 to Glenwood Springs, then CO-82.
+  - 'Colorado''s Traction Law is enforced on I-70 between Morrison and Dotsero from September 1 to May 31: tires need at least 3/16 inch of tread and must be all-weather or winter tires (M+S or mountain-snowflake), or you must carry chains or an approved traction device. AWD or 4WD is recommended.'
+  - CDOT says I-70 is busiest on holidays, school breaks and January and February weekends. Westbound peaks Friday 2 to 7 pm; eastbound peaks Sunday 3 to 6 pm, building from late morning.
+  options:
+  - name: Bustang plus RFTA VelociRFTA
+    kind: bus
+    note: Take Bustang's West Line from Denver Union Station to Glenwood Springs, then RFTA's VelociRFTA bus rapid transit up the valley to Aspen (about an hour, every 12 minutes or less at peak).
+    url: https://www.rfta.com/routes/velocirfta-brt/
+  fly_closer:
+  - airport: Aspen/Pitkin County (ASE)
+    note: United, American and Delta fly nonstop. It's open all of the 2026-27 winter, then closes for a runway rebuild from April 4 to November 19, 2027.
+  tip: Don't let your GPS send you over Independence Pass in winter; it's gated closed.
+  sources:
+  - title: 'CDOT: CO 82 Independence Pass closes for winter'
+    url: https://www.codot.gov/news/2026/october-2026-news/co82-independencepass-close-for-winter
+  - title: RFTA VelociRFTA BRT
+    url: https://www.rfta.com/routes/velocirfta-brt/
+  - title: 'CDOT: Traction Law'
+    url: https://www.codot.gov/travel/winter-driving/tractionlaw
+  - title: 'Wikipedia: Interstate 70 in Colorado'
+    url: https://en.wikipedia.org/wiki/Interstate_70_in_Colorado
+  - title: 'Aspen Daily News: 2027 airport closure dates'
+    url: https://www.aspendailynews.com/news/2027-airport-closure-dates-announced/article_7dedf529-5387-4da8-a2be-1437730af18d.html
+denver-to-steamboat:
+  origin: denver
+  destination: Steamboat Springs
+  resorts:
+  - steamboat
+  via: I-70, CO-9 and US-40
+  main_route: I-70 west through the Eisenhower-Johnson Tunnel to exit 205 at Silverthorne, CO-9 north to Kremmling, then US-40 west over Muddy Pass and Rabbit Ears Pass into Steamboat Springs.
+  winter_driving:
+  - 'Colorado''s Traction Law is enforced on I-70 between Morrison and Dotsero from September 1 to May 31: tires need at least 3/16 inch of tread and must be all-weather or winter tires (M+S or mountain-snowflake), or you must carry chains or an approved traction device. AWD or 4WD is recommended.'
+  - CDOT can call the Traction or Chain Law on any state highway during storms, so it can apply on CO-9 and US-40 over Rabbit Ears Pass too.
+  options:
+  - name: Bustang Outrider (Craig to Denver)
+    kind: bus
+    note: Daily coach on US-40 with stops including Steamboat Springs, Kremmling, Granby, Winter Park, Idaho Springs and Denver Union Station.
+    url: https://www.ridebustang.com/
+  - name: Steamboat Express
+    kind: shuttle
+    note: Shared, private and charter transfers from Denver International and from Yampa Valley Regional (HDN).
+    url: https://letsride.co/locations/steamboat/
+  fly_closer:
+  - airport: Yampa Valley Regional (HDN)
+    note: In Hayden, 22 miles from Steamboat, with winter nonstops from 18 cities on Alaska, American, Delta, JetBlue, Southwest and United.
+  tip: Flying into Hayden skips both I-70 and Rabbit Ears Pass.
+  sources:
+  - title: 'CDOT: Traction Law'
+    url: https://www.codot.gov/travel/winter-driving/tractionlaw
+  - title: 'Wikipedia: Colorado State Highway 9'
+    url: https://en.wikipedia.org/wiki/Colorado_State_Highway_9
+  - title: 'Wikipedia: US 40 in Colorado'
+    url: https://en.wikipedia.org/wiki/U.S._Route_40_in_Colorado
+  - title: 'Wikipedia: Bustang'
+    url: https://en.wikipedia.org/wiki/Bustang
+  - title: Steamboat Express
+    url: https://letsride.co/locations/steamboat/
+  - title: 'Steamboat Chamber: winter nonstop flights'
+    url: https://www.steamboatchamber.com/plan-your-trip/getting-here/flying/winter-schedule/
+denver-to-winter-park:
+  origin: denver
+  destination: Winter Park
+  resorts:
+  - winter-park
+  via: I-70 and US-40 over Berthoud Pass
+  main_route: I-70 west to exit 232 (Empire), then US-40 north over Berthoud Pass to Winter Park and Fraser.
+  winter_driving:
+  - 'Colorado''s Traction Law is enforced on I-70 between Morrison and Dotsero from September 1 to May 31: tires need at least 3/16 inch of tread and must be all-weather or winter tires (M+S or mountain-snowflake), or you must carry chains or an approved traction device. AWD or 4WD is recommended.'
+  - CDOT can call the Traction or Chain Law on US-40 over Berthoud Pass during storms.
+  - CDOT says I-70 is busiest on holidays, school breaks and January and February weekends. Westbound peaks Friday 2 to 7 pm; eastbound peaks Sunday 3 to 6 pm, building from late morning.
+  options:
+  - name: Amtrak Winter Park Express
+    kind: train
+    note: Ski train from Denver Union Station right to Winter Park Resort, about 3 hours each way. Amtrak says it returns for 2026-27; last season it ran weekends from mid-December, then Thursday to Sunday through late March. New dates aren't posted yet.
+    url: https://www.amtrak.com/winter-park-express
+  - name: Bustang Outrider (Craig to Denver)
+    kind: bus
+    note: Daily coach that stops in Winter Park and Fraser.
+    url: https://www.ridebustang.com/
+  - name: Home James Transportation
+    kind: shuttle
+    note: Shared shuttle, private charters and SUVs from Denver International to Winter Park, Fraser and Granby.
+    url: https://ridehj.com/
+  tip: The Winter Park Express drops you at the base area, so there's no driving over Berthoud Pass.
+  sources:
+  - title: Amtrak Winter Park Express
+    url: https://www.amtrak.com/winter-park-express
+  - title: 'Colorado Governor''s Office: Winter Park Express 2025-26'
+    url: https://governorsoffice.colorado.gov/governor/news/winter-park-express-continues-its-success-winter-2025-26-kicks-december-19
+  - title: 'CDOT: Traction Law'
+    url: https://www.codot.gov/travel/winter-driving/tractionlaw
+  - title: 'CDOT: How to avoid I-70 ski traffic'
+    url: https://www.codot.gov/programs/dmo/how-to-avoid-i-70-ski-traffic-like-a-pro
+  - title: 'Wikipedia: Interstate 70 in Colorado'
+    url: https://en.wikipedia.org/wiki/Interstate_70_in_Colorado
+  - title: 'Wikipedia: US 40 in Colorado'
+    url: https://en.wikipedia.org/wiki/U.S._Route_40_in_Colorado
+  - title: Home James
+    url: https://ridehj.com/
+denver-to-keystone:
+  origin: denver
+  destination: Keystone
+  resorts:
+  - keystone
+  via: I-70 and US-6
+  main_route: I-70 west through the Eisenhower-Johnson Tunnel to exit 205 (Silverthorne and Dillon), then US-6 east about 6 miles to Keystone.
+  winter_driving:
+  - 'Colorado''s Traction Law is enforced on I-70 between Morrison and Dotsero from September 1 to May 31: tires need at least 3/16 inch of tread and must be all-weather or winter tires (M+S or mountain-snowflake), or you must carry chains or an approved traction device. AWD or 4WD is recommended.'
+  - 'In bad storms CDOT can call the Passenger Vehicle Chain Law, the last step before a closure: every vehicle needs chains or an approved device.'
+  - CDOT says I-70 is busiest on holidays, school breaks and January and February weekends. Westbound peaks Friday 2 to 7 pm; eastbound peaks Sunday 3 to 6 pm, building from late morning.
+  options:
+  - name: Summit Express
+    kind: shuttle
+    note: Shared and private shuttles from Denver International Airport to Summit County and the Vail Valley.
+    url: https://www.summitexpress.com/
+  - name: Bustang West Line and Pegasus (CDOT)
+    kind: bus
+    note: I-70 coach and van from Denver Union Station to Frisco, where the free Summit Stage bus connects to Keystone.
+    url: https://www.ridebustang.com/
+  tip: Avoid westbound I-70 on Friday afternoons and eastbound on Sunday afternoons if you can.
+  sources:
+  - title: 'CDOT: Traction Law'
+    url: https://www.codot.gov/travel/winter-driving/tractionlaw
+  - title: 'CDOT: How to avoid I-70 ski traffic'
+    url: https://www.codot.gov/programs/dmo/how-to-avoid-i-70-ski-traffic-like-a-pro
+  - title: 'Wikipedia: Interstate 70 in Colorado'
+    url: https://en.wikipedia.org/wiki/Interstate_70_in_Colorado
+  - title: 'Summit Cove: Directions to Keystone'
+    url: https://www.summitcove.com/area-info/directions-to-keystone
+  - title: Summit Express
+    url: https://www.summitexpress.com/
+salt-lake-city-to-park-city:
+  origin: salt-lake-city
+  destination: Park City
+  resorts:
+  - park-city
+  via: I-80 through Parleys Canyon
+  main_route: I-80 east up Parleys Canyon and over Parleys Summit to Kimball Junction, then SR-224 into Park City (SR-248 from Quinns Junction is the other way in).
+  winter_driving:
+  - UDOT puts the traction law in place on I-80 through Parleys Canyon during storms, and has also applied it on SR-224 up toward Empire Pass.
+  - Crashes on icy mornings can back up eastbound I-80 toward Park City for miles, so check UDOT's road info before you go.
+  options:
+  - name: High Valley Transit Route 107 (PC-SLC Connect)
+    kind: bus
+    note: Bus from Salt Lake Central Station to Kimball Junction Transit Center, where Park City's free buses connect.
+    url: https://hvtutah.gov/
+  - name: Airport shuttles
+    kind: shuttle
+    note: Canyon Transportation (counter on the airport's ground level) and Salt Lake Express run shared and private rides from SLC to Park City.
+    url: https://slcairport.com/parking-transportation/ground-transportation/
+  tip: Visit Park City puts the airport about 35 minutes away, one of the shortest airport-to-resort trips in North America.
+  sources:
+  - title: 'Visit Park City: Getting to Park City'
+    url: https://www.visitparkcity.com/plan/getting-to-park-city/
+  - title: 'UDOT Wasatch Back: Traction law'
+    url: https://wasatchback.udot.utah.gov/traction-law/
+  - title: 'TownLift: UDOT storm advisory, Feb 2026'
+    url: https://townlift.com/2026/02/udot-encourages-drivers-to-limit-travel-on-wasatch-back-roads-during-snow-storm/
+  - title: 'TownLift: I-80 delays, Jan 2026'
+    url: https://townlift.com/2026/01/i-80-delays-stretch-for-miles-after-icy-morning-in-parleys-canyon/
+  - title: 'SLC Airport: Ground transportation'
+    url: https://slcairport.com/parking-transportation/ground-transportation/
+salt-lake-city-to-alta-snowbird:
+  origin: salt-lake-city
+  destination: Alta and Snowbird
+  resorts:
+  - snowbird
+  - alta
+  via: Little Cottonwood Canyon (SR-210)
+  main_route: Across the valley to the mouth of Little Cottonwood Canyon, then SR-210, a 13-mile canyon road that passes Snowbird and dead-ends at Alta.
+  winter_driving:
+  - 'When the canyon''s beacons flash, UDOT''s traction law applies: at least 5/32 inch of tread, M+S tires on all four wheels for AWD/4WD, and 3-peak snowflake tires or chains on the drive wheels for 2WD. Police check cars at the canyon mouth and turn around ones that don''t comply.'
+  - Alta says state law requires snow tires or carried chains from November 1 to May 1.
+  - UDOT closes the road for avalanche control, often overnight and sometimes during the day. Resorts can order an "interlodge," when everyone has to stay indoors until it's safe.
+  options:
+  - name: UTA ski buses (994 and canyon service)
+    kind: bus
+    note: Ski buses to Snowbird and Alta, planned from December 6 to April 11. $5 one way, as listed, and free with a resort season pass or a 2026-27 Ikon Pass.
+    url: https://www.rideuta.com/Rider-Info/Ski-Service
+  - name: Airport shuttles
+    kind: shuttle
+    note: Canyon Transportation and Alta Shuttle run rides from SLC; their counters are on the terminal's ground level.
+    url: https://slcairport.com/parking-transportation/ground-transportation/
+  tip: 'Alta requires parking reservations Friday to Sunday and holidays from 8 am to 1 pm (December 11 to April 4): $25 a day, or $10 with an online lift ticket, as listed. Take the bus and skip it.'
+  sources:
+  - title: 'UDOT Cottonwood Canyons: Traction law'
+    url: https://cottonwoodcanyons.udot.utah.gov/traction-law/
+  - title: 'UDOT Cottonwood Canyons: Avalanche information'
+    url: https://cottonwoodcanyons.udot.utah.gov/avalanche-information/
+  - title: 'Alta: Winter driving tips'
+    url: https://www.alta.com/getting-here/winter-driving-tips
+  - title: 'Alta: Driving to Alta'
+    url: https://www.alta.com/getting-here/driving-to-alta
+  - title: 'Alta: Parking'
+    url: https://www.alta.com/getting-here/parking-info
+  - title: UTA Ski Service
+    url: https://www.rideuta.com/Rider-Info/Ski-Service
+reno-to-lake-tahoe:
+  origin: reno
+  destination: Lake Tahoe
+  resorts:
+  - northstar
+  - palisades-tahoe
+  - heavenly
+  via: I-80 to the North Shore, or US-50 to South Lake Tahoe
+  main_route: 'North Shore: I-80 west to Truckee, then CA-89 south to Palisades Tahoe; the Mt. Rose Highway (NV-431) is the direct route to Incline Village. South Shore: I-580 south to Carson City, then US-50 west over Spooner Summit to Stateline and South Lake Tahoe (Kingsbury Grade, NV-207, is the alternate).'
+  winter_driving:
+  - 'California chain controls: R-1 means chains unless you have snow tires on at least two drive wheels; R-2 means chains unless you have 4WD/AWD with snow tires on all four; R-3 means chains on every vehicle. 4WD and AWD drivers still have to carry chains.'
+  - Caltrans says to chain up only where signs say so and keep to 25 to 30 mph with chains on. Check Caltrans QuickMap or call 800-427-7623.
+  - Nevada requires chains, or 4WD/AWD with snow tires, during chain controls on US-50, the Mt. Rose Highway and Kingsbury Grade.
+  options:
+  - name: North Lake Tahoe Express
+    kind: shuttle
+    note: Year-round shuttle from Reno-Tahoe airport to North Lake Tahoe and Truckee. Reserve ahead.
+    url: http://northlaketahoeexpress.com/
+  - name: South Tahoe Airporter
+    kind: shuttle
+    note: From the airport (outside Door D) to the Stateline casinos and South Lake Tahoe. $32.75 one way or $59.50 round trip for adults, as listed.
+    url: https://www.southtahoeairporter.com/
+  tip: Chain controls change by the hour and differ between California and Nevada. Check Caltrans QuickMap and NVRoads right before you leave.
+  sources:
+  - title: 'Caltrans: Chain controls'
+    url: https://dot.ca.gov/travel/winter-driving-tips/chain-controls
+  - title: 'Caltrans: Winter driving tips'
+    url: https://dot.ca.gov/travel/winter-driving-tips
+  - title: 'NNBW: NDOT chain requirements'
+    url: https://nnbw.com/news/2018/nov/30/ndot-to-enforce-stiffer-chain-requirements-on-taho
+  - title: 'Palisades Tahoe: Navigating North Lake Tahoe'
+    url: https://www.palisadestahoe.com/plan-your-visit/travel-here/navigate-nlt-guide
+  - title: 'Visit Lake Tahoe: Getting here'
+    url: https://visitlaketahoe.com/getting-here/
+  - title: North Lake Tahoe Express
+    url: http://northlaketahoeexpress.com/
+  - title: South Tahoe Airporter
+    url: https://www.southtahoeairporter.com/
+bozeman-to-big-sky:
+  origin: bozeman
+  destination: Big Sky
+  resorts:
+  - big-sky
+  via: US-191 through Gallatin Canyon
+  main_route: From Bozeman Yellowstone airport (in Belgrade) south on US-191 through Gallatin Canyon, then MT-64 west up to Big Sky Mountain Village. About 50 miles.
+  winter_driving:
+  - Montana DOT plows the stretch from Four Corners to the canyon mouth around the clock in storms; inside Gallatin Canyon coverage is roughly 5 am to 10 pm, and cell service is spotty.
+  - Crashes have closed the canyon for hours. Big Sky Resort recommends proper winter tires.
+  options:
+  - name: Skyline Link
+    kind: bus
+    note: Bus from Bozeman (several stops, including Four Corners park-and-ride) to Big Sky, 11 trips up and 12 down daily from November 23, 2026 to April 11, 2027. $5 each way, as listed. It doesn't serve the airport.
+    url: https://www.skylinebus.com/routes/winter
+  - name: Karst Stage
+    kind: shuttle
+    note: Daily airport shuttle from BZN to Big Sky, about 1 hour 15 minutes.
+    url: https://www.karststage.com/airport-shuttle
+  - name: Other shuttles
+    kind: shuttle
+    note: Big Sky Resort also lists Big Sky Shuttle, Peak Shuttle and private car services.
+    url: https://www.bigskyresort.com/getting-here/flying/transportation
+  tip: 'Book your airport ride ahead: Big Sky Resort says Uber and Lyft aren''t available in Big Sky.'
+  sources:
+  - title: 'MDT: US-191 public meeting'
+    url: https://www.mdt.mt.gov/pubinvolve/us191/docs/US191_PublicMeeting01_Displays.pdf
+  - title: 'Explore Big Sky: Highway 191'
+    url: https://www.explorebigsky.com/highway-191-montanas-ticking-time-bomb-of-a-road/68094
+  - title: 'Big Sky Resort: Airport transportation'
+    url: https://www.bigskyresort.com/getting-here/flying/transportation
+  - title: Skyline winter schedule
+    url: https://www.skylinebus.com/routes/winter
+  - title: Karst Stage airport shuttle
+    url: https://www.karststage.com/airport-shuttle
+  - title: 'Wikipedia: Montana Highway 64'
+    url: https://en.wikipedia.org/wiki/Montana_Highway_64

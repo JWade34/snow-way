@@ -1,0 +1,28 @@
+<% content_for(:title, "Getting to Ski Resorts: Drive Times, Shuttles & Routes | Snow Way") %>
+<% content_for(:description, "How to get from Denver, Salt Lake City, Reno and Bozeman to the big ski resorts: drive times, shuttles, buses, trains and winter driving rules, plus this week's snow.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "CollectionPage", "name" => "Getting to ski resorts", "url" => absolute_url(trip_routes_path) },
+        breadcrumb_schema([ [ "Getting There", nil ] ]),
+        { "@type" => "ItemList", "itemListElement" => @pages.each_with_index.map { |p, i| { "@type" => "ListItem", "position" => i + 1, "name" => p.title, "url" => absolute_url(trip_route_path(p)) } } }
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Getting There", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Getting to the ski resorts</h1>
+    <p class="tldr text-slate-300 mb-8">Drive times, shuttles, buses and trains from the main ski airports, with winter driving rules and this week's snow at each destination.</p>
+    <% @pages.group_by(&:origin_name).each do |origin, pages| %>
+      <h2 class="text-xl font-bold mb-3">From <%= origin %></h2>
+      <ul class="grid sm:grid-cols-2 gap-3 mb-8">
+        <% pages.each do |p| %><% d = p.drive %>
+          <li><%= link_to trip_route_path(p), class: "block bg-slate-800/40 border border-slate-700 hover:border-cyan-500 rounded-xl p-4 transition" do %>
+            <span class="block font-bold"><%= p.title %></span>
+            <span class="block text-sm text-slate-400"><%= d ? "About #{(d["minutes"] / 60.0).round(1)} hours by car from #{p.origin["airport"]}" : "Routes and shuttles" %> · <%= inches(@totals.fetch(p.primary.id, 0.0)) %> snow this week</span>
+          <% end %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </main>
+</div>

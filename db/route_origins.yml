@@ -1,0 +1,25 @@
+# Origins for "getting there" pages. Airport and downtown coordinates for drive-time lookups (bin/rails routes_pages:drives).
+denver:
+  name: Denver
+  airport: DEN
+  airport_name: Denver International Airport
+  airport_coords: [39.8561, -104.6737]
+  city_coords: [39.7392, -104.9903]
+salt-lake-city:
+  name: Salt Lake City
+  airport: SLC
+  airport_name: Salt Lake City International Airport
+  airport_coords: [40.7899, -111.9791]
+  city_coords: [40.7608, -111.8910]
+reno:
+  name: Reno
+  airport: RNO
+  airport_name: Reno-Tahoe International Airport
+  airport_coords: [39.4991, -119.7681]
+  city_coords: [39.5296, -119.8138]
+bozeman:
+  name: Bozeman
+  airport: BZN
+  airport_name: Bozeman Yellowstone International Airport
+  airport_coords: [45.7775, -111.1530]
+  city_coords: [45.6770, -111.0429]

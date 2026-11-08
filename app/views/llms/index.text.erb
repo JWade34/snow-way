@@ -27,6 +27,11 @@ As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answ
 - [Ski resorts in <%= group.name %>](https://snowway.app/ski-resorts/<%= group.slug %>): <%= group.resorts.size %> resorts with this week's snow report
 <% end %>
 
+## Getting to the ski resorts (drive times, shuttles, winter driving)
+<% RoutePage.all.each do |p| %><% d = p.drive %>
+- [<%= p.title %>](https://snowway.app/getting-there/<%= p.slug %>)<%= d ? ": about #{d["miles"]} miles, roughly #{(d["minutes"] / 60.0).round(1)} hours by car from #{p.origin["airport"]}" : "" %>
+<% end %>
+
 ## Ski resorts near major cities
 <% SkiHub.all.each do |hub| %>
 - [Ski resorts near <%= hub.city %>](https://snowway.app/ski-resorts-near/<%= hub.slug %>): <%= hub.nearby.size %> resorts within <%= SkiHub::RADIUS_MILES %> miles of <%= hub.airport %>
