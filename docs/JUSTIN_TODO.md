@@ -5,7 +5,7 @@ Last updated: 2026-11-08
 
 ## Do now (highest payoff first)
 
-- [ ] **Search Console: request indexing for 2 pages (2 minutes).** URL Inspection → paste each → "Request indexing": snowway.app/guides/best-snowboard-brands (new 2026-27 picks, our biggest query) and snowway.app/guides/best-ski-brands.
+- [ ] **Search Console: request indexing for 2 pages (2 minutes).** URL Inspection → paste each → "Request indexing": snowway.app/guides/best-snowboard-brands (new 2026-27 picks, our biggest query), snowway.app/guides/best-ski-brands, and the new snowway.app/getting-there/denver-to-breckenridge, /denver-to-vail and /salt-lake-city-to-park-city (route searches with 3,000 to 8,000 a month).
 
 - [ ] **Backlink outreach: send 5 to 10 emails a day (15 minutes a day).** Everything is in `docs/outreach/2026-11-backlink-campaign.md`: 50 lodges, shops and clubs near the top resorts (start with the "warmest" ones that already show snow info), 30 press contacts, 15 podcasts, 16 directories, and drafts in your voice with follow-ups. Personalize the first line, send from your own inbox, log replies in the table at the top. Say "make Gmail drafts" and Claude will create them for you to review and send. Links from other sites are the biggest thing holding rankings back.
 - [ ] **Read one "where to stay" page (5 minutes).** New for 25 resorts, e.g. snowway.app/resorts/vail/where-to-stay. You know Vail, Breck, Park City and Mammoth best: if a neighborhood note is off, tell Claude and it gets fixed. A line of your own advice per resort makes these much stronger.
