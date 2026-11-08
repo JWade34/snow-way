@@ -1,8 +1,11 @@
 # Official webcam and trail map pages, keyed by resort slug. Only links verified to load on the resort's own site.
-# Checked 2026-11-06. Leave a resort out rather than guess.
+# Checked 2026-11-06; Vail Resorts sites added 2026-11-08. Leave a resort out rather than guess.
 49-degrees-north:
   webcams: https://www.ski49n.com/webcams/
   trail_map: https://www.ski49n.com/mountain-info/trail-map-stats
+afton-alps:
+  webcams: https://www.aftonalps.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.aftonalps.com/the-mountain/about-the-mountain/trail-map.aspx
 akakura-kanko:
   trail_map: https://akr-ski.com/wp-content/themes/akakurakanko/images/slope-map.png
 alta:
@@ -15,6 +18,9 @@ arapahoe-basin:
 aspen-snowmass:
   webcams: https://www.aspensnowmass.com/four-mountains/mountain-cams
   trail_map: https://www.aspensnowmass.com/four-mountains/trail-maps
+attitash:
+  webcams: https://www.attitash.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.attitash.com/the-mountain/about-the-mountain/trail-map.aspx
 banff-sunshine:
   webcams: https://www.skibanff.com/webcams
   trail_map: https://www.skibanff.com/the-mountain/lifts-terrain/trail-maps
@@ -23,6 +29,9 @@ bear-creek:
 bear-mountain:
   webcams: https://www.bigbearmountainresort.com/webcams
   trail_map: https://www.bigbearmountainresort.com/mountain-information/trail-maps
+beaver-creek:
+  webcams: https://www.beavercreek.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.beavercreek.com/the-mountain/about-the-mountain/trail-map.aspx
 beaver-mountain:
   trail_map: https://www.skithebeav.com/wp-content/uploads/2020/11/beaver-trail-map-2021.png
 beech-mountain:
@@ -45,9 +54,15 @@ bolton-valley:
   trail_map: https://www.boltonvalley.com/winter/trail-maps-snow-reports/
 boreal:
   webcams: https://www.rideboreal.com/explore/webcams/
+boston-mills-brandywine:
+  webcams: https://www.bmbw.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.bmbw.com/the-mountain/about-the-mountain/trail-map.aspx
 boyne-mountain:
   webcams: https://www.boynemountain.com/mountain-report
   trail_map: https://www.boynemountain.com/mountain-maps
+breckenridge:
+  webcams: https://www.breckenridge.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.breckenridge.com/the-mountain/about-the-mountain/trail-map.aspx
 bretton-woods:
   webcams: https://www.brettonwoods.com/live-cam-forecast/
   trail_map: https://www.brettonwoods.com/plan-visit/maps/
@@ -99,6 +114,9 @@ courchevel:
 cranmore:
   webcams: https://cranmore.com/cams
   trail_map: https://cranmore.com/trail-map
+crested-butte:
+  webcams: https://www.skicb.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.skicb.com/the-mountain/about-the-mountain/trail-maps.aspx
 crystal-mountain:
   webcams: https://www.crystalmountainresort.com/the-mountain/mountain-report-and-webcams
   trail_map: https://www.crystalmountainresort.com/the-mountain/trail-maps
@@ -145,11 +163,20 @@ grouse-mountain:
 gunstock:
   webcams: https://www.gunstock.com/discover/webcams/
   trail_map: https://www.gunstock.com/winter/trail-map/
+heavenly:
+  webcams: https://www.skiheavenly.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.skiheavenly.com/the-mountain/about-the-mountain/trail-map.aspx
 holiday-valley:
   webcams: https://www.holidayvalley.com/webcams/
   trail_map: https://www.holidayvalley.com/trailmap/
+hunter-mountain:
+  webcams: https://www.huntermtn.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.huntermtn.com/the-mountain/about-the-mountain/trail-map.aspx
 ischgl:
   webcams: https://www.ischgl.com/en/plan-your-trip/webcams
+jack-frost:
+  webcams: https://www.jfbb.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.jfbb.com/the-mountain/about-the-mountain/trail-map.aspx
 jackson-hole:
   webcams: https://www.jacksonhole.com/mountain-report
   trail_map: https://www.jacksonhole.com/maps
@@ -161,12 +188,18 @@ jiminy-peak:
 june-mountain:
   webcams: https://www.junemountain.com/mountain-information/live-cams
   trail_map: https://www.junemountain.com/mountain-information/trail-map
+keystone:
+  webcams: https://www.keystoneresort.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.keystoneresort.com/the-mountain/about-the-mountain/trail-map.aspx
 kicking-horse:
   webcams: https://kickinghorseresort.com/conditions/mountain-cam/
   trail_map: https://kickinghorseresort.com/trailmap/
 killington:
   webcams: https://killington.com/webcams
   trail_map: https://killington.com/winter-trail-map
+kirkwood:
+  webcams: https://www.kirkwood.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.kirkwood.com/the-mountain/about-the-mountain/trail-map.aspx
 kiroro:
   webcams: https://www.kiroro.co.jp/livecamera/
   trail_map: https://www.kiroro.co.jp/guide_map/
@@ -183,6 +216,9 @@ las-lenas:
 le-massif:
   webcams: https://www.lemassif.com/fr/montagne/ete/meteo-et-webcams
   trail_map: https://www.lemassif.com/fr/montagne/hiver/remontees-pistes-et-damage
+liberty-mountain:
+  webcams: https://www.libertymountainresort.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.libertymountainresort.com/the-mountain/about-the-mountain/trail-map.aspx
 lookout-pass:
   webcams: https://skilookout.com/webcams/
   trail_map: https://skilookout.com/trail-map/
@@ -198,6 +234,9 @@ lutsen-mountains:
 mad-river-glen:
   webcams: https://www.madriverglen.com/live-web-cam/
   trail_map: https://www.madriverglen.com/trail-maps/
+mad-river-mountain:
+  webcams: https://www.skimadriver.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.skimadriver.com/the-mountain/about-the-mountain/trail-maps.aspx
 magic-mountain:
   trail_map: https://www.magicmtn.com/trail-map
 mammoth-mountain:
@@ -223,8 +262,14 @@ mount-bohemia:
 mount-seymour:
   webcams: https://mtseymour.ca/the-mountain/todays-conditions-hours
   trail_map: https://mtseymour.ca/the-mountain/trail-map
+mount-snow:
+  webcams: https://www.mountsnow.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.mountsnow.com/the-mountain/about-the-mountain/trail-maps.aspx
 mount-st-louis-moonstone:
   webcams: https://www.mountstlouis.com/webcams/
+mount-sunapee:
+  webcams: https://www.mountsunapee.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.mountsunapee.com/the-mountain/about-the-mountain/trail-maps.aspx
 mountain-creek:
   trail_map: https://mountaincreek.com/wp-content/uploads/2023/12/TrailMap_2023-24.jpg
 mountain-high:
@@ -253,6 +298,9 @@ nevados-de-chillan:
 niseko-united:
   webcams: https://www.niseko.ne.jp/en/livecamera/
   trail_map: https://www.niseko.ne.jp/en/map/
+northstar:
+  webcams: https://www.northstarcalifornia.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.northstarcalifornia.com/the-mountain/about-the-mountain/trail-map.aspx
 nozawa-onsen:
   webcams: https://nozawaski.com/winter/course/livecam_map/
   trail_map: https://nozawaski.com/winter/course/map/
@@ -262,12 +310,21 @@ nubs-nob:
 ober-mountain:
   webcams: https://www.obergatlinburg.com/webcams
   trail_map: https://www.obergatlinburg.com/mountain-maps
+okemo:
+  webcams: https://www.okemo.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.okemo.com/the-mountain/about-the-mountain/trail-maps.aspx
 palisades-tahoe:
   webcams: https://www.palisadestahoe.com/mountain-information/webcams
   trail_map: https://www.palisadestahoe.com/mountain-information/trail-maps
 panorama:
   webcams: https://www.panoramaresort.com/panorama-today/mountain-webcams
   trail_map: https://www.panoramaresort.com/while-you-are-here/map
+paoli-peaks:
+  webcams: https://www.paolipeaks.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.paolipeaks.com/the-mountain/about-the-mountain/trail-map.aspx
+park-city:
+  webcams: https://www.parkcitymountain.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.parkcitymountain.com/the-mountain/about-the-mountain/trail-map.aspx
 perfect-north-slopes:
   webcams: https://perfectnorth.com/snow-cams/
   trail_map: https://perfectnorth.com/trail-map/
@@ -295,6 +352,9 @@ rusutsu:
 schweitzer:
   webcams: https://www.schweitzer.com/mountain-info/webcam
   trail_map: https://www.schweitzer.com/mountain-info/maps
+seven-springs:
+  webcams: https://www.7springs.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.7springs.com/the-mountain/about-the-mountain/trail-map.aspx
 sierra-at-tahoe:
   webcams: https://sierraattahoe.com/live-cams/
   trail_map: https://sierraattahoe.com/maps-and-stats/
@@ -341,6 +401,12 @@ st-moritz:
 steamboat:
   webcams: https://www.steamboat.com/the-mountain/live-cams
   trail_map: https://www.steamboat.com/the-mountain/trail-map/adventure-map
+stevens-pass:
+  webcams: https://www.stevenspass.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.stevenspass.com/the-mountain/about-the-mountain/trail-maps.aspx
+stowe:
+  webcams: https://www.stowe.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.stowe.com/the-mountain/about-the-mountain/trail-maps.aspx
 stratton:
   webcams: https://www.stratton.com/the-mountain/webcams
   trail_map: https://www.stratton.com/the-mountain/interactive-trail-map
@@ -397,6 +463,9 @@ timberline:
 timberline-mountain:
   webcams: https://timberlinemountain.com/snow-cams/
   trail_map: https://timberlinemountain.com/trail-map/
+vail:
+  webcams: https://www.vail.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.vail.com/the-mountain/about-the-mountain/trail-map.aspx
 val-disere:
   webcams: https://www.valdisere.com/live/webcams/
   trail_map: https://www.valdisere.com/live/plan-des-pistes/
@@ -415,12 +484,24 @@ wachusett-mountain:
 waterville-valley:
   webcams: https://www.waterville.com/cams/
   trail_map: https://www.waterville.com/maps/
+whistler-blackcomb:
+  webcams: https://www.whistlerblackcomb.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.whistlerblackcomb.com/the-mountain/about-the-mountain/trail-maps.aspx
 white-pass:
   webcams: https://skiwhitepass.com/mountain-cams
   trail_map: https://skiwhitepass.com/the-mountain/trail-maps
+whitetail:
+  webcams: https://www.skiwhitetail.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.skiwhitetail.com/the-mountain/about-the-mountain/trail-map.aspx
 whitewater:
   webcams: https://whitewatermountainresort.com/webcams
   trail_map: https://whitewatermountainresort.com/trail-maps
+wildcat-mountain:
+  webcams: https://www.skiwildcat.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.skiwildcat.com/the-mountain/about-the-mountain/trail-map.aspx
+wilmot-mountain:
+  webcams: https://www.wilmotmountain.com/the-mountain/mountain-conditions/mountain-cams.aspx
+  trail_map: https://www.wilmotmountain.com/the-mountain/about-the-mountain/trail-map.aspx
 winter-park:
   webcams: https://www.winterparkresort.com/the-mountain/mountain-cams
   trail_map: https://www.winterparkresort.com/the-mountain/mountain-information/maps
