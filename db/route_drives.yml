@@ -105,3 +105,155 @@ routes:
       city:
         minutes: 57
         miles: 51
+  san-francisco-to-lake-tahoe:
+    palisades-tahoe:
+      airport:
+        minutes: 200
+        miles: 207
+      city:
+        minutes: 189
+        miles: 196
+    northstar:
+      airport:
+        minutes: 198
+        miles: 206
+      city:
+        minutes: 187
+        miles: 195
+    sugar-bowl:
+      airport:
+        minutes: 185
+        miles: 190
+      city:
+        minutes: 174
+        miles: 179
+    heavenly:
+      airport:
+        minutes: 205
+        miles: 201
+      city:
+        minutes: 194
+        miles: 189
+    kirkwood:
+      airport:
+        minutes: 198
+        miles: 182
+      city:
+        minutes: 195
+        miles: 184
+  sacramento-to-lake-tahoe:
+    palisades-tahoe:
+      airport:
+        minutes: 115
+        miles: 117
+      city:
+        minutes: 108
+        miles: 110
+    northstar:
+      airport:
+        minutes: 113
+        miles: 116
+      city:
+        minutes: 106
+        miles: 109
+    sugar-bowl:
+      airport:
+        minutes: 100
+        miles: 100
+      city:
+        minutes: 93
+        miles: 93
+    heavenly:
+      airport:
+        minutes: 124
+        miles: 116
+      city:
+        minutes: 114
+        miles: 105
+    kirkwood:
+      airport:
+        minutes: 125
+        miles: 111
+      city:
+        minutes: 115
+        miles: 99
+  vancouver-to-whistler:
+    whistler-blackcomb:
+      airport:
+        minutes: 116
+        miles: 85
+      city:
+        minutes: 96
+        miles: 76
+  denver-to-telluride:
+    telluride:
+      airport:
+        minutes: 378
+        miles: 386
+      city:
+        minutes: 355
+        miles: 362
+  denver-to-crested-butte:
+    crested-butte:
+      airport:
+        minutes: 273
+        miles: 255
+      city:
+        minutes: 249
+        miles: 229
+  denver-to-copper-mountain:
+    copper-mountain:
+      airport:
+        minutes: 103
+        miles: 102
+      city:
+        minutes: 80
+        miles: 78
+  burlington-to-stowe:
+    stowe:
+      airport:
+        minutes: 52
+        miles: 41
+      city:
+        minutes: 53
+        miles: 43
+  boston-to-stowe:
+    stowe:
+      airport:
+        minutes: 209
+        miles: 208
+      city:
+        minutes: 206
+        miles: 206
+  boston-to-killington:
+    killington:
+      airport:
+        minutes: 193
+        miles: 167
+      city:
+        minutes: 190
+        miles: 165
+  new-york-to-killington:
+    killington:
+      airport:
+        minutes: 306
+        miles: 283
+      city:
+        minutes: 289
+        miles: 270
+  los-angeles-to-mammoth:
+    mammoth-mountain:
+      airport:
+        minutes: 310
+        miles: 318
+      city:
+        minutes: 306
+        miles: 314
+  salt-lake-city-to-deer-valley:
+    deer-valley:
+      airport:
+        minutes: 44
+        miles: 39
+      city:
+        minutes: 38
+        miles: 32

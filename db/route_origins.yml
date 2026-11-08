@@ -23,3 +23,45 @@ bozeman:
   airport_name: Bozeman Yellowstone International Airport
   airport_coords: [45.7775, -111.1530]
   city_coords: [45.6770, -111.0429]
+san-francisco:
+  name: San Francisco
+  airport: SFO
+  airport_name: San Francisco International Airport
+  airport_coords: [37.6213, -122.3790]
+  city_coords: [37.7749, -122.4194]
+sacramento:
+  name: Sacramento
+  airport: SMF
+  airport_name: Sacramento International Airport
+  airport_coords: [38.6954, -121.5908]
+  city_coords: [38.5816, -121.4944]
+vancouver:
+  name: Vancouver
+  airport: YVR
+  airport_name: Vancouver International Airport
+  airport_coords: [49.1967, -123.1815]
+  city_coords: [49.2827, -123.1207]
+burlington:
+  name: Burlington
+  airport: BTV
+  airport_name: Patrick Leahy Burlington International Airport
+  airport_coords: [44.4719, -73.1533]
+  city_coords: [44.4759, -73.2121]
+boston:
+  name: Boston
+  airport: BOS
+  airport_name: Boston Logan International Airport
+  airport_coords: [42.3656, -71.0096]
+  city_coords: [42.3601, -71.0589]
+new-york:
+  name: New York
+  airport: JFK
+  airport_name: John F. Kennedy International Airport
+  airport_coords: [40.6413, -73.7781]
+  city_coords: [40.7549, -73.9840]
+los-angeles:
+  name: Los Angeles
+  airport: LAX
+  airport_name: Los Angeles International Airport
+  airport_coords: [33.9416, -118.4085]
+  city_coords: [34.0522, -118.2437]
