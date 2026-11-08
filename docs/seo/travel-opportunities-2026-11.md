@@ -15,7 +15,11 @@ How each one earns: Stay22 converts Booking.com, Expedia, Hotels.com, Vrbo, Kaya
 | denver to steamboat springs | 1,900 (2,900) | low | rentals, flights to HDN |
 | denver to winter park | 1,300 (2,400) | low | rentals, hotels |
 | denver airport to breckenridge / vail / keystone | 1,300 / 720 / 320 | ~0 to 2 | same |
-Ads cost $3 to $10 a click on these searches, so the people searching them book things. **Next to add:** Denver to Copper, Crested Butte, Telluride; Salt Lake to Snowbasin and Brighton; Jackson airport to Teton Village; Sacramento and SF to Tahoe; Seattle to Crystal and Stevens; Vancouver to Whistler; Burlington to Stowe; Boston to Killington.
+Ads cost $3 to $10 a click on these searches, so the people searching them book things.
+
+**Batch 2 BUILT 2026-11-08 (12 routes):** san francisco to lake tahoe 2,900 · vancouver to whistler 2,900 · denver to telluride 2,400 · sacramento to lake tahoe 1,900 · burlington to stowe 1,600 · denver to crested butte 1,000 · boston to stowe 880 · los angeles to mammoth 590 · denver to copper 390 · boston to killington 390 · new york to killington 390 · salt lake city to deer valley 260.
+**Month pages BUILT 2026-11-08** (/best-places-to-ski-in-december etc.).
+**Still open (small):** Salt Lake to Snowbasin (50) and Brighton (40); Jackson airport to Teton Village (70); Seattle to Crystal (140) and Stevens (140); New York to Hunter (170).
 
 ## 2. Winter things to do in ski towns (next)
 | Search | Volume (Dec) | Difficulty |
