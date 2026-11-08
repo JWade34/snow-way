@@ -19,11 +19,19 @@ Research date: 2026-11-07. Every contact below was read off the business's or ou
 
 | Date sent | Name / outlet | Section (widget, press, podcast, directory) | Contact used | Draft used | Follow-up sent | Reply? | Result (embedded, linked, story, booked, no) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| | | | | | | | | |
-| | | | | | | | | |
-| | | | | | | | | |
-| | | | | | | | | |
-| | | | | | | | | |
+| Drafted 2026-11-08 (jm inbox) | Broski (6a #1) | directory / roundup | hello@broski.app | 6d (a) | | | | Not sent yet. Justin reviews and sends |
+| Drafted 2026-11-08 (jm inbox) | Cardmunch, Paul Warren (6a #4) | directory / roundup | info@cardmunch.com | 6d (a) | | | | Not sent yet |
+| Drafted 2026-11-08 (jm inbox) | FlowTrip (6a #5) | directory / roundup | support@flowtrip.app (from /contact) | 6d (a) | | | | Not sent yet. Send before their December review |
+| Drafted 2026-11-08 (jm inbox) | SnowBrains, Greg Wedow (6a #9 to #11) | press | contact@snowbrains.com | Feature pitch, Snowiest-style | | | | Not sent yet. One combined note |
+| Drafted 2026-11-08 (jm inbox) | PeakRankings, Sam Weintraub (6a #13, 6c #1) | directory / roundup | admin@peakrankings.com | 6d (a), companion angle | | | | Not sent yet |
+| Drafted 2026-11-08 (jm inbox) | SRG Skiing (6c #2) | directory / roundup | outreach@srgskiing.com | 6d (a), no-app angle | | | | Not sent yet |
+| Drafted 2026-11-08 (jm inbox) | Ski Basics (6a #6) | directory / roundup | info@skibasics.co.uk | 6d (a) | | | | Not sent yet. Replaced App Savvy Traveller (contact form only) |
+| Drafted 2026-11-08 (jm inbox) | Olympic Valley Ski & Bike (1 #33) | widget | olympicvalleyskibike@gmail.com | 5 (a) | | | | Not sent yet. Palisades widget |
+| Drafted 2026-11-08 (jm inbox) | Fast Ski Sports (1 #17) | widget | info@fastskisports.com | 5 (a) | | | | Not sent yet. Mammoth widget |
+| Drafted 2026-11-08 (jm inbox) | Powder House (1 #45) | widget | info@powderhousebend.com | 5 (a) | | | | Not sent yet. Mt. Bachelor widget. Replaced Start Haus (form only) |
+| Skipped 2026-11-08 | App Savvy Traveller (6a #3) | directory / roundup | https://appsavvytraveller.com/contact-us/ | | | | | Contact form only, site blocks our reader. Use the form by hand |
+| Skipped 2026-11-08 | Start Haus (1 #34) | widget | https://www.starthaus.com/pages/contact | | | | | No email printed, form only |
+| Skipped 2026-11-08 | Alpenhof Lodge Teton Village (1 #22) | widget | https://alpenhoflodge.com/#contact-section | | | | | No email printed, form and phone only |
 
 ---
 

@@ -1,18 +1,39 @@
 <%# locals: (take:, subject:, local: true) -%>
+<%# Justin's first-hand story about a resort or topic. Optional keys: title (a short headline), tips (list). -%>
 <% if take.present? && take[:take].present? %>
-  <section class="mb-10 bg-gradient-to-br from-cyan-500/10 to-slate-800/50 border border-cyan-500/30 rounded-xl p-5" aria-labelledby="local-take-heading">
-    <div class="flex items-center gap-3 mb-3">
-      <%= image_tag "justin-roof-rail.webp", alt: "Justin McKelvey", width: 612, height: 612, loading: "lazy", class: "w-12 h-12 rounded-full object-cover" %>
-      <div>
-        <h2 id="local-take-heading" class="font-bold text-lg leading-tight"><%= local ? "Local's take" : "Justin's take" %> on <%= subject %></h2>
-        <p class="text-slate-400 text-xs">From <%= link_to "Justin McKelvey", author_path, rel: "author", class: "underline" %>, former Vail and Salt Lake City local</p>
+  <section class="mb-10 relative overflow-hidden bg-gradient-to-br from-cyan-500/15 via-slate-800/60 to-slate-800/40 border border-cyan-500/40 rounded-2xl p-5 sm:p-6" aria-labelledby="local-take-heading">
+    <div class="sm:flex sm:gap-6">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="relative shrink-0">
+            <%= image_tag "justin-chairlift-storm.webp", alt: "Justin McKelvey on a chairlift in a snowstorm", width: 960, height: 720, loading: "lazy", class: "w-16 h-16 rounded-full object-cover object-[30%_40%] ring-2 ring-cyan-400 ring-offset-2 ring-offset-slate-900" %>
+            <span class="absolute -bottom-1 -right-1 bg-slate-900 rounded-full w-7 h-7 grid place-items-center text-base border border-cyan-500/50" aria-hidden="true">🏂</span>
+          </div>
+          <div>
+            <% label = "#{local ? "Local's take" : "Justin's take"} on #{subject}" %>
+            <% if take[:title].present? %>
+              <p class="text-cyan-300 text-xs font-bold uppercase tracking-widest"><%= label %></p>
+              <h2 id="local-take-heading" class="font-extrabold text-lg sm:text-xl leading-tight"><%= take[:title] %></h2>
+            <% else %>
+              <h2 id="local-take-heading" class="font-extrabold text-lg sm:text-xl leading-tight"><%= label %></h2>
+            <% end %>
+            <p class="text-slate-400 text-xs mt-0.5">By <%= link_to "Justin McKelvey", author_path, rel: "author", class: "underline underline-offset-2" %>, snowboarder and former Vail and Salt Lake City local</p>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-cyan-400/70 pl-4 text-slate-100 text-[17px] leading-relaxed">
+          <p><%= take[:take] %></p>
+        </blockquote>
+        <% if take[:tips].present? %>
+          <p class="mt-4 text-sm font-bold text-white">If you go</p>
+          <ul class="mt-1 space-y-1 text-slate-300 text-sm list-disc pl-5">
+            <% take[:tips].each do |tip| %><li><%= tip %></li><% end %>
+          </ul>
+        <% end %>
       </div>
+      <figure class="hidden sm:block shrink-0 w-36 self-center rotate-3 bg-white p-1.5 pb-6 rounded shadow-xl">
+        <%= image_tag "justin-roof-rail.webp", alt: "Justin snowboarding a cabin roof", width: 612, height: 612, loading: "lazy", class: "w-full aspect-square object-cover" %>
+        <figcaption class="text-[10px] text-slate-600 text-center mt-1 font-semibold">Still sending it</figcaption>
+      </figure>
     </div>
-    <p class="text-slate-200 leading-relaxed"><%= take[:take] %></p>
-    <% if take[:tips].present? %>
-      <ul class="mt-3 space-y-1 text-slate-300 text-sm list-disc pl-5">
-        <% take[:tips].each do |tip| %><li><%= tip %></li><% end %>
-      </ul>
-    <% end %>
   </section>
 <% end %>

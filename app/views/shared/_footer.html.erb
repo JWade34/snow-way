@@ -43,6 +43,18 @@
         </ul>
       </nav>
 
+      <!-- Popular guides -->
+      <nav aria-label="Popular guides">
+        <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Popular Guides</h2>
+        <ul class="space-y-2">
+          <% [ [ "Best Snowboards 2026-27", "best-snowboard-brands" ], [ "Best Ski Brands", "best-ski-brands" ], [ "Best Ski Boots", "best-ski-boots" ],
+               [ "Snowboard Pants", "snowboard-pants" ], [ "Ski Boot Bags", "ski-boot-bag" ], [ "Ski Trail Ratings", "ski-trail-ratings" ],
+               [ "Balaclava vs Ski Mask", "balaclava-vs-ski-mask" ], [ "Kids Ski Packing List", "kids-ski-packing-list" ], [ "Ski Trip Cost", "ski-trip-cost" ] ].each do |label, slug| %>
+            <li><%= link_to label, guide_path(slug), class: "text-slate-400 hover:text-white transition text-sm" %></li>
+          <% end %>
+        </ul>
+      </nav>
+
       <!-- About -->
       <div>
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">About</h2>
