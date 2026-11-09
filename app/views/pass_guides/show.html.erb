@@ -1,0 +1,101 @@
+<% g = @guide %>
+<% m = g.main %>
+<% money = ->(v) { v ? number_to_currency(v, precision: 0) : "not listed" } %>
+<% checked = Date.parse(PassGuide.checked_on).strftime("%B %-d, %Y") rescue PassGuide.checked_on %>
+<% season = Date.current.month >= 7 ? "#{Date.current.year}-#{(Date.current.year + 1) % 100}" : "#{Date.current.year - 1}-#{Date.current.year % 100}" %>
+<% deadline = g.deadline %>
+<% upcoming = deadline && deadline >= Date.current %>
+<% members = g.resorts.select(&:north_american?).sort_by { |r| -@totals.fetch(r.id, 0.0) } %>
+<% be = g.break_even_days %>
+<% answer = if g.on_sale?
+     "The #{season} #{m["name"]} costs #{money.(m["adult_price_usd"])} for an adult#{m["child_price_usd"] ? " (#{money.(m["child_price_usd"])} for a child)" : ""}, as listed on #{checked}.#{upcoming ? " Prices go up after #{deadline.strftime("%B %-d")}." : ""}#{g.variants.size > 1 && (v = g.variants[1])["adult_price_usd"] ? " The #{v["name"]} is #{money.(v["adult_price_usd"])}." : ""} #{m["days"].to_s.sub(/\.\z/, "")}."
+   else
+     "The #{season} #{g.name} is sold out: the official site says it is off sale and offers a waitlist (checked #{checked}). #{m["days"].to_s.sub(/\.\z/, "")} at each partner resort."
+   end %>
+<% faqs = [ { question: g.on_sale? ? "How much is the #{g.name} for #{season}?" : "Can you still buy the #{g.name} for #{season}?", answer: answer } ] %>
+<% faqs << { question: "When does the #{g.name} price go up?", answer: "The official site says prices go up after #{deadline.strftime("%B %-d, %Y")}. Buy before then to lock in the current price." } if upcoming %>
+<% faqs << { question: "Is the #{g.name} worth it?", answer: "At peak window prices, the adult pass pays for itself in about #{be} days of skiing (based on the median peak-day ticket at #{g.window_prices.size} #{g.name} resorts we track). Buying lift tickets online in advance is often cheaper than the window, so count your likely days honestly." } if be %>
+<% g.variants.each do |v| %><% faqs << { question: "Does the #{v["name"]} have blackout dates?", answer: v["blackout_note"].to_s } if v["blackout_note"].present? %><% end %>
+<% faqs << { question: "How many resorts are on the #{g.name}?", answer: "#{m["resort_count"]}. Snow Way tracks #{members.size} of them in North America with live snow forecasts." } if m["resort_count"].present? %>
+<% content_for(:title, fit_title("#{g.name} #{g.on_sale? ? "Price" : ""} #{season}: #{g.on_sale? ? "#{money.(m["adult_price_usd"]).to_str}, Days & Blackouts" : "Sold Out, What to Know"} | Snow Way".squeeze(" "), "#{g.name} #{season} | Snow Way")) %>
+<% content_for(:description, answer.truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "#{g.name} #{season}: price, days and blackout dates", "url" => absolute_url(g.path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => PassGuide.checked_on, "citation" => g.variants.map { |v| v["source"] }.uniq,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ikon vs Epic", "/ikon-vs-epic" ], [ g.name, nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", ikon_vs_epic_path ], [ g.name, nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= g.name %> <%= season %>: <%= g.on_sale? ? "price, days and blackout dates" : "sold out, what to know" %></h1>
+    <section class="tldr mb-3 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+    </section>
+    <% if upcoming %><p class="mb-6 bg-amber-500/10 border border-amber-400/40 rounded-xl p-3 text-sm text-amber-100"><strong>Price increase:</strong> <%= (deadline - Date.current).to_i %> days left at this price (until <%= deadline.strftime("%B %-d") %>).</p><% end %>
+    <% unless g.on_sale? %><p class="mb-6 bg-amber-500/10 border border-amber-400/40 rounded-xl p-3 text-sm text-amber-100"><strong>Sold out for <%= season %>.</strong> Join the waitlist on the official site, or compare the other passes below.</p><% end %>
+
+    <h2 class="text-xl font-bold mb-3">Price and what's included</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-8">
+      <table class="w-full text-sm">
+        <caption class="sr-only"><%= g.name %> options compared</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Option</th><% g.variants.each do |v| %><th scope="col" class="px-3 py-2"><%= v["name"] %></th><% end %></tr></thead>
+        <tbody class="divide-y divide-slate-800 align-top">
+          <tr><th scope="row" class="px-3 py-2 text-left text-slate-400">Adult</th><% g.variants.each do |v| %><td class="px-3 py-2 font-bold text-cyan-300"><%= v["on_sale"] == false ? "Off sale" : money.(v["adult_price_usd"]) %></td><% end %></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-slate-400">Child</th><% g.variants.each do |v| %><td class="px-3 py-2"><%= v["on_sale"] == false ? "–" : money.(v["child_price_usd"]) %></td><% end %></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-slate-400">Days</th><% g.variants.each do |v| %><td class="px-3 py-2 text-slate-300"><%= v["days"] %></td><% end %></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-slate-400">Blackouts</th><% g.variants.each do |v| %><td class="px-3 py-2 text-slate-300"><%= v["blackout_note"].presence || "–" %></td><% end %></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-slate-400">Resorts</th><% g.variants.each do |v| %><td class="px-3 py-2 text-slate-300"><%= v["resort_count"].presence || "–" %></td><% end %></tr>
+        </tbody>
+      </table>
+    </div>
+    <% g.variants.each do |v| %><% if v["price_note"].present? %><p class="text-xs text-slate-400 mb-2"><strong class="text-slate-300"><%= v["name"] %>:</strong> <%= v["price_note"] %></p><% end %><% end %>
+
+    <% perks = g.variants.flat_map { |v| Array(v["perks"]) }.uniq %>
+    <% if perks.any? %>
+      <h2 class="text-xl font-bold mb-3 mt-8">Perks</h2>
+      <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1 mb-8"><% perks.each do |p| %><li><%= p %></li><% end %></ul>
+    <% end %>
+
+    <% if be %>
+      <h2 class="text-xl font-bold mb-3">Is it worth it?</h2>
+      <p class="text-slate-300 mb-3">At peak window prices, the adult <%= m["name"] %> pays for itself in about <strong class="text-white"><%= be %> days</strong>. Peak-day window tickets at <%= g.name %> resorts we track:</p>
+      <ul class="grid sm:grid-cols-2 gap-2 mb-3 text-sm"><% g.window_prices.first(8).each do |r, p| %><li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2 flex justify-between"><%= link_to r.name, lift_tickets_resort_path(r), class: "hover:text-cyan-300" %><span class="font-bold"><%= money.(p) %></span></li><% end %></ul>
+      <p class="text-xs text-slate-400 mb-8">Window prices are reported peak-day adult rates; buying online ahead is usually cheaper.</p>
+    <% end %>
+
+    <% if members.any? %>
+      <h2 class="text-xl font-bold mb-3"><%= g.name %> resorts with the most snow this week</h2>
+      <ol class="space-y-2 mb-3">
+        <% members.first(5).each_with_index do |r, i| %>
+          <li><%= link_to resort_path(r), class: "flex items-center justify-between bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-4 py-3 transition" do %><span><span class="text-slate-400 mr-2"><%= i + 1 %>.</span><span class="font-semibold"><%= r.name %></span> <span class="text-slate-400 text-sm"><%= r.state_province %></span></span><span class="text-cyan-300 font-bold"><%= inches(@totals.fetch(r.id, 0.0)) %></span><% end %></li>
+        <% end %>
+      </ol>
+      <p class="text-sm mb-8"><%= link_to "All #{members.size} #{g.name} resorts we track, ranked by snow →", g.resorts_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">Compare <%= season %> passes</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski pass prices compared</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Pass</th><th scope="col" class="px-3 py-2 text-right">Adult</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Days</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% PassGuide.all.flat_map { |x| x.variants.map { |v| [ x, v ] } }.each do |x, v| %>
+            <tr class="<%= "bg-cyan-500/10" if x.slug == g.slug %>"><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to v["name"], x.path, class: "hover:text-cyan-300" %></th><td class="px-3 py-2 text-right font-bold"><%= v["on_sale"] == false ? "Off sale" : money.(v["adult_price_usd"]) %></td><td class="px-3 py-2 text-slate-300 text-xs hidden sm:table-cell"><%= v["days"].to_s.truncate(90) %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= render "shared/faq", faqs: faqs, heading: "#{g.name} questions" %>
+    <h2 class="text-lg font-bold mb-2">Sources</h2>
+    <ul class="text-xs text-slate-400 space-y-1 mb-6 break-words">
+      <% g.variants.flat_map { |v| Array(v["sources"]).presence || [ v["source"] ] }.uniq.each do |u| %><li><%= link_to u.sub(%r{\Ahttps?://(www\.)?}, "").truncate(80), u, target: "_blank", rel: "nofollow noopener", class: "underline underline-offset-2 hover:text-cyan-300" %></li><% end %>
+    </ul>
+    <p class="text-xs text-slate-400 mb-10">Checked <%= checked %>. Pass prices change; confirm on the official site before you buy.</p>
+  </main>
+</div>

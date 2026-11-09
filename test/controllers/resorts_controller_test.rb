@@ -121,6 +121,16 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "pass guide and mountain collective pages render" do
+    PassGuide.all.each do |g|
+      get g.path
+      assert_response :success
+      assert_includes response.body, g.name
+    end
+    get "/mountain-collective-resorts"
+    assert_response :success
+  end
+
   test "best ski resorts lists rank resorts and unknown scopes 404" do
     BestResorts.all.each do |list|
       get list.path

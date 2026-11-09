@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get "epic-pass-resorts" => "pages#pass_resorts", defaults: { pass: "epic" }, as: :epic_pass_resorts
   get "ikon-pass-resorts" => "pages#pass_resorts", defaults: { pass: "ikon" }, as: :ikon_pass_resorts
   get "indy-pass-resorts" => "pages#pass_resorts", defaults: { pass: "indy" }, as: :indy_pass_resorts
+  get "mountain-collective-resorts" => "pages#pass_resorts", defaults: { pass: "mountain_collective" }, as: :mountain_collective_resorts
+  get ":id" => "pass_guides#show", as: :pass_guide, constraints: { id: Regexp.union(PassGuide::PAGES.keys) }
   get "ski-resort-opening-dates" => "pages#opening_dates", as: :opening_dates
   get "about" => "pages#about", as: :about
   get "authors/justin-mckelvey" => "pages#author", as: :author

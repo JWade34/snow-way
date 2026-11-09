@@ -31,11 +31,11 @@ class PagesController < ApplicationController
   end
 
   def pass_resorts
-    @pass = params[:pass].presence_in(%w[epic ikon indy]) || "epic"
-    @pass_name = { "epic" => "Epic Pass", "ikon" => "Ikon Pass", "indy" => "Indy Pass" }.fetch(@pass)
+    @pass = params[:pass].presence_in(%w[epic ikon indy mountain_collective]) || "epic"
+    @pass_name = { "epic" => "Epic Pass", "ikon" => "Ikon Pass", "indy" => "Indy Pass", "mountain_collective" => "Mountain Collective" }.fetch(@pass)
     @totals = Resort.projected_totals
     @recent = Resort.recent_totals
-    pool = @pass == "indy" ? Resort.all.select { |r| Array(r.other_passes).include?("indy") } : Resort.where(pass: [ @pass, "both" ]).to_a
+    pool = %w[indy mountain_collective].include?(@pass) ? Resort.all.select { |r| Array(r.other_passes).include?(@pass) } : Resort.where(pass: [ @pass, "both" ]).to_a
     na, abroad = pool.partition(&:north_american?)
     @resorts = na.sort_by { |r| [ -@totals.fetch(r.id, 0.0), r.name ] }
     @abroad = abroad.sort_by { |r| [ r.country, r.name ] }

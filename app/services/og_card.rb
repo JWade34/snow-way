@@ -19,6 +19,10 @@ class OgCard < OgImage
       b = BestResorts.find($1)
       r, score, m = b.ranked.first
       new(kicker: "RANKED BY SNOW", title: "Best ski resorts #{b.slug.split("-").first} #{b.name}", big: r.name, caption: "##{1} of #{b.ranked.size} · #{m[:snow_days]} snow days a season, #{number_with_delimiter_safe(m[:vertical])} ft vertical")
+    when %r{\A/(epic-pass-price|ikon-pass-price|indy-pass|mountain-collective-pass)\z}
+      g = PassGuide.find($1)
+      m = g.main
+      new(kicker: "SKI PASS GUIDE", title: "#{g.name} #{Date.current.month >= 7 ? Date.current.year : Date.current.year - 1}-#{(Date.current.month >= 7 ? Date.current.year + 1 : Date.current.year) % 100}", big: g.on_sale? ? "$#{number_with_delimiter_safe(m["adult_price_usd"])}" : "Sold out", caption: g.on_sale? ? "adult price · #{m["days"].to_s.truncate(60)}" : "off sale for the season · waitlist only")
     when "/powder-day-odds"
       s = PowderStudy.season.first
       new(kicker: "DATA STUDY", title: "Which ski resorts get new snow most often", big: s ? "#{s[1]} days" : "10 years", caption: s ? "#{s[0].name} leads · #{PowderStudy.season.size} resorts, 10 seasons" : "179 resorts")

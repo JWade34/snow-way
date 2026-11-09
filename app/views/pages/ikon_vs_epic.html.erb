@@ -2,6 +2,7 @@
 <% epic_avg, ikon_avg = avg.(@epic), avg.(@ikon) %>
 <% has_data = @epic.any? && @ikon.any? %>
 <% prices = @prices[:passes] %>
+<% pass_links = PassGuide.all %>
 <% price = ->(key) { (p = prices[key]) && p["adult_price_usd"] ? "#{"from " if p["from"]}#{number_to_currency(p["adult_price_usd"], precision: 0)}" : nil } %>
 <% leader = epic_avg >= ikon_avg ? "Epic" : "Ikon" %>
 <% faqs = [] %>
@@ -57,6 +58,7 @@
       <p class="text-slate-300 mb-10">Pass data is being verified. Check back soon.</p>
     <% end %>
 
+    <p class="mb-8 text-sm text-slate-300">Prices, days and blackout dates: <%= safe_join(pass_links.map { |g| link_to(g.name, g.path, class: "text-cyan-300 underline underline-offset-2") }, " · ") %></p>
     <%= render "shared/faq", faqs: faqs, heading: "Ikon vs Epic FAQ" %>
   </main>
 </div>

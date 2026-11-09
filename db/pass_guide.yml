@@ -1,0 +1,178 @@
+# 2026-27 ski pass facts (researched 2026-11-09). Official sites first; news fallbacks named in source_note. Recheck before each price deadline.
+---
+checked_on: '2026-11-09'
+passes:
+  indy:
+    name: Indy Pass (Base)
+    adult_price_usd:
+    child_price_usd:
+    price_note: Off sale for 2026-27 (waitlist). Earlier this year the Base Pass listed
+      at $349 to $399 for adults depending on when and how it was bought.
+    price_deadline:
+    days: 2 all-day or night lift tickets at each partner resort
+    blackout_note: 'Yes: the Base Pass has blackout dates (the Indy+ is the no-blackout
+      version).'
+    perks:
+    - Add-on Pass for season passholders at a partner resort saves over 20%
+    - Zero-interest 3-payment plan
+    resort_count: 300+ partners worldwide, including Nordic centers
+    source: https://www.indyskipass.com/
+    checked_on: 2026-11-09
+    on_sale: false
+    sources:
+    - https://www.indyskipass.com/
+    - https://www.indyskipass.com/this-is-indy/news/new-resorts-and-2627-passes-are-live-a-letter-from-indy-pass-director-erik-mogensen
+    - https://www.dcski.com/articles/1782
+    - https://www.townlift.com/2026/09/indy-pass-returns-to-market-with-50-plus-new-resorts-and-a-300-plus-mountain-lineup/
+  indy_plus:
+    name: Indy+ Pass
+    adult_price_usd:
+    child_price_usd:
+    price_note: Off sale for 2026-27. Earlier this year it listed at $399 to $449
+      for adults.
+    price_deadline:
+    days: 2 all-day or night lift tickets at each partner resort
+    blackout_note: No blackout dates
+    perks:
+    - No blackout dates at any partner resort
+    resort_count: 300+ partners worldwide
+    source: https://www.indyskipass.com/
+    checked_on: 2026-11-09
+    on_sale: false
+    sources:
+    - https://www.indyskipass.com/
+  mountain_collective:
+    name: Mountain Collective
+    adult_price_usd: 729
+    child_price_usd: 304
+    price_note: Adult (19+) $729, teen $594, kids $304, as listed.
+    price_deadline:
+    days: 2 days at each destination plus 50% off additional days (some resorts require
+      advance reservations)
+    blackout_note: No blackout dates
+    perks:
+    - 50% off additional days beyond the 2 included days
+    - Free 1-year Protect Our Winters membership
+    resort_count: 27 destinations
+    source: https://mountaincollective.com/
+    checked_on: 2026-11-09
+    on_sale: true
+    sources:
+    - https://mountaincollective.com/
+  epic:
+    name: Epic Pass
+    adult_price_usd: 1169
+    child_price_usd:
+    price_note: Adult (31+) price. Teen and young adult (13-30) passes are cheaper.
+      Prices go up after November 15.
+    price_deadline: 2026-11-15
+    days: Unlimited days at most of its 90+ resorts
+    blackout_note: No blackout dates
+    perks:
+    - 'Epic Friend Tickets: share up to 50% off lift tickets'
+    - 'Epic Mountain Rewards: 20% off food, lodging, lessons and rentals'
+    - 'Epic FlexPay: $0 down, 0% APR'
+    resort_count: 90+ resorts
+    source: https://www.epicpass.com/
+    checked_on: 2026-11-09
+    on_sale: true
+    sources:
+    - https://www.epicpass.com/
+    - https://www.epicorikon.com/news/epic-pass-prices-increasing-october-2026
+  epic_local:
+    name: Epic Local Pass
+    adult_price_usd: 869
+    child_price_usd:
+    price_note: Adult (31+) price. Prices go up after November 15.
+    price_deadline: 2026-11-15
+    days: Unlimited at 29 resorts, plus 10 days total at Vail, Beaver Creek and Whistler
+      Blackcomb
+    blackout_note: 'Holiday blackouts at the busiest resorts: Thanksgiving weekend,
+      Dec 26-31, MLK Saturday and Presidents Day weekend (Ski Mag).'
+    perks:
+    - Epic Friend Tickets and Epic Mountain Rewards apply
+    - 20% off for ages 13 to 30
+    resort_count: 29 unlimited plus limited-day resorts
+    source: https://www.epicpass.com/
+    checked_on: 2026-11-09
+    on_sale: true
+    sources:
+    - https://www.epicpass.com/
+    - https://www.onthesnow.com/news/a/619177/buyer-s-guide-to-the-epic-pass
+    - https://www.skimag.com/news/epic-pass-details-2026-27/
+  ikon:
+    name: Ikon Pass
+    adult_price_usd: 1529
+    child_price_usd: 499
+    price_note: Adult (23+) from $1,529, young adult (13-22) $1,129, child (5-12)
+      $499, 4 and under $199.
+    price_deadline:
+    days: Unlimited at 18 destinations, up to 7 days at the rest, plus 2 free days
+      at 11 Bonus Mountains
+    blackout_note: No blackout dates
+    perks:
+    - 25% off up to 15 Friends & Family lift tickets
+    - Up to 15% off food and retail at select destinations
+    - 2 free days at each of 11 Bonus Mountains
+    resort_count: 70+ destinations
+    source: https://www.ikonpass.com/en/shop-passes
+    checked_on: 2026-11-09
+    on_sale: true
+    sources:
+    - https://www.ikonpass.com/en/shop-passes
+  ikon_base:
+    name: Ikon Base Pass
+    adult_price_usd: 1099
+    child_price_usd:
+    price_note: Adult (23+) from $1,099. $50 off each child pass bought with an adult
+      pass.
+    price_deadline:
+    days: Unlimited at 15 destinations, up to 5 days at the rest
+    blackout_note: Dec 26-30, 2026; Jan 16-17, 2027; Feb 13-14, 2027
+    perks:
+    - 25% off 10 Friends & Family lift tickets
+    - 10% off food and retail at select destinations
+    resort_count: 70+ destinations
+    source: https://www.ikonpass.com/en/shop-passes/ikon-base-pass
+    checked_on: 2026-11-09
+    on_sale: true
+    sources:
+    - https://www.ikonpass.com/en/shop-passes/ikon-base-pass
+mountain_collective_destinations:
+  source: https://mountaincollective.com/
+  checked_on: 2026-11-09
+  count: 27
+  usa:
+  - Alta Ski Area
+  - Aspen Snowmass
+  - Big Sky Resort
+  - Grand Targhee Resort
+  - Jackson Hole Mountain Resort
+  - Snowbasin
+  - Snowbird
+  - Sugar Bowl
+  - Sugarloaf
+  - Sun Valley
+  - Sunday River
+  - Taos Ski Valley
+  - Whiteface
+  canada:
+  - Banff Sunshine
+  - Bromont
+  - Lake Louise
+  - Le Massif de Charlevoix
+  - Marmot Basin
+  - Panorama Mountain Resort
+  - Revelstoke Mountain Resort
+  - Sun Peaks Resort
+  japan:
+  - Niseko United
+  france:
+  - Chamonix
+  - Megève
+  australia:
+  - Mt Buller
+  new_zealand:
+  - Coronet Peak + The Remarkables
+  chile:
+  - Valle Nevado
