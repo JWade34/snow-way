@@ -19,6 +19,17 @@ class SubscriberMailer < ApplicationMailer
     mail to: subscriber.email, subject: "Powder alert: #{resort.name} forecast #{inches.round}\" in the next 3 days"
   end
 
+  # ranked: [[resort, inches_next_7_days], ...] North America's leaders; mine: the subscriber's own resorts.
+  def weekly_report(subscriber, ranked, mine = [])
+    @subscriber = subscriber
+    @ranked = ranked
+    @mine = mine
+    @month = SkiMonth.current
+    resort, inches = ranked.first
+    unsubscribe_headers
+    mail to: subscriber.email, subject: "Where it's snowing this week: #{resort.name} leads with #{inches.round}\""
+  end
+
   private
 
   def unsubscribe_headers

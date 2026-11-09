@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_07_200000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_08_230000) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -194,6 +194,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_07_200000) do
     t.datetime "unsubscribed_at"
     t.datetime "welcomed_at"
     t.string "page_path"
+    t.boolean "weekly_report", default: false, null: false
+    t.datetime "weekly_sent_at"
     t.index ["email", "resort_id"], name: "index_subscribers_on_email_and_resort_id", unique: true
     t.index ["resort_id"], name: "index_subscribers_on_resort_id"
     t.index ["token"], name: "index_subscribers_on_token", unique: true

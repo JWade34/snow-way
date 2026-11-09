@@ -1,0 +1,18 @@
+<% content_for(:title, "Weekly Snow Report | Snow Way") %>
+<% content_for(:description, "Turn Snow Way's free Thursday weekly snow report on or off.") %>
+<% content_for(:hide_promo, "1") %>
+<% content_for(:head) do %><meta name="robots" content="noindex"><% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-xl mx-auto px-4 sm:px-6 py-16 text-center">
+    <% if @subscriber.nil? %>
+      <h1 class="text-3xl font-extrabold mb-3">Link not found</h1>
+      <p class="text-slate-300 mb-6">That link isn't valid. You can sign up for alerts and the weekly report from any resort page.</p>
+    <% else %>
+      <h1 class="text-3xl font-extrabold mb-3"><%= @subscriber.weekly_report ? (@changed ? "You're in" : "You're getting the weekly report") : (@changed ? "Weekly report stopped" : "Get the weekly snow report") %></h1>
+      <p class="text-slate-300 mb-6"><%= @subscriber.weekly_report ? "Every Thursday, #{@subscriber.email} gets a short email with where the most snow is forecast for the next 7 days." : "A short Thursday email with where the most snow is forecast for the next 7 days. #{@subscriber.email} will still get powder alerts unless you unsubscribe." %></p>
+      <%= button_to (@subscriber.weekly_report ? "Stop the weekly report" : "Yes, send me the weekly report"), weekly_report_path(@subscriber.token), params: { on: @subscriber.weekly_report ? "0" : "1" }, class: "inline-block #{@subscriber.weekly_report ? "border border-slate-600 hover:border-cyan-400" : "bg-cyan-500 hover:bg-cyan-400 text-slate-900"} font-bold rounded-lg px-5 py-3 cursor-pointer mb-4" %>
+    <% end %>
+    <p><%= link_to "Back to the snow report", root_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+  </main>
+</div>

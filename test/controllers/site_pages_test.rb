@@ -116,6 +116,19 @@ class SitePagesTest < ActionDispatch::IntegrationTest
     assert_equal "application/pdf", response.media_type
   end
 
+  test "new signups get the weekly report and can turn it off and on with their link" do
+    post subscribers_path, params: { subscriber: { email: "weekly-toggle@example.com" } }
+    subscriber = Subscriber.find_by!(email: "weekly-toggle@example.com")
+    assert subscriber.weekly_report
+    get weekly_report_path(subscriber.token)
+    assert_response :success
+    assert subscriber.reload.weekly_report, "GET must not change anything"
+    post weekly_report_path(subscriber.token), params: { on: "0" }
+    assert_not subscriber.reload.weekly_report
+    post weekly_report_path(subscriber.token), params: { on: "1" }
+    assert subscriber.reload.weekly_report
+  end
+
   test "signup sends a welcome email and unsubscribe works by GET and one-click POST" do
     assert_enqueued_emails 1 do
       post subscribers_path, params: { subscriber: { email: "welcome@example.com" } }, as: :turbo_stream

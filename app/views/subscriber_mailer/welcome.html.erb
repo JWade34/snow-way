@@ -4,6 +4,7 @@
   <p style="margin:0 0 24px;"><a href="<%= @download_url %>" style="display:inline-block;background:#06b6d4;color:#0f172a;font-weight:bold;text-decoration:none;padding:12px 20px;border-radius:8px;">Download the PDF</a></p>
 <% end %>
 <p style="margin:0 0 12px;">You're also on the powder alert list. <% if @subscriber.resort %>We'll email you when <strong><%= @subscriber.resort.name %></strong> is forecast <%= @subscriber.threshold_inches %>"+ of snow in the next 3 days.<% else %>We'll email you when a big storm (12"+ in 3 days) lines up anywhere Snow Way tracks.<% end %> No spam, and never more than one alert every few days.</p>
+<% if @subscriber.weekly_report %><p style="margin:0 0 12px;">Every Thursday you'll also get a short weekly snow report: where the most snow is forecast for the next 7 days.</p><% end %>
 <p style="margin:0 0 12px;">In the meantime, here's <a href="https://snowway.app/where-is-it-snowing" style="color:#0891b2;">where it's snowing this week</a>.</p>
 <p style="margin:0 0 4px;">See you on the chair,</p>
 <p style="margin:0 0 24px;">Justin, Snow Way</p>

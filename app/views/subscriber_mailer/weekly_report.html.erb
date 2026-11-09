@@ -1,0 +1,18 @@
+<% resort, inches = @ranked.first %>
+<p style="margin:0 0 6px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#0891b2;">Weekly snow report · <%= Date.current.strftime("%B %-d") %></p>
+<h1 style="font-size:22px;margin:0 0 12px;color:#0f172a;"><%= resort.name %> leads with <%= inches.round(1) %>" this week</h1>
+<p style="margin:0 0 16px;">Here's where the most snow is forecast across North America over the next 7 days.</p>
+<table cellpadding="6" cellspacing="0" style="border-collapse:collapse;margin:0 0 20px;width:100%;">
+  <% @ranked.each_with_index do |(r, amount), i| %>
+    <tr><td style="border-bottom:1px solid #e2e8f0;color:#64748b;width:24px;"><%= i + 1 %></td><td style="border-bottom:1px solid #e2e8f0;"><a href="https://snowway.app/resorts/<%= r.slug %>" style="color:#0f172a;font-weight:bold;"><%= r.name %></a> <span style="color:#64748b;"><%= r.state_province %></span></td><td style="border-bottom:1px solid #e2e8f0;text-align:right;font-weight:bold;color:#0891b2;"><%= amount.round(1) %>"</td></tr>
+  <% end %>
+</table>
+<% if @mine.any? %>
+  <p style="margin:0 0 20px;"><strong>Your mountain<%= "s" if @mine.size > 1 %>:</strong> <%= @mine.map { |r, amount| "#{r.name} #{amount.round(1)}\"" }.join(" · ") %></p>
+<% end %>
+<p style="margin:0 0 20px;"><a href="https://snowway.app/where-is-it-snowing" style="display:inline-block;background:#06b6d4;color:#0f172a;font-weight:bold;text-decoration:none;padding:12px 20px;border-radius:8px;">See every resort's forecast</a></p>
+<p style="margin:0 0 8px;">Planning ahead? <a href="https://snowway.app/best-places-to-ski-in-<%= @month.slug %>" style="color:#0891b2;">Best places to ski in <%= @month.name %></a> ranks resorts by how often it snows, from 10 seasons of history.</p>
+<p style="margin:0 0 20px;color:#64748b;font-size:13px;">7-day totals are mid-mountain forecasts from Open-Meteo. Forecasts beyond 3 days shift; check again before you book.</p>
+<p style="margin:0 0 4px;">See you on the chair,</p>
+<p style="margin:0 0 4px;">Justin, Snow Way</p>
+<%= render "subscriber_mailer/footer" %>

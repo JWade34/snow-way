@@ -19,4 +19,15 @@ class SubscriberMailerTest < ActionMailer::TestCase
     assert_match "Vail forecast 14\"", mail.subject
     assert_match "Breckenridge", mail.html_part.body.to_s
   end
+
+  test "weekly report lists the leaders, the subscriber's mountain and both opt-out links" do
+    @subscriber.update!(weekly_report: true)
+    mail = SubscriberMailer.weekly_report(@subscriber, [ [ resorts(:vail), 14.2 ], [ resorts(:breckenridge), 9.0 ] ], [ [ resorts(:vail), 14.2 ] ])
+    assert_match "Vail leads with 14\"", mail.subject
+    body = mail.html_part.body.to_s
+    assert_match "Breckenridge", body
+    assert_match "Your mountain", body
+    assert_match "/weekly/#{@subscriber.token}", body
+    assert_match "/unsubscribe/#{@subscriber.token}", mail.header["List-Unsubscribe"].to_s
+  end
 end

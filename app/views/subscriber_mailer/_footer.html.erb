@@ -1,4 +1,4 @@
 <p style="margin:24px 0 0;padding-top:16px;border-top:1px solid #e2e8f0;font-size:12px;color:#64748b;">
   You're getting this because you signed up at snowway.app.
-  <a href="<%= @unsubscribe_url %>" style="color:#64748b;">Unsubscribe</a><br><%= ENV.fetch("MAIL_POSTAL_ADDRESS", "Fast City LLC · 6705 W Highway 290, Suite 607 PMB 1096 · Austin, TX 78735-8407") %>
+  <% if @subscriber&.weekly_report %><a href="https://snowway.app/weekly/<%= @subscriber.token %>" style="color:#64748b;">Stop the weekly report</a> · <% elsif @subscriber %><a href="https://snowway.app/weekly/<%= @subscriber.token %>" style="color:#64748b;">Get the free weekly snow report too</a> · <% end %><a href="<%= @unsubscribe_url %>" style="color:#64748b;">Unsubscribe</a><br><%= ENV.fetch("MAIL_POSTAL_ADDRESS", "Fast City LLC · 6705 W Highway 290, Suite 607 PMB 1096 · Austin, TX 78735-8407") %>
 </p>

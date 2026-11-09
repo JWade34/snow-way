@@ -1,7 +1,7 @@
 <%# locals: (resort: nil) -%>
 <section id="alert-form" class="mb-10 bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-5" aria-labelledby="alert-heading">
   <h2 id="alert-heading" class="text-lg font-bold mb-1"><%= resort ? "Get a #{resort.name} powder alert" : "Get powder alerts" %></h2>
-  <p class="text-slate-300 text-sm mb-4"><%= resort ? "We'll email you when #{resort.name}'s forecast calls for a big dump." : "We'll email you when a big storm lines up anywhere Snow Way tracks." %> Free, no spam, unsubscribe anytime.</p>
+  <p class="text-slate-300 text-sm mb-4"><%= resort ? "We'll email you when #{resort.name}'s forecast calls for a big dump." : "We'll email you when a big storm lines up anywhere Snow Way tracks." %> You'll also get our free weekly snow report on Thursdays. No spam, unsubscribe anytime.</p>
   <%= form_with model: Subscriber.new, url: subscribers_path, class: "flex flex-col sm:flex-row gap-2" do |f| %>
     <%= f.hidden_field :resort_id, value: resort&.id %>
     <%= f.label :email, "Email address", class: "sr-only" %>

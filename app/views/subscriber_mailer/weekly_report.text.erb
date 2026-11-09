@@ -1,0 +1,14 @@
+<% resort, inches = @ranked.first %>
+WHERE IT'S SNOWING THIS WEEK (<%= Date.current.strftime("%B %-d") %>)
+<%= resort.name %> leads with <%= inches.round(1) %>" forecast over the next 7 days.
+
+<% @ranked.each_with_index do |(r, amount), i| %><%= i + 1 %>. <%= r.name %> (<%= r.state_province %>): <%= amount.round(1) %>"
+<% end %>
+<% if @mine.any? %>Your mountains: <%= @mine.map { |r, amount| "#{r.name} #{amount.round(1)}\"" }.join(", ") %>
+<% end %>
+Every resort: https://snowway.app/where-is-it-snowing
+Best places to ski in <%= @month.name %>: https://snowway.app/best-places-to-ski-in-<%= @month.slug %>
+
+Stop the weekly report only: https://snowway.app/weekly/<%= @subscriber.token %>
+Unsubscribe from everything: <%= @unsubscribe_url %>
+<%= ENV.fetch("MAIL_POSTAL_ADDRESS", "Fast City LLC, 6705 W Highway 290, Suite 607 PMB 1096, Austin, TX 78735-8407") %>

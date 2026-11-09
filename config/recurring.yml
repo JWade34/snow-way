@@ -51,6 +51,10 @@ production:
     class: SocialPublishJob
     queue: default
     schedule: every 15 minutes
+  weekly_snow_report:
+    class: WeeklyReportJob
+    queue: default
+    schedule: every thursday at 7:30am America/Denver
   thursday_reddit_post_email:
     command: "GrowthMailer.thursday_post.deliver_now"
     queue: default
