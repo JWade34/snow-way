@@ -24,6 +24,9 @@ For each item: fetch the official source, update the YAML only if the source now
 - Colorado hot springs: Healing Waters (Pagosa) reopening after the October 2025 flood; prices with two tables (Glenwood, Avalanche Ranch); reservation rules marked null.
 - Sun Valley Dollar Mountain 2026-27 reopening.
 
+## db/pass_guide.yml
+- Epic and Epic Local prices after the Nov 15, 2026 increase (epicpass.com; news fallback EpicOrIkon). Indy Pass back on sale? Mountain Collective deadline. Ikon young adult and child prices for Base.
+
 ## db/resort_facts.yml
 - Epic and Ikon pass prices (Epic prices rose after Nov 15, 2026).
 - Opening dates that slipped (check resorts with opening_status "scheduled" in the past).

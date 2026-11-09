@@ -5,6 +5,7 @@
 <% season = Date.current.month >= 7 ? "#{Date.current.year}-#{(Date.current.year + 1) % 100}" : "#{Date.current.year - 1}-#{Date.current.year % 100}" %>
 <% deadline = g.deadline %>
 <% upcoming = deadline && deadline >= Date.current %>
+<% passed = deadline && deadline < Date.current %>
 <% members = g.resorts.select(&:north_american?).sort_by { |r| -@totals.fetch(r.id, 0.0) } %>
 <% be = g.break_even_days %>
 <% answer = if g.on_sale?
@@ -37,6 +38,7 @@
       <p class="text-slate-200 leading-relaxed"><%= answer %></p>
     </section>
     <% if upcoming %><p class="mb-6 bg-amber-500/10 border border-amber-400/40 rounded-xl p-3 text-sm text-amber-100"><strong>Price increase:</strong> <%= (deadline - Date.current).to_i %> days left at this price (until <%= deadline.strftime("%B %-d") %>).</p><% end %>
+    <% if passed %><p class="mb-6 bg-amber-500/10 border border-amber-400/40 rounded-xl p-3 text-sm text-amber-100"><strong>Prices went up after <%= deadline.strftime("%B %-d") %>.</strong> The prices below were listed before the increase; check the official site for today's price. We update this page after each change.</p><% end %>
     <% unless g.on_sale? %><p class="mb-6 bg-amber-500/10 border border-amber-400/40 rounded-xl p-3 text-sm text-amber-100"><strong>Sold out for <%= season %>.</strong> Join the waitlist on the official site, or compare the other passes below.</p><% end %>
 
     <h2 class="text-xl font-bold mb-3">Price and what's included</h2>

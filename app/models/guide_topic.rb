@@ -4,7 +4,7 @@ class GuideTopic
     "trip-planning" => {
       name: "Ski Trip Planning",
       intro: "Everything for planning a ski trip: when to go, where to fly, which pass, where to stay, what it costs, and how to make it work with kids.",
-      guides: %w[how-to-plan-a-ski-trip family-ski-trip skiing-with-kids best-family-ski-resorts colorado-ski-resorts-for-families utah-ski-resorts-for-families california-ski-resorts-for-families vermont-ski-resorts-for-families ski-trip-cost ski-trip-drive-or-fly winter-driving-to-ski-resorts kids-ski-packing-list cheap-ski-trip holiday-ski-trips
+      guides: %w[el-nino-winter-forecast how-to-plan-a-ski-trip family-ski-trip skiing-with-kids best-family-ski-resorts colorado-ski-resorts-for-families utah-ski-resorts-for-families california-ski-resorts-for-families vermont-ski-resorts-for-families ski-trip-cost ski-trip-drive-or-fly winter-driving-to-ski-resorts kids-ski-packing-list cheap-ski-trip holiday-ski-trips
                  all-inclusive-ski-resorts ski-in-ski-out how-to-chase-powder ski-trip-packing-list what-to-wear-skiing what-is-apres-ski
                  skiing-in-japan skiing-in-the-alps skiing-in-south-america]
     },
@@ -24,7 +24,7 @@ class GuideTopic
     "gear" => {
       name: "Ski & Snowboard Gear Guides",
       intro: "How to choose ski and snowboard gear without overspending: sizing, what matters, what to skip, and when to rent instead of buy.",
-      guides: %w[rent-or-buy-ski-gear best-all-mountain-skis best-ski-boots best-ski-brands best-snowboard best-snowboard-for-beginners
+      guides: %w[best-heated-socks best-hand-warmers how-to-wax-a-snowboard rent-or-buy-ski-gear best-all-mountain-skis best-ski-boots best-ski-brands best-snowboard best-snowboard-for-beginners
                  best-snowboard-boots best-snowboard-bindings best-snowboard-brands best-ski-helmet best-ski-goggles best-ski-gloves
                  best-heated-gloves best-ski-socks best-base-layer-for-skiing best-ski-pants best-womens-ski-jacket snowboard-jacket
                  snowboard-pants ski-boot-bag kids-ski-gear how-to-wax-skis best-heated-jacket best-snow-boots ski-rack-roof-box avalanche-safety-gear]
