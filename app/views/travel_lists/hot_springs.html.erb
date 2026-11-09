@@ -1,0 +1,66 @@
+<% notes = TravelList.list("hot_springs_notes") %>
+<% items = @items %>
+<% near_ski = items.select { |i| @resorts[i["nearest_resort"]] } %>
+<% family = items.select { |i| i["family"] } %>
+<% answer = "Colorado has #{items.size} hot springs on this list, from big family pools like #{family.first(2).map { |i| "#{i["name"]} in #{i["town"]}" }.to_sentence} to natural soaks. #{near_ski.size} are close to a ski resort, so you can ski and soak on the same trip." %>
+<% faqs = [ { question: "What are the best hot springs in Colorado?", answer: "#{items.first(6).map { |i| "#{i["name"]} (#{i["town"]})" }.to_sentence}. #{answer}" } ] %>
+<% faqs << { question: "Which Colorado hot springs are near ski resorts?", answer: near_ski.first(6).map { |i| "#{i["name"]} near #{@resorts[i["nearest_resort"]].name}" }.to_sentence + "." } if near_ski.any? %>
+<% faqs << { question: "Which Colorado hot springs are good for families?", answer: family.first(6).map { |i| "#{i["name"]} (#{i["town"]})" }.to_sentence + " welcome kids. Some others are adults-only or clothing-optional, so check before you go." } if family.any? %>
+<% res = items.select { |i| i["reservations"] == "required" } %>
+<% faqs << { question: "Do you need reservations for Colorado hot springs?", answer: "Some require them: #{res.map { |i| i["name"] }.to_sentence}. Others take walk-ins, but busy weekends and holidays can sell out." } if res.any? %>
+<% content_for(:title, fit_title("Hot Springs in Colorado: #{items.size} to Soak In, Near Ski Resorts | Snow Way", "Hot Springs in Colorado | Snow Way")) %>
+<% content_for(:description, "#{answer} Prices, reservations and which are family-friendly or open in winter.".truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Hot springs in Colorado", "url" => absolute_url(colorado_hot_springs_path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => Date.current.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Hot Springs in Colorado", nil ] ]),
+        { "@type" => "ItemList", "numberOfItems" => items.size, "itemListElement" => items.each_with_index.map { |i, n| { "@type" => "ListItem", "position" => n + 1, "item" => { "@type" => "TouristAttraction", "name" => i["name"], "url" => i["url"], "address" => { "@type" => "PostalAddress", "addressLocality" => i["town"], "addressRegion" => "CO" } }.compact } } },
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Hot Springs in Colorado", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Hot springs in Colorado</h1>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+      <% if notes.any? %><ul class="text-slate-300 text-sm mt-3 space-y-1"><% notes.each do |n| %><li>• <%= n.is_a?(Hash) ? n["text"] : n %></li><% end %></ul><% end %>
+    </section>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Colorado hot springs compared</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Hot springs</th><th scope="col" class="px-3 py-2">Town</th><th scope="col" class="px-3 py-2">Kids</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Reservations</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Nearest ski resort</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% items.each do |i| %><% nr = @resorts[i["nearest_resort"]] %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><a href="#<%= i["id"] %>" class="hover:text-cyan-300"><%= i["name"] %></a></th><td class="px-3 py-2 text-slate-300"><%= i["town"] %></td><td class="px-3 py-2"><%= i["family"] ? "Yes" : "No" %></td><td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= i["reservations"].presence || "–" %></td><td class="px-3 py-2 hidden sm:table-cell"><%= nr ? link_to(nr.name, resort_path(nr), class: "text-cyan-300 underline underline-offset-2") : "–" %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% items.group_by { |i| i["region"].presence || "Colorado" }.each do |region, list| %>
+      <h2 class="text-xl font-bold mb-3"><%= region %></h2>
+      <div class="grid sm:grid-cols-2 gap-3 mb-8">
+        <% list.each do |i| %><% nr = @resorts[i["nearest_resort"]] %>
+          <article id="<%= i["id"] %>" class="bg-slate-800/40 border border-slate-700 rounded-xl p-4 scroll-mt-20 flex flex-col">
+            <h3 class="font-bold"><%= i["name"] %></h3>
+            <p class="text-cyan-300 text-xs font-semibold mb-1"><%= i["town"] %> · <%= i["type"] %><%= i["family"] ? " · family-friendly" : " · adults-focused" %></p>
+            <p class="text-slate-300 text-sm mb-2 flex-1"><%= i["what"] %></p>
+            <p class="text-slate-400 text-xs"><%= [ i["price"], ("Reservations #{i["reservations"]}" if i["reservations"].present?), (i["winter"] ? "Open in winter" : nil) ].compact.join(" · ") %></p>
+            <% if nr %><p class="text-slate-400 text-xs mt-1">Near <%= link_to nr.name, resort_path(nr), class: "text-cyan-300 underline underline-offset-2" %>: <span class="text-cyan-300 font-bold"><%= inches(@totals.fetch(nr.id, 0.0)) %></span> snow next 7 days</p><% end %>
+            <div class="flex flex-wrap gap-2 text-sm mt-3">
+              <% if i["url"].present? %><a href="<%= i["url"] %>" target="_blank" rel="nofollow noopener" class="border border-slate-600 hover:border-cyan-400 rounded-lg px-3 py-1.5">Official site ↗</a><% end %>
+              <a href="<%= Affiliate.hotels_url(nil, place: "#{i["town"]}, Colorado") %>" target="_blank" rel="sponsored nofollow noopener" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-3 py-1.5 transition">Stay in <%= i["town"] %> ↗</a>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% end %>
+    <%= affiliate_disclosure("Hotel links may earn Snow Way a commission. Official site links don't.", css: "mb-8") %>
+    <p class="mb-8 text-sm text-slate-300">Ski and soak: see <%= link_to "Colorado's snow report", region_path("colorado"), class: "text-cyan-300 underline underline-offset-2" %> and <%= link_to "Denver to Steamboat", trip_route_path("denver-to-steamboat"), class: "text-cyan-300 underline underline-offset-2" %> or <%= link_to "Denver to Aspen", trip_route_path("denver-to-aspen"), class: "text-cyan-300 underline underline-offset-2" %> for drive times.</p>
+    <%= render "shared/faq", faqs: faqs, heading: "Colorado hot springs questions" %>
+    <%= render "travel_lists/sources", items: items + notes.grep(Hash) %>
+  </main>
+</div>

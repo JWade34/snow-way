@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   get "compare/:id" => "comparisons#show", as: :comparison
   get "snowiest-ski-resorts" => "pages#snowiest", as: :snowiest_resorts
   get "best-places-to-ski-in-:month" => "ski_months#show", as: :ski_month, constraints: { month: Regexp.union(SkiMonth::SLUGS) }
+  get "things-to-do-in-:id-in-winter" => "winter_towns#show", as: :winter_town, constraints: { id: /[a-z]+(?:-[a-z]+)*?/ }
+  get "best-winter-vacations-in-the-us" => "travel_lists#winter_vacations", as: :winter_vacations
+  get "best-ski-towns" => "travel_lists#ski_towns", as: :ski_towns
+  get "best-ski-resorts-for-beginners" => "travel_lists#beginner_resorts", as: :beginner_resorts
+  get "hot-springs-in-colorado" => "travel_lists#hot_springs", as: :colorado_hot_springs
   get "getting-there" => "trip_routes#index", as: :trip_routes
   get "getting-there/:id" => "trip_routes#show", as: :trip_route
   get "epic-pass-resorts" => "pages#pass_resorts", defaults: { pass: "epic" }, as: :epic_pass_resorts

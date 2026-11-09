@@ -7,7 +7,7 @@
   <url><loc><%= SitePages.url("/resorts/#{resort.slug}") %></loc><lastmod><%= (@forecast_updated[resort.id] || resort.updated_at).to_date.iso8601 %></lastmod></url>
   <url><loc><%= SitePages.url("/resorts/#{resort.slug}/best-time-to-ski") %></loc><lastmod><%= resort.updated_at.to_date.iso8601 %></lastmod></url>
 <% end %>
-<% (SitePages.comparison_paths + SitePages.month_paths + SitePages.trip_route_paths).each do |path| %>
+<% (SitePages.comparison_paths + SitePages.month_paths + SitePages.travel_paths + SitePages.trip_route_paths).each do |path| %>
   <url><loc><%= SitePages.url(path) %></loc><lastmod><%= @latest.iso8601 %></lastmod></url>
 <% end %>
 <% SitePages.lodging_paths(@resorts).each do |path| %>

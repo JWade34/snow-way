@@ -27,6 +27,10 @@ module SitePages
     SkiMonth.all.map { |m| "/best-places-to-ski-in-#{m.slug}" }
   end
 
+  def travel_paths
+    TravelList.paths + WinterTown.all.map(&:path)
+  end
+
   def trip_route_paths
     RoutePage.all.map { |p| "/getting-there/#{p.slug}" }
   end
@@ -53,7 +57,7 @@ module SitePages
   end
 
   def all_paths
-    static_paths + optional_paths + resort_paths + comparison_paths + month_paths + trip_route_paths + region_paths + hub_paths + guide_paths + report_paths
+    static_paths + optional_paths + resort_paths + comparison_paths + month_paths + travel_paths + trip_route_paths + region_paths + hub_paths + guide_paths + report_paths
   end
 
   def url(path)

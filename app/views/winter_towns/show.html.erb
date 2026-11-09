@@ -1,0 +1,110 @@
+<% t = @town %>
+<% r = t.primary %>
+<% snow = @totals.fetch(r.id, 0.0) %>
+<% cats = t.by_category %>
+<% label = ->(c) { WinterTown::CATEGORIES.fetch(c).last } %>
+<% picks = cats.reject { |c, _| %w[food-drink other].include?(c) }.first(4).map { |c, list| "#{label.(c).downcase} (#{list.first["where"]})" } %>
+<% answer = "Beyond the slopes, #{t.name} in winter means #{picks.to_sentence}." %>
+<% faqs = [] %>
+<% faqs << { question: "What is there to do in #{t.name} in winter besides skiing?", answer: "#{answer} #{t.non_skier_tip}".squish } %>
+<% { "snowmobile" => "Can you go snowmobiling in #{t.name}?", "dog-sled" => "Can you go dog sledding in #{t.name}?", "hot-springs" => "Are there hot springs near #{t.name}?", "sleigh-ride" => "Are there sleigh rides in #{t.name}?" }.each do |c, q| %>
+  <% list = cats.to_h[c] or next %>
+  <% faqs << { question: q, answer: "Yes. #{list.first(3).map { |a| "#{a["where"]}: #{a["what"].to_s.sub(/\.\z/, "")}" }.join(". ")}." } %>
+<% end %>
+<% faqs << { question: "What can you do for free in #{t.name} in winter?", answer: t.free.first(4).map { |f| f.to_s.sub(/\.\z/, "") }.join(". ") + "." } if t.free.any? %>
+<% faqs << { question: "Is it snowing in #{t.name} this week?", answer: "As of #{Date.current.strftime("%B %-d, %Y")}, #{t.resorts.map { |x| "#{x.name} has #{inches(@totals.fetch(x.id, 0.0))}" }.to_sentence} of snow in the 7-day forecast." } %>
+
+<% content_for(:title, fit_title("Things to Do in #{t.name} in Winter: Beyond Skiing | Snow Way", "Things to Do in #{t.name} in Winter | Snow Way")) %>
+<% content_for(:description, "#{answer} Bookable tours, free things and winter events in #{t.name}, with this week's snow.".squish.truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "#{t.title}", "url" => absolute_url(winter_town_path(t)),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "dateModified" => Date.current.iso8601, "citation" => t.sources.map { |s| s["url"] },
+          "about" => { "@type" => "Place", "name" => t.place },
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ r.name, resort_path(r) ], [ t.title, nil ] ]),
+        { "@type" => "ItemList", "name" => t.title, "itemListElement" => t.activities.each_with_index.map { |a, i| { "@type" => "ListItem", "position" => i + 1, "item" => { "@type" => "TouristAttraction", "name" => a["where"], "description" => a["what"], "url" => a["url"] }.compact } } },
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ r.name, resort_path(r) ], [ "Things to do in winter", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= t.title %></h1>
+    <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+      <% if t.intro.present? %><p class="text-slate-300 text-sm mt-3"><%= t.intro %></p><% end %>
+    </section>
+
+    <div class="flex flex-wrap items-center gap-2 mb-8 text-sm">
+      <span class="bg-slate-800/60 border border-slate-700 rounded-full px-3 py-1">❄️ <%= r.name %>: <strong class="text-cyan-300"><%= inches(snow) %></strong> next 7 days</span>
+      <% cats.each do |c, _| %>
+        <a href="#<%= c %>" class="border border-slate-600 hover:border-cyan-400 rounded-full px-3 py-1"><%= WinterTown::CATEGORIES.fetch(c).first %> <%= label.(c) %></a>
+      <% end %>
+    </div>
+
+    <% cats.each do |c, list| %>
+      <section id="<%= c %>" class="mb-8 scroll-mt-20">
+        <h2 class="text-xl font-bold mb-3"><span class="mr-1.5" aria-hidden="true"><%= WinterTown::CATEGORIES.fetch(c).first %></span><%= label.(c) %></h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <% list.each do |a| %>
+            <article class="bg-slate-800/40 border border-slate-700 rounded-xl p-4 flex flex-col">
+              <h3 class="font-bold"><%= a["where"].presence || a["name"] %></h3>
+              <% if a["name"].present? && a["name"] != a["where"] %><p class="text-cyan-300 text-xs font-semibold mb-1"><%= a["name"] %></p><% end %>
+              <p class="text-slate-300 text-sm mb-2 flex-1"><%= a["what"] %></p>
+              <% if a["price"].present? %><p class="text-slate-400 text-xs mb-2"><%= a["price"] %></p><% end %>
+              <div class="flex flex-wrap gap-2 text-sm">
+                <% if a["tour_query"].present? %>
+                  <a href="<%= Affiliate.tours_url(a["tour_query"]) %>" target="_blank" rel="sponsored nofollow noopener" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-3 py-1.5 transition">Compare tours ↗</a>
+                <% end %>
+                <% if a["url"].present? %><a href="<%= a["url"] %>" target="_blank" rel="nofollow noopener" class="border border-slate-600 hover:border-cyan-400 rounded-lg px-3 py-1.5">Official site ↗</a><% end %>
+              </div>
+            </article>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+    <% if t.bookable.any? %><%= affiliate_disclosure("Tour links compare GetYourGuide options and may earn Snow Way a commission. Official site links don't.", css: "mb-8 -mt-4") %><% end %>
+
+    <% if t.free.any? %>
+      <h2 class="text-xl font-bold mb-3">Free things to do</h2>
+      <ul class="list-disc pl-5 text-slate-300 space-y-1 mb-8"><% t.free.each do |f| %><% k, v = f.to_s.split(":", 2) %><li><% if v %><strong class="text-white"><%= k %>:</strong><%= v %><% else %><%= f %><% end %></li><% end %></ul>
+    <% end %>
+
+    <% if t.events.any? %>
+      <h2 class="text-xl font-bold mb-3">Winter events</h2>
+      <ul class="space-y-2 mb-8 text-sm"><% t.events.each do |e| %><li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2"><strong><%= e["url"].present? ? link_to(e["name"], e["url"], target: "_blank", rel: "nofollow noopener", class: "hover:text-cyan-300 underline underline-offset-2") : e["name"] %></strong> <span class="text-slate-400">· <%= e["when"] %></span></li><% end %></ul>
+    <% end %>
+
+    <% if t.non_skier_tip.present? %>
+      <p class="mb-8 bg-cyan-500/10 border border-cyan-400/30 rounded-xl p-4 text-sm text-slate-200"><strong>Not skiing?</strong> <%= t.non_skier_tip %></p>
+    <% end %>
+
+    <%= render "shared/trip_deals", resort: r, heading: "Where to stay in #{t.name}" %>
+
+    <h2 class="text-xl font-bold mb-3">Plan the rest of the trip</h2>
+    <ul class="text-sm text-slate-300 space-y-1 mb-8">
+      <% t.resorts.each do |x| %>
+        <li><%= link_to "#{x.name} snow report and forecast", resort_path(x), class: "text-cyan-300 underline underline-offset-2" %><% if Lodging.slugs.include?(x.slug) %> · <%= link_to "where to stay at #{x.name}", where_to_stay_resort_path(x), class: "text-cyan-300 underline underline-offset-2" %><% end %> · <%= link_to "best time to ski #{x.name}", best_time_resort_path(x), class: "text-cyan-300 underline underline-offset-2" %></li>
+      <% end %>
+      <% t.resorts.flat_map { |x| RoutePage.for_resort(x) }.uniq(&:slug).each do |p| %>
+        <li><%= link_to "#{p.title}: drive time and shuttles", trip_route_path(p), class: "text-cyan-300 underline underline-offset-2" %></li>
+      <% end %>
+    </ul>
+
+    <%= render "shared/faq", faqs: faqs, heading: "#{t.name} in winter: questions" %>
+
+    <% if t.sources.any? %>
+      <h2 class="text-lg font-bold mb-2">Sources</h2>
+      <ul class="text-xs text-slate-400 space-y-1 mb-8 break-words"><% t.sources.each do |s| %><li><%= link_to s["title"], s["url"], target: "_blank", rel: "nofollow noopener", class: "underline underline-offset-2 hover:text-cyan-300" %></li><% end %></ul>
+    <% end %>
+
+    <% if t.others.any? %>
+      <h2 class="text-lg font-bold mb-3">More ski towns in winter</h2>
+      <p class="text-sm mb-10"><%= safe_join(t.others.map { |o| link_to(o.name, winter_town_path(o), class: "text-cyan-300 underline underline-offset-2") }, " · ") %></p>
+    <% end %>
+  </main>
+</div>

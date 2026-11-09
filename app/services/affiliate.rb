@@ -81,6 +81,11 @@ module Affiliate
     }.to_query
   end
 
+  # Tours and activities (snowmobiling, dog sledding...). GetYourGuide links are converted by the Stay22 script.
+  def tours_url(query)
+    "https://www.getyourguide.com/s/?" + { q: query }.to_query
+  end
+
   # Kayak searches convert through Stay22 Let Me Allez, like Booking.com.
   def flights_url(airport, checkin: Date.current + 2, checkout: Date.current + 5)
     "https://www.kayak.com/flights/#{airport}/#{checkin.iso8601}/#{checkout.iso8601}?sort=bestflight_a"

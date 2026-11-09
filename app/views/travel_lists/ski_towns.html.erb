@@ -1,0 +1,43 @@
+<% answer = "The best ski towns in the US are real towns, not just resorts: #{@items.first(5).map { |i| "#{i["name"]}, #{i["state"]} (#{i["best_for"]})" }.to_sentence}." %>
+<% faqs = [ { question: "What is the best ski town in the US?", answer: answer } ] %>
+<% @items.group_by { |i| i["state"] }.select { |_, l| l.size >= 2 }.each do |state, l| %><% faqs << { question: "What is the best ski town in #{state}?", answer: "#{l.first["name"]}: #{l.first["why"]}" } %><% end %>
+<% content_for(:title, fit_title("Best Ski Towns in the US: #{@items.size} Real Mountain Towns | Snow Way", "Best Ski Towns in the US | Snow Way")) %>
+<% content_for(:description, "#{answer} History, main streets and where to stay, plus this week's snow.".truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Best ski towns in the US", "url" => absolute_url(ski_towns_path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => Date.current.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Best Ski Towns", nil ] ]),
+        { "@type" => "ItemList", "numberOfItems" => @items.size, "itemListElement" => @items.each_with_index.map { |i, n| { "@type" => "ListItem", "position" => n + 1, "name" => "#{i["name"]}, #{i["state"]}" } } },
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Best Ski Towns", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best ski towns in the US</h1>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+      <p class="text-slate-400 text-xs mt-3">Picked for a walkable town with its own history and life, close to good skiing. Live snow updated <%= updated_label(@updated_at) %>.</p>
+    </section>
+    <ol class="space-y-6 mb-10">
+      <% @items.each_with_index do |i, n| %>
+        <% resort = Array(i["resorts"]).filter_map { |s| @resorts[s] }.first %>
+        <li id="<%= i["slug"] %>" class="bg-slate-800/40 border border-slate-700 rounded-xl p-5 scroll-mt-20">
+          <h2 class="text-xl font-bold"><span class="text-cyan-300 mr-1"><%= n + 1 %>.</span> <%= i["name"] %> <span class="text-slate-400 text-base font-normal"><%= i["state"] %></span></h2>
+          <p class="text-cyan-300 text-sm font-semibold mb-2">Best for <%= i["best_for"] %></p>
+          <p class="text-slate-300 mb-3"><%= i["why"] %></p>
+          <% if Array(i["town_facts"]).any? %><ul class="text-sm text-slate-300 space-y-1 mb-3"><% i["town_facts"].each do |f| %><li>• <%= f %></li><% end %></ul><% end %>
+          <% if resort %><p class="text-xs text-slate-400"><%= resort.name %>: <span class="text-cyan-300 font-bold"><%= inches(@totals.fetch(resort.id, 0.0)) %></span> forecast next 7 days<% if (rp = RoutePage.for_resort(resort).first) %> · <%= link_to "#{rp.title} drive", trip_route_path(rp), class: "underline underline-offset-2 hover:text-cyan-300" %><% end %><% if (town = WinterTown.for_resort(resort).first) %> · <%= link_to "things to do in winter", winter_town_path(town), class: "underline underline-offset-2 hover:text-cyan-300" %><% end %></p><% end %>
+          <%= render "travel_lists/stay", place: i["stay_place"].presence || "#{i["name"]}, #{i["state"]}", resort: resort %>
+        </li>
+      <% end %>
+    </ol>
+    <%= affiliate_disclosure("Hotel and rental links may earn Snow Way a commission.", css: "mb-8") %>
+    <%= render "shared/faq", faqs: faqs, heading: "Ski town questions" %>
+    <p class="text-sm text-slate-300 mb-6">More: <%= link_to "Best winter vacations in the US", winter_vacations_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Best ski resorts for beginners", beginner_resorts_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+    <%= render "travel_lists/sources", items: @items %>
+  </main>
+</div>

@@ -1,0 +1,60 @@
+<% items = @items.select { |i| @resorts[i["slug"]] }.sort_by { |i| -(i["beginner_pct"] || 0).to_f } %>
+<% name = ->(i) { i["resort_name"].presence || @resorts[i["slug"]].name } %>
+<% answer = "The best ski resorts for beginners have big, separate learning areas and lots of green terrain: #{items.first(5).map { |i| "#{name.(i)}#{i["beginner_pct"] ? " (#{i["beginner_pct"]}% beginner terrain)" : ""}" }.to_sentence}." %>
+<% faqs = [ { question: "What is the best ski resort for beginners?", answer: answer } ] %>
+<% items.group_by { |i| @resorts[i["slug"]].state_province }.each do |state, l| %><% faqs << { question: "What is the best ski resort for beginners in #{state}?", answer: "#{name.(l.first)}. #{l.first["why"]}" } %><% end %>
+<% faqs << { question: "What percentage of beginner terrain should a resort have for first-timers?", answer: "More matters less than where it is. A separate learning area with slow lifts or magic carpets, away from fast traffic, helps most. After that, look for plenty of easy green and blue runs to progress on." } %>
+<% content_for(:title, fit_title("Best Ski Resorts for Beginners (#{Date.current.year}-#{(Date.current.year + 1) % 100}): Learning Areas Compared | Snow Way", "Best Ski Resorts for Beginners | Snow Way")) %>
+<% content_for(:description, "#{answer} Learning areas, first-timer programs and this week's snow.".truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Best ski resorts for beginners", "url" => absolute_url(beginner_resorts_path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => Date.current.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Best Ski Resorts for Beginners", nil ] ]),
+        { "@type" => "ItemList", "numberOfItems" => items.size, "itemListElement" => items.each_with_index.map { |i, n| { "@type" => "ListItem", "position" => n + 1, "name" => name.(i), "url" => absolute_url(resort_path(@resorts[i["slug"]])) } } },
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Best Ski Resorts for Beginners", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best ski resorts for beginners</h1>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+      <p class="text-slate-400 text-xs mt-3">Beginner terrain shares are as published by each resort or its Wikipedia entry; resorts count differently, so treat close numbers as a tie.</p>
+    </section>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Beginner-friendly ski resorts compared</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">Beginner terrain</th><th scope="col" class="px-3 py-2 text-right whitespace-nowrap">Snow next 7 days</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% items.each do |i| %><% r = @resorts[i["slug"]] %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><a href="#<%= r.slug %>" class="hover:text-cyan-300"><%= name.(i) %></a> <span class="text-slate-400 font-normal text-xs"><%= r.state_province %></span></th><td class="px-3 py-2 text-right"><%= i["beginner_pct"] ? "#{i["beginner_pct"]}%" : "–" %></td><td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="space-y-4 mb-10">
+      <% items.each do |i| %><% r = @resorts[i["slug"]] %>
+        <section id="<%= r.slug %>" class="bg-slate-800/40 border border-slate-700 rounded-xl p-5 scroll-mt-20">
+          <h2 class="text-xl font-bold mb-1"><%= link_to name.(i), resort_path(r), class: "hover:text-cyan-300" %> <span class="text-slate-400 text-base font-normal"><%= r.state_province %></span></h2>
+          <p class="text-slate-300 mb-2"><%= i["why"] %></p>
+          <% if i["learning_areas"].present? %><p class="text-sm text-slate-300"><strong class="text-white">Where to learn:</strong> <%= i["learning_areas"] %></p><% end %>
+          <% if i["programs"].present? %><p class="text-sm text-slate-300 mt-1"><strong class="text-white">First-timer programs:</strong> <%= i["programs"] %></p><% end %>
+          <%= render "travel_lists/stay", place: [ r.name, r.state_province ].join(", "), resort: r %>
+        </section>
+      <% end %>
+    </div>
+    <%= affiliate_disclosure("Hotel and rental links may earn Snow Way a commission.", css: "mb-8") %>
+    <h2 class="text-xl font-bold mb-3">Before your first day</h2>
+    <ul class="text-sm text-slate-300 space-y-1 mb-10">
+      <li><%= link_to "How to ski: a first-day guide", guide_path("how-to-ski"), class: "text-cyan-300 underline underline-offset-2" %></li>
+      <li><%= link_to "Ski lessons for adults", guide_path("ski-lessons-for-adults"), class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Ski trail ratings explained", guide_path("ski-trail-ratings"), class: "text-cyan-300 underline underline-offset-2" %></li>
+      <li><%= link_to "Best snowboard for beginners", guide_path("best-snowboard-for-beginners"), class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "What to wear skiing", guide_path("what-to-wear-skiing"), class: "text-cyan-300 underline underline-offset-2" %></li>
+    </ul>
+    <%= render "shared/faq", faqs: faqs, heading: "Beginner resort questions" %>
+    <%= render "travel_lists/sources", items: items %>
+  </main>
+</div>

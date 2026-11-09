@@ -1,0 +1,1452 @@
+# Things to do in ski towns in winter (researched 2026-11-08). Every activity names a real business with its official link; prices as listed on the date shown.
+---
+lake-tahoe:
+  name: Lake Tahoe
+  state: California and Nevada
+  resorts:
+  - palisades-tahoe
+  - northstar
+  - heavenly
+  intro: The Heavenly Gondola climbs 2.4 miles from Heavenly Village on the South
+    Shore. On the North Shore, the Palisades Tahoe Aerial Tram climbs from 6,200 feet
+    to High Camp at 8,200 feet, in the valley that hosted the 1960 Winter Games. Winter
+    around the lake also means tubing hills, groomed cross-country trails, sleigh
+    rides at Sand Harbor and snowmobile tours in Hope Valley.
+  activities:
+  - name: Snowmobiling at Zephyr Cove
+    category: snowmobile
+    what: Guided tours from Zephyr Cove Resort on the Nevada side. The 2-hour Scenic
+      Lakeview Tour climbs through meadows to peaks near 9,000 feet.
+    where: Zephyr Cove Resort
+    price:
+    url: https://www.zephyrcove.com/activities/winter/snowmobiling
+    tour_query: snowmobile tour Lake Tahoe
+  - name: Snowmobiling in Hope Valley
+    category: snowmobile
+    what: Guided tours start at 7,200 feet in Hope Valley, south of the lake in Alpine
+      County. The Summit tour lasts 2 hours, and tours run from December 5, 2026 to
+      April 30, 2027, weather permitting.
+    where: Lake Tahoe Adventures
+    price:
+    url: https://www.laketahoeadventures.com/snowmobile-tours/snowmobile-tour-experience
+    tour_query: snowmobile tour Hope Valley Lake Tahoe
+  - name: Sleigh ride at Sand Harbor
+    category: sleigh-ride
+    what: A 55-minute horse-drawn ride from the Sand Harbor Visitor Center on the
+      East Shore. When snow is low, the ride uses wheeled carriages.
+    where: Borges Tahoe Sleigh and Carriage Rides, Lake Tahoe Nevada State Park
+    price: "$60 adults, $30 children 2 to 16 ($75 and $40 on Saturdays and holidays),
+      as listed on 2026-11-08"
+    url: https://www.sleighride.com/
+    tour_query: sleigh ride Lake Tahoe
+  - name: Grover Hot Springs
+    category: hot-springs
+    what: A state park pool complex in an alpine meadow at about 5,900 feet, four
+      miles west of Markleeville. The pools are open Friday through Monday, and tickets
+      are sold at the park, first come, first served.
+    where: Grover Hot Springs State Park
+    price: Pool entry $10 adults, $5 children, plus $8 vehicle day use, as listed
+      on 2026-11-08
+    url: https://www.parks.ca.gov/?page_id=508
+    tour_query:
+  - name: Snow tubing at TubeTahoe
+    category: tubing
+    what: A tubing hill on Highway 50 in South Lake Tahoe with 1.5-hour sessions that
+      include tube rental and parking. The 2026/27 season opens November 25, weather
+      permitting.
+    where: TubeTahoe
+    price: From $65 per person (ages 13 and over, weekday), $75 on weekends, as listed
+      on 2026-11-08
+    url: https://www.tubetahoe.com/
+    tour_query:
+  - name: Tubing and sledding at Echo Summit
+    category: tubing
+    what: A family-owned snow play area at 7,400 feet on Echo Summit with groomed
+      sledding runs and evening Tubing After Dark sessions.
+    where: Adventure Mountain Lake Tahoe
+    price: "$20 per vehicle resort entrance fee, as listed on 2026-11-08"
+    url: https://www.adventuremountaintahoe.com/
+    tour_query:
+  - name: Cross-country skiing at Tahoe Donner
+    category: nordic
+    what: Over 100 km of cross-country ski and snowshoe trails near Truckee when fully
+      open. A trail pass is required inside the area boundary.
+    where: Tahoe Donner Cross Country
+    price: Adult day pass from $43 when bought early, as listed on 2026-11-08
+    url: https://www.tahoedonner.com/amenities/cross-country/
+    tour_query:
+  - name: Guided snowshoe tours
+    category: snowshoe
+    what: Guided snowshoe tours and group snowshoe trips run by a local guide service.
+    where: Tahoe Adventure Company
+    price:
+    url: https://tahoeadventurecompany.com/ourtrips/winteradventures/
+    tour_query: snowshoe tour Lake Tahoe
+  - name: Ice skating in South Lake Tahoe
+    category: ice-skating
+    what: An indoor rink with public skate sessions. Every skater signs a waiver,
+      and times can change for tournaments.
+    where: South Lake Tahoe Ice Arena, 1176 Rufus Allen Blvd.
+    price: "$16 with your own skates, $20 with rental, $10 under 10, as listed on
+      2026-11-08"
+    url: https://www.tahoeicearena.com/
+    tour_query:
+  - name: Heavenly Gondola
+    category: scenic
+    what: A 2.4-mile ride from Heavenly Village with an observation deck partway up.
+      You do not need a ski ticket to ride, and the tubing park sits at the top. The
+      tentative 2026-27 opening day is November 20.
+    where: Heavenly Mountain Resort
+    price:
+    url: https://visitlaketahoe.com/tour/heavenly-gondola/
+    tour_query:
+  - name: Aerial Tram to High Camp
+    category: scenic
+    what: The tram climbs from The Village at 6,200 feet to High Camp at 8,200 feet.
+      The Sierra Sightseeing Pass gives all-day rides, and High Camp has restaurants
+      and a bar.
+    where: Palisades Tahoe
+    price:
+    url: https://www.palisadestahoe.com/events-and-activities/activity-finder/aerial-tram
+    tour_query:
+  - name: Olympic Museum at High Camp
+    category: museum
+    what: Memorabilia from the 1960 Winter Games in Olympic Valley, historic Team
+      USA uniforms and a short archival film. It is open when the Aerial Tram is running.
+    where: Olympic Museum, High Camp, Palisades Tahoe
+    price: Free with a scenic Aerial Tram ride, as listed on 2026-11-08
+    url: https://www.palisadestahoe.com/events-and-activities/activity-finder/olympic-museum
+    tour_query:
+  free:
+  - 'Emerald Bay: snowshoe down to Vikingsholm or into Desolation Wilderness from
+    Eagle Falls Trailhead (no fee listed by Visit Lake Tahoe)'
+  - 'Highway 89 flats: snowshoe at Pope, Kiva and Baldwin beaches and Taylor Creek
+    Visitor Area (no fee listed)'
+  - 'Rabe Meadow: easy, mostly flat snowshoeing on Kahle Drive near Stateline (no
+    fee listed)'
+  - 'After School Skate: free Wednesdays 2 to 3 pm at South Lake Tahoe Ice Arena for
+    students and chaperones'
+  - 'Olympic Museum: free once you are at High Camp on the Aerial Tram'
+  events:
+  - name: North Lake Tahoe SnowFest
+    when: Late February into early March (2026 edition ran about Feb 25 to Mar 8);
+      2027 dates not yet posted
+    url: https://www.gotahoenorth.com/?p=92979
+  - name: Ididarun Sled Dog Race at Tahoe Donner
+    when: March (March 8 in 2026)
+    url: https://www.tahoedonner.com/events/i-did-a-run
+  non_skier_tip: Pair a Heavenly Gondola or Palisades Aerial Tram ride with a session
+    at a tubing hill, since TubeTahoe and Adventure Mountain both sit on Highway 50
+    near South Lake Tahoe.
+  sources:
+  - title: Zephyr Cove Resort snowmobiling
+    url: https://www.zephyrcove.com/activities/winter/snowmobiling
+  - title: Lake Tahoe Adventures snowmobile tours
+    url: https://www.laketahoeadventures.com/snowmobile-tours/snowmobile-tour-experience
+  - title: Borges Tahoe Sleigh and Carriage Rides
+    url: https://www.sleighride.com/
+  - title: 'Visit Lake Tahoe: Borges Family Sleigh and Carriage Rides'
+    url: https://visitlaketahoe.com/winter-sports/borges-family-sleigh-and-carriage-rides/
+  - title: 'California State Parks: Grover Hot Springs SP'
+    url: https://www.parks.ca.gov/?page_id=508
+  - title: TubeTahoe
+    url: https://www.tubetahoe.com/
+  - title: Adventure Mountain Lake Tahoe
+    url: https://www.adventuremountaintahoe.com/
+  - title: 'Visit Lake Tahoe: snow tubing in South Lake Tahoe'
+    url: https://visitlaketahoe.com/sledding/6-amazing-places-to-go-snow-tubing-in-south-lake-tahoe/
+  - title: Tahoe Donner Cross Country
+    url: https://www.tahoedonner.com/amenities/cross-country/
+  - title: Tahoe Donner day passes
+    url: https://www.tahoedonner.com/amenities/amenities/cross-country/tickets-passes-rentals/day-passes/
+  - title: Tahoe Adventure Company
+    url: https://www.tahoeadventurecompany.com/
+  - title: South Lake Tahoe Ice Arena
+    url: https://www.tahoeicearena.com/
+  - title: 'Visit Lake Tahoe: Heavenly Gondola'
+    url: https://visitlaketahoe.com/tour/heavenly-gondola/
+  - title: Palisades Tahoe Aerial Tram
+    url: https://www.palisadestahoe.com/events-and-activities/activity-finder/aerial-tram
+  - title: Palisades Tahoe Olympic Museum
+    url: https://www.palisadestahoe.com/events-and-activities/activity-finder/olympic-museum
+  - title: 'Visit Lake Tahoe: snowshoeing'
+    url: https://visitlaketahoe.com/winter-sports/snowshoeing/
+breckenridge:
+  name: Breckenridge
+  state: Colorado
+  resorts:
+  - breckenridge
+  intro: Breckenridge is an old mining town with more than 200 shops on Main Street
+    and a ski resort spread across several peaks above it. The free BreckConnect Gondola
+    runs from town to Peak 7 and Peak 8, and two Nordic centers groom trails near
+    town. Winter brings Ullr Fest in December and the International Snow Sculpture
+    Championships in late January.
+  activities:
+  - name: Snowmobiling to the Continental Divide
+    category: snowmobile
+    what: Two-hour guided tours up the Swan River Valley toward Georgia Pass, reaching
+      the Continental Divide at 11,585 feet. Each tour starts with practice time in
+      an open meadow.
+    where: Good Times Adventures, 6061 Tiger Road
+    price: From $258 per snowmobile (solo driver), plus an $11 permit fee, as listed
+      on 2026-11-08
+    url: https://goodtimesadventures.com/snowmobiling.html
+    tour_query: snowmobile tour Breckenridge
+  - name: Dog sledding
+    category: dog-sled
+    what: A 90-minute tour covering six miles of Swan River Valley trails. Guests
+      take turns mushing, riding in the sled and riding in a guide-driven sleigh.
+    where: Good Times Adventures
+    price: From $204 per person, plus a $7 permit fee, as listed on 2026-11-08
+    url: https://goodtimesadventures.com/dogsledding.html
+    tour_query: dog sledding Breckenridge
+  - name: Sleigh rides
+    category: sleigh-ride
+    what: Scenic and dinner sleigh rides from the base of Peak 9 and from Gold Run
+      Nordic Center. The Peak 9 dinner ride climbs from about 9,600 feet to about
+      11,000 feet and stops at a yurt for a buffet with live entertainment.
+    where: Breckenridge Stables
+    price:
+    url: https://breckstables.com/sleigh-rides
+    tour_query: sleigh ride Breckenridge
+  - name: Snow tubing in Frisco
+    category: tubing
+    what: A lift-served tubing hill in nearby Frisco with one-hour sessions. It opens
+      for 2026/27 on November 26, weather permitting, and reservations are required.
+    where: Frisco Adventure Park
+    price: From $44 per hour ($55 on holiday dates), as listed on 2026-11-08
+    url: https://www.townoffrisco.com/things-to-do/frisco-adventure-park/tubing/
+    tour_query:
+  - name: Cross-country skiing
+    category: nordic
+    what: More than 40 km of groomed classic and skate trails below the ski resort
+      on Ski Hill Road, with lessons and rentals.
+    where: Breckenridge Nordic Center
+    price:
+    url: https://www.breckenridgenordic.com/
+    tour_query:
+  - name: Snowshoeing and snowcat trips
+    category: snowshoe
+    what: Self-guided and guided snowshoe outings on the Nordic Center trails. The
+      center also runs private snowcat trips to a backcountry hut with s'mores and
+      hot chocolate.
+    where: Breckenridge Nordic Center
+    price:
+    url: https://www.breckenridgenordic.com/
+    tour_query: snowshoe tour Breckenridge
+  - name: Ice skating
+    category: ice-skating
+    what: Public skating, drop-in hockey and learn-to-skate classes, with an indoor
+      rink and a seasonal outdoor rink.
+    where: Stephen C. West Ice Arena
+    price:
+    url: https://www.breckenridgerecreation.com/rates/locations/stephen-c-west-ice-arena/public-offerings
+    tour_query:
+  - name: BreckConnect Gondola
+    category: scenic
+    what: A free gondola from town to Peak 7 and Peak 8. No lift ticket is needed.
+    where: Breckenridge Ski Resort
+    price: Free, as listed on 2026-11-08
+    url: https://www.gobreck.com/things-to-do/winter-activities/
+    tour_query:
+  - name: Barney Ford Museum
+    category: museum
+    what: A house museum run by the Breckenridge Heritage Alliance, one of several
+      history sites in town along with the Edwin Carter Museum and the Welcome Center
+      Museum.
+    where: Barney Ford Museum, Breckenridge Heritage Alliance
+    price: Free, $5 suggested donation, per the Breckenridge History listing on 2026-11-08
+    url: https://breckhistory.org/historic-sites-and-museums/
+    tour_query:
+  - name: History walking and saloon tours
+    category: other
+    what: Guided tours of the historic district, including the Walk Through History
+      Tour, the Saloon Tour and the Tombstone Tales Tour.
+    where: Breckenridge Heritage Alliance
+    price:
+    url: https://breckhistory.org/historic-sites-and-museums/
+    tour_query: walking tour Breckenridge
+  - name: Distillery tour and tasting
+    category: food-drink
+    what: Tours of the production facility on Airport Road end with a bourbon tasting.
+      Guests must be 21 or older to taste. A Main Street tasting room is open daily.
+    where: Breckenridge Distillery, 1925 Airport Road
+    price: Free 30-minute tour on Sundays; 45-minute reserved tour $25 per person,
+      as listed on 2026-11-08
+    url: https://breckenridgedistillery.com/tours/
+    tour_query:
+  free:
+  - 'BreckConnect Gondola: ride from town to Peak 7 and Peak 8 with no lift ticket'
+  - 'Breckenridge Distillery: complimentary 30-minute tour and bourbon tasting on
+    Sundays'
+  - 'Summit County Recpath: over 8 miles groomed for free skiing from the Breckenridge
+    Rec Center to Frisco Adventure Park'
+  - 'Golden Horseshoe: the town grooms Tom''s Baby and Middle Flume trails'
+  - 'International Snow Sculpture Championships: free viewing at the Riverwalk Center,
+    lit each evening until 10 pm'
+  - 'Ullr Fest: the Ullr Parade down Main Street and the bonfire'
+  events:
+  - name: Lighting of Breckenridge and Race of the Santas
+    when: First weekend of December
+    url: https://gobreck.com/event/lighting-breckenridge-race-santas/
+  - name: Ullr Fest
+    when: December 17 to 19, 2026
+    url: https://gobreck.com/event/ullr-fest/
+  - name: New Year's Eve in Breckenridge
+    when: December 31 (fireworks at the base of Peak 9 and a torchlight parade)
+    url: https://gobreck.com/event/new-years-eve-in-breckenridge/
+  - name: International Snow Sculpture Championships
+    when: Sculpting January 23 to 27, 2027; viewing January 27 to February 2, 2027
+    url: https://gobreck.com/event/international-snow-sculpture-championships/
+  non_skier_tip: Book the Good Times dog sled and snowmobile tours early, and ride
+    the free gondola up to Peak 8 for mountain views without a lift ticket.
+  sources:
+  - title: Good Times Adventures snowmobiling
+    url: https://goodtimesadventures.com/snowmobiling.html
+  - title: Good Times Adventures dog sledding
+    url: https://goodtimesadventures.com/dogsledding.html
+  - title: Breckenridge Stables sleigh rides
+    url: https://breckstables.com/sleigh-rides
+  - title: 'GoBreck: Breckenridge sleigh rides'
+    url: https://gobreck.com/seasons/winter-spring/breckenridge-sleigh-rides/
+  - title: Frisco Adventure Park tubing
+    url: https://www.townoffrisco.com/things-to-do/frisco-adventure-park/tubing/
+  - title: Breckenridge Nordic Center
+    url: https://www.breckenridgenordic.com/
+  - title: 'GoBreck: Nordic cross-country skiing'
+    url: https://gobreck.com/go-breck/nordic-cross-country-skiing/
+  - title: 'GoBreck: winter activities'
+    url: https://www.gobreck.com/things-to-do/winter-activities/
+  - title: 'Breckenridge History: historic sites and museums'
+    url: https://breckhistory.org/historic-sites-and-museums/
+  - title: Breckenridge Distillery tours
+    url: https://breckenridgedistillery.com/tours/
+  - title: 'GoBreck: best winter events'
+    url: https://gobreck.com/winter-spring/best-winter-events-in-breckenridge/
+  - title: 'GoBreck: Ullr Fest'
+    url: https://gobreck.com/event/ullr-fest/
+  - title: 'GoBreck: International Snow Sculpture Championships'
+    url: https://gobreck.com/event/international-snow-sculpture-championships/
+aspen:
+  name: Aspen
+  state: Colorado
+  resorts:
+  - aspen-snowmass
+  intro: Aspen sits in the Roaring Fork Valley, with 90 km of free cross-country and
+    snowshoe trails linking Aspen, Snowmass and Basalt. Non-skiers can ride the Silver
+    Queen Gondola up Aspen Mountain, and the Aspen Art Museum downtown is free. X
+    Games Aspen returns to Buttermilk on January 29 to 31, 2027.
+  activities:
+  - name: Snowmobiling to the Maroon Bells
+    category: snowmobile
+    what: A 2-hour guided tour from the ranch in the Maroon Creek valley to the base
+      of the Maroon Bells. A longer Klondike Lunch Tour runs 2.5 to 3 hours.
+    where: T-Lazy-7 Ranch, 3129 Maroon Creek Road
+    price: From $325 per single rider (Maroon Bells Tour), as listed on 2026-11-08
+    url:
+    tour_query: snowmobile tour Aspen Maroon Bells
+  - name: Sleigh ride to Pine Creek Cookhouse
+    category: sleigh-ride
+    what: Percheron draft horses pull a wooden sleigh 1.5 miles up the Castle Creek
+      Valley near Ashcroft to lunch or a four-course dinner. Each way takes about
+      20 minutes, and reservations are required.
+    where: Pine Creek Cookhouse
+    price: Sleigh ride and lunch from $145 per adult (regular rate), as listed on
+      2026-11-08
+    url: https://pinecreekcookhouse.com/winter-pricing/
+    tour_query: sleigh ride Aspen
+  - name: Guided snowshoe tour on Aspen Mountain
+    category: snowshoe
+    what: A 2-hour naturalist-led walk of about 1.5 miles from the top of the Silver
+      Queen Gondola. The price covers the gondola ride, snowshoes and the guide, and
+      tours run December 14 to April 16.
+    where: Aspen Center for Environmental Studies (ACES)
+    price: "$90 adults, $66 youth and seniors, as listed on 2026-11-08"
+    url: https://aspennature.org/activity/aspen-mountain-snowshoe-tour/
+    tour_query: snowshoe tour Aspen
+  - name: Cross-country skiing on the valley trails
+    category: nordic
+    what: 90 km of free trails for cross-country skiing and snowshoeing between Aspen,
+      Snowmass and Basalt, with lessons and rentals available.
+    where: Aspen Snowmass Nordic Trail System (Aspen Nordic Council)
+    price: Free, as listed on 2026-11-08
+    url: https://www.aspennordic.com/
+    tour_query:
+  - name: Ice skating at Lewis Ice Arena
+    category: ice-skating
+    what: Public skate sessions at the Aspen Recreation Center. Skate rental is included
+      with daily admission.
+    where: Lewis Ice Arena, Aspen Recreation Center
+    price: "$35 adults, $32 youth and seniors (daily admission), as listed on 2026-11-08"
+    url: https://www.aspenrecreation.com/aspen-recreation-center/lewis-ice-arena
+    tour_query:
+  - name: Silver Queen Gondola sightseeing
+    category: scenic
+    what: A winter sightseeing ticket rides the Silver Queen Gondola to the top of
+      Aspen Mountain or the Elk Camp Gondola at Snowmass. Rides run 9 am to 3:30 pm
+      from November 26, 2026.
+    where: Aspen Snowmass
+    price: From $41, as listed on 2026-11-08
+    url: https://www.aspensnowmass.com/visit/tickets-and-passes/sightseeing-and-tickets
+    tour_query:
+  - name: Aspen Art Museum
+    category: museum
+    what: A contemporary art museum downtown, open Tuesday to Sunday, 10 am to 6 pm.
+    where: Aspen Art Museum, 637 East Hyman Avenue
+    price: Free, as listed on 2026-11-08
+    url: https://www.aspenartmuseum.org/
+    tour_query:
+  - name: Wheeler/Stallard Museum
+    category: museum
+    what: The Aspen Historical Society museum at 620 West Bleeker Street, currently
+      showing the exhibition Aspen in Excess, the 1980s. The society also runs guided
+      history tours.
+    where: Aspen Historical Society
+    price:
+    url: https://aspenhistory.org/
+    tour_query:
+  - name: Glenwood Hot Springs Pool
+    category: hot-springs
+    what: A large hot springs pool down the valley in Glenwood Springs, with a hotter
+      therapy pool and the Yampah Mineral Baths. It is open year-round, 9 am to 9
+      pm.
+    where: Glenwood Hot Springs Resort
+    price:
+    url: https://www.hotspringspool.com/
+    tour_query:
+  free:
+  - 'Aspen Art Museum: free admission Tuesday to Sunday'
+  - 'Aspen Snowmass Nordic Trail System: 90 km of free ski and snowshoe trails'
+  - 'X Games Aspen: free to watch before 5 pm each day at Buttermilk'
+  - 'Aspen Recreation Center: free sledding hill behind the building'
+  events:
+  - name: Wintersköl
+    when: Mid-December (December 11 to 14 in 2025)
+    url: https://www.aspenchamber.org/winterskol
+  - name: X Games Aspen
+    when: January 29 to 31, 2027, at Buttermilk
+    url: https://www.aspensnowmass.com/visit/events/x-games-aspen
+  non_skier_tip: Book the ACES snowshoe tour, which includes the Silver Queen Gondola
+    ride, so you get the summit views and a guide for one price.
+  sources:
+  - title: T-Lazy-7 Ranch snowmobile tours
+    url: https://www.tlazy7.com/snowmobile-tours
+  - title: Pine Creek Cookhouse winter
+    url: https://www.pinecreekcookhouse.com/winter
+  - title: Pine Creek Cookhouse winter 2026-27 pricing
+    url: https://pinecreekcookhouse.com/winter-pricing/
+  - title: ACES Aspen Mountain snowshoe tour
+    url: https://aspennature.org/activity/aspen-mountain-snowshoe-tour/
+  - title: Aspen Nordic
+    url: https://www.aspennordic.com/
+  - title: 'Aspen Recreation Center: Lewis Ice Arena'
+    url: https://www.aspenrecreation.com/aspen-recreation-center/lewis-ice-arena
+  - title: Aspen Snowmass winter sightseeing tickets
+    url: https://www.aspensnowmass.com/visit/tickets-and-passes/sightseeing-and-tickets
+  - title: Aspen Art Museum
+    url: https://www.aspenartmuseum.org/
+  - title: Aspen Historical Society
+    url: https://aspenhistory.org/
+  - title: Glenwood Hot Springs Pool
+    url: https://www.hotspringspool.com/
+  - title: 'Aspen Chamber: winter for non-skiers'
+    url: https://aspenchamber.org/blog/winter-non-skiers-aspen/
+  - title: 'Aspen Snowmass: X Games Aspen'
+    url: https://www.aspensnowmass.com/visit/events/x-games-aspen
+jackson-hole:
+  name: Jackson Hole
+  state: Wyoming
+  resorts:
+  - jackson-hole
+  intro: Jackson sits beside the National Elk Refuge, where horse-drawn sleighs carry
+    visitors among wintering elk from December into April. Grand Teton National Park
+    closes the Teton Park Road to cars from November 1 to April 30 and opens it to
+    skiers and snowshoers. At Teton Village, the Aerial Tram rises 4,139 feet to Corbet's
+    Cabin at 10,450 feet.
+  activities:
+  - name: Snowmobile tour to Granite Hot Springs
+    category: snowmobile
+    what: A guided snowmobile ride to Granite Hot Springs, where you can soak at the
+      end of the trail. The company also runs a Greys River tour.
+    where: Teton Tour Co.
+    price:
+    url: https://www.tetontourco.com/
+    tour_query: snowmobile tour Jackson Hole Granite Hot Springs
+  - name: Dog sledding to Granite Hot Springs
+    category: dog-sled
+    what: Half-day and full-day dog sled trips led by eight-time Iditarod veteran
+      Frank Teasley. Only the full-day trip reaches Granite Hot Springs for a swim.
+    where: Jackson Hole Iditarod Sled Dog Tours
+    price:
+    url: https://www.jhsleddog.com/trip-information
+    tour_query: dog sledding Jackson Hole
+  - name: Sleigh ride on the National Elk Refuge
+    category: sleigh-ride
+    what: A one-hour horse-drawn ride among wintering elk. Rides leave every 20 to
+      30 minutes from the visitor center parking lot, and blankets are not provided.
+    where: Double H Bar, departing the National Elk Refuge and Greater Yellowstone
+      Visitor Center, 532 North Cache Street
+    price: "$42 adults, $27 ages 5 to 12, as listed for the 2025-26 season on 2026-11-08"
+    url: https://www.jacksonholechamber.com/outdoors/winter-activities/sleigh-rides/
+    tour_query: National Elk Refuge sleigh ride
+  - name: Granite Hot Springs
+    category: hot-springs
+    what: A developed hot springs pool in the Bridger-Teton National Forest. In winter
+      it is reached only by snowmobile, dog sled, skis or fat bike, and the fee is
+      cash only.
+    where: Granite Hot Springs Pool, Bridger-Teton National Forest
+    price: "$12 per person per day (ages 12 and up), $7 ages 11 and under, as listed
+      on 2026-11-08"
+    url: https://www.fs.usda.gov/r04/bridger-teton/recreation/granite-hot-springs-pool
+    tour_query:
+  - name: Snow tubing at Snow King
+    category: tubing
+    what: The King Tubes park at the base of Snow King Mountain in town has three
+      groomed lanes side by side.
+    where: Snow King Mountain Resort
+    price:
+    url: https://snowkingmountain.com/activities/king-tubes/
+    tour_query:
+  - name: Aerial Tram sightseeing
+    category: scenic
+    what: A 9-minute ride rising 4,139 feet to the summit of Rendezvous Peak, where
+      Corbet's Cabin is known for its waffles.
+    where: Jackson Hole Mountain Resort
+    price: "$55 per person, as listed on 2026-11-08"
+    url: https://www.jacksonhole.com/aerial-tram
+    tour_query:
+  - name: Yellowstone snowcoach tour
+    category: scenic
+    what: Day tours from Jackson into Yellowstone National Park by snowcoach or snowmobile
+      to Old Faithful. The Jackson Hole Chamber advises booking early because space
+      is limited.
+    where: Scenic Safaris
+    price:
+    url: https://www.scenic-safaris.com/winter-jackson-wy/old-faithful-snow-coach-tour/
+    tour_query: Yellowstone snowcoach tour from Jackson
+  - name: National Museum of Wildlife Art
+    category: museum
+    what: An art museum whose Palate restaurant looks out over the National Elk Refuge.
+      It is open Tuesday to Sunday, 10 am to 5 pm.
+    where: National Museum of Wildlife Art, 2820 Rungius Road
+    price:
+    url: https://www.wildlifeart.org/
+    tour_query:
+  - name: Jackson Hole History Museum
+    category: museum
+    what: A local history museum on East Broadway, open Tuesday to Saturday, 10 am
+      to 5 pm. It is closed for the off-season from November 10 to 30.
+    where: History Jackson Hole, 175 East Broadway Avenue
+    price: "$12 adults, $10 seniors and students, as listed on 2026-11-08"
+    url: https://jacksonholehistory.org/
+    tour_query:
+  - name: Skiing the Teton Park Road
+    category: nordic
+    what: The road from Taggart Lake Trailhead to Signal Mountain Lodge is closed
+      to cars from November 1 to April 30. It is groomed off and on for skiing and
+      snowshoeing.
+    where: Grand Teton National Park
+    price:
+    url: https://www.nps.gov/grte/planyourvisit/winter.htm
+    tour_query:
+  - name: Snowshoe with a Ranger
+    category: snowshoe
+    what: Ranger-led snowshoe walks of 1 to 2 miles with little elevation gain. Snowshoes
+      are provided, children must be 8 or older, and reservations open December 1.
+    where: Grand Teton National Park
+    price:
+    url: https://www.nps.gov/grte/planyourvisit/winter.htm
+    tour_query:
+  free:
+  - 'Teton Park Road: closed to cars November 1 to April 30 and open to skiers and
+    snowshoers'
+  - 'Snow King gondola: free rides after 4 pm to the Aurora restaurant, per Snow King'
+  - 'Pedigree Stage Stop Race: ceremonial start of the sled dog race in Jackson Town
+    Square'
+  events:
+  - name: Pedigree Stage Stop Sled Dog Race
+    when: Late January to early February (January 30 to February 7 in 2026)
+    url: https://www.jacksonholechamber.com/events/sports-race-events/stage-stop-race/
+  - name: Kings and Queens of Corbet's
+    when: February (February 8 to 15 in 2026)
+    url: https://www.jacksonhole.com/kings-queens-corbets
+  - name: Dick's Ditch Banked Slalom
+    when: March (March 6 to 8 in 2026)
+    url: https://www.jacksonhole.com/events/dick-s-ditch
+  - name: World Championship Snowmobile Hill Climb
+    when: March at Snow King Mountain (March 19 to 22 in 2026)
+    url: https://www.jacksonholechamber.com/events/sports-race-events/jackson-hole-hill-climb/
+  non_skier_tip: Book the full-day dog sled or snowmobile trip if you want to soak
+    at Granite Hot Springs, since half-day dog sled trips turn around before the springs.
+  sources:
+  - title: Teton Tour Co.
+    url: https://www.tetontourco.com/
+  - title: Jackson Hole Iditarod Sled Dog Tours
+    url: https://www.jhsleddog.com/
+  - title: Jackson Hole Iditarod Sled Dog Tours trip information
+    url: https://www.jhsleddog.com/trip-information
+  - title: 'Jackson Hole Chamber: sleigh rides'
+    url: https://www.jacksonholechamber.com/outdoors/winter-activities/sleigh-rides/
+  - title: 'USDA Forest Service: Granite Hot Springs Pool'
+    url: https://www.fs.usda.gov/r04/bridger-teton/recreation/granite-hot-springs-pool
+  - title: 'Jackson Hole Chamber: Snow King Mountain Resort'
+    url: https://www.jacksonholechamber.com/outdoors/resorts-with-outdoor-activities/snow-king-mountain-resort/
+  - title: 'Jackson Hole Mountain Resort: Aerial Tram'
+    url: https://www.jacksonhole.com/aerial-tram
+  - title: 'Jackson Hole Chamber: best things to do besides skiing'
+    url: https://www.jacksonholechamber.com/blog/post/best-things-to-do-in-jackson-hole-besides-skiing/
+  - title: National Museum of Wildlife Art
+    url: https://www.wildlifeart.org/
+  - title: History Jackson Hole
+    url: https://jacksonholehistory.org/
+  - title: 'NPS: Grand Teton winter'
+    url: https://www.nps.gov/grte/planyourvisit/winter.htm
+  - title: 'Jackson Hole Chamber: top winter events'
+    url: https://www.jacksonholechamber.com/blog/post/top-winter-events-in-jackson-hole/
+vail:
+  name: Vail
+  state: Colorado
+  resorts:
+  - vail
+  intro: Vail is built around two pedestrian villages, Vail Village and Lionshead,
+    each with a gondola up the mountain and an outdoor ice rink. The Vail Nordic Center
+    grooms 17 km of ski track and 10 km of snowshoe trail, and the Colorado Snowsports
+    Museum in town is free. Sleigh ride dinners, dog sledding and snowmobile tours
+    operate on ranches and trails elsewhere in the Vail Valley.
+  activities:
+  - name: Snowmobiling at Camp Hale
+    category: snowmobile
+    what: Tours of 2 to 6 hours from a lodge at Camp Hale, the World War II training
+      site of the 10th Mountain Division, on trails reaching near 12,500 feet.
+    where: Nova Guides, 7088 U.S. 24, Red Cliff
+    price: From $139, as listed on 2026-11-08
+    url: https://www.novaguides.com/tours-rentals/snowmobile-tours/
+    tour_query: snowmobile tour Vail
+  - name: Dog sledding
+    category: dog-sled
+    what: Tours cover 5.5 miles with about an hour on the trail behind teams of 10
+      to 12 dogs. The company also runs a rescue facility for retired sled dogs.
+    where: Alpine Adventures, Rancho Escondido, 21767 Hwy 24 West, Leadville
+    price: From $195 per person (group tour, ages 9 and up), as listed on 2026-11-08
+    url: https://www.alpineadventuresdogsledding.com/tours
+    tour_query: dog sledding Vail
+  - name: Sleigh rides at Bearcat Stables
+    category: sleigh-ride
+    what: Thirty-minute horse-drawn rides on a historic ranch in Edwards, about 25
+      minutes from Vail. Afternoon rides include campfire s'mores, and a sleigh ride
+      and dinner option is booked by phone.
+    where: Bearcat Stables, 2701 Squaw Creek Road, Edwards
+    price: From $48.15 (sleigh ride), from $155.15 (sleigh ride and dinner), as listed
+      on 2026-11-08
+    url: https://www.bearcatstables.com/
+    tour_query: sleigh ride Vail
+  - name: Sleigh ride dinner at 4 Eagle Ranch
+    category: sleigh-ride
+    what: Percheron draft horses pull the sleighs to dinner with entertainment and
+      s'mores. Dinners begin in November 2026, and wagons replace sleighs when snow
+      is thin.
+    where: 4 Eagle Ranch, 4098 Hwy 131, Wolcott
+    price: "$110 adults, $55 ages 5 to 12, as listed on 2026-11-08"
+    url: https://www.4eagleranch.com/activities/sleigh-ride-dinners
+    tour_query: sleigh ride dinner Vail
+  - name: Cross-country skiing
+    category: nordic
+    what: 17 km of daily-groomed skate and classic track, with rentals and lessons.
+      The track opening depends on early snow.
+    where: Vail Nordic Center, 1775 Sunburst Drive
+    price: Day pass $31 (2026/27 season), as listed on 2026-11-08
+    url: https://vailrec.com/vail-nordic-center
+    tour_query:
+  - name: Snowshoeing
+    category: snowshoe
+    what: 10 km of snowshoe trails at the Nordic Center, with snowshoe rentals on
+      site.
+    where: Vail Nordic Center
+    price: Snowshoe rental package $38, as listed on 2026-11-08
+    url: https://vailrec.com/vail-nordic-center
+    tour_query: snowshoe tour Vail
+  - name: Outdoor ice skating
+    category: ice-skating
+    what: Outdoor rinks at Solaris Plaza in Vail Village and Alderhof Ice Rink at
+      The Arrabelle in Lionshead, both with skate rentals. They are open mainly in
+      the afternoon and evening.
+    where: Solaris Plaza Ice Rink and Alderhof Ice Rink
+    price:
+    url: https://www.vail.com/travel-guide/ice-skating-in-vail.aspx
+    tour_query:
+  - name: Scenic gondola ride
+    category: scenic
+    what: Gondola One leaves from Vail Village and the Eagle Bahn Gondola leaves from
+      Lionshead, both with Gore Range views. The ride takes about 15 minutes each
+      way.
+    where: Vail Mountain
+    price:
+    url: https://discovervail.com/blog/winter-scenic-gondola-ride/
+    tour_query:
+  - name: Colorado Snowsports Museum
+    category: museum
+    what: A museum of skiing and snowboarding history in Vail Village, open daily
+      10 am to 6 pm.
+    where: Colorado Snowsports Museum, 231 South Frontage Road East
+    price: Free, as listed on 2026-11-08
+    url: https://www.snowsportsmuseum.org/
+    tour_query:
+  - name: Glenwood Hot Springs Pool
+    category: hot-springs
+    what: A large hot springs pool west of Vail in Glenwood Springs, with a hotter
+      therapy pool and the Yampah Mineral Baths. It is open year-round, 9 am to 9
+      pm.
+    where: Glenwood Hot Springs Resort
+    price:
+    url: https://www.hotspringspool.com/
+    tour_query:
+  free:
+  - 'Colorado Snowsports Museum: free admission every day'
+  - 'Stoke Sessions: free outdoor concerts at Checkpoint Charlie in Vail Village during
+    Vail Après'
+  - 'Vail Winterfest: ice sculptures on display along Gore Creek Promenade in January'
+  events:
+  - name: Vail Après
+    when: November to December
+    url: https://discovervail.com/winter-apres/
+  - name: Vail Kris Kringle Market
+    when: December
+    url: https://discovervail.com/event/vail-kris-kringle-market-4/
+  - name: Vail Skating Festival Ice Spectacular
+    when: December
+    url: https://vailskatefest.com/
+  - name: New Year's Eve Torchlight Parade and Fireworks
+    when: December 31
+    url: https://discovervail.com/event/new-years-eve-torchlight-parade-fireworks/
+  - name: Vail Winterfest
+    when: January
+    url: https://discovervail.com/event/17th-annual-vail-winterfest/
+  non_skier_tip: Most sleigh, dog sled and snowmobile trips leave from ranches outside
+    Vail, so check whether your tour includes transport before you book.
+  sources:
+  - title: Nova Guides
+    url: https://www.novaguides.com/
+  - title: Nova Guides snowmobile tours
+    url: https://www.novaguides.com/tours-rentals/snowmobile-tours/
+  - title: Alpine Adventures Dog Sledding tours
+    url: https://www.alpineadventuresdogsledding.com/tours
+  - title: Alpine Adventures Dog Sledding directions
+    url: https://www.alpineadventuresdogsledding.com/directions
+  - title: 'Discover Vail: dog sledding'
+    url: https://discovervail.com/things-to-do/dogsledding/
+  - title: Bearcat Stables
+    url: https://www.bearcatstables.com/
+  - title: 4 Eagle Ranch sleigh ride dinners
+    url: https://www.4eagleranch.com/activities/sleigh-ride-dinners
+  - title: Vail Nordic Center
+    url: https://vailrec.com/vail-nordic-center
+  - title: 'Vail.com: ice skating in Vail'
+    url: https://www.vail.com/travel-guide/ice-skating-in-vail.aspx
+  - title: 'Discover Vail: things to do if you don''t ski'
+    url: https://discovervail.com/blog/how-to-have-a-dream-winter-vacation-in-vail-if-you-don-t-ski/
+  - title: 'Discover Vail: winter scenic gondola ride'
+    url: https://discovervail.com/blog/winter-scenic-gondola-ride/
+  - title: Colorado Snowsports Museum
+    url: https://www.snowsportsmuseum.org/
+  - title: Glenwood Hot Springs Pool
+    url: https://www.hotspringspool.com/
+  - title: 'Discover Vail: signature winter events'
+    url: https://discovervail.com/blog/winter-events-vail/
+park-city:
+  name: Park City
+  state: Utah
+  resorts:
+  - park-city
+  - deer-valley
+  intro: Park City was founded in 1869 as a silver mining town, and its Main Street
+    historic district was rebuilt after a fire in 1898. The ski season runs from late
+    November to mid-April, and Park City Mountain reports about 365 inches of snow
+    a year. Park City Mountain opens November 20, 2026 and Deer Valley opens December
+    5, 2026.
+  activities:
+  - name: Winter Bobsled Experience at Utah Olympic Park
+    category: other
+    what: Ride the 2002 Olympic track with a professional pilot. The ride lasts under
+      a minute and riders must be at least 13 and 100 lbs.
+    where: Utah Olympic Park
+    price: From $225 per person ($249 on holiday dates), as listed on 2026-11-08
+    url: https://utaholympiclegacy.org/winter-bobsled/
+    tour_query: Utah Olympic Park bobsled Park City
+  - name: Utah Olympic Park museums
+    category: museum
+    what: The park's ski and 2002 Winter Games museums sit at the base of the Olympic
+      ski jumps. They are open daily from 9 am to 6 pm.
+    where: Utah Olympic Park
+    price:
+    url: https://utaholympiclegacy.org/location/utah-olympic-park/
+    tour_query:
+  - name: Red Pine Adventures snowmobile tours
+    category: snowmobile
+    what: Guided small-group tours of about 1.5 hours on more than 1,000 acres of
+      private land next to Canyons Village. Free pickup from the Park City area.
+    where: Red Pine Adventures, 2050 W. White Pine Canyon Rd.
+    price: From $299 per single rider (+$50 for a double), as listed on 2026-11-08
+    url: https://www.redpinetours.com/
+    tour_query: snowmobile tour Park City
+  - name: Dog sledding at Rancho Luna Lobos
+    category: dog-sled
+    what: Winter dog sled experiences with a rescue sled dog team. Tours often sell
+      out, so book early.
+    where: Rancho Luna Lobos, 4733 W Browns Canyon Rd, Peoa
+    price:
+    url: https://www.lunalobos.com/
+    tour_query: dog sledding Park City
+  - name: Snowed Inn Sleigh Company
+    category: sleigh-ride
+    what: Horse-drawn sleigh rides run nightly in winter. Choose a 20 to 25 minute
+      ride or a 2 hour ride with a western-style dinner and live music at the lodge.
+    where: Snowed Inn Sleigh Company, 1310 Lowell Ave
+    price:
+    url: https://www.snowedinnsleigh.com/
+    tour_query: sleigh ride dinner Park City
+  - name: Snow tubing at Woodward Park City
+    category: tubing
+    what: Two-hour tubing sessions that start on the hour. Open to kids age 3 and
+      up.
+    where: Woodward Park City
+    price:
+    url: https://www.woodwardparkcity.com/tickets/tubing/
+    tour_query:
+  - name: White Pine Touring Nordic Center
+    category: nordic
+    what: More than 20 km of groomed trails for classic and skate skiing. White Pine
+      also runs snowshoe tours and rentals.
+    where: White Pine Touring, 1541 Thaynes Canyon Drive
+    price:
+    url: https://whitepinetouring.com/
+    tour_query: snowshoe tour Park City
+  - name: Park City Museum
+    category: museum
+    what: Exhibits on the town's mining and ski history in a building on Main Street.
+      Open daily 10 am to 5 pm.
+    where: Park City Museum, 528 Main Street
+    price: "$15 per adult, free for ages 17 and under, as listed on 2026-11-08"
+    url: https://parkcityhistory.org/visit/
+    tour_query:
+  - name: The Crater at Homestead
+    category: hot-springs
+    what: A geothermal pool inside a 55-foot limestone dome, with water at 90 to 96
+      F all year. You can soak, swim, snorkel or scuba dive. It closes for renovations
+      in April and May 2027.
+    where: Homestead Resort, Midway (about 30 minutes from Park City)
+    price: "$30 per 1-hour soak session, as listed on 2026-11-08"
+    url: https://homesteadmidwayutah.com/adventures/crater/
+    tour_query:
+  - name: High West Saloon
+    category: food-drink
+    what: A 21+ whiskey saloon from High West Distillery, serving house whiskeys,
+      flights and food. Walk-in only, open daily 11 am to 9 pm.
+    where: High West Saloon, 703 Park Avenue
+    price:
+    url: https://www.highwest.com/pages/saloon
+    tour_query:
+  - name: Resort Center Ice Rink
+    category: ice-skating
+    what: An outdoor rink at the base of Park City Mountain with music, lights and
+      fire pits. Skate rentals are available and it is open daily.
+    where: Resort Center, Park City Mountain base
+    price:
+    url: https://www.visitparkcity.com/listing/resort-center-ice-rink/14904/
+    tour_query:
+  free:
+  - 'Historic Main Street: walk a district of buildings rebuilt after the 1898 fire,
+    now full of shops, galleries and restaurants.'
+  - 'Snow Globe Stroll: holiday displays on Main Street from November 20, 2026 to
+    January 3, 2027.'
+  - 'Historic Mine Route: a self-guided route with a free audio guide from the Park
+    City Museum.'
+  - 'Park City Museum for kids: free admission for ages 17 and under.'
+  - 'Torchlight Parade: watch it at Park City Mountain Village at dusk on December
+    24.'
+  events:
+  - name: Snow Globe Stroll on Main Street
+    when: November 20, 2026 to January 3, 2027
+    url: https://www.visitparkcity.com/events/
+  - name: Park City Mountain Torchlight Parade
+    when: December 24 at dusk
+    url: https://www.visitparkcity.com/events/
+  - name: The Snow League at Park City Mountain
+    when: January 22 to 24, 2027
+    url: https://www.visitparkcity.com/events/
+  - name: Intermountain Health Freestyle International (FIS World Cup) at Deer Valley
+    when: January 28 to 30, 2027
+    url: https://www.visitparkcity.com/events/
+  non_skier_tip: Book dog sledding and the Olympic bobsled weeks ahead, then spend
+    a free afternoon on Main Street and at the Park City Museum.
+  sources:
+  - title: 'Visit Park City: Winter activities'
+    url: https://www.visitparkcity.com/things-to-do/winter-activities
+  - title: 'Visit Park City: Winter activities and events'
+    url: https://www.visitparkcity.com/plan/winter-activities-and-events/
+  - title: 'Visit Park City: Events calendar'
+    url: https://www.visitparkcity.com/events/
+  - title: 'Visit Park City: Ice skating'
+    url: https://www.visitparkcity.com/outdoors/ice-skating/
+  - title: 'Utah Olympic Legacy: Winter Bobsled'
+    url: https://utaholympiclegacy.org/winter-bobsled/
+  - title: Red Pine Adventures
+    url: https://www.redpinetours.com/
+  - title: Rancho Luna Lobos
+    url: https://www.lunalobos.com/
+  - title: Snowed Inn Sleigh Company
+    url: https://www.snowedinnsleigh.com/
+  - title: 'Park City Museum: Visit'
+    url: https://parkcityhistory.org/visit/
+  - title: Homestead Crater
+    url: https://homesteadmidwayutah.com/adventures/crater/
+  - title: 'Wikipedia: Park City, Utah'
+    url: https://en.wikipedia.org/wiki/Park_City,_Utah
+steamboat:
+  name: Steamboat Springs
+  state: Colorado
+  resorts:
+  - steamboat
+  intro: Steamboat Springs is a town in northwest Colorado with natural hot springs
+    downtown and in the hills nearby. Howelsen Hill, owned by the city, opened in
+    1914 and is called the oldest continuously operating ski area in North America.
+    The Winter Carnival has run every February for more than 110 years.
+  activities:
+  - name: Strawberry Park Hot Springs
+    category: hot-springs
+    what: Rustic natural hot spring pools in the forest about 15 minutes from downtown,
+      open 365 days a year. Reservations are required, payment is cash only, and minors
+      are not allowed after dark.
+    where: Strawberry Park Hot Springs
+    price: "$30 per adult, $20 for ages 17 and under, cash only, as listed on 2026-11-08"
+    url: https://www.strawberryhotsprings.com/
+    tour_query:
+  - name: Old Town Hot Springs
+    category: hot-springs
+    what: Downtown mineral pools fed by the Heart Spring, plus water slides and a
+      37-foot climbing wall. Open daily except Thanksgiving and Christmas.
+    where: Old Town Hot Springs, downtown Steamboat Springs
+    price: "$35 per adult, $27 for ages 3 to 14, water slide $7 extra, as listed on
+      2026-11-08"
+    url: https://www.oldtownhotsprings.org/rates
+    tour_query:
+  - name: Grizzle-T Dog & Sled Works
+    category: dog-sled
+    what: Half-day tours where you drive your own team of Alaskan huskies on a 12.5-mile
+      private trail, with about 2 hours on the sled. Runs daily from about December
+      1 to early April.
+    where: Grizzle-T Dog & Sled Works
+    price: From $315 per guest 80 lbs or more ($340 Dec 20 to Jan 4), as listed on
+      2026-11-08
+    url: https://steamboatdogsledding.com/
+    tour_query: dog sledding Steamboat Springs
+  - name: Snow Buddy Sled Dog Adventures
+    category: dog-sled
+    what: Half-day and full-day learn-to-mush trips and a sunset dinner sled ride
+      on Dunckley Pass in the Routt National Forest.
+    where: Snow Buddy Sled Dog Adventures, Dunckley Pass
+    price:
+    url: https://snowbuddysleddogadventures.com/
+    tour_query: dog sledding Steamboat Springs
+  - name: Steamboat Snowmobile Tours
+    category: snowmobile
+    what: Guided tours near Rabbit Ears Pass on the Continental Divide, with free
+      shuttle and gear included. Open daily in winter for beginner to advanced riders.
+    where: Steamboat Snowmobile Tours, Routt National Forest
+    price:
+    url: https://www.steamboatsnowmobile.com/
+    tour_query: snowmobile tour Steamboat Springs
+  - name: Saddleback Ranch snowmobile tours
+    category: snowmobile
+    what: Guided 2 to 3 hour tours over groomed trails and open meadows on an 8,000-acre
+      ranch about 17 miles from town.
+    where: Saddleback Ranch, 37350 RCR 179
+    price:
+    url: https://www.saddlebackranch.net/
+    tour_query: snowmobile tour Steamboat Springs
+  - name: Yee-Haw Snow Tubing at Saddleback Ranch
+    category: tubing
+    what: A tubing hill for all ages with 1 or 2 hour sessions.
+    where: Saddleback Ranch
+    price:
+    url: https://www.saddlebackranch.net/
+    tour_query:
+  - name: Howelsen Ice Complex
+    category: ice-skating
+    what: An indoor city arena by the Yampa River with public skate sessions for all
+      ages. No reservations are needed for public skate.
+    where: Howelsen Ice Complex, 285 Howelsen Parkway
+    price:
+    url: https://steamboatsprings.net/132/Howelsen-Ice-Complex
+    tour_query:
+  - name: Steamboat Ski Touring Center
+    category: nordic
+    what: Groomed cross-country trails with ski and snowshoe rentals. It and the Haymaker
+      Nordic Center groom 25 km of trails between them.
+    where: Steamboat Ski Touring Center
+    price:
+    url: https://www.nordicski.net/
+    tour_query:
+  - name: Steamboat Springs History Museum
+    category: museum
+    what: Exhibits on local history and a historic house, open Tuesday to Saturday,
+      11 am to 5 pm.
+    where: Steamboat Springs History Museum, 800 Oak St.
+    price: "$6 per adult, $2 for ages 6 to 12, as listed on 2026-11-08"
+    url: https://steamboathistory.org/
+    tour_query:
+  - name: Howelsen Hill
+    category: other
+    what: The city ski area opened in 1914 and has the largest natural ski jumping
+      complex in North America. 89 Olympians have trained here.
+    where: Howelsen Hill, across the Yampa River from downtown
+    price:
+    url: https://en.wikipedia.org/wiki/Howelsen_Hill_Ski_Area
+    tour_query:
+  free:
+  - 'Oak Creek ice rink: free skating at all times, with free rental skates, in South
+    Routt.'
+  - 'Emerald Mountain and Howelsen Hill snowshoe trails: start from the lot at the
+    end of Routt Street, across the river from downtown.'
+  - 'Rabbit Ears Pass West Summit: marked snowshoe loops on the pass.'
+  - 'Lincoln Avenue: walk the downtown shops, including F.M. Light & Sons, open since
+    1905.'
+  - 'Free winter concert series: Saturdays in March and April at the Steamboat Resort
+    base area.'
+  - 'First Friday Artwalk: downtown galleries open on the first Friday of each month.'
+  events:
+  - name: Steamboat Springs Winter Carnival (114th)
+    when: February 2 to 7, 2027
+    url: https://www.sswsc.org/event/winter-carnival-2026/
+  - name: WinterWonderGrass Steamboat
+    when: Late February to early March (2026 run was February 27 to March 1)
+    url: https://winterwondergrass.com/steamboat/
+  - name: Cody's Challenge
+    when: April, at Steamboat Resort
+    url: https://codyschallenge.org/
+  non_skier_tip: Book a Strawberry Park soak up to 30 days ahead and bring cash, since
+    the springs take no cards and a 4WD with winter tires is required from November
+    1 to May 1.
+  sources:
+  - title: 'Steamboat Chamber: Best 6 winter adventures for non-skiers'
+    url: https://www.steamboatchamber.com/blog/post/best-6-winter-adventures-for-non-skiers/
+  - title: 'Steamboat Chamber: 9 best snowshoe trails near Steamboat Springs'
+    url: https://steamboatchamber.com/blog/post/9-best-snowshoe-trails-near-steamboat-springs
+  - title: 'Steamboat Chamber: Winter events'
+    url: https://www.steamboatchamber.com/blog/post/winter-events-you-dont-want-to-miss-in-steamboat/
+  - title: 'Steamboat Chamber: Winter Carnival'
+    url: https://www.steamboatchamber.com/events/annual-events/steamboat-winter-carnival
+  - title: 'Steamboat Springs Winter Sports Club: Winter Carnival'
+    url: https://www.sswsc.org/event/winter-carnival-2026/
+  - title: Strawberry Park Hot Springs
+    url: https://www.strawberryhotsprings.com/
+  - title: Old Town Hot Springs rates
+    url: https://www.oldtownhotsprings.org/rates
+  - title: Grizzle-T Dog & Sled Works
+    url: https://steamboatdogsledding.com/
+  - title: Saddleback Ranch
+    url: https://www.saddlebackranch.net/
+  - title: 'Wikipedia: Howelsen Hill Ski Area'
+    url: https://en.wikipedia.org/wiki/Howelsen_Hill_Ski_Area
+mammoth-lakes:
+  name: Mammoth Lakes
+  state: California
+  resorts:
+  - mammoth-mountain
+  intro: Mammoth Lakes sits at about 7,880 feet in the Eastern Sierra and averages
+    about 206 inches of snow a season. Winters are long and very snowy, with the heaviest
+    snow from December through March. A free bus system links town, The Village and
+    the ski lodges.
+  activities:
+  - name: Mammoth Mountain Snowmobile Adventures
+    category: snowmobile
+    what: Guided 90-minute tours on more than 100 miles of trails and meadows, run
+      daily from December 11, 2026 to April 4, 2027. Drivers must be 16 with a license.
+    where: Snowmobile Adventures, 10200 Minaret Rd, next to Main Lodge
+    price:
+    url: https://www.mammothmountain.com/things-to-do/activities/snowmobile
+    tour_query: snowmobile tour Mammoth Lakes
+  - name: DJ's Snowmobile Adventures
+    category: snowmobile
+    what: Backcountry tours, self-guided tours and SnowPark riding on more than 95
+      square miles of trails. Opening day is December 19, 2026, weather permitting.
+    where: DJ's Snowmobile Adventures, near Mammoth Lakes
+    price:
+    url: https://www.snowmobilemammoth.com/
+    tour_query: snowmobile tour Mammoth Lakes
+  - name: Tubing at Woolly's Adventure Summit
+    category: tubing
+    what: Two 512-foot tubing runs with a conveyor lift and speeds up to 28 mph. Riders
+      must be 42 inches or taller. Open daily December 11, 2026 to April 11, 2027.
+    where: Woolly's Adventure Summit, 9000 Minaret Road
+    price:
+    url: https://www.mammothmountain.com/things-to-do/woollys-adventure-summit
+    tour_query:
+  - name: Mountain Coaster and Zip Line at Woolly's
+    category: other
+    what: A mountain coaster and a winter zip line run alongside the tubing hill.
+      Solo coaster riders must be 54 inches or taller and zip liners must be 7 or
+      older.
+    where: Woolly's Adventure Summit
+    price:
+    url: https://www.mammothmountain.com/things-to-do/woollys-adventure-summit
+    tour_query:
+  - name: Scenic Gondola to the summit
+    category: scenic
+    what: A 7-minute ride to the 11,053-foot summit, with a cafe and summit sign at
+      the top. Kids 12 and under ride free with a paying adult (up to two).
+    where: Mammoth Mountain Scenic Gondola
+    price:
+    url: https://www.mammothmountain.com/things-to-do/activities/scenic-gondola
+    tour_query:
+  - name: Eleven53 Interpretive Center
+    category: museum
+    what: Hands-on exhibits and a docent at the summit. Entry is included with a gondola
+      ticket.
+    where: Summit of Mammoth Mountain
+    price:
+    url: https://www.mammothmountain.com/things-to-do/activities/scenic-gondola
+    tour_query:
+  - name: Tamarack Cross-Country Ski Center
+    category: nordic
+    what: More than 19 miles (30 km) of groomed ski and snowshoe trails in the Lakes
+      Basin. Scheduled to run daily November 16, 2026 to April 16, 2027.
+    where: Tamarack Lodge, 163 Twin Lakes Rd.
+    price:
+    url: https://www.mammothmountain.com/things-to-do/activities/tamarack-cross-country-ski-center
+    tour_query:
+  - name: Tamarack sunset and full moon snowshoe tours
+    category: snowshoe
+    what: Guided snowshoe tours at sunset and under the full moon, with rentals at
+      the Tamarack yurt.
+    where: Tamarack Cross-Country Ski Center
+    price:
+    url: https://www.mammothmountain.com/things-to-do/events/tamarack-full-moon-snowshoe-tours
+    tour_query: snowshoe tour Mammoth Lakes
+  - name: LA Kings Ice at Mammoth Lakes
+    category: ice-skating
+    what: An indoor Olympic-size rink with daily open skate from October through mid-April.
+      Skates and helmets are for rent.
+    where: Community Recreation Center, 686 Old Mammoth Road
+    price:
+    url: https://www.lakingsicemammothlakes.com/
+    tour_query:
+  - name: Mammoth Brewing Co.
+    category: food-drink
+    what: A taproom brewing since 1995, with food from The EATery inside. Open daily
+      from 10 am.
+    where: Mammoth Brewing Co., 18 Lake Mary Road
+    price:
+    url: https://www.mammothbrewingco.com/
+    tour_query:
+  free:
+  - 'Free Red Line shuttle: runs every 20 minutes between The Village, Woolly''s and
+    Main Lodge.'
+  - 'Tamarack Public Access Trail: a free trail along Lake Mary Road.'
+  - 'Tamarack naturalist tours: free guided nature tours on snowshoes.'
+  - 'Scenic Gondola for kids: ages 12 and under ride free with a paying adult, and
+    adults 80 and over ride free.'
+  - 'Holiday Tree Lighting in The Village: November 27, 2026, 6 to 8:30 pm.'
+  events:
+  - name: Holiday Tree Lighting in The Village
+    when: November 27, 2026
+    url: https://www.mammothmountain.com/things-to-do/events/holiday-tree-lighting
+  - name: Kids Ski Free Week
+    when: December 5 to 11, 2026
+    url: https://www.mammothmountain.com/plan-your-trip/deals-and-packages/kids-ski-free-week
+  non_skier_tip: Park at The Village and take the free Red Line shuttle to Woolly's
+    and Main Lodge, since parking at both is limited.
+  sources:
+  - title: 'Mammoth Mountain: Winter activities'
+    url: https://www.mammothmountain.com/things-to-do/winter-activities
+  - title: 'Mammoth Mountain: Snowmobile'
+    url: https://www.mammothmountain.com/things-to-do/activities/snowmobile
+  - title: 'Mammoth Mountain: Woolly''s Adventure Summit'
+    url: https://www.mammothmountain.com/things-to-do/woollys-adventure-summit
+  - title: 'Mammoth Mountain: Scenic Gondola'
+    url: https://www.mammothmountain.com/things-to-do/activities/scenic-gondola
+  - title: 'Mammoth Mountain: Tamarack Cross-Country Ski Center'
+    url: https://www.mammothmountain.com/things-to-do/activities/tamarack-cross-country-ski-center
+  - title: 'Mammoth Mountain: Events'
+    url: https://www.mammothmountain.com/things-to-do/events
+  - title: 'Visit Mammoth: Ice skating'
+    url: https://www.visitmammoth.com/things-to-do/winter-activities/ice-skating-mammoth-lakes/
+  - title: DJ's Snowmobile Adventures
+    url: https://www.snowmobilemammoth.com/
+  - title: 'Wikipedia: Mammoth Lakes, California'
+    url: https://en.wikipedia.org/wiki/Mammoth_Lakes,_California
+whistler:
+  name: Whistler
+  state: British Columbia
+  resorts:
+  - whistler-blackcomb
+  intro: Whistler is a resort town about 125 km north of Vancouver with its village
+    at the base of Whistler and Blackcomb mountains. It was the Host Mountain Resort
+    for the 2010 Winter Olympics, and its Olympic venues are open to visitors. All
+    prices below are in Canadian dollars (CAD).
+  activities:
+  - name: Blackcomb Snowmobile tours
+    category: snowmobile
+    what: Family-owned since 1992, with 2 and 3 hour wilderness, family and private
+      tours. On family tours, kids 5 to 12 ride free with a paying adult.
+    where: Blackcomb Snowmobile, 4293 Mountain Square
+    price: From CAD $239 per person sharing, or CAD $279 single driver (2-hour tour),
+      as listed on 2026-11-08
+    url: https://www.blackcombsnowmobile.com/
+    tour_query: snowmobile tour Whistler
+  - name: Trapper's Run dog sledding
+    category: dog-sled
+    what: A 3-hour round trip, including shuttle, through old-growth forest in the
+      Callaghan Valley. Departures are at 8 am and 11 am.
+    where: Canadian Wilderness Adventures, Callaghan Valley
+    price: From CAD $799 per sled for 1 or 2 people (higher in peak season), as listed
+      on 2026-11-08
+    url: https://www.canadianwilderness.com/whistler/dog-sledding/
+    tour_query: dog sledding Whistler
+  - name: Blackcomb Snowmobile Holiday Sleigh Ride
+    category: sleigh-ride
+    what: A 2-hour round trip from Whistler Village by sleigh. It needs at least 6
+      people to run.
+    where: Blackcomb Snowmobile
+    price: CAD $199 per adult, CAD $149 per child 3 to 12, as listed on 2026-11-08
+    url: https://www.blackcombsnowmobile.com/holiday-sleigh-ride/
+    tour_query: sleigh ride Whistler
+  - name: Scandinave Spa Whistler
+    category: other
+    what: An outdoor Nordic spa in the forest with hot pools, cold plunges, saunas
+      and rest areas. The spa is silent and open daily 9 am to 10 pm.
+    where: Scandinave Spa, 8010 Mons Rd
+    price: From CAD $138 for the Thermal Journey (Mon to Thu, regular season, plus
+      tax), as listed on 2026-11-08
+    url: https://www.scandinave.com/en/whistler/rates/
+    tour_query:
+  - name: Whistler Olympic Plaza skating rink
+    category: ice-skating
+    what: An outdoor rink in the village run by the municipality. It reopens November
+      26, 2026, weather permitting.
+    where: Whistler Olympic Plaza
+    price: CAD $6.25 per adult, CAD $3.75 ages 4 to 12, skate rental CAD $7.25, as
+      listed on 2026-11-08
+    url: https://www.whistler.ca/skating
+    tour_query:
+  - name: bubly Tube Park
+    category: tubing
+    what: More than 1,000 feet of tubing lanes with a conveyor lift back to the top.
+      Reach it from the village on the Excalibur Gondola, no lift ticket needed.
+    where: Base 2, Blackcomb Mountain
+    price:
+    url: https://www.whistler.com/activities/tube-park/
+    tour_query:
+  - name: Whistler Olympic Park
+    category: nordic
+    what: The 2010 Nordic venue in the Callaghan Valley, with cross-country and snowshoe
+      trails including more than 12 km of dog-friendly trails. Winter opens November
+      27, with night skiing Mondays and Wednesdays from December 14, 2026.
+    where: Whistler Olympic Park, 1500 Callaghan Valley Rd
+    price:
+    url: https://www.whistlerolympicpark.com/
+    tour_query:
+  - name: Whistler Sliding Centre
+    category: other
+    what: The 2010 Olympic sliding track, where visitors can try passenger bobsleigh
+      with a pro pilot or public skeleton. No experience is needed.
+    where: Whistler Sliding Centre
+    price:
+    url: https://www.whistlerslidingcentre.com/
+    tour_query:
+  - name: PEAK 2 PEAK Gondola
+    category: scenic
+    what: A 4.4 km gondola between Whistler and Blackcomb, 436 m above the valley
+      at its highest point. The ride takes about 11 minutes.
+    where: Whistler Blackcomb
+    price:
+    url: https://www.whistlerblackcomb.com/explore-the-resort/activities/winter-activities/peak-2-peak-gondola.aspx
+    tour_query:
+  - name: Audain Art Museum
+    category: museum
+    what: A collection of British Columbia art, including works by Emily Carr. Open
+      Thursday to Monday, 11 am to 6 pm.
+    where: Audain Art Museum, 4350 Blackcomb Way
+    price: CAD $22 per adult, free for ages 18 and under, as listed on 2026-11-08
+    url: https://www.audainartmuseum.com/tickets/
+    tour_query:
+  - name: Squamish Lil'wat Cultural Centre
+    category: museum
+    what: A cultural centre of the Squamish and Lil'wat Nations, with hourly guided
+      tours and a cafe. Open Wednesday to Sunday, 10 am to 5 pm.
+    where: Squamish Lil'wat Cultural Centre, 4584 Blackcomb Way
+    price: CAD $25 per adult, CAD $12 ages 6 to 18 (CAD $20 / $10 from November 6
+      to December 16, 2026), plus GST, as listed on 2026-11-08
+    url: https://www.slcc.ca/visit
+    tour_query:
+  - name: Whistler Brewing Company
+    category: food-drink
+    what: A local brewery with a taphouse. Guided tours with tastings run all year.
+    where: Whistler Brewing Company, 1045 Millar Creek Rd
+    price:
+    url: https://www.whistlerbeer.com/
+    tour_query:
+  free:
+  - 'Olympic Plaza rink for toddlers: free skating for ages 3 and under, with free
+    helmets and skate aids.'
+  - 'Audain Art Museum for youth: free admission for ages 18 and under.'
+  - 'World Ski & Snowboard Festival: free outdoor concerts in the village each April.'
+  events:
+  - name: Whistler Pride
+    when: January 24 to 30, 2027
+    url: https://www.whistler.com/events/winterpride/
+  - name: World Ski & Snowboard Festival
+    when: April 2027 (2026 run was April 6 to 12)
+    url: https://wssf.com
+  non_skier_tip: Pair a morning dog sled or snowmobile tour with an afternoon at Scandinave
+    Spa, and book the spa on a Monday to Thursday for the lower rate.
+  sources:
+  - title: Blackcomb Snowmobile
+    url: https://www.blackcombsnowmobile.com/
+  - title: 'Blackcomb Snowmobile: Holiday Sleigh Ride'
+    url: https://www.blackcombsnowmobile.com/holiday-sleigh-ride/
+  - title: 'Canadian Wilderness Adventures: Dog sledding'
+    url: https://www.canadianwilderness.com/whistler/dog-sledding/
+  - title: Scandinave Spa Whistler rates
+    url: https://www.scandinave.com/en/whistler/rates/
+  - title: 'Resort Municipality of Whistler: Skating'
+    url: https://www.whistler.ca/skating
+  - title: Whistler Olympic Park
+    url: https://www.whistlerolympicpark.com/
+  - title: Whistler Sliding Centre
+    url: https://www.whistlerslidingcentre.com/
+  - title: Audain Art Museum tickets
+    url: https://www.audainartmuseum.com/tickets/
+  - title: 'Squamish Lil''wat Cultural Centre: Visit'
+    url: https://www.slcc.ca/visit
+  - title: 'Wikipedia: Peak 2 Peak Gondola'
+    url: https://en.wikipedia.org/wiki/Peak_2_Peak_Gondola
+  - title: 'Wikipedia: Whistler, British Columbia'
+    url: https://en.wikipedia.org/wiki/Whistler,_British_Columbia
+stowe:
+  name: Stowe
+  state: Vermont
+  resorts:
+  - stowe
+  intro: Stowe is a New England village of about 5,200 people at the foot of Mount
+    Mansfield, the highest peak in Vermont. It calls itself the Ski Capital of the
+    East and held its first Winter Carnival in 1921. The Trapp Family Lodge, home
+    of the family from The Sound of Music, runs a large cross-country center in the
+    hills above town.
+  activities:
+  - name: Sleigh rides at Trapp Family Lodge
+    category: sleigh-ride
+    what: Horse-drawn sleigh rides with a guide through the lodge's fields, with views
+      of the Green Mountains. Rides run Wednesdays, Saturdays and Sundays in winter.
+    where: Trapp Family Lodge (von Trapp Family Lodge & Resort)
+    price:
+    url: https://www.vontrappresort.com/winter.htm
+    tour_query: sleigh ride Stowe Vermont
+  - name: Trapp Family Lodge Outdoor Center
+    category: nordic
+    what: Cross-country skiing and snowshoeing on the lodge's trail network, including
+      a 3-mile trip to Slayton Pasture Cabin. The center is open daily 9 am to 5 pm
+      in season.
+    where: Trapp Family Lodge Outdoor Center
+    price: From $32 per adult weekday trail pass (one section of the same page lists
+      $33), as listed on 2026-11-08
+    url: https://www.vontrappresort.com/winter.htm
+    tour_query:
+  - name: Snowmobile Vermont
+    category: snowmobile
+    what: Guided two-hour backcountry snowmobile tours in Stowe.
+    where: Snowmobile Vermont, Stowe
+    price:
+    url: https://www.snowmobilevermont.com/
+    tour_query: snowmobile tour Stowe Vermont
+  - name: Eden Dogsledding
+    category: dog-sled
+    what: Winter dog sledding on natural snow from December to April at a sled dog
+      sanctuary. Advance reservations are required.
+    where: Eden Dogsledding, Eden, Vermont (about 45 minutes north of Stowe)
+    price:
+    url: https://www.edendogsledding.com/
+    tour_query: dog sledding Vermont
+  - name: Umiak Outdoor Outfitters tours
+    category: snowshoe
+    what: Guided snowshoe, ski, sledding and dog sled tours, plus winter equipment
+      rentals.
+    where: Umiak Outdoor Outfitters
+    price:
+    url: https://www.umiak.com/
+    tour_query: snowshoe tour Stowe Vermont
+  - name: Stowe Arena
+    category: ice-skating
+    what: The town's indoor rink, with public skate sessions for all ages. The pro
+      shop rents and sharpens skates.
+    where: Stowe Arena, 350 Park St
+    price:
+    url: https://www.stowevt.gov/Departments/Parks-Recreation/Stowe-Arena
+    tour_query:
+  - name: Vermont Ski and Snowboard Museum
+    category: museum
+    what: A museum of Vermont ski and snowboard history in the village center. Open
+      afternoons from 12 to 5 pm, Wednesday or Thursday through Sunday, and closed
+      October 26 to November 26.
+    where: Vermont Ski and Snowboard Museum, 1 South Main Street
+    price:
+    url: https://www.vtssm.org/
+    tour_query:
+  - name: The Alchemist Brewery
+    category: food-drink
+    what: A Stowe brewery with a beer cafe, retail shop, daily tours and a food truck
+      Thursday to Sunday.
+    where: The Alchemist, 100 Cottage Club Road
+    price:
+    url: https://alchemistbeer.com/
+    tour_query:
+  - name: von Trapp Bierhall
+    category: food-drink
+    what: The von Trapp brewery's beer hall and gift shop, open daily 11:30 am to
+      9 pm.
+    where: von Trapp Brewing, 1333 Luce Hill Road
+    price:
+    url: https://www.vontrappbrewing.com/
+    tour_query:
+  - name: Cold Hollow Cider Mill
+    category: food-drink
+    what: Watch cider being pressed and try the cider donuts made fresh daily. The
+      store and mill are open 8 am to 6 pm every day.
+    where: Cold Hollow Cider Mill, 3600 Waterbury-Stowe Rd, Waterbury Center
+    price:
+    url: https://www.coldhollow.com/
+    tour_query:
+  free:
+  - 'Spruce Peak Village rink: an outdoor rink that is free to use, with skate rentals
+    at Stowe Mountain Resort.'
+  - 'Stowe Recreation Path: a 5.3-mile path open all year and popular for snowshoeing.'
+  - 'Stowe Winter Carnival ice carving: watch carvers make sculptures in the village
+    each January.'
+  - 'Stowe Village: walk Main Street and stop at the Go Stowe visitor center at 51
+    Main Street.'
+  events:
+  - name: Stowe Winter Carnival
+    when: Late January each year
+    url: https://gostowe.com/signature_event/stowe-winter-carnival/
+  non_skier_tip: Combine a sleigh ride and a trail pass at Trapp Family Lodge, then
+    end the day at the von Trapp Bierhall on the same property.
+  sources:
+  - title: 'Go Stowe: Winter activities for the indoor and outdoor vacationer'
+    url: https://gostowe.com/blog-winter-activities-for-the-indoor-and-outdoor-vacationer
+  - title: 'Go Stowe: Sleigh rides'
+    url: https://gostowe.com/activity/sleigh-rides/
+  - title: 'Go Stowe: Spruce Peak Village ice skating'
+    url: https://www.gostowe.com/listing/ice-skating-spruce-peak-village
+  - title: 'Go Stowe: Stowe Recreation Path'
+    url: https://gostowe.com/things-to-do/stowe-recreation-path
+  - title: 'Go Stowe: Stowe Winter Carnival'
+    url: https://gostowe.com/signature_event/stowe-winter-carnival/
+  - title: 'von Trapp Family Lodge: Winter'
+    url: https://www.vontrappresort.com/winter.htm
+  - title: 'Town of Stowe: Stowe Arena'
+    url: https://www.stowevt.gov/Departments/Parks-Recreation/Stowe-Arena
+  - title: Eden Dogsledding
+    url: https://www.edendogsledding.com/
+  - title: Vermont Ski and Snowboard Museum
+    url: https://www.vtssm.org/
+  - title: 'Wikipedia: Stowe, Vermont'
+    url: https://en.wikipedia.org/wiki/Stowe,_Vermont

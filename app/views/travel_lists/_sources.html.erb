@@ -1,0 +1,8 @@
+<%# locals: (items:) -%>
+<% srcs = items.flat_map { |i| Array(i["sources"]) }.uniq { |s| s["url"] } %>
+<% if srcs.any? %>
+  <details class="mb-10 text-xs text-slate-400">
+    <summary class="cursor-pointer text-sm font-bold text-slate-300 mb-2">Sources (<%= srcs.size %>)</summary>
+    <ul class="space-y-1 break-words mt-2"><% srcs.each do |s| %><li><%= link_to s["title"], s["url"], target: "_blank", rel: "nofollow noopener", class: "underline underline-offset-2 hover:text-cyan-300" %></li><% end %></ul>
+  </details>
+<% end %>

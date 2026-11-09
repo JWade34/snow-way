@@ -1,0 +1,7 @@
+<%# locals: (place:, resort: nil) -%>
+<% checkin, checkout = Date.current + 2, Date.current + 5 %>
+<div class="flex flex-wrap gap-2 text-sm mt-3">
+  <a href="<%= Affiliate.hotels_url(resort, checkin: checkin, checkout: checkout, place: place) %>" target="_blank" rel="sponsored nofollow noopener" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-3 py-1.5 transition">Hotels in <%= place.split(",").first %> ↗</a>
+  <a href="<%= Affiliate.vrbo_url(resort, checkin: checkin, checkout: checkout, place: place) %>" target="_blank" rel="sponsored nofollow noopener" class="border border-slate-600 hover:border-cyan-400 rounded-lg px-3 py-1.5">Condos and houses ↗</a>
+  <% if resort %><%= link_to "#{resort.name} snow report", resort_path(resort), class: "border border-slate-600 hover:border-cyan-400 rounded-lg px-3 py-1.5" %><% end %>
+</div>
