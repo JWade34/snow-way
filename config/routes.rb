@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "best-ski-towns" => "travel_lists#ski_towns", as: :ski_towns
   get "best-ski-resorts-for-beginners" => "travel_lists#beginner_resorts", as: :beginner_resorts
   get "hot-springs-in-colorado" => "travel_lists#hot_springs", as: :colorado_hot_springs
+  get "powder-day-odds" => "powder_studies#show", as: :powder_study
   get "getting-there" => "trip_routes#index", as: :trip_routes
   get "getting-there/:id" => "trip_routes#show", as: :trip_route
   get "epic-pass-resorts" => "pages#pass_resorts", defaults: { pass: "epic" }, as: :epic_pass_resorts

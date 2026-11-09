@@ -1,0 +1,116 @@
+<% season = PowderStudy.season %>
+<% avgs = PowderStudy.month_averages %>
+<% regions = PowderStudy.regions %>
+<% top = season.first %>
+<% snowiest_m, snowiest_v = avgs.max_by { |_, v| v } %>
+<% dec = avgs.find { |m, _| m.slug == "december" } %>
+<% best_region, br = regions.first %>
+<% ne = regions["Northeast"] %>
+<% co = season.find { |r, _, _| r.state_province == "Colorado" } %>
+<% ut = season.find { |r, _, _| r.state_province == "Utah" } %>
+<% dec_top = SkiMonth.new("december").ranked.first %>
+<% findings = [
+     "#{top[0].name} in #{top[0].state_province} gets new snow most often: about #{top[1]} days with 1 inch or more between November and April, the most of #{season.size} North American resorts.",
+     "#{snowiest_m.name} is the snowiest month: across all resorts, #{snowiest_v.round}% of days bring new snow. #{dec[0].name} averages #{dec[1].round}%, and the season starts slowly in November (#{avgs.first.last.round}%).",
+     "#{best_region} resorts average #{br[:avg]} snow days a season#{ne ? ", nearly #{(br[:avg].to_f / ne[:avg]).round(1)} times the Northeast's #{ne[:avg]}" : ""}.",
+     ("In Colorado, #{co[0].name} leads with about #{co[1]} snow days a season; in Utah, #{ut[0].name} leads with #{ut[1]}." if co && ut),
+     ("For December trips, #{dec_top[0].name} has the best odds: new snow on #{dec_top[1]}% of December days." if dec_top)
+   ].compact %>
+<% faqs = [
+     { question: "Which ski resort gets new snow most often?", answer: findings.first },
+     { question: "What is the snowiest month for skiing?", answer: findings.second },
+     { question: "Which region of North America gets the most powder days?", answer: findings.third },
+     { question: "How was this measured?", answer: "We counted days with 1 inch or more of new snow at each resort's mid-mountain elevation in 10 seasons of daily modeled weather (#{PowderOdds.source}). Weather models undercount mountain snow, so real snow days are likely more frequent; the study is best for comparing resorts and months." }
+   ] %>
+<% content_for(:title, "Powder Day Odds: Which Ski Resorts Get Snow Most Often | Snow Way") %>
+<% content_for(:description, "10 years of daily weather for #{season.size} North American ski resorts: #{findings.first} Free data download.".truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Dataset", "name" => "Powder Day Odds: how often North American ski resorts get new snow", "url" => absolute_url(powder_study_path),
+          "description" => "Share of days with 1 inch or more of new snow, by month (November to April), for #{season.size} North American ski resorts, from 10 seasons (2015 to 2025) of daily modeled weather at mid-mountain.",
+          "creator" => { "@id" => "https://snowway.app/#organization" }, "license" => "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree" => true,
+          "temporalCoverage" => "2015-07/2025-06", "spatialCoverage" => "North America", "variableMeasured" => "Share of days with 1 inch or more of new snow",
+          "distribution" => [ { "@type" => "DataDownload", "encodingFormat" => "text/csv", "contentUrl" => absolute_url(powder_study_path(format: :csv)) } ],
+          "dateModified" => Date.current.iso8601 },
+        { "@type" => "Article", "headline" => "Powder Day Odds: which ski resorts get new snow most often", "url" => absolute_url(powder_study_path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => Date.current.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Powder Day Odds", nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Powder Day Odds", nil ] ] %>
+    <p class="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">Snow Way data study</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Powder day odds: which ski resorts get new snow most often</h1>
+    <p class="text-slate-300 mb-6">10 seasons of daily weather, <%= season.size %> North American resorts, one question: how often does it actually snow? We counted every day with an inch or more of new snow, November through April.</p>
+
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <h2 class="font-bold mb-2">Key findings</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-slate-200"><% findings.each do |f| %><li><%= f %></li><% end %></ol>
+      <div class="flex flex-wrap gap-2 mt-4 text-sm">
+        <%= link_to "⬇ Download the data (CSV)", powder_study_path(format: :csv), class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-2" %>
+        <a href="#method" class="border border-slate-600 hover:border-cyan-400 rounded-lg px-4 py-2">How we measured</a>
+      </div>
+    </section>
+
+    <h2 class="text-xl font-bold mb-2">The 25 resorts with the most snow days</h2>
+    <p class="text-slate-400 text-sm mb-4">Days with 1"+ of new snow in a typical November to April season.</p>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski resorts ranked by snow days per season</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">#</th><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">Where</th><th scope="col" class="px-3 py-2 text-right">Snow days</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% season.first(25).each_with_index do |(r, d, _), i| %>
+            <tr><td class="px-3 py-2 text-slate-400"><%= i + 1 %></td><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, best_time_resort_path(r), class: "hover:text-cyan-300" %></th><td class="px-3 py-2 text-slate-300"><%= r.state_province %></td><td class="px-3 py-2 text-right font-bold text-cyan-300"><%= d %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold mb-3">By region</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Average snow days per season by region</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Region</th><th scope="col" class="px-3 py-2 text-right">Avg snow days</th><th scope="col" class="px-3 py-2">Leader</th><th scope="col" class="px-3 py-2 text-right hidden sm:table-cell">Resorts</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% regions.each do |name, v| %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= name %></th><td class="px-3 py-2 text-right font-bold text-cyan-300"><%= v[:avg] %></td><td class="px-3 py-2"><%= link_to v[:best][0].name, resort_path(v[:best][0]), class: "hover:text-cyan-300" %> <span class="text-slate-400">(<%= v[:best][1] %>)</span></td><td class="px-3 py-2 text-right text-slate-400 hidden sm:table-cell"><%= v[:count] %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold mb-3">Month by month</h2>
+    <p class="text-slate-300 text-sm mb-3">Share of days with new snow, averaged across all <%= season.size %> resorts. Each month links to its full ranking.</p>
+    <ul class="space-y-1.5 mb-10 text-sm">
+      <% max = avgs.values.max %>
+      <% avgs.each do |m, v| %>
+        <li class="flex items-center gap-3"><%= link_to m.name, ski_month_path(m), class: "w-20 shrink-0 text-cyan-300 underline underline-offset-2" %><span class="flex-1 bg-slate-800 rounded h-3"><span class="block h-3 rounded bg-cyan-400" style="width: <%= (v * 100 / max).round %>%"></span></span><span class="w-12 text-right"><%= v.round %>%</span></li>
+      <% end %>
+    </ul>
+
+    <h2 class="text-xl font-bold mb-3">Leader in every state and province</h2>
+    <ul class="grid sm:grid-cols-2 gap-2 mb-10 text-sm">
+      <% PowderStudy.state_leaders.each do |state, (r, d, _)| %>
+        <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-2 flex justify-between gap-2"><span><span class="text-slate-400"><%= state %>:</span> <%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %></span><span class="text-cyan-300 font-bold whitespace-nowrap"><%= d %> days</span></li>
+      <% end %>
+    </ul>
+
+    <section id="method" class="mb-10 scroll-mt-20">
+      <h2 class="text-xl font-bold mb-3">How we measured</h2>
+      <ul class="text-sm text-slate-300 space-y-2 list-disc pl-5">
+        <li><strong class="text-white">Data:</strong> <%= PowderOdds.source %>.</li>
+        <li><strong class="text-white">Snow day:</strong> any day with 1 inch or more of new snow at the resort's mid-mountain elevation. Season snow days add up November through April.</li>
+        <li><strong class="text-white">Limits:</strong> weather models smooth out mountain terrain and undercount snow, so real snow days are likely more frequent than shown. Snowmaking isn't counted. Use the numbers to compare resorts and months, not as exact totals. For resort-reported annual snowfall, see the <%= link_to "snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %>.</li>
+        <li><strong class="text-white">Free to use:</strong> CC BY 4.0. Please link to snowway.app/powder-day-odds.</li>
+      </ul>
+    </section>
+
+    <%= render "shared/calendar_cta" %>
+    <%= render "shared/faq", faqs: faqs, heading: "Powder day questions" %>
+    <%= render "shared/cite_this", title: "Powder Day Odds: which ski resorts get new snow most often", url: absolute_url(powder_study_path) %>
+  </main>
+</div>

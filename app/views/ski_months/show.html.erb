@@ -106,7 +106,7 @@
     <%= render "shared/faq", faqs: faqs, heading: "#{m.name} skiing questions" %>
 
     <p class="text-slate-400 text-xs mb-6">How we count: <%= PowderOdds.source %>. Weather models undercount mountain snow, so real snow days are likely more frequent; use this to compare resorts and months. Each resort's page shows its own month-by-month odds.</p>
-    <p class="text-sm text-slate-300 mb-10">More: <%= link_to "Snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Where is it snowing?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Getting to the resorts", trip_routes_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+    <p class="text-sm text-slate-300 mb-10">More: <%= link_to "Powder day odds study (10 years, free data)", powder_study_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Where is it snowing?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Getting to the resorts", trip_routes_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <%= render "shared/cite_this", title: "Best places to ski in #{m.name} #{m.year}", url: absolute_url(ski_month_path(m)) %>
   </main>
 </div>
