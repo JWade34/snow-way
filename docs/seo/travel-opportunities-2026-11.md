@@ -21,7 +21,7 @@ Ads cost $3 to $10 a click on these searches, so the people searching them book 
 **Month pages BUILT 2026-11-08** (/best-places-to-ski-in-december etc.).
 **Still open (small):** Salt Lake to Snowbasin (50) and Brighton (40); Jackson airport to Teton Village (70); Seattle to Crystal (140) and Stevens (140); New York to Hunter (170).
 
-## 2. Winter things to do in ski towns (next)
+## 2. Winter things to do in ski towns (BUILT 2026-11-08: 10 towns, /things-to-do-in-<town>-in-winter)
 | Search | Volume (Dec) | Difficulty |
 |---|---|---|
 | things to do in lake tahoe in winter | 1,000 (2,900) | 0 |
@@ -34,7 +34,7 @@ Ads cost $3 to $10 a click on these searches, so the people searching them book 
 | dog sledding in colorado | 320 (880) | medium |
 How they'd earn: GetYourGuide and Viator tours (snowmobiling, dog sledding, sleigh rides) through Stay22, plus hotels. They need sourced, named businesses.
 
-## 3. Big list pages
+## 3. Big list pages (BUILT 2026-11-08: /best-winter-vacations-in-the-us, /best-ski-towns, /best-ski-resorts-for-beginners)
 | Search | Volume (peak) | Difficulty |
 |---|---|---|
 | best winter vacations in the us | 1,600 (3,600 Oct to Nov) | 0 |
@@ -46,7 +46,7 @@ How they'd earn: GetYourGuide and Viator tours (snowmobiling, dog sledding, slei
 We can win these with our own data (snow, powder odds, drive times, lift prices) plus sourced facts.
 
 ## 4. Big but harder
-- **hot springs in colorado: 27,100 a month.** This is a huge, year-round search, and it pairs with hotel bookings. It needs a careful sourced list, and the results are competitive. Worth a flagship guide.
+- **hot springs in colorado: 27,100 a month.** BUILT 2026-11-08 at /hot-springs-in-colorado (19 springs). This is a huge, year-round search, and it pairs with hotel bookings. It needs a careful sourced list, and the results are competitive. Worth a flagship guide.
 - **lake tahoe cabins** (9,900) and **breckenridge hotels** (14,800): booking sites own the results. Only worth it as a Vrbo or hotel guide by area, which our where-to-stay pages already are.
 - **ski resorts near New York / Boston / Seattle** (2,400 / 1,600 / 1,900, peaking at 6,600 / 4,400 / 4,400): we rank 13 to 30. Hub pages were upgraded 2026-11-08 with drive times and picks.
 
