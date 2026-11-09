@@ -1,11 +1,11 @@
 # Justin's to-do list for Snow Way
 
 Claude keeps this file current. Newest items at the top of each section. Check things off as you go.
-Last updated: 2026-11-08
+Last updated: 2026-11-09
 
 ## Do now (highest payoff first)
 
-- [ ] **Search Console: request indexing for the last pages (Claude can do it in Chrome on 2026-11-09).** 11 were done 2026-11-08 before Google's daily limit hit (best-snowboard-brands, Denver to Breckenridge/Vail/Telluride, SF/Reno/Sacramento to Tahoe, Vancouver to Whistler, SLC to Park City, Bozeman to Big Sky, December). Left (priority order): /best-ski-resorts-in-the-us, /best-ski-resorts-in-colorado, /indy-pass, /epic-pass-price, /ikon-pass-price, /guides/el-nino-winter-forecast, /hot-springs-in-colorado, /best-winter-vacations-in-the-us, /things-to-do-in-lake-tahoe-in-winter, /things-to-do-in-breckenridge-in-winter, /best-ski-resorts-for-beginners, then /getting-there/denver-to-aspen, /getting-there/denver-to-steamboat, /getting-there/burlington-to-stowe, /getting-there/denver-to-winter-park, /getting-there/denver-to-crested-butte, /guides/best-ski-brands, /getting-there/boston-to-stowe, /best-places-to-ski-in-january, /getting-there.
+- [ ] **Search Console: request indexing, about 10 a day (Claude can do it in Chrome, say "index the next batch").** Checked 2026-11-09: all 31 new pages from Nov 6-8 are already indexed. 173 older pages are not (mostly resort "best time to ski" pages and smaller resorts). Priority list and full list: docs/seo/not-indexed-2026-11-09.md. Google's limit is a rolling 24 hours, so the next batch can go after about 3pm CT on 2026-11-09.
 - [ ] **Send the 16 data-study pitch drafts (jm inbox), about 5 a day.** Fix 5 opening lines first: they claim you know the person's work, so keep them only if true. The list is in docs/outreach/2026-11-powder-odds-pitch-list.md (Status section). Six contact-form-only people are listed there too. Each pickup is a high-authority link.
 - [ ] **Send the 6 travel-page link drafts (jm inbox).** Skim each post first so the opening line is true. 16 more targets are contact-form only, listed in docs/outreach/2026-11-travel-pages-link-targets.md.
 

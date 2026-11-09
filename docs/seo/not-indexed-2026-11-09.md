@@ -1,0 +1,201 @@
+# Pages Google hasn't indexed yet (checked 2026-11-09 via the URL Inspection API)
+
+592 of 765 sitemap URLs indexed. 104 'Discovered - not indexed', 68 'unknown to Google', 1 'Crawled - not indexed'.
+
+## Request in Search Console first (highest value)
+- https://snowway.app/ski-resort-opening-dates
+- https://snowway.app/snowboard-size-chart
+- https://snowway.app/ski-boot-size-chart
+- https://snowway.app/ski-trip-planner
+- https://snowway.app/ski-resorts-near/seattle
+- https://snowway.app/ski-resorts-near/los-angeles
+- https://snowway.app/ski-resorts-near/toronto
+- https://snowway.app/ski-resorts/southern-california
+- https://snowway.app/resorts/vail/best-time-to-ski
+- https://snowway.app/resorts/whistler-blackcomb/best-time-to-ski
+- https://snowway.app/resorts/breckenridge/best-time-to-ski
+- https://snowway.app/resorts/winter-park/best-time-to-ski
+- https://snowway.app/resorts/killington/best-time-to-ski
+- https://snowway.app/resorts/stowe/best-time-to-ski
+- https://snowway.app/resorts/big-sky/where-to-stay
+- https://snowway.app/resorts/jackson-hole/where-to-stay
+- https://snowway.app/guides/holiday-ski-trips
+- https://snowway.app/guides/winter-driving-to-ski-resorts
+- https://snowway.app/ski-resorts-near/vancouver
+- https://snowway.app/ski-resorts-near/montreal
+
+## Full list
+
+- Discovered - currently not indexed | https://snowway.app/compare/jackson-hole-vs-big-sky
+- Discovered - currently not indexed | https://snowway.app/compare/keystone-vs-copper
+- Discovered - currently not indexed | https://snowway.app/compare/vail-vs-beaver-creek
+- URL is unknown to Google | https://snowway.app/compare/winter-park-vs-copper
+- Discovered - currently not indexed | https://snowway.app/guides/comparisons
+- Discovered - currently not indexed | https://snowway.app/guides/goofy-vs-regular
+- URL is unknown to Google | https://snowway.app/guides/holiday-ski-trips
+- Discovered - currently not indexed | https://snowway.app/guides/how-to-carve-on-a-snowboard
+- Discovered - currently not indexed | https://snowway.app/guides/how-to-ski-powder
+- Discovered - currently not indexed | https://snowway.app/guides/ski-rack-roof-box
+- Discovered - currently not indexed | https://snowway.app/guides/snowboard-jacket
+- URL is unknown to Google | https://snowway.app/guides/snowboarding
+- URL is unknown to Google | https://snowway.app/guides/trip-planning
+- Discovered - currently not indexed | https://snowway.app/guides/vermont-ski-resorts-for-families
+- URL is unknown to Google | https://snowway.app/guides/winter-driving-to-ski-resorts
+- Discovered - currently not indexed | https://snowway.app/resorts/alyeska/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/angel-fire/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/appi/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/arapahoe-basin
+- Discovered - currently not indexed | https://snowway.app/resorts/attitash
+- Discovered - currently not indexed | https://snowway.app/resorts/attitash/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/bear-creek/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/beech-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/beech-mountain/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/belleayre/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/big-sky/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/big-sky/where-to-stay
+- Discovered - currently not indexed | https://snowway.app/resorts/blue-mountain-pa/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/bolton-valley/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/boreal
+- URL is unknown to Google | https://snowway.app/resorts/boston-mills-brandywine
+- Discovered - currently not indexed | https://snowway.app/resorts/breckenridge/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/bretton-woods/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/bridger-bowl
+- URL is unknown to Google | https://snowway.app/resorts/brundage/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/camelback/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/canaan-valley
+- URL is unknown to Google | https://snowway.app/resorts/canaan-valley/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/castle-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/cataloochee
+- URL is unknown to Google | https://snowway.app/resorts/coronet-peak
+- Discovered - currently not indexed | https://snowway.app/resorts/courchevel/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/crested-butte/where-to-stay
+- Discovered - currently not indexed | https://snowway.app/resorts/crystal-mountain-michigan/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/crystal-mountain/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/diamond-peak
+- Discovered - currently not indexed | https://snowway.app/resorts/discovery
+- Discovered - currently not indexed | https://snowway.app/resorts/elk-mountain
+- URL is unknown to Google | https://snowway.app/resorts/elk-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/gore-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/grand-targhee/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/granite-peak
+- Discovered - currently not indexed | https://snowway.app/resorts/granite-peak/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/gunstock/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/hakuba-valley/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/holiday-valley/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/hoodoo/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/jack-frost/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/jackson-hole/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/jackson-hole/where-to-stay
+- Discovered - currently not indexed | https://snowway.app/resorts/jay-peak/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/keystone/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/kicking-horse/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/killington/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/kirkwood/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/kitzbuhel
+- Discovered - currently not indexed | https://snowway.app/resorts/lee-canyon
+- Discovered - currently not indexed | https://snowway.app/resorts/lee-canyon/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/liberty-mountain
+- URL is unknown to Google | https://snowway.app/resorts/liberty-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/loon-mountain/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/lutsen-mountains/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/mad-river-glen
+- Discovered - currently not indexed | https://snowway.app/resorts/mad-river-glen/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/magic-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/marmot-basin
+- URL is unknown to Google | https://snowway.app/resorts/monarch-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/montana-snowbowl/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/mount-seymour/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/mount-snow/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/mount-washington-alpine-resort/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/mountain-high/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/mt-norquay
+- URL is unknown to Google | https://snowway.app/resorts/mt-spokane
+- URL is unknown to Google | https://snowway.app/resorts/mt-spokane/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/nakiska/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/nevados-de-chillan
+- Discovered - currently not indexed | https://snowway.app/resorts/nubs-nob/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/palisades-tahoe/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/paoli-peaks/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/pats-peak/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/powderhorn
+- Discovered - currently not indexed | https://snowway.app/resorts/powderhorn/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/red-lodge-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/red-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/roundtop/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/shawnee-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/shawnee-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/silver-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/silver-mountain/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/silverstar
+- Discovered - currently not indexed | https://snowway.app/resorts/sipapu
+- Discovered - currently not indexed | https://snowway.app/resorts/sipapu/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/ski-apache
+- URL is unknown to Google | https://snowway.app/resorts/ski-apache/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/ski-cooper/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/ski-santa-fe
+- Discovered - currently not indexed | https://snowway.app/resorts/ski-santa-fe/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/smugglers-notch/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/snow-king
+- URL is unknown to Google | https://snowway.app/resorts/snow-king/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/snow-summit/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/snowshoe/where-to-stay
+- URL is unknown to Google | https://snowway.app/resorts/solitude/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/spirit-mountain/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/st-anton/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/st-moritz
+- Discovered - currently not indexed | https://snowway.app/resorts/steamboat/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/stevens-pass/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/stowe/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/stratton/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/sugar-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/sugarbush/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/summit-at-snoqualmie/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/sun-peaks/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/sun-valley/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/sunday-river
+- URL is unknown to Google | https://snowway.app/resorts/sunlight-mountain/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/tamarack/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/telluride/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/the-highlands
+- URL is unknown to Google | https://snowway.app/resorts/the-highlands/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/tignes/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/timberline-mountain
+- Discovered - currently not indexed | https://snowway.app/resorts/timberline-mountain/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/vail/best-time-to-ski
+- Discovered - currently not indexed | https://snowway.app/resorts/waterville-valley/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/whistler-blackcomb/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/white-pass/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/whitewater/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/wildcat-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/wilmot-mountain/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/winter-park/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/wintergreen/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/resorts/zermatt/best-time-to-ski
+- URL is unknown to Google | https://snowway.app/ski-boot-size-chart
+- URL is unknown to Google | https://snowway.app/ski-resort-opening-dates
+- Discovered - currently not indexed | https://snowway.app/ski-resorts-near/albuquerque-santa-fe
+- Discovered - currently not indexed | https://snowway.app/ski-resorts-near/bozeman
+- Discovered - currently not indexed | https://snowway.app/ski-resorts-near/edmonton
+- URL is unknown to Google | https://snowway.app/ski-resorts-near/los-angeles
+- Discovered - currently not indexed | https://snowway.app/ski-resorts-near/montreal
+- Discovered - currently not indexed | https://snowway.app/ski-resorts-near/reno-lake-tahoe
+- URL is unknown to Google | https://snowway.app/ski-resorts-near/seattle
+- URL is unknown to Google | https://snowway.app/ski-resorts-near/toronto
+- Discovered - currently not indexed | https://snowway.app/ski-resorts-near/vancouver
+- Discovered - currently not indexed | https://snowway.app/ski-resorts-near/washington-dc
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/alberta
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/argentina
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/idaho
+- URL is unknown to Google | https://snowway.app/ski-resorts/massachusetts
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/new-hampshire
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/new-jersey
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/pennsylvania
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/south-america
+- URL is unknown to Google | https://snowway.app/ski-resorts/southern-california
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/washington
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/west-virginia
+- Discovered - currently not indexed | https://snowway.app/ski-resorts/wyoming
+- URL is unknown to Google | https://snowway.app/ski-trip-planner
+- URL is unknown to Google | https://snowway.app/snowboard-size-chart
+- Crawled - currently not indexed | https://snowway.app/weather
+- URL is unknown to Google | https://snowway.app/widget
