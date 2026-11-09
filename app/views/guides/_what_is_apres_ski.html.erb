@@ -2,7 +2,7 @@
 <div class="tldr"><p><strong>Short answer:</strong> après-ski (French for "after ski") is the social time at the end of a ski day: a drink, food, music, or a hot tub with friends once the lifts close. It usually starts mid-afternoon at the base area and can be as low-key as hot chocolate or as lively as a packed deck with a DJ. Wear warm, comfortable layers, and never drive mountain roads after drinking.</p></div>
 
 <h2>What does après-ski mean?</h2>
-<p>The word comes from French: <em>après</em> means "after," so après-ski is simply "after skiing." It describes the time between the last run and dinner when skiers and snowboarders gather to relax, swap stories about the day, and warm up. The term spread from the Alps, where ski towns grew up around village life, and is now used at resorts everywhere.</p>
+<p>The word comes from French: <em>après</em> means "after," so après-ski is simply "after skiing." It describes the time between the last run and dinner when skiers and snowboarders gather to relax, swap stories about the day, and warm up. The term spread from the Alps, where ski towns grew up around village life, and is now used at resorts everywhere. Dictionaries define it as the period right after a day of skiing.</p>
 <p>Après isn't one specific activity. It's a mood: the day's effort is done, legs are tired, and everyone is in a good mood. For some people that means a beer on a sunny deck. For others it's a coffee by a fireplace, a soak in a hot tub, or a big snack with the kids.</p>
 
 <h2>When does après-ski happen?</h2>
@@ -17,7 +17,31 @@
   <li><strong>Family après.</strong> With kids, it's often warm drinks, a game of cards in the lodge, or sledding before dinner.</li>
 </ul>
 
-<h2>What to wear to après-ski</h2>
+<h2>Where to après: spots we've checked in ski towns</h2>
+<p>The best après is close to the lifts or a short walk into town. These are real places from our ski-town guides, each with its official page:</p>
+<table>
+  <caption>Après-ski spots in North American ski towns</caption>
+  <thead><tr><th scope="col">Town</th><th scope="col">Spot</th><th scope="col">What it is</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><%= link_to "Park City", winter_town_path("park-city") %></th><td><a href="https://www.highwest.com/pages/saloon" rel="nofollow noopener">High West Saloon</a></td><td>A 21+ whiskey saloon from High West Distillery on Park Avenue, walk-in only.</td></tr>
+    <tr><th scope="row"><%= link_to "Stowe", winter_town_path("stowe") %></th><td><a href="https://www.vontrappbrewing.com/" rel="nofollow noopener">von Trapp Bierhall</a> · <a href="https://alchemistbeer.com/" rel="nofollow noopener">The Alchemist</a></td><td>Two of Vermont's best-known breweries, both with places to sit down after skiing.</td></tr>
+    <tr><th scope="row"><%= link_to "Mammoth Lakes", winter_town_path("mammoth-lakes") %></th><td><a href="https://www.mammothbrewingco.com/" rel="nofollow noopener">Mammoth Brewing Co.</a></td><td>A taproom brewing since 1995, with food from The EATery inside.</td></tr>
+    <tr><th scope="row"><%= link_to "Whistler", winter_town_path("whistler") %></th><td><a href="https://www.whistlerbeer.com/" rel="nofollow noopener">Whistler Brewing</a> · <a href="https://www.scandinave.com/en/whistler/rates/" rel="nofollow noopener">Scandinave Spa</a></td><td>A local taphouse, or the quiet route: outdoor hot pools and saunas in the forest.</td></tr>
+    <tr><th scope="row"><%= link_to "Breckenridge", winter_town_path("breckenridge") %></th><td><a href="https://breckenridgedistillery.com/tours/" rel="nofollow noopener">Breckenridge Distillery</a></td><td>Tours end with a bourbon tasting (21+), plus a tasting room on Main Street.</td></tr>
+  </tbody>
+</table>
+<p>Not into bars? Hot springs make the best après there is. See <%= link_to "hot springs in Colorado", colorado_hot_springs_path %>, many of them close to ski resorts, and the <%= link_to "best ski towns in the US", ski_towns_path %> for towns where après spills onto a real main street.</p>
+
+<h2>What to wear to après-ski (and the après-ski look)</h2>
+<p>Most people show up straight from the slopes, so ski clothes are completely normal. If you want to change, the classic après look is warm and cozy rather than fancy:</p>
+<ul>
+  <li><strong>Insulated winter boots.</strong> The single best upgrade. Grippy, warm boots like <%= gear_link "Sorel 1964 Pac boots", "Sorel 1964 Pac boots" %> or other <%= gear_link "insulated winter boots", "insulated winter boots" %> handle icy decks and village paths. More picks in <%= link_to "best snow boots", guide_path("best-snow-boots") %>.</li>
+  <li><strong>A chunky sweater or fleece.</strong> A <%= gear_link "wool ski sweater", "wool ski sweater" %> or a <%= gear_link "sherpa fleece", "sherpa fleece pullover" %> is the classic après layer.</li>
+  <li><strong>A puffy or vest on top.</strong> Easy to pull off indoors. A <%= gear_link "down vest", "down vest" %> keeps your core warm on an outdoor deck.</li>
+  <li><strong>A beanie.</strong> It fixes helmet hair and keeps you warm outside.</li>
+</ul>
+<p>If you're staying in ski clothes, these tips make it more comfortable:</p>
+<h3>Coming straight off the slopes</h3>
 <p>Most people show up straight from the slopes, so ski clothes are completely normal. A few tips make it more comfortable:</p>
 <ul>
   <li><strong>Swap your boots.</strong> Walking in ski boots is clumsy and tiring. If you can, change into warm, grippy winter boots before heading to the deck or into town.</li>
@@ -45,6 +69,13 @@
 
 <h2>Making the most of your ski day</h2>
 <p>The best après follows a great day on the snow. If you're new to the sport, start with <%= link_to "how to ski", guide_path("how-to-ski") %> so you finish the day tired and happy instead of sore and frustrated. Then enjoy the part of skiing everyone agrees on.</p>
+<h2>Sources</h2>
+<ul>
+  <li><a href="https://www.merriam-webster.com/dictionary/apr%C3%A8s-ski" rel="nofollow noopener">Merriam-Webster: après-ski</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Apr%C3%A8s-ski" rel="nofollow noopener">Wikipedia: Après-ski</a></li>
+  <li>Spot details come from each business's official page (linked above), checked 2026-11-08.</li>
+</ul>
+<% faqs.unshift({ question: "Where are the best après-ski spots?", answer: "Close to the lifts or a short walk into town. Examples Snow Way has checked: High West Saloon in Park City, von Trapp Bierhall and The Alchemist in Stowe, Mammoth Brewing in Mammoth Lakes, Whistler Brewing and Scandinave Spa in Whistler, and Breckenridge Distillery's Main Street tasting room." }) %>
 <% faqs << { question: "What does après-ski mean?", answer: "Après-ski is French for \"after ski.\" It refers to the social time after the lifts close, when skiers and snowboarders relax with food, drinks, music, or a hot tub." } %>
 <% faqs << { question: "What time does après-ski start?", answer: "Usually mid-to-late afternoon, as the lifts begin to close, and it typically winds down by early evening." } %>
 <% faqs << { question: "What do you wear to après-ski?", answer: "Most people wear their ski clothes. Changing out of ski boots into warm winter boots, unzipping layers, and adding a beanie makes it more comfortable." } %>
