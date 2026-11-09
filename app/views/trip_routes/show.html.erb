@@ -10,14 +10,16 @@
 <% multi = pg.resorts.size > 1 %>
 <% answer = if air
      lead = multi ? "#{pg.resorts.map { |x| "#{x.name} is about #{fmt.(pg.drive(x)["minutes"])}" }.to_sentence} by car from #{o["airport_name"]} (#{o["airport"]})" : "#{pg.destination} is about #{air["miles"]} miles from #{o["airport_name"]} (#{o["airport"]}), roughly #{fmt.(air["minutes"])} by car without traffic or snow"
-     "#{lead}#{pg.via.present? ? " via #{pg.via}" : ""}.#{city && !multi ? " From downtown #{o["name"]} it's about #{city["miles"]} miles (#{fmt.(city["minutes"])})." : ""} Allow extra time on weekend mornings and storm days."
+     no_car = pg.options.select { |x| %w[shuttle bus train].include?(x["kind"]) }.first(2).map { |x| x["name"].sub(/\s*\(.*\)\z/, "") }
+     "#{lead}#{pg.via.present? ? " via #{pg.via}" : ""}.#{city && !multi ? " From downtown #{o["name"]} it's about #{city["miles"]} miles (#{fmt.(city["minutes"])})." : ""}#{no_car.any? ? " Without a car, take #{no_car.to_sentence(two_words_connector: " or ", last_word_connector: ", or ")}." : ""}"
    end %>
 <% faqs = [] %>
 <% faqs << { question: "How long is the drive from #{pg.origin_name} to #{pg.destination}?", answer: answer } if answer %>
 <% shuttles = pg.options.select { |x| %w[shuttle bus train].include?(x["kind"]) } %>
 <% if shuttles.any? %><% faqs << { question: "Is there a shuttle or bus from #{pg.origin_name} to #{pg.destination}?", answer: "Yes. #{shuttles.map { |x| "#{x["name"]}: #{x["note"].to_s.sub(/\.\z/, "")}" }.join(". ")}. Check each operator for current schedules and fares." } %><% end %>
 <% if pg.winter_driving.any? %><% faqs << { question: "Do I need snow tires or chains to drive to #{pg.destination}?", answer: pg.winter_driving.first } %><% end %>
-<% if pg.fly_closer.any? %><% faqs << { question: "Can I fly closer to #{pg.destination}?", answer: pg.fly_closer.map { |f| "#{f["airport"]}: #{f["note"].to_s.sub(/\.\z/, "")}." }.join(" ") } %><% end %>
+<% if pg.winter_driving.size > 1 %><% faqs << { question: "Is it difficult to drive from #{pg.origin_name} to #{pg.destination} in winter?", answer: "It can be on storm days. #{pg.main_route.to_s.split(/(?<=\.)\s/).first} #{pg.winter_driving[1]}".squish } %><% end %>
+<% if pg.fly_closer.any? %><% faqs << { question: "Is it better to fly into #{pg.destination} or #{pg.origin_name}?", answer: pg.fly_closer.map { |f| "#{f["airport"]}: #{f["note"].to_s.sub(/\.\z/, "")}." }.join(" ") } %><% end %>
 <% faqs << { question: "How much snow is #{pg.destination} getting this week?", answer: "As of #{Date.current.strftime("%B %-d, %Y")}, #{pg.resorts.map { |x| "#{x.name} has #{inches(@totals.fetch(x.id, 0.0))}" }.to_sentence} of snow forecast over the next 7 days." } %>
 
 <% content_for(:title, fit_title("#{pg.title}: Drive Time, Shuttles & Winter Driving | Snow Way", "#{pg.title}: Drive Time & Shuttles | Snow Way", "#{pg.title} | Snow Way")) %>
@@ -41,8 +43,8 @@
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= pg.title %>: drive time, shuttles and winter driving</h1>
     <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= answer %></p>
-      <p class="text-slate-400 text-xs mt-3">Drive times are estimates from OpenStreetMap routing, without traffic or snow. Snow forecast updated <%= updated_label(@updated_at) %>.</p>
     </section>
+    <p class="text-slate-400 text-xs -mt-4 mb-6">Drive times are estimates from OpenStreetMap routing, without traffic or snow; allow extra time on weekend mornings and storm days. Snow forecast updated <%= updated_label(@updated_at) %>.</p>
 
     <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
       <% if air %>

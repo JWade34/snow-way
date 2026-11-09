@@ -36,8 +36,8 @@
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= t.title %></h1>
     <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= answer %></p>
-      <% if t.intro.present? %><p class="text-slate-300 text-sm mt-3"><%= t.intro %></p><% end %>
     </section>
+    <% if t.intro.present? %><p class="text-slate-300 -mt-2 mb-6"><%= t.intro %></p><% end %>
 
     <div class="flex flex-wrap items-center gap-2 mb-8 text-sm">
       <span class="bg-slate-800/60 border border-slate-700 rounded-full px-3 py-1">❄️ <%= r.name %>: <strong class="text-cyan-300"><%= inches(snow) %></strong> next 7 days</span>

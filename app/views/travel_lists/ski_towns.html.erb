@@ -20,8 +20,8 @@
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best ski towns in the US</h1>
     <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= answer %></p>
-      <p class="text-slate-400 text-xs mt-3">Picked for a walkable town with its own history and life, close to good skiing. Live snow updated <%= updated_label(@updated_at) %>.</p>
     </section>
+    <p class="text-slate-400 text-xs -mt-6 mb-8">Picked for a walkable town with its own history and life, close to good skiing. Live snow updated <%= updated_label(@updated_at) %>.</p>
     <ol class="space-y-6 mb-10">
       <% @items.each_with_index do |i, n| %>
         <% resort = Array(i["resorts"]).filter_map { |s| @resorts[s] }.first %>

@@ -6,6 +6,10 @@
 <% faqs = [ { question: "What are the best hot springs in Colorado?", answer: "#{items.first(6).map { |i| "#{i["name"]} (#{i["town"]})" }.to_sentence}. #{answer}" } ] %>
 <% faqs << { question: "Which Colorado hot springs are near ski resorts?", answer: near_ski.first(6).map { |i| "#{i["name"]} near #{@resorts[i["nearest_resort"]].name}" }.to_sentence + "." } if near_ski.any? %>
 <% faqs << { question: "Which Colorado hot springs are good for families?", answer: family.first(6).map { |i| "#{i["name"]} (#{i["town"]})" }.to_sentence + " welcome kids. Some others are adults-only or clothing-optional, so check before you go." } if family.any? %>
+<% natural = items.select { |i| i["type"].to_s =~ /natural/i } %>
+<% faqs << { question: "Does Colorado have natural hot springs?", answer: "Yes. #{natural.first(4).map { |i| "#{i["name"]} (#{i["town"]})" }.to_sentence} are natural soaks on this list; most others are developed pools fed by hot springs." } if natural.any? %>
+<% loop_note = notes.grep(Hash).find { |n| n["text"].to_s.include?("Loop") } %>
+<% faqs << { question: "Where are all the hot springs in Colorado?", answer: "They're spread across the mountains: Glenwood Springs and the Western Slope, Steamboat, the Arkansas Valley around Buena Vista and Salida, Ouray and Pagosa Springs in the southwest. #{loop_note ? loop_note["text"] : ""}".squish } %>
 <% res = items.select { |i| i["reservations"] == "required" } %>
 <% faqs << { question: "Do you need reservations for Colorado hot springs?", answer: "Some require them: #{res.map { |i| i["name"] }.to_sentence}. Others take walk-ins, but busy weekends and holidays can sell out." } if res.any? %>
 <% content_for(:title, fit_title("Hot Springs in Colorado: #{items.size} to Soak In, Near Ski Resorts | Snow Way", "Hot Springs in Colorado | Snow Way")) %>
@@ -27,8 +31,8 @@
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Hot springs in Colorado</h1>
     <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= answer %></p>
-      <% if notes.any? %><ul class="text-slate-300 text-sm mt-3 space-y-1"><% notes.each do |n| %><li>• <%= n.is_a?(Hash) ? n["text"] : n %></li><% end %></ul><% end %>
     </section>
+    <% if notes.any? %><ul class="text-slate-300 text-sm -mt-4 mb-8 space-y-1"><% notes.each do |n| %><li>• <%= n.is_a?(Hash) ? n["text"] : n %></li><% end %></ul><% end %>
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
       <table class="w-full text-sm">
         <caption class="sr-only">Colorado hot springs compared</caption>
