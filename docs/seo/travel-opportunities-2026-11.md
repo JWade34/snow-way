@@ -56,3 +56,9 @@ We can win these with our own data (snow, powder odds, drive times, lift prices)
 3. Things to do in winter: 10 ski towns.
 4. Best winter vacations, best ski towns, best family and beginner resorts.
 5. Hot springs in Colorado.
+
+## Batch 3 (BUILT 2026-11-09)
+- Best ski resorts lists: US 6,600 (14,800 Dec), Colorado 6,600 (14,800), Vermont 3,600 (9,900), East Coast 3,600 (9,900), Utah 2,400, California 1,000, North America 1,000. Japan held until 5+ resorts have sourced snowfall.
+- Pass guides: Indy Pass 33,100 (sold out for 2026-27), Mountain Collective 8,100, Epic Pass price 8,100, Ikon Pass price 6,600.
+- Guides: best heated socks 2,900 (12,100 Dec; "heated socks" 33,100), best hand warmers 2,400 (9,900), how to wax a snowboard 1,900 (6,600), El Nino winter forecast 2,400 (18,100 in Sept).
+- Not built: snow day calculator (368k, kids/school audience, low affiliate value), white Christmas odds (needs a daily data pull; pitch in December).
