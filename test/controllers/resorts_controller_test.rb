@@ -121,6 +121,16 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "best ski resorts lists rank resorts and unknown scopes 404" do
+    BestResorts.all.each do |list|
+      get list.path
+      assert_response :success
+      assert_includes response.body, list.ranked.first[0].name
+    end
+    get "/best-ski-resorts-in-narnia"
+    assert_response :not_found
+  end
+
   test "best places to ski by month pages render for each ski month" do
     SkiMonth.all.each do |month|
       get "/best-places-to-ski-in-#{month.slug}"

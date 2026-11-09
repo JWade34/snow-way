@@ -23,6 +23,7 @@
           <% if TravelList.list("hot_springs").any? %><li><%= link_to "Colorado Hot Springs", colorado_hot_springs_path, class: "text-slate-400 hover:text-white transition text-sm" %></li><% end %>
           <li><%= link_to "Snowiest Ski Resorts", snowiest_resorts_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
           <li><%= link_to "Powder Day Odds Study", powder_study_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Best Ski Resorts in the US", best_resorts_path("in-the-us"), class: "text-slate-400 hover:text-white transition text-sm" %></li>
           <li><%= link_to "Opening Dates", opening_dates_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
           <li><%= link_to "Ski Guides", guides_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
           <li><%= link_to "Live Weather", weather_index_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>

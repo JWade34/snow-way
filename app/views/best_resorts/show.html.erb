@@ -1,0 +1,107 @@
+<% b = @list %>
+<% year = Date.current.month >= 7 ? "#{Date.current.year}-#{(Date.current.year + 1) % 100}" : "#{Date.current.year - 1}-#{Date.current.year % 100}" %>
+<% top = b.top(15) %>
+<% fmt = ->(min) { m = (min / 15.0).round * 15; h, mm = m.divmod(60); h.zero? ? "#{mm} min" : (mm.zero? ? "#{h} hr" : "#{h} hr #{mm} min") } %>
+<% hub = b.hub %>
+<% snowiest = b.best_by(:snow_days) %>
+<% deepest = b.best_by(:snowfall) %>
+<% biggest = b.best_by(:vertical) %>
+<% beginner_item = TravelList.list("beginner_resorts").find { |i| b.ranked.any? { |r, _, _| r.slug == i["slug"] } } %>
+<% beginner = beginner_item && b.ranked.find { |r, _, _| r.slug == beginner_item["slug"] } %>
+<% closest = hub && b.ranked.filter_map { |r, _, _| (d = hub.drive(r)) && [ r, d ] }.min_by { |_, d| d["minutes"] || d[:minutes] } %>
+<% epic = b.ranked.find { |r, _, _| r.on_epic? } %>
+<% ikon = b.ranked.find { |r, _, _| r.on_ikon? } %>
+<% lead = top.first(3).map { |r, _, m| "#{r.name}#{b.slug.start_with?("in-the-us", "in-north", "on-the") ? " (#{r.state_province})" : ""}" } %>
+<% answer = "The best ski resorts in #{b.name}, ranked by how often it snows, how much snow falls and how much vertical there is: #{lead.to_sentence}." %>
+<% picks = [
+     ([ "Most snow days", snowiest[0], "about #{snowiest[2][:snow_days]} days of new snow a season" ] if snowiest),
+     ([ "Most annual snowfall", deepest[0], "about #{deepest[2][:snowfall]} inches a year (resort-reported)" ] if deepest),
+     ([ "Biggest vertical", biggest[0], "#{number_with_delimiter(biggest[2][:vertical])} ft from base to summit" ] if biggest),
+     ([ "Best for beginners", beginner[0], "#{beginner_item["resort_name"].presence || beginner[0].name}#{beginner_item["beginner_pct"] ? ", #{beginner_item["beginner_pct"]}% beginner terrain" : ""}" ] if beginner),
+     ([ "Closest to #{hub.city}", closest[0], "about #{fmt.((closest[1]["minutes"] || closest[1][:minutes]).to_i)} by car" ] if closest),
+     ([ "Top on the Epic Pass", epic[0], "##{b.ranked.index(epic) + 1} overall" ] if epic),
+     ([ "Top on the Ikon Pass", ikon[0], "##{b.ranked.index(ikon) + 1} overall" ] if ikon)
+   ].compact %>
+<% faqs = [ { question: "What is the best ski resort in #{b.name}?", answer: "#{top.first[0].name} ranks first on Snow Way's score, which combines snow days (10 seasons of weather data), resort-reported annual snowfall and vertical drop. #{top[1..2].map { |r, _, _| r.name }.to_sentence} are next." } ] %>
+<% qs = { "Most snow days" => "Which #{b.label} ski resort gets the most snow days?", "Most annual snowfall" => "Which #{b.label} ski resort gets the most snow?",
+          "Biggest vertical" => "Which #{b.label} ski resort has the most vertical?", "Best for beginners" => "What is the best #{b.label} ski resort for beginners?",
+          "Top on the Epic Pass" => "What is the best #{b.label} ski resort on the Epic Pass?", "Top on the Ikon Pass" => "What is the best #{b.label} ski resort on the Ikon Pass?" } %>
+<% picks.each do |label, r, why| %><% q = qs[label] || (hub ? "What is the closest ski resort to #{hub.city}?" : nil) %><% faqs << { question: q, answer: "#{r.name}: #{why}." } if q %><% end %>
+<% content_for(:title, fit_title("Best Ski Resorts in #{b.name} (#{year}), Ranked by Snow | Snow Way", "Best Ski Resorts in #{b.name} (#{year}) | Snow Way", "Best Ski Resorts in #{b.name} | Snow Way").sub("in the East Coast", "on the East Coast")) %>
+<% content_for(:description, "#{answer} Snow days, snowfall, vertical and pass for each, plus this week's snow.".sub("in the East Coast", "on the East Coast").truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Best ski resorts in #{b.name} (#{year})", "url" => absolute_url(b.path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => Date.current.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Best Ski Resorts in #{b.name}", nil ] ]),
+        { "@type" => "ItemList", "numberOfItems" => top.size, "itemListElement" => top.each_with_index.map { |(r, _, _), i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url(resort_path(r)) } } },
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Best Ski Resorts in #{b.name}".sub("in the East Coast", "on the East Coast"), nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= "Best ski resorts in #{b.name}".sub("in the East Coast", "on the East Coast") %> (<%= year %>)</h1>
+    <section class="tldr mb-3 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer.sub("in the East Coast", "on the East Coast") %></p>
+    </section>
+    <p class="text-slate-400 text-xs mb-8">How we rank: snow days (40%, 10 seasons of daily weather), resort-reported average snowfall (30%) and vertical drop (30%), each scaled within this list. It doesn't weigh price, crowds or lodging; see the picks below for those angles. <a href="#method" class="underline underline-offset-2">Details</a></p>
+
+    <% if picks.any? %>
+      <h2 class="text-xl font-bold mb-3">Best for…</h2>
+      <ul class="grid sm:grid-cols-2 gap-2 mb-10 text-sm">
+        <% picks.each do |label, r, why| %>
+          <li class="bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3"><span class="block text-cyan-300 text-xs font-bold uppercase tracking-wide"><%= label %></span><%= link_to r.name, resort_path(r), class: "font-semibold hover:text-cyan-300" %> <span class="text-slate-400">· <%= why %></span></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">The top <%= top.size %></h2>
+    <ol class="space-y-3 mb-10">
+      <% top.each_with_index do |(r, score, m), i| %>
+        <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4">
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="font-bold text-lg"><span class="text-cyan-300 mr-1"><%= i + 1 %>.</span> <%= link_to r.name, resort_path(r), class: "hover:text-cyan-300" %> <span class="text-slate-400 text-sm font-normal"><%= r.state_province %></span></h3>
+            <span class="text-xs text-slate-400 whitespace-nowrap">Score <strong class="text-white"><%= score %></strong></span>
+          </div>
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs mt-2">
+            <div><dt class="text-slate-400">Snow days</dt><dd class="font-bold"><%= m[:snow_days] || "–" %></dd></div>
+            <div><dt class="text-slate-400">Avg snowfall</dt><dd class="font-bold"><%= m[:snowfall] ? "#{m[:snowfall]}\"" : "–" %></dd></div>
+            <div><dt class="text-slate-400">Vertical</dt><dd class="font-bold"><%= m[:vertical] ? "#{number_with_delimiter(m[:vertical])} ft" : "–" %></dd></div>
+            <div><dt class="text-slate-400">Snow next 7 days</dt><dd class="font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></dd></div>
+          </dl>
+          <p class="text-xs text-slate-400 mt-2"><%= [ r.pass_label, (hub && (d = hub.drive(r)) ? "#{fmt.((d["minutes"] || d[:minutes]).to_i)} from #{hub.airport}" : nil) ].compact.join(" · ") %>
+            · <%= link_to "best time to ski", best_time_resort_path(r), class: "underline underline-offset-2 hover:text-cyan-300" %><% if Lodging.slugs.include?(r.slug) %> · <%= link_to "where to stay", where_to_stay_resort_path(r), class: "underline underline-offset-2 hover:text-cyan-300" %><% end %><% if (t = WinterTown.for_resort(r).first) %> · <%= link_to "things to do", winter_town_path(t), class: "underline underline-offset-2 hover:text-cyan-300" %><% end %></p>
+        </li>
+      <% end %>
+    </ol>
+
+    <% if b.ranked.size > top.size %>
+      <details class="mb-10">
+        <summary class="cursor-pointer font-bold">The other <%= b.ranked.size - top.size %> resorts we rank</summary>
+        <ol start="<%= top.size + 1 %>" class="list-decimal pl-6 mt-3 text-sm text-slate-300 grid sm:grid-cols-2 gap-x-6 gap-y-1">
+          <% b.ranked.drop(top.size).each do |r, score, _| %><li><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300" %> <span class="text-slate-500">(<%= score %>)</span></li><% end %>
+        </ol>
+      </details>
+    <% end %>
+
+    <%= render "shared/trip_deals", resort: top.first[0], heading: "Plan a trip to #{top.first[0].name}" %>
+    <%= render "shared/calendar_cta" %>
+
+    <section id="method" class="mb-10 scroll-mt-20">
+      <h2 class="text-xl font-bold mb-3">How we rank</h2>
+      <ul class="text-sm text-slate-300 space-y-2 list-disc pl-5">
+        <li><strong class="text-white">Snow days (40%):</strong> days with 1"+ of new snow, November to April, from our <%= link_to "powder day odds study", powder_study_path, class: "text-cyan-300 underline underline-offset-2" %>.</li>
+        <li><strong class="text-white">Average snowfall (30%):</strong> resort-reported annual totals with sources, from our <%= link_to "snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %> list.</li>
+        <li><strong class="text-white">Vertical drop (30%):</strong> summit minus base elevation.</li>
+        <li>Each measure is scaled from the lowest to the highest resort in this list, then weighted. Resorts missing too much data aren't ranked. Price, crowds, terrain mix and lodging aren't scored, so use the picks above and each resort's page for those.</li>
+      </ul>
+    </section>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Questions" %>
+    <p class="text-sm text-slate-300 mb-6">More lists: <%= safe_join(BestResorts.all.reject { |x| x.slug == b.slug }.map { |x| link_to("Best ski resorts #{x.slug.split("-").first} #{x.name}", x.path, class: "text-cyan-300 underline underline-offset-2") }, " · ") %></p>
+    <%= render "shared/cite_this", title: "Best ski resorts #{b.slug.split("-").first} #{b.name} (#{year})", url: absolute_url(b.path) %>
+  </main>
+</div>

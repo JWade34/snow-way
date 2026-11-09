@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "best-winter-vacations-in-the-us" => "travel_lists#winter_vacations", as: :winter_vacations
   get "best-ski-towns" => "travel_lists#ski_towns", as: :ski_towns
   get "best-ski-resorts-for-beginners" => "travel_lists#beginner_resorts", as: :beginner_resorts
+  get "best-ski-resorts-:id" => "best_resorts#show", as: :best_resorts, constraints: { id: Regexp.union(BestResorts::SCOPES.keys) }
   get "hot-springs-in-colorado" => "travel_lists#hot_springs", as: :colorado_hot_springs
   get "powder-day-odds" => "powder_studies#show", as: :powder_study
   get "getting-there" => "trip_routes#index", as: :trip_routes

@@ -15,6 +15,10 @@ class OgCard < OgImage
       m = SkiMonth.find($1)
       r, o = m.ranked.first
       new(kicker: "BEST PLACES TO SKI", title: "in #{m.name} #{m.year}", big: r ? "#{m.powder_days(o)} days" : m.name, caption: r ? "of new snow at #{r.name}, the leader · 10 years of data" : "ranked by snow days")
+    when %r{\A/best-ski-resorts-((?:in|on)-[a-z-]+)\z}
+      b = BestResorts.find($1)
+      r, score, m = b.ranked.first
+      new(kicker: "RANKED BY SNOW", title: "Best ski resorts #{b.slug.split("-").first} #{b.name}", big: r.name, caption: "##{1} of #{b.ranked.size} · #{m[:snow_days]} snow days a season, #{number_with_delimiter_safe(m[:vertical])} ft vertical")
     when "/powder-day-odds"
       s = PowderStudy.season.first
       new(kicker: "DATA STUDY", title: "Which ski resorts get new snow most often", big: s ? "#{s[1]} days" : "10 years", caption: s ? "#{s[0].name} leads · #{PowderStudy.season.size} resorts, 10 seasons" : "179 resorts")
@@ -30,6 +34,8 @@ class OgCard < OgImage
     end
   end
 
+  def self.number_with_delimiter_safe(n) = n.to_s.reverse.scan(/\d{1,3}/).join(",").reverse
+
   def initialize(kicker:, title:, big:, caption:)
     @kicker, @title, @big, @caption = kicker, title, big, caption
   end
@@ -40,7 +46,7 @@ class OgCard < OgImage
     image = draw(image, "WAY", 72 + text_width("SNOW", 40, "ExtraBold"), 56, size: 40, weight: "ExtraBold", color: CYAN)
     image = draw(image, @kicker, WIDTH - 72, 64, size: 26, weight: "Bold", color: MUTED, align: :right)
     image = draw(image, @title, 72, 160, size: 62, weight: "Bold", color: WHITE, width: WIDTH - 144)
-    image = draw(image, @big, 72, 330, size: 140, weight: "ExtraBold", color: CYAN)
+    image = draw(image, @big, 72, 330, size: @big.length > 11 ? 96 : 140, weight: "ExtraBold", color: CYAN, width: WIDTH - 144)
     image = draw(image, @caption, 72, 510, size: 32, weight: "SemiBold", color: WHITE, width: WIDTH - 144)
     image = draw(image, "snowway.app", WIDTH - 72, 572, size: 28, weight: "SemiBold", color: MUTED, align: :right)
     image.write_to_buffer(".png", compression: 9)

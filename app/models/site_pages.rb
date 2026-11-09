@@ -28,7 +28,7 @@ module SitePages
   end
 
   def travel_paths
-    TravelList.paths + WinterTown.all.map(&:path)
+    TravelList.paths + WinterTown.all.map(&:path) + BestResorts.all.map(&:path)
   end
 
   def trip_route_paths

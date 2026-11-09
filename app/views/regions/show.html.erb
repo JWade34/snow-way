@@ -113,6 +113,10 @@
     <% if guide_slug && (g = Guide.all.find { |x| x.slug == guide_slug }) %>
       <p class="mb-8"><%= link_to "Planning a trip? Read #{g.title}", guide_path(g.slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
     <% end %>
+    <% best_list = BestResorts.all.find { |x| x.name == @region.name } %>
+    <% if best_list %>
+      <p class="mb-8 text-sm text-slate-300">Planning a trip? See the <%= link_to "best ski resorts in #{@region.name}, ranked by snow days, snowfall and vertical", best_list.path, class: "text-cyan-300 underline underline-offset-2" %>.</p>
+    <% end %>
     <%= render "shared/faq", faqs: faqs, heading: "#{name} skiing FAQ" %>
 
     <% nearby_hubs = SkiHub.all.select { |h| h.nearby.any? { |r, _| r.state_province == name } } %>
