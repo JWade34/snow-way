@@ -78,3 +78,13 @@ Justin
 - Lead with the method for Jim Steenburgh. The numbers come from ERA5-based modeled weather, which undercounts mountain snow. They're good for comparisons, not exact totals.
 - For TV meteorologists, offer a local top 5 they can put on air.
 - Send in small batches (5 a day). Log replies in this file.
+
+## Status
+- 2026-11-09: 16 Gmail drafts created in the jm inbox (everyone above with a public email; KIRO's Ted and Aaron share one draft, and so do the two SnowBrains entries). Nothing has been sent.
+- **Before sending, check these opening lines.** They claim personal familiarity that only Justin can confirm. Keep each line if it's true, otherwise change it to name the article:
+  - Jim Steenburgh: "I read your Wasatch Weather Weenies blog and your book"
+  - Megan Michelson: "I've followed your work for years"
+  - Ken Mahan: "I read your New England ski forecast column every week"
+  - Josh Fox: "I've been reading the Single Chair Weather blog for a while"
+  - SnowBrains: "one of my go-to reads"
+- Contact-form only (send by hand): Spencer McKee, Callie Zanandrie, Klara Meyer, Carter Williams and Matt Johnson (KSL), Kristi Palma, Sasha Goldstein.
