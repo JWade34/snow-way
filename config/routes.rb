@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get "embed/powder-rankings" => "embeds#powder_rankings", as: :embed_powder_rankings
   get "embed/resorts/:id" => "embeds#resort", as: :embed_resort
   get "og/resorts/:id.png" => "og_images#resort", as: :resort_og_image
+  get "og/page.png" => "og_images#page", as: :page_og_image
   get "social/:kind.png" => "og_images#social", as: :social_card, constraints: { kind: /report|brand|calendar|tip/ }
 
   get "sitemap.xml" => "sitemaps#index", defaults: { format: :xml }

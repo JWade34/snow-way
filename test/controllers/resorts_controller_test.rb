@@ -111,6 +111,16 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "share cards render for route, month and study pages and refuse unknown paths" do
+    [ "/getting-there/#{RoutePage.all.first.slug}", "/best-places-to-ski-in-december", "/powder-day-odds" ].each do |path|
+      get "/og/page.png", params: { path: path }
+      assert_response :success
+      assert_equal "image/png", response.media_type
+    end
+    get "/og/page.png", params: { path: "/anything-else" }
+    assert_response :not_found
+  end
+
   test "best places to ski by month pages render for each ski month" do
     SkiMonth.all.each do |month|
       get "/best-places-to-ski-in-#{month.slug}"
