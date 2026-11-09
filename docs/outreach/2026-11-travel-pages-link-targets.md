@@ -38,3 +38,8 @@ Not duplicated: none of these are in `2026-11-backlink-campaign.md` or `2026-11-
 - The two hot springs blogs run by locals (Mike & Laura Travel, Thirst Colorado) are the best fits for the hot springs page because their posts already pair springs with ski areas.
 - University news sites (@TheU, DU) and student papers (The Ubyssey) usually add a link only if you ask for a correction or update to a specific line. Lead with that, not a general pitch.
 - The HeidiTown post (2015) and The Ubyssey guide (2016) are old. Note in the email that their reservation and price details have changed and that ours are dated and sourced.
+
+## Status
+- 2026-11-09: 6 Gmail drafts created in the jm inbox: Trips With Tykes, Global Viewpoint, SkiMyBest, Edelweiss Ski Club, Ramblyn Jazz, SFU Ski and Snowboard Club. Nothing has been sent.
+- Each opener says something nice about the specific post (e.g. "one of the clearest I've seen", "Great list", "I enjoyed your post"). Skim the post first so it's true for you, or trim the line.
+- Contact-form only (send by hand, same pitch): the other 16 rows. Family Ski Trips' email is decoded from an encoded footer, so confirm it on the site first.
