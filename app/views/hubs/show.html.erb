@@ -80,6 +80,11 @@
       </table>
     </div>
 
+    <% hub_routes = RoutePage.all.select { |p| p.origin["airport"] == @hub.airport } %>
+    <% if hub_routes.any? %>
+      <h2 class="text-xl font-bold mb-3">Getting there from <%= city %></h2>
+      <ul class="grid sm:grid-cols-2 gap-2 mb-8 text-sm"><% hub_routes.each do |p| %><li><%= link_to "#{p.title}: drive time, shuttles and winter driving", trip_route_path(p), class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-3 py-2 transition" %></li><% end %></ul>
+    <% end %>
     <p class="mb-8 text-sm"><%= link_to "📍 Not near #{city}? Find ski resorts near you", near_me_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <%= render "shared/faq", faqs: faqs, heading: "Skiing near #{city}: FAQ" %>
     <p class="text-sm text-slate-400">More: <%= safe_join(nearby.map { |r, _| r.region_slug }.uniq.first(4).map { |slug| link_to("ski resorts in #{Region.find(slug).name}", region_path(slug), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>

@@ -1,5 +1,5 @@
 <% content_for(:title, "Getting to Ski Resorts: Drive Times, Shuttles & Routes | Snow Way") %>
-<% content_for(:description, "How to get from Denver, Salt Lake City, Reno and Bozeman to the big ski resorts: drive times, shuttles, buses, trains and winter driving rules, plus this week's snow.") %>
+<% content_for(:description, "How to get from #{@pages.map(&:origin_name).uniq.to_sentence} to the big ski resorts: drive times, shuttles, buses, trains and winter driving rules, plus this week's snow.".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "CollectionPage", "name" => "Getting to ski resorts", "url" => absolute_url(trip_routes_path) },

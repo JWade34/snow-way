@@ -36,3 +36,24 @@ Q: <%= faq[:question] %>
 A: <%= strip_tags(faq[:answer].to_s).squish %>
 <% end %>
 <% end %>
+
+# Getting to the ski resorts
+
+Drive times (OpenStreetMap routing, no traffic or snow), shuttles, buses, trains and winter driving rules. Every fact is sourced on the page.
+<% RoutePage.all.each do |p| %><% d = p.drive %>
+- <%= p.title %>: https://snowway.app/getting-there/<%= p.slug %><%= d ? " (about #{d["miles"]} miles, #{(d["minutes"] / 60.0).round(1)} hours by car from #{p.origin["airport"]}; via #{p.via})" : "" %>
+<% end %>
+
+# Best places to ski by month
+
+Ranked by snow days (days with 1"+ of new snow, 10 seasons of history).
+<% SkiMonth.all.each do |m| %><% top = m.ranked.first(3) %>
+- <%= m.name %>: https://snowway.app/best-places-to-ski-in-<%= m.slug %> (top: <%= top.map { |r, o| "#{r.name} #{m.powder_days(o)} of #{m.days} days" }.join(", ") %>)
+<% end %>
+
+# Winter trips
+<% WinterTown.all.each do |t| %>
+- <%= t.title %>: https://snowway.app<%= t.path %> (<%= t.activities.map { |a| a["where"] }.compact.uniq.first(6).join(", ") %>)
+<% end %><% { "winter_vacations" => "Best winter vacations in the US", "ski_towns" => "Best ski towns in the US", "beginner_resorts" => "Best ski resorts for beginners", "hot_springs" => "Hot springs in Colorado" }.each do |key, label| %><% items = TravelList.list(key) %><% next if items.empty? %>
+- <%= label %>: https://snowway.app<%= TravelList::PAGES[key] %> (<%= items.first(8).map { |i| i["name"] || i["resort_name"] || Resort.find_by(slug: i["slug"])&.name || i["slug"] }.join(", ") %>)
+<% end %>

@@ -56,6 +56,23 @@
         <p class="mt-3 text-sm"><%= link_to "Full powder rankings →", resorts_path, class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %></p>
       </aside>
     <% end %>
+    <% travel = { "beginner" => [ "Best ski resorts for beginners", "/best-ski-resorts-for-beginners" ], "vacations" => [ "Best winter vacations in the US", "/best-winter-vacations-in-the-us" ],
+                  "towns" => [ "Best ski towns in the US", "/best-ski-towns" ], "routes" => [ "Getting to the ski resorts: drive times and shuttles", "/getting-there" ],
+                  "month" => [ "Best places to ski in #{SkiMonth.current.name}", "/best-places-to-ski-in-#{SkiMonth.current.slug}" ], "springs" => [ "Hot springs in Colorado", "/hot-springs-in-colorado" ],
+                  "winter" => [ "Things to do in ski towns in winter", (WinterTown.all.first&.path) ] } %>
+    <% picks = { "how-to-ski" => %w[beginner], "ski-lessons-for-adults" => %w[beginner], "best-snowboard-for-beginners" => %w[beginner], "how-to-snowboard" => %w[beginner],
+                 "skiing-vs-snowboarding" => %w[beginner], "best-family-ski-resorts" => %w[beginner vacations], "family-ski-trip" => %w[beginner vacations],
+                 "skiing-with-kids" => %w[beginner], "how-to-plan-a-ski-trip" => %w[vacations towns routes month], "holiday-ski-trips" => %w[vacations month],
+                 "cheap-ski-trip" => %w[month routes], "ski-trip-cost" => %w[routes towns], "ski-trip-drive-or-fly" => %w[routes], "winter-driving-to-ski-resorts" => %w[routes],
+                 "what-is-apres-ski" => %w[towns winter springs], "all-inclusive-ski-resorts" => %w[vacations towns], "snowmobiling" => %w[winter springs],
+                 "snow-tubing" => %w[winter], "snowshoeing" => %w[winter], "cross-country-skiing" => %w[winter], "how-to-chase-powder" => %w[month routes] }.fetch(@guide.slug, [])
+               .filter_map { |k| travel[k] if travel[k]&.last && (k != "beginner" && k != "vacations" && k != "towns" && k != "springs" || TravelList.paths.include?(travel[k].last)) } %>
+    <% if picks.any? %>
+      <nav aria-label="Plan a trip" class="mb-6">
+        <h2 class="font-bold mb-3">Plan the trip</h2>
+        <ul class="grid sm:grid-cols-2 gap-2 text-sm"><% picks.each do |label, href| %><li><%= link_to label, href, class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-3 py-2 transition" %></li><% end %></ul>
+      </nav>
+    <% end %>
     <% related = @guide.related %>
     <% if related.any? %>
       <nav aria-labelledby="related-guides" class="mb-6">

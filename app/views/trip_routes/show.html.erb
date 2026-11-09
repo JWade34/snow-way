@@ -134,6 +134,9 @@
       <ul class="text-xs text-slate-400 space-y-1 mb-8"><% pg.sources.each do |s| %><li><a href="<%= s["url"] %>" rel="nofollow noopener" target="_blank" class="underline"><%= s["title"] %></a></li><% end %></ul>
     <% end %>
 
+    <% if (town = pg.resorts.flat_map { |x| WinterTown.for_resort(x) }.first) %>
+      <p class="mb-8 text-sm text-slate-300">Once you're there: <%= link_to "things to do in #{town.name} in winter", winter_town_path(town), class: "text-cyan-300 underline underline-offset-2" %> (tours, hot springs, free things).</p>
+    <% end %>
     <% if pg.related.any? %>
       <h2 class="text-lg font-bold mb-3">More trips from <%= pg.origin_name %></h2>
       <ul class="flex flex-wrap gap-2 mb-8 text-sm"><% pg.related.each do |x| %><li><%= link_to x.title, trip_route_path(x), class: "inline-block bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2" %></li><% end %></ul>
