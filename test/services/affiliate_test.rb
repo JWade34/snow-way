@@ -33,4 +33,12 @@ class AffiliateTest < ActiveSupport::TestCase
       assert_match "rei.example.net", Affiliate.gear_url("all mountain skis")
     end
   end
+
+  test "every guide with shopping links shows the affiliate disclosure" do
+    Guide.all.each do |guide|
+      body = Rails.root.join("app/views/guides/_#{guide.slug.tr("-", "_")}.html.erb")
+      next unless body.exist? && body.read.match?(/gear_link|gear_url/)
+      assert guide.affiliate?, "#{guide.slug} has gear links but no affiliate: true, so no disclosure shows"
+    end
+  end
 end
