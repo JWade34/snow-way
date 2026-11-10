@@ -38,6 +38,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ @resort.region_name, region_path(@resort.region_slug) ], [ @resort.name, resort_path(@resort) ], [ "Best Time to Ski", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best time to ski <%= @resort.name %></h1>
+    <%= render "shared/byline", date: Date.current %>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
     </section>

@@ -26,6 +26,21 @@ class SeoGuardTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # Google and AI answer engines trust an author or date in JSON-LD only when the page shows the same thing.
+  test "every page that names Justin as author in JSON-LD shows the byline and the same updated date" do
+    @pages.each do |path, doc|
+      nodes = doc.css('script[type="application/ld+json"]').flat_map { |s| g = JSON.parse(s.text); Array(g["@graph"] || g) }
+      authored = nodes.select { |n| n.is_a?(Hash) && n.dig("author", "name") == "Justin McKelvey" }
+      next if authored.empty?
+      byline = doc.at('main a[rel="author"]')
+      assert byline, "#{path}: author in JSON-LD but no visible byline"
+      modified = authored.filter_map { |n| n["dateModified"] }.first
+      next unless modified
+      shown = byline.parent.at("time")&.[]("datetime")
+      assert_equal Date.parse(modified).iso8601, shown, "#{path}: visible updated date doesn't match dateModified"
+    end
+  end
+
   test "every page has a canonical URL, lang, and headings in order" do
     @pages.each do |path, doc|
       assert doc.at('link[rel="canonical"]'), "#{path}: no canonical"

@@ -41,6 +41,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Best Places to Ski in #{m.name}", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best places to ski in <%= m.name %> <%= m.year %></h1>
+    <%= render "shared/byline", date: Date.current %>
     <nav class="flex flex-wrap gap-2 mb-5 text-sm" aria-label="Other months">
       <% SkiMonth.all.each do |x| %>
         <%= link_to x.name, ski_month_path(x), class: "px-3 py-1 rounded-full border #{x.slug == m.slug ? "bg-cyan-500 text-slate-900 border-cyan-500 font-bold" : "border-slate-600 hover:border-cyan-400"}", "aria-current": (x.slug == m.slug ? "page" : nil) %>

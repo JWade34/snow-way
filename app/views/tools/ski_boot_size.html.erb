@@ -9,7 +9,7 @@
 <% content_for(:description, "Ski boot size chart and calculator: convert US men's and women's shoe sizes to mondopoint, plus flex by ability, last width, and how a ski boot should fit.") %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
-        { "@type" => "WebApplication", "name" => "Ski Boot Size Calculator", "url" => absolute_url("/ski-boot-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
+        { "@type" => "WebApplication", "author" => author_schema, "name" => "Ski Boot Size Calculator", "url" => absolute_url("/ski-boot-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
         { "@type" => "HowTo", "name" => "How to measure your ski boot size", "step" => [
           { "@type" => "HowToStep", "text" => "Put a piece of paper on the floor against a wall." },
           { "@type" => "HowToStep", "text" => "Stand on it in a thin sock with your heel touching the wall." },
@@ -23,6 +23,7 @@
   <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ "Ski Boot Size Chart", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski boot size chart &amp; calculator</h1>
+    <%= render "shared/byline" %>
     <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p></section>
 
     <section class="mb-10 bg-slate-800/30 border border-slate-700 rounded-xl p-5" data-controller="boot-size" aria-labelledby="calc-heading">

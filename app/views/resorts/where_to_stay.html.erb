@@ -16,7 +16,7 @@
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "Article", "headline" => "Where to Stay in #{name}", "url" => absolute_url(where_to_stay_resort_path(@resort)),
-          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "author" => author_schema, "dateModified" => Date.current.iso8601, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
           "about" => { "@type" => "SkiResort", "name" => name, "url" => absolute_url(resort_path(@resort)) },
           "mentions" => @lodging.areas.map { |a| { "@type" => "Place", "name" => a.name } },
           "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
@@ -30,6 +30,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ @resort.region_name, region_path(@resort.region_slug) ], [ name, resort_path(@resort) ], [ "Where to Stay", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Where to stay in <%= name %></h1>
+    <%= render "shared/byline", date: Date.current %>
     <section class="tldr mb-6 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= @lodging.summary %></p>
     </section>

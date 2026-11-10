@@ -21,6 +21,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Best Ski Resorts for Beginners", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best ski resorts for beginners</h1>
+    <%= render "shared/byline", date: Date.current %>
     <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= answer %></p>
     </section>

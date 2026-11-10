@@ -1,4 +1,5 @@
 <% season = PowderStudy.season %>
+<% study_date = (PowderOdds.measured_data["generated_on"] || Date.current).to_s %>
 <% avgs = PowderStudy.month_averages %>
 <% regions = PowderStudy.regions %>
 <% top = season.first %>
@@ -32,9 +33,9 @@
           "creator" => { "@id" => "https://snowway.app/#organization" }, "license" => "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree" => true,
           "temporalCoverage" => "2015-07/2025-06", "spatialCoverage" => "Western United States", "isBasedOn" => "https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-water-interactive-map", "variableMeasured" => "Share of days with 1 inch or more of new snow",
           "distribution" => [ { "@type" => "DataDownload", "encodingFormat" => "text/csv", "contentUrl" => absolute_url(powder_study_path(format: :csv)) } ],
-          "dateModified" => Date.current.iso8601 },
+          "dateModified" => study_date },
         { "@type" => "Article", "headline" => "Powder Day Odds: which ski resorts get new snow most often", "url" => absolute_url(powder_study_path), "author" => author_schema,
-          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => Date.current.iso8601,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => study_date,
           "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
         breadcrumb_schema([ [ "Powder Day Odds", nil ] ]),
         faq_schema(faqs)
@@ -46,6 +47,7 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "Powder Day Odds", nil ] ] %>
     <p class="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">Snow Way data study</p>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Powder day odds: which ski resorts get new snow most often</h1>
+    <%= render "shared/byline", date: study_date %>
     <p class="text-slate-300 mb-6">10 seasons of measured snow, <%= season.size %> western US resorts, one question: how often does it actually snow? We matched each resort to a USDA snow station on or near the mountain and counted every day with about an inch or more of new snow, November through April.</p>
 
     <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">

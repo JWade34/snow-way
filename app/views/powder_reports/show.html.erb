@@ -24,6 +24,7 @@ end %>
     <%= render "shared/breadcrumbs", crumbs: @archived ? [ [ "Powder Report", powder_report_path ], [ label, nil ] ] : [ [ "Powder Report", nil ] ] %>
     <p class="text-cyan-300 text-sm uppercase tracking-widest mb-2">Powder Report · week of <%= label %></p>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-4"><%= headline %></h1>
+    <%= render "shared/byline", date: (@archived ? as_of : Date.current) %>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= summary %></p>
       <p class="text-slate-400 text-xs mt-3"><%= @archived ? "Archived snapshot from #{label}." : "Live rankings, updated every 6 hours. A snapshot is archived every Thursday." %> Mid-mountain forecasts from Open-Meteo.</p></section>
 

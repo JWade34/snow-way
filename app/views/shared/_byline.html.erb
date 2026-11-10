@@ -1,0 +1,3 @@
+<%# Visible byline. Pass the same date the page's JSON-LD uses for dateModified, so the two always match. %>
+<% d = local_assigns[:date].presence && (local_assigns[:date].is_a?(String) ? Date.parse(local_assigns[:date]) : local_assigns[:date].to_date) %>
+<p class="text-slate-400 text-sm mb-4">By <%= link_to "Justin McKelvey", author_path, rel: "author", class: "text-slate-300 hover:text-white underline-offset-2 hover:underline" %><% if d %> · Updated <time datetime="<%= d.iso8601 %>"><%= d.strftime("%B %-d, %Y") %></time><% end %></p>

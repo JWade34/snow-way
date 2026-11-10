@@ -19,7 +19,7 @@
 <% content_for(:description, (faqs.first[:answer]).truncate(158)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
-        { "@type" => "WebPage", "name" => "Ikon vs Epic Pass", "url" => absolute_url("/ikon-vs-epic"), "dateModified" => Date.current.iso8601 },
+        { "@type" => "WebPage", "name" => "Ikon vs Epic Pass", "author" => author_schema, "url" => absolute_url("/ikon-vs-epic"), "dateModified" => Date.current.iso8601 },
         breadcrumb_schema([ [ "Ikon vs Epic", nil ] ]), faq_schema(faqs)
       ] }) %>
 <% end %>
@@ -29,6 +29,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ikon vs Epic: which pass is getting more snow?</h1>
+    <%= render "shared/byline", date: Date.current %>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
       <% if @prices[:checked_on] %><p class="text-slate-400 text-xs mt-3">Pass membership and prices checked <%= @prices[:checked_on].strftime("%B %-d, %Y") %> from epicpass.com and ikonpass.com. Snow updates every 6 hours.</p><% end %>

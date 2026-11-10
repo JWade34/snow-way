@@ -14,7 +14,7 @@
 <% content_for(:description, "#{season} ski resort opening dates for #{@resorts.size} North American resorts, with live snow forecasts. #{faqs.first[:answer]}".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
-        { "@type" => "WebPage", "name" => "Ski Resort Opening Dates #{season}", "url" => absolute_url("/ski-resort-opening-dates"), "dateModified" => (@checked_on || today).iso8601 },
+        { "@type" => "WebPage", "name" => "Ski Resort Opening Dates #{season}", "author" => author_schema, "url" => absolute_url("/ski-resort-opening-dates"), "dateModified" => (@checked_on || today).iso8601 },
         breadcrumb_schema([ [ "Opening Dates", nil ] ]), faq_schema(faqs)
       ] }) %>
 <% end %>
@@ -24,6 +24,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Opening Dates", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resort opening dates <%= season %></h1>
+    <%= render "shared/byline", date: (@checked_on || today) %>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p>
       <p class="text-slate-400 text-xs mt-3"><%= @checked_on ? "Dates checked #{@checked_on.strftime("%B %-d, %Y")} from resort announcements, the Ikon and Vail Resorts opening lists, and local news, with a source for each." : "Dates come from resort announcements, with a source for each." %> Resorts can open early or delay with conditions.</p>

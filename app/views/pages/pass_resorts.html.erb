@@ -20,7 +20,7 @@
 <% content_for(:description, "#{@resorts.size} #{@pass_name} resorts in North America ranked by snow this week, with day limits, opening dates, and price. #{faqs.first[:answer]}") %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
-        { "@type" => "CollectionPage", "name" => "#{@pass_name} Resorts", "url" => absolute_url(request.path), "dateModified" => @updated_at&.iso8601 }.compact,
+        { "@type" => "CollectionPage", "name" => "#{@pass_name} Resorts", "author" => author_schema, "url" => absolute_url(request.path), "dateModified" => @updated_at&.iso8601 }.compact,
         breadcrumb_schema([ [ "Ikon vs Epic", "/ikon-vs-epic" ], [ "#{@pass_name} Resorts", nil ] ]),
         { "@type" => "ItemList", "name" => "#{@pass_name} resorts", "numberOfItems" => @resorts.size,
           "itemListElement" => @resorts.each_with_index.map { |r, i| { "@type" => "ListItem", "position" => i + 1, "name" => r.name, "url" => absolute_url("/resorts/#{r.slug}") } } },
@@ -31,6 +31,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", ikon_vs_epic_path ], [ "#{@pass_name} Resorts", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= @pass_name %> resorts</h1>
+    <%= render "shared/byline", date: @updated_at %>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> <%= snowing.size %> of <%= @resorts.size %> <%= @pass_name %> resorts have snow in the forecast.</p>
       <% if guide %><p class="text-sm mt-3"><%= link_to "#{@pass_name} #{guide.on_sale? ? "price" : "status"}, days and blackout dates →", guide.path, class: "text-cyan-300 underline underline-offset-2" %></p><% end %>

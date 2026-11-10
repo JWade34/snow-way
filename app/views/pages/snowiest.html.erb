@@ -20,7 +20,7 @@
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "Dataset", "name" => "Snowiest ski resorts in North America by average annual snowfall", "url" => absolute_url(snowiest_resorts_path),
           "description" => "Resort-reported average annual snowfall for North American ski resorts, each with a cited source, compiled by Snow Way.",
-          "creator" => { "@id" => "https://snowway.app/#organization" }, "license" => "https://creativecommons.org/licenses/by/4.0/",
+          "creator" => { "@id" => "https://snowway.app/#organization" }, "author" => author_schema, "license" => "https://creativecommons.org/licenses/by/4.0/",
           "dateModified" => (AverageSnowfall.checked_on || Date.current).to_s, "isAccessibleForFree" => true,
           "variableMeasured" => "Average annual snowfall (inches)" },
         breadcrumb_schema([ [ "Snowiest Ski Resorts", nil ] ]),
@@ -35,6 +35,7 @@
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Snowiest Ski Resorts", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Snowiest ski resorts in North America</h1>
+    <%= render "shared/byline", date: (AverageSnowfall.checked_on || Date.current).to_s %>
     <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= (faqs.first(2).map { |f| f[:answer] }).join(" ") %></p>
     </section>

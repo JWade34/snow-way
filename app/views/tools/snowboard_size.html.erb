@@ -9,7 +9,7 @@
 <% content_for(:description, "Snowboard size chart and calculator: find your board length by height, weight, ability, and riding style, plus whether you need a wide board for your boot size.") %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
-        { "@type" => "WebApplication", "name" => "Snowboard Size Calculator", "url" => absolute_url("/snowboard-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
+        { "@type" => "WebApplication", "author" => author_schema, "name" => "Snowboard Size Calculator", "url" => absolute_url("/snowboard-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
         breadcrumb_schema([ [ "Guides", "/guides" ], [ "Snowboard Size Chart", nil ] ]), faq_schema(faqs) ] }) %>
 <% end %>
 <div class="min-h-screen">
@@ -17,6 +17,7 @@
   <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Guides", guides_path ], [ "Snowboard Size Chart", nil ] ] %>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Snowboard size chart &amp; calculator</h1>
+    <%= render "shared/byline" %>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5"><p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %></p></section>
 
     <section class="mb-10 bg-slate-800/30 border border-slate-700 rounded-xl p-5" data-controller="size-calculator" data-size-calculator-kind-value="snowboard" aria-labelledby="calc-heading">
