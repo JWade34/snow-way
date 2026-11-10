@@ -7,8 +7,9 @@ module AffiliateHelper
   # Small, quiet disclosure line ending in an underlined link to the policy (same color as the text;
   # the underline is what marks it as a link).
   def affiliate_disclosure(text = nil, css: "mb-6")
-    text ||= [ "Some links on this page are affiliate links. If you buy through them, Snow Way may earn a commission at no extra cost to you.",
-               ("As an Amazon Associate, Snow Way earns from qualifying purchases." if Affiliate.amazon_tag) ].compact.join(" ")
+    # Amazon requires its sentence wherever its links appear, so it's added to custom text too.
+    text = [ text || "Some links on this page are affiliate links. If you buy through them, Snow Way may earn a commission at no extra cost to you.",
+             ("As an Amazon Associate, Snow Way earns from qualifying purchases." if Affiliate.amazon_tag) ].compact.join(" ")
     tag.div(class: "#{css} text-[11px] leading-snug text-slate-400") do
       safe_join([ text, " ", link_to("Affiliate disclosure", affiliate_disclosure_path) ])
     end
