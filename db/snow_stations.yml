@@ -1,0 +1,78 @@
+# Hand-reviewed SNOTEL station for each resort (USDA NRCS Snow Survey, free public data).
+# Rules: same mountain or same drainage, near mid-mountain (not the village), 8+ of the last 10 winters of data.
+# quality: good = on or next to the ski area; ok = same range/drainage within a few miles; weak = usable but
+# a different slope or valley, shown only after Justin approves. Resorts not listed have no suitable station
+# and are labeled as model estimates on the site.
+# Reviewed 2026-11-09 from the NRCS station list (miles = straight line from the resort's map point).
+source: "USDA NRCS SNOTEL snow telemetry network (wcc.sc.egov.usda.gov)"
+reviewed_on: "2026-11-09"
+resorts:
+  alta: { triplet: "766:UT:SNTL", name: "Snowbird", miles: 1.7, elev: 9170, quality: good, note: "Same canyon (Little Cottonwood). The Atwater station at Alta only started in 2022." }
+  alyeska: { triplet: "1103:AK:SNTL", name: "Mt. Alyeska", miles: 0.8, elev: 1500, quality: good }
+  angel-fire: { triplet: "1170:NM:SNTL", name: "Palo", miles: 3.6, elev: 9330, quality: ok }
+  arapahoe-basin: { triplet: "505:CO:SNTL", name: "Grizzly Peak", miles: 0.3, elev: 11110, quality: good }
+  arizona-snowbowl: { triplet: "927:AZ:SNTL", name: "Snowslide Canyon", miles: 3.5, elev: 9720, quality: ok, note: "Same mountain (San Francisco Peaks)." }
+  beaver-creek: { triplet: "1040:CO:SNTL", name: "Mccoy Park", miles: 1.5, elev: 9500, quality: good, note: "On the mountain. The Beaver Ck Village station sits at the base and reads low." }
+  beaver-mountain: { triplet: "1115:UT:SNTL", name: "Klondike Narrows", miles: 3.0, elev: 7280, quality: ok, note: "Same canyon (Logan Canyon)." }
+  big-sky: { triplet: "590:MT:SNTL", name: "Lone Mountain", miles: 1.5, elev: 8820, quality: good }
+  bogus-basin: { triplet: "978:ID:SNTL", name: "Bogus Basin", miles: 0.3, elev: 6370, quality: good }
+  boreal: { triplet: "428:CA:SNTL", name: "Css Lab", miles: 1.3, elev: 6890, quality: good, note: "UC Berkeley Central Sierra Snow Lab at Donner Summit." }
+  brian-head: { triplet: "1154:UT:SNTL", name: "Brian Head", miles: 1.6, elev: 10040, quality: good }
+  bridger-bowl: { triplet: "365:MT:SNTL", name: "Brackett Creek", miles: 5.5, elev: 7370, quality: ok, note: "Same range (Bridgers), east side." }
+  brighton: { triplet: "366:UT:SNTL", name: "Brighton", miles: 0.1, elev: 8790, quality: good }
+  brundage: { triplet: "370:ID:SNTL", name: "Brundage Reservoir", miles: 2.9, elev: 6280, quality: good }
+  copper-mountain: { triplet: "415:CO:SNTL", name: "Copper Mountain", miles: 1.4, elev: 10500, quality: good }
+  crested-butte: { triplet: "380:CO:SNTL", name: "Butte", miles: 0.7, elev: 10190, quality: good }
+  crystal-mountain: { triplet: "642:WA:SNTL", name: "Morse Lake", miles: 1.9, elev: 5400, quality: good }
+  deer-valley: { triplet: "814:UT:SNTL", name: "Thaynes Canyon", miles: 3.0, elev: 9260, quality: ok, note: "Next-door Park City Mountain, same ridge." }
+  diamond-peak: { triplet: "615:NV:SNTL", name: "Marlette Lake", miles: 6.3, elev: 7860, quality: ok, note: "Same Carson Range crest above Lake Tahoe." }
+  discovery: { triplet: "850:MT:SNTL", name: "Warm Springs", miles: 4.0, elev: 7840, quality: ok }
+  eldora: { triplet: "564:CO:SNTL", name: "Lake Eldora", miles: 0.4, elev: 9700, quality: good }
+  grand-targhee: { triplet: "1082:WY:SNTL", name: "Grand Targhee", miles: 1.6, elev: 9260, quality: good }
+  heavenly: { triplet: "518:CA:SNTL", name: "Heavenly Valley", miles: 1.5, elev: 8540, quality: good }
+  homewood: { triplet: "848:CA:SNTL", name: "Ward Creek #3", miles: 4.6, elev: 6750, quality: ok, note: "Next drainage north on Tahoe's west shore." }
+  hoodoo: { triplet: "526:OR:SNTL", name: "Hogg Pass", miles: 1.1, elev: 4800, quality: good }
+  kirkwood: { triplet: "1067:CA:SNTL", name: "Carson Pass", miles: 3.4, elev: 8360, quality: good }
+  lee-canyon: { triplet: "1112:NV:SNTL", name: "Lee Canyon", miles: 0.1, elev: 8620, quality: good }
+  lookout-pass: { triplet: "594:ID:SNTL", name: "Lookout", miles: 0.4, elev: 5180, quality: good }
+  loveland: { triplet: "602:CO:SNTL", name: "Loveland Basin", miles: 0.5, elev: 11410, quality: good }
+  mission-ridge: { triplet: "507:WA:SNTL", name: "Grouse Camp", miles: 4.2, elev: 5390, quality: ok, note: "Mid-mountain height. Upper Wheeler is closer but sits at the base." }
+  monarch-mountain: { triplet: "701:CO:SNTL", name: "Porphyry Creek", miles: 1.7, elev: 10790, quality: good }
+  montana-snowbowl: { triplet: "901:MT:SNTL", name: "Stuart Mountain", miles: 3.7, elev: 7270, quality: ok, note: "Near the summit, so it may read a little high for the whole mountain." }
+  mt-hood-meadows: { triplet: "651:OR:SNTL", name: "Mt Hood Test Site", miles: 2.6, elev: 5380, quality: good }
+  mt-rose: { triplet: "652:NV:SNTL", name: "Mt Rose Ski Area", miles: 0.5, elev: 8810, quality: good }
+  mt-spokane: { triplet: "707:WA:SNTL", name: "Quartz Peak", miles: 3.0, elev: 4710, quality: ok }
+  palisades-tahoe: { triplet: "784:CA:SNTL", name: "Palisades Tahoe", miles: 1.7, elev: 8010, quality: good }
+  park-city: { triplet: "814:UT:SNTL", name: "Thaynes Canyon", miles: 2.3, elev: 9260, quality: good }
+  powderhorn: { triplet: "622:CO:SNTL", name: "Mesa Lakes", miles: 5.0, elev: 10160, quality: ok, note: "Same mesa (Grand Mesa), a little above the summit." }
+  purgatory: { triplet: "387:CO:SNTL", name: "Cascade #2", miles: 2.0, elev: 8990, quality: good }
+  red-lodge-mountain: { triplet: "407:MT:SNTL", name: "Cole Creek", miles: 0.5, elev: 7910, quality: good }
+  red-river: { triplet: "715:NM:SNTL", name: "Red River Pass #2", miles: 3.8, elev: 9840, quality: ok }
+  schweitzer: { triplet: "738:ID:SNTL", name: "Schweitzer Basin", miles: 0.9, elev: 6090, quality: good }
+  sierra-at-tahoe: { triplet: "463:CA:SNTL", name: "Echo Peak", miles: 3.4, elev: 7650, quality: ok }
+  sipapu: { triplet: "1083:NM:SNTL", name: "Tres Ritos", miles: 2.2, elev: 8740, quality: ok }
+  ski-apache: { triplet: "1034:NM:SNTL", name: "Sierra Blanca", miles: 0.8, elev: 10250, quality: good }
+  ski-santa-fe: { triplet: "922:NM:SNTL", name: "Santa Fe", miles: 2.0, elev: 11480, quality: good }
+  snowbird: { triplet: "766:UT:SNTL", name: "Snowbird", miles: 1.0, elev: 9170, quality: good }
+  solitude: { triplet: "366:UT:SNTL", name: "Brighton", miles: 1.5, elev: 8790, quality: good, note: "Same canyon (Big Cottonwood)." }
+  steamboat: { triplet: "457:CO:SNTL", name: "Dry Lake", miles: 5.4, elev: 8240, quality: ok, note: "Same Park Range slope, just north of the ski area." }
+  stevens-pass: { triplet: "791:WA:SNTL", name: "Stevens Pass", miles: 0.2, elev: 3940, quality: good }
+  sugar-bowl: { triplet: "428:CA:SNTL", name: "Css Lab", miles: 2.3, elev: 6890, quality: good, note: "UC Berkeley Central Sierra Snow Lab at Donner Summit." }
+  summit-at-snoqualmie: { triplet: "672:WA:SNTL", name: "Olallie Meadows", miles: 3.7, elev: 4010, quality: ok }
+  sundance: { triplet: "820:UT:SNTL", name: "Timpanogos Divide", miles: 2.9, elev: 8180, quality: ok }
+  taos-ski-valley: { triplet: "1168:NM:SNTL", name: "Taos Powderhorn", miles: 1.0, elev: 11020, quality: good }
+  timberline: { triplet: "651:OR:SNTL", name: "Mt Hood Test Site", miles: 0.7, elev: 5380, quality: good }
+  vail: { triplet: "842:CO:SNTL", name: "Vail Mountain", miles: 1.6, elev: 10290, quality: good }
+  white-pass: { triplet: "692:WA:SNTL", name: "Pigtail Peak", miles: 1.1, elev: 5800, quality: good, note: "Mid-mountain. White Pass E.S. sits at the base." }
+  wolf-creek: { triplet: "874:CO:SNTL", name: "Wolf Creek Summit", miles: 0.7, elev: 10930, quality: good }
+  # Weak matches: usable, but a different slope or valley. Not shown until Justin approves.
+  breckenridge: { triplet: "531:CO:SNTL", name: "Hoosier Pass", miles: 8.4, elev: 11600, quality: weak, note: "South over the ridge. Copper Mountain (7 mi) is a different mountain." }
+  jackson-hole: { triplet: "689:WY:SNTL", name: "Phillips Bench", miles: 6.5, elev: 8170, quality: weak, note: "Teton Pass, south of the resort. No SNOTEL on the mountain." }
+  keystone: { triplet: "505:CO:SNTL", name: "Grizzly Peak", miles: 5.4, elev: 11110, quality: weak, note: "At A-Basin, higher and snowier than Keystone." }
+  mt-baker: { triplet: "909:WA:SNTL", name: "Wells Creek", miles: 5.7, elev: 4040, quality: weak, note: "Valley below the ski area. Likely undercounts the famously snowy upper mountain." }
+  northstar: { triplet: "834:CA:SNTL", name: "Truckee #2", miles: 3.8, elev: 6500, quality: weak, note: "Near the base, about 1,000 ft below mid-mountain." }
+  telluride: { triplet: "538:CO:SNTL", name: "Idarado", miles: 7.4, elev: 9780, quality: weak, note: "Over the ridge. The Alta Lakes station next to the resort only started in 2025." }
+  winter-park: { triplet: "335:CO:SNTL", name: "Berthoud Summit", miles: 5.8, elev: 11300, quality: weak, note: "Berthoud Pass, higher than the ski area." }
+# No suitable station (too far, wrong valley, or too new): aspen-snowmass, mt-bachelor, powder-mountain (station since 2021),
+# snowbasin, sun-valley, tamarack, snow-king, silver-mountain, ski-cooper, mt-ashland, terry-peak, and all resorts
+# in Canada, the Midwest and the East.
