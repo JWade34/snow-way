@@ -5,31 +5,32 @@
 <% snowiest_m, snowiest_v = avgs.max_by { |_, v| v } %>
 <% dec = avgs.find { |m, _| m.slug == "december" } %>
 <% best_region, br = regions.first %>
-<% ne = regions["Northeast"] %>
+<% low = regions.to_a.last %>
 <% co = season.find { |r, _, _| r.state_province == "Colorado" } %>
 <% ut = season.find { |r, _, _| r.state_province == "Utah" } %>
-<% dec_top = SkiMonth.new("december").ranked.first %>
+<% dec_top = season.map { |r, _, o| [ r, o[12].to_i ] }.max_by { |_, v| v } %>
+<% missing = %w[aspen-snowmass breckenridge mammoth-mountain jackson-hole sun-valley telluride mt-bachelor whitefish-mountain winter-park keystone].filter_map { |s| Resort.find_by(slug: s) } %>
 <% findings = [
-     "#{top[0].name} in #{top[0].state_province} gets new snow most often: about #{top[1]} days with 1 inch or more between November and April, the most of #{season.size} North American resorts.",
+     "#{top[0].name} in #{top[0].state_province} gets new snow most often: about #{top[1]} days with an inch or more between November and April, the most of #{season.size} western US resorts with a snow station on or near the mountain.",
      "#{snowiest_m.name} is the snowiest month: across all resorts, #{snowiest_v.round}% of days bring new snow. #{dec[0].name} averages #{dec[1].round}%, and the season starts slowly in November (#{avgs.first.last.round}%).",
-     "#{best_region} resorts average #{br[:avg]} snow days a season#{ne ? ", nearly #{(br[:avg].to_f / ne[:avg]).round(1)} times the Northeast's #{ne[:avg]}" : ""}.",
+     ("#{best_region} resorts average #{br[:avg]} snow days a season#{low && low[0] != best_region ? ", about #{(br[:avg].to_f / low[1][:avg]).round(1)} times #{low[0] == "Southwest" ? "the Southwest" : low[0]}'s #{low[1][:avg]}" : ""}." if br),
      ("In Colorado, #{co[0].name} leads with about #{co[1]} snow days a season; in Utah, #{ut[0].name} leads with #{ut[1]}." if co && ut),
      ("For December trips, #{dec_top[0].name} has the best odds: new snow on #{dec_top[1]}% of December days." if dec_top)
    ].compact %>
 <% faqs = [
      { question: "Which ski resort gets new snow most often?", answer: findings.first },
      { question: "What is the snowiest month for skiing?", answer: findings.second },
-     { question: "Which region of North America gets the most powder days?", answer: findings.third },
-     { question: "How was this measured?", answer: "We counted days with 1 inch or more of new snow at each resort's mid-mountain elevation in 10 seasons of daily modeled weather (#{PowderOdds.source}). Weather models undercount mountain snow, so real snow days are likely more frequent; the study is best for comparing resorts and months." }
-   ] %>
+     ({ question: "Which region of the western US gets the most powder days?", answer: findings.find { |f| f.start_with?("#{best_region} resorts") } } if br),
+     { question: "How was this measured?", answer: "From measured snow, not a weather model. Each resort is matched by hand to a USDA SNOTEL snow station on the mountain or in the same drainage, and we counted the days in July 2015 to June 2025 when the station's snow-water reading rose 0.1 inch or more (about an inch of snow) on a day averaging 34°F or colder, so rain doesn't count. Resorts without a close station are left out rather than estimated." }
+   ].compact %>
 <% content_for(:title, "Powder Day Odds: Which Ski Resorts Get Snow Most Often | Snow Way") %>
-<% content_for(:description, "10 years of daily weather for #{season.size} North American ski resorts: #{findings.first} Free data download.".truncate(300)) %>
+<% content_for(:description, "10 years of measured snow at #{season.size} western US ski resorts: #{findings.first} Free data download.".truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "Dataset", "name" => "Powder Day Odds: how often North American ski resorts get new snow", "url" => absolute_url(powder_study_path),
-          "description" => "Share of days with 1 inch or more of new snow, by month (November to April), for #{season.size} North American ski resorts, from 10 seasons (2015 to 2025) of daily modeled weather at mid-mountain.",
+          "description" => "Share of days with about 1 inch or more of new snow, by month (November to April), for #{season.size} western US ski resorts, from 10 seasons (2015 to 2025) of daily USDA NRCS SNOTEL station measurements matched to each resort.",
           "creator" => { "@id" => "https://snowway.app/#organization" }, "license" => "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree" => true,
-          "temporalCoverage" => "2015-07/2025-06", "spatialCoverage" => "North America", "variableMeasured" => "Share of days with 1 inch or more of new snow",
+          "temporalCoverage" => "2015-07/2025-06", "spatialCoverage" => "Western United States", "isBasedOn" => "https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-water-interactive-map", "variableMeasured" => "Share of days with 1 inch or more of new snow",
           "distribution" => [ { "@type" => "DataDownload", "encodingFormat" => "text/csv", "contentUrl" => absolute_url(powder_study_path(format: :csv)) } ],
           "dateModified" => Date.current.iso8601 },
         { "@type" => "Article", "headline" => "Powder Day Odds: which ski resorts get new snow most often", "url" => absolute_url(powder_study_path), "author" => author_schema,
@@ -45,7 +46,7 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "Powder Day Odds", nil ] ] %>
     <p class="text-cyan-300 text-xs font-bold uppercase tracking-widest mb-2">Snow Way data study</p>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Powder day odds: which ski resorts get new snow most often</h1>
-    <p class="text-slate-300 mb-6">10 seasons of daily weather, <%= season.size %> North American resorts, one question: how often does it actually snow? We counted every day with an inch or more of new snow, November through April.</p>
+    <p class="text-slate-300 mb-6">10 seasons of measured snow, <%= season.size %> western US resorts, one question: how often does it actually snow? We matched each resort to a USDA snow station on or near the mountain and counted every day with about an inch or more of new snow, November through April.</p>
 
     <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <h2 class="font-bold mb-2">Key findings</h2>
@@ -57,14 +58,14 @@
     </section>
 
     <h2 class="text-xl font-bold mb-2">The 25 resorts with the most snow days</h2>
-    <p class="text-slate-400 text-sm mb-4">Days with 1"+ of new snow in a typical November to April season.</p>
+    <p class="text-slate-400 text-sm mb-4">Days with about 1"+ of new snow in a typical November to April season, measured at each resort's snow station.</p>
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
       <table class="w-full text-sm">
         <caption class="sr-only">Ski resorts ranked by snow days per season</caption>
-        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">#</th><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">Where</th><th scope="col" class="px-3 py-2 text-right">Snow days</th></tr></thead>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">#</th><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">Where</th><th scope="col" class="px-3 py-2 text-right">Snow days</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Station</th></tr></thead>
         <tbody class="divide-y divide-slate-800">
           <% season.first(25).each_with_index do |(r, d, _), i| %>
-            <tr><td class="px-3 py-2 text-slate-400"><%= i + 1 %></td><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, best_time_resort_path(r), class: "hover:text-cyan-300" %></th><td class="px-3 py-2 text-slate-300"><%= r.state_province %></td><td class="px-3 py-2 text-right font-bold text-cyan-300"><%= d %></td></tr>
+            <tr><td class="px-3 py-2 text-slate-400"><%= i + 1 %></td><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, best_time_resort_path(r), class: "hover:text-cyan-300" %></th><td class="px-3 py-2 text-slate-300"><%= r.state_province %></td><td class="px-3 py-2 text-right font-bold text-cyan-300"><%= d %></td><td class="px-3 py-2 text-slate-400 text-xs hidden sm:table-cell"><% st = PowderOdds.station(r) %><%= st["name"] %> (<%= st["miles"] %> mi)</td></tr>
           <% end %>
         </tbody>
       </table>
@@ -84,7 +85,7 @@
     </div>
 
     <h2 class="text-xl font-bold mb-3">Month by month</h2>
-    <p class="text-slate-300 text-sm mb-3">Share of days with new snow, averaged across all <%= season.size %> resorts. Each month links to its full ranking.</p>
+    <p class="text-slate-300 text-sm mb-3">Share of days with new snow, averaged across all <%= season.size %> resorts. Each month links to its full North American ranking (modeled, so every resort can be compared).</p>
     <ul class="space-y-1.5 mb-10 text-sm">
       <% max = avgs.values.max %>
       <% avgs.each do |m, v| %>
@@ -99,12 +100,19 @@
       <% end %>
     </ul>
 
+    <% if missing.any? %>
+      <h2 class="text-xl font-bold mb-3">Not in the study</h2>
+      <p class="text-slate-300 text-sm mb-10">Some big names have no snow station close enough to trust, so they're left out instead of guessed: <%= safe_join(missing.map { |r| link_to(r.name, best_time_resort_path(r), class: "text-cyan-300 underline underline-offset-2") }, ", ") %>. Their best-time pages show a modeled estimate. Eastern, Midwestern and Canadian resorts aren't in the SNOTEL network.</p>
+    <% end %>
+
     <section id="method" class="mb-10 scroll-mt-20">
       <h2 class="text-xl font-bold mb-3">How we measured</h2>
       <ul class="text-sm text-slate-300 space-y-2 list-disc pl-5">
-        <li><strong class="text-white">Data:</strong> <%= PowderOdds.source %>.</li>
-        <li><strong class="text-white">Snow day:</strong> any day with 1 inch or more of new snow at the resort's mid-mountain elevation. Season snow days add up November through April.</li>
-        <li><strong class="text-white">Limits:</strong> weather models smooth out mountain terrain and undercount snow, so real snow days are likely more frequent than shown. Snowmaking isn't counted. Use the numbers to compare resorts and months, not as exact totals. For resort-reported annual snowfall, see the <%= link_to "snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %>.</li>
+        <li><strong class="text-white">Data:</strong> <%= PowderOdds.measured_source %> Free public data, no key needed.</li>
+        <li><strong class="text-white">Stations:</strong> each resort is matched by hand to one SNOTEL station on the mountain or in the same drainage, near mid-mountain rather than in the village, with at least 8 full winters of data. Resorts without a close match are left out, not estimated.</li>
+        <li><strong class="text-white">Snow day:</strong> a day when the station's snow-water reading rose 0.1 inch or more on a day averaging 34°F or colder. Season snow days add up November through April.</li>
+        <li><strong class="text-white">Why not inches:</strong> an inch of water makes more dry Rockies snow than wet Cascades snow, so we report how often it snows, not totals. As a check, measured snow lands at a median 87% of each resort's reported average. For resort-reported annual snowfall, see the <%= link_to "snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %>.</li>
+        <li><strong class="text-white">Limits:</strong> a station is one point on the mountain, so wind and aspect can make the slopes snowier or drier than the reading. Snowmaking isn't counted.</li>
         <li><strong class="text-white">Free to use:</strong> CC BY 4.0. Please link to snowway.app/powder-day-odds.</li>
       </ul>
     </section>

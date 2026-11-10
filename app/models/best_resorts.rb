@@ -1,5 +1,5 @@
 # "Best ski resorts in Colorado / the US / on the East Coast..." pages. A transparent score from our own
-# data, normalized within each list: snow days (PowderStudy, 10 seasons), sourced average annual snowfall
+# data, normalized within each list: snow days (PowderStudy modeled, 10 seasons, so every resort is on the same basis), sourced average annual snowfall
 # (AverageSnowfall) and vertical drop. Missing metrics are skipped and the other weights rescale.
 class BestResorts
   EAST = [ "Vermont", "New Hampshire", "Maine", "New York", "Massachusetts", "Connecticut", "Pennsylvania", "New Jersey",
@@ -34,7 +34,7 @@ class BestResorts
   def resorts = @resorts ||= Resort.all.select(&scope[:rule])
 
   def snow_days
-    @snow_days ||= PowderStudy.season.to_h { |r, d, _| [ r.id, d ] }
+    @snow_days ||= PowderStudy.season(:model).to_h { |r, d, _| [ r.id, d ] }
   end
 
   def metrics(r)

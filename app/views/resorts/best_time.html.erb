@@ -12,10 +12,12 @@
   <% faqs << { question: "What is the snowiest month at #{@resort.name}?", answer: "#{month_name.(top3.first[0])} is typically the snowiest month at #{@resort.name}, with about #{top3.first[1].round}% of the season's snow." } %>
   <% faqs << { question: "Does #{@resort.name} have good snow in #{month_name.(early)}?", answer: "#{month_name.(early)} brings about #{dec_share.round}% of #{@resort.name}'s typical seasonal snowfall#{top3.map(&:first).include?(early) ? ", making it one of the snowiest months" : (dec_share >= 10 ? ", a solid month though not the peak" : ", so early-season coverage can be thin")}. Check the live forecast before booking." } %>
 <% end %>
-<% odds = PowderOdds.for(@resort) %>
+<% odds, odds_kind = PowderOdds.best(@resort) %>
+<% st = PowderOdds.station(@resort) if odds_kind == :measured %>
+<% odds_basis = st ? "measured at the #{st["name"]} snow station (#{st["miles"]} miles away, #{number_with_delimiter(st["elev"])} ft), 2015 to 2025" : "10 seasons of modeled weather data at mid-mountain" %>
 <% if odds&.values&.any?(&:positive?) %>
   <% best_m, best_v = odds.max_by { |_, v| v } %>
-  <% faqs << { question: "What month has the most powder days at #{@resort.name}?", answer: "#{month_name.(best_m)}. In a typical #{month_name.(best_m)}, #{@resort.name} gets 1 inch or more of fresh snow on about #{best_v}% of days (roughly #{(best_v * Time.days_in_month(best_m, 2026) / 100.0).round} days), based on 10 seasons of modeled weather data at mid-mountain." } %>
+  <% faqs << { question: "What month has the most powder days at #{@resort.name}?", answer: "#{month_name.(best_m)}. In a typical #{month_name.(best_m)}, #{@resort.name} gets 1 inch or more of fresh snow on about #{best_v}% of days (roughly #{(best_v * Time.days_in_month(best_m, 2026) / 100.0).round} days), #{odds_basis}." } %>
 <% end %>
 <% faqs << { question: "Is #{@resort.name} getting snow right now?", answer: @summary.answer } %>
 
@@ -74,7 +76,11 @@
             </tbody>
           </table>
         </div>
-        <p class="text-slate-400 text-xs mb-3">Source: <%= PowderOdds.source %>. Models undercount mountain snow, so real powder days are likely more frequent; use this to compare months and resorts.</p>
+        <% if st %>
+          <p class="text-slate-400 text-xs mb-3">Measured: USDA NRCS SNOTEL station <%= st["name"] %>, <%= st["miles"] %> miles from the resort at <%= number_with_delimiter(st["elev"]) %> ft, July 2015 to June 2025. A new-snow day is when the station's snow-water reading rose 0.1 inch or more (about an inch of snow) on a day averaging 34°F or colder. See the <%= link_to "powder day odds study", powder_study_path, class: "underline underline-offset-2" %> for how stations were chosen.</p>
+        <% else %>
+          <p class="text-slate-400 text-xs mb-3">Model estimate: <%= PowderOdds.source %>. There's no USDA snow station close enough to <%= @resort.name %> to measure this, and models undercount mountain snow, so real powder days are likely more frequent. Use it to compare months.</p>
+        <% end %>
         <p class="text-sm text-slate-300 mb-10">Compare every resort by month: <%= safe_join(SkiMonth.all.map { |x| link_to(x.name, ski_month_path(x), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>
       <% end %>
 
