@@ -1,13 +1,13 @@
 # Justin's to-do list for Snow Way
 
 Claude keeps this file current. Newest items at the top of each section. Check things off as you go.
-Last updated: 2026-11-09
+Last updated: 2026-11-10
 
 ## Do now (highest payoff first)
 
 - [ ] **Search Console: request indexing, about 10 a day (Claude can do it in Chrome, say "index the next batch").** Checked 2026-11-09: all 31 new pages from Nov 6-8 are already indexed. 173 older pages are not (mostly resort "best time to ski" pages and smaller resorts). Priority list and full list: docs/seo/not-indexed-2026-11-09.md. Google's limit is a rolling 24 hours, so the next batch can go after about 3pm CT on 2026-11-09.
-- [ ] **Send the 16 data-study pitch drafts (jm inbox), about 5 a day.** Fix 5 opening lines first: they claim you know the person's work, so keep them only if true. The list is in docs/outreach/2026-11-powder-odds-pitch-list.md (Status section). Six contact-form-only people are listed there too. Each pickup is a high-authority link.
-- [ ] **Send the 6 travel-page link drafts (jm inbox).** Skim each post first so the opening line is true. 16 more targets are contact-form only, listed in docs/outreach/2026-11-travel-pages-link-targets.md.
+- [ ] **Reply to Jim Steenburgh (optional, 1 minute).** The powder study now uses measured USDA SNOTEL station data, as he suggested. Suggested reply: "Thanks Jim, I really appreciate the straight answer. That's exactly what I needed to hear. We rebuilt it on measured SNOTEL station data: snowway.app/powder-day-odds"
+- [ ] **Decide 7 weak station matches (2 minutes).** Breckenridge, Jackson Hole, Keystone, Mt. Baker, Northstar, Telluride, Winter Park have a station on a different slope or pass. Claude recommends leaving them as model estimates. Details: docs/seo/snotel-rebuild-review.md.
 
 - [ ] **Backlink outreach: send 5 to 10 emails a day (15 minutes a day).** Everything is in `docs/outreach/2026-11-backlink-campaign.md`: 50 lodges, shops and clubs near the top resorts (start with the "warmest" ones that already show snow info), 30 press contacts, 15 podcasts, 16 directories, and drafts in your voice with follow-ups. Personalize the first line, send from your own inbox, log replies in the table at the top. Say "make Gmail drafts" and Claude will create them for you to review and send. Links from other sites are the biggest thing holding rankings back.
 - [ ] **Read one "where to stay" page (5 minutes).** New for 25 resorts, e.g. snowway.app/resorts/vail/where-to-stay. You know Vail, Breck, Park City and Mammoth best: if a neighborhood note is off, tell Claude and it gets fixed. A line of your own advice per resort makes these much stronger.
@@ -48,6 +48,8 @@ Last updated: 2026-11-09
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Powder study, month pages and best-time pages rebuilt on measured USDA SNOTEL station data (58 western resorts); resorts without a station shown as labeled model estimates; best-resorts lists stay on the model so each list compares like with like (2026-11-10)
+- [x] Sent the 16 data-study pitches and 6 travel-page link drafts (2026-11-09)
 - [x] Wikidata item Q142069934 created with statements (website, official site, skiing / ski resort / weather forecasting, US, English, 2026); linked from the site schema (2026-11-06). Add Instagram/Reddit profiles to it once they exist.
 - [x] Stay22 Spark turned off (2026-11-07). Lift stays on for booking links; the site guard against auto-links stays in place.
 - [x] Growth tracking (2026-11-06): Google Search Console connected, daily sync, affiliate clicks and signups tracked by page, admin Growth tab, Monday 7am report email
