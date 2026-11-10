@@ -46,7 +46,7 @@ Drive times (OpenStreetMap routing, no traffic or snow), shuttles, buses, trains
 
 # Best places to ski by month
 
-Ranked by snow days (days with 1"+ of new snow, 10 seasons of history).
+Ranked by snow days (days with about 1"+ of new snow, 10 seasons measured at USDA SNOTEL stations, western US resorts; resorts without a station are listed separately on each page as a model estimate).
 <% SkiMonth.all.each do |m| %><% top = m.ranked.first(3) %>
 - <%= m.name %>: https://snowway.app/best-places-to-ski-in-<%= m.slug %> (top: <%= top.map { |r, o| "#{r.name} #{m.powder_days(o)} of #{m.days} days" }.join(", ") %>)
 <% end %>

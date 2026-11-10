@@ -169,10 +169,11 @@
     <% if trip_routes.any? %>
       <p class="mb-3 text-sm text-slate-300">Getting there: <%= safe_join(trip_routes.map { |p| link_to("#{p.title}: drive time and shuttles", trip_route_path(p), class: "text-cyan-300 underline underline-offset-2") }, " · ") %></p>
     <% end %>
-    <% if (odds = PowderOdds.for(@resort)) && @resort.north_american? && (best_m, _ = odds.select { |m, _| SkiMonth::SLUGS.include?(Date::MONTHNAMES[m].downcase) }.max_by { |_, v| v }) && best_m %>
+    <% if (odds, kind = PowderOdds.best(@resort)) && odds && @resort.north_american? && (best_m, _ = odds.select { |m, _| SkiMonth::SLUGS.include?(Date::MONTHNAMES[m].downcase) }.max_by { |_, v| v }) && best_m %>
       <% sm = SkiMonth.new(Date::MONTHNAMES[best_m].downcase) %>
-      <% rank = sm.ranked.index { |r, _| r.id == @resort.id } %>
-      <p class="mb-3 text-sm text-slate-300">When to go: <%= @resort.name %> snows most often in <%= sm.name %><%= rank && rank < 25 ? ", where it ranks #{(rank + 1).ordinalize} of #{sm.ranked.size} North American resorts" : "" %>. See the <%= link_to "best places to ski in #{sm.name}", ski_month_path(sm), class: "text-cyan-300 underline underline-offset-2" %>.</p>
+      <% list = kind == :measured ? sm.ranked : sm.modeled %>
+      <% rank = list.index { |r, _| r.id == @resort.id } %>
+      <p class="mb-3 text-sm text-slate-300">When to go: <%= @resort.name %> snows most often in <%= sm.name %><%= rank && rank < 25 ? ", where it ranks #{(rank + 1).ordinalize} of #{list.size} #{kind == :measured ? "western US resorts with snow stations" : "resorts without a snow station (model estimate)"}" : "" %>. See the <%= link_to "best places to ski in #{sm.name}", ski_month_path(sm), class: "text-cyan-300 underline underline-offset-2" %>.</p>
     <% end %>
     <% if (town = WinterTown.for_resort(@resort).first) %>
       <p class="mb-3 text-sm text-slate-300">Off the slopes: <%= link_to "things to do in #{town.name} in winter", winter_town_path(town), class: "text-cyan-300 underline underline-offset-2" %> (tours, hot springs, free things).</p>

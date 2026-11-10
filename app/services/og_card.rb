@@ -14,7 +14,7 @@ class OgCard < OgImage
     when %r{\A/best-places-to-ski-in-([a-z]+)\z}
       m = SkiMonth.find($1)
       r, o = m.ranked.first
-      new(kicker: "BEST PLACES TO SKI", title: "in #{m.name} #{m.year}", big: r ? "#{m.powder_days(o)} days" : m.name, caption: r ? "of new snow at #{r.name}, the leader · 10 years of data" : "ranked by snow days")
+      new(kicker: "BEST PLACES TO SKI", title: "in #{m.name} #{m.year}", big: r ? "#{m.powder_days(o)} days" : m.name, caption: r ? "of new snow at #{r.name}, the leader · 10 years measured" : "ranked by snow days")
     when %r{\A/best-ski-resorts-((?:in|on)-[a-z-]+)\z}
       b = BestResorts.find($1)
       r, score, m = b.ranked.first

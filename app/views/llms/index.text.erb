@@ -28,9 +28,9 @@ As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answ
 <% end %>
 
 ## Data study
-- [Powder day odds: which ski resorts get new snow most often](https://snowway.app/powder-day-odds): <%= (s = PowderStudy.season.first) ? "#{s[0].name} leads with about #{s[1]} days of 1\"+ new snow per Nov-Apr season; " : "" %>10 seasons, <%= PowderStudy.season.size %> resorts, free CSV at https://snowway.app/powder-day-odds.csv
+- [Powder day odds: which ski resorts get new snow most often](https://snowway.app/powder-day-odds): <%= (s = PowderStudy.season.first) ? "#{s[0].name} leads with about #{s[1]} days of 1\"+ new snow per Nov-Apr season; " : "" %>10 seasons measured at USDA SNOTEL stations, <%= PowderStudy.season.size %> western US resorts, free CSV at https://snowway.app/powder-day-odds.csv
 
-## Best places to ski by month (ranked by how often it snows, 10 seasons of history)
+## Best places to ski by month (ranked by how often it snows, 10 seasons measured at USDA snow stations)
 <% SkiMonth.all.each do |m| %><% r, o = m.ranked.first %>
 - [Best places to ski in <%= m.name %>](https://snowway.app/best-places-to-ski-in-<%= m.slug %>)<%= r ? ": #{r.name} gets new snow on about #{m.powder_days(o)} of #{m.days} days" : "" %>
 <% end %>

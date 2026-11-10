@@ -1,5 +1,6 @@
 # "Best places to ski in December" pages. Ranks resorts by how often it snows in that month
-# (PowderOdds: share of days with 1"+ of new snow over 10 seasons), plus live forecast and opening dates.
+# (PowderOdds: share of days with 1"+ of new snow over 10 seasons; measured where a SNOTEL station exists,
+# modeled in a separate list elsewhere), plus live forecast and opening dates.
 class SkiMonth
   SLUGS = %w[november december january february march april].freeze
   REGIONS = [ "Colorado", "Utah", "California", "Wyoming", "Montana", "Idaho", "Washington", "Oregon",
@@ -35,9 +36,20 @@ class SkiMonth
 
   def days = Time.days_in_month(number, year)
 
-  # [[resort, odds_percent], ...] best first. Ties go to the resort with more sourced annual snowfall.
+  # [[resort, odds_percent], ...] best first, measured at SNOTEL stations (western US resorts with an approved
+  # station). Ties go to the resort with more sourced annual snowfall.
   def ranked(scope = Resort.north_america)
-    scope.to_a.filter_map { |r| (o = PowderOdds.for(r)&.dig(number)) && [ r, o ] }
+    rank(scope) { |r| PowderOdds.measured(r) }
+  end
+
+  # The same, modeled, for resorts with no approved station (the East, Canada, Aspen, Mammoth...). Never merged
+  # with ranked: measured days run about 1.4x the model's.
+  def modeled(scope = Resort.north_america)
+    rank(scope.to_a.reject { |r| PowderOdds.station(r) }) { |r| PowderOdds.for(r) }
+  end
+
+  def rank(scope)
+    scope.to_a.filter_map { |r| (o = yield(r)&.dig(number)) && [ r, o ] }
       .sort_by { |r, o| [ -o, -(AverageSnowfall.for(r)&.dig("inches")).to_i, r.name ] }
   end
 
