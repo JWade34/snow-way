@@ -65,6 +65,6 @@ class PagesController < ApplicationController
     @totals = Resort.projected_totals
     @resorts = Resort.north_america.where.not(opening_date: nil).order(:opening_date, :name)
     @unknown = Resort.north_america.where(opening_date: nil).order(:name)
-    @checked_on = Resort.maximum(:facts_checked_on)
+    @checked_on = [ Resort.openings_checked_on, Resort.maximum(:facts_checked_on) ].compact.max
   end
 end

@@ -116,6 +116,12 @@ class Resort < ApplicationRecord
     end
   end
 
+  # When opening dates were last rechecked (they change weekly in season; pass prices don't).
+  def self.openings_checked_on
+    facts = File.exist?(FACTS_FILE) ? YAML.load_file(FACTS_FILE, permitted_classes: [ Date ]) : {}
+    facts["openings_checked_on"]
+  end
+
   def self.pass_prices
     facts = File.exist?(FACTS_FILE) ? YAML.load_file(FACTS_FILE, permitted_classes: [ Date ]) : {}
     { checked_on: facts["checked_on"], passes: facts.fetch("passes", {}) || {} }

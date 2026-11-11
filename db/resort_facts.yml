@@ -2,6 +2,8 @@
 # Pass lists: epicpass.com, ikonpass.com, mountaincollective.com, indyskipass.com. Re-verify before each season
 # and when prices change (Epic prices rise after Nov 15). Unverified values stay null.
 checked_on: 2026-11-05
+# Opening dates and statuses are rechecked separately from pass prices.
+openings_checked_on: 2026-11-10
 passes:
   epic:
     adult_price_usd: 1169
@@ -146,18 +148,18 @@ resorts:
     pass_note: Unlimited on Epic Pass and Epic Local Pass
     pass_source: https://www.epicpass.com/passes/epic-pass.aspx
     other_passes: []
-    opening_date: 2026-11-06
+    opening_date: 2026-11-11
     opening_status: scheduled
-    opening_source: https://news.vailresorts.com/2026-08-18-Is-Winter-About-to-Show-Off-Vail-Resorts-Announces-2026-27-Opening-Dates-as-Super-El-Nino-Builds-Anticipation-for-Great-Powder
+    opening_source: https://www.summitdaily.com/news/after-delay-breckenridge-announces-new-opening-day/
   copper-mountain:
     pass: ikon
     pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base has blackout dates
       Dec 26-30, Jan 16-17, Feb 13-14)
     pass_source: https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date: 2026-11-06
-    opening_status: scheduled
-    opening_source: https://unofficialnetworks.com/2026/09/08/copper-mountain-announces-november-6th-as-opening-day-of-2026-27-winter-season/
+    opening_date: 2026-11-08
+    opening_status: opened
+    opening_source: https://www.coppercolorado.com/
   crested-butte:
     pass: epic
     pass_note: Unlimited on Epic Pass and Epic Local Pass
@@ -190,9 +192,9 @@ resorts:
       ; https://www.indyskipass.com/our-resorts
     other_passes:
     - indy
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-11-07
+    opening_status: opened
+    opening_source: https://skiloveland.com/loveland-ski-area-opening-saturday-november-7-2026/
   monarch-mountain:
     pass: independent
     pass_note: Not on Epic or Ikon 2026-27 resort lists
@@ -346,7 +348,7 @@ resorts:
     pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
     other_passes: []
     opening_date: 2026-11-06
-    opening_status: scheduled
+    opening_status: opened
     opening_source: https://www.skirose.com/
   bretton-woods:
     pass: independent
@@ -457,9 +459,10 @@ resorts:
     pass_note: Not on Epic or Ikon 2026-27 resort lists
     pass_source: https://www.epicpass.com/passes/epic-pass.aspx ; https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date: 2026-11-06
-    opening_status: scheduled
-    opening_source: https://www.deseret.com/lifestyle/2026/10/07/utah-ski-resorts-opening-dates-new-terrain-upgraded-chairlifts/
+    # Opener postponed indefinitely (KPCW, 2026-11-05); back to "not yet announced" until a new date is set.
+    opening_date: null
+    opening_status: null
+    opening_source: https://www.kpcw.org/ski-resorts/2026-11-05/brian-head-delays-early-november-opening
   brighton:
     pass: ikon
     pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
@@ -681,9 +684,9 @@ resorts:
     pass_source: https://www.ikonpass.com/en/destinations ; https://mountaincollective.com/
     other_passes:
     - mountain_collective
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-11-07
+    opening_status: opened
+    opening_source: https://www.skibanff.com/conditions/
   kicking-horse:
     pass: epic
     pass_note: 'Partner resort (Resorts of the Canadian Rockies): 7 total days combined
@@ -1130,17 +1133,17 @@ resorts:
     pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
     pass_source: https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
   granite-peak:
     pass: ikon
     pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
     pass_source: https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-11-21
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
   mount-bohemia:
     pass: independent
     pass_note: Not on Epic or Ikon 2026-27 resort lists
@@ -1154,9 +1157,9 @@ resorts:
     pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
     pass_source: https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-12-11
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
   crystal-mountain-michigan:
     pass: independent
     pass_note: Not on Epic or Ikon 2026-27 resort lists; on Indy Pass
@@ -1483,17 +1486,17 @@ resorts:
     pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base blackout dates apply)
     pass_source: https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-12-19
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
   blue-mountain-ontario:
     pass: ikon
     pass_note: Unlimited on Ikon Pass and Ikon Base Pass (Base blackout dates apply)
     pass_source: https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-12-10
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
   mount-st-louis-moonstone:
     pass: independent
     pass_note: Not on Epic or Ikon 2026-27 resort lists
@@ -1588,9 +1591,9 @@ resorts:
     pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass
     pass_source: https://www.ikonpass.com/en/destinations
     other_passes: []
-    opening_date:
-    opening_status:
-    opening_source:
+    opening_date: 2026-11-27
+    opening_status: scheduled
+    opening_source: https://www.ikonpass.com/en/opening-closing-dates
   niseko-united:
     pass: ikon
     pass_note: 7 days on Ikon Pass, 5 on Ikon Base Pass (Niseko United); also 2 days
