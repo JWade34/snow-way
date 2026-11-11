@@ -52,6 +52,7 @@ resorts:
   sierra-at-tahoe: { triplet: "463:CA:SNTL", name: "Echo Peak", miles: 3.4, elev: 7650, quality: ok }
   sipapu: { triplet: "1083:NM:SNTL", name: "Tres Ritos", miles: 2.2, elev: 8740, quality: ok }
   ski-apache: { triplet: "1034:NM:SNTL", name: "Sierra Blanca", miles: 0.8, elev: 10250, quality: good }
+  ski-cooper: { triplet: "485:CO:SNTL", name: "Fremont Pass", miles: 5.7, elev: 11310, quality: ok, note: "Next pass over at the head of the Arkansas River, within 200 ft of mid-mountain. Added 2026-11-10." }
   ski-santa-fe: { triplet: "922:NM:SNTL", name: "Santa Fe", miles: 2.0, elev: 11480, quality: good }
   snowbird: { triplet: "766:UT:SNTL", name: "Snowbird", miles: 1.0, elev: 9170, quality: good }
   solitude: { triplet: "366:UT:SNTL", name: "Brighton", miles: 1.5, elev: 8790, quality: good, note: "Same canyon (Big Cottonwood)." }
@@ -74,5 +75,8 @@ resorts:
   telluride: { triplet: "538:CO:SNTL", name: "Idarado", miles: 7.4, elev: 9780, quality: weak, note: "Over the ridge. The Alta Lakes station next to the resort only started in 2025." }
   winter-park: { triplet: "335:CO:SNTL", name: "Berthoud Summit", miles: 5.8, elev: 11300, quality: weak, note: "Berthoud Pass, higher than the ski area." }
 # No suitable station (too far, wrong valley, or too new): aspen-snowmass, mt-bachelor, powder-mountain (station since 2021),
-# snowbasin, sun-valley, tamarack, snow-king, silver-mountain, ski-cooper, mt-ashland, terry-peak, and all resorts
-# in Canada, the Midwest and the East.
+# snowbasin, sun-valley, tamarack, snow-king, silver-mountain, mt-ashland, terry-peak, whitefish-mountain, sunlight-mountain,
+# and all resorts in Canada, the Midwest and the East.
+# California sensors (Mammoth Pass for mammoth-mountain, Agnew Pass for june-mountain, Gianelli Meadow for dodge-ridge,
+# Huntington Lake for china-peak) are state snow pillows in the NRCS feed with no air temperature, so the rain filter
+# can't run and they stay model estimates. Southern California resorts have no station. Rechecked 2026-11-10.

@@ -10,7 +10,7 @@
 <% co = season.find { |r, _, _| r.state_province == "Colorado" } %>
 <% ut = season.find { |r, _, _| r.state_province == "Utah" } %>
 <% dec_top = season.map { |r, _, o| [ r, o[12].to_i ] }.max_by { |_, v| v } %>
-<% missing = %w[aspen-snowmass breckenridge mammoth-mountain jackson-hole sun-valley telluride mt-bachelor whitefish-mountain winter-park keystone].filter_map { |s| Resort.find_by(slug: s) } %>
+<% missing = %w[aspen-snowmass breckenridge mammoth-mountain jackson-hole sun-valley telluride mt-bachelor whitefish-mountain winter-park keystone].filter_map { |s| (r = Resort.find_by(slug: s)) && !PowderOdds.station(r) ? r : nil } %>
 <% findings = [
      "#{top[0].name} in #{top[0].state_province} gets new snow most often: about #{top[1]} days with an inch or more between November and April, the most of #{season.size} western US resorts with a snow station on or near the mountain.",
      "#{snowiest_m.name} is the snowiest month: across all resorts, #{snowiest_v.round}% of days bring new snow. #{dec[0].name} averages #{dec[1].round}%, and the season starts slowly in November (#{avgs.first.last.round}%).",

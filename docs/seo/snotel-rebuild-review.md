@@ -140,3 +140,28 @@ Aspen Snowmass, Mt. Bachelor, Powder Mountain (station only since 2021), Snowbas
 1. Decide the weak matches (include with a note, or leave out).
 2. Wire the station data into the study, month pages, best-resorts lists and best-time-to-ski pages; resorts without a station show "model estimate" and are kept out of rankings.
 3. Later: "measured snow, last 24 hours" and "snowpack vs normal" on western resort pages from the same stations.
+
+## Station gap recheck (2026-11-10, branch `station-gaps`)
+
+Searched every SNOTEL station within 20 miles of each high-search resort that has no measured data, plus every other Colorado, California and Utah resort without a station, using the NRCS station list. The same bar applies: same mountain or drainage, near mid-mountain, 8+ full winters, and a daily air temperature so the rain filter works. The 7 weak matches above are unchanged; they still need your call.
+
+| Resort | Best candidate | Miles | Station elev vs mid-mountain | Rating | Why |
+|---|---|---|---|---|---|
+| Ski Cooper | Fremont Pass (485:CO:SNTL) | 5.7 | 11,310 vs 11,100 ft | **ok (added)** | Next pass over at the head of the Arkansas River, nearly the same height. 10 full seasons. Now #28 of 59 in the study (54 snow days; the model had 30). |
+| Mammoth Mountain | Mammoth Pass (MHP:CA:MSNT) | 1.4 | 9,400 vs 9,500 ft | none | Ideal spot, but it's a California state snow pillow with no air temperature, so rain can't be filtered out. Would need a different method. |
+| June Mountain | Agnew Pass (AGP:CA:MSNT) | 4.2 | 9,300 vs 8,800 ft | none | Same problem (no temperature), and only about 3 years of daily data. |
+| Dodge Ridge | Gianelli Meadow (GNL:CA:MSNT) | 3.7 | 8,400 vs 7,400 ft | none | No temperature. |
+| China Peak | Huntington Lake (HNT:CA:MSNT) | 3.6 | 7,000 vs 7,900 ft | none | No temperature, and at the lake below the mountain. |
+| Aspen Snowmass | North Lost Trail | 13.8 | 9,190 vs 10,300 ft | none | Nothing within 13 miles. |
+| Winter Park | Fool Creek | 5.7 | 11,130 vs 10,530 ft | none | Fraser Experimental Forest across the valley; no better than the current weak Berthoud match. Arrow (2 mi) closed in 2013. |
+| Telluride | Red Mountain Pass | 6.2 | 11,060 vs 10,940 ft | none | Right height but the Ouray/Silverton side of the range. Alta Lakes (3.8 mi) only began in 2025; recheck in a few years. |
+| Breckenridge | Michigan Creek | 7.5 | 10,700 vs 11,300 ft | none | Different drainage (east, toward Georgia Pass). No better than the current weak match. |
+| Keystone | Jackwhacker Gulch | 8.4 | 11,030 vs 10,840 ft | none | Farther than the current weak match. |
+| Jackson Hole | Grand Targhee | 14.2 | 9,260 vs 8,380 ft | none | Other side of the Tetons. |
+| Sun Valley | Chocolate Gulch | 7.1 | 6,310 vs 7,450 ft | none | Valley floor north of Ketchum, 1,100 ft below mid-mountain. Mount Baldy is a monthly manual snow course only. |
+| Mt. Bachelor | Three Creeks Meadow | 11.6 | 5,680 vs 7,380 ft | none | Too far and too low. |
+| Whitefish | Emery Creek | 19.2 | 4,340 vs 5,640 ft | none | Hell Roaring Divide (1 mi) is a monthly manual snow course only. Stryker Basin began in 2023. |
+| Powder Mountain | Powder Mountain | 0.8 | 8,490 vs 8,160 ft | none | Only since 2021 (4 seasons). Recheck in 2029. |
+| Snowbasin, Sunlight, Bear Mountain, Snow Summit, Mountain High | none | 10+ | | none | No station within 10 miles. |
+
+**Possible later upgrade for Mammoth:** pair the Mammoth Pass snow pillow with a nearby temperature record to run the rain filter. That's a method change, so it's not in this branch.

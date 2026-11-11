@@ -2,7 +2,7 @@
 source: USDA NRCS SNOTEL station measurements, July 2015 to June 2025. A new-snow
   day is one where the snow pillow's water reading rose 0.1 inch or more (about an
   inch of snow) on a day averaging 34°F or colder, so rain doesn't count.
-generated_on: '2026-11-09'
+generated_on: '2026-11-10'
 resorts:
   alta:
     odds:
@@ -499,6 +499,17 @@ resorts:
       5: 0
     seasons: 10
     snow_water_in: 9.4
+  ski-cooper:
+    odds:
+      11: 29
+      12: 33
+      1: 28
+      2: 27
+      3: 32
+      4: 30
+      5: 17
+    seasons: 10
+    snow_water_in: 15.4
   ski-santa-fe:
     odds:
       11: 16
