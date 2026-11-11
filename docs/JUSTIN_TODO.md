@@ -5,7 +5,10 @@ Last updated: 2026-11-10
 
 ## Do now (highest payoff first)
 
-- [ ] **Search Console: request indexing, about 10 a day (Claude can do it in Chrome, say "index the next batch").** Checked 2026-11-09: all 31 new pages from Nov 6-8 are already indexed. 173 older pages are not (mostly resort "best time to ski" pages and smaller resorts). Priority list and full list: docs/seo/not-indexed-2026-11-09.md. Google's limit is a rolling 24 hours, so the next batch can go after about 3pm CT on 2026-11-09.
+- [ ] **Fix the growth loop's network access (2 minutes, only you can do this).** The Monday Nov 9 run couldn't reach snowway.app: the cloud environment blocks it. Go to claude.ai/code → Environments → **Default** → network access, and add `snowway.app` to the allowed hosts (or allow all). Until then the Monday and Thursday loops change nothing.
+- [ ] **Send the 8 round-2 powder study pitches (10 minutes).** Drafts are in your jm inbox (Steamboat Pilot, Crested Butte News, JH News&Guide, The Bulletin, Unofficial Networks, Whiteout podcast, Visit Big Sky, GetSkiTickets). Read each, tweak the first line, send. Log in docs/outreach/2026-11-backlink-campaign.md. Six more outlets only take contact forms (listed in that doc).
+- [ ] **Amazon tag: confirm it's yours.** Live Amazon links use the tag `snowway-20` and every page says Snow Way is an Amazon Associate, but the Amazon item below isn't checked off. If you haven't joined, tell Claude and the links and sentence come off until you do.
+- [ ] **Search Console: request indexing, about 10 a day (Claude can do it in Chrome, say "index the next batch").** Checked 2026-11-09: all 31 new pages from Nov 6-8 are already indexed. 173 older pages are not (mostly resort "best time to ski" pages and smaller resorts). Priority list and full list: docs/seo/not-indexed-2026-11-09.md. Tried again 2026-11-10: Google's daily quota was already used, so none of the 20 priority pages are requested yet. Start with the top of the priority list.
 - [ ] **Reply to Jim Steenburgh (optional, 1 minute).** The powder study now uses measured USDA SNOTEL station data, as he suggested. Suggested reply: "Thanks Jim, I really appreciate the straight answer. That's exactly what I needed to hear. We rebuilt it on measured SNOTEL station data: snowway.app/powder-day-odds"
 - [ ] **Decide 7 weak station matches (2 minutes).** Breckenridge, Jackson Hole, Keystone, Mt. Baker, Northstar, Telluride, Winter Park have a station on a different slope or pass. Claude recommends leaving them as model estimates. Details: docs/seo/snotel-rebuild-review.md.
 
@@ -48,6 +51,8 @@ Last updated: 2026-11-10
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Opening dates rechecked from sources: Copper, Mt. Rose, Loveland and Banff Sunshine opened; Breckenridge moved to Nov 11; Brian Head postponed; Monday loop now refreshes them weekly through December (2026-11-10)
+- [x] Station gaps rechecked: Ski Cooper added (59 resorts measured). Aspen, Breck, Telluride, Winter Park, Keystone, Mammoth, Jackson Hole, Sun Valley, Bachelor and Whitefish still have no trustworthy station (2026-11-10)
 - [x] Powder study, month pages and best-time pages rebuilt on measured USDA SNOTEL station data (58 western resorts); resorts without a station shown as labeled model estimates; best-resorts lists stay on the model so each list compares like with like (2026-11-10)
 - [x] Sent the 16 data-study pitches and 6 travel-page link drafts (2026-11-09)
 - [x] Wikidata item Q142069934 created with statements (website, official site, skiing / ski resort / weather forecasting, US, English, 2026); linked from the site schema (2026-11-06). Add Instagram/Reddit profiles to it once they exist.
