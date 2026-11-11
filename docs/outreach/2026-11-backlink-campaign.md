@@ -29,6 +29,14 @@ Research date: 2026-11-07. Every contact below was read off the business's or ou
 | Drafted 2026-11-08 (jm inbox) | Olympic Valley Ski & Bike (1 #33) | widget | olympicvalleyskibike@gmail.com | 5 (a) | | | | Not sent yet. Palisades widget |
 | Drafted 2026-11-08 (jm inbox) | Fast Ski Sports (1 #17) | widget | info@fastskisports.com | 5 (a) | | | | Not sent yet. Mammoth widget |
 | Drafted 2026-11-08 (jm inbox) | Powder House (1 #45) | widget | info@powderhousebend.com | 5 (a) | | | | Not sent yet. Mt. Bachelor widget. Replaced Start Haus (form only) |
+| Drafted 2026-11-10 (jm inbox) | Steamboat Pilot & Today (2 #3) | press | news@steamboatpilot.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: Steamboat leads Colorado, 63 measured snow days |
+| Drafted 2026-11-10 (jm inbox) | Crested Butte News (2 #11) | press | editorial@crestedbuttenews.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: CB peaks in December (33%), unlike Steamboat and Vail |
+| Drafted 2026-11-10 (jm inbox) | Jackson Hole News&Guide (2 #7) | press | editor@jhnewsandguide.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: Grand Targhee 87 days, 1st in Wyoming; JHMR left out (no close station) |
+| Drafted 2026-11-10 (jm inbox) | The Bulletin, Mark Morical (2 #14) | press | mmorical@bendbulletin.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: Mt. Hood Meadows best December odds (57%); asks about a Bachelor station |
+| Drafted 2026-11-10 (jm inbox) | Unofficial Networks, Mike (2 #27) | press | Mike@unofficialnetworks.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: National: White Pass 101 days, February snowiest, PNW vs Southwest |
+| Drafted 2026-11-10 (jm inbox) | The Whiteout Ski Podcast (3 #2) | podcast | hello@inthesnow.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: Trip-planning data for skiers heading west; guest offer |
+| Drafted 2026-11-10 (jm inbox) | Visit Big Sky (1 #26) | directory / resource | info@visitbigskymt.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: Big Sky 70 days; April snow 43% of days; link best-time page |
+| Drafted 2026-11-10 (jm inbox) | GetSkiTickets (6a #23) | directory / resource | info@getskitickets.com | Powder study round 2 (measured SNOTEL) | | | | Not sent yet. Angle: Colorado ranking: Steamboat, Loveland, Vail |
 | Skipped 2026-11-08 | App Savvy Traveller (6a #3) | directory / roundup | https://appsavvytraveller.com/contact-us/ | | | | | Contact form only, site blocks our reader. Use the form by hand |
 | Skipped 2026-11-08 | Start Haus (1 #34) | widget | https://www.starthaus.com/pages/contact | | | | | No email printed, form only |
 | Skipped 2026-11-08 | Alpenhof Lodge Teton Village (1 #22) | widget | https://alpenhoflodge.com/#contact-section | | | | | No email printed, form and phone only |
