@@ -20,6 +20,11 @@ Rule from Justin: only make moves that improve a page. Never regress what alread
    ChangeGuard: low-traffic pages go live automatically; winners and high-traffic pages wait for Justin in /admin/changes.
 4. Run `bin/rails test` (the SEO guard checks titles, descriptions, links). Commit and push only if green.
 5. Never touch a page marked `winner` without a proposal Justin approves. Never change rankings, prices, or facts without a source.
+6. **October 15 to December 31 only: refresh opening dates.** In `db/resort_facts.yml`, check every resort that is not `opened` and
+   whose `opening_date` is past or within 7 days, plus big names with no date yet. Mark `opened` (with the real opening day) or move
+   the date only when a fetched source confirms it: the resort's own site or press release, the Vail Resorts or Alterra newsroom,
+   or dated local news. Unconfirmed entries stay as they are. Never use a URL you did not fetch. Set `checked_on` only when the pass
+   prices in the same file were re-verified too; otherwise leave it.
 
 ## Measurement (automatic, in the app)
 - Each change is compared 28 days before vs after, against untouched pages in the same section. Worse → reverted automatically
