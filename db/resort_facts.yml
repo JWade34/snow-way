@@ -6,14 +6,16 @@ checked_on: 2026-11-05
 openings_checked_on: 2026-11-10
 passes:
   epic:
-    adult_price_usd: 1169
-    price_note: 'Adult (31+) price shown 2026-11-05; site banner says prices go up
-      after November 15. Young adult/teen 13-30: $929'
+    adult_price_usd:
+    price_note: Epic Pass prices rose after November 15, 2026; the new adult price
+      could not be verified on 2026-11-16 (last seen $1,169 adult / $929 young adult
+      13-30 on 2026-11-05, before the increase). Check epicpass.com for the current price.
     source: https://www.epicpass.com/passes/epic-pass.aspx
   epic_local:
-    adult_price_usd: 869
-    price_note: 'Adult (31+) price shown 2026-11-05; prices go up after November 15.
-      Young adult/teen 13-30: $689'
+    adult_price_usd:
+    price_note: Epic Local Pass prices rose after November 15, 2026; the new adult
+      price could not be verified on 2026-11-16 (last seen $869 adult / $689 young
+      adult 13-30 on 2026-11-05, before the increase). Check epicpass.com for the current price.
     source: https://www.epicpass.com/passes/epic-local-pass.aspx
   ikon:
     adult_price_usd: 1529
