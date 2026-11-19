@@ -1,0 +1,276 @@
+---
+source: NOAA ACIS daily snowfall from NWS cooperative, CoCoRaHS and Environment Canada
+  observers, July 2015 to June 2025. A new-snow day is one where the observer measured
+  1 inch or more of new snowfall.
+generated_on: '2026-11-19'
+resorts:
+  bear-mountain:
+    odds:
+      11: 4
+      12: 5
+      1: 8
+      2: 8
+      3: 8
+      4: 1
+      5: 1
+    seasons: 10
+  beech-mountain:
+    odds:
+      11: 2
+      12: 12
+      1: 22
+      2: 13
+      3: 6
+      4: 2
+      5: 1
+    seasons: 10
+  boyne-mountain:
+    odds:
+      11: 12
+      12: 28
+      1: 29
+      2: 31
+      3: 10
+      4: 5
+      5: 0
+    seasons: 10
+  breckenridge:
+    odds:
+      11: 24
+      12: 26
+      1: 28
+      2: 27
+      3: 30
+      4: 22
+      5: 11
+    seasons: 10
+  cranmore:
+    odds:
+      11: 5
+      12: 12
+      1: 18
+      2: 20
+      3: 9
+      4: 4
+      5: 0
+    seasons: 10
+  fernie:
+    odds:
+      11: 14
+      12: 28
+      1: 23
+      2: 18
+      3: 11
+      4: 4
+      5: 0
+    seasons: 9
+  grouse-mountain:
+    odds:
+      11: 18
+      12: 32
+      1: 26
+      2: 33
+      3: 27
+      4: 17
+      5: 1
+    seasons: 9
+  gunstock:
+    odds:
+      11: 4
+      12: 15
+      1: 15
+      2: 22
+      3: 10
+      4: 3
+      5: 0
+    seasons: 10
+  jay-peak:
+    odds:
+      11: 17
+      12: 32
+      1: 38
+      2: 33
+      3: 23
+      4: 13
+      5: 0
+    seasons: 9
+  lutsen-mountains:
+    odds:
+      11: 12
+      12: 18
+      1: 17
+      2: 14
+      3: 10
+      4: 10
+      5: 0
+    seasons: 8
+  mont-sainte-anne:
+    odds:
+      11: 28
+      12: 29
+      1: 36
+      2: 37
+      3: 27
+      4: 16
+      5: 0
+    seasons: 8
+  montage-mountain:
+    odds:
+      11: 3
+      12: 7
+      1: 11
+      2: 9
+      3: 6
+      4: 1
+      5: 0
+    seasons: 10
+  mountain-creek:
+    odds:
+      11: 2
+      12: 9
+      1: 9
+      2: 11
+      3: 5
+      4: 2
+      5: 0
+    seasons: 9
+  pats-peak:
+    odds:
+      11: 3
+      12: 11
+      1: 13
+      2: 15
+      3: 8
+      4: 3
+      5: 0
+    seasons: 8
+  seven-springs:
+    odds:
+      11: 8
+      12: 18
+      1: 35
+      2: 25
+      3: 13
+      4: 9
+      5: 1
+    seasons: 10
+  silverstar:
+    odds:
+      11: 40
+      12: 48
+      1: 45
+      2: 44
+      3: 30
+      4: 20
+      5: 4
+    seasons: 9
+  smugglers-notch:
+    odds:
+      11: 16
+      12: 26
+      1: 34
+      2: 34
+      3: 20
+      4: 10
+      5: 1
+    seasons: 10
+  snow-summit:
+    odds:
+      11: 4
+      12: 5
+      1: 8
+      2: 8
+      3: 8
+      4: 1
+      5: 1
+    seasons: 10
+  snowshoe:
+    odds:
+      11: 11
+      12: 20
+      1: 35
+      2: 21
+      3: 16
+      4: 10
+      5: 2
+    seasons: 10
+  stowe:
+    odds:
+      11: 16
+      12: 26
+      1: 34
+      2: 34
+      3: 20
+      4: 10
+      5: 1
+    seasons: 10
+  sugar-mountain:
+    odds:
+      11: 2
+      12: 12
+      1: 22
+      2: 13
+      3: 6
+      4: 2
+      5: 1
+    seasons: 10
+  telluride:
+    odds:
+      11: 10
+      12: 17
+      1: 20
+      2: 17
+      3: 17
+      4: 9
+      5: 4
+    seasons: 10
+  terry-peak:
+    odds:
+      11: 16
+      12: 22
+      1: 25
+      2: 22
+      3: 18
+      4: 20
+      5: 6
+    seasons: 9
+  timberline-mountain:
+    odds:
+      11: 9
+      12: 17
+      1: 32
+      2: 24
+      3: 16
+      4: 7
+      5: 2
+    seasons: 10
+  whistler-blackcomb:
+    odds:
+      11: 52
+      12: 49
+      1: 52
+      2: 38
+      3: 41
+      4: 34
+      5: 4
+    seasons: 9
+  wildcat-mountain:
+    odds:
+      11: 13
+      12: 26
+      1: 32
+      2: 31
+      3: 24
+      4: 11
+      5: 1
+    seasons: 10
+  winter-park:
+    odds:
+      11: 27
+      12: 35
+      1: 36
+      2: 31
+      3: 33
+      4: 28
+      5: 12
+    seasons: 10

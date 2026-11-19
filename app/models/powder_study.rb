@@ -1,6 +1,6 @@
 # The "Powder Day Odds" data study: how often each resort gets 1"+ of new snow, by month and over a Nov-Apr
-# season. The study itself uses measured SNOTEL data (western US resorts with an approved station);
-# season(:model) is the modeled version for every North American resort, used by lists that must compare all.
+# season. The study itself uses measured SNOTEL data (western US resorts with an approved station); season(:weather)
+# is the separate NOAA weather-station list (the East, Canada and western resorts without SNOTEL).
 module PowderStudy
   REGIONS = {
     "Pacific Northwest" => %w[Washington Oregon], "Western Canada" => [ "British Columbia", "Alberta" ],
@@ -19,7 +19,7 @@ module PowderStudy
   def season(source = :measured)
     @season = nil if Rails.env.development?
     (@season ||= {})[source] ||= Resort.north_america.to_a.filter_map do |r|
-      odds = (source == :measured ? PowderOdds.measured(r) : PowderOdds.for(r)) or next
+      odds = (source == :measured ? PowderOdds.measured(r) : PowderOdds.weather(r)) or next
       days = months.sum { |m| odds[m.number].to_i / 100.0 * m.days }
       [ r, days.round, odds ]
     end.sort_by { |r, d, _| [ -d, r.name ] }

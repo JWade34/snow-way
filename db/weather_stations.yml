@@ -1,0 +1,37 @@
+# Hand-reviewed NOAA weather station for resorts with no SNOTEL station (the East, Midwest, Canada and a few
+# western names). Daily snowfall from NWS co-op, CoCoRaHS and Environment Canada observers via NOAA ACIS (data.rcc-acis.org).
+# Rules: within 5 miles of the resort, no more than 800 ft below the base, not above the summit + 500 ft,
+# and 8+ of the last 10 winters with 80%+ of days reported. Most sit at the base or in the valley, so they read
+# lower than the mountain. Resorts not listed get no snow-day number on the site.
+# quality: good = within 2 miles and within 500 ft of the base; ok = the rest that pass the rules.
+# Reviewed 2026-11-19. Rejected matches (too far, too low or a summit station) are in docs/seo/noaa-station-review.md.
+source: "NOAA Applied Climate Information System (ACIS): NWS cooperative, CoCoRaHS and Environment Canada daily snowfall"
+reviewed_on: "2026-11-19"
+resorts:
+  bear-mountain: { sid: "040741", name: "Big Bear Lake", miles: 3.4, elev: 6753, quality: ok }
+  beech-mountain: { sid: "310645", name: "Beech Mountain", miles: 0.5, elev: 5060, quality: good }
+  boyne-mountain: { sid: "200925", name: "Boyne Falls", miles: 1.0, elev: 728, quality: good }
+  breckenridge: { sid: "050909", name: "Breckenridge", miles: 0.4, elev: 9598, quality: good }
+  cranmore: { sid: "275995", name: "North Conway", miles: 1.0, elev: 522, quality: good }
+  fernie: { sid: "CA001152850", name: "Fernie", miles: 1.7, elev: 3284, quality: good }
+  grouse-mountain: { sid: "CA001105658", name: "North Vancouver Grouse Mountain Resort", miles: 1.1, elev: 3701, quality: ok }
+  gunstock: { sid: "274480", name: "Lakeport 2", miles: 5.0, elev: 500, quality: ok }
+  jay-peak: { sid: "US1VTOL0001", name: "Westfield 0.7 WNW", miles: 3.9, elev: 1069, quality: ok, note: "CoCoRaHS volunteer below the mountain in Westfield." }
+  lutsen-mountains: { sid: "US1MNCK0003", name: "Tofte 4.9 NE", miles: 3.3, elev: 927, quality: ok }
+  mont-sainte-anne: { sid: "CA007045326", name: "Mont Ste-Anne", miles: 0.6, elev: 551, quality: good }
+  montage-mountain: { sid: "14777", name: "Wilkes-Barre/Scranton International Airport", miles: 3.4, elev: 951, quality: ok }
+  mountain-creek: { sid: "283706", name: "Highland Lakes 1SW", miles: 3.1, elev: 1363, quality: ok }
+  pats-peak: { sid: "278973", name: "Weare 2 NE", miles: 4.6, elev: 805, quality: ok }
+  seven-springs: { sid: "363928", name: "Hidden Valley", miles: 2.5, elev: 2876, quality: ok }
+  silverstar: { sid: "CA001128584", name: "Vernon Silver Star Lodge", miles: 0.5, elev: 5203, quality: ok }
+  smugglers-notch: { sid: "434261", name: "Jeffersonville", miles: 0.3, elev: 1163, quality: good }
+  snow-summit: { sid: "040741", name: "Big Bear Lake", miles: 1.8, elev: 6753, quality: good }
+  snowshoe: { sid: "468308", name: "Snowshoe", miles: 0.6, elev: 4802, quality: ok }
+  stowe: { sid: "434261", name: "Jeffersonville", miles: 3.7, elev: 1163, quality: ok, note: "North side of Mount Mansfield (Smugglers Notch side); no long Stowe-side record since the Mount Mansfield co-op ended in 2017." }
+  sugar-mountain: { sid: "310645", name: "Beech Mountain", miles: 4.0, elev: 5060, quality: ok }
+  telluride: { sid: "058204", name: "Telluride 4WNW", miles: 3.4, elev: 8646, quality: ok }
+  terry-peak: { sid: "US1SDLW0006", name: "Lead 5.5 SSW", miles: 4.2, elev: 5879, quality: ok }
+  timberline-mountain: { sid: "462211", name: "Davis 3SE", miles: 4.4, elev: 3735, quality: ok }
+  whistler-blackcomb: { sid: "CA001108906", name: "Whistler Roundhouse", miles: 3.4, elev: 6020, quality: ok, note: "On Whistler Mountain at the Roundhouse." }
+  wildcat-mountain: { sid: "276818", name: "Pinkham Notch", miles: 0.9, elev: 2025, quality: good, note: "Pinkham Notch co-op station across Route 16 from the base lodge, records since 1930." }
+  winter-park: { sid: "059175", name: "Winter Park", miles: 0.1, elev: 9123, quality: good }

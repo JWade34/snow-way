@@ -6,7 +6,7 @@
 <% { "Colorado" => "Colorado", "Utah" => "Utah", "California" => "California", "Vermont" => "Vermont" }.each do |region, label| %>
   <% rs = @regions[region] || [] %>
   <% if (m = best_month.(rs)) %>
-    <% faqs << { question: "What is the best month to ski in #{label}?", answer: "#{month_name.(m)} is the snowiest month at the most #{label} resorts Snow Way tracks (#{rs.count { |r| r.snowiest_months(1).first&.first == m }} of #{rs.size}), based on 10 seasons of summit snowfall data. Most #{label} resorts get the bulk of their snow from #{rs.flat_map { |r| r.snowiest_months(3).map(&:first) }.tally.sort_by { |_, n| -n }.first(3).map { |mm, _| month_name.(mm) }.sort_by { |n| Date::MONTHNAMES.index(n).then { |i| i < 7 ? i + 12 : i } }.to_sentence}." } %>
+    <% faqs << { question: "What is the best month to ski in #{label}?", answer: "#{month_name.(m)} is the snowiest month at the most #{label} resorts Snow Way tracks (#{rs.count { |r| r.snowiest_months(1).first&.first == m }} of #{rs.size}), based on 10 seasons of modeled summit snowfall (a weather model, so it shows the seasonal pattern, not totals). Most #{label} resorts get the bulk of their snow from #{rs.flat_map { |r| r.snowiest_months(3).map(&:first) }.tally.sort_by { |_, n| -n }.first(3).map { |mm, _| month_name.(mm) }.sort_by { |n| Date::MONTHNAMES.index(n).then { |i| i < 7 ? i + 12 : i } }.to_sentence}." } %>
   <% end %>
 <% end %>
 <% faqs << { question: "What's in the Snow Way Powder Calendar?", answer: "A free PDF with every resort Snow Way tracks: its three snowiest months, #{season} opening date, Epic or Ikon pass access, and nearest airport, grouped by state and province." } %>

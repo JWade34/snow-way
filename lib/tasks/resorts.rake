@@ -114,3 +114,43 @@ namespace :resorts do
     File.write(Rails.root.join("db/station_odds.yml"), out.to_yaml)
   end
 end
+
+namespace :resorts do
+  desc "Write db/weather_station_odds.yml: % of days with 1\"+ of measured new snowfall per ski-season month at each resort's NOAA weather station (db/weather_stations.yml), 10 seasons"
+  task weather_station_odds: :environment do
+    require "net/http"
+    stations = YAML.load_file(Rails.root.join("db/weather_stations.yml"))
+    out = { "source" => "NOAA ACIS daily snowfall from NWS cooperative, CoCoRaHS and Environment Canada observers, July 2015 to June 2025. A new-snow day is one where the observer measured 1 inch or more of new snowfall.",
+            "generated_on" => Date.current.iso8601, "resorts" => {} }
+    stations["resorts"].each do |slug, st|
+      r = Resort.find_by(slug: slug) or next puts("#{slug}: no resort")
+      uri = URI("https://data.rcc-acis.org/StnData")
+      body = nil
+      3.times do |attempt|
+        res = Net::HTTP.post(uri, { sid: st["sid"], sdate: "2015-07-01", edate: "2025-06-30", elems: [ { name: "snow" } ] }.to_json, "Content-Type" => "application/json")
+        if res.code == "200" then body = JSON.parse(res.body); break end
+        puts "#{slug}: HTTP #{res.code}, retrying"; sleep 10 * (attempt + 1)
+      end
+      next puts("#{slug}: skipped") unless body&.dig("data")
+      hits = Hash.new(0); valid = Hash.new(0); seasons = Hash.new { |h, k| h[k] = [ 0, 0 ] } # season => [reported days, snow days]
+      body["data"].each do |date, v|
+        next if %w[M S].include?(v) || v.to_s.end_with?("A") || v.blank? # missing, or a multi-day total
+        d = Date.parse(date)
+        snow = v != "T" && v.to_f >= 1.0
+        valid[d.month] += 1
+        hits[d.month] += 1 if snow
+        next unless [ 11, 12, 1, 2, 3, 4 ].include?(d.month)
+        s = d.month >= 7 ? d.year : d.year - 1
+        seasons[s][0] += 1
+        seasons[s][1] += 1 if snow
+      end
+      full = seasons.select { |_, (n, _)| n >= 181 * 0.8 }
+      next puts("#{slug}: only #{full.size} full seasons, skipped") if full.size < 8
+      odds = r.ski_season_months.to_h { |m| [ m, valid[m].zero? ? 0 : (hits[m] * 100.0 / valid[m]).round ] }
+      out["resorts"][slug] = { "odds" => odds, "seasons" => full.size }
+      puts "#{slug}: #{odds.inspect} (#{full.size} seasons)"
+      sleep 0.3
+    end
+    File.write(Rails.root.join("db/weather_station_odds.yml"), out.to_yaml)
+  end
+end

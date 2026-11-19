@@ -1,6 +1,6 @@
 # "Best places to ski in December" pages. Ranks resorts by how often it snows in that month
-# (PowderOdds: share of days with 1"+ of new snow over 10 seasons; measured where a SNOTEL station exists,
-# modeled in a separate list elsewhere), plus live forecast and opening dates.
+# (PowderOdds: share of days with 1"+ of new snow over 10 seasons, measured at SNOTEL snow stations, with NOAA
+# weather stations in a separate list), plus live forecast and opening dates.
 class SkiMonth
   SLUGS = %w[november december january february march april].freeze
   REGIONS = [ "Colorado", "Utah", "California", "Wyoming", "Montana", "Idaho", "Washington", "Oregon",
@@ -42,10 +42,10 @@ class SkiMonth
     rank(scope) { |r| PowderOdds.measured(r) }
   end
 
-  # The same, modeled, for resorts with no approved station (the East, Canada, Aspen, Mammoth...). Never merged
-  # with ranked: measured days run about 1.4x the model's.
-  def modeled(scope = Resort.north_america)
-    rank(scope.to_a.reject { |r| PowderOdds.station(r) }) { |r| PowderOdds.for(r) }
+  # The same at NOAA weather stations, for resorts with no SNOTEL station (the East, Canada, Breckenridge...). Never
+  # merged with ranked: these stations mostly sit at the base or in the valley and are measured a different way.
+  def weather_ranked(scope = Resort.north_america)
+    rank(scope) { |r| PowderOdds.weather(r) }
   end
 
   def rank(scope)

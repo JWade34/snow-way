@@ -10,7 +10,8 @@
 <% biggest = ->(list) { list.map(&:first).select(&:vertical_drop).max_by(&:vertical_drop) } %>
 <% best_day = biggest.(day_trips) %>
 <% best_weekend = biggest.(weekend) %>
-<% jan_powder = nearby.map(&:first).select { |r| (d = drive.(r)) && d["minutes"] <= 270 }.filter_map { |r| (o = PowderOdds.for(r)) && o[1] ? [ r, o[1] ] : nil }.max_by { |_, v| v } %>
+<% in_reach = nearby.map(&:first).select { |r| (d = drive.(r)) && d["minutes"] <= 270 } %>
+<% jan_powder = %i[measured weather].lazy.filter_map { |src| in_reach.filter_map { |r| (o = PowderOdds.public_send(src, r)) && o[1] ? [ r, o[1], src ] : nil }.max_by { |_, v, _| v } }.first %>
 <% epic = nearby.map(&:first).select { |r| r.pass_label.to_s.include?("Epic") } %>
 <% ikon = nearby.map(&:first).select { |r| r.pass_label.to_s.include?("Ikon") } %>
 <% closest_drive = drive.(closest) %>
@@ -20,7 +21,7 @@
 <% if best_day %><% faqs << { question: "What is the best day trip ski resort from #{city}?", answer: "For the most terrain on a day trip, #{best_day.name} has the biggest vertical drop (#{number_with_delimiter(best_day.vertical_drop)} ft) of the resorts within about 2.5 hours of #{city}, roughly #{fmt.(drive.(best_day)["minutes"])} each way. #{day_trips.size > 1 ? "Other day trips: #{(day_trips.map(&:first) - [ best_day ]).first(4).map(&:name).to_sentence}." : ""}".strip } %><% end %>
 <% if best_weekend %><% faqs << { question: "Where should I ski for a weekend trip from #{city}?", answer: "For a weekend, #{best_weekend.name} is the biggest mountain within about 4.5 hours of #{city} (#{number_with_delimiter(best_weekend.vertical_drop)} ft of vertical, about #{fmt.(drive.(best_weekend)["minutes"])} away). #{weekend.size > 1 ? "Also worth the drive: #{(weekend.map(&:first) - [ best_weekend ]).first(4).map(&:name).to_sentence}." : ""}".strip } %><% end %>
 <% if epic.any? || ikon.any? %><% faqs << { question: "Which ski resorts near #{city} are on the Epic or Ikon Pass?", answer: [ ("Epic Pass: #{epic.map(&:name).to_sentence}." if epic.any?), ("Ikon Pass: #{ikon.map(&:name).to_sentence}." if ikon.any?), "Pass lineups are for the 2026-27 season." ].compact.join(" ") } %><% end %>
-<% if jan_powder %><% faqs << { question: "Which ski resort near #{city} gets the most powder days?", answer: "Within a weekend drive of #{city}, #{jan_powder[0].name} has the most fresh-snow days in January: about #{jan_powder[1]}% of January days get 1 inch or more of new snow, based on 10 seasons of weather data." } %><% end %>
+<% if jan_powder %><% faqs << { question: "Which ski resort near #{city} gets the most powder days?", answer: "Within a weekend drive of #{city}, #{jan_powder[0].name} has the most fresh-snow days in January: about #{jan_powder[1]}% of January days get 1 inch or more of new snow, measured over 10 winters at #{jan_powder[2] == :measured ? "a USDA snow station on or near the mountain" : "the nearest NOAA weather station"}." } %><% end %>
 
 <% content_for(:title, fit_title("Ski Resorts Near #{city}: Drive Times, Snow & Day Trips | Snow Way", "Ski Resorts Near #{city}: Drive Times & Snow | Snow Way", "Ski Resorts Near #{city} | Snow Way")) %>
 <% content_for(:description, "#{nearby.size} ski resorts near #{city} with drive times and this week's snow. Closest: #{closest.name}#{closest_drive ? " (about #{fmt.(closest_drive["minutes"])})" : ""}.#{best_day ? " Best day trip: #{best_day.name}." : ""} #{faqs[1][:answer]}".truncate(300)) %>

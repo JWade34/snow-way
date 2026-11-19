@@ -22,7 +22,7 @@
      ([ "Top on the Epic Pass", epic[0], "##{b.ranked.index(epic) + 1} overall" ] if epic),
      ([ "Top on the Ikon Pass", ikon[0], "##{b.ranked.index(ikon) + 1} overall" ] if ikon)
    ].compact %>
-<% faqs = [ { question: "What is the best ski resort in #{b.name}?", answer: "#{top.first[0].name} ranks first on Snow Way's score, which combines snow days (10 seasons of weather data), resort-reported annual snowfall and vertical drop. #{top[1..2].map { |r, _, _| r.name }.to_sentence} are next." } ] %>
+<% faqs = [ { question: "What is the best ski resort in #{b.name}?", answer: "#{top.first[0].name} ranks first on Snow Way's score, which combines snow days (measured over 10 seasons at the nearest snow or weather station), resort-reported annual snowfall and vertical drop. #{top[1..2].map { |r, _, _| r.name }.to_sentence} are next." } ] %>
 <% qs = { "Most snow days" => "Which #{b.label} ski resort gets the most snow days?", "Most annual snowfall" => "Which #{b.label} ski resort gets the most snow?",
           "Biggest vertical" => "Which #{b.label} ski resort has the most vertical?", "Best for beginners" => "What is the best #{b.label} ski resort for beginners?",
           "Top on the Epic Pass" => "What is the best #{b.label} ski resort on the Epic Pass?", "Top on the Ikon Pass" => "What is the best #{b.label} ski resort on the Ikon Pass?" } %>
@@ -48,7 +48,7 @@
     <section class="tldr mb-3 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= answer.sub("in the East Coast", "on the East Coast") %></p>
     </section>
-    <p class="text-slate-400 text-xs mb-8">How we rank: snow days (40%, 10 seasons of daily weather), resort-reported average snowfall (30%) and vertical drop (30%), each scaled within this list. It doesn't weigh price, crowds or lodging; see the picks below for those angles. <a href="#method" class="underline underline-offset-2">Details</a></p>
+    <p class="text-slate-400 text-xs mb-8">How we rank: snow days (40%, measured over 10 seasons at the nearest snow or weather station; resorts without one are scored on the other two), resort-reported average snowfall (30%) and vertical drop (30%), each scaled within this list. It doesn't weigh price, crowds or lodging; see the picks below for those angles. <a href="#method" class="underline underline-offset-2">Details</a></p>
 
     <% if picks.any? %>
       <h2 class="text-xl font-bold mb-3">Best for…</h2>
