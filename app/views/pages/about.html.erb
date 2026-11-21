@@ -17,7 +17,7 @@
     <%= render "shared/breadcrumbs", crumbs: [ [ "About", nil ] ] %>
     <article class="guide">
       <h1 class="text-3xl md:text-4xl font-extrabold mb-6">About Snow Way</h1>
-      <div class="tldr"><p>Snow Way answers one question: <strong>which ski resort is getting the most snow?</strong> It ranks <%= @resort_count %> North American resorts by forecast snowfall, updated every 6 hours, and it's free.</p></div>
+      <div class="tldr"><p>Snow Way answers one question: <strong>which ski resort is getting the most snow?</strong> It ranks <%= @resort_count %> North American resorts by forecast snowfall, updated every 6 hours, and it's free. It also has forecast pages for <%= Resort.international.count %> resorts in the Alps, Japan, South America, Australia and New Zealand.</p></div>
       <h2>Who builds it</h2>
       <figure class="my-6 grid sm:grid-cols-2 gap-4 items-center">
         <%= image_tag "justin-roof-rail.webp", alt: "Justin McKelvey snowboarding a rail along the roof of a log cabin", width: 612, height: 612, loading: "lazy", class: "rounded-xl w-full h-auto" %>

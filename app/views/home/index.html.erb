@@ -60,7 +60,7 @@
   <!-- Hero: answer, a resort search for people who already picked a mountain, then this week's #1 -->
   <main id="main" class="relative z-10 w-full max-w-xl mx-auto px-4 pt-6 pb-10">
     <h1 class="text-2xl md:text-3xl font-extrabold text-center leading-tight mb-2">Which ski resort is getting the most snow this week?</h1>
-    <p class="text-slate-400 text-sm text-center mb-5">Snow Way ranks <%= @resort_count %> North American ski resorts by 7-day forecast snow, updated every 6 hours.</p>
+    <p class="text-slate-400 text-sm text-center mb-5">Snow Way ranks <%= @resort_count %> North American ski resorts by 7-day forecast snow, updated every 6 hours, plus <%= link_to "#{Resort.international.count} international resorts", regions_path, class: "underline underline-offset-2" %>.</p>
 
     <form action="<%= resorts_path %>" class="mb-6" data-controller="resort-search" data-action="submit->resort-search#go" role="search">
       <label for="resort-search" class="block text-sm font-semibold text-slate-200 mb-2">Already know where you're going?</label>
