@@ -18,6 +18,7 @@ module SnowForecastable
         longitude: [ resort.longitude, resort.longitude ].join(","),
         elevation: [ mid_meters, summit_meters ].join(","),
         daily: "precipitation_sum,temperature_2m_mean,snowfall_sum,temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max",
+        hourly: "temperature_2m,precipitation",
         current: "temperature_2m,wind_speed_10m,weather_code",
         timezone: "auto",
         forecast_days: 16,
@@ -31,27 +32,26 @@ module SnowForecastable
       return [] unless mid.is_a?(Hash) && summit.is_a?(Hash)
 
       store_current_conditions(resort, mid["current"])
-      mid_days = daily_snowfall(mid["daily"])
-      summit_days = daily_snowfall(summit["daily"]).to_h { |d| [ d[:forecast_date], d[:snowfall_inches] ] }
+      mid_days = daily_snowfall(mid["daily"], mid["hourly"])
+      summit_days = daily_snowfall(summit["daily"], summit["hourly"]).to_h { |d| [ d[:forecast_date], d[:snowfall_inches] ] }
       mid_days.map { |day| day.merge(snowfall_summit_inches: summit_days[day[:forecast_date]]) }
     rescue StandardError => e
       Rails.logger.error "Snow forecast fetch failed for #{resort&.name}: #{e.message}"
       []
     end
 
-    def daily_snowfall(daily)
-      return [] unless daily && daily["time"] && daily["precipitation_sum"]
+    # Snow per day at one elevation. The model's own snowfall is used whenever it forecasts snow. Its snowfall
+    # ignores the elevation we ask for, though (it's computed for the model grid, often lower and warmer than
+    # the slopes), so on days it says 0 we count precipitation from hours at or below freezing at this elevation,
+    # at the model's own 7:1 snow-to-water ratio. Rain hours never count.
+    def daily_snowfall(daily, hourly = nil)
+      return [] unless daily && daily["time"]
 
+      frozen_mm = freezing_precipitation_by_day(hourly)
       daily["time"].each_with_index.map do |date_str, i|
-        # Prefer snowfall_sum from API (in cm), fall back to calculation
-        snowfall_cm = daily["snowfall_sum"]&.dig(i)
-        if snowfall_cm && snowfall_cm > 0
-          snowfall_inches = (snowfall_cm * 0.393701).round(1)
-        else
-          precip_mm = daily["precipitation_sum"][i] || 0
-          temp_c = daily["temperature_2m_mean"][i] || 0
-          snowfall_inches = calculate_snowfall(precip_mm, temp_c)
-        end
+        snowfall_cm = daily["snowfall_sum"]&.dig(i).to_f
+        snowfall_cm = frozen_mm.fetch(date_str, 0.0) * SNOW_CM_PER_MM if snowfall_cm <= 0
+        snowfall_inches = (snowfall_cm * 0.393701).round(1)
 
         {
           forecast_date: Date.parse(date_str),
@@ -82,24 +82,17 @@ module SnowForecastable
       Rails.logger.error "Storing conditions failed for #{resort.name}: #{e.message}"
     end
 
-    # Calculate snowfall from precipitation using temperature-based snow:water ratio
-    # Cold temps produce lighter, fluffier snow (higher ratio)
-    def calculate_snowfall(precip_mm, temp_c)
-      return 0.0 if precip_mm <= 0 || temp_c > 2 # No snow if warm
+    SNOW_CM_PER_MM = 0.7 # Open-Meteo's snowfall conversion (7:1), kept the same so both paths agree
 
-      # Snow:water ratio based on temperature (mountain snowfall tends to be drier)
-      ratio = case temp_c
-      when ..-15 then 18  # Very cold = very dry powder
-      when -15..-10 then 15 # Cold = dry powder
-      when -10..-5 then 12  # Cool = powder
-      when -5..0 then 10    # Near freezing = average
-      else 8                # Just below freezing = wet snow
+    # { "2026-11-27" => mm of precipitation that fell in hours at or below 0°C }
+    def freezing_precipitation_by_day(hourly)
+      return {} unless hourly && hourly["time"] && hourly["temperature_2m"] && hourly["precipitation"]
+
+      hourly["time"].each_index.with_object(Hash.new(0.0)) do |i, days|
+        temp = hourly["temperature_2m"][i]
+        precip = hourly["precipitation"][i].to_f
+        days[hourly["time"][i][0, 10]] += precip if temp && temp <= 0 && precip > 0
       end
-
-      # Convert: mm of water -> cm of snow -> inches
-      # precip_mm * (ratio / 10) = cm of snow
-      snow_cm = precip_mm * (ratio / 10.0)
-      (snow_cm * 0.393701).round(1)
     end
 
     def refresh_all_forecasts!
