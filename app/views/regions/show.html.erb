@@ -107,6 +107,8 @@
       </table>
     </div>
 
+    <%= render "shared/sponsor", placement: "region:#{@region.slug}" %>
+
     <% guide_slug = { "Japan" => "skiing-in-japan", "The Alps" => "skiing-in-the-alps", "France" => "skiing-in-the-alps", "Switzerland" => "skiing-in-the-alps",
                       "Austria" => "skiing-in-the-alps", "Italy" => "skiing-in-the-alps", "South America" => "skiing-in-south-america",
                       "Chile" => "skiing-in-south-america", "Argentina" => "skiing-in-south-america", "Southern Hemisphere" => "skiing-in-south-america" }[name] %>

@@ -21,6 +21,11 @@ class RefreshSnowForecastsJob < ApplicationJob
 
     # New pages go to IndexNow right away; forecast pages are resubmitted once a day.
     if resort_ids.nil?
+      begin
+        SnowDepth.refresh_all! # measured snow on the ground at each resort's station
+      rescue => e
+        Rails.logger.error "Snow depth refresh failed: #{e.message}"
+      end
       IndexNowJob.perform_later
       PowderAlertJob.perform_later
     end

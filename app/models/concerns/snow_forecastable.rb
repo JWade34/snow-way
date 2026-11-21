@@ -18,7 +18,7 @@ module SnowForecastable
         longitude: [ resort.longitude, resort.longitude ].join(","),
         elevation: [ mid_meters, summit_meters ].join(","),
         daily: "precipitation_sum,temperature_2m_mean,snowfall_sum,temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max",
-        hourly: "temperature_2m,precipitation",
+        hourly: "temperature_2m,precipitation,snowfall,weather_code,wind_speed_10m",
         current: "temperature_2m,wind_speed_10m,weather_code",
         timezone: "auto",
         forecast_days: 16,
@@ -32,6 +32,7 @@ module SnowForecastable
       return [] unless mid.is_a?(Hash) && summit.is_a?(Hash)
 
       store_current_conditions(resort, mid["current"])
+      store_hourly(resort, mid["hourly"], mid["utc_offset_seconds"])
       mid_days = daily_snowfall(mid["daily"], mid["hourly"])
       summit_days = daily_snowfall(summit["daily"], summit["hourly"]).to_h { |d| [ d[:forecast_date], d[:snowfall_inches] ] }
       mid_days.map { |day| day.merge(snowfall_summit_inches: summit_days[day[:forecast_date]]) }
@@ -93,6 +94,31 @@ module SnowForecastable
         precip = hourly["precipitation"][i].to_f
         days[hourly["time"][i][0, 10]] += precip if temp && temp <= 0 && precip > 0
       end
+    end
+
+    HOURLY_HOURS = 72
+
+    # The next 72 hours at mid-mountain for the "hour by hour" view. Snow per hour follows the same rule as the
+    # daily totals: the model's snowfall, else precipitation in a freezing hour at 7:1, never rain.
+    def store_hourly(resort, hourly, utc_offset)
+      return unless hourly && hourly["time"] && resort.persisted?
+
+      now_local = Time.now.utc + utc_offset.to_i
+      start = now_local.strftime("%Y-%m-%dT%H:00")
+      rows = hourly["time"].each_index.filter_map do |i|
+        time = hourly["time"][i]
+        next if time < start
+        temp = hourly["temperature_2m"]&.dig(i)
+        snow_cm = hourly["snowfall"]&.dig(i).to_f
+        precip = hourly["precipitation"]&.dig(i).to_f
+        snow_cm = precip * SNOW_CM_PER_MM if snow_cm <= 0 && temp && temp <= 0 && precip > 0
+        { "t" => time, "temp_f" => c_to_f(temp), "snow_in" => (snow_cm * 0.393701).round(1),
+          "rain" => snow_cm <= 0 && precip > 0, "code" => hourly["weather_code"]&.dig(i),
+          "wind_mph" => hourly["wind_speed_10m"]&.dig(i)&.then { |kmh| (kmh * 0.621371).round } }
+      end.first(HOURLY_HOURS)
+      resort.update_columns(hourly_forecast: rows)
+    rescue StandardError => e
+      Rails.logger.error "Storing hourly forecast failed for #{resort.name}: #{e.message}"
     end
 
     def refresh_all_forecasts!

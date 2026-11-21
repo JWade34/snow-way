@@ -104,6 +104,12 @@
         <% if @summary.last_7_days %>
           <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold text-amber-300"><%= inches(@summary.last_7_days) %></p><p class="text-slate-400 text-sm">Past 7 days</p></div>
         <% end %>
+        <% if (status = @resort.season_status) %>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold <%= status[:label] == "Open" ? "text-emerald-300" : "" %>"><%= status[:label] %></p><p class="text-slate-400 text-sm"><%= status[:detail] %></p></div>
+        <% end %>
+        <% if (depth_station = @resort.snow_depth_station) %>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold text-cyan-300"><%= @resort.snow_depth_in %>"</p><p class="text-slate-400 text-sm">Snow on the ground, <%= depth_station["name"] %> station</p></div>
+        <% end %>
         <% if @summary.conditions? %>
           <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold"><%= @resort.current_temp_f %>°F</p><p class="text-slate-400 text-sm">Mid-mountain now</p></div>
           <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center"><p class="text-2xl font-bold"><%= @resort.current_wind_mph %> mph</p><p class="text-slate-400 text-sm">Wind</p></div>
@@ -119,7 +125,7 @@
           <% if links["trail_map"] %><li><%= link_to "🗺️ #{@resort.name} trail map ↗", links["trail_map"], target: "_blank", rel: "noopener", class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-cyan-500 rounded-lg px-3 py-2 text-sm transition" %></li><% end %>
         </ul>
       <% end %>
-      <p class="text-slate-400 text-xs mt-3">Modeled mid-mountain (<%= number_with_delimiter(@resort.mid_elevation) %> ft) snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>. For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
+      <p class="text-slate-400 text-xs mt-3">Modeled mid-mountain (<%= number_with_delimiter(@resort.mid_elevation) %> ft) snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>.<% if depth_station %> Snow on the ground is measured at the <%= depth_station["name"] %> <%= PowderOdds.station(@resort) ? "SNOTEL" : "NOAA" %> station (<%= number_with_delimiter(depth_station["elev"]) %> ft, <%= depth_station["miles"] %> mi away) on <%= @resort.snow_depth_on.strftime("%b %-d") %>: natural snow at one spot, not the resort's groomed base.<% end %><% if @resort.season_status %> Opening day from <%= link_to "this source", @resort.opening_source, target: "_blank", rel: "noopener", class: "underline underline-offset-2" %>.<% end %> For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     </section>
 
     <%= render "shared/local_take", take: LocalTake.for_resort(@resort.slug), subject: @resort.name, local: %w[Colorado Utah].include?(@resort.state_province) %>
@@ -157,6 +163,34 @@
         </div>
       </section>
     <% end %>
+
+    <% hours = Array(@resort.hourly_forecast).each_slice(3).map(&:first) %>
+    <% if hours.any? %>
+      <section class="mb-10" aria-labelledby="hourly-heading">
+        <h2 id="hourly-heading" class="text-xl font-bold mb-1"><%= @resort.name %> hour-by-hour forecast</h2>
+        <p class="text-slate-400 text-sm mb-4">Next 3 days at mid-mountain, every 3 hours, local time. Snow per 3 hours.</p>
+        <% hours.group_by { |h| h["t"][0, 10] }.each_with_index do |(day, rows), i| %>
+          <details class="mb-2 bg-slate-800/40 border border-slate-700 rounded-lg" <%= "open" if i.zero? %>>
+            <summary class="cursor-pointer px-4 py-2 font-semibold"><%= Date.parse(day).strftime("%A, %b %-d") %></summary>
+            <div class="flex gap-2 overflow-x-auto px-3 pb-3">
+              <% rows.each do |h| %>
+                <% block = Array(@resort.hourly_forecast).select { |x| x["t"] >= h["t"] }.first(3) %>
+                <% snow = block.sum { |x| x["snow_in"].to_f }.round(1) %>
+                <div class="min-w-[4.25rem] text-center bg-slate-900/50 rounded-md p-2">
+                  <p class="text-[11px] text-slate-400"><%= Time.parse(h["t"]).strftime("%-l %p") %></p>
+                  <% if (wx = WeatherData::WEATHER_CODES[h["code"]]) %><p class="text-base" title="<%= wx[:description] %>"><span aria-hidden="true"><%= wx[:icon] %></span><span class="sr-only"><%= wx[:description] %></span></p><% end %>
+                  <p class="text-sm font-semibold"><%= h["temp_f"] %>°</p>
+                  <p class="text-[11px] <%= snow > 0 ? "text-cyan-300 font-bold" : "text-slate-500" %>"><%= snow > 0 ? "#{snow}\"" : (block.any? { |x| x["rain"] } ? "rain" : "–") %></p>
+                  <p class="text-[11px] text-slate-400"><%= h["wind_mph"] %> mph</p>
+                </div>
+              <% end %>
+            </div>
+          </details>
+        <% end %>
+      </section>
+    <% end %>
+
+    <%= render "shared/alert_form", resort: @resort %>
 
     <% hubs = SkiHub.all.select { |h| h.nearby.any? { |r, _| r.id == @resort.id } } %>
     <% groups = Region.groups.select { |g| g.resorts.any? { |r| r.id == @resort.id } } %>
@@ -276,6 +310,7 @@
     </div>
 
     <!-- Nearby resorts: internal links within the state cluster -->
+    <%= render "shared/sponsor", placement: "resort:#{@resort.slug}" %>
     <% if @summary.state_peers.any? %>
       <section class="mb-10">
         <h2 class="text-xl font-bold mb-4">Other <%= @resort.region_name %> Ski Resorts This Week</h2>
@@ -292,7 +327,6 @@
       </section>
     <% end %>
 
-    <%= render "shared/alert_form", resort: @resort %>
 
     <div id="faq" class="scroll-mt-6"><%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %></div>
 

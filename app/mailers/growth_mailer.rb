@@ -10,6 +10,13 @@ class GrowthMailer < ApplicationMailer
     PENDING_AFFILIATES.reject { |a| ENV[a[:env]].present? }
   end
 
+  # From the /sponsor form. Reply goes straight to the person asking.
+  def sponsor_inquiry(inquiry)
+    @inquiry = inquiry
+    mail to: ENV.fetch("REPORT_EMAIL", "justin@superdupr.com"), reply_to: inquiry["email"],
+         subject: "Snow Way sponsor inquiry: #{[ inquiry["company"].presence, inquiry["name"] ].compact.join(", ")}"
+  end
+
   def weekly(report = GrowthReport.last_week)
     @report = report
     @totals = report.totals

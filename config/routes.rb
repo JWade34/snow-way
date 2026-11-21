@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get ":id" => "pass_guides#show", as: :pass_guide, constraints: { id: Regexp.union(PassGuide::PAGES.keys) }
   get "ski-resort-opening-dates" => "pages#opening_dates", as: :opening_dates
   get "about" => "pages#about", as: :about
+  get "sponsor" => "sponsors#show", as: :sponsor
+  post "sponsor" => "sponsors#create"
   get "authors/justin-mckelvey" => "pages#author", as: :author
   get "powder-report" => "powder_reports#current", as: :powder_report
   get "powder-report/:id" => "powder_reports#show", as: :powder_report_archive, constraints: { id: /\d{4}-\d{2}-\d{2}/ }

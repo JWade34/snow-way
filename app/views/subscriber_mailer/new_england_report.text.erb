@@ -1,0 +1,12 @@
+<% r = @report %><% lead = r.leader %>NEW ENGLAND SKI FORECAST (<%= Date.current.strftime("%B %-d") %>)
+<%= lead && lead.week > 0 ? "#{lead.resort.name} leads with #{lead.week.round(1)}\" over the next 7 days." : "No big snow in the 7-day forecast." %>
+Mid-mountain, next 7 days (summit in parentheses).
+<% r.by_state.each do |state, rows| %>
+<%= state.upcase %>
+<% rows.first(5).each do |x| %>- <%= x.resort.name %>: <%= x.week.round(1) %>" (<%= x.summit_week.round(1) %>")
+<% end %><% end %>
+Every New England resort: https://snowway.app/new-england
+
+Stop the weekly report only: https://snowway.app/weekly/<%= @subscriber.token %>
+Unsubscribe from everything: <%= @unsubscribe_url %>
+<%= ENV.fetch("MAIL_POSTAL_ADDRESS", "Fast City LLC, 6705 W Highway 290, Suite 607 PMB 1096, Austin, TX 78735-8407") %>

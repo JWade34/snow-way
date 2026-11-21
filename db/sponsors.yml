@@ -1,0 +1,15 @@
+# Paid sponsor placements. One sponsor per placement at a time, always labeled "Sponsored",
+# never mixed into forecasts or rankings. Nothing shows until an entry is added here and deployed.
+#
+# placement keys: "new-england" (the /new-england page), "resort:<slug>" (one resort page),
+#                 "region:<slug>" (a /ski-resorts/<slug> page)
+#
+# Example:
+#   new-england:
+#     name: "Example Mountain Lodge"
+#     headline: "Slopeside rooms at Example Mountain"
+#     body: "Stay at the base and ski first chair. Midweek powder rates all winter."
+#     url: "https://example.com/?utm_source=snowway&utm_medium=sponsor&utm_campaign=new-england"
+#     starts_on: 2026-12-10
+#     ends_on: 2027-03-31
+placements: {}

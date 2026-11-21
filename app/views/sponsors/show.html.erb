@@ -1,0 +1,53 @@
+<% content_for(:title, "Sponsor Snow Way: Reach Skiers Planning Trips Around Snow | Snow Way") %>
+<% content_for(:description, "Put your lodge, resort, shop or mountain town in front of skiers and snowboarders the week they decide where to go. One labeled sponsor per page, never mixed into the forecast.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "Sponsor Snow Way", "url" => absolute_url("/sponsor") },
+        breadcrumb_schema([ [ "Sponsor Snow Way", nil ] ]) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Sponsor Snow Way", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-4">Sponsor Snow Way</h1>
+    <p class="text-slate-200 text-lg leading-relaxed mb-8">People come to Snow Way to decide where to ski this week: which mountain is getting the snow, when to go and where to stay. A sponsor spot puts your lodge, resort, shop or town in front of them right at that moment.</p>
+
+    <h2 class="text-xl font-bold mb-3">Where sponsors show up</h2>
+    <ul class="grid sm:grid-cols-2 gap-3 mb-8">
+      <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4"><p class="font-semibold">New England forecast</p><p class="text-sm text-slate-400">The <%= link_to "/new-england", new_england_path, class: "text-cyan-300 underline underline-offset-2" %> page for Vermont, New Hampshire and Maine, plus its Thursday email.</p></li>
+      <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4"><p class="font-semibold">A resort page</p><p class="text-sm text-slate-400">The snow report and forecast for one mountain. Good for lodging, rentals and shops nearby.</p></li>
+      <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4"><p class="font-semibold">A state page</p><p class="text-sm text-slate-400">Every resort in a state, ranked by this week's snow. Good for tourism boards and multi-resort passes.</p></li>
+      <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4"><p class="font-semibold">The Thursday snow report</p><p class="text-sm text-slate-400">The weekly email on where it's snowing across North America.</p></li>
+    </ul>
+
+    <h2 class="text-xl font-bold mb-3">The rules</h2>
+    <ul class="list-disc pl-5 text-slate-300 space-y-1 mb-8">
+      <li>One sponsor per page at a time, clearly labeled "Sponsored."</li>
+      <li>Sponsors never change forecasts, rankings or snow numbers.</li>
+      <li>No pop-ups, no auto-play, no tracking beyond a click.</li>
+      <li>It has to be useful to someone planning a ski trip.</li>
+    </ul>
+
+    <section id="inquiry" class="bg-slate-800/40 border border-slate-700 rounded-xl p-5 mb-10" aria-labelledby="inquiry-heading">
+      <h2 id="inquiry-heading" class="text-xl font-bold mb-1">Ask about a spot</h2>
+      <% if @sent %>
+        <p class="text-emerald-300">Thanks, got it. I'll reply within a couple of days. Justin</p>
+      <% else %>
+        <p class="text-slate-400 text-sm mb-4">Tell me what you'd like to promote and where. I'll reply with what's open and the rate. Justin, who builds Snow Way.</p>
+        <% if @error %><p class="text-amber-300 text-sm mb-3"><%= @error %></p><% end %>
+        <%= form_with url: sponsor_path, scope: :inquiry, class: "grid gap-3" do |f| %>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div><%= f.label :name, "Your name", class: "block text-sm mb-1" %><%= f.text_field :name, required: true, value: @inquiry&.dig("name"), autocomplete: "name", class: "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2" %></div>
+            <div><%= f.label :email, "Email", class: "block text-sm mb-1" %><%= f.email_field :email, required: true, value: @inquiry&.dig("email"), autocomplete: "email", class: "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2" %></div>
+            <div><%= f.label :company, "Business", class: "block text-sm mb-1" %><%= f.text_field :company, value: @inquiry&.dig("company"), autocomplete: "organization", class: "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2" %></div>
+            <div><%= f.label :website, "Website", class: "block text-sm mb-1" %><%= f.url_field :website, value: @inquiry&.dig("website"), class: "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2" %></div>
+          </div>
+          <div><%= f.label :interest, "Interested in", class: "block text-sm mb-1" %><%= f.select :interest, [ "New England forecast", "A resort page", "A state page", "Thursday snow report", "Not sure yet" ], { selected: @inquiry&.dig("interest") }, class: "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2" %></div>
+          <div><%= f.label :message, "Anything else", class: "block text-sm mb-1" %><%= f.text_area :message, rows: 3, value: @inquiry&.dig("message"), class: "w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2" %></div>
+          <div class="hidden" aria-hidden="true"><%= f.text_field :nickname, tabindex: -1, autocomplete: "off" %></div>
+          <div><%= f.submit "Send", class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 cursor-pointer" %></div>
+        <% end %>
+      <% end %>
+    </section>
+  </main>
+</div>

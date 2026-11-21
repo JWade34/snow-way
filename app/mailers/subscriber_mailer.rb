@@ -30,6 +30,16 @@ class SubscriberMailer < ApplicationMailer
     mail to: subscriber.email, subject: "Where it's snowing this week: #{resort.name} leads with #{inches.round}\""
   end
 
+  # Thursday New England forecast for people who signed up on /new-england (Boston Globe readers).
+  def new_england_report(subscriber)
+    @subscriber = subscriber
+    @report = report = NewEnglandReport.new
+    lead = report.leader
+    unsubscribe_headers
+    subject = lead && lead.week > 0 ? "New England ski forecast: #{lead.resort.name} leads with #{lead.week.round(1)}\"" : "New England ski forecast for #{Date.current.strftime("%B %-d")}"
+    mail to: subscriber.email, subject: subject
+  end
+
   private
 
   def unsubscribe_headers

@@ -1,0 +1,21 @@
+<% r = @report %>
+<% lead = r.leader %>
+<p style="margin:0 0 6px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#0891b2;">New England ski forecast · <%= Date.current.strftime("%B %-d") %></p>
+<h1 style="font-size:22px;margin:0 0 12px;color:#0f172a;"><%= lead && lead.week > 0 ? "#{lead.resort.name} leads with #{lead.week.round(1)}\" this week" : "A quiet week in the mountains" %></h1>
+<p style="margin:0 0 16px;">Snow forecast for the next 7 days at mid-mountain, with the summit in parentheses.</p>
+<% r.by_state.each do |state, rows| %>
+  <p style="margin:0 0 6px;font-weight:bold;color:#0f172a;"><%= state %></p>
+  <table cellpadding="5" cellspacing="0" style="border-collapse:collapse;margin:0 0 16px;width:100%;">
+    <% rows.first(5).each do |x| %>
+      <tr><td style="border-bottom:1px solid #e2e8f0;"><a href="https://snowway.app/resorts/<%= x.resort.slug %>" style="color:#0f172a;font-weight:bold;"><%= x.resort.name %></a></td><td style="border-bottom:1px solid #e2e8f0;text-align:right;font-weight:bold;color:#0891b2;white-space:nowrap;"><%= x.week.round(1) %>" <span style="color:#64748b;font-weight:normal;">(<%= x.summit_week.round(1) %>")</span></td></tr>
+    <% end %>
+  </table>
+<% end %>
+<% if r.picks.any? %>
+  <p style="margin:0 0 20px;"><strong>Heading up <%= r.weekend_label %>?</strong> <%= r.picks.map { |x| "<a href=\"#{Affiliate.hotels_url(x.resort, checkin: r.weekend[:checkin], checkout: r.weekend[:checkout])}\" style=\"color:#0891b2;\">rooms near #{ERB::Util.html_escape(x.resort.name)}</a>" }.join(" · ").html_safe %></p>
+<% end %>
+<p style="margin:0 0 20px;"><a href="https://snowway.app/new-england" style="display:inline-block;background:#06b6d4;color:#0f172a;font-weight:bold;text-decoration:none;padding:12px 20px;border-radius:8px;">Every New England resort, updated every 6 hours</a></p>
+<p style="margin:0 0 20px;color:#64748b;font-size:13px;">Forecasts are weather-model estimates from Open-Meteo. Beyond 3 days they shift, so check again the day before you drive up. Room links may earn Snow Way a commission.</p>
+<p style="margin:0 0 4px;">See you on the chair,</p>
+<p style="margin:0 0 4px;">Justin, Snow Way</p>
+<%= render "subscriber_mailer/footer" %>

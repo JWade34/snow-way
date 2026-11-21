@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_08_230000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_21_165102) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -106,6 +106,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_08_230000) do
     t.integer "current_wind_mph"
     t.integer "current_weather_code"
     t.datetime "conditions_at"
+    t.integer "snow_depth_in"
+    t.date "snow_depth_on"
+    t.json "hourly_forecast"
   end
 
   create_table "search_stats", force: :cascade do |t|

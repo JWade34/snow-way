@@ -1,7 +1,7 @@
-<%# locals: (resort: nil) -%>
+<%# locals: (resort: nil, heading: nil, blurb: nil, button: "Alert me") -%>
 <section id="alert-form" class="mb-10 bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-5" aria-labelledby="alert-heading">
-  <h2 id="alert-heading" class="text-lg font-bold mb-1"><%= resort ? "Get a #{resort.name} powder alert" : "Get powder alerts" %></h2>
-  <p class="text-slate-300 text-sm mb-4"><%= resort ? "We'll email you when #{resort.name}'s forecast calls for a big dump." : "We'll email you when a big storm lines up anywhere Snow Way tracks." %> You'll also get our free weekly snow report on Thursdays. No spam, unsubscribe anytime.</p>
+  <h2 id="alert-heading" class="text-lg font-bold mb-1"><%= heading || (resort ? "Get a #{resort.name} powder alert" : "Get powder alerts") %></h2>
+  <p class="text-slate-300 text-sm mb-4"><% if blurb %><%= blurb %><% else %><%= resort ? "We'll email you when #{resort.name}'s forecast calls for a big dump." : "We'll email you when a big storm lines up anywhere Snow Way tracks." %> You'll also get our free weekly snow report on Thursdays. No spam, unsubscribe anytime.<% end %></p>
   <%= form_with model: Subscriber.new, url: subscribers_path, class: "flex flex-col sm:flex-row gap-2" do |f| %>
     <%= f.hidden_field :resort_id, value: resort&.id %>
     <%= f.label :email, "Email address", class: "sr-only" %>
@@ -10,6 +10,6 @@
       <%= f.label :threshold_inches, "Alert me at", class: "sr-only" %>
       <%= f.select :threshold_inches, [ [ "6\"+ forecast", 6 ], [ "12\"+ forecast", 12 ], [ "18\"+ forecast", 18 ] ], {}, class: "bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white" %>
     <% end %>
-    <%= f.submit "Alert me", class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 cursor-pointer transition" %>
+    <%= f.submit button, class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 cursor-pointer transition" %>
   <% end %>
 </section>

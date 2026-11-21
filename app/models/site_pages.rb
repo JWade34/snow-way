@@ -6,7 +6,7 @@ module SitePages
 
   def static_paths
     %w[/ /resorts /where-is-it-snowing /new-england /ski-resorts /ikon-vs-epic /ski-resort-opening-dates /guides /widget /weather
-       /snowboard-size-chart /ski-size-chart /ski-boot-size-chart /about /authors/justin-mckelvey /affiliate-disclosure
+       /snowboard-size-chart /ski-size-chart /ski-boot-size-chart /about /sponsor /authors/justin-mckelvey /affiliate-disclosure
        /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts /mountain-collective-resorts /epic-pass-price /ikon-pass-price /indy-pass /mountain-collective-pass /powder-report /powder-calendar /ski-trip-planner /ski-resorts-near-me /compare /snowiest-ski-resorts /getting-there /powder-day-odds]
   end
 

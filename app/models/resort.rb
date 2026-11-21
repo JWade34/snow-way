@@ -148,6 +148,25 @@ class Resort < ApplicationRecord
       .transform_values { |v| v.to_f.round(1) }
   end
 
+  # Season status for the snow report tile, from the sourced opening date in db/resort_facts.yml.
+  # nil when no 2026-27 date is on file. A scheduled date that has passed is not shown as "open":
+  # only a source saying it opened is.
+  def season_status(today = Date.current)
+    return unless opening_date
+    if opening_status == "opened"
+      { label: "Open", detail: "Opened #{opening_date.strftime("%b %-d")}" }
+    elsif opening_date > today
+      { label: "Opens #{opening_date.strftime("%b %-d")}", detail: "Scheduled opening day" }
+    else
+      { label: opening_date.strftime("%b %-d"), detail: "Scheduled opening day" }
+    end
+  end
+
+  # The station behind snow_depth_in: { "name", "miles", "elev", ... } or nil.
+  def snow_depth_station
+    PowderOdds.any_station(self) if snow_depth_in
+  end
+
   def north_american?
     NA_COUNTRIES.include?(country)
   end

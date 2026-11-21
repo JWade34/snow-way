@@ -1,0 +1,9 @@
+<%# locals: (placement:) -%>
+<%# Paid placement from db/sponsors.yml. Renders nothing unless a sponsor is booked for this page. %>
+<% if (card = Sponsor.for(placement)) %>
+  <aside class="mb-10 bg-slate-800/30 border border-slate-700 rounded-xl p-4" aria-label="Sponsor">
+    <p class="text-[11px] uppercase tracking-widest text-slate-400 mb-1">Sponsored · <%= card.name %></p>
+    <p class="font-bold"><%= link_to card.headline, card.url, target: "_blank", rel: "sponsored noopener", class: "hover:text-cyan-300" %></p>
+    <% if card.body.present? %><p class="text-sm text-slate-300 mt-1"><%= card.body %></p><% end %>
+  </aside>
+<% end %>

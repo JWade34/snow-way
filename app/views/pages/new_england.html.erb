@@ -91,7 +91,10 @@
       <p class="text-xs text-slate-400 -mt-6 mb-10">Forecast and past snow are weather-model estimates for mid-mountain (summit column: top of the lifts). "Last 24h" is yesterday's full day. Snow days a season: days with 1 inch or more of new snow, measured at a NOAA weather station near the resort over 10 winters; "—" means no station close enough to trust. See <%= link_to "Powder Day Odds", powder_study_path, class: "underline underline-offset-2" %>.</p>
     <% end %>
 
-    <%= render "shared/alert_form" %>
+    <%= render "shared/sponsor", placement: "new-england" %>
+    <%= render "shared/alert_form", heading: "Get the New England ski forecast every Thursday",
+               blurb: "Vermont, New Hampshire and Maine in one email: where the snow is headed and where to ski that weekend. Free, unsubscribe anytime.",
+               button: "Send it Thursdays" %>
 
     <% cache key + [ "bottom" ], expires_in: 15.minutes do %>
       <section class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="drive-heading">
