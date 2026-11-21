@@ -11,7 +11,16 @@ module SitePages
   end
 
   def resort_paths(resorts = Resort.order(:name))
-    resorts.flat_map { |r| [ "/resorts/#{r.slug}", "/resorts/#{r.slug}/best-time-to-ski" ] } + lodging_paths(resorts)
+    resorts.flat_map { |r| [ "/resorts/#{r.slug}", "/resorts/#{r.slug}/best-time-to-ski", "/resorts/#{r.slug}/weather" ] } +
+      lodging_paths(resorts) + link_paths(resorts)
+  end
+
+  # Webcam and trail-map pages exist only where the resort publishes them.
+  def link_paths(resorts = Resort.order(:name))
+    resorts.flat_map do |r|
+      links = ResortLinks.for(r)
+      [ ("/resorts/#{r.slug}/webcams" if links["webcams"]), ("/resorts/#{r.slug}/trail-map" if links["trail_map"]) ].compact
+    end
   end
 
   def lodging_paths(resorts = Resort.order(:name))
@@ -67,6 +76,6 @@ module SitePages
   # Pages whose content changes with each forecast refresh.
   def forecast_urls
     (%w[/ /resorts /where-is-it-snowing /new-england /powder-report /ski-resorts /ikon-vs-epic /epic-pass-resorts /ikon-pass-resorts /indy-pass-resorts] +
-      Resort.order(:name).map { |r| "/resorts/#{r.slug}" } + region_paths + hub_paths).map { |p| url(p) }
+      Resort.order(:name).flat_map { |r| [ "/resorts/#{r.slug}", "/resorts/#{r.slug}/weather" ] } + region_paths + hub_paths).map { |p| url(p) }
   end
 end

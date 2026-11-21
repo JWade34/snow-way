@@ -1,5 +1,5 @@
 class ResortsController < ApplicationController
-  before_action :set_resort, only: [ :show, :best_time, :where_to_stay, :lift_tickets ]
+  before_action :set_resort, only: [ :show, :best_time, :where_to_stay, :lift_tickets, :weather, :webcams, :trail_map ]
 
   def index
     @resorts = case params[:sort]
@@ -30,6 +30,24 @@ class ResortsController < ApplicationController
 
   def lift_tickets
     @tickets = LiftTickets.for(@resort) or raise ActiveRecord::RecordNotFound
+    @summary = ResortSummary.new(@resort)
+  end
+
+  # "[resort] weather": hourly and 7-day mountain weather (searched 3-5x more than "snow report").
+  def weather
+    @summary = ResortSummary.new(@resort)
+  end
+
+  # Only for resorts with an official webcam / trail map link (db/resort_links.yml).
+  def webcams
+    @links = ResortLinks.for(@resort)
+    raise ActiveRecord::RecordNotFound unless @links["webcams"]
+    @summary = ResortSummary.new(@resort)
+  end
+
+  def trail_map
+    @links = ResortLinks.for(@resort)
+    raise ActiveRecord::RecordNotFound unless @links["trail_map"]
     @summary = ResortSummary.new(@resort)
   end
 

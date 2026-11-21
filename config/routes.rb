@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     get "best-time-to-ski", on: :member, to: "resorts#best_time", as: :best_time
     get "where-to-stay", on: :member, to: "resorts#where_to_stay", as: :where_to_stay
     get "lift-tickets", on: :member, to: "resorts#lift_tickets", as: :lift_tickets
+    get "weather", on: :member, to: "resorts#weather", as: :weather
+    get "webcams", on: :member, to: "resorts#webcams", as: :webcams
+    get "trail-map", on: :member, to: "resorts#trail_map", as: :trail_map
   end
   resources :weather, only: [ :index ]
 

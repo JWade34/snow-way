@@ -1,0 +1,104 @@
+<% r = @resort %>
+<% s = @summary %>
+<% hours = Array(r.hourly_forecast) %>
+<% today = Date.current.strftime("%B %-d, %Y") %>
+<% now = s.conditions? ? "Right now at mid-mountain it's #{r.current_temp_f}°F#{s.weather_description ? ", #{s.weather_description.downcase}" : ""}, wind #{r.current_wind_mph} mph." : nil %>
+<% answer = s.has_forecast? ? [ "#{r.name} weather as of #{today}.", now, s.weekend_weather_answer, s.next_snow_answer ].compact.join(" ") : s.answer %>
+<% faqs = [] %>
+<% faqs << { question: "What's the weather at #{r.name} this weekend?", answer: s.weekend_weather_answer } if s.weekend_weather_answer %>
+<% faqs << { question: "What's the weather at #{r.name} this week?", answer: s.weather_answer } if s.weather_answer %>
+<% faqs << { question: "Will it snow at #{r.name} this week?", answer: s.next_snow_answer } if s.has_forecast? %>
+<% if hours.any? %>
+  <% cold = hours.min_by { |h| h["temp_f"].to_i } %>
+  <% windy = hours.max_by { |h| h["wind_mph"].to_i } %>
+  <% faqs << { question: "How cold will it get at #{r.name} in the next 3 days?", answer: "The coldest hour in the next 72 hours at mid-mountain is #{cold["temp_f"]}°F, around #{Time.parse(cold["t"]).strftime("%-l %p %A")}. The summit (#{number_with_delimiter(r.elevation_summit)} ft) usually runs a few degrees colder." } %>
+  <% faqs << { question: "How windy is it at #{r.name}?", answer: "Wind at mid-mountain peaks near #{windy["wind_mph"]} mph around #{Time.parse(windy["t"]).strftime("%-l %p %A")} in the next 3 days. Upper lifts can go on wind hold above roughly 40 to 50 mph." } %>
+<% end %>
+<% if (status = r.season_status) %>
+  <% faqs << { question: "Is #{r.name} open?", answer: status[:label] == "Open" ? "Yes. #{r.name} #{status[:detail].downcase}." : "#{r.name}: #{status[:detail].downcase}, #{r.opening_date.strftime("%B %-d, %Y")}." } %>
+<% end %>
+<% heading = "#{r.name} Weather Forecast: Hourly & 7-Day Mountain Weather" %>
+<% content_for(:title, fit_title("#{r.name} Weather: Hourly & 7-Day Mountain Forecast | Snow Way", "#{r.name} Weather Forecast | Snow Way")) %>
+<% content_for(:description, answer.truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => heading, "url" => absolute_url(weather_resort_path(r)), "dateModified" => s.updated_at&.iso8601,
+          "about" => { "@type" => "SkiResort", "name" => r.name, "url" => absolute_url(resort_path(r)) } }.compact,
+        breadcrumb_schema([ [ "Ski Resorts", "/resorts" ], [ r.name, resort_path(r) ], [ "Weather", nil ] ]),
+        faq_schema(faqs)
+      ].compact }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts", resorts_path ], [ r.name, resort_path(r) ], [ "Weather", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= r.name %> weather forecast</h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+      <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(s.updated_at) %> · Mid-mountain (<%= number_with_delimiter(r.mid_elevation) %> ft) forecast from Open-Meteo · <%= link_to "#{r.name} snow report", resort_path(r), class: "underline underline-offset-2" %></p>
+    </section>
+
+    <% if hours.any? %>
+      <section class="mb-10" aria-labelledby="hourly-heading">
+        <h2 id="hourly-heading" class="text-xl font-bold mb-1"><%= r.name %> hourly weather</h2>
+        <p class="text-slate-400 text-sm mb-4">Next 72 hours at mid-mountain, local time.</p>
+        <% hours.group_by { |h| h["t"][0, 10] }.each_with_index do |(day, rows), i| %>
+          <details class="mb-2 bg-slate-800/40 border border-slate-700 rounded-lg" <%= "open" if i.zero? %>>
+            <summary class="cursor-pointer px-4 py-2 font-semibold"><%= Date.parse(day).strftime("%A, %b %-d") %> <span class="text-slate-400 font-normal text-sm">· <%= rows.map { |h| h["temp_f"].to_i }.minmax.reverse.join("° / ") %>° · <%= (sn = rows.sum { |h| h["snow_in"].to_f }.round(1)) > 0 ? "#{sn}\" snow" : "no snow" %></span></summary>
+            <div class="overflow-x-auto px-3 pb-3">
+              <table class="w-full text-sm">
+                <caption class="sr-only"><%= r.name %> hourly weather for <%= Date.parse(day).strftime("%A") %></caption>
+                <thead class="text-slate-400 text-left"><tr><th scope="col" class="py-1 pr-3">Time</th><th scope="col" class="py-1 pr-3">Sky</th><th scope="col" class="py-1 pr-3 text-right">Temp</th><th scope="col" class="py-1 pr-3 text-right">Snow</th><th scope="col" class="py-1 text-right">Wind</th></tr></thead>
+                <tbody class="divide-y divide-slate-800">
+                  <% rows.each do |h| %>
+                    <% wx = WeatherData::WEATHER_CODES[h["code"]] %>
+                    <tr>
+                      <th scope="row" class="py-1 pr-3 text-left font-normal text-slate-300 whitespace-nowrap"><%= Time.parse(h["t"]).strftime("%-l %p") %></th>
+                      <td class="py-1 pr-3"><% if wx %><span aria-hidden="true"><%= wx[:icon] %></span> <span class="text-slate-400"><%= wx[:description] %></span><% end %></td>
+                      <td class="py-1 pr-3 text-right font-semibold"><%= h["temp_f"] %>°</td>
+                      <td class="py-1 pr-3 text-right <%= h["snow_in"].to_f > 0 ? "text-cyan-300 font-bold" : "text-slate-500" %>"><%= h["snow_in"].to_f > 0 ? "#{h["snow_in"]}\"" : (h["rain"] ? "rain" : "–") %></td>
+                      <td class="py-1 text-right text-slate-300"><%= h["wind_mph"] %> mph</td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        <% end %>
+      </section>
+    <% end %>
+
+    <section class="mb-10" aria-labelledby="week-heading">
+      <h2 id="week-heading" class="text-xl font-bold mb-3"><%= r.name %> 7-day weather</h2>
+      <div class="overflow-x-auto border border-slate-700 rounded-xl">
+        <table class="w-full text-sm">
+          <caption class="sr-only"><%= r.name %> 7-day weather forecast</caption>
+          <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Day</th><th scope="col" class="px-3 py-2">Sky</th><th scope="col" class="px-3 py-2 text-right">High / low</th><th scope="col" class="px-3 py-2 text-right">Snow</th><th scope="col" class="px-3 py-2 text-right">Summit snow</th><th scope="col" class="px-3 py-2 text-right">Wind</th></tr></thead>
+          <tbody class="divide-y divide-slate-800">
+            <% s.forecasts.each do |f| %>
+              <% wx = WeatherData::WEATHER_CODES[f.weather_code] %>
+              <tr>
+                <th scope="row" class="px-3 py-2 text-left whitespace-nowrap"><%= f.forecast_date.strftime("%a %b %-d") %></th>
+                <td class="px-3 py-2"><% if wx %><span aria-hidden="true"><%= wx[:icon] %></span> <span class="text-slate-400"><%= wx[:description] %></span><% end %></td>
+                <td class="px-3 py-2 text-right"><%= f.temp_high_f ? "#{f.temp_high_f}° / #{f.temp_low_f}°" : "—" %></td>
+                <td class="px-3 py-2 text-right font-bold <%= f.snowfall_inches.to_f > 0 ? "text-cyan-300" : "text-slate-500" %>"><%= inches(f.snowfall_inches) %></td>
+                <td class="px-3 py-2 text-right text-slate-300"><%= inches(f.snowfall_summit_inches) %></td>
+                <td class="px-3 py-2 text-right text-slate-300"><%= f.wind_max_mph ? "#{f.wind_max_mph} mph" : "—" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <%= render "shared/trip_deals", resort: r, heading: "Heading to #{r.name}?" %>
+    <%= render "shared/alert_form", resort: r %>
+    <%= render "shared/faq", faqs: faqs, heading: "#{r.name} weather FAQ" %>
+    <% links = ResortLinks.for(r) %>
+    <p class="text-sm text-slate-400">More for <%= r.name %>: <%= safe_join([ link_to("snow report", resort_path(r), class: "text-cyan-300 underline underline-offset-2"),
+          link_to("best time to ski", best_time_resort_path(r), class: "text-cyan-300 underline underline-offset-2"),
+          (link_to("webcams", webcams_resort_path(r), class: "text-cyan-300 underline underline-offset-2") if links["webcams"]),
+          (link_to("trail map", trail_map_resort_path(r), class: "text-cyan-300 underline underline-offset-2") if links["trail_map"]) ].compact, " · ") %></p>
+  </main>
+</div>

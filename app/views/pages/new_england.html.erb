@@ -118,7 +118,7 @@
       <%= render "shared/faq", faqs: meta[:faqs], heading: "New England ski forecast FAQ" %>
       <%= render "shared/cite_this", title: "New England Ski Forecast: Vermont, New Hampshire & Maine", url: absolute_url("/new-england") %>
 
-      <p class="text-sm text-slate-400 mb-2">By state: <%= safe_join(NewEnglandReport::STATES.map { |s| link_to(s, region_path(s.parameterize), class: "text-cyan-300 underline underline-offset-2") }, " · ") %> · <%= link_to "All of New England", region_path("new-england"), class: "text-cyan-300 underline underline-offset-2" %></p>
+      <p class="text-sm text-slate-400 mb-2">By state: <%= safe_join(NewEnglandReport::STATES.map { |s| link_to(s, region_path(s.parameterize), class: "text-cyan-300 underline underline-offset-2") }, " · ") %> · <%= link_to "All of New England", region_path("new-england"), class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Best ski resorts in New England, ranked", "/best-ski-resorts-in-new-england", class: "text-cyan-300 underline underline-offset-2" %></p>
       <p class="text-sm text-slate-400"><%= link_to "Where is it snowing across North America?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Weekly powder report", powder_report_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <% end %>
   </main>

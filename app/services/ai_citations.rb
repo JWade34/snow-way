@@ -1,8 +1,14 @@
 require "net/http"
 
 # Asks AI answer engines the questions in config/ai_queries.yml and records whether they cite snowway.app.
-# Perplexity (PERPLEXITY_API_KEY) and OpenAI web search (OPENAI_API_KEY) both return source URLs, so the
-# check is objective: our domain is in the sources or it isn't. Engines without a key are skipped.
+# Every engine returns source URLs, so the check is objective: our domain is in the sources or it isn't.
+# Engines without credentials are skipped.
+#   perplexity          PERPLEXITY_API_KEY
+#   chatgpt-search      OPENAI_API_KEY (Responses API + web search)
+#   claude              ANTHROPIC_API_KEY (Messages API + web search tool)
+#   gemini              DATAFORSEO_LOGIN/PASSWORD (Gemini with Google Search grounding, via DataForSEO)
+#   google-ai-overview  DATAFORSEO_LOGIN/PASSWORD (the AI Overview on a live US Google results page)
+# Copilot has no API; it answers from Bing's index, which BING_WEBMASTER_API_KEY and IndexNow already cover.
 module AiCitations
   QUERIES_FILE = Rails.root.join("config/ai_queries.yml")
   DOMAIN = "snowway.app".freeze
@@ -16,7 +22,10 @@ module AiCitations
   def engines
     {
       "perplexity" => (ENV["PERPLEXITY_API_KEY"].presence && method(:ask_perplexity)),
-      "chatgpt-search" => (ENV["OPENAI_API_KEY"].presence && method(:ask_openai))
+      "chatgpt-search" => (ENV["OPENAI_API_KEY"].presence && method(:ask_openai)),
+      "claude" => (ENV["ANTHROPIC_API_KEY"].presence && method(:ask_claude)),
+      "gemini" => (dataforseo? && method(:ask_gemini)),
+      "google-ai-overview" => (dataforseo? && method(:ask_ai_overview))
     }.compact
   end
 
@@ -36,6 +45,7 @@ module AiCitations
     check = AiCitationCheck.find_or_initialize_by(checked_on: on, engine: engine, query: query)
     result = yield
     ours = result[:sources].select { |u| u.to_s.include?(DOMAIN) }
+    ours |= Array(result[:source_names]).select { |n| n.to_s.include?(DOMAIN) }
     check.update!(cited: ours.any?, mentioned: result[:text].to_s.match?(/snow ?way/i), snowway_urls: ours,
                   sources: result[:sources].first(20), answer_excerpt: result[:text].to_s.first(600), error: nil)
   rescue StandardError => e
@@ -57,6 +67,59 @@ module AiCitations
     parts = Array(message["content"])
     { text: parts.map { |p| p["text"] }.join("\n"),
       sources: parts.flat_map { |p| Array(p["annotations"]) }.filter_map { |a| a["url"] }.uniq }
+  end
+
+  def ask_claude(query)
+    client = Anthropic::Client.new(api_key: ENV["ANTHROPIC_API_KEY"])
+    message = client.messages.create(
+      model: :"claude-opus-5-5", max_tokens: 4000, output_config: { effort: :low },
+      tools: [ { type: "web_search_20260209", name: "web_search", max_uses: 3 } ],
+      messages: [ { role: "user", content: query } ]
+    ).to_h
+    blocks = Array(message[:content])
+    results = blocks.select { |b| b[:type].to_s == "web_search_tool_result" && b[:content].is_a?(Array) }.flat_map { |b| b[:content].map { |r| r[:url] } }
+    cited = blocks.select { |b| b[:type].to_s == "text" }.flat_map { |b| Array(b[:citations]).map { |c| c[:url] } }
+    { text: blocks.select { |b| b[:type].to_s == "text" }.map { |b| b[:text] }.join, sources: (cited + results).compact.uniq }
+  end
+
+  # Gemini's grounding links are Google redirects; the real site is in direct_url or the title (usually the domain).
+  def ask_gemini(query)
+    task = dataforseo("ai_optimization/gemini/llm_responses/live",
+                      user_prompt: query, model_name: ENV.fetch("GEMINI_MODEL", "gemini-2.5-flash"), web_search: true)
+    sections = Array(task.dig("result", 0, "items")).flat_map { |i| Array(i["sections"]) }
+    notes = sections.flat_map { |sec| Array(sec["annotations"]) }
+    { text: sections.map { |sec| sec["text"] }.join("\n"), sources: notes.filter_map { |a| a["direct_url"].presence || a["url"] }.uniq,
+      source_names: notes.filter_map { |a| a["title"] }.uniq }
+  end
+
+  # Google's AI Overview for the query (US, English). No overview on the page means not cited.
+  def ask_ai_overview(query)
+    task = dataforseo("serp/google/organic/live/advanced",
+                      keyword: query, location_code: 2840, language_code: "en", load_async_ai_overview: true)
+    items = Array(task.dig("result", 0, "items"))
+    overview = items.find { |i| i["type"] == "ai_overview" }
+    raise "no AI Overview shown for this query" unless overview
+    { text: Array(overview["items"]).map { |i| i["text"] }.compact.join("\n").presence || overview["text"].to_s,
+      sources: Array(overview["references"]).filter_map { |r| r["url"] }.uniq }
+  end
+
+  def dataforseo?
+    ENV["DATAFORSEO_LOGIN"].present? && ENV["DATAFORSEO_PASSWORD"].present?
+  end
+
+  def dataforseo(path, task)
+    uri = URI("https://api.dataforseo.com/v3/#{path}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.read_timeout = 120
+    request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
+    request.basic_auth(ENV["DATAFORSEO_LOGIN"], ENV["DATAFORSEO_PASSWORD"])
+    request.body = [ task ].to_json
+    response = http.request(request)
+    raise "HTTP #{response.code}" unless response.code.to_i == 200
+    result = JSON.parse(response.body).dig("tasks", 0) || {}
+    raise "DataForSEO #{result["status_code"]}: #{result["status_message"]}" unless result["status_code"] == 20000
+    result
   end
 
   def post(url, key, payload)

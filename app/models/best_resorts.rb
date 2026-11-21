@@ -10,6 +10,7 @@ class BestResorts
     "in-colorado" => { name: "Colorado", label: "Colorado", rule: ->(r) { r.state_province == "Colorado" }, hub: "denver" },
     "in-utah" => { name: "Utah", label: "Utah", rule: ->(r) { r.state_province == "Utah" }, hub: "salt-lake-city" },
     "in-california" => { name: "California", label: "California", rule: ->(r) { r.state_province == "California" } },
+    "in-new-england" => { name: "New England", label: "New England", rule: ->(r) { %w[Vermont New\ Hampshire Maine Massachusetts Connecticut Rhode\ Island].include?(r.state_province) }, hub: "boston" },
     "in-vermont" => { name: "Vermont", label: "Vermont", rule: ->(r) { r.state_province == "Vermont" }, hub: "boston" },
     "on-the-east-coast" => { name: "the East Coast", label: "East Coast", rule: ->(r) { r.country == "USA" && EAST.include?(r.state_province) }, hub: "new-york-city" },
     "in-japan" => { name: "Japan", label: "Japanese", rule: ->(r) { r.country == "Japan" } }

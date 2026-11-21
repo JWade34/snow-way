@@ -73,6 +73,13 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", /Best Ski Resorts in Colorado/
   end
 
+  test "states with their own best-resorts list target ski conditions instead" do
+    Resort.sync_from_data_file!
+    get region_url("colorado")
+    assert_select "h1", /Colorado ski conditions/
+    assert_select "title", /Colorado Ski Conditions/
+  end
+
   test "comparison, snowiest and lift ticket pages render" do
     Resort.create!(name: "Aspen Snowmass", slug: "aspen-snowmass", latitude: 39.2, longitude: -106.9, nearest_airport_code: "ASE",
                    state_province: "Colorado", country: "USA", elevation_base: 8104, elevation_summit: 12510, website_url: "https://www.aspensnowmass.com")

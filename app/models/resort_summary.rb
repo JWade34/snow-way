@@ -175,7 +175,7 @@ class ResortSummary
     list << { question: "What's the weather at #{resort.name} this week?", answer: weather_answer } if weather_answer
     list << { question: "What is the 14-day snow forecast for #{resort.name}?", answer: fourteen_day_answer } if extended_forecasts.any?
     list << { question: "Is #{resort.name} on the Epic or Ikon Pass?", answer: pass_answer } if resort.pass.present?
-    list << { question: "When does #{resort.name} open for the #{season_label} season?", answer: opening_answer } if resort.opening_date
+    list << { question: "Is #{resort.name} open? When does it open for the #{season_label} season?", answer: opening_answer } if resort.opening_date
     list << { question: "What is the closest airport to #{resort.name}?", answer: airport_answer }
     list << { question: "How high is #{resort.name}?", answer: elevation_answer } if resort.vertical_drop
     list << { question: "Where can I see #{resort.name} webcams and the trail map?", answer: links_answer } if links_answer
@@ -231,6 +231,22 @@ class ResortSummary
     "#{lead} Other #{resort.region_name} resorts: #{others}."
   end
 
+  # The coming weekend's forecast days (today counts if it's Saturday or Sunday).
+  def weekend_forecasts
+    forecasts.select { |f| f.forecast_date.saturday? || f.forecast_date.sunday? }.first(2)
+  end
+
+  def weekend_weather_answer
+    days = weekend_forecasts.select(&:temp_high_f)
+    return if days.empty?
+    parts = days.map do |d|
+      snow = d.snowfall_inches.to_f >= 0.1 ? "#{d.snowfall_inches.to_f.round(1)}\" of snow" : "no new snow"
+      wx = WeatherData::WEATHER_CODES.dig(d.weather_code, :description)&.downcase
+      "#{d.forecast_date.strftime("%A")} #{d.temp_high_f}°F / #{d.temp_low_f}°F#{wx ? ", #{wx}" : ""}, #{snow}#{d.wind_max_mph ? ", wind to #{d.wind_max_mph} mph" : ""}"
+    end
+    "This weekend at #{resort.name} (mid-mountain, #{number_with_delimiter(resort.mid_elevation)} ft): #{parts.join("; ")}."
+  end
+
   def weather_answer
     days = forecasts.select(&:temp_high_f)
     return if days.empty?
@@ -269,11 +285,11 @@ class ResortSummary
   def opening_answer
     date = resort.opening_date.strftime("%B %-d, %Y")
     if resort.opening_status == "opened"
-      "#{resort.name} opened for the #{season_label} season on #{date}."
+      "Yes. #{resort.name} opened for the #{season_label} season on #{date}."
     elsif resort.opening_date < as_of
       "#{resort.name} was scheduled to open on #{date}. Check the resort's website to confirm it opened on time."
     else
-      "#{resort.name} is scheduled to open on #{date}. Opening dates depend on snow and can change."
+      "Not yet. #{resort.name} is scheduled to open on #{date}. Opening dates depend on snow and can change."
     end
   end
 
@@ -312,4 +328,7 @@ class ResortSummary
     return "tomorrow" if date == as_of + 1
     date.strftime("%A, %b %-d")
   end
+
+  # Used by the weather page.
+  public :weekend_forecasts, :weekend_weather_answer, :weather_answer, :next_snow_answer, :snow_report_answer, :opening_answer
 end

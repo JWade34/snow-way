@@ -1,0 +1,62 @@
+<%# locals: (kind:) -%>
+<%# Webcam and trail-map pages: the official link up top, then the live conditions that make the link worth checking. %>
+<% r = @resort %>
+<% s = @summary %>
+<% cams = kind == :webcams %>
+<% url = @links[cams ? "webcams" : "trail_map"] %>
+<% label = cams ? "webcams" : "trail map" %>
+<% status = r.season_status %>
+<% depth_station = r.snow_depth_station %>
+<% bits = [] %>
+<% bits << "#{r.name} #{status[:label] == "Open" ? "is open for the season" : status[:detail].downcase.sub("scheduled opening day", "is scheduled to open #{r.opening_date.strftime("%b %-d")}")}." if status %>
+<% bits << "Snow on the ground at the #{depth_station["name"]} station: #{r.snow_depth_in} inches (#{r.snow_depth_on.strftime("%b %-d")})." if depth_station %>
+<% bits << "New snow in the last 48 hours: #{inches(s.recent)}. Next 7 days: #{inches(s.total)}." if s.has_forecast? %>
+<% answer = (cams ? "#{r.name}'s live webcams are on the resort's official site (link below). " : "The official #{r.name} trail map is on the resort's website (link below). ") + bits.join(" ") %>
+<% faqs = [] %>
+<% if cams %>
+  <% faqs << { question: "Where can I see #{r.name} webcams?", answer: "#{r.name} posts its live webcams on its official website: #{url}. Snow Way links to them next to today's snow report and forecast." } %>
+  <% faqs << { question: "Is it snowing at #{r.name} right now?", answer: s.has_forecast? ? s.snow_report_answer : "Check the live webcams for current conditions." } %>
+<% else %>
+  <% faqs << { question: "Where is the #{r.name} trail map?", answer: "The current #{r.name} trail map is on the resort's official website: #{url}. Trail maps change between seasons, so use the resort's own version." } %>
+  <% faqs << { question: "How big is #{r.name}?", answer: "#{r.name} runs from #{number_with_delimiter(r.elevation_base)} ft at the base to #{number_with_delimiter(r.elevation_summit)} ft at the summit#{r.vertical_drop ? ", #{number_with_delimiter(r.vertical_drop)} ft of vertical" : ""}." } %>
+<% end %>
+<% faqs << { question: "Is #{r.name} open?", answer: s.opening_answer } if r.opening_date %>
+<% title = cams ? "#{r.name} Webcams: Live Cams + Today's Snow Report" : "#{r.name} Trail Map + Today's Snow Report" %>
+<% content_for(:title, fit_title("#{title} | Snow Way", "#{r.name} #{cams ? "Webcams" : "Trail Map"} | Snow Way")) %>
+<% content_for(:description, answer.truncate(300)) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => title, "url" => absolute_url(cams ? webcams_resort_path(r) : trail_map_resort_path(r)), "dateModified" => s.updated_at&.iso8601 }.compact,
+        breadcrumb_schema([ [ "Ski Resorts", "/resorts" ], [ r.name, resort_path(r) ], [ cams ? "Webcams" : "Trail Map", nil ] ]),
+        faq_schema(faqs) ].compact }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts", resorts_path ], [ r.name, resort_path(r) ], [ cams ? "Webcams" : "Trail Map", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= r.name %> <%= label %></h1>
+    <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed mb-4"><%= answer %></p>
+      <%= link_to "#{cams ? "📷 Open the live #{r.name} webcams" : "🗺️ Open the official #{r.name} trail map"} ↗", url, target: "_blank", rel: "noopener", class: "inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-3" %>
+      <p class="text-slate-400 text-xs mt-3">Opens <%= URI(url).host rescue "the resort's site" %>. Snow Way doesn't host <%= r.name %>'s <%= label %>; we link to the official source.</p>
+    </section>
+
+    <% if s.has_forecast? %>
+      <section class="mb-8" aria-labelledby="now-heading">
+        <h2 id="now-heading" class="text-xl font-bold mb-3"><%= r.name %> conditions today</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-3 text-center"><p class="text-xl font-bold text-amber-300"><%= inches(s.recent) %></p><p class="text-slate-400 text-xs">New snow, 48h</p></div>
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-3 text-center"><p class="text-xl font-bold text-cyan-300"><%= inches(s.total) %></p><p class="text-slate-400 text-xs">Next 7 days</p></div>
+          <% if depth_station %><div class="bg-slate-800/50 border border-slate-700 rounded-xl p-3 text-center"><p class="text-xl font-bold"><%= r.snow_depth_in %>"</p><p class="text-slate-400 text-xs">On the ground (station)</p></div><% end %>
+          <% if s.conditions? %><div class="bg-slate-800/50 border border-slate-700 rounded-xl p-3 text-center"><p class="text-xl font-bold"><%= r.current_temp_f %>°F</p><p class="text-slate-400 text-xs">Mid-mountain now</p></div><% end %>
+          <% if status %><div class="bg-slate-800/50 border border-slate-700 rounded-xl p-3 text-center"><p class="text-xl font-bold"><%= status[:label] %></p><p class="text-slate-400 text-xs"><%= status[:detail] %></p></div><% end %>
+        </div>
+        <p class="text-sm mt-3"><%= link_to "Full #{r.name} snow report and forecast", resort_path(r), class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Hourly weather", weather_resort_path(r), class: "text-cyan-300 underline underline-offset-2" %></p>
+      </section>
+    <% end %>
+
+    <%= render "shared/alert_form", resort: r %>
+    <%= render "shared/faq", faqs: faqs, heading: "#{r.name} #{label} FAQ" %>
+  </main>
+</div>
