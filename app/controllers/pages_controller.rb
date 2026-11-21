@@ -13,6 +13,12 @@ class PagesController < ApplicationController
     @updated_at = SnowForecast.maximum(:created_at)
   end
 
+  # Vermont, New Hampshire and Maine on one page: the link the Boston Globe ski column uses.
+  # The heavy part of the page is fragment-cached in the view; this only builds the report object.
+  def new_england
+    @report = NewEnglandReport.new
+  end
+
   def snowiest
     @averages = AverageSnowfall.all
     na = Resort.north_america.index_by(&:slug)

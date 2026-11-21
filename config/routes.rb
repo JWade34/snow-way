@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :weather, only: [ :index ]
 
   get "where-is-it-snowing" => "pages#where_is_it_snowing", as: :where_is_it_snowing
+  get "new-england" => "pages#new_england", as: :new_england
   get "ikon-vs-epic" => "pages#ikon_vs_epic", as: :ikon_vs_epic
   get "compare" => "comparisons#index", as: :comparisons
   get "compare/:id" => "comparisons#show", as: :comparison

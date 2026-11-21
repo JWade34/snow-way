@@ -1,0 +1,122 @@
+<%# The heavy work (ranking 23 resorts, FAQs) is cached for 15 minutes and whenever forecasts refresh,
+    so a traffic spike from the Boston Globe serves mostly from cache. The alert form stays outside
+    the cache because it carries a per-visitor security token. %>
+<% r = @report %>
+<% key = [ "new-england-v1", r.as_of, r.updated_at&.to_i ] %>
+<% wk = r.weekend %>
+<% wk_label = r.weekend_label %>
+<% meta = Rails.cache.fetch(key + [ "meta" ], expires_in: 15.minutes) { r.meta } %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "CollectionPage", "name" => "New England Ski Forecast: Vermont, New Hampshire & Maine", "url" => absolute_url("/new-england"), "dateModified" => r.updated_at&.iso8601 }.compact,
+        breadcrumb_schema([ [ "New England Ski Forecast", nil ] ]),
+        { "@type" => "ItemList", "name" => "New England ski resorts ranked by 7-day snow forecast", "numberOfItems" => meta[:list].size,
+          "itemListElement" => meta[:list].each_with_index.map { |(name, slug), i| { "@type" => "ListItem", "position" => i + 1, "name" => name, "url" => absolute_url("/resorts/#{slug}") } } },
+        faq_schema(meta[:faqs])
+      ].compact }) %>
+<% end %>
+<% content_for(:title, "New England Ski Forecast This Week: VT, NH & ME Snow | Snow Way") %>
+<% content_for(:description, meta[:description]) %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+    <% cache key + [ "top" ], expires_in: 15.minutes do %>
+      <%= render "shared/breadcrumbs", crumbs: [ [ "New England Ski Forecast", nil ] ] %>
+      <h1 class="text-3xl md:text-4xl font-extrabold mb-3">New England ski forecast: Vermont, New Hampshire &amp; Maine</h1>
+      <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+        <p class="text-slate-200 leading-relaxed"><%= meta[:faqs].first[:answer] %></p>
+        <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(r.updated_at) %> · Forecasts refresh every 6 hours · <a href="#how" class="underline underline-offset-2">How this works</a></p>
+      </section>
+
+      <% if (lead = r.leader) %>
+        <%= render "shared/storm_deal", resort: lead.resort, summary: ResortSummary.new(lead.resort) %>
+      <% end %>
+
+      <% if r.picks.any? %>
+        <section class="mb-10" aria-labelledby="weekend-heading">
+          <h2 id="weekend-heading" class="text-xl font-bold mb-1">Best bets for the weekend (<%= wk_label %>)</h2>
+          <p class="text-slate-400 text-sm mb-4">Most new snow in the 7-day forecast. Rooms near the mountain go first on storm weekends.</p>
+          <ul class="grid grid-cols-1 sm:grid-cols-3 gap-3" data-booking>
+            <% r.picks.each do |x| %>
+              <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4 flex flex-col">
+                <span class="text-xs uppercase tracking-wider text-slate-400"><%= x.resort.state_province %></span>
+                <%= link_to x.resort.name, resort_path(x.resort), class: "font-bold text-lg hover:text-cyan-300" %>
+                <span class="text-cyan-300 font-bold text-2xl"><%= inches(x.week) %></span>
+                <span class="text-slate-400 text-xs mb-3"><%= inches(x.summit_week) %> at the summit · next 7 days</span>
+                <a href="<%= Affiliate.hotels_url(x.resort, checkin: wk[:checkin], checkout: wk[:checkout]) %>" target="_blank" rel="sponsored nofollow noopener" class="mt-auto text-center bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-3 py-2 text-sm transition">Rooms near <%= x.resort.name %></a>
+              </li>
+            <% end %>
+          </ul>
+          <%= affiliate_disclosure("Room links search #{wk_label}; change dates on the next page. Bookings may earn Snow Way a commission.", css: "mt-2") %>
+        </section>
+      <% end %>
+
+      <% r.by_state.each do |state, rows| %>
+        <section class="mb-10" aria-labelledby="<%= state.parameterize %>-heading">
+          <h2 id="<%= state.parameterize %>-heading" class="text-xl font-bold mb-3"><%= state %> ski forecast</h2>
+          <div class="overflow-x-auto border border-slate-700 rounded-xl">
+            <table class="w-full text-sm">
+              <caption class="sr-only"><%= state %> ski resorts: 7-day snow forecast and recent snowfall</caption>
+              <thead class="bg-slate-800/70 text-slate-300 text-left">
+                <tr>
+                  <th scope="col" class="px-3 py-2">Resort</th>
+                  <th scope="col" class="px-3 py-2 text-right">Next 7 days</th>
+                  <th scope="col" class="px-3 py-2 text-right">Summit 7 days</th>
+                  <th scope="col" class="px-3 py-2 text-right">Last 24h</th>
+                  <th scope="col" class="px-3 py-2 text-right">Last 48h</th>
+                  <th scope="col" class="px-3 py-2 text-right">Last 7 days</th>
+                  <th scope="col" class="px-3 py-2 text-right hidden md:table-cell"><abbr title="Days a season with 1 inch or more of new snow, measured at a nearby NOAA weather station" class="no-underline">Snow days/yr</abbr></th>
+                  <th scope="col" class="px-3 py-2 hidden sm:table-cell"><span class="sr-only">Lodging</span></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800">
+                <% rows.each do |x| %>
+                  <tr class="hover:bg-slate-800/40">
+                    <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to x.resort.name, resort_path(x.resort), class: "underline underline-offset-2 hover:text-cyan-300" %></th>
+                    <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(x.week) %></td>
+                    <td class="px-3 py-2 text-right text-slate-200"><%= inches(x.summit_week) %></td>
+                    <td class="px-3 py-2 text-right text-amber-300"><%= inches(x.yesterday) %></td>
+                    <td class="px-3 py-2 text-right text-amber-300"><%= inches(x.two_days) %></td>
+                    <td class="px-3 py-2 text-right text-amber-200"><%= inches(x.past_week) %></td>
+                    <td class="px-3 py-2 text-right text-slate-300 hidden md:table-cell"><%= x.snow_days ? link_to(x.snow_days, powder_study_path, class: "underline underline-offset-2") : "—" %></td>
+                    <td class="px-3 py-2 hidden sm:table-cell" data-booking><a href="<%= Affiliate.hotels_url(x.resort, checkin: wk[:checkin], checkout: wk[:checkout]) %>" target="_blank" rel="sponsored nofollow noopener" class="text-cyan-300 underline underline-offset-2 whitespace-nowrap">Rooms</a></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      <% end %>
+      <p class="text-xs text-slate-400 -mt-6 mb-10">Forecast and past snow are weather-model estimates for mid-mountain (summit column: top of the lifts). "Last 24h" is yesterday's full day. Snow days a season: days with 1 inch or more of new snow, measured at a NOAA weather station near the resort over 10 winters; "—" means no station close enough to trust. See <%= link_to "Powder Day Odds", powder_study_path, class: "underline underline-offset-2" %>.</p>
+    <% end %>
+
+    <%= render "shared/alert_form" %>
+
+    <% cache key + [ "bottom" ], expires_in: 15.minutes do %>
+      <section class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-5" aria-labelledby="drive-heading">
+        <h2 id="drive-heading" class="text-xl font-bold mb-1">Driving up for the weekend?</h2>
+        <p class="text-slate-400 text-sm mb-4">Storm weekends in the Green and White Mountains mean snow on Route 100, I-93 through Franconia Notch and Route 16. What to have in the car:</p>
+        <ul class="flex flex-wrap gap-2 mb-3">
+          <% [ [ "Snow brush and ice scraper", "snow brush ice scraper" ], [ "Tire socks for snow", "tire socks snow" ], [ "Roof ski rack", "car roof ski rack" ],
+               [ "Winter car emergency kit", "winter car emergency kit" ], [ "Hand warmers", "hand warmers" ], [ "Boot dryer", "ski boot dryer" ] ].each do |label, query| %>
+            <li><%= link_to label, Affiliate.gear_url(query), rel: "sponsored nofollow noopener", target: "_blank", class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-cyan-500 rounded-lg px-3 py-2 text-sm transition" %></li>
+          <% end %>
+        </ul>
+        <%= affiliate_disclosure("Shopping links may earn Snow Way a commission.", css: "mt-1") %>
+      </section>
+
+      <section id="how" class="mb-10 text-sm text-slate-300 leading-relaxed" aria-labelledby="how-heading">
+        <h2 id="how-heading" class="text-xl font-bold mb-3 text-white">How this forecast works</h2>
+        <p class="mb-2">Every 6 hours Snow Way pulls the weather-model forecast from Open-Meteo for two points at each resort: mid-mountain, where most skiing happens, and the summit. The ranking uses mid-mountain snow over the next 7 days. Past snow (24 hours, 48 hours, 7 days) comes from the same models, so treat it as an estimate, not a resort snow report.</p>
+        <p>Snow days a season is different: it is measured, not modeled. It counts days with 1 inch or more of new snow at a NOAA co-op or CoCoRaHS weather station near the resort, November to April, over 10 winters (2015-16 to 2024-25). <%= link_to "Read the method", powder_study_path, class: "text-cyan-300 underline underline-offset-2" %>.</p>
+      </section>
+
+      <%= render "shared/faq", faqs: meta[:faqs], heading: "New England ski forecast FAQ" %>
+      <%= render "shared/cite_this", title: "New England Ski Forecast: Vermont, New Hampshire & Maine", url: absolute_url("/new-england") %>
+
+      <p class="text-sm text-slate-400 mb-2">By state: <%= safe_join(NewEnglandReport::STATES.map { |s| link_to(s, region_path(s.parameterize), class: "text-cyan-300 underline underline-offset-2") }, " · ") %> · <%= link_to "All of New England", region_path("new-england"), class: "text-cyan-300 underline underline-offset-2" %></p>
+      <p class="text-sm text-slate-400"><%= link_to "Where is it snowing across North America?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Weekly powder report", powder_report_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+    <% end %>
+  </main>
+</div>

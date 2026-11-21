@@ -27,6 +27,11 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
+# WEB_CONCURRENCY > 1 runs several Puma processes (set on Railway for press traffic, e.g. the Boston Globe link).
+# Solid Queue's plugin runs in the master process, so jobs still run once. Unset = one process, as before.
+web_concurrency = ENV.fetch("WEB_CONCURRENCY", 0).to_i
+workers web_concurrency if web_concurrency > 1
+
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 # Bind to 0.0.0.0 for production (Fly.io requires this)
 if ENV["RAILS_ENV"] == "production"
