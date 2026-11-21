@@ -81,5 +81,3 @@ gem "resend", "~> 1.19"
 
 gem "google-apis-searchconsole_v1", "~> 0.23.0"
 gem "googleauth", "~> 1.17"
-
-gem "anthropic", "~> 2.12"

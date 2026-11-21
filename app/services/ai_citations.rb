@@ -5,7 +5,7 @@ require "net/http"
 # Engines without credentials are skipped.
 #   perplexity          PERPLEXITY_API_KEY
 #   chatgpt-search      OPENAI_API_KEY (Responses API + web search)
-#   claude              ANTHROPIC_API_KEY (Messages API + web search tool)
+#   claude              DATAFORSEO_LOGIN/PASSWORD (Claude with web search, via DataForSEO)
 #   gemini              DATAFORSEO_LOGIN/PASSWORD (Gemini with Google Search grounding, via DataForSEO)
 #   google-ai-overview  DATAFORSEO_LOGIN/PASSWORD (the AI Overview on a live US Google results page)
 # Copilot has no API; it answers from Bing's index, which BING_WEBMASTER_API_KEY and IndexNow already cover.
@@ -23,7 +23,7 @@ module AiCitations
     {
       "perplexity" => (ENV["PERPLEXITY_API_KEY"].presence && method(:ask_perplexity)),
       "chatgpt-search" => (ENV["OPENAI_API_KEY"].presence && method(:ask_openai)),
-      "claude" => (ENV["ANTHROPIC_API_KEY"].presence && method(:ask_claude)),
+      "claude" => (dataforseo? && method(:ask_claude)),
       "gemini" => (dataforseo? && method(:ask_gemini)),
       "google-ai-overview" => (dataforseo? && method(:ask_ai_overview))
     }.compact
@@ -69,23 +69,14 @@ module AiCitations
       sources: parts.flat_map { |p| Array(p["annotations"]) }.filter_map { |a| a["url"] }.uniq }
   end
 
-  def ask_claude(query)
-    client = Anthropic::Client.new(api_key: ENV["ANTHROPIC_API_KEY"])
-    message = client.messages.create(
-      model: :"claude-opus-5-5", max_tokens: 4000, output_config: { effort: :low },
-      tools: [ { type: "web_search_20260209", name: "web_search", max_uses: 3 } ],
-      messages: [ { role: "user", content: query } ]
-    ).to_h
-    blocks = Array(message[:content])
-    results = blocks.select { |b| b[:type].to_s == "web_search_tool_result" && b[:content].is_a?(Array) }.flat_map { |b| b[:content].map { |r| r[:url] } }
-    cited = blocks.select { |b| b[:type].to_s == "text" }.flat_map { |b| Array(b[:citations]).map { |c| c[:url] } }
-    { text: blocks.select { |b| b[:type].to_s == "text" }.map { |b| b[:text] }.join, sources: (cited + results).compact.uniq }
-  end
+  # Claude and Gemini with web search, through DataForSEO's LLM responses API (one login for every engine).
+  # Model names match the hub's AI Search Program (ai-search-clients/*/client.yml) so scores are comparable.
+  def ask_claude(query) = ask_llm("claude", ENV.fetch("CLAUDE_MODEL", "claude-sonnet-5-5"), query)
+  def ask_gemini(query) = ask_llm("gemini", ENV.fetch("GEMINI_MODEL", "gemini-3.8-flash"), query)
 
   # Gemini's grounding links are Google redirects; the real site is in direct_url or the title (usually the domain).
-  def ask_gemini(query)
-    task = dataforseo("ai_optimization/gemini/llm_responses/live",
-                      user_prompt: query, model_name: ENV.fetch("GEMINI_MODEL", "gemini-2.5-flash"), web_search: true)
+  def ask_llm(engine, model, query)
+    task = dataforseo("ai_optimization/#{engine}/llm_responses/live", user_prompt: query, model_name: model, web_search: true)
     sections = Array(task.dig("result", 0, "items")).flat_map { |i| Array(i["sections"]) }
     notes = sections.flat_map { |sec| Array(sec["annotations"]) }
     { text: sections.map { |sec| sec["text"] }.join("\n"), sources: notes.filter_map { |a| a["direct_url"].presence || a["url"] }.uniq,
