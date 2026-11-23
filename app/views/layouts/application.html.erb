@@ -3,7 +3,8 @@
   <head>
     <% seo = SeoOverride.for_path(request.path) %>
     <% page_title = seo&.title.presence || content_for(:title) || "Snow Way - Chase the Powder" %>
-    <% meta_description = (seo&.description.presence || content_for(:description).presence || "Find the ski resort getting the most snow in the next 7 days. Chase the powder with one tap.").to_s.squish.truncate(158, separator: " ") %>
+    <%# content_for returns HTML-escaped text; unescape once so ERB escapes it exactly once (was showing "it&amp;#39;s" in Google). %>
+    <% meta_description = CGI.unescapeHTML((seo&.description.presence || content_for(:description).presence || "Find the ski resort getting the most snow in the next 7 days. Chase the powder with one tap.").to_s).squish.truncate(158, separator: " ") %>
     <title><%= page_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
