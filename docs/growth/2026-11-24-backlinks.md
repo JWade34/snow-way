@@ -9,13 +9,13 @@ Ranked by value for effort. Owner: **J** = Justin, **C** = Claude drafts and Jus
 ## 1. Already lined up
 | Source | What to do | Owner | When |
 |---|---|---|---|
-| Boston Globe (Ken Mahan's weekly Thursday ski forecast, about 1M subscribers) | Ken said on 11/20 he'll link Snow Way every week, editors cleared it. Send him the exact links: snowway.app/new-england for the weekly piece (with a UTM), snowway.app for credit. Ask if the online version can link the page, not just name it. | J (C drafts) | Before the mid-December start |
+| Boston Globe (Ken Mahan's weekly Thursday ski forecast, about 1M subscribers) | Ken said on 11/20 he'll link Snow Way every week, editors cleared it. Justin sent him /new-england and the credit line on 11/21. Next touch: around Dec 10 with a real reason (first big New England storm, or asking if the teaser runs), and ask that the online piece links the page. | J (C drafts) | ~Dec 10 |
 
 ## 2. Your own sites (free, today)
 | Source | Status |
 |---|---|
 | justinmckelvey.com /work card, /projects/snowway | Already linked. 11/24: project page now links 8 Snow Way pages directly (Christmas, gift guides, New England, December...), /about names Snow Way |
-| superdupr.com portfolio | Add a Snow Way card + 3 deep links. **After 12/04** (SD proof-run freeze) |
+| superdupr.com/work/snow-way | Done 11/24 (sd 3e908ab): links 8 Snow Way pages. Justin OKd it during the proof-run freeze |
 | justinmckelvey.com blog post: building Snow Way with Claude Code (173 of 186 commits) | Draft below needs Justin's own story first |
 | LinkedIn profile Featured section + one post | J |
 
