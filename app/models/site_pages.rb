@@ -12,7 +12,15 @@ module SitePages
 
   def resort_paths(resorts = Resort.order(:name))
     resorts.flat_map { |r| [ "/resorts/#{r.slug}", "/resorts/#{r.slug}/best-time-to-ski", "/resorts/#{r.slug}/weather" ] } +
-      lodging_paths(resorts) + link_paths(resorts)
+      lodging_paths(resorts) + sitemap_link_paths(resorts)
+  end
+
+  # 2026-11-24: webcam and trail-map pages (332, added 11/21, 0 impressions) stay live but out of the sitemap
+  # until Dec 23, so Google's small crawl budget for a new, unlinked site goes to the holiday pages first.
+  LINK_PAGES_BACK_ON = Date.new(2026, 12, 23)
+
+  def sitemap_link_paths(resorts = Resort.order(:name))
+    Date.current >= LINK_PAGES_BACK_ON ? link_paths(resorts) : []
   end
 
   # Webcam and trail-map pages exist only where the resort publishes them.
