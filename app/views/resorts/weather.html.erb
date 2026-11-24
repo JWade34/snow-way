@@ -15,7 +15,7 @@
   <% faqs << { question: "How windy is it at #{r.name}?", answer: "Wind at mid-mountain peaks near #{windy["wind_mph"]} mph around #{Time.parse(windy["t"]).strftime("%-l %p %A")} in the next 3 days. Upper lifts can go on wind hold above roughly 40 to 50 mph." } %>
 <% end %>
 <% if (status = r.season_status) %>
-  <% faqs << { question: "Is #{r.name} open?", answer: status[:label] == "Open" ? "Yes. #{r.name} #{status[:detail].downcase}." : "#{r.name}: #{status[:detail].downcase}, #{r.opening_date.strftime("%B %-d, %Y")}." } %>
+  <% faqs << { question: "Is #{r.name} open?", answer: status[:label] == "Open" ? "Yes. #{r.name} #{status[:detail].downcase}." : (status[:label] == "Delayed" ? "Not yet. #{r.name} delayed its opening and hasn't announced a new date." : "#{r.name}: #{status[:detail].downcase}, #{r.opening_date.strftime("%B %-d, %Y")}.") } %>
 <% end %>
 <% heading = "#{r.name} Weather Forecast: Hourly & 7-Day Mountain Weather" %>
 <% content_for(:title, fit_title("#{r.name} Weather: Hourly & 7-Day Mountain Forecast | Snow Way", "#{r.name} Weather Forecast | Snow Way")) %>

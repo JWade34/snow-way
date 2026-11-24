@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get ":id" => "pass_guides#show", as: :pass_guide, constraints: { id: Regexp.union(PassGuide::PAGES.keys) }
   get "ski-resort-opening-dates" => "pages#opening_dates", as: :opening_dates
   get "best-ski-resorts-for-christmas" => "pages#christmas", as: :christmas_skiing
+  get "ski-resorts-open-now" => "pages#open_now", as: :open_now
   get "about" => "pages#about", as: :about
   get "sponsor" => "sponsors#show", as: :sponsor
   post "sponsor" => "sponsors#create"

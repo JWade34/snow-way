@@ -33,7 +33,7 @@
   <% picks << [ "Highest summit (best snow preservation)", highest, "#{number_with_delimiter(highest.elevation_summit)} ft" ] %>
   <% picks << [ "Most snow this week", leader, "#{inches(lead_total)} forecast over 7 days" ] if lead_total > 0 %>
   <% first_open = @region.resorts.select(&:opening_date).min_by(&:opening_date) %>
-  <% picks << [ "First to open this season", first_open, "#{first_open.opening_status == "opened" ? "opened" : "scheduled"} #{first_open.opening_date.strftime("%b %-d")}" ] if first_open %>
+  <% picks << [ "First to open this season", first_open, first_open.opening_label.downcase ] if first_open %>
   <% epic_big = epic.select(&:vertical_drop).max_by(&:vertical_drop) %>
   <% ikon_big = ikon.select(&:vertical_drop).max_by(&:vertical_drop) %>
   <% picks << [ "Biggest Epic Pass mountain", epic_big, "#{number_with_delimiter(epic_big.vertical_drop)} ft vertical" ] if epic_big && epic.size > 1 %>

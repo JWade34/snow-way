@@ -155,10 +155,23 @@ class Resort < ApplicationRecord
     return unless opening_date
     if opening_status == "opened"
       { label: "Open", detail: "Opened #{opening_date.strftime("%b %-d")}" }
+    elsif opening_status == "delayed"
+      opening_date > today ? { label: "Opens #{opening_date.strftime("%b %-d")}", detail: "Opening delayed to #{opening_date.strftime("%B %-d")}" } :
+                             { label: "Delayed", detail: "Opening delayed, no new date announced yet" }
     elsif opening_date > today
       { label: "Opens #{opening_date.strftime("%b %-d")}", detail: "Scheduled opening day" }
     else
       { label: opening_date.strftime("%b %-d"), detail: "Scheduled opening day" }
+    end
+  end
+
+  # Short opening label for tables: "Opened Nov 13", "Scheduled Nov 25", "Delayed to Nov 27", "Delayed (no new date)".
+  def opening_label
+    return unless opening_date
+    case opening_status
+    when "opened" then "Opened #{opening_date.strftime("%b %-d")}"
+    when "delayed" then opening_date > Date.current ? "Delayed to #{opening_date.strftime("%b %-d")}" : "Delayed (no new date)"
+    else "Scheduled #{opening_date.strftime("%b %-d")}"
     end
   end
 

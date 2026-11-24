@@ -51,7 +51,7 @@
               <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
               <td class="px-3 py-2 text-right text-amber-300"><%= inches(@recent.fetch(r.id, 0.0)) %></td>
               <td class="px-3 py-2 text-slate-300 text-xs hidden md:table-cell"><%= %w[indy mountain_collective].include?(@pass) ? [ r.pass_label, @pass_name ].compact.uniq.join(" + ") : r.pass_note %></td>
-              <td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.opening_date ? "#{r.opening_status == "opened" ? "Open since" : ""} #{r.opening_date.strftime("%b %-d")}".strip : "TBA" %></td>
+              <td class="px-3 py-2 text-slate-300 hidden sm:table-cell"><%= r.opening_label || "TBA" %></td>
             </tr>
           <% end %>
         </tbody>

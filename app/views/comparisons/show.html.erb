@@ -3,7 +3,7 @@
 <% sa, sb = @summaries %>
 <% avg_a, avg_b = AverageSnowfall.for(a), AverageSnowfall.for(b) %>
 <% month_list = ->(r) { r.snowiest_months(3).map { |m, _| Date::ABBR_MONTHNAMES[m] }.join(", ").presence || "–" } %>
-<% opening = ->(r) { r.opening_date ? "#{r.opening_status == "opened" ? "Opened" : "Scheduled"} #{r.opening_date.strftime("%b %-d")}" : "–" } %>
+<% opening = ->(r) { r.opening_label || "–" } %>
 <% higher = [ a, b ].max_by(&:elevation_summit) %>
 <% verticals = [ a, b ].select(&:vertical_drop) %>
 <% bigger = verticals.size == 2 ? verticals.max_by(&:vertical_drop) : nil %>

@@ -1,0 +1,71 @@
+<% today = Date.current %>
+<% checked = @checked_on ? Date.parse(@checked_on.to_s) : today %>
+<% snow = ->(r) { @totals.fetch(r.id, 0.0) } %>
+<% open = @resorts.select { |r| r.opening_status == "opened" }.sort_by { |r| -snow.(r) } %>
+<% soon = @resorts.select { |r| r.opening_status != "opened" && r.opening_date > today && r.opening_date <= today + 10 }.sort_by(&:opening_date) %>
+<% delayed = @resorts.select { |r| r.opening_status == "delayed" && r.opening_date <= today }.sort_by(&:name) %>
+<% season = today.month >= 7 ? "#{today.year}-#{(today.year + 1) % 100}" : "#{today.year - 1}-#{today.year % 100}" %>
+<% by_region = open.group_by(&:state_province).sort_by { |_, rs| -rs.size } %>
+<% faqs = [] %>
+<% faqs << { question: "Which ski resorts are open right now?", answer: open.any? ? "As of #{checked.strftime("%B %-d, %Y")}, #{open.size} of the North American ski resorts Snow Way tracks are open for #{season}: #{open.map(&:name).sort.to_sentence}." : "As of #{checked.strftime("%B %-d, %Y")}, none of the resorts Snow Way tracks have confirmed they're open." } %>
+<% if (top = open.first) && snow.(top) > 0 %><% faqs << { question: "Which open ski resort is getting the most snow this week?", answer: "#{top.name} (#{top.state_province}), with #{inches(snow.(top))} in the 7-day forecast as of #{today.strftime("%B %-d")}#{(rest = open[1..2].select { |r| snow.(r) > 0 }).any? ? ", followed by #{rest.map { |r| "#{r.name} (#{inches(snow.(r))})" }.to_sentence}" : ""}." } %><% end %>
+<% if soon.any? %><% faqs << { question: "Which ski resorts open this week?", answer: "Scheduled in the next 10 days: #{soon.map { |r| "#{r.name} (#{r.opening_date.strftime("%b %-d")}#{", delayed from its first date" if r.opening_status == "delayed"})" }.to_sentence}. Dates can move with the snow." } %><% end %>
+<% if delayed.any? %><% faqs << { question: "Which ski resorts have delayed opening day?", answer: "As of #{checked.strftime("%B %-d")}, these resorts postponed opening and haven't announced a new date: #{delayed.map(&:name).to_sentence}." } %><% end %>
+<% %w[Colorado Utah California Vermont].each do |st| %>
+  <% os = open.select { |r| r.state_province == st } %>
+  <% faqs << { question: "What ski resorts are open in #{st} right now?", answer: os.any? ? "As of #{checked.strftime("%B %-d")}: #{os.map(&:name).to_sentence}." : "None of the #{st} resorts Snow Way tracks had confirmed opening as of #{checked.strftime("%B %-d")}." } %>
+<% end %>
+<% content_for(:title, fit_title("Ski Resorts Open Now (#{checked.strftime("%b %-d, %Y")}): Every Open Resort + This Week's Snow | Snow Way", "Ski Resorts Open Now (#{checked.strftime("%b %-d, %Y")}) | Snow Way")) %>
+<% content_for(:description, "#{open.size} North American ski resorts are open as of #{checked.strftime("%B %-d, %Y")}, ranked by this week's snow, plus which open this week and which delayed opening day. Every status has a source.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "WebPage", "name" => "Ski resorts open now", "url" => absolute_url(open_now_path), "author" => author_schema, "dateModified" => checked.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ski Resorts Open Now", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts Open Now", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski resorts open now</h1>
+    <%= render "shared/byline", date: checked %>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><strong>Snow Way's short answer:</strong> <%= open.size %> North American ski resorts Snow Way tracks are open for <%= season %> as of <%= checked.strftime("%B %-d, %Y") %><%= by_region.any? ? ", led by #{by_region.first(3).map { |st, rs| "#{st} (#{rs.size})" }.to_sentence}" : "" %>.<% if (top = open.first) && snow.(top) > 0 %> Of the open resorts, <%= top.name %> has the most snow in the 7-day forecast (<%= inches(snow.(top)) %>).<% end %><% if delayed.any? %> <%= delayed.size %> resorts have delayed opening day.<% end %></p>
+      <p class="text-slate-400 text-xs mt-3">Statuses checked <%= checked.strftime("%B %-d, %Y") %> against each resort's own site, the pass sites and news reports; each row links its source. Snow forecasts refresh every 6 hours.</p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-3">Open now, ranked by this week's snow</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Ski resorts open now with 7-day snow forecast</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">Opened</th><th scope="col" class="px-3 py-2 text-right">7-day snow</th><th scope="col" class="px-3 py-2 hidden sm:table-cell">Source</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% open.each do |r| %>
+            <tr>
+              <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2" %><span class="block text-xs text-slate-400 font-normal"><%= r.state_province %></span></th>
+              <td class="px-3 py-2 text-slate-300"><%= r.opening_date.strftime("%b %-d") %></td>
+              <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(snow.(r)) %></td>
+              <td class="px-3 py-2 hidden sm:table-cell"><% if r.opening_source.present? %><%= link_to "Source", r.opening_source, rel: "noopener nofollow", target: "_blank", class: "text-cyan-300 underline underline-offset-2" %><% end %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <% if soon.any? %>
+      <h2 class="text-xl font-bold mb-3">Opening in the next 10 days</h2>
+      <ul class="list-disc pl-5 space-y-1 text-slate-300 mb-10">
+        <% soon.each do |r| %><li><%= link_to r.name, resort_path(r), class: "text-cyan-300 underline underline-offset-2" %> (<%= r.state_province %>): <%= r.opening_date.strftime("%A, %B %-d") %><%= " (delayed from its first date)" if r.opening_status == "delayed" %></li><% end %>
+      </ul>
+    <% end %>
+    <% if delayed.any? %>
+      <h2 class="text-xl font-bold mb-3">Delayed, no new date yet</h2>
+      <ul class="list-disc pl-5 space-y-1 text-slate-300 mb-10">
+        <% delayed.each do |r| %><li><%= link_to r.name, resort_path(r), class: "text-cyan-300 underline underline-offset-2" %> (<%= r.state_province %>)<% if r.opening_source.present? %> · <%= link_to "source", r.opening_source, rel: "noopener nofollow", target: "_blank", class: "underline" %><% end %></li><% end %>
+      </ul>
+    <% end %>
+    <p class="text-slate-300 mb-8">Planning ahead? See every resort's date on <%= link_to "ski resort opening dates", opening_dates_path, class: "text-cyan-300 underline" %>, where the snow is on <%= link_to "where is it snowing", where_is_it_snowing_path, class: "text-cyan-300 underline" %>, and the <%= link_to "best ski resorts for Christmas", christmas_skiing_path, class: "text-cyan-300 underline" %>.</p>
+    <%= render "shared/alert_form", heading: "Get an email when a big storm lines up", blurb: "We'll email you when a big storm is forecast at the resorts Snow Way tracks, plus a free weekly snow report on Thursdays. Unsubscribe anytime." %>
+    <%= render "shared/faq", faqs: faqs, heading: "Ski resorts open now: FAQ" %>
+  </main>
+</div>

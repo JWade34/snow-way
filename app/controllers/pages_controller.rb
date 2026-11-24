@@ -77,4 +77,10 @@ class PagesController < ApplicationController
   def christmas
     @month = SkiMonth.find("december")
   end
+
+  def open_now
+    @totals = Resort.projected_totals
+    @resorts = Resort.north_america.where.not(opening_date: nil).to_a
+    @checked_on = Resort.openings_checked_on
+  end
 end
