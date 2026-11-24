@@ -58,4 +58,18 @@ class BlackFridayAndCaptureTest < ActionDispatch::IntegrationTest
     r.update!(opening_date: Date.current + 3)
     assert_match(/\ADelayed to /, r.opening_label)
   end
+
+  test "holiday pages render: christmas towns, blackout dates, epic day pass" do
+    ChristmasTown.slugs.each do |slug|
+      get "/christmas-in-#{slug}"
+      assert_response :success
+      assert_select "h1", /Christmas in/
+    end
+    get blackouts_path
+    assert_response :success
+    get epic_day_pass_path
+    assert_response :success
+    assert_equal "November 20 to January 3", ChristmasTown.date_label("2026-11-20 to 2027-01-03")
+    assert_equal "December 5, 12, and 19", ChristmasTown.date_label("2026-12-05, 2026-12-12, 2026-12-19")
+  end
 end

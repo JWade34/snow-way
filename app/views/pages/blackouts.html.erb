@@ -1,0 +1,59 @@
+<% checked = Date.new(2026, 11, 24) %>
+<% src = { ikon: "https://www.ikonpass.com/en/shop-passes/ikon-base-pass", abasin: "https://www.arapahoebasin.com/pass-benefits-26-27/", zr: "https://www.zrankings.com/articles/ikon-pass-blackout-dates",
+           epic: "https://www.epicpass.com/info/peak-restricted-dates.aspx", vr: "https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6",
+           indy: "https://www.indyskipass.com/blackout-dates-reservations", mc: "https://mountaincollective.com", session: "https://www.ikonpass.com/en/shop-passes/ikon-session-pass" } %>
+<% faqs = [] %>
+<% faqs << { question: "What are the Ikon Base Pass blackout dates for 2026-27?", answer: "December 26 to 30, 2026, January 16 to 17, 2027 (MLK weekend) and February 13 to 14, 2027 (Presidents' Day weekend). Ikon says they apply at select destinations, not everywhere: Arapahoe Basin says it has no blackout dates for Base holders, and ZRankings lists Copper, Winter Park, Eldora, Snowshoe and Tremblant as open to Base holders on those days too." } %>
+<% faqs << { question: "What are the Epic Local Pass blackout dates for 2026-27?", answer: "November 27 to 28 and December 26 to 31, 2026, January 16, 2027 and February 13 to 14, 2027. They apply only at Vail, Beaver Creek, Whistler Blackcomb, Park City, Heavenly, Northstar, Kirkwood, Stowe and Verbier. Breckenridge, Keystone and Crested Butte have no peak-date limits on the Epic Local Pass." } %>
+<% faqs << { question: "Does the Epic Day Pass have blackout dates?", answer: "Yes, unless you buy the version that includes peak dates. The standard Epic Day Pass can't be used November 27 to 28, December 26 to 31, January 16 or February 13 to 14 at any resort. Epic Day Passes are sold until December 6, 2026." } %>
+<% faqs << { question: "What are the Indy Pass blackout dates for 2026-27?", answer: "Each Indy Base resort picks its own from these windows: December 19, 2026 to January 3, 2027, MLK weekend (January 16 to 18), Presidents' weekend (February 13 to 15) and peak Saturdays or Sundays from January 9 to March 7. The Indy+ Pass has no blackout dates." } %>
+<% faqs << { question: "Do the full Epic Pass, Ikon Pass or Mountain Collective have blackout dates?", answer: "No. The full Epic Pass and full Ikon Pass have no blackout dates, and Mountain Collective says it has none. Some resorts still require reservations, such as Jackson Hole and Deer Valley on the Ikon Pass." } %>
+<% faqs << { question: "Where can I ski on blackout days with a base or local pass?", answer: "With an Ikon Base Pass: Arapahoe Basin (confirmed by the resort), and reportedly Copper, Winter Park, Eldora, Snowshoe and Tremblant. With an Epic Local Pass: Breckenridge, Keystone and Crested Butte. With an Indy Base Pass over Christmas: resorts that didn't pick that window, such as Cannon Mountain, Massanutten and Red Lodge Mountain." } %>
+<% content_for(:title, "Ski Pass Blackout Dates 2026-27: Ikon, Epic & Indy | Snow Way") %>
+<% content_for(:description, "2026-27 blackout dates for the Ikon Base, Epic Local, Epic Day and Indy passes, and where you can still ski on those days. Checked against the official pass sites November 24, 2026.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Ski pass blackout dates 2026-27", "url" => absolute_url("/ski-pass-blackout-dates"), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => checked.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ikon vs Epic", "/ikon-vs-epic" ], [ "Blackout dates", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", ikon_vs_epic_path ], [ "Blackout dates", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Ski pass blackout dates 2026-27</h1>
+    <%= render "shared/byline", date: checked %>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><strong>Snow Way's short answer:</strong> the big blackout windows are Christmas week (December 26 to 30 or 31), MLK weekend (January 16 to 17) and Presidents' Day weekend (February 13 to 14). They hit the Ikon Base, Epic Local, Epic Day and Indy Base passes, but only at some resorts. The full Epic Pass, full Ikon Pass and Mountain Collective have no blackout dates.</p>
+      <p class="text-slate-400 text-xs mt-3">Checked <%= checked.strftime("%B %-d, %Y") %> against ikonpass.com, epicpass.com, indyskipass.com and mountaincollective.com. Pass rules can change; confirm before you go.</p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-3">Blackout dates by pass</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">2026-27 ski pass blackout dates</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Pass</th><th scope="col" class="px-3 py-2">Blackout dates</th><th scope="col" class="px-3 py-2">Where they apply</th></tr></thead>
+        <tbody class="divide-y divide-slate-800 text-slate-300">
+          <tr><th scope="row" class="px-3 py-2 text-left text-white">Ikon Base Pass</th><td class="px-3 py-2">Dec 26-30, 2026 · Jan 16-17 · Feb 13-14, 2027</td><td class="px-3 py-2">"Select destinations" (<%= link_to "Ikon", src[:ikon], rel: "nofollow noopener", target: "_blank", class: "underline" %>). Not at Arapahoe Basin.</td></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-white">Ikon Session Pass</th><td class="px-3 py-2">Same dates as Base</td><td class="px-3 py-2">2 to 4 days at select destinations (<%= link_to "Ikon", src[:session], rel: "nofollow noopener", target: "_blank", class: "underline" %>)</td></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-white">Epic Local Pass</th><td class="px-3 py-2">Nov 27-28 · Dec 26-31, 2026 · Jan 16 · Feb 13-14, 2027</td><td class="px-3 py-2">Only Vail, Beaver Creek, Whistler Blackcomb, Park City, Heavenly, Northstar, Kirkwood, Stowe, Verbier (<%= link_to "Epic", src[:epic], rel: "nofollow noopener", target: "_blank", class: "underline" %>)</td></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-white">Epic Day Pass</th><td class="px-3 py-2">Same peak dates as Epic Local</td><td class="px-3 py-2">Every resort, unless you bought the peak-dates version</td></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-white">Indy Base Pass</th><td class="px-3 py-2">Each resort picks: Dec 19-Jan 3 · Jan 16-18 · Feb 13-15 · some peak weekends</td><td class="px-3 py-2">Resort by resort (<%= link_to "Indy", src[:indy], rel: "nofollow noopener", target: "_blank", class: "underline" %>). Indy+ has none.</td></tr>
+          <tr><th scope="row" class="px-3 py-2 text-left text-white">Epic Pass, Ikon Pass, Mountain Collective</th><td class="px-3 py-2">None</td><td class="px-3 py-2">Some resorts need reservations (Jackson Hole, Deer Valley)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold mb-3">Where you can still ski on blackout days</h2>
+    <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-4">
+      <li><strong class="text-white">Ikon Base Pass:</strong> <%= link_to "Arapahoe Basin", "/resorts/arapahoe-basin", class: "text-cyan-300 underline" %> says it has no blackout dates (<%= link_to "source", src[:abasin], rel: "nofollow noopener", target: "_blank", class: "underline" %>). ZRankings also lists <%= link_to "Copper", "/resorts/copper-mountain", class: "text-cyan-300 underline" %>, <%= link_to "Winter Park", "/resorts/winter-park", class: "text-cyan-300 underline" %>, Eldora, Snowshoe and Tremblant (<%= link_to "source", src[:zr], rel: "nofollow noopener", target: "_blank", class: "underline" %>); confirm with the resort.</li>
+      <li><strong class="text-white">Epic Local Pass:</strong> <%= link_to "Breckenridge", "/resorts/breckenridge", class: "text-cyan-300 underline" %>, <%= link_to "Keystone", "/resorts/keystone", class: "text-cyan-300 underline" %> and <%= link_to "Crested Butte", "/resorts/crested-butte", class: "text-cyan-300 underline" %> have no peak-date limits.</li>
+      <li><strong class="text-white">Indy Base Pass over Christmas:</strong> resorts that didn't pick the Christmas window, including Cannon Mountain, Massanutten, Red Lodge Mountain and Tussey Mountain (check MLK and Presidents' weekends separately).</li>
+      <li><strong class="text-white">Epic Day Pass without peak dates:</strong> none on peak dates. Buy lift tickets online ahead, which is usually cheaper than the ticket window.</li>
+    </ul>
+    <p class="text-slate-300 mb-8">Also on Snow Way: <%= link_to "Epic Day Pass", "/epic-day-pass", class: "text-cyan-300 underline" %> · <%= link_to "Epic Pass price", "/epic-pass-price", class: "text-cyan-300 underline" %> · <%= link_to "Ikon Pass price", "/ikon-pass-price", class: "text-cyan-300 underline" %> · <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline" %> · <%= link_to "best ski resorts for Christmas", christmas_skiing_path, class: "text-cyan-300 underline" %></p>
+    <%= render "shared/calendar_cta" %>
+    <%= render "shared/faq", faqs: faqs, heading: "Blackout dates FAQ" %>
+  </main>
+</div>

@@ -1,0 +1,62 @@
+<% checked = Date.new(2026, 11, 24) %>
+<% vr = "https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6" %>
+<% peak = "https://www.epicpass.com/info/peak-restricted-dates.aspx" %>
+<% off_sale = Date.new(2026, 12, 6) %>
+<% epic_rows = @tickets.fetch("resorts").filter_map { |slug, d| (r = @resorts[slug]) && r.pass == "epic" && d["window_high"] && [ r, d ] }.sort_by { |_, d| -d["window_high"].to_i } %>
+<% faqs = [] %>
+<% faqs << { question: "How much is the Epic Day Pass for 2026-27?", answer: "Vail Resorts lists the Epic Day Pass from $50 to $106 a day, for 1 to 7 days you choose when and where to use later. The price per day depends on how many days you buy, which group of resorts it covers, and whether it includes peak dates." } %>
+<% faqs << { question: "When is the last day to buy an Epic Day Pass?", answer: "December 6, 2026. Vail Resorts says that's the last day to buy any Epic Pass product for the 2026-27 season." } %>
+<% faqs << { question: "Can you use an Epic Day Pass over Christmas?", answer: "Only if you buy the version that includes peak dates. The standard Day Pass can't be used November 27 to 28, December 26 to 31, January 16 or February 13 to 14, at any resort." } %>
+<% faqs << { question: "Is the Epic Day Pass worth it?", answer: "Usually, if you know you'll ski at Vail Resorts mountains. Reported 2026-27 peak window prices run #{epic_rows.first(3).map { |r, d| "#{number_to_currency(d["window_high"], precision: 0)} at #{r.name}" }.to_sentence}, against $50 to $106 a day for the Day Pass. If you'll ski more than about a week, compare the full Epic Pass ($1,245 for adults, no blackout dates)." } if epic_rows.any? %>
+<% faqs << { question: "Epic Day Pass vs Epic Pass: which should I buy?", answer: "The Day Pass is for 1 to 7 days. The full Epic Pass ($1,245 adult, $995 for ages 13 to 30) is unlimited with no blackout dates. At the top of the Day Pass range, 7 days cost about $742, so the full pass makes sense once you'll ski well past a week, or you need Christmas week without paying for peak dates." } %>
+<% content_for(:title, "Epic Day Pass 2026-27: Price, Blackouts & Dec 6 Deadline | Snow Way") %>
+<% content_for(:description, "The 2026-27 Epic Day Pass costs $50 to $106 a day for 1 to 7 days and goes off sale December 6. Blackout dates, peak-date option, and what window tickets cost instead.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Epic Day Pass 2026-27", "url" => absolute_url("/epic-day-pass"), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => checked.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ikon vs Epic", "/ikon-vs-epic" ], [ "Epic Day Pass", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", ikon_vs_epic_path ], [ "Epic Day Pass", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Epic Day Pass 2026-27</h1>
+    <%= render "shared/byline", date: checked %>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><strong>Snow Way's short answer:</strong> the Epic Day Pass is the ski pass for 1 to 7 days at Vail Resorts mountains, from $50 to $106 a day. You pick the days and resorts later. <% if Date.current <= off_sale %><strong>It goes off sale December 6, 2026</strong>, and <% end %>the standard version can't be used on peak dates like December 26 to 31, so buy the peak version if you're going over Christmas.</p>
+      <p class="text-slate-400 text-xs mt-3">Price range and deadline from <%= link_to "Vail Resorts, November 16, 2026", vr, rel: "nofollow noopener", target: "_blank", class: "underline" %>; peak dates from <%= link_to "epicpass.com", peak, rel: "nofollow noopener", target: "_blank", class: "underline" %>. Checked <%= checked.strftime("%B %-d, %Y") %>.</p>
+    </section>
+
+    <h2 class="text-xl font-bold mb-3">How the Epic Day Pass works</h2>
+    <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-8">
+      <li><strong class="text-white">1 to 7 days.</strong> The more days you buy, the lower the price per day, from $50 to $106.</li>
+      <li><strong class="text-white">Resort groups.</strong> Day Passes come in versions that cover fewer or more resorts. Check that yours includes the mountains you want, especially the biggest ones like Vail, Beaver Creek, Whistler Blackcomb and Park City.</li>
+      <li><strong class="text-white">Peak dates.</strong> Without the peak option, the pass doesn't work November 27 to 28, December 26 to 31, January 16 or February 13 to 14. See all <%= link_to "ski pass blackout dates", blackouts_path, class: "text-cyan-300 underline" %>.</li>
+      <li><strong class="text-white">Deadline.</strong> Epic Passes, including the Day Pass, are sold until December 6, 2026.</li>
+    </ul>
+
+    <% if epic_rows.any? %>
+      <h2 class="text-xl font-bold mb-3">What a day costs without it</h2>
+      <p class="text-slate-300 text-sm mb-3">Reported 2026-27 adult window prices at Epic resorts, the most you'd pay walking up. Buying online ahead is usually cheaper than these.</p>
+      <div class="overflow-x-auto border border-slate-700 rounded-xl mb-8">
+        <table class="w-full text-sm">
+          <caption class="sr-only">Reported 2026-27 peak adult window lift ticket prices at Epic Pass resorts</caption>
+          <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2 text-right">Reported window price</th><th scope="col" class="px-3 py-2">Source</th></tr></thead>
+          <tbody class="divide-y divide-slate-800">
+            <% epic_rows.each do |r, d| %>
+              <% s = Array(d["sources"]).first %>
+              <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2" %></th><td class="px-3 py-2 text-right text-cyan-300 font-bold"><%= number_to_currency(d["window_high"], precision: 0) %></td><td class="px-3 py-2 text-slate-400"><%= s ? link_to(s["publisher"], s["url"], rel: "nofollow noopener", target: "_blank", class: "underline") : "–" %></td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">Day Pass or full Epic Pass?</h2>
+    <p class="text-slate-300 mb-8">The full Epic Pass is $1,245 for adults and $995 for ages 13 to 30, unlimited and with no blackout dates. The Epic Local Pass is $959 ($759 for ages 13 to 30) with peak-date limits at nine resorts. Seven Day Pass days at the top of the range come to about $742, so the full pass wins once you'll ski well past a week. More on <%= link_to "Epic Pass price", "/epic-pass-price", class: "text-cyan-300 underline" %> and <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline" %>.</p>
+    <%= render "shared/calendar_cta" %>
+    <%= render "shared/faq", faqs: faqs, heading: "Epic Day Pass FAQ" %>
+  </main>
+</div>

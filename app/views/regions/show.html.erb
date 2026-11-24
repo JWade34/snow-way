@@ -45,10 +45,14 @@
     more), so the two pages don't compete for "best ski resorts in [state]". Other states keep that framing. %>
 <% best_list = BestResorts.all.find { |x| x.name == @region.name } %>
 <% conditions = !@region.group? && best_list.present? %>
-<% heading = if conditions then "#{name} Ski Conditions & Snow Forecast Today"
+<%# 2026-11-24: state hubs (and Tahoe) lead with "[state] ski report" + "ski resorts in [state]", the biggest
+    searches (e.g. "colorado ski report" 60,500/mo, "ski resorts in colorado" 135,000 in Dec); they had <25 impressions/28d. %>
+<% n = @region.resorts.size %>
+<% report = conditions || @region.slug == "lake-tahoe" %>
+<% heading = if report then "#{name} Ski Report Today: Snow at #{n} Ski Resorts in #{name}"
              elsif best then "Best Ski Resorts in #{place}: Snow Report & Forecast"
              else "#{name} Ski Resorts: Snow Report & Forecast" end %>
-<% content_for(:title, if conditions then fit_title("#{heading} | Snow Way", "#{name} Ski Conditions & Snow Forecast | Snow Way", "#{name} Ski Conditions | Snow Way")
+<% content_for(:title, if report then fit_title("#{heading} | Snow Way", "#{name} Ski Report: Snow at #{n} Ski Resorts in #{name} | Snow Way", "#{name} Ski Report Today & Snow Forecast | Snow Way", "#{name} Ski Report | Snow Way")
                        elsif best then fit_title("#{heading} | Snow Way", "Best Ski Resorts in #{place} & Snow Report | Snow Way", "Best Ski Resorts in #{place} | Snow Way", "#{name} Snow Report | Snow Way")
                        else fit_title("#{heading} | Snow Way", "#{name} Snow Report | Snow Way") end) %>
 <% content_for(:description, "#{name} snow report and all #{@region.resorts.size} ski resorts: 48-hour snowfall, 7- and 14-day forecasts, elevation, airport, and pass. #{faqs.first[:answer]}".truncate(300)) %>
@@ -66,7 +70,7 @@
   <%= render "shared/header" %>
   <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
     <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts by State", regions_path ], [ name, nil ] ] %>
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= conditions ? "#{name} ski conditions & snow forecast today" : "#{best ? "Best ski resorts in #{place}" : "#{name} ski resorts"}: snow report & forecast" %></h1>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= report ? "#{name} ski report today: snow at #{n} ski resorts in #{name}" : "#{best ? "Best ski resorts in #{place}" : "#{name} ski resorts"}: snow report & forecast" %></h1>
     <section class="mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
       <p class="text-slate-200 leading-relaxed"><%= faqs.first[:answer] %> Snow Way tracks <%= pluralize(@region.resorts.size, "resort") %> in <%= place %>, ranked below by forecast snow.</p>
       <p class="text-slate-400 text-xs mt-3">Updated <%= updated_label(@updated_at) %> · Mid-mountain forecasts from Open-Meteo</p>

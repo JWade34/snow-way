@@ -1,0 +1,99 @@
+<% t = @town %>
+<% dec = @dec %>
+<% year = dec.year %>
+<% checked = t.checked_on %>
+<% xin, xout = Date.new(year, 12, 26), Date.new(year + 1, 1, 2) %>
+<% nin, nout = Date.new(year, 12, 30), Date.new(year + 1, 1, 2) %>
+<% odds = ->(r) { PowderOdds.measured(r)&.dig(12) || PowderOdds.weather(r)&.dig(12) } %>
+<% resorts = t.resorts %>
+<% lead = resorts.first %>
+<% fmt = ->(d) { ChristmasTown.date_label(d) } %>
+<% sn = ->(n) { ChristmasTown.short_name(n) } %>
+<% xmas_events = t.christmas_week_events.presence || t.events %>
+<% snowy = resorts.filter_map { |r| (o = odds.(r)) && "#{r.name} gets new snow on about #{dec.powder_days(o)} of 31 December days" } %>
+<% faqs = [] %>
+<% faqs << { question: "What is there to do in #{t.name} at Christmas?", answer: xmas_events.any? ? "#{xmas_events.first(4).map { |e| "#{sn.(e["name"])} (#{fmt.(e["date"])})" }.to_sentence}, plus skiing and riding at #{resorts.map(&:name).to_sentence}." : "Skiing and riding at #{resorts.map(&:name).to_sentence}, plus New Year's Eve#{t.nye.any? ? " (#{t.nye.map { |e| sn.(e["name"]) }.to_sentence})" : ""}." } %>
+<% faqs << { question: "Is there snow in #{t.name} at Christmas?", answer: snowy.any? ? "Usually, but late December is still early season. From 10 seasons of station data, #{snowy.to_sentence}. Check the 7-day forecast the week before you go." : "Late December is early season, so coverage varies by year. Check the 7-day forecast the week before you go." } %>
+<% faqs << { question: "What does #{t.name} do for New Year's Eve?", answer: t.nye.map { |e| "#{sn.(e["name"])} (#{fmt.(e["date"])})" }.to_sentence + "." } if t.nye.any? %>
+<% faqs << { question: "When should I book a Christmas trip to #{t.name}?", answer: "As early as you can. Christmas to New Year's is the busiest week of the ski season, and lodging close to the lifts sells out first. Reserve ski school and rentals ahead too." } %>
+<% faqs << { question: "What airport do you fly into for #{t.name}?", answer: "#{t.airports.to_sentence}." } if t.airports.any? %>
+<% content_for(:title, fit_title("Christmas in #{t.name} #{year}: Events, Snow & Where to Stay | Snow Way", "Christmas in #{t.name} #{year}: Events & Snow | Snow Way", "Christmas in #{t.name} #{year} | Snow Way")) %>
+<% content_for(:description, "Christmas in #{t.name} #{year}: #{t.events.first(2).map { |e| e["name"] }.to_sentence.presence || "holiday events"}, New Year's Eve, December snow odds from 10 seasons of station data, and Christmas-week hotels.".truncate(158, separator: " ")) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Christmas in #{t.name} #{year}", "url" => absolute_url(t.path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => checked.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Best Ski Resorts for Christmas", "/best-ski-resorts-for-christmas" ], [ "Christmas in #{t.name}", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Best Ski Resorts for Christmas", christmas_skiing_path ], [ "Christmas in #{t.name}", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Christmas in <%= t.name %> <%= year %></h1>
+    <%= render "shared/byline", date: checked %>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><strong>Snow Way's short answer:</strong> <%= faqs.first[:answer] %> <%= faqs.second[:answer] %></p>
+      <p class="text-slate-400 text-xs mt-3">Events checked <%= checked.strftime("%B %-d, %Y") %> against official town and resort calendars; each one links its source. Dates can change, so confirm before you go.</p>
+    </section>
+
+    <% if t.events.any? %>
+      <h2 class="text-xl font-bold mb-3">Christmas events in <%= t.name %></h2>
+      <ul class="space-y-2 text-slate-300 mb-8">
+        <% t.events.each do |e| %>
+          <li><strong class="text-white"><%= e["name"] %></strong>: <%= fmt.(e["date"]) %><%= ", #{e["place"]}" if e["place"].present? %>. <%= link_to "Source", e["source"], rel: "noopener nofollow", target: "_blank", class: "text-cyan-300 underline text-sm" if e["source"].present? %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if t.nye.any? %>
+      <h2 class="text-xl font-bold mb-3">New Year's Eve in <%= t.name %></h2>
+      <ul class="space-y-2 text-slate-300 mb-8">
+        <% t.nye.each do |e| %>
+          <li><strong class="text-white"><%= e["name"] %></strong>: <%= fmt.(e["date"]) %><%= ", #{e["place"]}" if e["place"].present? %>. <%= link_to "Source", e["source"], rel: "noopener nofollow", target: "_blank", class: "text-cyan-300 underline text-sm" if e["source"].present? %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">Snow at Christmas: <%= t.name %> ski resorts</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-8">
+      <table class="w-full text-sm">
+        <caption class="sr-only"><%= t.name %> ski resorts: December snow odds, this week's snow and season status</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">December days with new snow</th><th scope="col" class="px-3 py-2 text-right">Next 7 days</th><th scope="col" class="px-3 py-2">Season</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% resorts.each do |r| %>
+            <tr>
+              <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, resort_path(r), class: "hover:text-cyan-300 underline underline-offset-2" %></th>
+              <td class="px-3 py-2 text-slate-300"><%= (o = odds.(r)) ? "About #{dec.powder_days(o)} of 31" : "No station data" %></td>
+              <td class="px-3 py-2 text-right font-bold text-cyan-300"><%= inches(@totals.fetch(r.id, 0.0)) %></td>
+              <td class="px-3 py-2 text-slate-300"><%= r.opening_label || "–" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <% if t.resort_notes.any? %>
+      <h2 class="text-xl font-bold mb-3">Know before you go</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-8">
+        <% t.resort_notes.each do |n| %><li><%= n["text"] %> <%= link_to "Source", n["source"], rel: "noopener nofollow", target: "_blank", class: "text-cyan-300 underline text-sm" if n["source"].present? %></li><% end %>
+      </ul>
+    <% end %>
+
+    <section class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-4" data-placement="christmas_week" aria-labelledby="stay-heading">
+      <h2 id="stay-heading" class="text-xl font-bold mb-2">Where to stay in <%= t.name %> over Christmas</h2>
+      <p class="text-slate-300 text-sm mb-3">It's the busiest week of the season, so the closest rooms go first. These open hotel and rental searches with the dates filled in; change them on the next page.</p>
+      <div class="grid sm:grid-cols-2 gap-2 text-sm font-semibold">
+        <a href="<%= Affiliate.hotels_url(lead, checkin: xin, checkout: xout, place: t.place) %>" target="_blank" rel="sponsored nofollow noopener" class="text-center bg-cyan-500 hover:bg-cyan-400 text-slate-900 rounded-lg py-2">Hotels, Dec 26 to Jan 2</a>
+        <a href="<%= Affiliate.vrbo_url(lead, checkin: xin, checkout: xout, place: t.place) %>" target="_blank" rel="sponsored nofollow noopener" class="text-center border border-slate-600 hover:border-cyan-400 rounded-lg py-2">Condos and houses, Dec 26 to Jan 2</a>
+        <a href="<%= Affiliate.hotels_url(lead, checkin: nin, checkout: nout, place: t.place) %>" target="_blank" rel="sponsored nofollow noopener" class="text-center border border-slate-600 hover:border-cyan-400 rounded-lg py-2">Hotels for New Year's (Dec 30 to Jan 2)</a>
+        <a href="<%= Affiliate.vrbo_url(lead, checkin: nin, checkout: nout, place: t.place) %>" target="_blank" rel="sponsored nofollow noopener" class="text-center border border-slate-600 hover:border-cyan-400 rounded-lg py-2">Rentals for New Year's</a>
+      </div>
+      <%= affiliate_disclosure("Hotel and rental links go to Booking.com and Vrbo; if you book, Snow Way may earn a commission at no extra cost to you.", css: "mt-3") %>
+    </section>
+
+    <p class="text-slate-300 mb-8">More: <%= link_to "best ski resorts for Christmas", christmas_skiing_path, class: "text-cyan-300 underline" %> · <%= link_to "ski resorts open now", open_now_path, class: "text-cyan-300 underline" %> · <%= link_to "pass blackout dates", "/ski-pass-blackout-dates", class: "text-cyan-300 underline" %> · <%= link_to "gifts for skiers", guide_path("gifts-for-skiers"), class: "text-cyan-300 underline" %><% ChristmasTown.all.reject { _1.slug == t.slug }.each do |o| %> · <%= link_to "Christmas in #{o.name}", o.path, class: "text-cyan-300 underline" %><% end %></p>
+    <%= render "shared/alert_form", resort: lead %>
+    <%= render "shared/faq", faqs: faqs, heading: "Christmas in #{t.name}: FAQ" %>
+  </main>
+</div>

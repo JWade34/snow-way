@@ -83,4 +83,11 @@ class PagesController < ApplicationController
     @resorts = Resort.north_america.where.not(opening_date: nil).to_a
     @checked_on = Resort.openings_checked_on
   end
+
+  def blackouts; end
+
+  def epic_day_pass
+    @tickets = YAML.load_file(Rails.root.join("db/lift_tickets.yml"), permitted_classes: [ Date ])
+    @resorts = Resort.where(slug: @tickets.fetch("resorts").keys).index_by(&:slug)
+  end
 end

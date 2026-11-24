@@ -73,11 +73,11 @@ class ResortsControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", /Best Ski Resorts in Colorado/
   end
 
-  test "states with their own best-resorts list target ski conditions instead" do
+  test "states with their own best-resorts list target the ski report instead" do
     Resort.sync_from_data_file!
     get region_url("colorado")
-    assert_select "h1", /Colorado ski conditions/
-    assert_select "title", /Colorado Ski Conditions/
+    assert_select "h1", /Colorado ski report today/
+    assert_select "title", /Colorado Ski Report/
   end
 
   test "comparison, snowiest and lift ticket pages render" do

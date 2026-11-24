@@ -1,0 +1,286 @@
+# Christmas in [town] pages. Research 2026-11-24 (official calendars first); only events verified on a source page are kept.
+---
+checked_on: '2026-11-24'
+towns:
+  aspen:
+    name: Aspen
+    state: Colorado
+    place: Aspen, Colorado
+    resorts:
+    - aspen-snowmass
+    events:
+    - name: 'Wintersköl (75th): bonfire, SoupSköl, beer fest, drone show'
+      date: 2026-12-10 to 2026-12-13
+      place: Wagner Park, downtown Aspen
+      source: https://www.aspenchamber.org/winterskol
+    - name: Wintersköl Aspen Torchlight Parade & Fireworks (7pm)
+      date: '2026-12-12'
+      place: Aspen Mountain; watch from Wagner Park
+      source: https://www.aspenchamber.org/winterskol
+    - name: Wintersköl Snowmass Torchlight Parade (6pm)
+      date: '2026-12-11'
+      place: Snowmass Mountain
+      source: https://www.aspenchamber.org/winterskol
+    - name: Aspen Snowmass 80th anniversary opening weekend ($80 lift tickets)
+      date: 2026-12-12 to 2026-12-13
+      place: Aspen Snowmass
+      source: https://www.aspenchamber.org/winterskol
+    - name: Christmas Eve dinner (Element 47 / Ajax Tavern)
+      date: '2026-12-24'
+      place: The Little Nell, Aspen
+      source: https://www.aspensnowmass.com/discover/experiences/guides/the-holidays-at-aspen-snowmass
+    nye:
+    - name: New Year's Eve fireworks over Aspen Mountain (8pm)
+      date: '2026-12-31'
+      place: Aspen Mountain, downtown Aspen
+      source: https://www.aspensnowmass.com/discover/experiences/guides/the-holidays-at-aspen-snowmass
+    - name: Snowmass New Year's Eve Torchlight Parade (6pm, LED torches)
+      date: '2026-12-31'
+      place: Snowmass Mountain (Fanny Hill in 2025)
+      source: https://www.gosnowmass.com/event/nye-torchlight-parade/
+    - name: Dom Perignon NYE party (11th annual)
+      date: '2026-12-31'
+      place: The Little Nell, Aspen
+      source: https://www.aspensnowmass.com/discover/experiences/guides/the-holidays-at-aspen-snowmass
+    resort_notes:
+    - text: Aspen Snowmass says advance lesson reservations are strongly recommended,
+        especially in peak season; booking 7+ days ahead gets the best group-lesson
+        price; lessons cancelled 48+ hours ahead are refundable.
+      source: https://www.aspensnowmass.com/discover/experiences/guides/your-pre-arrival-guide
+    - text: Snowmass's 2025 NYE fireworks were cancelled for poor mountain conditions
+        (the torchlight still ran). Holiday fireworks depend on weather.
+      source: https://ground.news/article/snowmass-cancels-new-years-eve-fireworks-due-to-poor-mountain-conditions-torchlight-parade-a-go
+    - text: Christmas Day lift hours for 2026 not published yet; holiday guide pairs
+        'a day on the slopes' with Christmas dinners but does not state Dec 25 hours.
+      source: https://www.aspensnowmass.com/discover/experiences/guides/the-holidays-at-aspen-snowmass
+    airports:
+    - Aspen/Pitkin County (ASE)
+    - Eagle County Regional (EGE)
+    - Denver International (DEN)
+    distinct:
+      text: '"Nothing embodies Christmas in Aspen quite like a day on the slopes followed
+        by a warm, welcoming après meal." The town''s December centerpiece is Wintersköl,
+        now in its 75th year, with a torchlight parade and fireworks on Aspen Mountain.'
+      source: https://www.aspensnowmass.com/discover/experiences/guides/the-holidays-at-aspen-snowmass
+  breckenridge:
+    name: Breckenridge
+    state: Colorado
+    place: Breckenridge, Colorado
+    resorts:
+    - breckenridge
+    - keystone
+    events:
+    - name: Lighting of Breckenridge + Race of the Santas (dog parade 3pm, Race 4:20pm,
+        lighting 5pm)
+      date: '2026-12-05'
+      place: Main Street; lighting at Blue River Plaza
+      source: https://gobreck.com/event/lighting-breckenridge-race-santas
+    - name: 'Ullr Fest (63rd): Main Street parade 4pm, bonfire, Ullr Shotski'
+      date: 2026-12-17 to 2026-12-19
+      place: Main Street, Breckenridge
+      source: https://gobreck.com/experience-breckenridge/festivals-and-events/ullr-fest/
+    nye:
+    - name: Breckenridge Ski & Snowboard School annual NYE Torchlight Parade + Glow
+        Worm Parade (kids), fireworks after
+      date: 'annual: Dec 31'
+      place: Peak 9, Breckenridge Ski Resort
+      source: https://gobreck.com/event/new-years-eve-celebration
+    resort_notes:
+    - text: Resort lots run by Breck Park; no reservation required, first-come first-served;
+        preferred spots reservable for a fee; hourly rates after 3pm at South Gondola,
+        North Gondola and Gold Rush lots. Free Ice Rink Lot with bus. No 2026-27 price
+        list published on the page.
+      source: https://www.breckenridge.com/explore-the-resort/about-the-resort/getting-here.aspx
+    - text: GoBreck advises booking restaurants a month or more ahead for holiday
+        dinners and buying lift tickets at least 7 days ahead for the best price.
+      source: https://gobreck.com/seasons/holidays/visit-breckenridge-in-december/
+    - text: Last season's holiday window ticket (Dec 26, 2025 to New Year's) was $321
+        at the window.
+      source: https://www.vaildaily.com/news/christmas-lift-ticket-prices-colorado/
+    airports:
+    - Denver International (DEN)
+    - Eagle County Regional (EGE)
+    - Colorado Springs (COS)
+    distinct:
+      text: '"Breckenridge ups the ante on small town holiday charm": hundreds of
+        Santas race down Main Street before Santa lights the town (250,000+ LED lights
+        on 59,000 feet of strands).'
+      source: https://gobreck.com/seasons/holidays/visit-breckenridge-in-december/
+  lake-tahoe:
+    name: Lake Tahoe
+    state: California and Nevada
+    place: South Lake Tahoe, California
+    resorts:
+    - heavenly
+    - palisades-tahoe
+    - northstar
+    - kirkwood
+    events:
+    - name: 'Heavenly Holidays: 65-foot tree lighting opening day'
+      date: '2026-11-27'
+      place: Heavenly Village, South Lake Tahoe
+      source: https://visitlaketahoe.com/heavenlyholidays
+    - name: Heavenly Village nightly tree lighting with Santa (5:30pm daily through
+        Christmas)
+      date: 2026-11-27 to 2026-12-25
+      place: Heavenly Village, South Lake Tahoe
+      source: https://visitlaketahoe.com/heavenlyholidays
+    - name: Meet Santa & Mrs. Claus
+      date: 2026-11-27 to 2026-12-23
+      place: Heavenly Village
+      source: https://visitlaketahoe.com/heavenlyholidays
+    - name: Breakfast with Santa (kids $20, adults $30)
+      date: 2026-12-05, 2026-12-12, 2026-12-19
+      place: Heavenly Village
+      source: https://visitlaketahoe.com/heavenlyholidays
+    - name: Holiday Market at South Lake Brewing Co. (noon-5pm)
+      date: 2026-12-06, 2026-12-13, 2026-12-20
+      place: South Lake Tahoe
+      source: https://visitlaketahoe.com/heavenlyholidays
+    - name: Tahoe Santa Crawl
+      date: '2026-12-19'
+      place: South Lake Tahoe
+      source: https://visitlaketahoe.com/heavenlyholidays
+    - name: Santa in The Village (11am-6pm)
+      date: 2026-12-21 to 2026-12-24
+      place: Palisades and Alpine base areas, Olympic Valley
+      source: https://www.palisadestahoe.com/holiday-schedule
+    - name: Great Basin Carolers (4-7pm)
+      date: 2026-12-20 to 2026-12-24
+      place: The Village at Palisades Tahoe
+      source: https://www.palisadestahoe.com/holiday-schedule
+    - name: Christmas Eve Dinner (reservations required)
+      date: '2026-12-24'
+      place: Olympic Village Event Center, Palisades Tahoe
+      source: https://www.palisadestahoe.com/holiday-schedule
+    nye:
+    - name: Palisades Glowstick Parade (5-7pm, ski down from Exhibition chair)
+      date: '2026-12-31'
+      place: Palisades Tahoe, Olympic Valley
+      source: https://www.palisadestahoe.com/holiday-schedule
+    - name: Palisades fireworks at 7pm over KT Deck + East Coast balloon drop at 9pm
+      date: '2026-12-31'
+      place: Palisades Tahoe, Olympic Valley
+      source: https://www.palisadestahoe.com/holiday-schedule
+    resort_notes:
+    - text: 'Heavenly 2026/27: California Base Area parking needs a reservation on
+        weekends from Dec 12 and peak days Dec 12-13, 19-24, 26-31, Jan 1-3 (Dec 25
+        is not a peak day). $20 before 11:30am for 3 or fewer people; 4+ carpools
+        free but still reserve; free after 11:30am. Boulder and Stagecoach lots stay
+        free. Reservations opened Oct 28, 2026 at ParkHeavenly.com.'
+      source: https://www.skiheavenly.com/explore-the-resort/about-the-resort/getting-here-and-parking.aspx
+    - text: 'Palisades Tahoe 2026-27: reservation required at all resort lots on weekends
+        and holidays, including Dec 5, 6, 12, 13, 19-31 and Jan 1-3, 2027. Most are
+        free (released weekly); a few paid-ahead spots cost $30.'
+      source: https://snowbrains.com/palisades-tahoe-ca-parking-reservations/
+    - text: Palisades' own holiday page says parking reservations are required Dec
+        19, 2026 through Jan 3, 2027.
+      source: https://www.palisadestahoe.com/holiday-schedule
+    - text: 'Northstar 2026-27 parking rules not found. 2025-26: Village View lot
+        reservation on weekends/peak 7am-1pm; Preferred Paid lot $25 weekdays, $50
+        weekends/peak, free after 3pm. Check northstarcalifornia.com/parking.'
+      source: https://www.northstarcalifornia.com/parking
+    airports:
+    - Reno-Tahoe International (RNO)
+    - Sacramento International (SMF)
+    - Truckee-Tahoe (TRK, private/charter)
+    distinct:
+      text: Heavenly Village lights its 65-foot tree every night at 5:30pm from Nov
+        27 through Christmas, with Santa on hand, and ends the year with a gondola
+        ball drop and fireworks over the lake.
+      source: https://visitlaketahoe.com/heavenlyholidays
+  vail:
+    name: Vail
+    state: Colorado
+    place: Vail, Colorado
+    resorts:
+    - vail
+    - beaver-creek
+    events: []
+    nye:
+    - name: Vail Ski & Snowboard School annual NYE torchlight ski-down (6:15pm) +
+        fireworks (6:25pm)
+      date: 'annual: Dec 31'
+      place: Golden Peak; fireworks visible from Vail Village, Lionshead, West Vail
+      source: https://discovervail.com/event/torchlight-parade-fireworks-new-years-eve/
+    resort_notes:
+    - text: 'Town of Vail parking (latest published, 2025-26): Vail Village and Lionshead
+        structures first hour free, then $10/hr, max $50 on peak days and $30 non-peak;
+        free entry after 3pm; overnight $60. 2026-27 rates not found; holiday week
+        is normally peak.'
+      source: https://www.kunc.org/news/2025-09-24/vail-to-charge-maximum-50-per-day-for-skier-parking-up-from-40-last-season
+    - text: Last season Vail and Beaver Creek had the state's highest holiday window
+        ticket at $356.
+      source: https://www.vaildaily.com/news/christmas-lift-ticket-prices-colorado/
+    - text: Vail Mountain had 51 of 277 runs open on Dec 23, 2025 (low-snow year),
+        so holiday terrain is not guaranteed.
+      source: https://sgbonline.com/report-late-december-snow-not-enough-to-save-holidays-at-many-western-mountain-resorts/
+    airports:
+    - Eagle County Regional (EGE)
+    - Denver International (DEN)
+    distinct:
+      text: Vail Village becomes 'Kringle Crossing' with "charming chalets straight
+        from the North Pole" while "the village sparkles with twinkling lights and
+        whimsical decorations."
+      source: https://discovervail.com/vail-holidays
+  park-city:
+    name: Park City
+    state: Utah
+    place: Park City, Utah
+    resorts:
+    - park-city
+    - deer-valley
+    events:
+    - name: Canyons Village annual tree lighting (10th annual, 4-6pm)
+      date: '2026-11-27'
+      place: Canyons Village
+      source: https://www.visitparkcity.com/blog/post/ways-to-celebrate-the-holidays-in-park-city-utah
+    - name: Historic Main Street Holiday Lighting Celebration (5:30pm)
+      date: '2026-11-28'
+      place: Historic Main Street (Miner's Park)
+      source: https://www.visitparkcity.com/blog/post/ways-to-celebrate-the-holidays-in-park-city-utah
+    - name: Main Street Snow Globe Stroll
+      date: 2026-11-20 to 2027-01-03
+      place: Historic Main Street
+      source: https://www.visitparkcity.com/blog/post/ways-to-celebrate-the-holidays-in-park-city-utah
+    - name: Annual Santa Pub Crawl (6-11:30pm)
+      date: '2026-12-05'
+      place: Main Street
+      source: https://www.visitparkcity.com/blog/post/ways-to-celebrate-the-holidays-in-park-city-utah
+    - name: Grand Menorah Lighting & Parade (Hanukkah)
+      date: 2026-12-04 to 2026-12-12
+      place: Main Street to Miner's Hospital
+      source: https://www.visitparkcity.com/blog/post/ways-to-celebrate-the-holidays-in-park-city-utah
+    - name: Park City Mountain Christmas Eve Torchlight Parade (at dusk; every Christmas Eve since 1964)
+      date: 'annual: Dec 24'
+      place: Canyons Village (moved from Mountain Village/Payday; 2025 ran 4:30pm
+        with descent ~6pm)
+      source: https://www.visitparkcity.com/blog/post/ways-to-celebrate-the-holidays-in-park-city-utah
+    - name: Deer Valley Torchlight Parade (at dusk)
+      date: '2026-12-30'
+      place: Deer Valley Resort
+      source: https://www.visitparkcity.com/blog/post/ways-to-celebrate-the-holidays-in-park-city-utah
+    nye: []
+    resort_notes:
+    - text: 'Park City Mountain 2026-27: Mountain Village surface lots require paid
+        reservations (same as last season; $29 before noon, free after noon, 4+ carpools
+        free). Canyons Village moves to paid parking: new garage $29/day, opening
+        early December (maybe after opening day); free first-come lot next to the
+        garage; 4+ carpools free.'
+      source: https://www.kpcw.org/park-city/2026-08-24/park-city-mountain-releases-canyons-village-parking-plan-for-2026-2027-season
+    - text: Mountain Village reservations required in Main, First Time and Silver
+        King lots seven days a week, 11/20-4/4.
+      source: https://www.skiutah.com/resources/ski-resort-parking
+    - text: 'Canyons Village garage: free after noon; $29 daily rate ends free garage
+        parking.'
+      source: https://townlift.com/2026/04/park-city-mountain-ends-free-canyons-village-garage-parking-sets-29-daily-rate/
+    - text: 'Low-snow 2025: Park City had under 10% of slopes open in the busiest
+        holiday weeks.'
+      source: https://sgbonline.com/report-late-december-snow-not-enough-to-save-holidays-at-many-western-mountain-resorts/
+    airports:
+    - Salt Lake City International (SLC)
+    distinct:
+      text: Park City Mountain's Christmas Eve torchlight parade has run every year
+        since the resort's second season in 1964, and Santa rides the Town Lift down
+        to Main Street.
+      source: https://www.kpcw.org/ski-resorts/2023-12-23/park-city-mountain-lights-up-with-annual-christmas-eve-torchlight-parade

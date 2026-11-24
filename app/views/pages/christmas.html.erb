@@ -5,7 +5,7 @@
 <% faqs = [] %>
 <% faqs << { question: "What are the best ski resorts for Christmas #{year}?", answer: "The resorts most likely to have new snow over Christmas, by region: #{firsts.map { |label, (r, o)| "#{r.name} (#{label}, new snow on about #{dec.powder_days(o)} of 31 December days)" }.join("; ")}. That's from 10 seasons of measured snow at USDA SNOTEL stations, or NOAA weather stations where a resort has no SNOTEL site." } %>
 <% faqs << { question: "Is there enough snow to ski at Christmas?", answer: "Usually at high, snowy resorts, but late December is still early season and coverage varies by resort and year. Resorts that get new snow on half or more of December days, like #{picks.flat_map { |_, rs| rs }.max_by { |_, o| o }&.first&.name}, are the safest bets. Check the 7-day forecast before you book." } %>
-<% faqs << { question: "Can you use an Epic Local Pass or Ikon Base Pass over Christmas?", answer: "Not everywhere. The Epic Local Pass has holiday blackouts at its busiest resorts, including December 26 to 31 (per Ski Mag), and the Ikon Base Pass is blacked out December 26 to 30, 2026 (per ikonpass.com). The full Epic Pass and full Ikon Pass have no blackout dates." } %>
+<% faqs << { question: "Can you use an Epic Local Pass or Ikon Base Pass over Christmas?", answer: "Not everywhere. The Epic Local Pass is restricted December 26 to 31 at nine resorts, including Vail, Beaver Creek, Park City, Heavenly and Northstar, but not at Breckenridge, Keystone or Crested Butte (epicpass.com). The Ikon Base Pass is blacked out December 26 to 30 at select destinations; Arapahoe Basin is one that has no blackouts. The full Epic Pass and full Ikon Pass have no blackout dates." } %>
 <% faqs << { question: "When should you book a Christmas ski trip?", answer: "As early as you can. Christmas to New Year's is the busiest week of the ski season, and lodging near the lifts sells out first. Book lessons and rentals ahead too." } %>
 <% faqs << { question: "How do you avoid crowds skiing over Christmas?", answer: "Get on the first chair, ski through lunch, pick a weekday over a weekend, and choose a less famous resort nearby. Days right after New Year's are usually quieter." } %>
 <% content_for(:title, fit_title("Best Ski Resorts for Christmas #{year}: Where the Snow Is | Snow Way", "Best Ski Resorts for Christmas #{year} | Snow Way")) %>
@@ -32,8 +32,9 @@
     <h2 class="text-xl font-bold mb-3">Blackout dates over Christmas</h2>
     <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-8">
       <li><strong>Epic Pass</strong> and <strong>Ikon Pass</strong>: no blackout dates. See <%= link_to "Epic Pass price", "/epic-pass-price", class: "text-cyan-300 underline" %> and <%= link_to "Ikon Pass price", "/ikon-pass-price", class: "text-cyan-300 underline" %>.</li>
-      <li><strong>Epic Local Pass</strong>: holiday blackouts at the busiest resorts, including December 26 to 31 (per Ski Mag).</li>
-      <li><strong>Ikon Base Pass</strong>: blacked out December 26 to 30, 2026 (per ikonpass.com).</li>
+      <li><strong>Epic Local Pass</strong>: restricted December 26 to 31 at Vail, Beaver Creek, Whistler Blackcomb, Park City, Heavenly, Northstar, Kirkwood and Stowe. Breckenridge, Keystone and Crested Butte have no peak-date limits.</li>
+      <li><strong>Ikon Base Pass</strong>: blacked out December 26 to 30, 2026 at select destinations. Arapahoe Basin has none.</li>
+      <li>Full list and where you can still ski: <%= link_to "ski pass blackout dates", blackouts_path, class: "text-cyan-300 underline" %>. Going on an Epic Day Pass? Buy the peak-dates version: <%= link_to "Epic Day Pass", epic_day_pass_path, class: "text-cyan-300 underline" %>.</li>
       <li>Epic Passes are on sale until December 6, 2026. Compare them on <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline" %>.</li>
     </ul>
 
@@ -45,6 +46,8 @@
       <li><strong>Watch the forecast</strong> the week before. <%= link_to "Where is it snowing", where_is_it_snowing_path, class: "text-cyan-300 underline" %> ranks every resort by the next 7 days of snow.</li>
       <li><strong>Beat the crowds:</strong> first chair, ski through lunch, and pick weekdays.</li>
     </ol>
+    <h2 class="text-xl font-bold mb-3">Christmas in the big ski towns</h2>
+    <p class="text-slate-300 mb-8"><% ChristmasTown.all.each_with_index do |ct, i| %><%= " · " if i > 0 %><%= link_to "Christmas in #{ct.name}", ct.path, class: "text-cyan-300 underline" %><% end %>: holiday events, New Year's Eve and where to stay.</p>
     <p class="text-slate-300 mb-8">More: <%= link_to "best places to ski in December", ski_month_path("december"), class: "text-cyan-300 underline" %> · <%= link_to "holiday ski trips", guide_path("holiday-ski-trips"), class: "text-cyan-300 underline" %> · <%= link_to "opening dates", opening_dates_path, class: "text-cyan-300 underline" %> · <%= link_to "gifts for skiers", guide_path("gifts-for-skiers"), class: "text-cyan-300 underline" %></p>
 
     <%= render "shared/calendar_cta" %>
