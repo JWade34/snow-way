@@ -1,6 +1,14 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+# Low-value for search (crawl budget, Bing 11/24): embeddable widget copies of resort pages, per-subscriber links, beacons
+Disallow: /embed/
+Disallow: /unsubscribe/
+Disallow: /weekly/
+Disallow: /downloads/
+Disallow: /powder-calendar/download/
+Disallow: /subscribers
+Disallow: /t/
 
 # AI assistants and answer engines are welcome. Plain-text indexes: /llms.txt and /llms-full.txt
 User-agent: GPTBot
@@ -22,5 +30,13 @@ User-agent: MistralAI-User
 User-agent: cohere-ai
 Allow: /
 Disallow: /admin
+# Low-value for search (crawl budget, Bing 11/24): embeddable widget copies of resort pages, per-subscriber links, beacons
+Disallow: /embed/
+Disallow: /unsubscribe/
+Disallow: /weekly/
+Disallow: /downloads/
+Disallow: /powder-calendar/download/
+Disallow: /subscribers
+Disallow: /t/
 
 Sitemap: https://snowway.app/sitemap.xml
