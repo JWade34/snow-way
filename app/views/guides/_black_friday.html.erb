@@ -8,5 +8,6 @@
       <li style="margin:0"><%= gear_link label, query, class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-amber-400 rounded-lg px-3 py-1.5 text-white no-underline transition" %></li>
     <% end %>
   </ul>
+  <p class="text-sm text-slate-300 mt-3">Shopping for someone else? See <%= link_to "gifts for skiers", guide_path("gifts-for-skiers"), class: "text-cyan-300 underline" %> and <%= link_to "gifts for snowboarders", guide_path("gifts-for-snowboarders"), class: "text-cyan-300 underline" %>.</p>
   <% if Affiliate.amazon_tag %><p class="text-[11px] text-slate-400 mt-3">As an Amazon Associate, Snow Way earns from qualifying purchases.</p><% end %>
 </aside>

@@ -75,6 +75,7 @@
 
     <%= render "shared/storm_deal", resort: @resort, summary: @summary %>
     <%= render "shared/trip_bar", resort: @resort %>
+    <%= render "shared/christmas_line", resort: @resort, css: "mb-8 -mt-4 px-1" %>
     <nav aria-label="On this page" class="-mx-6 px-6 mb-8 overflow-x-auto">
       <ul class="flex gap-2 text-sm whitespace-nowrap justify-start sm:justify-center">
         <% [ [ "Snow report", "#report-heading" ], [ "7-day weather", "#forecast" ], [ "Where to stay", "#stay" ], [ "Getting there", "#trip" ], [ "Gear for this week", "#gear" ], [ "FAQ", "#faq" ] ].each do |label, href| %>

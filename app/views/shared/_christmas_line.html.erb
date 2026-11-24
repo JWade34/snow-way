@@ -1,0 +1,5 @@
+<%# locals: (resort:, css: "mt-2") -%>
+<% if [ 10, 11 ].include?(Date.current.month) || (Date.current.month == 12 && Date.current.day <= 24) %>
+    <% xin = Date.new(Date.current.year, 12, 26) %><% xout = Date.new(Date.current.year + 1, 1, 2) %>
+    <p class="<%= css %> text-xs text-slate-300" data-placement="christmas_week"><span class="font-semibold text-white">Christmas week (Dec 26 to Jan 2):</span> <a href="<%= Affiliate.hotels_url(resort, checkin: xin, checkout: xout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-cyan-300 underline underline-offset-2">hotels</a> · <a href="<%= Affiliate.vrbo_url(resort, checkin: xin, checkout: xout) %>" target="_blank" rel="sponsored nofollow noopener" class="text-cyan-300 underline underline-offset-2">rentals</a>. It's the busiest week of the season, so rooms go early. <%= link_to "Best resorts for Christmas", christmas_skiing_path, class: "underline underline-offset-2" %></p>
+  <% end %>
