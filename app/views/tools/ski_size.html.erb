@@ -6,7 +6,7 @@
   { question: "Do powder skis need to be longer?", answer: "Usually. Longer, wider skis float better in deep snow, so powder skis are often sized near or slightly above your height." }
 ] %>
 <% content_for(:title, "Ski Size Chart & Calculator: Ski Length by Height | Snow Way") %>
-<% content_for(:description, "Ski size chart and calculator: find the right ski length by height, weight, ability, and terrain, plus the right ski pole length.") %>
+<% content_for(:description, "Ski length calculator: enter your height, weight and ability to get your ski size in cm, plus a ski size chart by height and the right pole length.") %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
         { "@type" => "WebApplication", "author" => author_schema, "name" => "Ski Size Calculator", "url" => absolute_url("/ski-size-chart"), "applicationCategory" => "SportsApplication", "operatingSystem" => "Web", "offers" => { "@type" => "Offer", "price" => "0", "priceCurrency" => "USD" } },
@@ -64,6 +64,7 @@
       <p class="text-slate-400 text-xs">Charts are general guidance. Manufacturer size charts for a specific ski take priority.</p>
     </div>
 
+    <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "Ski sizing FAQ" %>
   </main>
 </div>

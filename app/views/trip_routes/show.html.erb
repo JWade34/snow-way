@@ -130,6 +130,7 @@
       <%= link_to "Ski resorts near #{pg.origin_name}", hub_path(SkiHub.all.find { |h| h.airport == o["airport"] } || "denver"), class: "text-cyan-300 underline underline-offset-2" %>
     </p>
 
+    <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "#{pg.title} FAQ" %>
 
     <% if pg.sources.any? %>

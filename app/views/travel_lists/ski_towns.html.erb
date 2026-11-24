@@ -37,6 +37,7 @@
       <% end %>
     </ol>
     <%= affiliate_disclosure("Hotel and rental links may earn Snow Way a commission.", css: "mb-8") %>
+    <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "Ski town questions" %>
     <p class="text-sm text-slate-300 mb-6">More: <%= link_to "Best winter vacations in the US", winter_vacations_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Best ski resorts for beginners", beginner_resorts_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <%= render "travel_lists/sources", items: @items %>

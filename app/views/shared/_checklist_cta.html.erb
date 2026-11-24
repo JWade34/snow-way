@@ -1,4 +1,4 @@
-<aside id="packing-checklist-form" class="my-10 bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-5 not-prose" aria-labelledby="checklist-heading">
+<aside id="packing-checklist-form" data-placement="checklist_cta" class="my-10 bg-gradient-to-r from-cyan-500/10 to-slate-800/40 border border-cyan-500/30 rounded-xl p-5 not-prose" aria-labelledby="checklist-heading">
   <p id="checklist-heading" class="font-bold text-lg mb-1 text-white">Free printable packing checklist</p>
   <p class="text-slate-300 text-sm mb-3">Every item on one page, with checkboxes. Instant download.</p>
   <%= form_with model: Subscriber.new, url: subscribers_path, class: "flex flex-col sm:flex-row gap-2" do |f| %>

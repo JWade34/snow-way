@@ -1,0 +1,12 @@
+<%# locals: (picks:) -%>
+<% after = Date.current > BlackFriday::BLACK_FRIDAY %>
+<aside class="not-prose my-6 bg-gradient-to-r from-amber-400/10 to-slate-800/40 border border-amber-400/40 rounded-xl p-4" aria-labelledby="black-friday-heading" data-placement="black_friday">
+  <h2 id="black-friday-heading" class="font-bold text-lg mb-1 text-white"><%= after ? "Cyber Monday 2026" : "Black Friday 2026" %>: check these picks for deals</h2>
+  <p class="text-slate-300 text-sm mb-3">Black Friday is <%= BlackFriday::BLACK_FRIDAY.strftime("%A, %B %-d") %> and Cyber Monday is <%= BlackFriday::CYBER_MONDAY.strftime("%B %-d") %>. Sale prices change by the hour, so these go to the current listings instead of quoting a price.</p>
+  <ul class="flex flex-wrap gap-2 text-sm" style="list-style:none;padding-left:0;margin:0">
+    <% picks.each do |label, query| %>
+      <li style="margin:0"><%= gear_link label, query, class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-amber-400 rounded-lg px-3 py-1.5 text-white no-underline transition" %></li>
+    <% end %>
+  </ul>
+  <% if Affiliate.amazon_tag %><p class="text-[11px] text-slate-400 mt-3">As an Amazon Associate, Snow Way earns from qualifying purchases.</p><% end %>
+</aside>

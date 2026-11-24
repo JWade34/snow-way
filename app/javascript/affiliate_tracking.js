@@ -9,7 +9,8 @@ document.addEventListener("click", (event) => {
   data.append("label", (link.textContent || "").trim().slice(0, 120))
   if (navigator.sendBeacon) navigator.sendBeacon("/t/a", data)
   if (window.posthog && window.posthog.capture) {
-    window.posthog.capture("affiliate_click", { page: window.location.pathname, href: link.href, label: data.get("label") })
+    const box = link.closest("[data-placement]")
+    window.posthog.capture("affiliate_click", { page: window.location.pathname, href: link.href, label: data.get("label"), placement: box ? box.dataset.placement : "inline" })
   }
 }, { capture: true })
 
@@ -23,6 +24,7 @@ document.addEventListener("submit", (event) => {
   const resort = form.querySelector('[name="subscriber[resort_id]"]')
   window.posthog.capture("email_signup", {
     page: window.location.pathname,
-    form: (magnet && magnet.value) || (resort && resort.value ? "resort_alert" : "storm_alert")
+    form: (magnet && magnet.value) || (resort && resort.value ? "resort_alert" : "storm_alert"),
+    placement: (form.closest("[data-placement]") || {}).dataset?.placement || "other"
   })
 }, { capture: true })

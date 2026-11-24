@@ -55,6 +55,7 @@
       <li><%= link_to "Ski lessons for adults", guide_path("ski-lessons-for-adults"), class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Ski trail ratings explained", guide_path("ski-trail-ratings"), class: "text-cyan-300 underline underline-offset-2" %></li>
       <li><%= link_to "Best snowboard for beginners", guide_path("best-snowboard-for-beginners"), class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "What to wear skiing", guide_path("what-to-wear-skiing"), class: "text-cyan-300 underline underline-offset-2" %></li>
     </ul>
+    <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "Beginner resort questions" %>
     <%= render "travel_lists/sources", items: items %>
   </main>

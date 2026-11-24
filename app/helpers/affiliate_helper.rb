@@ -1,7 +1,7 @@
 module AffiliateHelper
   # <%= gear_link "insulated ski gloves", "insulated ski gloves" %> — opens REI search (tracked once AvantLink is set).
-  def gear_link(text, query = text, merchant: :auto)
-    link_to text, Affiliate.gear_url(query, merchant: merchant), rel: "sponsored nofollow noopener", target: "_blank"
+  def gear_link(text, query = text, merchant: :auto, **opts)
+    link_to text, Affiliate.gear_url(query, merchant: merchant), rel: "sponsored nofollow noopener", target: "_blank", **opts
   end
 
   # Small, quiet disclosure line ending in an underlined link to the policy (same color as the text;

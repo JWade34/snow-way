@@ -65,6 +65,7 @@
     <% end %>
     <%= affiliate_disclosure("Hotel links may earn Snow Way a commission. Official site links don't.", css: "mb-8") %>
     <p class="mb-8 text-sm text-slate-300">Ski and soak: see <%= link_to "Colorado's snow report", region_path("colorado"), class: "text-cyan-300 underline underline-offset-2" %> and <%= link_to "Denver to Steamboat", trip_route_path("denver-to-steamboat"), class: "text-cyan-300 underline underline-offset-2" %> or <%= link_to "Denver to Aspen", trip_route_path("denver-to-aspen"), class: "text-cyan-300 underline underline-offset-2" %> for drive times.</p>
+    <%= render "shared/calendar_cta" %>
     <%= render "shared/faq", faqs: faqs, heading: "Colorado hot springs questions" %>
     <%= render "travel_lists/sources", items: items + notes.grep(Hash) %>
   </main>

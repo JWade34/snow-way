@@ -1,8 +1,19 @@
-<aside class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-4 flex flex-wrap sm:flex-nowrap items-center gap-4" aria-labelledby="calendar-cta-heading">
-  <%= image_tag "powder-calendar-cover.webp", alt: "", width: 260, height: 336, loading: "lazy", class: "w-14 sm:w-20 rounded shadow-lg -rotate-3 shrink-0" %>
-  <div class="flex-1 min-w-0">
-    <p id="calendar-cta-heading" class="font-bold text-base sm:text-lg leading-snug">Free: the <%= PowderCalendarPdf.season_label %> Powder Calendar</p>
-    <p class="text-slate-300 text-sm">When the snow really falls at all <%= Resort.north_america.count %> North American resorts, plus early-season, holiday, and spring picks.</p>
+<%# Inline signup (was a link to /powder-calendar; 6 signups in 28 days to 11/24 with no field on the pages Google sends people to). %>
+<aside class="mb-10 bg-slate-800/40 border border-slate-700 rounded-xl p-4" aria-labelledby="calendar-cta-heading" data-placement="calendar_cta">
+  <div class="flex items-center gap-4 mb-3">
+    <%= image_tag "powder-calendar-cover.webp", alt: "", width: 260, height: 336, loading: "lazy", class: "w-14 sm:w-20 rounded shadow-lg -rotate-3 shrink-0" %>
+    <div class="flex-1 min-w-0">
+      <p id="calendar-cta-heading" class="font-bold text-base sm:text-lg leading-snug">Free: the <%= PowderCalendarPdf.season_label %> Powder Calendar</p>
+      <p class="text-slate-300 text-sm">When the snow really falls at all <%= Resort.north_america.count %> North American resorts, plus early-season, holiday, and spring picks. <%= link_to "See what's inside", powder_calendar_path, class: "underline underline-offset-2 hover:text-white" %></p>
+    </div>
   </div>
-  <%= link_to "Get it free →", powder_calendar_path, class: "w-full sm:w-auto shrink-0 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-4 py-2.5 text-center transition text-sm" %>
+  <div id="powder-calendar-form">
+    <%= form_with model: Subscriber.new, url: subscribers_path, class: "flex flex-col sm:flex-row gap-2" do |f| %>
+      <%= f.hidden_field :magnet, value: "powder-calendar" %>
+      <%= f.label :email, "Email address", class: "sr-only", for: "calendar_cta_email" %>
+      <%= f.email_field :email, id: "calendar_cta_email", required: true, placeholder: "you@example.com", autocomplete: "email", class: "flex-1 bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400" %>
+      <%= f.submit "Get it free", class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 cursor-pointer transition" %>
+    <% end %>
+    <p class="text-slate-400 text-xs mt-2">Instant download. We'll also send powder alerts for big storms and a weekly snow report on Thursdays; unsubscribe anytime.</p>
+  </div>
 </aside>
