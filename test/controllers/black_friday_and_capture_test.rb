@@ -51,7 +51,7 @@ class BlackFridayAndCaptureTest < ActionDispatch::IntegrationTest
     get open_now_path
     assert_response :success
     assert_select "h1", /open now/i
-    r = Resort.where.not(opening_date: nil).first
+    r = Resort.first
     r.update!(opening_status: "delayed", opening_date: Date.current - 3)
     assert_equal "Delayed (no new date)", r.opening_label
     assert_equal "Delayed", r.season_status[:label]
