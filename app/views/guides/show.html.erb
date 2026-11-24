@@ -1,5 +1,9 @@
 <% faqs = [] %>
 <% body = render(@guide.partial, faqs: faqs) %>
+<% if @guide.slug == "holiday-ski-trips" && Date.current.month >= 10 %>
+  <% xmas = render("shared/christmas_week") %>
+  <% body = body.sub(%r{(<div class="tldr">.*?</div>)}m) { "#{$1}#{xmas}" }.html_safe %>
+<% end %>
 <% if (deal_picks = BlackFriday.picks_for(@guide.slug)) %>
   <%# Deal box goes right under the short answer, so the answer stays the first thing on the page. %>
   <% box = render("guides/black_friday", picks: deal_picks) %>

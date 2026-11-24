@@ -1,26 +1,24 @@
 # Sourced, time-sensitive resort facts for the 2026-27 season. Every value cites an official or news source.
 # Pass lists: epicpass.com, ikonpass.com, mountaincollective.com, indyskipass.com. Re-verify before each season
 # and when prices change (Epic prices rise after Nov 15). Unverified values stay null.
-checked_on: 2026-11-05
+checked_on: 2026-11-24
 # Opening dates and statuses are rechecked separately from pass prices.
 openings_checked_on: 2026-11-21
 passes:
   epic:
-    adult_price_usd:
-    price_note: Epic Pass prices rose after November 15, 2026; the new adult price
-      could not be verified on 2026-11-16 (last seen $1,169 adult / $929 young adult
-      13-30 on 2026-11-05, before the increase). Check epicpass.com for the current price.
-    source: https://www.epicpass.com/passes/epic-pass.aspx
+    adult_price_usd: 1245
+    price_note: "$1,245 adult, $995 young adult (13-30), per Vail Resorts' November 16, 2026
+      release. Epic Passes go off sale after December 6, 2026."
+    source: https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6
   epic_local:
-    adult_price_usd:
-    price_note: Epic Local Pass prices rose after November 15, 2026; the new adult
-      price could not be verified on 2026-11-16 (last seen $869 adult / $689 young
-      adult 13-30 on 2026-11-05, before the increase). Check epicpass.com for the current price.
-    source: https://www.epicpass.com/passes/epic-local-pass.aspx
+    adult_price_usd: 959
+    price_note: "$959 adult, $759 young adult (13-30), per Vail Resorts' November 16, 2026
+      release. Off sale after December 6, 2026."
+    source: https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6
   ikon:
     adult_price_usd: 1529
-    price_note: Listed as "From $1,529" for adult 23+ on 2026-11-05; no price-increase
-      deadline shown
+    price_note: Listed as "From $1,529" for adult 23+ (rechecked 2026-11-24). Promo code GIFT
+      takes up to $80 off an eligible 26/27 pass on ikonpass.com, Nov 23 to Nov 30, 2026.
     source: https://www.ikonpass.com/en/shop-passes/ikon-pass
     from: true
   ikon_base:

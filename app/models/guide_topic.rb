@@ -24,7 +24,7 @@ class GuideTopic
     "gear" => {
       name: "Ski & Snowboard Gear Guides",
       intro: "How to choose ski and snowboard gear without overspending: sizing, what matters, what to skip, and when to rent instead of buy.",
-      guides: %w[best-heated-socks best-hand-warmers how-to-wax-a-snowboard rent-or-buy-ski-gear best-all-mountain-skis best-ski-boots best-ski-brands best-snowboard best-snowboard-for-beginners
+      guides: %w[gifts-for-skiers gifts-for-snowboarders best-heated-socks best-hand-warmers how-to-wax-a-snowboard rent-or-buy-ski-gear best-all-mountain-skis best-ski-boots best-ski-brands best-snowboard best-snowboard-for-beginners
                  best-snowboard-boots best-snowboard-bindings best-snowboard-brands best-ski-helmet best-ski-goggles best-ski-gloves
                  best-heated-gloves best-ski-socks best-base-layer-for-skiing best-ski-pants best-womens-ski-jacket snowboard-jacket
                  snowboard-pants ski-boot-bag kids-ski-gear how-to-wax-skis best-heated-jacket best-snow-boots ski-rack-roof-box avalanche-safety-gear]

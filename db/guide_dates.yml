@@ -62,7 +62,7 @@ ski-gloves-vs-mittens:
   updated: '2026-11-05'
 balaclava-vs-ski-mask:
   published: '2026-11-05'
-  updated: '2026-11-05'
+  updated: '2026-11-24'
 freestyle-vs-freeride-snowboarding:
   published: '2026-11-05'
   updated: '2026-11-05'
@@ -83,10 +83,10 @@ snowboard-pants:
   updated: '2026-11-05'
 best-snowboard-brands:
   published: '2026-11-05'
-  updated: '2026-11-08'
+  updated: '2026-11-24'
 best-ski-brands:
   published: '2026-11-05'
-  updated: '2026-11-08'
+  updated: '2026-11-24'
 what-is-apres-ski:
   published: '2026-11-05'
   updated: '2026-11-08'
@@ -119,10 +119,16 @@ best-heated-gloves:
   updated: '2026-11-08'
 best-heated-socks:
   published: '2026-11-08'
-  updated: '2026-11-08'
+  updated: '2026-11-24'
 best-hand-warmers:
   published: '2026-11-08'
   updated: '2026-11-08'
+gifts-for-skiers:
+  published: '2026-11-24'
+  updated: '2026-11-24'
+gifts-for-snowboarders:
+  published: '2026-11-24'
+  updated: '2026-11-24'
 how-to-wax-a-snowboard:
   published: '2026-11-08'
   updated: '2026-11-08'

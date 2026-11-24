@@ -1,0 +1,30 @@
+<%# locals: (heading_tag: :h2, per_region: 2) -%>
+<%# Christmas-to-New-Year's lodging, the busiest week of the season. Resorts ranked by how often December brings new snow
+    (10 seasons of USDA SNOTEL data in the West, NOAA stations in the East and Canada). Links carry the holiday dates. %>
+<% dec = SkiMonth.find("december") %>
+<% year = dec.year %>
+<% checkin, checkout = Date.new(year, 12, 26), Date.new(year + 1, 1, 2) %>
+<% rows = dec.regional_picks(per_region) %>
+<section class="not-prose mb-10" aria-labelledby="christmas-week-heading" data-placement="christmas_week">
+  <%= content_tag heading_tag, "Christmas week #{year}: where to book now", id: "christmas-week-heading", class: "text-xl font-bold mb-2" %>
+  <p class="text-slate-300 text-sm mb-4">Christmas to New Year's is the busiest week of the ski season, and the rooms closest to the lifts go first. These are the two resorts in each region that get new snow most often in December, from 10 seasons of station data. Each link searches <%= checkin.strftime("%B %-d") %> to <%= checkout.strftime("%B %-d") %>; change the dates on the next page.</p>
+  <div class="overflow-x-auto border border-slate-700 rounded-xl">
+    <table class="w-full text-sm">
+      <caption class="sr-only">Resorts with the most December snow and Christmas week lodging links</caption>
+      <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">December days with new snow</th><th scope="col" class="px-3 py-2">Christmas week</th></tr></thead>
+      <tbody class="divide-y divide-slate-800">
+        <% rows.each do |label, list| %>
+          <tr class="bg-slate-800/40"><th scope="rowgroup" colspan="3" class="px-3 py-1.5 text-left text-xs uppercase tracking-wider text-slate-400"><%= label %></th></tr>
+          <% list.each do |r, odds| %>
+          <tr>
+            <th scope="row" class="px-3 py-2 text-left"><%= link_to r.name, resort_path(r), class: "text-white hover:text-cyan-300 font-semibold" %> <span class="text-slate-400 font-normal"><%= r.state_province %></span></th>
+            <td class="px-3 py-2 text-slate-300">About <%= dec.powder_days(odds) %> of 31</td>
+            <td class="px-3 py-2 whitespace-nowrap"><%= link_to "Hotels", Affiliate.hotels_url(r, checkin: checkin, checkout: checkout), rel: "sponsored nofollow noopener", target: "_blank", class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Rentals", Affiliate.vrbo_url(r, checkin: checkin, checkout: checkout), rel: "sponsored nofollow noopener", target: "_blank", class: "text-cyan-300 underline underline-offset-2" %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <p class="text-[11px] text-slate-400 mt-2">Hotel and rental links go to Booking.com and Vrbo; if you book, Snow Way may earn a commission at no extra cost to you. <%= link_to "Affiliate disclosure", affiliate_disclosure_path, class: "underline" %></p>
+</section>

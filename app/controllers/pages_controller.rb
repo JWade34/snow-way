@@ -73,4 +73,8 @@ class PagesController < ApplicationController
     @unknown = Resort.north_america.where(opening_date: nil).order(:name)
     @checked_on = [ Resort.openings_checked_on, Resort.maximum(:facts_checked_on) ].compact.max
   end
+
+  def christmas
+    @month = SkiMonth.find("december")
+  end
 end

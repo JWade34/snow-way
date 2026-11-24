@@ -16,6 +16,7 @@
 <% faqs << { question: "Is the Epic Pass or Ikon Pass better?", answer: "It depends on where you'll ski. Compare which pass's resorts are getting more snow this week, and what each costs, on Snow Way's Ikon vs Epic page." } if %w[epic ikon].include?(@pass) %>
 <% faqs << { question: "What is the Indy Pass?", answer: "The Indy Pass gives a set number of days at a large network of independent ski areas, mostly smaller and mid-size mountains that aren't on the Epic or Ikon Pass. Check indyskipass.com for the full list and current price." } if @pass == "indy" %>
 
+<% faqs.concat(PassDeals.faqs.select { |f| f[:question].include?(@pass_name) }) %>
 <% content_for(:title, "#{@pass_name} Resorts: Full List & This Week's Snow | Snow Way") %>
 <% content_for(:description, "#{@resorts.size} #{@pass_name} resorts in North America ranked by snow this week, with day limits, opening dates, and price. #{faqs.first[:answer]}") %>
 <% content_for(:head) do %>

@@ -124,6 +124,12 @@ class Guide
     { slug: "best-hand-warmers", title: "Best Hand Warmers (2026-27): Disposable vs Rechargeable",
       description: "The best hand warmers from GearJunkie and Outdoor Life: Ignik, HotHands, OCOOPA and Zippo, how long each lasts, and the TSA rules for flying.",
       keyword: "best hand warmers", affiliate: true },
+    { slug: "gifts-for-skiers", title: "Gifts for Skiers (2026): Stocking Stuffers to Big Gifts",
+      description: "Gifts for skiers they'll actually use: heated socks, hand warmers, merino socks, goggles and boot bags, plus stocking stuffers and what not to buy as a surprise.",
+      keyword: "gifts for skiers", affiliate: true },
+    { slug: "gifts-for-snowboarders", title: "Gifts for Snowboarders (2026): Stocking Stuffers to Big Gifts",
+      description: "Gifts for snowboarders they'll actually use: heated socks, wax kits, snowboard tools, goggles and hand warmers, plus stocking stuffers and what not to buy.",
+      keyword: "gifts for snowboarders", affiliate: true },
     { slug: "how-to-wax-a-snowboard", title: "How to Wax a Snowboard at Home: Step by Step",
       description: "How to wax a snowboard at home: clean, drip and spread hot wax, cool, scrape and brush. Tools, iron temperature, how often to wax, and rub-on wax.",
       keyword: "how to wax a snowboard", affiliate: true },
@@ -289,7 +295,7 @@ class Guide
 
   def category
     return "comparison" if slug.include?("-vs-")
-    return "gear" if slug.start_with?("best-") || slug.start_with?("snowboard-jacket", "snowboard-pants")
+    return "gear" if slug.start_with?("best-", "gifts-") || slug.start_with?("snowboard-jacket", "snowboard-pants")
     "how-to"
   end
 end

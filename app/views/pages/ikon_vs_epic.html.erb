@@ -15,6 +15,7 @@
 <% faqs << { question: "What is the main difference between the Ikon Pass and the Epic Pass?", answer: "The Epic Pass is sold by Vail Resorts and covers mostly resorts it owns, usually with unlimited days. The Ikon Pass is sold by Alterra Mountain Company and covers a mix of owned and partner resorts, many with a set number of days. The better pass is the one with more resorts you'll actually ski." } %>
 <% faqs << { question: "Which Snow Way resorts are on each pass?", answer: "Epic Pass: #{@epic.map(&:name).to_sentence}. Ikon Pass: #{@ikon.map(&:name).to_sentence}." } if has_data %>
 
+<% faqs.concat(PassDeals.faqs) %>
 <% content_for(:title, "Ikon vs Epic: Which Pass Is Getting More Snow? | Snow Way") %>
 <% content_for(:description, (faqs.first[:answer]).truncate(158)) %>
 <% content_for(:head) do %>

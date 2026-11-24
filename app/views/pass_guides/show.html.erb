@@ -1,7 +1,7 @@
 <% g = @guide %>
 <% m = g.main %>
 <% money = ->(v) { v ? number_to_currency(v, precision: 0) : "not listed" } %>
-<% checked = Date.parse(PassGuide.checked_on).strftime("%B %-d, %Y") rescue PassGuide.checked_on %>
+<% checked = (Date.parse((m["checked_on"] || PassGuide.checked_on).to_s).strftime("%B %-d, %Y") rescue PassGuide.checked_on) %>
 <% season = Date.current.month >= 7 ? "#{Date.current.year}-#{(Date.current.year + 1) % 100}" : "#{Date.current.year - 1}-#{Date.current.year % 100}" %>
 <% deadline = g.deadline %>
 <% upcoming = deadline && deadline >= Date.current %>
@@ -19,6 +19,7 @@
 <% g.variants.each do |v| %><% faqs << { question: "Does the #{v["name"]} have blackout dates?", answer: v["blackout_note"].to_s } if v["blackout_note"].present? %><% end %>
 <% faqs << { question: "How many resorts are on the #{g.name}?", answer: "#{m["resort_count"]}. Snow Way tracks #{members.size} of them in North America with live snow forecasts." } if m["resort_count"].present? %>
 <% content_for(:title, fit_title("#{g.name} #{g.on_sale? ? "Price" : ""} #{season}: #{g.on_sale? ? "#{money.(m["adult_price_usd"]).to_str}, Days & Blackouts" : "Sold Out, What to Know"} | Snow Way".squeeze(" "), "#{g.name} #{season} | Snow Way")) %>
+<% faqs.concat(PassDeals.faqs.select { |f| f[:question].include?(g.name) && !f[:question].include?("Local") }) %>
 <% content_for(:description, answer.truncate(300)) %>
 <% content_for(:head) do %>
   <%= json_ld({ "@context" => "https://schema.org", "@graph" => [

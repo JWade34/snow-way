@@ -1,0 +1,53 @@
+<% dec = @month %>
+<% year = dec.year %>
+<% picks = dec.regional_picks(2) %>
+<% firsts = picks.map { |label, rs| [ label, rs.first ] } %>
+<% faqs = [] %>
+<% faqs << { question: "What are the best ski resorts for Christmas #{year}?", answer: "The resorts most likely to have new snow over Christmas, by region: #{firsts.map { |label, (r, o)| "#{r.name} (#{label}, new snow on about #{dec.powder_days(o)} of 31 December days)" }.join("; ")}. That's from 10 seasons of measured snow at USDA SNOTEL stations, or NOAA weather stations where a resort has no SNOTEL site." } %>
+<% faqs << { question: "Is there enough snow to ski at Christmas?", answer: "Usually at high, snowy resorts, but late December is still early season and coverage varies by resort and year. Resorts that get new snow on half or more of December days, like #{picks.flat_map { |_, rs| rs }.max_by { |_, o| o }&.first&.name}, are the safest bets. Check the 7-day forecast before you book." } %>
+<% faqs << { question: "Can you use an Epic Local Pass or Ikon Base Pass over Christmas?", answer: "Not everywhere. The Epic Local Pass has holiday blackouts at its busiest resorts, including December 26 to 31 (per Ski Mag), and the Ikon Base Pass is blacked out December 26 to 30, 2026 (per ikonpass.com). The full Epic Pass and full Ikon Pass have no blackout dates." } %>
+<% faqs << { question: "When should you book a Christmas ski trip?", answer: "As early as you can. Christmas to New Year's is the busiest week of the ski season, and lodging near the lifts sells out first. Book lessons and rentals ahead too." } %>
+<% faqs << { question: "How do you avoid crowds skiing over Christmas?", answer: "Get on the first chair, ski through lunch, pick a weekday over a weekend, and choose a less famous resort nearby. Days right after New Year's are usually quieter." } %>
+<% content_for(:title, fit_title("Best Ski Resorts for Christmas #{year}: Where the Snow Is | Snow Way", "Best Ski Resorts for Christmas #{year} | Snow Way")) %>
+<% content_for(:description, "The best ski resorts for Christmas #{year} by region, ranked by how often December brings new snow (10 seasons of station data), plus blackout dates and Christmas-week lodging.") %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Best ski resorts for Christmas #{year}", "url" => absolute_url(christmas_skiing_path), "author" => author_schema,
+          "publisher" => { "@id" => "https://snowway.app/#organization" }, "dateModified" => Date.current.iso8601,
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Best Ski Resorts for Christmas", nil ] ]), faq_schema(faqs) ] }) %>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Best Ski Resorts for Christmas", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best ski resorts for Christmas <%= year %></h1>
+    <%= render "shared/byline", date: Date.current %>
+    <section class="tldr mb-8 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><strong>Snow Way's short answer:</strong> <%= faqs.first[:answer] %></p>
+    </section>
+
+    <%= render "shared/christmas_week" %>
+
+    <h2 class="text-xl font-bold mb-3">Blackout dates over Christmas</h2>
+    <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-8">
+      <li><strong>Epic Pass</strong> and <strong>Ikon Pass</strong>: no blackout dates. See <%= link_to "Epic Pass price", "/epic-pass-price", class: "text-cyan-300 underline" %> and <%= link_to "Ikon Pass price", "/ikon-pass-price", class: "text-cyan-300 underline" %>.</li>
+      <li><strong>Epic Local Pass</strong>: holiday blackouts at the busiest resorts, including December 26 to 31 (per Ski Mag).</li>
+      <li><strong>Ikon Base Pass</strong>: blacked out December 26 to 30, 2026 (per ikonpass.com).</li>
+      <li>Epic Passes are on sale until December 6, 2026. Compare them on <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline" %>.</li>
+    </ul>
+
+    <h2 class="text-xl font-bold mb-3">How to plan a Christmas ski trip</h2>
+    <ol class="list-decimal pl-5 space-y-2 text-slate-300 mb-8">
+      <li><strong>Book lodging now.</strong> It's the busiest week of the season, and slopeside rooms go first.</li>
+      <li><strong>Check your pass for blackouts</strong> (above), or buy lift tickets online ahead; window prices are highest over the holidays.</li>
+      <li><strong>Reserve lessons and rentals.</strong> Kids' ski school fills up early over the holidays.</li>
+      <li><strong>Watch the forecast</strong> the week before. <%= link_to "Where is it snowing", where_is_it_snowing_path, class: "text-cyan-300 underline" %> ranks every resort by the next 7 days of snow.</li>
+      <li><strong>Beat the crowds:</strong> first chair, ski through lunch, and pick weekdays.</li>
+    </ol>
+    <p class="text-slate-300 mb-8">More: <%= link_to "best places to ski in December", ski_month_path("december"), class: "text-cyan-300 underline" %> · <%= link_to "holiday ski trips", guide_path("holiday-ski-trips"), class: "text-cyan-300 underline" %> · <%= link_to "opening dates", opening_dates_path, class: "text-cyan-300 underline" %> · <%= link_to "gifts for skiers", guide_path("gifts-for-skiers"), class: "text-cyan-300 underline" %></p>
+
+    <%= render "shared/calendar_cta" %>
+    <%= render "shared/faq", faqs: faqs, heading: "Christmas skiing FAQ" %>
+  </main>
+</div>

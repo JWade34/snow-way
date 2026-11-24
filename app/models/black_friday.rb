@@ -8,6 +8,8 @@ module BlackFriday
   CYBER_MONDAY = Date.new(2026, 11, 30)
 
   PICKS = {
+    "gifts-for-skiers" => [ [ "Heated socks", "fieldsheer premium merino heated socks" ], [ "Rechargeable hand warmers", "ocoopa ut3 pro hand warmer" ], [ "Merino ski socks", "merino ski socks" ], [ "Ski goggles", "ski goggles interchangeable lens" ], [ "Ski boot bags", "ski boot bags" ] ],
+    "gifts-for-snowboarders" => [ [ "Heated socks", "fieldsheer premium merino heated socks" ], [ "Snowboard wax kits", "waxing kit" ], [ "Snowboard tools", "snowboard tool" ], [ "Goggles", "ski goggles interchangeable lens" ], [ "Heated mittens", "heated mittens" ] ],
     "best-snowboard-brands" => [ [ "Salomon Highpath", "salomon highpath snowboard" ], [ "CAPiTA Matriarch", "capita matriarch snowboard" ], [ "Burton Cultivator", "burton cultivator snowboard" ], [ "Jones Rally Cat", "jones rally cat snowboard" ] ],
     "best-snowboard-for-beginners" => [ [ "Beginner snowboards", "beginner snowboard" ], [ "Snowboard bindings", "snowboard bindings" ], [ "Snowboard boots", "snowboard boots" ] ],
     "best-ski-brands" => [ [ "Rossignol skis", "rossignol skis" ], [ "Salomon skis", "salomon skis" ], [ "Atomic skis", "atomic skis" ], [ "Völkl skis", "volkl skis" ] ],

@@ -67,6 +67,7 @@
       </ol>
     <% end %>
 
+    <%= render "shared/christmas_week" if m.slug == "december" && Date.current <= Date.new(m.year, 12, 24) %>
     <h2 class="text-xl font-bold mb-2">The <%= top.size %> snowiest resorts in <%= m.name %></h2>
     <p class="text-slate-400 text-sm mb-4">Western US resorts, ranked by how many <%= m.name %> days get new snow in a typical season, measured at a USDA snow station on or near each mountain.</p>
     <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">

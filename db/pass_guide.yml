@@ -61,11 +61,11 @@ passes:
     - https://mountaincollective.com/
   epic:
     name: Epic Pass
-    adult_price_usd: 1169
+    adult_price_usd: 1245
     child_price_usd:
-    price_note: Adult (31+) price. Teen and young adult (13-30) passes are cheaper.
-      Prices go up after November 15.
-    price_deadline: 2026-11-15
+    price_note: Adult $1,245, young adult (13-30) $995, per Vail Resorts on November 16,
+      2026. December 6, 2026 is the last day to buy an Epic Pass this season.
+    price_deadline:
     days: Unlimited days at most of its 90+ resorts
     blackout_note: No blackout dates
     perks:
@@ -74,17 +74,18 @@ passes:
     - 'Epic FlexPay: $0 down, 0% APR'
     resort_count: 90+ resorts
     source: https://www.epicpass.com/
-    checked_on: 2026-11-09
+    checked_on: 2026-11-24
     on_sale: true
     sources:
+    - https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6
     - https://www.epicpass.com/
-    - https://www.epicorikon.com/news/epic-pass-prices-increasing-october-2026
   epic_local:
     name: Epic Local Pass
-    adult_price_usd: 869
+    adult_price_usd: 959
     child_price_usd:
-    price_note: Adult (31+) price. Prices go up after November 15.
-    price_deadline: 2026-11-15
+    price_note: Adult $959, young adult (13-30) $759, per Vail Resorts on November 16,
+      2026. December 6, 2026 is the last day to buy.
+    price_deadline:
     days: Unlimited at 29 resorts, plus 10 days total at Vail, Beaver Creek and Whistler
       Blackcomb
     blackout_note: 'Holiday blackouts at the busiest resorts: Thanksgiving weekend,
@@ -94,9 +95,10 @@ passes:
     - 20% off for ages 13 to 30
     resort_count: 29 unlimited plus limited-day resorts
     source: https://www.epicpass.com/
-    checked_on: 2026-11-09
+    checked_on: 2026-11-24
     on_sale: true
     sources:
+    - https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6
     - https://www.epicpass.com/
     - https://www.onthesnow.com/news/a/619177/buyer-s-guide-to-the-epic-pass
     - https://www.skimag.com/news/epic-pass-details-2026-27/
@@ -116,7 +118,7 @@ passes:
     - 2 free days at each of 11 Bonus Mountains
     resort_count: 70+ destinations
     source: https://www.ikonpass.com/en/shop-passes
-    checked_on: 2026-11-09
+    checked_on: 2026-11-24
     on_sale: true
     sources:
     - https://www.ikonpass.com/en/shop-passes

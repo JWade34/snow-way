@@ -28,4 +28,22 @@ class BlackFridayAndCaptureTest < ActionDispatch::IntegrationTest
     get ski_size_chart_path
     assert_select "#powder-calendar-form input[type=email]", 1
   end
+
+  test "gift guides and christmas page render with affiliate and lodging links" do
+    %w[gifts-for-skiers gifts-for-snowboarders].each do |slug|
+      get guide_path(slug)
+      assert_response :success
+      assert_select "a[rel~=sponsored]", minimum: 10
+    end
+    get christmas_skiing_path
+    assert_response :success
+    assert_select "section[data-placement=christmas_week] a[href*='checkin=']", minimum: 1
+    assert_select "script[type='application/ld+json']", minimum: 1
+  end
+
+  test "pass deal answers expire with the offers" do
+    travel_to(Date.new(2026, 11, 25)) { assert_equal 3, PassDeals.faqs.size }
+    travel_to(Date.new(2026, 12, 1)) { assert_equal 2, PassDeals.faqs.size }
+    travel_to(Date.new(2026, 12, 7)) { assert_empty PassDeals.faqs }
+  end
 end

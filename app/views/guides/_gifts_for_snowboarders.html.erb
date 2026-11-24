@@ -1,0 +1,51 @@
+<%# locals: (faqs:) -%>
+<div class="tldr"><p><strong>Snow Way's short answer:</strong> the best gifts for snowboarders are small things they use every day on the mountain: <strong>heated socks</strong>, <strong>hand warmers</strong>, a <strong>balaclava</strong>, <strong>goggles with a second lens</strong>, a <strong>snowboard wax kit</strong> and a <strong>pocket snowboard tool</strong>. Don't surprise someone with a board, boots or bindings, since they depend on size, stance and riding style. For a rider who has everything, give lift days or a lesson.</p></div>
+<p class="text-sm text-slate-400">Picks come from our gear guides, which summarize reviewers like Outdoor Life, Field &amp; Stream and GearJunkie. We don't test gear ourselves.</p>
+
+<h2 id="stocking-stuffers">Stocking stuffers for snowboarders</h2>
+<table>
+  <caption>Stocking stuffers for snowboarders</caption>
+  <thead><tr><th scope="col">Gift</th><th scope="col">Why riders like it</th><th scope="col">Our guide</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><%= gear_link "Snowboard tool", "snowboard tool" %></th><td>Tightens binding screws on the chairlift. Every rider should carry one.</td><td><%= link_to "Snowboard bindings", guide_path("best-snowboard-bindings") %></td></tr>
+    <tr><th scope="row"><%= gear_link "Snowboard wax", "snowboard wax" %></th><td>A fresh wax makes a board noticeably faster. Pick a wax for the temperatures they ride in.</td><td><%= link_to "How to wax a snowboard", guide_path("how-to-wax-a-snowboard") %></td></tr>
+    <tr><th scope="row"><%= gear_link "HotHands hand warmers", "hothands hand warmers" %></th><td>Disposable packs for cold lift rides. Toe warmers help too.</td><td><%= link_to "Hand warmers", guide_path("best-hand-warmers") %></td></tr>
+    <tr><th scope="row"><%= gear_link "Balaclava", "balaclava" %></th><td>Covers face, ears and neck under a helmet on cold, windy days.</td><td><%= link_to "Balaclava vs ski mask", guide_path("balaclava-vs-ski-mask") %></td></tr>
+    <tr><th scope="row"><%= gear_link "Merino socks", "merino ski socks" %></th><td>Thin socks keep snowboard boots comfortable and warm all day.</td><td><%= link_to "Ski socks", guide_path("best-ski-socks") %></td></tr>
+  </tbody>
+</table>
+
+<h2 id="everyday-gifts">Gifts they'll use every day on the mountain</h2>
+<table>
+  <caption>Mid-range gifts for snowboarders</caption>
+  <thead><tr><th scope="col">Gift</th><th scope="col">What to know</th><th scope="col">Our guide</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><%= gear_link "Snowboard waxing kit", "waxing kit" %></th><td>Wax, iron and scraper in one box, for riders who want to tune at home.</td><td><%= link_to "How to wax a snowboard", guide_path("how-to-wax-a-snowboard") %></td></tr>
+    <tr><th scope="row"><%= gear_link "Fieldsheer Premium 2.0 Merino heated socks", "fieldsheer premium merino heated socks" %></th><td>Field &amp; Stream's best unisex heated sock, with app control. Listed around $80 by reviewers.</td><td><%= link_to "Heated socks", guide_path("best-heated-socks") %></td></tr>
+    <tr><th scope="row"><%= gear_link "Goggles with interchangeable lenses", "ski goggles interchangeable lens" %></th><td>One lens for sun, one for flat light. OTG goggles fit over glasses.</td><td><%= link_to "Goggles", guide_path("best-ski-goggles") %></td></tr>
+    <tr><th scope="row"><%= gear_link "Heated mittens", "heated mittens" %></th><td>Mittens are warmer than gloves, and most riders don't need finger dexterity.</td><td><%= link_to "Heated gloves", guide_path("best-heated-gloves") %></td></tr>
+    <tr><th scope="row"><%= gear_link "Boot bag", "ski boot bags" %></th><td>Holds snowboard boots, helmet and gloves together. Backpack style is easiest to carry.</td><td><%= link_to "Boot bags", guide_path("ski-boot-bag") %></td></tr>
+  </tbody>
+</table>
+
+<h2 id="big-gifts">Bigger gifts</h2>
+<ul>
+  <li><strong>Outerwear they've been eyeing.</strong> Snowboard <%= link_to "jackets", guide_path("snowboard-jacket") %> and <%= link_to "pants or bibs", guide_path("snowboard-pants") %> are easier to size than boards, but ask their size first.</li>
+  <li><strong><%= gear_link "Hotronic XLP 2P heated socks", "hotronic xlp heated socks" %>:</strong> Outdoor Life's top heated sock for boots, listed around $444 by reviewers.</li>
+  <li><strong><%= gear_link "Heated vest", "heated vest" %>:</strong> worn under a shell, it adds warmth without bulk. See our <%= link_to "heated jacket guide", guide_path("best-heated-jacket") %>.</li>
+</ul>
+
+<h2 id="not-gear">Gifts that aren't gear</h2>
+<ul>
+  <li><strong>Lift days.</strong> Vail Resorts sells the Epic Day Pass for 1 to 7 days, from $50 to $106 a day, and December 6, 2026 is the last day to buy one this season. See <%= link_to "Ikon vs Epic", ikon_vs_epic_path %>.</li>
+  <li><strong>A lesson.</strong> A private lesson is the fastest way past a plateau, from linking turns to riding switch.</li>
+  <li><strong>A trip.</strong> Our <%= link_to "best places to ski in December", "/best-places-to-ski-in-december" %> and <%= link_to "holiday ski trip guide", guide_path("holiday-ski-trips") %> help with timing.</li>
+</ul>
+
+<h2 id="dont-buy">What not to buy as a surprise</h2>
+<p>A snowboard depends on the rider's weight, boot size, ability and style. Boots have to fit their feet, and bindings have to match their boots and board. If you want to give one of these, give a note or a gift card and shop together. Our <%= link_to "snowboard size chart", "/snowboard-size-chart" %> and <%= link_to "best snowboards", guide_path("best-snowboard-brands") %> guide help when you do.</p>
+
+<% faqs << { question: "What are good gifts for snowboarders?", answer: "Small things they use every day on the mountain: heated socks, hand warmers, a balaclava, goggles with a second lens, a snowboard wax kit and a pocket snowboard tool. Don't surprise someone with a board, boots or bindings, since they depend on size and riding style." } %>
+<% faqs << { question: "What are good stocking stuffers for snowboarders?", answer: "A snowboard tool for tightening bindings, snowboard wax, disposable hand warmers, a balaclava and merino socks." } %>
+<% faqs << { question: "What do you get a snowboarder who has everything?", answer: "Heated socks, a waxing kit, lift days or a lesson. Vail Resorts' Epic Day Pass runs from $50 to $106 a day for 1 to 7 days and is sold until December 6, 2026." } %>
+<% faqs << { question: "Should I buy a snowboard as a gift?", answer: "Only if you shop together. Board size depends on the rider's weight and boot size, and the right shape depends on how they ride. A gift card avoids a hard return." } %>

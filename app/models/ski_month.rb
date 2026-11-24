@@ -54,4 +54,16 @@ class SkiMonth
   end
 
   def powder_days(odds) = (odds / 100.0 * days).round
+
+  CHRISTMAS_REGIONS = { "Colorado" => %w[Colorado], "Utah" => %w[Utah], "Tahoe and California" => %w[California Nevada],
+                        "Northern Rockies" => %w[Wyoming Montana Idaho], "Pacific Northwest" => %w[Washington Oregon],
+                        "Western Canada" => [ "British Columbia", "Alberta" ], "Northeast" => [ "Vermont", "New Hampshire", "Maine", "New York", "Quebec" ] }.freeze
+
+  # [[region, [[resort, odds], ...]], ...]: the resorts in each region with new snow most often this month
+  # (SNOTEL where measured, NOAA otherwise), for the Christmas-week lodging table and page.
+  def regional_picks(per_region = 2)
+    pool = (ranked + weather_ranked).uniq { |r, _| r.id }
+    CHRISTMAS_REGIONS.map { |label, states| [ label, pool.select { |r, _| states.include?(r.state_province) }.sort_by { |_, o| -o }.first(per_region) ] }
+      .reject { |_, rs| rs.empty? }
+  end
 end
