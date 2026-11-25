@@ -7,4 +7,20 @@
 #   kind: title            # title | description | content
 #   value: "Vail Snow Report: 7-Day Forecast & Conditions | Snow Way"   # omit for content
 #   reason: "Position 7, 1.2% CTR; searchers use 'snow report' more than 'forecast'."
-[]
+
+- path: /guides/best-ski-brands
+  kind: title
+  value: "Best Ski Brands 2026-27 and Alternatives to Rossignol | Snow Way"
+  reason: "Position 7.2, 0.2% CTR on 6.8k impressions; top query is 'alternatives to rossignol' (1.7k impressions, position 6.2). Leads with the brand query and adds the suffix."
+- path: /guides/best-ski-brands
+  kind: description
+  value: "Best ski brands for 2026-27: Salomon, Atomic, K2, Völkl, Head, Blizzard and Nordica are the main alternatives to Rossignol. What each does best."
+  reason: "Answers the 'alternatives to rossignol' query directly; same brands as the current description."
+- path: /guides/balaclava-vs-ski-mask
+  kind: title
+  value: "Balaclava vs Ski Mask: Differences and Which Is Warmest | Snow Way"
+  reason: "Position 7.1, 0.3% CTR on 2.7k impressions; queries are 'balaclava vs ski mask' and 'difference between...'. Drops neck gaiter to match the query, keeps the answer (warmest)."
+- path: /guides/best-snowboard-brands
+  kind: title
+  value: "Best Snowboards 2026-27 and Alternatives to Burton | Snow Way"
+  reason: "Position 8.2, 0.6% CTR on 4.4k impressions; 'alternatives to burton' (481 impressions, position 3.0, 0 clicks) is a top query. Current title is 72 chars with no suffix."
