@@ -18,7 +18,9 @@ namespace :seo do
     proposals.each do |p|
       p = p.transform_keys(&:to_s)
       next if SiteChange.exists?(path: p["path"], kind: p["kind"], after_value: p["value"])
-      change = SiteChange.propose!(path: p["path"], kind: p["kind"], value: p["value"], reason: p["reason"], origin: p["origin"] || "claude")
+      # approved: true only for changes Justin OKd in chat (e.g. a merged proposal branch for a protected page).
+      change = SiteChange.propose!(path: p["path"], kind: p["kind"], value: p["value"], reason: p["reason"], origin: p["origin"] || "claude",
+                                   approved: p["approved"] == true)
       puts "#{change.status}: #{change.kind} #{change.path} (#{change.result["guard"]})"
     end
   end

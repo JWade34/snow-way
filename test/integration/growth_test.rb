@@ -83,6 +83,30 @@ class GrowthTest < ActionDispatch::IntegrationTest
     ENV.delete("LOOP_API_TOKEN")
   end
 
+  test "loop feed ranks pages that convert below average and lists uncited AI questions" do
+    day = Date.current - 2
+    SearchStat.store!([
+      { date: day, source: "google", page: "/guides/a", query: "", clicks: 100, impressions: 2000, position: 5.0 },
+      { date: day, source: "google", page: "/guides/b", query: "", clicks: 100, impressions: 2000, position: 5.0 },
+      { date: day, source: "google", page: "/guides/tiny", query: "", clicks: 3, impressions: 90, position: 9.0 }
+    ])
+    4.times { |i| Subscriber.create!(email: "s#{i}@example.com", page_path: "/guides/a", created_at: day.noon) }
+    6.times { AffiliateClick.create!(page_path: "/guides/a", merchant: "rei", created_at: day.noon) }
+    AiCitationCheck.create!(checked_on: day, engine: "chatgpt-search", query: "aspen vs vail", cited: false,
+                            sources: [ "https://www.onthesnow.com/x", "https://onthesnow.com/y" ])
+    AiCitationCheck.create!(checked_on: day, engine: "gemini", query: "aspen vs vail", cited: false, sources: [])
+    AiCitationCheck.create!(checked_on: day, engine: "gemini", query: "best powder", cited: true, snowway_urls: [ "https://snowway.app/x" ])
+
+    conv = GrowthReport.trailing(28).conversion_targets
+    assert_equal({ signups_per_100: 2.0, affiliate_per_100: 3.0, min_clicks: 15 }, conv[:site])
+    assert_equal [ "/guides/b" ], conv[:pages].map { |p| p[:path] } # /guides/a beats the average, tiny is too small
+    assert_equal [ 2.0, 3.0 ], conv[:pages].first.values_at(:missed_signups, :missed_affiliate_clicks)
+
+    gaps = GrowthReport.citation_gaps
+    assert_equal [ "aspen vs vail" ], gaps.map { |g| g[:query] }
+    assert_equal({ "onthesnow.com" => 2 }, gaps.first[:cited_instead])
+  end
+
   test "social cards render as PNGs" do
     %w[report brand calendar].each do |kind|
       get "/social/#{kind}.png", params: { size: "story" }

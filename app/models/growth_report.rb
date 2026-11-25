@@ -64,6 +64,41 @@ class GrowthReport
       .map { |q, impr, clicks, pos| { query: q, impressions: impr, clicks: clicks, position: pos.to_f.round(1) } }
   end
 
+  # Pages with real search traffic that convert below the site average: where a better signup box or a
+  # better-placed affiliate link pays most. Rates are per 100 search clicks (Google + Bing), our visit proxy.
+  CONVERSION_MIN_CLICKS = 15
+  AFFILIATE_WEIGHT = 0.5 # an email signup is worth more than one affiliate click
+
+  def conversion_targets(limit: 15)
+    rows = pages.select { |p| p.clicks >= CONVERSION_MIN_CLICKS }
+    clicks = rows.sum(&:clicks)
+    return { site: nil, pages: [] } if clicks.zero?
+
+    site_signup = rows.sum(&:signups) * 100.0 / clicks
+    site_aff = rows.sum(&:affiliate_clicks) * 100.0 / clicks
+    targets = rows.map do |p|
+      signup = p.signups * 100.0 / p.clicks
+      aff = p.affiliate_clicks * 100.0 / p.clicks
+      missed_signups = [ site_signup - signup, 0 ].max * p.clicks / 100
+      missed_aff = [ site_aff - aff, 0 ].max * p.clicks / 100
+      { path: p.path, clicks: p.clicks, signups: p.signups, affiliate_clicks: p.affiliate_clicks,
+        signups_per_100: signup.round(2), affiliate_per_100: aff.round(2),
+        missed_signups: missed_signups.round(1), missed_affiliate_clicks: missed_aff.round(1),
+        score: (missed_signups + missed_aff * AFFILIATE_WEIGHT).round(2) }
+    end
+    { site: { signups_per_100: site_signup.round(2), affiliate_per_100: site_aff.round(2), min_clicks: CONVERSION_MIN_CLICKS },
+      pages: targets.select { |t| t[:score].positive? }.sort_by { |t| -t[:score] }.first(limit) }
+  end
+
+  # Questions from the latest AI citation check where no engine cited Snow Way, with who they cited instead.
+  def self.citation_gaps
+    AiCitationCheck.latest_run.where(error: nil).group_by(&:query).filter_map do |query, checks|
+      next if checks.any?(&:cited)
+      { query: query, engines: checks.map(&:engine).sort, mentioned: checks.any?(&:mentioned),
+        cited_instead: AiCitationCheck.competitors(checks, limit: 5) }
+    end
+  end
+
   def top_queries(limit: 15)
     SearchStat.queries.between(range).group(:query)
       .pluck(:query, Arel.sql("SUM(impressions)"), Arel.sql("SUM(clicks)"))

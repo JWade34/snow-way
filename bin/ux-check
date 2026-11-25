@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# UX gate: every page Claude (or the growth loop) changes must pass this before a push.
+#
+#   bin/ux-check --serve /guides/best-ski-brands /resorts/vail   # boots a local server with your changes, checks, stops it
+#   bin/ux-check --base https://snowway.app /guides/best-ski-brands   # checks the live site
+#
+# Loads each page at phone (390px) and desktop (1366px) sizes, fails on sideways scrolling, missing/duplicate h1,
+# broken images, layout shift, JS errors or a non-200; warns on small tap targets and text; reports where the
+# email box and affiliate links sit. Screenshots land in tmp/ux/<timestamp>/ for the visual review in docs/ux-checklist.md.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+PLAYWRIGHT_VERSION=1.49.1
+TOOLS=tmp/ux-tools
+base=""
+serve=false
+paths=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --serve) serve=true ;;
+    --base) base="$2"; shift ;;
+    -h|--help) sed -n 2,10p "$0"; exit 0 ;;
+    *) paths+=("$1") ;;
+  esac
+  shift
+done
+[ ${#paths[@]} -gt 0 ] || { echo "usage: bin/ux-check [--serve | --base URL] /path [/path ...]"; exit 2; }
+
+if [ ! -d "$TOOLS/node_modules/playwright" ]; then
+  echo "Installing Playwright $PLAYWRIGHT_VERSION into $TOOLS (one time)..."
+  mkdir -p "$TOOLS"
+  npm install --silent --no-audit --no-fund --prefix "$TOOLS" "playwright@$PLAYWRIGHT_VERSION" >/dev/null
+fi
+# Downloads Chromium once; on bare Linux it also needs system libraries (falls back to --with-deps).
+node "$TOOLS/node_modules/playwright/cli.js" install chromium >/dev/null 2>&1 \
+  || node "$TOOLS/node_modules/playwright/cli.js" install --with-deps chromium >/dev/null
+
+server_pid=""
+cleanup() { [ -n "$server_pid" ] && kill "$server_pid" 2>/dev/null || true; }
+trap cleanup EXIT
+
+if $serve; then
+  port=${UX_PORT:-3123}
+  base="http://127.0.0.1:$port"
+  bin/rails tailwindcss:build >/dev/null 2>&1
+  bin/rails db:prepare >/dev/null
+  bin/rails server -p "$port" -b 127.0.0.1 -P "tmp/pids/ux-server.pid" >log/ux-server.log 2>&1 &
+  server_pid=$!
+  for _ in $(seq 1 60); do curl -sf -o /dev/null "$base/up" && break; sleep 1; done
+  curl -sf -o /dev/null "$base/up" || { echo "local server did not start; see log/ux-server.log"; exit 1; }
+fi
+base=${base:-http://localhost:3000}
+
+out="tmp/ux/$(date +%Y%m%d-%H%M%S)"
+node script/ux_check.cjs "$base" "$out" "${paths[@]}"

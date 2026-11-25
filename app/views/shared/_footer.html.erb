@@ -12,52 +12,52 @@
       <!-- Explore -->
       <nav aria-label="Explore">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Explore</h2>
-        <ul class="space-y-2">
-          <li><%= link_to "Powder Rankings", resorts_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Where Is It Snowing?", where_is_it_snowing_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Compare Resorts", comparisons_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Getting There", trip_routes_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Where to Ski in #{SkiMonth.current.name}", ski_month_path(SkiMonth.current), class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <% if TravelList.list("winter_vacations").any? %><li><%= link_to "Best Winter Vacations", winter_vacations_path, class: "text-slate-400 hover:text-white transition text-sm" %></li><% end %>
-          <% if TravelList.list("hot_springs").any? %><li><%= link_to "Colorado Hot Springs", colorado_hot_springs_path, class: "text-slate-400 hover:text-white transition text-sm" %></li><% end %>
-          <li><%= link_to "Snowiest Ski Resorts", snowiest_resorts_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Powder Day Odds Study", powder_study_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Best Ski Resorts in the US", best_resorts_path("in-the-us"), class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Opening Dates", opening_dates_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Ski Guides", guides_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Live Weather", weather_index_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Free Widget", widget_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Snowboard Size Chart", snowboard_size_chart_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Ski Size Chart", ski_size_chart_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Ski Boot Size Chart", ski_boot_size_chart_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Free Powder Calendar", powder_calendar_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Free Ski Trip Planner", ski_trip_planner_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "About", about_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
-          <li><%= link_to "Sponsor Snow Way", sponsor_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
+        <ul class="space-y-1">
+          <li><%= link_to "Powder Rankings", resorts_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Where Is It Snowing?", where_is_it_snowing_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Compare Resorts", comparisons_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Getting There", trip_routes_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Where to Ski in #{SkiMonth.current.name}", ski_month_path(SkiMonth.current), class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <% if TravelList.list("winter_vacations").any? %><li><%= link_to "Best Winter Vacations", winter_vacations_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li><% end %>
+          <% if TravelList.list("hot_springs").any? %><li><%= link_to "Colorado Hot Springs", colorado_hot_springs_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li><% end %>
+          <li><%= link_to "Snowiest Ski Resorts", snowiest_resorts_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Powder Day Odds Study", powder_study_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Best Ski Resorts in the US", best_resorts_path("in-the-us"), class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Opening Dates", opening_dates_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Ski Guides", guides_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Live Weather", weather_index_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Free Widget", widget_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Snowboard Size Chart", snowboard_size_chart_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Ski Size Chart", ski_size_chart_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Ski Boot Size Chart", ski_boot_size_chart_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Free Powder Calendar", powder_calendar_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Free Ski Trip Planner", ski_trip_planner_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "About", about_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Sponsor Snow Way", sponsor_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
         </ul>
       </nav>
 
       <!-- Regions -->
       <nav aria-label="Ski resorts by state">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Ski Resorts</h2>
-        <ul class="space-y-2">
+        <ul class="space-y-1">
           <% existing = Resort.distinct.pluck(:state_province) %>
           <% ([ "Colorado", "Utah", "California", "Vermont", "Wyoming", "British Columbia" ] & existing).each do |region| %>
-            <li><%= link_to "#{region} ski resorts", region_path(region.parameterize), class: "text-slate-400 hover:text-white transition text-sm" %></li>
+            <li><%= link_to "#{region} ski resorts", region_path(region.parameterize), class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
           <% end %>
-          <li><%= link_to "All states & provinces", regions_path, class: "text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "All states & provinces", regions_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
         </ul>
       </nav>
 
       <!-- Popular guides -->
       <nav aria-label="Popular guides">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Popular Guides</h2>
-        <ul class="space-y-2">
+        <ul class="space-y-1">
           <% [ [ "Best Snowboards 2026-27", "best-snowboard-brands" ], [ "Best Ski Brands", "best-ski-brands" ], [ "Best Ski Boots", "best-ski-boots" ],
                [ "Snowboard Pants", "snowboard-pants" ], [ "Ski Boot Bags", "ski-boot-bag" ], [ "Ski Trail Ratings", "ski-trail-ratings" ],
                [ "Balaclava vs Ski Mask", "balaclava-vs-ski-mask" ], [ "Kids Ski Packing List", "kids-ski-packing-list" ], [ "Ski Trip Cost", "ski-trip-cost" ] ].each do |label, slug| %>
-            <li><%= link_to label, guide_path(slug), class: "text-slate-400 hover:text-white transition text-sm" %></li>
+            <li><%= link_to label, guide_path(slug), class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
           <% end %>
         </ul>
       </nav>
