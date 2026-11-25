@@ -1,11 +1,11 @@
 <%# Breadcrumb trail; crumbs is [[name, path_or_nil], ...] -%>
 <%# locals: (crumbs:) -%>
-<nav aria-label="Breadcrumb" class="text-slate-400 text-xs mb-3">
-  <ol class="flex flex-wrap gap-1">
-    <li><%= link_to "Snow Way", root_path, class: "hover:text-white transition" %></li>
+<nav aria-label="Breadcrumb" class="text-slate-400 text-xs mb-2">
+  <ol class="flex flex-wrap items-center gap-x-1">
+    <li><%= link_to "Snow Way", root_path, class: "inline-block py-1 hover:text-white transition" %></li>
     <% crumbs.each do |name, path| %>
       <li aria-hidden="true">/</li>
-      <li><%= path ? link_to(name, path, class: "hover:text-white transition") : tag.span(name, aria: { current: "page" }) %></li>
+      <li><%= path ? link_to(name, path, class: "inline-block py-1 hover:text-white transition") : tag.span(name, aria: { current: "page" }) %></li>
     <% end %>
   </ol>
 </nav>

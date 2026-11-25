@@ -1,0 +1,92 @@
+<% st = @state %>
+<% b = st.best_month %>
+<% faqs = st.faqs.select { |f| f[:answer].present? } %>
+<% hub = st.resorts.first.region_slug %>
+<% path = state_best_time_path(st) %>
+<% content_for(:title, fit_title("Best Time to Ski in #{st.name} for Powder: Month by Month | Snow Way", "Best Time to Ski in #{st.name} for Powder | Snow Way", "Best Time to Ski in #{st.name} | Snow Way")) %>
+<% content_for(:description, "#{st.month_name(b)} is the best month to ski in #{st.name} for powder: new snow on #{st.month_avgs[b]}% of days across #{st.resorts.size} resorts with USDA snow stations. Month by month and resort by resort.".truncate(160, separator: " ")) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "Best time to ski in #{st.name} for powder", "description" => st.answer, "url" => absolute_url(path),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "dateModified" => st.updated_on.iso8601, "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ski Resorts", "/ski-resorts" ], [ st.name, "/ski-resorts/#{hub}" ], [ "Best time to ski in #{st.name}", nil ] ]),
+        faq_schema(faqs),
+        { "@type" => "Dataset", "name" => "How often #{st.name} ski resorts get new snow, by month",
+          "description" => "Share of days from November to April with about an inch or more of new snow at #{st.resorts.size} #{st.name} ski resorts, measured over 10 winters (2015-16 to 2024-25) at USDA SNOTEL snow stations on or near each mountain.",
+          "url" => absolute_url(path), "creator" => { "@id" => "https://snowway.app/#organization" }, "license" => "https://creativecommons.org/licenses/by/4.0/",
+          "temporalCoverage" => "2015-07-01/2025-06-30", "spatialCoverage" => st.name,
+          "variableMeasured" => "Percent of days with 1 inch or more of new snow", "isBasedOn" => [ "https://wcc.sc.egov.usda.gov" ] }
+      ].compact }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ski Resorts", regions_path ], [ st.name, region_path(hub) ], [ "Best time to ski", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Best time to ski in <%= st.name %> for powder</h1>
+    <%= render "shared/byline", date: st.updated_on %>
+
+    <section class="tldr mb-3 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= st.answer %></p>
+    </section>
+    <p class="text-slate-400 text-sm mb-8">"Snow days" = days with about an inch or more of new snow, averaged over 10 seasons. A measure of how often it snows, not how deep. <a href="#how-we-count" class="underline underline-offset-2">How we count</a></p>
+
+    <h2 class="text-xl font-bold mb-3"><%= st.name %> snow by month</h2>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Share of days with new snow at <%= st.name %> ski resorts, by month</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Month</th><th scope="col" class="px-3 py-2 text-right">Days with new snow</th><th scope="col" class="px-3 py-2 text-right">Typical snow days</th><th scope="col" class="px-3 py-2 hidden sm:table-cell w-1/3"><span class="sr-only">Chart</span></th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% max = [ st.month_avgs.values.max, 1 ].max %>
+          <% StateBestTime::MONTHS.each do |m| %>
+            <tr class="<%= m == b ? "bg-cyan-500/10" : "" %>">
+              <th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to st.month_name(m), ski_month_path(Date::MONTHNAMES[m].downcase), class: "hover:text-cyan-300" %><% if m == b %> <span class="text-xs text-cyan-300 font-bold">best</span><% end %></th>
+              <td class="px-3 py-2 text-right font-bold <%= m == b ? "text-cyan-300" : "" %>"><%= st.month_avgs[m] %>%</td>
+              <td class="px-3 py-2 text-right text-slate-300 whitespace-nowrap"><%= st.snow_days(m) %> of <%= StateBestTime::DAYS[m] %></td>
+              <td class="px-3 py-2 hidden sm:table-cell"><span class="block h-3 bg-slate-800 rounded"><span class="block h-3 rounded <%= m == b ? "bg-cyan-400" : "bg-slate-600" %>" style="width: <%= (st.month_avgs[m] * 100.0 / max).round %>%"></span></span></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold mb-2">Best month at each <%= st.name %> resort</h2>
+    <p class="text-slate-400 text-sm mb-4">Each resort's snowiest month and how often it snows then. Tap a resort for its full month-by-month odds.</p>
+    <div class="overflow-x-auto border border-slate-700 rounded-xl mb-10">
+      <table class="w-full text-sm">
+        <caption class="sr-only">Snowiest month at each <%= st.name %> ski resort with a snow station</caption>
+        <thead class="bg-slate-800/70 text-slate-300 text-left"><tr><th scope="col" class="px-3 py-2">Resort</th><th scope="col" class="px-3 py-2">Best month</th><th scope="col" class="px-3 py-2 text-right">Days with new snow</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <% st.resort_rows.each do |r, m, o| %>
+            <tr><th scope="row" class="px-3 py-2 text-left font-semibold"><%= link_to r.name, best_time_resort_path(r), class: "hover:text-cyan-300" %></th><td class="px-3 py-2 text-slate-300"><%= st.month_name(m) %></td><td class="px-3 py-2 text-right whitespace-nowrap"><span class="font-bold text-cyan-300"><%= o %>%</span> <span class="text-slate-400 text-xs">(about <%= st.snow_days(m, o) %> days)</span></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= render "shared/inline_signup", magnet: "powder-calendar", id: "state-time" %>
+
+    <h2 class="text-xl font-bold mb-3">Picking your dates</h2>
+    <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-10">
+      <li><strong class="text-white">For the best odds of fresh snow:</strong> <%= st.month_name(b) %>, then <%= st.month_name(st.runner_up) %>.</li>
+      <li><strong class="text-white">Early season (November):</strong> new snow on <%= st.month_avgs[11] %>% of days, but many resorts are still opening with limited terrain. Check <%= link_to "ski resort opening dates", opening_dates_path, class: "text-cyan-300 underline underline-offset-2" %> before you book.</li>
+      <li><strong class="text-white">Holidays:</strong> Christmas to New Year's and Presidents' Day weekend are the busiest times on the mountain, with the highest lodging prices.</li>
+      <li><strong class="text-white">Spring (April):</strong> new snow on <%= st.month_avgs[4] %>% of days. Many smaller resorts close in early April, so confirm closing dates.</li>
+      <li><strong class="text-white">Chasing a storm instead:</strong> the <%= link_to "#{st.name} ski report", region_path(hub), class: "text-cyan-300 underline underline-offset-2" %> ranks every resort by the next 7 days of snow.</li>
+    </ul>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Best time to ski in #{st.name}: quick answers" %>
+
+    <p id="how-we-count" class="text-slate-400 text-sm mb-6 scroll-mt-20">How we count: <%= PowderOdds.measured_source %> Each resort is matched by hand to one station on the mountain or in the same drainage. The state average uses the <%= st.resorts.size %> <%= st.name %> resorts with an approved station: <%= st.resorts.map(&:name).to_sentence %>. Details in the <%= link_to "powder day odds study", powder_study_path, class: "underline underline-offset-2" %>.</p>
+
+    <nav aria-label="Other states" class="mb-6">
+      <h2 class="font-bold mb-3">Best time to ski in other states</h2>
+      <ul class="flex flex-wrap gap-2 text-sm">
+        <% StateBestTime.all.reject { |x| x.slug == st.slug }.each do |x| %>
+          <li><%= link_to x.name, state_best_time_path(x), class: "inline-block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-full px-3 py-1.5 transition" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </main>
+</div>

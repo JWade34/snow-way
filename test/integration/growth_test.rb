@@ -107,6 +107,11 @@ class GrowthTest < ActionDispatch::IntegrationTest
     assert_equal({ "onthesnow.com" => 2 }, gaps.first[:cited_instead])
   end
 
+  test "state best-time pages 404 for states without enough measured resorts" do
+    get "/best-time-to-ski-in-nowhere"
+    assert_response :not_found
+  end
+
   test "social cards render as PNGs" do
     %w[report brand calendar].each do |kind|
       get "/social/#{kind}.png", params: { size: "story" }

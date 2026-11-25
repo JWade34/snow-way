@@ -41,6 +41,11 @@ As of <%= Date.current.strftime("%B %-d, %Y") %>. Full data with per-resort answ
 - [Best places to ski in <%= m.name %>](https://snowway.app/best-places-to-ski-in-<%= m.slug %>)<%= r ? ": #{r.name} gets new snow on about #{m.powder_days(o)} of #{m.days} days" : "" %>
 <% end %>
 
+## Best time to ski by state (month with the most new-snow days, measured at USDA snow stations)
+<% StateBestTime.all.each do |st| %>
+- [Best time to ski in <%= st.name %>](https://snowway.app/best-time-to-ski-in-<%= st.slug %>): <%= st.month_name(st.best_month) %>, new snow on <%= st.month_avgs[st.best_month] %>% of days across <%= st.resorts.size %> resorts
+<% end %>
+
 ## Ski passes <%= Date.current.year %>-<%= (Date.current.year + 1) % 100 %> (price, days, blackouts; checked <%= PassGuide.checked_on %>)
 <% PassGuide.all.each do |g| %><% m = g.main %>
 - [<%= g.name %>](https://snowway.app<%= g.path %>): <%= g.on_sale? ? "adult #{m["adult_price_usd"] ? "$#{m["adult_price_usd"]}" : "price not listed"}" : "sold out for the season (waitlist)" %>; <%= m["days"] %>

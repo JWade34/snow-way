@@ -82,6 +82,8 @@
       </table>
     </div>
 
+    <%= render "shared/inline_signup", magnet: "powder-calendar", id: "month-inline" %>
+
     <% if est_top.any? %>
       <h2 class="text-xl font-bold mb-2">The East, Canada and other resorts with a nearby weather station</h2>
       <p class="text-slate-400 text-sm mb-4">These resorts have no USDA snow station, so the count comes from the NOAA weather station closest to the mountain, where an observer measures new snow each day. Most of these stations sit at the base or in the valley, so the slopes likely see snow more often. Compare these resorts with each other, not with the list above.</p>
@@ -131,8 +133,9 @@
     <%= render "shared/calendar_cta" %>
 
     <%= render "shared/faq", faqs: faqs, heading: "#{m.name} skiing questions" %>
+    <p class="text-sm text-slate-300 mb-8">Best time to ski by state: <%= safe_join(StateBestTime.all.map { |x| link_to(x.name, state_best_time_path(x), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>
 
-    <p id="how-we-count" class="text-slate-400 text-xs mb-6 scroll-mt-20">How we count: <%= PowderOdds.measured_source %> Each resort is matched by hand to one station on the mountain or in the same drainage; details in the <%= link_to "powder day odds study", powder_study_path, class: "underline underline-offset-2" %>. Resorts without a SNOTEL station (the East, Canada and a few big western names) use the nearest NOAA weather station within 5 miles (<%= PowderOdds.weather_source %>), shown in its own list because those stations mostly sit lower on the mountain. Resorts with neither get no number. Each resort's page shows its own month-by-month odds.</p>
+    <p id="how-we-count" class="text-slate-400 text-sm mb-6 scroll-mt-20">How we count: <%= PowderOdds.measured_source %> Each resort is matched by hand to one station on the mountain or in the same drainage; details in the <%= link_to "powder day odds study", powder_study_path, class: "underline underline-offset-2" %>. Resorts without a SNOTEL station (the East, Canada and a few big western names) use the nearest NOAA weather station within 5 miles (<%= PowderOdds.weather_source %>), shown in its own list because those stations mostly sit lower on the mountain. Resorts with neither get no number. Each resort's page shows its own month-by-month odds.</p>
     <p class="text-sm text-slate-300 mb-10">More: <%= link_to "Powder day odds study (10 years of measured snow, free data)", powder_study_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Snowiest ski resorts", snowiest_resorts_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Where is it snowing?", where_is_it_snowing_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "Getting to the resorts", trip_routes_path, class: "text-cyan-300 underline underline-offset-2" %></p>
     <%= render "shared/cite_this", title: "Best places to ski in #{m.name} #{m.year}", url: absolute_url(ski_month_path(m)) %>
   </main>

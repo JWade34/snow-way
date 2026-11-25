@@ -1,0 +1,17 @@
+<%# Compact mid-page signup for long pages, so phone readers see an offer before the end (the bottom box sat 8 to 19
+    phone screens down on top guides, 11/25). Same offers as the end-of-page boxes; tracked as placement "inline_signup". -%>
+<%# locals: (magnet: "powder-calendar", id: "inline") -%>
+<% offer = magnet == "packing-checklist" ?
+     { heading: "Free printable ski packing checklist", sub: "Every item on one page. Instant download.", button: "Send it" } :
+     { heading: "Free #{PowderCalendarPdf.season_label} Powder Calendar", sub: "When each resort really gets its snow. Instant download.", button: "Get it free" } %>
+<aside class="not-prose my-8 rounded-xl border border-cyan-500/30 bg-slate-800/50 p-4" data-placement="inline_signup" aria-labelledby="<%= id %>-signup-heading">
+  <p id="<%= id %>-signup-heading" class="font-bold text-white leading-snug"><%= offer[:heading] %></p>
+  <p class="text-slate-300 text-sm mb-3"><%= offer[:sub] %></p>
+  <%= form_with model: Subscriber.new, url: subscribers_path, class: "flex flex-col sm:flex-row gap-2" do |f| %>
+    <%= f.hidden_field :magnet, value: magnet %>
+    <%= f.label :email, "Email address", class: "sr-only", for: "#{id}_signup_email" %>
+    <%= f.email_field :email, id: "#{id}_signup_email", required: true, placeholder: "you@example.com", autocomplete: "email", class: "flex-1 bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400" %>
+    <%= f.submit offer[:button], class: "bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg px-5 py-2 cursor-pointer transition" %>
+  <% end %>
+  <p class="text-slate-400 text-xs mt-2">Plus powder alerts for big storms and a Thursday snow report. Unsubscribe anytime.</p>
+</aside>

@@ -56,11 +56,17 @@ function inspect({ phone, clsLimit }) {
   // 5. Phone readability: tap targets and body text size.
   if (phone) {
     const small = [...document.querySelectorAll("button, input:not([type=hidden]), select, a.btn, a[class*='button'], nav a, [role=button]")]
+      .filter((el) => !el.closest("[aria-hidden=true]"))
       .filter((el) => visible(el) && !el.closest("p, li p, td")).filter((el) => { const r = el.getBoundingClientRect(); return r.height < 24 || r.width < 24; });
     if (small.length) warns.push(`${small.length} tap target(s) under 24px: ${small.slice(0, 4).map(label).join(", ")}`);
-    const tiny = [...document.querySelectorAll("main p, main li, main td")].filter((el) => visible(el) && el.textContent.trim().length > 40
-      && parseFloat(getComputedStyle(el).fontSize) < 14);
-    if (tiny.length) warns.push(`${tiny.length} text block(s) under 14px`);
+    // Fine print (dates, disclosures, captions) may be 12px; reading text may not. Flag anything under 12px, and
+    // 12-13px only when it's a real paragraph.
+    const tiny = [...document.querySelectorAll("main p, main li, main td")].filter((el) => {
+      if (!visible(el) || el.closest("[aria-hidden=true]")) return false;
+      const size = parseFloat(getComputedStyle(el).fontSize), len = el.textContent.trim().length;
+      return (size < 12 && len > 25) || (size < 14 && len > 220);
+    });
+    if (tiny.length) warns.push(`${tiny.length} text block(s) too small to read on a phone: ${tiny.slice(0, 3).map(label).join(", ")}`);
   }
 
   // 6. Calls to action: where the email box and affiliate links sit (facts for the conversion review, not pass/fail).

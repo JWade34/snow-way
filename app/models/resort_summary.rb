@@ -159,7 +159,20 @@ class ResortSummary
     end
     parts << "It picked up #{inches(recent)} in the last 48 hours." if recent > 0
     parts << conditions_sentence if conditions_sentence
+    parts << status_sentence if status_sentence
     parts.join(" ")
+  end
+
+  # Open or not, from the sourced opening date in db/resort_facts.yml. AI answers get asked "is X open?" as often as
+  # "how much snow?", so the quotable summary says it. A scheduled date that has passed without a source says nothing.
+  def status_sentence
+    date = resort.opening_date or return
+    day = date.strftime("%B %-d")
+    case resort.opening_status
+    when "opened" then "#{resort.name} is open for the #{season_label} season; it opened on #{day}."
+    when "delayed" then date > as_of ? "#{resort.name}'s opening is delayed to #{day}." : "#{resort.name}'s opening is delayed, and no new date has been announced."
+    else date >= as_of ? "#{resort.name} is scheduled to open on #{day}." : nil
+    end
   end
 
   def faqs
@@ -286,6 +299,9 @@ class ResortSummary
     date = resort.opening_date.strftime("%B %-d, %Y")
     if resort.opening_status == "opened"
       "Yes. #{resort.name} opened for the #{season_label} season on #{date}."
+    elsif resort.opening_status == "delayed"
+      resort.opening_date > as_of ? "Not yet. #{resort.name} delayed its opening to #{date}. Opening dates depend on snow and can change." :
+                                    "Not yet. #{resort.name} delayed its opening and hasn't announced a new date. Check the resort's website for updates."
     elsif resort.opening_date < as_of
       "#{resort.name} was scheduled to open on #{date}. Check the resort's website to confirm it opened on time."
     else

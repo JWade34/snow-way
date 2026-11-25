@@ -45,6 +45,9 @@
             extra: ->(r) { inches(@recent.fetch(r.id, 0.0)) }, extra_label: "Last 48h" %>
     </div>
 
+    <%# Alert box right after the ranking it extends (was at the bottom, 7 phone screens down). %>
+    <%= render "shared/alert_form", heading: "Get an email when the next big storm lines up" %>
+
     <% if @region_leaders.any? %>
       <h2 class="text-xl font-bold mb-4">Snowiest resort in each state and province</h2>
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
@@ -83,7 +86,6 @@
     </div>
     <p class="text-sm text-slate-400 mb-10">Browse <%= link_to "Japan", region_path("japan"), class: "text-cyan-300 underline underline-offset-2" %>, <%= link_to "the Alps", region_path("the-alps"), class: "text-cyan-300 underline underline-offset-2" %>, <%= link_to "South America", region_path("south-america"), class: "text-cyan-300 underline underline-offset-2" %>, or the <%= link_to "Southern Hemisphere", region_path("southern-hemisphere"), class: "text-cyan-300 underline underline-offset-2" %>.</p>
 
-    <%= render "shared/alert_form" %>
     <%= render "shared/faq", faqs: faqs, heading: "Where it's snowing: quick answers" %>
     <%= render "shared/cite_this", title: "Where Is It Snowing This Week? Snowiest Ski Resorts", url: "https://snowway.app/where-is-it-snowing" %>
     <p class="text-sm text-slate-400 mb-2">Also: <%= link_to "live weather at the top resorts", weather_index_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "ski resort opening dates", opening_dates_path, class: "text-cyan-300 underline underline-offset-2" %> · <%= link_to "this week's Powder Report", powder_report_path, class: "text-cyan-300 underline underline-offset-2" %></p>

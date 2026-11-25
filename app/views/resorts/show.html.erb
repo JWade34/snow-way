@@ -53,7 +53,7 @@
     <!-- Resort Header -->
     <div class="text-center mb-10">
       <nav aria-label="Breadcrumb" class="text-slate-400 text-xs mb-3">
-        <%= link_to "Ski Resorts", regions_path, class: "hover:text-white transition" %> <span aria-hidden="true">/</span> <%= link_to @resort.region_name, region_path(@resort.region_slug), class: "hover:text-white transition" %>
+        <%= link_to "Ski Resorts", regions_path, class: "inline-block py-1 hover:text-white transition" %> <span aria-hidden="true">/</span> <%= link_to @resort.region_name, region_path(@resort.region_slug), class: "inline-block py-1 hover:text-white transition" %>
       </nav>
       <p class="text-slate-400 text-sm uppercase tracking-widest mb-2"><%= @resort.location %></p>
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><%= @resort.name %> <span class="block text-2xl md:text-3xl text-slate-300 font-bold mt-1">Snow Report, Weather &amp; Forecast</span></h1>
@@ -131,7 +131,7 @@
           <% if links["trail_map"] %><li><%= link_to "🗺️ #{@resort.name} trail map ↗", links["trail_map"], target: "_blank", rel: "noopener", class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-cyan-500 rounded-lg px-3 py-2 text-sm transition" %></li><% end %>
         </ul>
       <% end %>
-      <p class="text-slate-400 text-xs mt-3">Modeled mid-mountain (<%= number_with_delimiter(@resort.mid_elevation) %> ft) snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>.<% if depth_station %> Snow on the ground is measured at the <%= depth_station["name"] %> <%= PowderOdds.station(@resort) ? "SNOTEL" : "NOAA" %> station (<%= number_with_delimiter(depth_station["elev"]) %> ft, <%= depth_station["miles"] %> mi away) on <%= @resort.snow_depth_on.strftime("%b %-d") %>: natural snow at one spot, not the resort's groomed base.<% end %><% if @resort.season_status %> Opening day from <%= link_to "this source", @resort.opening_source, target: "_blank", rel: "noopener", class: "underline underline-offset-2" %>.<% end %> For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
+      <p class="text-slate-400 text-sm mt-3">Modeled mid-mountain (<%= number_with_delimiter(@resort.mid_elevation) %> ft) snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>.<% if depth_station %> Snow on the ground is measured at the <%= depth_station["name"] %> <%= PowderOdds.station(@resort) ? "SNOTEL" : "NOAA" %> station (<%= number_with_delimiter(depth_station["elev"]) %> ft, <%= depth_station["miles"] %> mi away) on <%= @resort.snow_depth_on.strftime("%b %-d") %>: natural snow at one spot, not the resort's groomed base.<% end %><% if @resort.season_status %> Opening day from <%= link_to "this source", @resort.opening_source, target: "_blank", rel: "noopener", class: "underline underline-offset-2" %>.<% end %> For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     </section>
 
     <%= render "shared/local_take", take: LocalTake.for_resort(@resort.slug), subject: @resort.name, local: %w[Colorado Utah].include?(@resort.state_province) %>

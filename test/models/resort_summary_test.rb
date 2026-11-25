@@ -24,6 +24,18 @@ class ResortSummaryTest < ActiveSupport::TestCase
     assert_includes answer, "2.0\" in the last 48 hours"
   end
 
+  test "answer says whether the resort is open, delayed or scheduled" do
+    resort = resorts(:vail)
+    resort.update!(opening_date: Date.current - 5, opening_status: "opened")
+    assert_includes ResortSummary.new(resort).answer, "is open for the"
+    resort.update!(opening_date: Date.current + 4, opening_status: "delayed")
+    assert_includes ResortSummary.new(resort).answer, "opening is delayed to"
+    resort.update!(opening_date: Date.current - 4, opening_status: "delayed")
+    assert_includes ResortSummary.new(resort).opening_answer, "hasn't announced a new date"
+    resort.update!(opening_date: Date.current - 4, opening_status: nil)
+    assert_not_includes ResortSummary.new(resort).answer, "open"
+  end
+
   test "next snow day uses the 1 inch threshold" do
     assert_equal Date.current + 2, @vail.next_snow_day.forecast_date
   end

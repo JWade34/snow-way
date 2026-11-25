@@ -58,6 +58,8 @@
       </table>
     </div>
 
+    <%= render "shared/alert_form", heading: "Get powder alerts", blurb: "We'll email you when a big storm lines up at the resorts Snow Way tracks, plus a free snow report every Thursday. No spam, unsubscribe anytime." %>
+
     <% if @abroad.any? %>
       <h2 class="text-xl font-bold mb-3"><%= @pass_name %> resorts outside North America</h2>
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10 text-sm">

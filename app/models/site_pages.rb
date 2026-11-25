@@ -41,7 +41,7 @@ module SitePages
   end
 
   def month_paths
-    SkiMonth.all.map { |m| "/best-places-to-ski-in-#{m.slug}" }
+    SkiMonth.all.map { |m| "/best-places-to-ski-in-#{m.slug}" } + StateBestTime.all.map { |s| "/best-time-to-ski-in-#{s.slug}" }
   end
 
   def travel_paths

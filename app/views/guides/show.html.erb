@@ -9,6 +9,16 @@
   <% box = render("guides/black_friday", picks: deal_picks) %>
   <% body = body.include?('<div class="tldr">') ? body.sub(%r{(<div class="tldr">.*?</div>)}m) { "#{$1}#{box}" }.html_safe : safe_join([ box, body ]) %>
 <% end %>
+<%# Long guides (6+ sections) get a compact signup about a third of the way down, before a section heading, so it
+    never splits an answer. The end-of-page box stays. %>
+<% sections = body.scan("<h2").size %>
+<% if sections >= 6 %>
+  <% gear = @guide.affiliate? && !%w[ski-trip-packing-list kids-ski-packing-list].include?(@guide.slug) %>
+  <% inline = render("shared/inline_signup", magnet: gear ? "packing-checklist" : "powder-calendar", id: "guide-inline") %>
+  <% target = (sections / 3.0).ceil + 1 %>
+  <% seen = 0 %>
+  <% body = body.gsub("<h2") { (seen += 1) == target ? "#{inline}<h2" : "<h2" }.html_safe %>
+<% end %>
 <% content_for(:title, @guide.title.length > 55 ? @guide.title : "#{@guide.title} | Snow Way") %>
 <% content_for(:description, @guide.description) %>
 <% content_for(:og_type, "article") %>

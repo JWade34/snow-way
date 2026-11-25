@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "compare/:id" => "comparisons#show", as: :comparison
   get "snowiest-ski-resorts" => "pages#snowiest", as: :snowiest_resorts
   get "best-places-to-ski-in-:month" => "ski_months#show", as: :ski_month, constraints: { month: Regexp.union(SkiMonth::SLUGS) }
+  get "best-time-to-ski-in-:state" => "state_best_times#show", as: :state_best_time, constraints: { state: /[a-z-]+/ }
   get "things-to-do-in-:id-in-winter" => "winter_towns#show", as: :winter_town, constraints: { id: /[a-z]+(?:-[a-z]+)*?/ }
   get "best-winter-vacations-in-the-us" => "travel_lists#winter_vacations", as: :winter_vacations
   get "best-ski-towns" => "travel_lists#ski_towns", as: :ski_towns
