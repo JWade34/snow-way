@@ -7,7 +7,7 @@ Last updated: 2026-11-25
 
 - [ ] **Unblock the cloud routines (2 minutes, only you can do this).** Every Monday loop (11/9, 11/16, 11/23) and the 11/20 El Nino/Epic update stopped in seconds because the cloud environment blocks the sites they need. Go to claude.ai/code → Environments → **Default** → network access and add `snowway.app`, `www.cpc.ncep.noaa.gov` and `www.epicpass.com` (or allow all). The Dec 1 fact recheck and the Thursday loops starting Dec 3 will fail the same way until then.
 - [ ] **Send the 8 round-2 powder study pitches (10 minutes).** Drafts are in your jm inbox (Steamboat Pilot, Crested Butte News, JH News&Guide, The Bulletin, Unofficial Networks, Whiteout podcast, Visit Big Sky, GetSkiTickets). Read each, tweak the first line, send. Log in docs/outreach/2026-11-backlink-campaign.md. Six more outlets only take contact forms (listed in that doc).
-- [ ] **Search Console: request indexing, about 10 a day (Claude does it in Chrome, say "index the next batch").** 11/25: Christmas page and open-now requested, then Google's daily quota ran out. Next: blackout dates, Epic Day Pass, the 5 "Christmas in" town pages, both gift guides, then docs/seo/not-indexed-2026-11-09.md.
+- [ ] **Search Console: request indexing, about 10 a day (Claude does it in Chrome, say "index the next batch").** 11/25: Christmas page and open-now requested, then Google's daily quota ran out. Next: the 9 new best-time-to-ski-in-<state> pages, blackout dates, Epic Day Pass, the 5 "Christmas in" town pages, both gift guides, then docs/seo/not-indexed-2026-11-09.md.
 - [ ] **Reply to Jim Steenburgh (optional, 1 minute).** The powder study now uses measured USDA SNOTEL station data, as he suggested. Suggested reply: "Thanks Jim, I really appreciate the straight answer. That's exactly what I needed to hear. We rebuilt it on measured SNOTEL station data: snowway.app/powder-day-odds"
 - [ ] **Decide 7 weak station matches (2 minutes).** Breckenridge, Jackson Hole, Keystone, Mt. Baker, Northstar, Telluride, Winter Park have a station on a different slope or pass. Claude recommends leaving them as model estimates. Details: docs/seo/snotel-rebuild-review.md.
 
@@ -50,6 +50,7 @@ Last updated: 2026-11-25
 - [ ] Bing Webmaster Tools → IndexNow report: confirm submissions are succeeding (Claude submitted all 270 URLs manually on 11/5, HTTP 200; new URLs now submit automatically on every deploy).
 
 ## Done
+- [x] Growth system upgraded (2026-11-25): UX check on every page change (phone + desktop screenshots), weekly conversion and AI-citation steps in the Monday loop, earlier signup boxes on long pages, 9 new "best time to ski in <state>" pages, resort pages say whether they're open
 - [x] Amazon tag confirmed: one Associates account with two tracking IDs, `snowway-20` (Snow Way) and `yournextchair-20` (Your Next Chair). Make sure snowway.app is in the account's website list (2026-11-25)
 - [x] El Nino guide updated from NOAA's Nov 12 ENSO update and Nov 19 winter outlook (2026-11-25)
 - [x] Epic Pass $1,245 / Epic Local $959 from Vail's 11/16 release; holiday pages, open-now, blackout dates, Epic Day Pass live (2026-11-24)
