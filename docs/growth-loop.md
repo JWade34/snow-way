@@ -19,7 +19,7 @@ what already works, and every change must look solid on a phone and a desktop (`
 2. **SEO (up to 5 changes), highest expected gain first:**
    - **Opportunity pages** (position 4–15, low CTR): rewrite the title and/or description to match the queries the page actually gets
      (see `page_queries`). Keep titles ≤70 chars, descriptions 50–160, unique, answer-first, no clickbait, "| Snow Way" suffix.
-     Keep the page's main topic word in the title (a brands page keeps "brands").
+     Keep the page's main topic word in the title unless the page's biggest queries don't use it (check `page_queries`).
    - **Content gaps**: a query with impressions where we rank >10. Improve the matching page (add a section, FAQ, internal link) or
      propose a new page if nothing fits. Content edits are code commits; log them as `kind: content`.
 3. **AI citations (up to 2 changes)** from `citation_gaps`. Find the page that should answer the question (or note that none
