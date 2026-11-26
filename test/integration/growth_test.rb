@@ -145,6 +145,10 @@ class GrowthTest < ActionDispatch::IntegrationTest
     get "/"
     assert_select "link[rel=manifest][href=\"/manifest.json\"]"
     assert_select "header [data-install-target=button]"
+    assert_select "footer a[href=\"/privacy\"]"
+    get "/privacy"
+    assert_response :success
+    assert_includes response.body, "never sell your personal information"
   end
 
   test "social cards render as PNGs" do

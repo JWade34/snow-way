@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   get "downloads/:magnet/:token" => "lead_magnets#download", as: :lead_magnet_download
   get "ski-trip-planner" => "lead_magnets#ski_trip_planner", as: :ski_trip_planner
   get "affiliate-disclosure" => "pages#affiliate_disclosure", as: :affiliate_disclosure
+  get "privacy" => "pages#privacy", as: :privacy
   get "ski-resorts" => "regions#index", as: :regions
   get "ski-resorts/:id" => "regions#show", as: :region
   get "ski-resorts-near-me" => "hubs#near_me", as: :near_me

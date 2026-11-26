@@ -1,0 +1,64 @@
+<% content_for(:title, "Privacy Policy | Snow Way") %>
+<% content_for(:description, "What Snow Way collects and why: your email if you sign up, anonymous usage analytics, and affiliate link clicks. No accounts, no selling your data.") %>
+<% content_for(:head) do %><%= json_ld({ "@context" => "https://schema.org", "@graph" => [ breadcrumb_schema([ [ "Privacy Policy", nil ] ]) ] }) %><% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Privacy Policy", nil ] ] %>
+    <article class="guide">
+      <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Privacy policy</h1>
+      <p class="text-slate-400 text-sm">Last updated <time datetime="2026-11-26">November 26, 2026</time>. This policy covers snowway.app and the Snow Way app you can install from it.</p>
+
+      <div class="tldr"><p><strong>Short version:</strong> you don't need an account to use Snow Way. If you sign up for emails, we keep your email address to send them. We use analytics to see which pages people use. We never sell your personal information.</p></div>
+
+      <h2>Who we are</h2>
+      <p>Snow Way is run by Justin McKelvey. Questions about this policy or your data go through <a href="https://justinmckelvey.com" rel="noopener">justinmckelvey.com</a>.</p>
+
+      <h2>What we collect</h2>
+      <h3>If you sign up for emails</h3>
+      <ul>
+        <li>Your email address.</li>
+        <li>If you set a powder alert: the resort and the snow amount you chose.</li>
+        <li>Which page you signed up on, what you signed up for, and when.</li>
+      </ul>
+      <p>We use this only to send the emails you asked for (powder alerts, the weekly report, the Powder Calendar or a checklist). Every email has an unsubscribe link. Emails are delivered by our email provider, Resend.</p>
+
+      <h3>When you use the site or app</h3>
+      <ul>
+        <li><strong>Analytics:</strong> we use PostHog to count page views and clicks and see how people use the site. PostHog receives things like the pages you visit, the link that brought you here, your browser and device type, and an approximate location from your IP address. It uses a cookie or local storage to recognize a returning browser. It does not receive your name.</li>
+        <li><strong>Affiliate link clicks:</strong> when you click a gear or travel link, we record the page, the store and the link text so we know which links are useful. This isn't tied to you.</li>
+        <li><strong>Where visitors come from:</strong> we count visits referred by AI tools like ChatGPT, by date and page only.</li>
+        <li><strong>Server logs:</strong> our hosting provider keeps standard logs (IP address, browser and pages requested) for security and troubleshooting.</li>
+      </ul>
+
+      <h3>Your location</h3>
+      <p>Some pages can use your device's location to find resorts or airports near you, only if you allow it. That location is used in your browser to sort the list. It is not sent to us.</p>
+
+      <h3>Stored on your device</h3>
+      <p>Your browser keeps a few small settings on your device, like your packing checklist progress and which promos you've closed. If you install the app, it saves a small offline page so you see a message instead of an error when you have no signal.</p>
+
+      <h2>Affiliate partners</h2>
+      <p>Some links go to stores and booking sites, such as Amazon and hotel and vacation rental sites through Stay22. When you click one, that site may set its own cookies so it can credit Snow Way for a purchase. Their privacy policies apply on their sites. The current list is on our <%= link_to "affiliate disclosure", affiliate_disclosure_path %>.</p>
+
+      <h2>What we don't do</h2>
+      <ul>
+        <li>We don't sell or rent your personal information.</li>
+        <li>We don't require an account or collect payment details.</li>
+        <li>Snow Way isn't directed at children under 13, and we don't knowingly collect their information.</li>
+      </ul>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li><strong>Unsubscribe</strong> from any email with the link at the bottom.</li>
+        <li><strong>Ask us to delete your email address</strong> or tell you what we have, through <a href="https://justinmckelvey.com" rel="noopener">justinmckelvey.com</a>.</li>
+        <li><strong>Block analytics</strong> with your browser's privacy settings or a content blocker. The site still works.</li>
+      </ul>
+
+      <h2>How long we keep it</h2>
+      <p>We keep your email address while you're subscribed. If you unsubscribe, we keep a record of that so we don't email you again, and we delete it if you ask.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, we'll update it here and change the date at the top.</p>
+    </article>
+  </main>
+</div>
