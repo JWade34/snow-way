@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Powder alerts as phone notifications (Web Push). Works in Chrome, Edge, Firefox and Android, in Safari on a Mac,
 // and on iPhone once Snow Way is on the Home Screen (iOS 16.4+). iPhone visitors in Safari get the install steps instead.
+// Inside the Snow Way iPhone app it uses Apple's native notifications (Capacitor PushNotifications) instead.
 // One device can follow several resorts; each alert is remembered in localStorage so the button shows "on".
 export default class extends Controller {
   static targets = ["offer", "on", "blocked", "ios", "error", "button"]
@@ -11,7 +12,12 @@ export default class extends Controller {
 
   get key() { return `snowway_push:${this.resortIdValue || "all"}` }
   get vapid() { return document.querySelector('meta[name="vapid-public-key"]')?.content }
-  get supported() { return "serviceWorker" in navigator && "PushManager" in window && "Notification" in window && !!this.vapid }
+  get native() { return window.Capacitor?.isNativePlatform?.() ? window.Capacitor.Plugins.PushNotifications : null }
+  get apns() { return !!document.querySelector('meta[name="apns-enabled"]') }
+  get supported() {
+    if (this.native) return this.apns
+    return "serviceWorker" in navigator && "PushManager" in window && "Notification" in window && !!this.vapid
+  }
   get standalone() { return !!window.snowwayApp?.standalone?.() }
   get ios() {
     const ua = navigator.userAgent
@@ -29,7 +35,12 @@ export default class extends Controller {
 
   async refresh() {
     let state = "none"
-    if (!this.supported) {
+    if (this.native && this.supported) {
+      const { receive } = await this.native.checkPermissions().catch(() => ({ receive: "prompt" }))
+      state = receive === "denied" ? "blocked" : (receive === "granted" && localStorage.getItem(this.key) ? "on" : "offer")
+    } else if (this.native) {
+      state = "none"
+    } else if (!this.supported) {
       state = this.ios && !this.standalone && this.vapid ? "ios" : "none"
     } else if (Notification.permission === "denied") {
       state = "blocked"
@@ -58,23 +69,49 @@ export default class extends Controller {
     return { "Content-Type": "application/json", Accept: "application/json", "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content || "" }
   }
 
+  // Asks iOS for permission, registers with APNs, and returns the device token.
+  async nativeToken() {
+    const { receive } = await this.native.requestPermissions()
+    this.capture("push_permission", { outcome: receive })
+    if (receive !== "granted") return null
+    return new Promise((resolve, reject) => {
+      const handles = []
+      const done = (fn, value) => { handles.forEach((h) => h.then((x) => x.remove())); fn(value) }
+      handles.push(this.native.addListener("registration", (t) => done(resolve, t.value)))
+      handles.push(this.native.addListener("registrationError", (e) => done(reject, new Error(e?.error || "registration failed"))))
+      this.native.register()
+      setTimeout(() => done(reject, new Error("registration timed out")), 15000)
+    })
+  }
+
+  save(body) {
+    return fetch("/push_subscriptions", {
+      method: "POST", headers: this.headers(),
+      body: JSON.stringify({ resort_id: this.resortIdValue, threshold_inches: this.threshold, page_path: window.location.pathname, standalone: this.standalone, ...body })
+    }).then((res) => { if (!res.ok) throw new Error(`save failed ${res.status}`) })
+  }
+
   async enable() {
     this.capture("push_prompt_click")
     this.errorTargets.forEach((el) => el.classList.add("hidden"))
     this.busy(true)
     try {
+      if (this.native) {
+        const token = await this.nativeToken()
+        if (!token) return
+        await this.save({ platform: "ios", subscription: { endpoint: token } })
+        localStorage.setItem("snowway_apns_token", token)
+        localStorage.setItem(this.key, "1")
+        this.capture("push_subscribed", { threshold_inches: this.threshold, platform: "ios" })
+        return
+      }
       const permission = await Notification.requestPermission() // first, so Safari sees the tap
       this.capture("push_permission", { outcome: permission })
       if (permission !== "granted") return
       const reg = await navigator.serviceWorker.ready
       const sub = (await reg.pushManager.getSubscription()) ||
         (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: this.keyBytes(this.vapid) }))
-      const res = await fetch("/push_subscriptions", {
-        method: "POST", headers: this.headers(),
-        body: JSON.stringify({ subscription: sub.toJSON(), resort_id: this.resortIdValue, threshold_inches: this.threshold,
-                               page_path: window.location.pathname, standalone: this.standalone })
-      })
-      if (!res.ok) throw new Error(`save failed ${res.status}`)
+      await this.save({ subscription: sub.toJSON() })
       localStorage.setItem(this.key, "1")
       this.capture("push_subscribed", { threshold_inches: this.threshold })
     } catch (e) {
@@ -89,8 +126,11 @@ export default class extends Controller {
   async disable() {
     this.busy(true)
     try {
-      const sub = await this.subscription()
-      if (sub) {
+      const token = this.native && localStorage.getItem("snowway_apns_token")
+      const sub = this.native ? null : await this.subscription()
+      if (token) {
+        await fetch("/push_subscriptions", { method: "DELETE", headers: this.headers(), body: JSON.stringify({ endpoint: token, resort_id: this.resortIdValue }) })
+      } else if (sub) {
         const res = await fetch("/push_subscriptions", { method: "DELETE", headers: this.headers(), body: JSON.stringify({ endpoint: sub.endpoint, resort_id: this.resortIdValue }) })
         const { remaining } = res.ok ? await res.json() : { remaining: 1 }
         if (remaining === 0) await sub.unsubscribe()

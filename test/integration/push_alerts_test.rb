@@ -85,4 +85,22 @@ class PushAlertsTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "showNotification"
     assert_includes response.body, "notificationclick"
   end
+
+  test "the iPhone app saves an APNs token, and Apple's 'gone' answer deletes it" do
+    token = "a" * 64
+    Apns.stub(:enabled?, false) do
+      post "/push_subscriptions", params: { platform: "ios", subscription: { endpoint: token } }, as: :json
+      assert_response :service_unavailable
+    end
+    Apns.stub(:enabled?, true) do
+      post "/push_subscriptions", params: { platform: "ios", subscription: { endpoint: "not-a-token" } }, as: :json
+      assert_response :unprocessable_entity
+      post "/push_subscriptions", params: { platform: "ios", subscription: { endpoint: token }, resort_id: resorts(:vail).id }, as: :json
+      assert_response :created
+      sub = PushSubscription.last
+      assert sub.ios?
+      Apns.stub(:deliver, Apns::Result.new(ok: false, gone: true)) { assert_not sub.deliver(title: "t", body: "b", url: "/") }
+    end
+    assert_equal 0, PushSubscription.count
+  end
 end

@@ -3,11 +3,12 @@ class PushSubscriptionsController < ApplicationController
   rate_limit to: 20, within: 1.hour, with: -> { head :too_many_requests }
 
   def create
-    return head(:service_unavailable) unless PushSubscription.enabled?
+    platform = params[:platform].presence_in(PushSubscription::PLATFORMS) || "web"
+    return head(:service_unavailable) unless platform == "ios" ? Apns.enabled? : PushSubscription.web_enabled?
     keys = params.dig(:subscription, :keys) || {}
     resort_id = Resort.where(id: params[:resort_id]).pick(:id) if params[:resort_id].present?
     sub = PushSubscription.find_or_initialize_by(endpoint: params.dig(:subscription, :endpoint).to_s, resort_id: resort_id)
-    sub.assign_attributes(p256dh: keys[:p256dh].to_s, auth: keys[:auth].to_s,
+    sub.assign_attributes(platform: platform, p256dh: keys[:p256dh].to_s, auth: keys[:auth].to_s,
                           threshold_inches: (params[:threshold_inches].presence || 6).to_i.clamp(1, 48),
                           page_path: params[:page_path].to_s.truncate(255, omission: "").presence,
                           standalone: params[:standalone].to_s == "true", failures: 0)

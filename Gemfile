@@ -83,3 +83,5 @@ gem "google-apis-searchconsole_v1", "~> 0.23.0"
 gem "googleauth", "~> 1.17"
 
 gem "web-push", "~> 3.1"
+
+gem "apnotic", "~> 1.8"

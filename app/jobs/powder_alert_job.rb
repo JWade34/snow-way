@@ -21,7 +21,7 @@ class PowderAlertJob < ApplicationJob
       subscriber.update_column(:last_alerted_at, Time.current)
     end
 
-    return unless PushSubscription.enabled?
+    return unless PushSubscription.enabled? # deliver skips a platform whose keys aren't set
     PushSubscription.where("last_alerted_at IS NULL OR last_alerted_at < ?", COOLDOWN.ago).find_each do |sub|
       alerts = alerts_for(sub, totals, resorts, ranked)
       next if alerts.blank?

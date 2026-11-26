@@ -16,7 +16,8 @@
     <% end %>
     <meta name="description" content="<%= meta_description %>">
     <%= csrf_meta_tags %>
-    <% if PushSubscription.enabled? %><meta name="vapid-public-key" content="<%= PushSubscription.vapid_public_key %>"><% end %>
+    <% if PushSubscription.web_enabled? %><meta name="vapid-public-key" content="<%= PushSubscription.vapid_public_key %>"><% end %>
+    <% if Apns.enabled? %><meta name="apns-enabled" content="1"><% end %>
     <%= csp_meta_tag %>
 
     <link rel="canonical" href="<%= request.original_url.split('?').first %>" />

@@ -1,0 +1,21 @@
+{
+  "appId": "app.snowway",
+  "appName": "Snow Way",
+  "webDir": "www",
+  "server": {
+    "url": "https://snowway.app/?utm_source=ios_app&utm_medium=app",
+    "allowNavigation": ["snowway.app", "*.snowway.app"],
+    "errorPath": "index.html"
+  },
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#0f172a",
+    "appendUserAgent": "SnowWayApp/1.0 (iOS)",
+    "limitsNavigationsToAppBoundDomains": false
+  },
+  "plugins": {
+    "PushNotifications": { "presentationOptions": ["banner", "sound", "list"] },
+    "SplashScreen": { "launchShowDuration": 600, "backgroundColor": "#0f172a", "showSpinner": false },
+    "StatusBar": { "style": "DARK", "backgroundColor": "#0f172a", "overlaysWebView": false }
+  }
+}
