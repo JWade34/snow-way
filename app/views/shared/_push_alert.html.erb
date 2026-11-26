@@ -1,0 +1,22 @@
+<%# locals: (resort: nil, placement:, card: false) -%>
+<%# Phone notification option for powder alerts. Hidden until push_controller.js knows what this browser supports. -%>
+<% return unless PushSubscription.enabled? %>
+<% what = resort ? "#{resort.name} powder alerts" : "powder alerts" %>
+<div data-controller="push" data-push-resort-id-value="<%= resort&.id %>" data-push-placement-value="<%= placement %>"
+     class="hidden <%= card ? "bg-slate-800/40 border border-slate-700 rounded-xl p-5 mb-10" : "mt-3 pt-3 border-t border-slate-700/60 text-sm" %>">
+  <% if card %><h2 class="text-xl font-bold mb-2">Powder alerts on your phone</h2><% end %>
+  <div data-push-target="offer" class="hidden"><div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+    <span class="text-slate-300"><%= card ? "Get a notification when #{resort ? resort.name : "a resort"} has a big storm in the forecast. No email needed." : "Rather get a phone notification?" %></span>
+    <button type="button" data-push-target="button" data-action="push#enable" class="inline-flex items-center gap-1.5 <%= card ? "bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold rounded-lg px-4 py-2" : "text-cyan-300 hover:text-cyan-200 font-semibold underline underline-offset-2 py-2.5 -my-2.5" %> cursor-pointer transition">
+      <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      Turn on notifications
+    </button>
+  </div></div>
+  <p data-push-target="on" class="hidden text-slate-300">
+    <span class="text-emerald-300 font-semibold">Notifications are on</span> for <%= what %> on this device.
+    <button type="button" data-push-target="button" data-action="push#disable" class="text-slate-400 hover:text-white underline underline-offset-2 cursor-pointer py-2.5 -my-2.5">Turn off</button>
+  </p>
+  <p data-push-target="blocked" class="hidden text-slate-400">Notifications are blocked for snowway.app. To get alerts here, allow them in your browser's site settings.</p>
+  <p data-push-target="ios" class="hidden text-slate-300">On iPhone? <%= link_to "Add Snow Way to your Home Screen", "/app#install-steps", class: "text-cyan-300 underline underline-offset-2" %> to get <%= what %> as notifications.</p>
+  <p data-push-target="error" class="hidden text-amber-300 mt-1">That didn't work. Please try again.</p>
+</div>

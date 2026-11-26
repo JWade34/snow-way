@@ -5,6 +5,8 @@
        answer: "Yes. The app and every forecast, ranking and guide on Snow Way are free. There's no account to make." },
      { question: "What's different about the app?",
        answer: "It opens full screen from your home screen, straight to the powder rankings, without browser bars. Long-press the icon on Android for shortcuts to where it's snowing, the rankings and the powder report. If you lose signal on the mountain, it shows a no-signal page instead of a browser error." },
+     { question: "Can the Snow Way app send powder alerts?",
+       answer: "Yes. Tap Turn on notifications on this page or on any resort page, and Snow Way will notify you when a big storm is in the forecast. It works in Chrome, Edge and Firefox, on Android, in Safari on a Mac, and on iPhone and iPad once Snow Way is on your Home Screen (iOS 16.4 or later)." },
      { question: "Does it update automatically?",
        answer: "Yes. The app always loads the latest forecasts and pages from snowway.app, so there's nothing to update." }
    ] %>
@@ -67,7 +69,10 @@
       <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4"><strong class="block text-white mb-1">Full screen</strong><span class="text-slate-300 text-sm">No browser bars, more room for forecasts and snow tables.</span></li>
       <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4"><strong class="block text-white mb-1">Shortcuts</strong><span class="text-slate-300 text-sm">On Android, long-press the icon for where it's snowing, the rankings or the powder report.</span></li>
       <li class="bg-slate-800/40 border border-slate-700 rounded-xl p-4"><strong class="block text-white mb-1">Always current</strong><span class="text-slate-300 text-sm">Nothing to update. It loads the latest forecasts every time you open it.</span></li>
+      <li class="sm:col-span-2 bg-slate-800/40 border border-slate-700 rounded-xl p-4"><strong class="block text-white mb-1">Powder alerts</strong><span class="text-slate-300 text-sm">Turn on notifications and we'll tell you when a big storm is coming. On iPhone, this works once Snow Way is on your Home Screen.</span></li>
     </ul>
+
+    <%= render "shared/push_alert", placement: "app_page", card: true %>
 
     <%= render "shared/inline_signup", magnet: "powder-calendar", id: "app-page" %>
 

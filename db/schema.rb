@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_21_165102) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_26_204108) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -66,6 +66,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_21_165102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["week_of"], name: "index_powder_reports_on_week_of", unique: true
+  end
+
+  create_table "push_subscriptions", force: :cascade do |t|
+    t.string "endpoint", null: false
+    t.string "p256dh", null: false
+    t.string "auth", null: false
+    t.integer "resort_id"
+    t.integer "threshold_inches"
+    t.string "page_path"
+    t.boolean "standalone", default: false, null: false
+    t.datetime "last_alerted_at"
+    t.integer "failures", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["endpoint", "resort_id"], name: "index_push_subscriptions_on_endpoint_and_resort_id", unique: true
+    t.index ["resort_id"], name: "index_push_subscriptions_on_resort_id"
   end
 
   create_table "resort_visits", force: :cascade do |t|

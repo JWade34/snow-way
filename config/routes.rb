@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   get "powder-report" => "powder_reports#current", as: :powder_report
   get "powder-report/:id" => "powder_reports#show", as: :powder_report_archive, constraints: { id: /\d{4}-\d{2}-\d{2}/ }
   resources :subscribers, only: [ :create ]
+  post "push_subscriptions" => "push_subscriptions#create", as: :push_subscriptions
+  delete "push_subscriptions" => "push_subscriptions#destroy"
   match "unsubscribe/:token" => "subscribers#unsubscribe", via: [ :get, :post ], as: :unsubscribe
   match "weekly/:token" => "subscribers#weekly", via: [ :get, :post ], as: :weekly_report
   get "powder-calendar" => "lead_magnets#powder_calendar", as: :powder_calendar
