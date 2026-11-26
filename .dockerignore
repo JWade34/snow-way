@@ -49,3 +49,7 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
+
+# The iPhone app project and store images are not part of the web server.
+/mobile/
+/docs/store-assets/
