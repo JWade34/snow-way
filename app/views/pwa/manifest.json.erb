@@ -1,22 +1,28 @@
 {
-  "name": "SnowWay",
-  "icons": [
-    {
-      "src": "/icon.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    },
-    {
-      "src": "/icon.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
-    }
-  ],
-  "start_url": "/",
-  "display": "standalone",
+  "id": "/",
+  "name": "Snow Way: Ski Snow Forecasts",
+  "short_name": "Snow Way",
+  "description": "Find the ski resorts getting the most snow in the next 7 days. Powder rankings, forecasts and snow reports for 180+ resorts.",
+  "start_url": "/?utm_source=homescreen&utm_medium=app",
   "scope": "/",
-  "description": "SnowWay.",
-  "theme_color": "red",
-  "background_color": "red"
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "categories": ["weather", "travel", "sports"],
+  "lang": "en-US",
+  "icons": [
+    { "src": "/icons/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "/icons/screenshot-phone.png", "type": "image/png", "sizes": "780x1688", "form_factor": "narrow", "label": "Ski resorts ranked by the next 7 days of snow" },
+    { "src": "/icons/screenshot-desktop.png", "type": "image/png", "sizes": "1366x900", "form_factor": "wide", "label": "Snow Way powder rankings" }
+  ],
+  "shortcuts": [
+    { "name": "Where it's snowing", "url": "/where-is-it-snowing?utm_source=homescreen&utm_medium=app", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Powder rankings", "url": "/resorts?utm_source=homescreen&utm_medium=app", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Powder report", "url": "/powder-report?utm_source=homescreen&utm_medium=app", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
 }

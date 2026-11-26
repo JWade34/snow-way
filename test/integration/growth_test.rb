@@ -127,6 +127,26 @@ class GrowthTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "second and third weeks of January"
   end
 
+  test "the site installs as an app: manifest, service worker, icons and the /app page" do
+    get "/manifest.json"
+    assert_response :success
+    manifest = JSON.parse(response.body)
+    assert_equal [ "Snow Way", "standalone" ], manifest.values_at("short_name", "display")
+    manifest["icons"].each { |i| assert File.exist?(Rails.root.join("public", i["src"].delete_prefix("/"))), i["src"] }
+    Array(manifest["screenshots"]).each { |i| assert File.exist?(Rails.root.join("public", i["src"].delete_prefix("/"))), i["src"] }
+    get "/service-worker.js"
+    assert_response :success
+    assert_includes response.body, "offline.html"
+    assert File.exist?(Rails.root.join("public/offline.html"))
+    get "/app"
+    assert_response :success
+    assert_select "h1", "Get the Snow Way app"
+    assert_includes response.body, "WebApplication"
+    get "/"
+    assert_select "link[rel=manifest][href=\"/manifest.json\"]"
+    assert_select "header [data-install-target=button]"
+  end
+
   test "social cards render as PNGs" do
     %w[report brand calendar].each do |kind|
       get "/social/#{kind}.png", params: { size: "story" }
