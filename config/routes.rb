@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest, defaults: { format: :json }
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker, defaults: { format: :js }
   get "app" => "pages#get_app", as: :get_app
+  get ".well-known/assetlinks.json" => "app_links#assetlinks", format: false, defaults: { format: :json }
   root "home#index"
 
   resources :resorts, only: [ :index, :show ] do

@@ -218,4 +218,17 @@ class GrowthTest < ActionDispatch::IntegrationTest
     assert_equal({ "opensnow.com" => 1 }, AiCitationCheck.competitors(checks))
     assert_nothing_raised { AiCitationJob.perform_now }
   end
+
+  test "assetlinks.json is valid JSON and lists the Play signing key once it's set" do
+    get "/.well-known/assetlinks.json"
+    assert_response :success
+    assert_equal [], response.parsed_body
+    ENV["ANDROID_CERT_SHA256"] = "AA:BB, CC:DD"
+    get "/.well-known/assetlinks.json"
+    target = response.parsed_body.first["target"]
+    assert_equal "app.snowway", target["package_name"]
+    assert_equal %w[AA:BB CC:DD], target["sha256_cert_fingerprints"]
+  ensure
+    ENV.delete("ANDROID_CERT_SHA256")
+  end
 end
