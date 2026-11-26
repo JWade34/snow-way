@@ -86,6 +86,8 @@ class PagesController < ApplicationController
 
   def blackouts; end
 
+  def pass_price_dates; end
+
   def epic_day_pass
     @tickets = YAML.load_file(Rails.root.join("db/lift_tickets.yml"), permitted_classes: [ Date ])
     @resorts = Resort.where(slug: @tickets.fetch("resorts").keys).index_by(&:slug)

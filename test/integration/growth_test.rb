@@ -112,6 +112,21 @@ class GrowthTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "pass price dates page and booking guide render with sourced prices" do
+    get "/when-do-ski-pass-prices-go-up"
+    assert_response :success
+    assert_select "h1", /When do ski pass prices go up/
+    assert_includes response.body, "\$1,089"
+    assert_includes response.body, "FAQPage"
+    travel_to Date.new(2026, 12, 8) do
+      get "/when-do-ski-pass-prices-go-up"
+      assert_includes response.body, "went off sale after December 6"
+    end
+    get "/guides/best-time-to-book-a-ski-trip"
+    assert_response :success
+    assert_includes response.body, "second and third weeks of January"
+  end
+
   test "social cards render as PNGs" do
     %w[report brand calendar].each do |kind|
       get "/social/#{kind}.png", params: { size: "story" }

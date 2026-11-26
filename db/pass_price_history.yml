@@ -1,0 +1,94 @@
+# How 2026-27 Epic and Ikon Pass prices rose through the selling season, for /when-do-ski-pass-prices-go-up.
+# Every step is a price an official site or a named outlet reported on a given date, with a verbatim-checked source.
+# Researched 2026-11-25. Add the next season's launch (usually March) as a new season block; never edit old steps.
+checked_on: '2026-11-25'
+season: 2026-27
+passes:
+  epic:
+    name: Epic Pass
+    variant_name: Epic Local Pass
+    guide_path: /epic-pass-price
+    off_sale_after: '2026-12-06'
+    steps:
+      - date: '2026-03-03'
+        label: On sale (early March)
+        adult: 1089
+        young_adult: 869
+        child:
+        variant_adult: 809
+        variant_young_adult: 649
+        note: Launch price. New 20% off for ages 13-30.
+        sources:
+          - { url: "https://www.sierrasun.com/news/prices-for-the-epic-pass-hit-new-highs-for-2026-2027-season-despite-discount-for-next-generation", publisher: "Sierra Sun", date: "2026-03-04" }
+          - { url: "https://townlift.com/2026/03/epic-passes-for-2026-27-go-on-sale-with-new-discounts-targeting-younger-market/", publisher: "TownLift", date: "2026-03-06" }
+      - date: '2026-05-25'
+        label: Lowest price of the year ends May 25
+        adult: 1089
+        young_adult: 869
+        child: 555
+        variant_adult: 809
+        variant_young_adult: 649
+        note: Prices went up after May 25.
+        sources:
+          - { url: "https://news.vailresorts.com/2026-05-05-Summer-Now,-Winter-Later-Four-Reasons-to-Get-an-Epic-Pass-by-May-25", publisher: "Vail Resorts", date: "2026-05-05" }
+      - date: '2026-09-07'
+        label: Lowest fall price ends September 7
+        adult: 1119
+        young_adult: 889
+        child: 569
+        variant_adult: 829
+        variant_young_adult: 659
+        note: Up $30 from spring. Prices rose again after Sept 7.
+        sources:
+          - { url: "https://www.webull.com/news/15424439053362176", publisher: "Vail Resorts via PR Newswire", date: "2026-08-18" }
+      - date: '2026-12-06'
+        label: Last day to buy, December 6
+        adult: 1245
+        young_adult: 995
+        child:
+        variant_adult: 959
+        variant_young_adult: 759
+        note: Final price (Vail Resorts, Nov 16).
+        sources:
+          - { url: "https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6", publisher: "Vail Resorts", date: "2026-11-16" }
+  ikon:
+    name: Ikon Pass
+    variant_name: Ikon Base Pass
+    guide_path: /ikon-pass-price
+    off_sale_after:
+    steps:
+      - date: '2026-03-12'
+        label: On sale March 12
+        adult: 1399
+        young_adult:
+        child:
+        variant_adult: 949
+        variant_young_adult:
+        note: Launch price, about 5% above last year.
+        sources:
+          - { url: "https://www.vaildaily.com/news/ikon-pass-2026-27-on-sale-higher-price/", publisher: "Vail Daily", date: "2026-03-05" }
+      - date: '2026-04-19'
+        label: Lowest price and Renewal Rewards end April 19
+        adult:
+        young_adult:
+        child:
+        variant_adult:
+        variant_young_adult:
+        note: Extended from April 16. Renewal Rewards ended too.
+        sources:
+          - { url: "https://snowbrains.com/april-16-ikon-pass-2026-27/", publisher: "SnowBrains", date: "2026-04-18" }
+      - date: '2026-11-24'
+        label: Price as of November 24
+        adult: 1529
+        young_adult: 1129
+        child: 499
+        variant_adult: 1099
+        variant_young_adult:
+        note: "On ikonpass.com. Code GIFT: up to $80 off through Nov 30."
+        sources:
+          - { url: "https://www.ikonpass.com/en/shop-passes", publisher: "Ikon Pass", date: "2026-11-24" }
+general:
+  - text: Multi-resort passes typically go on sale in March or April at their lowest prices.
+    source: { url: "https://www.onthesnow.com/news/?p=19833", publisher: "OnTheSnow", date: "2025-12-15" }
+  - text: The lowest spring prices often go up around Memorial Day, then again in September and November.
+    source: { url: "https://www.sierrasun.com/news/prices-for-the-epic-pass-hit-new-highs-for-2026-2027-season-despite-discount-for-next-generation", publisher: "Sierra Sun", date: "2026-03-04" }

@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get "best-ski-resorts-for-christmas" => "pages#christmas", as: :christmas_skiing
   get "ski-resorts-open-now" => "pages#open_now", as: :open_now
   get "ski-pass-blackout-dates" => "pages#blackouts", as: :blackouts
+  get "when-do-ski-pass-prices-go-up" => "pages#pass_price_dates", as: :pass_price_dates
   get "epic-day-pass" => "pages#epic_day_pass", as: :epic_day_pass
   get "christmas-in-:town" => "christmas_towns#show", as: :christmas_town, constraints: { town: /aspen|breckenridge|lake-tahoe|vail|park-city/ }
   get "about" => "pages#about", as: :about

@@ -1,0 +1,119 @@
+<% epic, ikon = PassPriceHistory.find("epic"), PassPriceHistory.find("ikon") %>
+<% season, next_season = PassPriceHistory.season, PassPriceHistory.next_season %>
+<% money = ->(v) { v ? number_to_currency(v, precision: 0) : "–" } %>
+<% day = ->(d) { d.strftime("%B %-d") } %>
+<% er, ir = epic.rise, ikon.rise %>
+<% el, il = epic.latest, ikon.latest %>
+<% epic_now = epic.off_sale? ? "Epic Passes went off sale after #{day.(epic.off_sale_after)}, #{epic.off_sale_after.year}, at a final adult price of #{money.(el.adult)}." : "The adult Epic Pass is #{money.(el.adult)} now, its final price, until it goes off sale after #{day.(epic.off_sale_after)}, #{epic.off_sale_after.year}." %>
+<% answer = "Epic and Ikon Pass prices go up several times a year. Both go on sale in March at their lowest price, then rise in spring, again in late summer or fall, and again before the season. " \
+            "For #{season}, the adult Epic Pass started at #{money.(epic.launch.adult)}, and that price ended May 25. It went up again after September 7. #{epic_now} " \
+            "The adult Ikon Pass went on sale March 12 at #{money.(ikon.launch.adult)}. Its lowest price ended April 19, and it was #{money.(il.adult)} on #{day.(il.date)}. " \
+            "Waiting cost #{money.(er[:dollars])} (#{er[:percent]}%) on an Epic Pass and #{money.(ir[:dollars])} (#{ir[:percent]}%) on an Ikon Pass. " \
+            "To pay the least for #{next_season}, buy when passes go on sale next spring." %>
+<% faqs = [
+     { question: "When do Epic Pass prices go up?",
+       answer: "For #{season}, Epic Pass prices went up after May 25 and again after September 7, then rose to a final price before passes went off sale after December 6, 2026. The adult Epic Pass went from #{money.(epic.launch.adult)} at launch in March to #{money.(el.adult)}, per Vail Resorts." },
+     { question: "When do Ikon Pass prices go up?",
+       answer: "For #{season}, the Ikon Pass went on sale March 12 at #{money.(ikon.launch.adult)} for adults, and its lowest price (with Renewal Rewards) ended April 19. ikonpass.com listed the adult Ikon Pass at #{money.(il.adult)} and the Ikon Base Pass at #{money.(il.variant_adult)} on #{day.(il.date)}, #{il.date.year}." },
+     { question: "When is the cheapest time to buy an Epic or Ikon Pass?",
+       answer: "In the spring, when next season's passes go on sale. Multi-resort passes typically launch in March or April at their lowest prices. For #{season}, buying at launch instead of in November saved #{money.(er[:dollars])} on an adult Epic Pass and #{money.(ir[:dollars])} on an adult Ikon Pass." },
+     { question: "When do Epic Passes go off sale?",
+       answer: "After December 6, 2026 for the #{season} season, per Vail Resorts. Epic Day Passes are sold until the same date." },
+     { question: "Is the Epic Pass cheaper for young adults?",
+       answer: "Yes. For #{season}, Vail Resorts added a 20% discount for ages 13 to 30: #{money.(epic.launch.young_adult)} at launch and #{money.(el.young_adult)} at the final price, against #{money.(epic.launch.adult)} and #{money.(el.adult)} for adults." }
+   ] %>
+<% content_for(:title, fit_title("When Do Epic and Ikon Pass Prices Go Up? #{season} Dates | Snow Way", "When Do Ski Pass Prices Go Up? #{season} | Snow Way")) %>
+<% content_for(:description, "Epic and Ikon Pass price increase dates for #{season}, with the price at each step: Epic #{money.(epic.launch.adult)} to #{money.(el.adult)}, Ikon #{money.(ikon.launch.adult)} to #{money.(il.adult)}. When to buy for #{next_season}.".truncate(160, separator: " ")) %>
+<% content_for(:head) do %>
+  <%= json_ld({ "@context" => "https://schema.org", "@graph" => [
+        { "@type" => "Article", "headline" => "When do Epic and Ikon Pass prices go up? #{season} dates and prices", "description" => answer, "url" => absolute_url(pass_price_dates_path),
+          "author" => author_schema, "publisher" => { "@id" => "https://snowway.app/#organization" }, "isPartOf" => { "@id" => "https://snowway.app/#website" },
+          "dateModified" => PassPriceHistory.checked_on.iso8601, "citation" => (epic.sources + ikon.sources).map { |s| s["url"] },
+          "speakable" => { "@type" => "SpeakableSpecification", "cssSelector" => [ "h1", ".tldr" ] } },
+        breadcrumb_schema([ [ "Ikon vs Epic", "/ikon-vs-epic" ], [ "When pass prices go up", nil ] ]),
+        faq_schema(faqs)
+      ] }) %>
+<% end %>
+
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Ikon vs Epic", ikon_vs_epic_path ], [ "When pass prices go up", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">When do ski pass prices go up? Epic and Ikon <%= season %> dates</h1>
+    <%= render "shared/byline", date: PassPriceHistory.checked_on %>
+
+    <section class="tldr mb-4 bg-slate-800/40 border border-slate-700 rounded-xl p-5">
+      <p class="text-slate-200 leading-relaxed"><%= answer %></p>
+    </section>
+    <% unless epic.off_sale? %>
+      <p class="mb-8 bg-amber-500/10 border border-amber-400/40 rounded-xl p-3 text-sm text-amber-100"><strong>Epic Pass deadline:</strong> <%= pluralize((epic.off_sale_after - Date.current).to_i + 1, "day") %> left to buy a <%= season %> Epic Pass (last day <%= day.(epic.off_sale_after) %>). See the <%= link_to "Epic Pass price page", epic.guide_path, class: "underline underline-offset-2" %>.</p>
+    <% end %>
+
+    <% [ [ epic, "Ages 13-30" ], [ ikon, nil ] ].each do |pass, young_label| %>
+      <h2 class="text-xl font-bold mb-3"><%= pass.name %> price increases, <%= season %></h2>
+      <div class="overflow-x-auto border border-slate-700 rounded-xl mb-3">
+        <table class="w-full text-sm">
+          <caption class="sr-only"><%= pass.name %> price at each step of the <%= season %> selling season</caption>
+          <thead class="bg-slate-800/70 text-slate-300 text-left"><tr>
+            <th scope="col" class="px-3 py-2">When</th>
+            <th scope="col" class="px-3 py-2 text-right">Adult</th>
+            <% if young_label %><th scope="col" class="px-3 py-2 text-right whitespace-nowrap"><%= young_label %></th><% end %>
+            <th scope="col" class="px-3 py-2 text-right"><%= pass.variant_name.sub(" Pass", "") %></th>
+          </tr></thead>
+          <tbody class="divide-y divide-slate-800 align-top">
+            <% pass.steps.each do |s| %>
+              <tr>
+                <th scope="row" class="px-3 py-2 text-left font-semibold"><%= s.label %><span class="block text-slate-400 font-normal text-xs mt-0.5"><%= s.note %></span></th>
+                <td class="px-3 py-2 text-right font-bold text-cyan-300 whitespace-nowrap"><%= s.adult ? money.(s.adult) : tag.span("went up", class: "text-slate-400 font-normal") %></td>
+                <% if young_label %><td class="px-3 py-2 text-right whitespace-nowrap"><%= money.(s.young_adult) %></td><% end %>
+                <td class="px-3 py-2 text-right whitespace-nowrap"><%= money.(s.variant_adult) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-400 text-sm mb-10">Prices are the lowest listed adult price at each step. <%= link_to "#{pass.name} prices, days and blackout dates", pass.guide_path, class: "text-cyan-300 underline underline-offset-2" %></p>
+    <% end %>
+
+    <h2 class="text-xl font-bold mb-3">How much waiting cost in <%= season %></h2>
+    <div class="grid sm:grid-cols-2 gap-3 mb-10">
+      <% [ [ epic, er ], [ ikon, ir ] ].each do |pass, r| %>
+        <div class="bg-slate-800/40 border border-slate-700 rounded-xl p-4">
+          <p class="text-slate-400 text-sm"><%= pass.name %>, adult</p>
+          <p class="text-2xl font-extrabold text-white">+<%= money.(r[:dollars]) %> <span class="text-base font-semibold text-amber-300">(+<%= r[:percent] %>%)</span></p>
+          <p class="text-slate-300 text-sm"><%= money.(pass.launch.adult) %> at launch, <%= money.(pass.latest.adult) %> on <%= day.(pass.latest.date) %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <%= render "shared/inline_signup", magnet: "powder-calendar", id: "pass-dates" %>
+
+    <h2 class="text-xl font-bold mb-3">When to buy a <%= next_season %> pass</h2>
+    <ul class="list-disc pl-5 space-y-2 text-slate-300 mb-4">
+      <li><strong class="text-white">Buy at launch in the spring.</strong> <%= PassPriceHistory.general.first["text"] %> In <%= season %>, Epic launched in early March and Ikon on March 12.</li>
+      <li><strong class="text-white">Watch the first deadline.</strong> The lowest price lasted about 12 weeks for Epic (to May 25) and about 5 weeks for Ikon (to April 19).</li>
+      <li><strong class="text-white">Expect more increases after that.</strong> <%= PassPriceHistory.general.second["text"] %></li>
+      <li><strong class="text-white">Renewing?</strong> Ikon's Renewal Rewards ended with its lowest price on April 19, so returning passholders lose them by waiting.</li>
+      <li><strong class="text-white">Ages 13 to 30:</strong> Epic's 20% young adult discount applied at every step in <%= season %>.</li>
+    </ul>
+    <p class="text-slate-400 text-sm mb-10">We'll add the <%= next_season %> launch dates and prices here as soon as Vail Resorts and Alterra announce them.</p>
+
+    <h2 class="text-xl font-bold mb-3">Missed the pass deadline?</h2>
+    <ul class="grid sm:grid-cols-2 gap-2 text-sm mb-10">
+      <li><%= link_to "Epic Day Pass: 1 to 7 days, sold until December 6", epic_day_pass_path, class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-3 py-2 transition" %></li>
+      <li><%= link_to "Ski pass blackout dates for #{season}", blackouts_path, class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-3 py-2 transition" %></li>
+      <li><%= link_to "Best time to book a ski trip: passes, tickets, lodging, flights", guide_path("best-time-to-book-a-ski-trip"), class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-3 py-2 transition" %></li>
+      <li><%= link_to "Ikon vs Epic: which pass's resorts have more snow", ikon_vs_epic_path, class: "block bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 hover:border-cyan-500 rounded-lg px-3 py-2 transition" %></li>
+    </ul>
+
+    <%= render "shared/faq", faqs: faqs, heading: "Ski pass price questions" %>
+
+    <h2 class="text-lg font-bold mb-2">Sources</h2>
+    <ul class="text-sm text-slate-400 space-y-1 mb-4 break-words">
+      <% (epic.sources + ikon.sources + PassPriceHistory.general.map { |g| g["source"] }).uniq { |s| s["url"] }.each do |s| %>
+        <li><%= link_to s["publisher"], s["url"], target: "_blank", rel: "nofollow noopener", class: "underline underline-offset-2 hover:text-cyan-300" %>, <%= Date.parse(s["date"].to_s).strftime("%B %-d, %Y") %></li>
+      <% end %>
+    </ul>
+    <p class="text-sm text-slate-400 mb-10">Checked <%= PassPriceHistory.checked_on.strftime("%B %-d, %Y") %>. Pass prices change; confirm on the official site before you buy.</p>
+  </main>
+</div>

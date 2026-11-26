@@ -1,0 +1,90 @@
+<%# locals: (faqs:) -%>
+<% epic = PassPriceHistory.find("epic") %>
+<% ikon = PassPriceHistory.find("ikon") %>
+<% money = ->(v) { number_to_currency(v, precision: 0) } %>
+<div class="tldr"><p><strong>Short answer:</strong> book in this order. Buy a season pass in the spring, when passes go on sale at their lowest price (the <%= PassPriceHistory.season %> Epic Pass rose <%= money.(epic.rise[:dollars]) %> from March to its final price). Book lodging at least two months ahead, and earlier for Christmas, New Year's or Presidents' Day. Book domestic flights one to three months out. Buy lift tickets online at least 30 days ahead at resorts that discount early tickets. For the lowest prices, go in the second or third week of January.</p></div>
+
+<h2>Ski trip booking timeline</h2>
+<table>
+  <caption class="sr-only">When to book each part of a ski trip</caption>
+  <thead><tr><th scope="col">What</th><th scope="col">When to book</th></tr></thead>
+  <tbody>
+      <tr><th scope="row">Season pass (Epic, Ikon)</th><td>Spring before the season, at launch (March in <%= PassPriceHistory.season %>)</td></tr>
+      <tr><th scope="row">Lodging</th><td>At least 2 months ahead; earlier for holiday weeks</td></tr>
+      <tr><th scope="row">Holiday flights</th><td>About 51 to 58 days before departure</td></tr>
+      <tr><th scope="row">Other domestic flights</th><td>1 to 3 months ahead</td></tr>
+      <tr><th scope="row">International flights</th><td>2 to 8 months ahead</td></tr>
+      <tr><th scope="row">Lift tickets</th><td>Online, 30 or more days ahead; never at the window</td></tr>
+  </tbody>
+</table>
+<p class="text-sm text-slate-400">Sources: pass prices from Vail Resorts and Ikon; lodging and flight windows from SmarterTravel (November 2026) and OnTheSnow (December 2025). Full list at the end.</p>
+
+<h2>Season passes: buy in the spring</h2>
+<p>Epic and Ikon both open sales for the next season in March at the lowest price of the year, then raise prices several times. For <%= PassPriceHistory.season %>:</p>
+<ul>
+  <li><strong>Epic Pass:</strong> <%= money.(epic.launch.adult) %> for adults at launch. The lowest price ended May 25, prices rose again after September 7, and the final price was <%= money.(epic.latest.adult) %>. Epic Passes go off sale after December 6, 2026.</li>
+  <li><strong>Ikon Pass:</strong> <%= money.(ikon.launch.adult) %> at launch on March 12. The lowest price and Renewal Rewards ended April 19. It was <%= money.(ikon.latest.adult) %> on November 24.</li>
+</ul>
+<p>Every increase date and price is on <%= link_to "when do ski pass prices go up", pass_price_dates_path %>. Skiing only a few days? An <%= link_to "Epic Day Pass", epic_day_pass_path %> or lift tickets bought early may cost less than a full pass.</p>
+
+<h2>Lift tickets: buy online, a month or more ahead</h2>
+<p>Vail Resorts and Park City use dynamic pricing, so tickets cost less bought ahead and on quieter dates. Peak-day window prices for <%= PassPriceHistory.season %> reached a reported $374 at Vail and $392 at Beaver Creek (TownLift, September 2026). In December 2025, Vail Resorts cut prices on tickets bought 30 or more days ahead, by more than 30% on average (The Storm Skiing Journal).</p>
+<p>Each resort page has its sourced ticket prices, like <%= link_to "Vail lift tickets", "/resorts/vail/lift-tickets" %>. Never plan to buy at the ticket window.</p>
+
+<h2>Lodging: two months ahead, earlier for holidays</h2>
+<ul>
+  <li><strong>Standard trips:</strong> Vrbo recommends booking at least two months ahead (as cited by SmarterTravel).</li>
+  <li><strong>Holiday weeks:</strong> the week between Christmas and New Year's is the most expensive of the season, followed by the third week of February (Presidents' Day week) (SmarterTravel). Book these first.</li>
+  <li><strong>Sales:</strong> travel sellers' ski offers often expire in April, August, November and December, with prices going up after each deadline (ski.com, via OnTheSnow). For <%= PassPriceHistory.season %>, Epic Pass holders got up to 35% off lodging at participating properties in the Lodging Cyber Sale, November 23 to December 7.</li>
+  <li><strong>Flexible and close to the mountains?</strong> An older Inntopia study of 10 U.S. resorts over 5 winters (2013) found guests who booked five months out paid about 10% more than average, while last-minute guests paid well below average. The trade-off is less choice, so this works for midweek trips, not holidays.</li>
+</ul>
+<p>Not sure where to stay? Each resort has a where-to-stay guide, like <%= link_to "where to stay in Vail", "/resorts/vail/where-to-stay" %>.</p>
+
+<h2>Flights</h2>
+<ul>
+  <li><strong>Domestic:</strong> book one to three months ahead (OnTheSnow).</li>
+  <li><strong>Christmas and New Year's:</strong> book about 51 to 58 days before departure (SmarterTravel). Treat Presidents' Day week like a holiday too.</li>
+  <li><strong>International:</strong> two to eight months ahead (OnTheSnow).</li>
+  <li><strong>Fly midweek:</strong> midweek flights save an average of $56 to $100 a ticket over Friday or Sunday (SmarterTravel).</li>
+</ul>
+<p>Choosing an airport? See <%= link_to "drive or fly to a ski resort", guide_path("ski-trip-drive-or-fly") %>.</p>
+
+<h2>The cheapest weeks to go</h2>
+<p>The cheapest lodging weeks of the season are the second and third weeks of January and the second week of February (SmarterTravel). Midweek in January and early March are also good for lower prices (OnTheSnow). For <%= PassPriceHistory.season %>, the dates to avoid or book early:</p>
+<ul>
+  <li><strong>Christmas to New Year's:</strong> December 25, 2026 to January 1, 2027</li>
+  <li><strong>Martin Luther King Jr. weekend:</strong> January 16 to 18, 2027</li>
+  <li><strong>Presidents' Day weekend:</strong> February 13 to 15, 2027</li>
+</ul>
+<p>The Ikon Base Pass blacks out December 26 to 30, January 16 to 17 and February 13 to 14 at select resorts, a good sign of when the lifts are busiest. All of them are on <%= link_to "ski pass blackout dates", blackouts_path %>.</p>
+
+<h2>Cheap is good, snow is better</h2>
+<p>The cheapest week isn't worth it if the snow is thin. Across resorts with USDA snow stations, this is the month each state gets new snow most often:</p>
+<% states = StateBestTime.all %>
+<ul>
+  <% states.each do |st| %>
+    <li><%= link_to "#{st.name}: #{st.month_name(st.best_month)}", state_best_time_path(st) %> (new snow on <%= st.month_avgs[st.best_month] %>% of days)</li>
+  <% end %>
+</ul>
+<p>Mid-January skips the holiday prices with plenty of season left. Want the odds for one resort? The <%= link_to "Powder Calendar", powder_calendar_path %> shows them month by month.</p>
+
+<h2>Sources</h2>
+<ul class="text-sm">
+  <li><a href="https://news.vailresorts.com/2026-05-05-Summer-Now,-Winter-Later-Four-Reasons-to-Get-an-Epic-Pass-by-May-25" rel="nofollow noopener" target="_blank">Vail Resorts, May 5, 2026</a> and <a href="https://news.vailresorts.com/2026-11-16-How-to-Save-on-Your-Ski-Season-Before-Epic-Passes-Go-Off-Sale-After-December-6" rel="nofollow noopener" target="_blank">November 16, 2026</a>: Epic Pass prices, deadlines, Lodging Cyber Sale</li>
+  <li><a href="https://www.vaildaily.com/news/ikon-pass-2026-27-on-sale-higher-price/" rel="nofollow noopener" target="_blank">Vail Daily, March 5, 2026</a> and <a href="https://snowbrains.com/april-16-ikon-pass-2026-27/" rel="nofollow noopener" target="_blank">SnowBrains, April 18, 2026</a>: Ikon Pass launch and April 19 deadline</li>
+  <li><a href="https://www.smartertravel.com/when-to-book-your-winter-ski-trip-and-save/" rel="nofollow noopener" target="_blank">SmarterTravel, November 17, 2026</a>: cheapest weeks, lodging and holiday flight windows</li>
+  <li><a href="https://www.onthesnow.com/news/?p=19833" rel="nofollow noopener" target="_blank">OnTheSnow, December 15, 2025</a>: flight windows, pass timing, travel sale deadlines</li>
+  <li><a href="https://townlift.com/2026/09/park-city-deer-valley-among-the-countrys-priciest-ski-days-as-2026-27-tickets-climb-again/" rel="nofollow noopener" target="_blank">TownLift, September 4, 2026</a> and <a href="https://www.stormskiing.com/p/vail-resorts-cuts-lift-ticket-prices" rel="nofollow noopener" target="_blank">The Storm Skiing Journal, December 9, 2025</a>: lift ticket prices and advance discounts</li>
+  <li><a href="https://corp.inntopia.com/adr-vs-lead-time/" rel="nofollow noopener" target="_blank">Inntopia, August 20, 2013</a>: lodging price vs booking lead time</li>
+</ul>
+
+<% faqs << { question: "When is the best time to book a ski trip?",
+             answer: "Book the season pass in the spring, when passes go on sale at their lowest price. Book lodging at least two months ahead (earlier for Christmas, New Year's and Presidents' Day). Book domestic flights one to three months ahead, and lift tickets online at least 30 days ahead at resorts that discount early tickets." } %>
+<% faqs << { question: "What is the cheapest week to go skiing?",
+             answer: "The second and third weeks of January and the second week of February are the cheapest lodging weeks of the season, per SmarterTravel. The week between Christmas and New Year's is the most expensive, followed by Presidents' Day week." } %>
+<% faqs << { question: "How far in advance should I book a ski vacation?",
+             answer: "About two months ahead for lodging on a regular week, and earlier for holidays. Book Christmas and New Year's flights about 51 to 58 days before departure, and other domestic flights one to three months ahead." } %>
+<% faqs << { question: "Is it cheaper to buy lift tickets in advance?",
+             answer: "Usually, yes, at resorts with dynamic pricing such as Vail Resorts and Park City. In December 2025 Vail Resorts cut prices on tickets bought 30 or more days ahead, by more than 30% on average. Window prices on peak days reached a reported $374 at Vail and $392 at Beaver Creek for #{PassPriceHistory.season}." } %>
+<% faqs << { question: "When should I buy a ski pass?",
+             answer: "In the spring, when next season's passes go on sale. For #{PassPriceHistory.season}, the adult Epic Pass went from #{money.(epic.launch.adult)} at launch to #{money.(epic.latest.adult)}, and the adult Ikon Pass from #{money.(ikon.launch.adult)} to #{money.(ikon.latest.adult)} by November." } %>
