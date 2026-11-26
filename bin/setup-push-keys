@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Turns on powder alert notifications in production: makes a VAPID key pair and saves it to Railway
+# (VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY). Prints no key values. Run once; running again would cut off existing subscribers.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+if railway variables --service snow-way --kv 2>/dev/null | grep -q "^VAPID_PRIVATE_KEY="; then
+  echo "VAPID keys are already set on Railway. Not replacing them (that would break existing subscriptions)."; exit 0
+fi
+keys=$(bin/rails runner 'k = WebPush.generate_key; puts k.public_key, k.private_key' 2>/dev/null)
+printf '%s' "$(sed -n 1p <<<"$keys")" | railway variables --service snow-way --skip-deploys --set-from-stdin VAPID_PUBLIC_KEY >/dev/null
+printf '%s' "$(sed -n 2p <<<"$keys")" | railway variables --service snow-way --set-from-stdin VAPID_PRIVATE_KEY >/dev/null
+echo "Done. Railway is redeploying; notifications go live in about 2 minutes."
