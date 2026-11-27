@@ -2,7 +2,7 @@
 class PushDeliveryJob < ApplicationJob
   queue_as :default
 
-  def perform(push_subscription_id, title:, body:, url:, tag: "powder")
-    PushSubscription.find_by(id: push_subscription_id)&.deliver(title:, body:, url:, tag:)
+  def perform(push_subscription_id, title:, body:, url:, tag: "powder", **extras)
+    PushSubscription.find_by(id: push_subscription_id)&.deliver(title:, body:, url:, tag:, **extras)
   end
 end

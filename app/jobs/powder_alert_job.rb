@@ -31,12 +31,21 @@ class PowderAlertJob < ApplicationJob
     end
   end
 
+  TIME_SENSITIVE_INCHES = 18 # a storm this big breaks through Focus on iPhone (Apple asks that time-sensitive be rare)
+
   # Notification text: the lead resort in the title, the next few in the body. Opens that resort's page.
+  # The iPhone app also gets a subtitle, a forecast picture, "Places to stay" and "Forecast" buttons, and Focus level.
   def self.push_message(alerts)
     (resort, inches), *others = alerts
     body = others.any? ? "Also: " + others.first(3).map { |r, v| "#{r.name} #{v.round}\"" }.join(", ") : "Tap for the forecast."
+    utm = "utm_source=push&utm_medium=notification&utm_campaign=powder_alert"
     { title: "#{resort.name}: #{inches.round}\" in the next 3 days", body: body,
-      url: "/resorts/#{resort.slug}?utm_source=push&utm_medium=notification&utm_campaign=powder_alert", tag: "powder-#{resort.slug}" }
+      url: "/resorts/#{resort.slug}?#{utm}", tag: "powder-#{resort.slug}",
+      subtitle: [ "Powder alert", [ resort.state_province, resort.country ].compact_blank.first ].compact.join(" · "),
+      category: "POWDER_ALERT", level: inches >= TIME_SENSITIVE_INCHES ? "time-sensitive" : "active",
+      relevance: (inches / 24.0).clamp(0.3, 1.0).round(2),
+      image: "https://snowway.app/og/resorts/#{resort.slug}.png?v=#{Date.current.strftime("%Y%m%d")}",
+      stay_url: "/resorts/#{resort.slug}/where-to-stay?#{utm}" }
   end
 
   private

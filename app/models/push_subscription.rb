@@ -6,6 +6,10 @@ class PushSubscription < ApplicationRecord
   MAX_FAILURES = 5 # temporary push service errors in a row before we stop trying
 
   PLATFORMS = %w[web ios].freeze
+  APNS_EXTRAS = %i[subtitle category level relevance image stay_url].freeze
+
+  # Devices that opted in to gear deal notifications (one row per device, whichever resort it follows).
+  scope :deal_devices, -> { where(deals: true).select("MIN(id) AS id, endpoint").group(:endpoint) }
 
   validates :platform, inclusion: { in: PLATFORMS }
   validates :endpoint, presence: true, length: { maximum: 1000 }, uniqueness: { scope: :resort_id }
@@ -22,8 +26,9 @@ class PushSubscription < ApplicationRecord
   def ios? = platform == "ios"
 
   # Sends one notification. Returns true when delivered. Forgets subscriptions the push service says are gone.
-  def deliver(title:, body:, url:, tag: "powder")
-    return deliver_ios(title:, body:, url:, tag:) if ios?
+  # extras are iPhone-app-only touches (subtitle, buttons, Focus level, picture). Browsers ignore them.
+  def deliver(title:, body:, url:, tag: "powder", **extras)
+    return deliver_ios(title:, body:, url:, tag:, **extras) if ios?
     return false unless self.class.web_enabled?
     WebPush.payload_send(message: { title:, body:, url:, tag: }.to_json, endpoint:, p256dh:, auth:,
                          vapid: { subject: "https://snowway.app/privacy", public_key: self.class.vapid_public_key, private_key: ENV["VAPID_PRIVATE_KEY"] },
@@ -41,9 +46,9 @@ class PushSubscription < ApplicationRecord
 
   private
 
-  def deliver_ios(title:, body:, url:, tag:)
+  def deliver_ios(title:, body:, url:, tag:, **extras)
     return false unless Apns.enabled?
-    result = Apns.deliver(token: endpoint, title:, body:, url:, tag:)
+    result = Apns.deliver(token: endpoint, title:, body:, url:, tag:, **extras.slice(*APNS_EXTRAS))
     if result.gone
       self.class.where(endpoint:).destroy_all
     elsif result.ok

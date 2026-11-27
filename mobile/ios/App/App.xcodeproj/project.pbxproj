@@ -7,18 +7,72 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		124719CFDB447571998C7B0C /* SnowWayIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476180A4193D57778D923DA0 /* SnowWayIntents.swift */; };
+		13B7C24C4E7002E845FB8DEC /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8FF595873FEA995F0D85B9AF /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
+		44A361D733D8276EE98CF272 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97D28DA8D0951FF4E820BC3 /* SwiftUI.framework */; };
 		4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 4D22ABE82AF431CB00220026 /* CapApp-SPM */; };
+		4D8C1CDCB13C3E8C38C63213 /* ResortEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BF34D7493FE278542C22B /* ResortEntity.swift */; };
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
 		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
 		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+		61F56333A8CB0F709068F367 /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AFDDE45B70B766659B8BB /* AppIntents.framework */; };
+		64E0DA7EDA2FB1E4D7FE0ECF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B15DF90F80FD02C2397DEAA /* Foundation.framework */; };
+		6B69E33CFC3F08CABDB6D871 /* SnowWayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1389093B2AE1D97E175E6 /* SnowWayWidget.swift */; };
+		7837504F202FCF2696AEA830 /* ResortEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BF34D7493FE278542C22B /* ResortEntity.swift */; };
+		93F1D19684C907A63F76BB40 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69ED3AA584F5B632C923E3AA /* WidgetKit.framework */; };
+		9A8F9AFC2865406E1B015228 /* SnowWayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813814153E34539DC25CDC3 /* SnowWayAPI.swift */; };
+		A144D9C3D2071898A2AAF3CB /* SnowWayWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E491DC90BAEAF3BD76C9952 /* SnowWayWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A663AC5008AC3016522C632A /* SnowWayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813814153E34539DC25CDC3 /* SnowWayAPI.swift */; };
+		D749BB5C271E59C64F01A955 /* SnowWayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF6C6C8C9EBA6B387DCBC3 /* SnowWayPlugin.swift */; };
+		DCA99417FE55515DF82FF44A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B15DF90F80FD02C2397DEAA /* Foundation.framework */; };
+		EB4EC9CB5795E32A46274FEB /* SnowWayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F271AA0C1BCF81680AA91 /* SnowWayViewController.swift */; };
+		F547DCE18C9FD3BD1A5AFA77 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C1CB22AF5154F903C965A3 /* NotificationService.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0B8F9F426BE35E826A5CC89C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89EA74DD561A5069AD0A89F7;
+			remoteInfo = SnowWayWidget;
+		};
+		C19962311562F900B4B64021 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CEF75CCF16C6C9CB72F5FCD;
+			remoteInfo = NotificationService;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4D688A981FF07E2C537C5F58 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A144D9C3D2071898A2AAF3CB /* SnowWayWidget.appex in Embed Foundation Extensions */,
+				13B7C24C4E7002E845FB8DEC /* NotificationService.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0FE6E49512F0A81FA2275004 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1813814153E34539DC25CDC3 /* SnowWayAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayAPI.swift; sourceTree = "<group>"; };
+		22F1389093B2AE1D97E175E6 /* SnowWayWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayWidget.swift; sourceTree = "<group>"; };
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		3E491DC90BAEAF3BD76C9952 /* SnowWayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SnowWayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		476180A4193D57778D923DA0 /* SnowWayIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayIntents.swift; sourceTree = "<group>"; };
+		4B3F271AA0C1BCF81680AA91 /* SnowWayViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayViewController.swift; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +81,16 @@
 		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		63C1CB22AF5154F903C965A3 /* NotificationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		69ED3AA584F5B632C923E3AA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/WidgetKit.framework; sourceTree = DEVELOPER_DIR; };
+		891BF34D7493FE278542C22B /* ResortEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResortEntity.swift; sourceTree = "<group>"; };
+		894FADBB70BA2B8E47135F34 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D8AFDDE45B70B766659B8BB /* AppIntents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppIntents.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/AppIntents.framework; sourceTree = DEVELOPER_DIR; };
+		8FF595873FEA995F0D85B9AF /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		96BF6C6C8C9EBA6B387DCBC3 /* SnowWayPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayPlugin.swift; sourceTree = "<group>"; };
+		9B15DF90F80FD02C2397DEAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A97D28DA8D0951FF4E820BC3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,15 +102,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7AC5AAF2A37515144CCF3905 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64E0DA7EDA2FB1E4D7FE0ECF /* Foundation.framework in Frameworks */,
+				93F1D19684C907A63F76BB40 /* WidgetKit.framework in Frameworks */,
+				44A361D733D8276EE98CF272 /* SwiftUI.framework in Frameworks */,
+				61F56333A8CB0F709068F367 /* AppIntents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F438074BD5FB6B58FEB920E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCA99417FE55515DF82FF44A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B2A36F353B4719981719C01 /* SnowWayWidget */ = {
+			isa = PBXGroup;
+			children = (
+				22F1389093B2AE1D97E175E6 /* SnowWayWidget.swift */,
+				894FADBB70BA2B8E47135F34 /* Info.plist */,
+			);
+			name = SnowWayWidget;
+			path = SnowWayWidget;
+			sourceTree = "<group>";
+		};
+		4FD0E9EAF09E0A5133FA2A5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1013F38EC93BAE5CB85ABEE /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		504EC2FB1FED79650016851F = {
 			isa = PBXGroup;
 			children = (
 				958DCC722DB07C7200EA8C5F /* debug.xcconfig */,
 				504EC3061FED79650016851F /* App */,
 				504EC3051FED79650016851F /* Products */,
+				584526387D339D0D7972047E /* Shared */,
+				4FD0E9EAF09E0A5133FA2A5A /* Frameworks */,
+				2B2A36F353B4719981719C01 /* SnowWayWidget */,
+				B5C07D1861BEF8188FDE08AF /* NotificationService */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				504EC3041FED79650016851F /* App.app */,
+				3E491DC90BAEAF3BD76C9952 /* SnowWayWidget.appex */,
+				8FF595873FEA995F0D85B9AF /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,13 +176,64 @@
 				504EC3131FED79650016851F /* Info.plist */,
 				2FAD9762203C412B000D30F8 /* config.xml */,
 				50B271D01FEDC1A000F3C39B /* public */,
+				476180A4193D57778D923DA0 /* SnowWayIntents.swift */,
+				4B3F271AA0C1BCF81680AA91 /* SnowWayViewController.swift */,
+				96BF6C6C8C9EBA6B387DCBC3 /* SnowWayPlugin.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		584526387D339D0D7972047E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1813814153E34539DC25CDC3 /* SnowWayAPI.swift */,
+				891BF34D7493FE278542C22B /* ResortEntity.swift */,
+			);
+			name = Shared;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B5C07D1861BEF8188FDE08AF /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				63C1CB22AF5154F903C965A3 /* NotificationService.swift */,
+				0FE6E49512F0A81FA2275004 /* Info.plist */,
+			);
+			name = NotificationService;
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
+		F1013F38EC93BAE5CB85ABEE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9B15DF90F80FD02C2397DEAA /* Foundation.framework */,
+				69ED3AA584F5B632C923E3AA /* WidgetKit.framework */,
+				A97D28DA8D0951FF4E820BC3 /* SwiftUI.framework */,
+				8D8AFDDE45B70B766659B8BB /* AppIntents.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3CEF75CCF16C6C9CB72F5FCD /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEAACCA5EFF071B823CFC34B /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				14A54DAABCC453D4A60B3A2D /* Sources */,
+				F438074BD5FB6B58FEB920E0 /* Frameworks */,
+				D894BCED71C7DCB326B28A74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 8FF595873FEA995F0D85B9AF /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		504EC3031FED79650016851F /* App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */;
@@ -84,10 +241,13 @@
 				504EC3001FED79650016851F /* Sources */,
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
+				4D688A981FF07E2C537C5F58 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				11E992600519E5FA4C135C3A /* PBXTargetDependency */,
+				BD26BD5A4C56D96351D47714 /* PBXTargetDependency */,
 			);
 			name = App;
 			packageProductDependencies = (
@@ -96,6 +256,23 @@
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
+		};
+		89EA74DD561A5069AD0A89F7 /* SnowWayWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3889F4FD78EB24CB7605C211 /* Build configuration list for PBXNativeTarget "SnowWayWidget" */;
+			buildPhases = (
+				50E3D7F6AA6CF9B2B238CB8E /* Sources */,
+				7AC5AAF2A37515144CCF3905 /* Frameworks */,
+				5A871E3AE764D22ADFDC219C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnowWayWidget;
+			productName = SnowWayWidget;
+			productReference = 3E491DC90BAEAF3BD76C9952 /* SnowWayWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -130,6 +307,8 @@
 			projectRoot = "";
 			targets = (
 				504EC3031FED79650016851F /* App */,
+				89EA74DD561A5069AD0A89F7 /* SnowWayWidget */,
+				3CEF75CCF16C6C9CB72F5FCD /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -148,18 +327,70 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5A871E3AE764D22ADFDC219C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D894BCED71C7DCB326B28A74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		14A54DAABCC453D4A60B3A2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F547DCE18C9FD3BD1A5AFA77 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		504EC3001FED79650016851F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
+				124719CFDB447571998C7B0C /* SnowWayIntents.swift in Sources */,
+				EB4EC9CB5795E32A46274FEB /* SnowWayViewController.swift in Sources */,
+				D749BB5C271E59C64F01A955 /* SnowWayPlugin.swift in Sources */,
+				9A8F9AFC2865406E1B015228 /* SnowWayAPI.swift in Sources */,
+				4D8C1CDCB13C3E8C38C63213 /* ResortEntity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50E3D7F6AA6CF9B2B238CB8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B69E33CFC3F08CABDB6D871 /* SnowWayWidget.swift in Sources */,
+				A663AC5008AC3016522C632A /* SnowWayAPI.swift in Sources */,
+				7837504F202FCF2696AEA830 /* ResortEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11E992600519E5FA4C135C3A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SnowWayWidget;
+			target = 89EA74DD561A5069AD0A89F7 /* SnowWayWidget */;
+			targetProxy = 0B8F9F426BE35E826A5CC89C /* PBXContainerItemProxy */;
+		};
+		BD26BD5A4C56D96351D47714 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NotificationService;
+			target = 3CEF75CCF16C6C9CB72F5FCD /* NotificationService */;
+			targetProxy = C19962311562F900B4B64021 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		504EC30B1FED79650016851F /* Main.storyboard */ = {
@@ -181,6 +412,83 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0FC1EA32A45954CBA53F585F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K36P898K34;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SnowWayWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.snowway.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3410C25CD667B8707B3A2E87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K36P898K34;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.snowway.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		36A0F594C9787986CB667669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K36P898K34;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SnowWayWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.snowway.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		504EC3141FED79650016851F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
@@ -230,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -281,7 +589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -295,10 +603,12 @@
 			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K36P898K34;
 				INFOPLIST_FILE = App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,8 +616,6 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = app.snowway;
-				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
-				DEVELOPMENT_TEAM = K36P898K34;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -319,18 +627,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K36P898K34;
 				INFOPLIST_FILE = App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.snowway;
-				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
-				DEVELOPMENT_TEAM = K36P898K34;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_VERSION = 5.0;
@@ -338,9 +646,43 @@
 			};
 			name = Release;
 		};
+		56D014EEDEED5B9FBCF2CBBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K36P898K34;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.snowway.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3889F4FD78EB24CB7605C211 /* Build configuration list for PBXNativeTarget "SnowWayWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FC1EA32A45954CBA53F585F /* Release */,
+				36A0F594C9787986CB667669 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		504EC2FF1FED79650016851F /* Build configuration list for PBXProject "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -355,6 +697,15 @@
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
 				504EC3181FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEAACCA5EFF071B823CFC34B /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3410C25CD667B8707B3A2E87 /* Release */,
+				56D014EEDEED5B9FBCF2CBBE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

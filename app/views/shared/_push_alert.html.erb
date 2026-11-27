@@ -12,10 +12,14 @@
       Turn on notifications
     </button>
   </div></div>
-  <p data-push-target="on" class="hidden text-slate-300">
+  <div data-push-target="on" class="hidden text-slate-300">
     <span class="text-emerald-300 font-semibold">Notifications are on</span> for <%= what %> on this device.
     <button type="button" data-push-target="button" data-action="push#disable" class="text-slate-400 hover:text-white underline underline-offset-2 cursor-pointer py-2.5 -my-2.5">Turn off</button>
-  </p>
+    <label class="flex items-center gap-2 mt-2 text-slate-400 cursor-pointer py-1.5">
+      <input type="checkbox" data-push-target="deals" data-action="push#toggleDeals" class="w-4 h-4 accent-cyan-400">
+      Also tell me about big gear sales (a few a season)
+    </label>
+  </div>
   <p data-push-target="blocked" class="hidden text-slate-400">Notifications are blocked for snowway.app. To get alerts here, allow them in your browser's site settings.</p>
   <p data-push-target="ios" class="hidden text-slate-300">On iPhone? <%= link_to "Add Snow Way to your Home Screen", "/app#install-steps", class: "text-cyan-300 underline underline-offset-2" %> to get <%= what %> as notifications.</p>
   <p data-push-target="error" class="hidden text-amber-300 mt-1">That didn't work. Please try again.</p>

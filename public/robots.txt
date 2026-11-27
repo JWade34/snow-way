@@ -9,6 +9,7 @@ Disallow: /downloads/
 Disallow: /powder-calendar/download/
 Disallow: /subscribers
 Disallow: /t/
+Disallow: /api/
 
 # AI assistants and answer engines are welcome. Plain-text indexes: /llms.txt and /llms-full.txt
 User-agent: GPTBot
@@ -38,5 +39,6 @@ Disallow: /downloads/
 Disallow: /powder-calendar/download/
 Disallow: /subscribers
 Disallow: /t/
+Disallow: /api/
 
 Sitemap: https://snowway.app/sitemap.xml

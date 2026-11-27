@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest, defaults: { format: :json }
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker, defaults: { format: :js }
   get "app" => "pages#get_app", as: :get_app
+  scope "api/app", controller: "api/app", defaults: { format: :json }, format: false do
+    get "powder", action: :powder, as: :api_app_powder
+    get "resorts", action: :resorts, as: :api_app_resorts
+    get "resorts/:slug", action: :resort, as: :api_app_resort
+  end
   get ".well-known/assetlinks.json" => "app_links#assetlinks", format: false, defaults: { format: :json }
   root "home#index"
 
@@ -53,6 +58,7 @@ Rails.application.routes.draw do
   resources :subscribers, only: [ :create ]
   post "push_subscriptions" => "push_subscriptions#create", as: :push_subscriptions
   delete "push_subscriptions" => "push_subscriptions#destroy"
+  patch "push_subscriptions/deals" => "push_subscriptions#deals", as: :push_subscription_deals
   match "unsubscribe/:token" => "subscribers#unsubscribe", via: [ :get, :post ], as: :unsubscribe
   match "weekly/:token" => "subscribers#weekly", via: [ :get, :post ], as: :weekly_report
   get "powder-calendar" => "lead_magnets#powder_calendar", as: :powder_calendar

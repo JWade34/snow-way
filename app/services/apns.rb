@@ -11,13 +11,25 @@ module Apns
 
   def enabled? = ENV["APNS_KEY_P8"].present? && ENV["APNS_KEY_ID"].present?
 
-  def deliver(token:, title:, body:, url:, tag:)
+  # Native extras (all optional):
+  #   subtitle  second line under the title
+  #   category  POWDER_ALERT or GEAR_DEAL: the buttons on a long-pressed notification (set up in the app's AppDelegate)
+  #   level     "time-sensitive" breaks through Focus (big storms only), "passive" arrives quietly (deals), else "active"
+  #   relevance 0..1, how high it sorts in the notification summary
+  #   image     https URL the app's notification extension attaches as a picture
+  #   stay_url  page the "Places to stay" button opens
+  def deliver(token:, title:, body:, url:, tag:, subtitle: nil, category: nil, level: nil, relevance: nil, image: nil, stay_url: nil)
     notification = Apnotic::Notification.new(token)
     notification.topic = TOPIC
-    notification.alert = { title: title, body: body }
-    notification.sound = "default"
+    notification.alert = { title: title, subtitle: subtitle, body: body }.compact
+    notification.sound = level == "passive" ? nil : "default"
+    notification.badge = 1
     notification.thread_id = tag
-    notification.custom_payload = { url: url }
+    notification.category = category
+    notification.interruption_level = level if level.in?(%w[passive active time-sensitive])
+    notification.relevance_score = relevance.to_f.clamp(0, 1) if relevance
+    notification.mutable_content = 1 if image
+    notification.custom_payload = { url: url, image: image, stay_url: stay_url }.compact
     notification.expiration = 12.hours.from_now.to_i
     response = connection.push(notification, timeout: 10)
     return Result.new(ok: false, gone: false) unless response

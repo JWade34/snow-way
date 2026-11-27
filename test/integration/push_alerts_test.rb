@@ -103,4 +103,47 @@ class PushAlertsTest < ActionDispatch::IntegrationTest
     end
     assert_equal 0, PushSubscription.count
   end
+
+  test "powder alerts carry iPhone extras: subtitle, buttons, picture, Focus level for big storms" do
+    vail = resorts(:vail)
+    small = PowderAlertJob.push_message([ [ vail, 8.0 ] ])
+    assert_equal "POWDER_ALERT", small[:category]
+    assert_equal "active", small[:level]
+    assert_match %r{\Ahttps://snowway.app/og/resorts/#{vail.slug}.png}, small[:image]
+    assert_match %r{/resorts/#{vail.slug}/where-to-stay\?utm_source=push}, small[:stay_url]
+    assert_equal "time-sensitive", PowderAlertJob.push_message([ [ vail, 20.0 ] ])[:level]
+
+    sub = PushSubscription.create!(platform: "ios", endpoint: "b" * 64, p256dh: "", auth: "", resort: vail)
+    sent = nil
+    Apns.stub(:enabled?, true) do
+      Apns.stub(:deliver, ->(**kw) { sent = kw; Apns::Result.new(ok: true, gone: false) }) { assert sub.deliver(**small) }
+    end
+    assert_equal "POWDER_ALERT", sent[:category]
+    assert_equal small[:image], sent[:image]
+  end
+
+  test "gear deals are a separate opt-in per device" do
+    post "/push_subscriptions", params: subscription_params.merge(resort_id: resorts(:vail).id), as: :json
+    post "/push_subscriptions", params: subscription_params, as: :json
+    assert_equal 0, PushSubscription.deal_devices.to_a.size
+    patch "/push_subscriptions/deals", params: { endpoint: "https://fcm.googleapis.com/fcm/send/abc123", deals: true }, as: :json
+    assert_response :success
+    assert_equal [ true ], PushSubscription.distinct.pluck(:deals)
+    assert_equal 1, PushSubscription.deal_devices.to_a.size # one notification per device, not per resort
+    patch "/push_subscriptions/deals", params: { endpoint: "https://nope.example/x", deals: true }, as: :json
+    assert_response :not_found
+  end
+
+  test "app feed answers Siri and widgets with public forecast numbers" do
+    get "/api/app/powder?limit=2"
+    assert_response :success
+    assert_kind_of Array, response.parsed_body["resorts"]
+    get "/api/app/resorts?q=#{resorts(:vail).name}"
+    assert_equal resorts(:vail).slug, response.parsed_body["resorts"].first["slug"]
+    get "/api/app/resorts/#{resorts(:vail).slug}"
+    assert_equal %w[name next_3_days_in next_7_days_in region slug temp_f url], response.parsed_body.keys.sort
+    get "/api/app/resorts/not-a-resort"
+    assert_response :not_found
+  end
 end
+

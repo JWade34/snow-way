@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_26_223059) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_27_042810) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_26_223059) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "platform", default: "web", null: false
+    t.boolean "deals", default: false, null: false
     t.index ["endpoint", "resort_id"], name: "index_push_subscriptions_on_endpoint_and_resort_id", unique: true
     t.index ["resort_id"], name: "index_push_subscriptions_on_resort_id"
   end

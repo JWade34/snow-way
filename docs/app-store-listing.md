@@ -27,7 +27,9 @@ site actually collects (see /privacy). Change the answers here if the site start
 > WHAT YOU GET
 > • Powder rankings: every resort ranked by forecast snow, updated through the day
 > • 7-day and 14-day snow forecasts for each resort, base and summit
-> • Powder alerts: a notification when a big storm lines up at your resort
+> • Powder alerts: a notification when a big storm lines up at your resort, with a forecast picture and a Places to stay button
+> • Siri: ask "Where's the powder in Snow Way?" or "How much snow is Alta getting in Snow Way?" (iPhone)
+> • Home Screen and Lock Screen widgets: the snowiest resorts, or your own resort (iPhone)
 > • Where it's snowing right now, and a weekly powder report
 > • Ikon vs Epic: which pass's resorts are getting more snow
 > • Lift ticket prices, where to stay, and how to get there for popular resorts

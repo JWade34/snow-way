@@ -28,6 +28,14 @@ class PushSubscriptionsController < ApplicationController
     render json: { remaining: PushSubscription.where(endpoint: endpoint).count }
   end
 
+  # Opts this device in or out of gear deal notifications, for every alert it follows.
+  def deals
+    subs = PushSubscription.where(endpoint: params[:endpoint].to_s)
+    return head(:not_found) if subs.none?
+    subs.update_all(deals: params[:deals].to_s == "true", updated_at: Time.current)
+    render json: { deals: subs.first.deals }
+  end
+
   private
 
   def send_welcome(sub)

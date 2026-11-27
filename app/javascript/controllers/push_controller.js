@@ -5,7 +5,7 @@ import { Controller } from "@hotwired/stimulus"
 // Inside the Snow Way iPhone app it uses Apple's native notifications (Capacitor PushNotifications) instead.
 // One device can follow several resorts; each alert is remembered in localStorage so the button shows "on".
 export default class extends Controller {
-  static targets = ["offer", "on", "blocked", "ios", "error", "button"]
+  static targets = ["offer", "on", "blocked", "ios", "error", "button", "deals"]
   static values = { resortId: String, placement: String }
 
   connect() { this.refresh() }
@@ -50,6 +50,25 @@ export default class extends Controller {
       state = sub && localStorage.getItem(this.key) && Notification.permission === "granted" ? "on" : "offer"
     }
     this.show(state)
+    this.dealsTargets.forEach((box) => { box.checked = localStorage.getItem("snowway_push_deals") === "1" })
+  }
+
+  // The push address this device registered with (APNs token in the iPhone app, Web Push endpoint elsewhere).
+  async endpoint() {
+    if (this.native) return localStorage.getItem("snowway_apns_token")
+    return (await this.subscription().catch(() => null))?.endpoint
+  }
+
+  // Gear deal notifications are their own opt-in, separate from powder alerts.
+  async toggleDeals(event) {
+    const on = event.target.checked
+    const endpoint = await this.endpoint()
+    if (!endpoint) { event.target.checked = false; return }
+    window.snowwayApp?.haptic?.("selection")
+    const res = await fetch("/push_subscriptions/deals", { method: "PATCH", headers: this.headers(), body: JSON.stringify({ endpoint, deals: on }) }).catch(() => null)
+    if (!res?.ok) { event.target.checked = !on; return }
+    on ? localStorage.setItem("snowway_push_deals", "1") : localStorage.removeItem("snowway_push_deals")
+    this.capture(on ? "push_deals_on" : "push_deals_off")
   }
 
   show(state) {
@@ -102,6 +121,8 @@ export default class extends Controller {
         await this.save({ platform: "ios", subscription: { endpoint: token } })
         localStorage.setItem("snowway_apns_token", token)
         localStorage.setItem(this.key, "1")
+        window.snowwayApp?.haptic?.("success")
+        window.snowwayApp?.native?.("requestReview")
         this.capture("push_subscribed", { threshold_inches: this.threshold, platform: "ios" })
         return
       }
@@ -115,6 +136,7 @@ export default class extends Controller {
       localStorage.setItem(this.key, "1")
       this.capture("push_subscribed", { threshold_inches: this.threshold })
     } catch (e) {
+      window.snowwayApp?.haptic?.("error")
       this.capture("push_error", { message: String(e?.message || e).slice(0, 120) })
       this.errorTargets.forEach((el) => el.classList.remove("hidden"))
     } finally {
