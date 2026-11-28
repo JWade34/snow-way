@@ -52,7 +52,7 @@
    <div class="min-w-0">
     <!-- Resort Header -->
     <div class="text-center mb-10">
-      <nav aria-label="Breadcrumb" class="text-slate-400 text-xs mb-3">
+      <nav aria-label="Breadcrumb" class="web-only text-slate-400 text-xs mb-3">
         <%= link_to "Ski Resorts", regions_path, class: "inline-block py-1 hover:text-white transition" %> <span aria-hidden="true">/</span> <%= link_to @resort.region_name, region_path(@resort.region_slug), class: "inline-block py-1 hover:text-white transition" %>
       </nav>
       <p class="text-slate-400 text-sm uppercase tracking-widest mb-2"><%= @resort.location %></p>
@@ -79,7 +79,7 @@
     <nav aria-label="On this page" class="-mx-6 px-6 mb-8 overflow-x-auto">
       <ul class="flex gap-2 text-sm whitespace-nowrap justify-start sm:justify-center">
         <% [ [ "Snow report", "#report-heading" ], [ "7-day weather", "#forecast" ], [ "Where to stay", "#stay" ], [ "Getting there", "#trip" ], [ "Gear for this week", "#gear" ], [ "FAQ", "#faq" ] ].each do |label, href| %>
-          <li><a href="<%= href %>" class="inline-block bg-slate-800/60 hover:bg-slate-700 border border-slate-700 hover:border-cyan-500 rounded-full px-3 py-1.5 transition"><%= label %></a></li>
+          <li<%= ' class="web-only"'.html_safe if href == "#faq" %>><a href="<%= href %>" class="inline-block bg-slate-800/60 hover:bg-slate-700 border border-slate-700 hover:border-cyan-500 rounded-full px-3 py-1.5 transition"><%= label %></a></li>
         <% end %>
       </ul>
     </nav>
@@ -131,7 +131,7 @@
           <% if links["trail_map"] %><li><%= link_to "🗺️ #{@resort.name} trail map ↗", links["trail_map"], target: "_blank", rel: "noopener", class: "inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-cyan-500 rounded-lg px-3 py-2 text-sm transition" %></li><% end %>
         </ul>
       <% end %>
-      <p class="text-slate-400 text-sm mt-3">Modeled mid-mountain (<%= number_with_delimiter(@resort.mid_elevation) %> ft) snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>.<% if depth_station %> Snow on the ground is measured at the <%= depth_station["name"] %> <%= PowderOdds.station(@resort) ? "SNOTEL" : "NOAA" %> station (<%= number_with_delimiter(depth_station["elev"]) %> ft, <%= depth_station["miles"] %> mi away) on <%= @resort.snow_depth_on.strftime("%b %-d") %>: natural snow at one spot, not the resort's groomed base.<% end %><% if @resort.season_status %> Opening day from <%= link_to "this source", @resort.opening_source, target: "_blank", rel: "noopener", class: "underline underline-offset-2" %>.<% end %> For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
+      <p class="web-only text-slate-400 text-sm mt-3">Modeled mid-mountain (<%= number_with_delimiter(@resort.mid_elevation) %> ft) snowfall and conditions from Open-Meteo<%= @resort.conditions_at ? ", as of #{@resort.conditions_at.strftime("%-l:%M %p %Z")}" : "" %>.<% if depth_station %> Snow on the ground is measured at the <%= depth_station["name"] %> <%= PowderOdds.station(@resort) ? "SNOTEL" : "NOAA" %> station (<%= number_with_delimiter(depth_station["elev"]) %> ft, <%= depth_station["miles"] %> mi away) on <%= @resort.snow_depth_on.strftime("%b %-d") %>: natural snow at one spot, not the resort's groomed base.<% end %><% if @resort.season_status %> Opening day from <%= link_to "this source", @resort.opening_source, target: "_blank", rel: "noopener", class: "underline underline-offset-2" %>.<% end %> For base depth and lifts open, see the <%= link_to "official #{@resort.name} snow report", @resort.website_url, target: "_blank", rel: "noopener", class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200" %>.</p>
     </section>
 
     <%= render "shared/local_take", take: LocalTake.for_resort(@resort.slug), subject: @resort.name, local: %w[Colorado Utah].include?(@resort.state_province) %>
@@ -198,6 +198,8 @@
 
     <%= render "shared/alert_form", resort: @resort %>
 
+    <%# Related pages: for search engines and web readers. The app hides them (see .web-only in application.css). %>
+    <div class="web-only">
     <% hubs = SkiHub.all.select { |h| h.nearby.any? { |r, _| r.id == @resort.id } } %>
     <% groups = Region.groups.select { |g| g.resorts.any? { |r| r.id == @resort.id } } %>
     <p class="mb-3 text-sm text-slate-300">
@@ -232,6 +234,7 @@
     <% if comparisons.any? %>
       <p class="-mt-7 mb-10 text-sm text-slate-300">Compare: <%= safe_join(comparisons.map { |x| link_to(x.title, comparison_path(x), class: "text-cyan-300 underline underline-offset-2 hover:text-cyan-200") }, " · ") %></p>
     <% end %>
+    </div>
 
     <div id="gear" class="scroll-mt-6"><%= render "shared/conditions_gear", summary: @summary %></div>
 
@@ -334,7 +337,7 @@
     <% end %>
 
 
-    <div id="faq" class="scroll-mt-6"><%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %></div>
+    <div id="faq" class="web-only scroll-mt-6"><%= render "shared/faq", faqs: @summary.faqs, heading: "#{@resort.name} Snow Report FAQ" %></div>
 
     <!-- Resort Website -->
     <div class="text-center mb-10">

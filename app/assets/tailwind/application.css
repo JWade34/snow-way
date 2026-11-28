@@ -58,3 +58,7 @@ a[href$="/affiliate-disclosure"]:hover { opacity: 0.8; }
 /* iPhone app: tips show only on the US App Store (pwa.js adds .tips-ok). */
 .native-app:not(.tips-ok) [data-tip-jar] { display: none; }
 .native-app .native-only.hidden { display: flex; }
+/* The iPhone app shows the forecast, not the site map: SEO-only sections carry .web-only. */
+.native-app .web-only { display: none !important; }
+/* A sideways scroller must contain its absolutely positioned children (sr-only labels), or the page scrolls sideways. */
+.overflow-x-auto { position: relative; }

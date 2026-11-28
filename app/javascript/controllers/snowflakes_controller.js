@@ -6,7 +6,8 @@ export default class extends Controller {
   connect() {
     this.snowflakes = []
     // Respect "reduce motion", and keep phones light: fewer, smaller flakes.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    // The iPhone app skips them too: it should feel calm, like a native app.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.Capacitor?.isNativePlatform?.()) return
     this.small = window.innerWidth < 640
     this.createSnowflakes()
   }

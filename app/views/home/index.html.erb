@@ -126,13 +126,13 @@
 
   <!-- How it works + FAQ: the plain-language answers search engines and AI assistants quote -->
   <section class="relative z-10 max-w-4xl w-full mx-auto px-6 pb-12">
-    <h2 class="text-xl font-bold mb-4">How Snow Way works</h2>
-    <ol class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+    <h2 class="web-only text-xl font-bold mb-4">How Snow Way works</h2>
+    <ol class="web-only grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
       <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">1. Forecast every resort</p><p class="text-slate-300 text-sm">We pull a 16-day snowfall forecast for each resort at mid-mountain and the summit from Open-Meteo, every 6 hours.</p></li>
       <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">2. Rank by 7-day snow</p><p class="text-slate-300 text-sm">Resorts are ranked by total snow expected over the next 7 days, the range where forecasts are most useful.</p></li>
       <li class="bg-slate-800/40 border border-slate-700 rounded-lg p-4"><p class="font-semibold mb-1">3. Book the trip</p><p class="text-slate-300 text-sm">Every resort page links flights, 4x4 rentals, and hotels near the mountain for the dates you need.</p></li>
     </ol>
-    <div class="flex flex-wrap gap-2 mb-10 text-sm">
+    <div class="web-only flex flex-wrap gap-2 mb-10 text-sm">
       <%= link_to "Where is it snowing?", where_is_it_snowing_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
       <%= link_to "Ski resorts by state", regions_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
       <%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
@@ -141,7 +141,9 @@
       <%= link_to "Gifts for skiers", guide_path("gifts-for-skiers"), class: "bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition" %>
     </div>
     <%= render "shared/alert_form" %>
-    <%= render "shared/calendar_cta" %>
-    <%= render "shared/faq", faqs: @faqs, heading: "Frequently asked questions" %>
+    <div class="web-only">
+      <%= render "shared/calendar_cta" %>
+      <%= render "shared/faq", faqs: @faqs, heading: "Frequently asked questions" %>
+    </div>
   </section>
 </div>

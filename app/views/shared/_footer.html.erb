@@ -1,8 +1,9 @@
 <footer class="relative z-10 border-t border-slate-800 mt-16">
   <div class="max-w-6xl mx-auto px-6 py-12">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+      <%# The iPhone app hides the site map columns (.web-only) and keeps Support plus a short links line. %>
       <!-- Brand -->
-      <div>
+      <div class="web-only">
         <%= link_to root_path, class: "text-2xl font-extrabold tracking-tight inline-block mb-3" do %>
           <span class="text-white">SNOW</span><span class="text-cyan-400">WAY</span>
         <% end %>
@@ -10,7 +11,7 @@
       </div>
 
       <!-- Explore -->
-      <nav aria-label="Explore">
+      <nav aria-label="Explore" class="web-only">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Explore</h2>
         <ul class="space-y-1">
           <li><%= link_to "Get the Snow Way App", get_app_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
@@ -43,7 +44,7 @@
       </nav>
 
       <!-- Regions -->
-      <nav aria-label="Ski resorts by state">
+      <nav aria-label="Ski resorts by state" class="web-only">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Ski Resorts</h2>
         <ul class="space-y-1">
           <% existing = Resort.distinct.pluck(:state_province) %>
@@ -55,7 +56,7 @@
       </nav>
 
       <!-- Popular guides -->
-      <nav aria-label="Popular guides">
+      <nav aria-label="Popular guides" class="web-only">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Popular Guides</h2>
         <ul class="space-y-1">
           <% [ [ "Best Snowboards 2026-27", "best-snowboard-brands" ], [ "Best Ski Brands", "best-ski-brands" ], [ "Best Ski Boots", "best-ski-boots" ],
@@ -67,7 +68,7 @@
       </nav>
 
       <!-- About -->
-      <div>
+      <div class="web-only">
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">About</h2>
         <p class="text-slate-400 text-sm mb-2">Follow Snow Way: <a href="https://www.instagram.com/snowway.app/" target="_blank" rel="noopener" class="text-slate-300 hover:text-white underline underline-offset-2 transition">@snowway.app</a></p>
         <p class="text-slate-400 text-sm mb-3">Built by <a href="https://justinmckelvey.com/projects/snowway" target="_blank" rel="noopener" class="text-slate-300 hover:text-white underline underline-offset-2 transition">Justin McKelvey</a></p>
@@ -92,9 +93,9 @@
       </div>
 
       <!-- Tip Jar -->
-      <div>
+      <div data-tip-jar>
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Support</h2>
-        <div data-tip-jar class="flex flex-col items-start gap-2">
+        <div class="flex flex-col items-start gap-2">
           <% TipJar.options.each_with_index do |o, i| %>
             <a href="<%= o.url %>" target="_blank" rel="noopener" data-tip="<%= o.key %>" data-placement="footer"
                class="inline-flex items-center gap-2 <%= i.zero? ? "bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 text-slate-900" : "border border-slate-600 hover:border-cyan-400 text-white" %> font-bold py-3 px-5 rounded-xl text-sm transition transform hover:scale-105">
@@ -105,6 +106,13 @@
         <p class="text-slate-400 text-xs mt-2">Help keep the forecasts running</p>
       </div>
     </div>
+
+    <nav aria-label="App links" class="native-only hidden flex-wrap justify-center gap-x-5 gap-y-1 mt-8 text-sm">
+      <%= link_to "Ski crew", new_crew_path, class: "inline-block py-2 text-slate-400 hover:text-white" %>
+      <%= link_to "Ski guides", guides_path, class: "inline-block py-2 text-slate-400 hover:text-white" %>
+      <%= link_to "About", about_path, class: "inline-block py-2 text-slate-400 hover:text-white" %>
+      <%= link_to "Privacy", privacy_path, class: "inline-block py-2 text-slate-400 hover:text-white" %>
+    </nav>
 
     <!-- Bottom Bar -->
     <div class="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
