@@ -58,6 +58,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Snow Way uses your location to find the snowiest ski resorts near you. It isn't saved.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>app.snowway.resort</string>

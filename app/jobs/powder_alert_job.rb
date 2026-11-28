@@ -22,11 +22,14 @@ class PowderAlertJob < ApplicationJob
     end
 
     return unless PushSubscription.enabled? # deliver skips a platform whose keys aren't set
+    StormTracker.run
     PushSubscription.where("last_alerted_at IS NULL OR last_alerted_at < ?", COOLDOWN.ago).find_each do |sub|
       alerts = alerts_for(sub, totals, resorts, ranked)
       next if alerts.blank?
 
-      PushDeliveryJob.perform_later(sub.id, **self.class.push_message(alerts))
+      message = self.class.push_message(alerts)
+      message = message.merge(subtitle: "#{sub.crew.name} crew", url: "/crew/#{sub.crew.token}?utm_source=push&utm_medium=notification&utm_campaign=crew_alert") if sub.crew
+      PushDeliveryJob.perform_later(sub.id, **message)
       sub.update_column(:last_alerted_at, Time.current)
     end
   end
@@ -52,7 +55,11 @@ class PowderAlertJob < ApplicationJob
 
   # Works for email subscribers and push subscriptions: both have resort_id and threshold_inches.
   def alerts_for(subscriber, totals, resorts, ranked)
-    if subscriber.resort_id
+    if subscriber.respond_to?(:crew) && subscriber.crew
+      ids = subscriber.crew.shared_resorts(Resort.where(id: totals.keys)).map(&:id)
+      mine = ranked.select { |r, _| ids.include?(r.id) }
+      mine.first(4) if mine.any? && mine.first.last >= Crew::ALERT_INCHES
+    elsif subscriber.resort_id
       inches = totals[subscriber.resort_id].to_f
       return if inches < (subscriber.threshold_inches || 6)
       [ [ resorts[subscriber.resort_id], inches ] ] + ranked.reject { |r, _| r.id == subscriber.resort_id }.select { |_, v| v >= 6 }.first(4)

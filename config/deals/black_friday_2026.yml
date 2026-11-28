@@ -1,0 +1,68 @@
+# Black Friday 2026 ski gear and pass deals. Each one was read on the retailer's own page (source) on checked_on,
+# except where source is a dated news article. Wording in `discount` is the retailer's own.
+# A deal disappears from /black-friday-ski-deals the day after `ends_on`. No ends_on: shown through cyber_monday_end.
+checked_on: 2026-11-27
+cyber_monday_end: 2026-12-01
+deals:
+  - retailer: evo
+    what: Skis, snowboards, boots and outerwear from Atomic, Völkl, Black Crows, Burton, Lib Tech and more
+    discount: "Black Friday sale: up to 55% off"
+    ends_on: 2026-11-28
+    url: https://www.evo.com/shop/black-friday-sale
+    source: https://www.evo.com/shop/black-friday-sale
+  - retailer: Burton
+    what: Snowboards, bindings and outerwear
+    discount: "20% off select styles, plus an extra 10% off past-season styles"
+    code: SNOWDAY
+    ends_on: 2026-11-28
+    ends_note: "10am ET"
+    url: https://www.burton.com/us/en/home
+    source: https://www.burton.com/us/en/home
+  - retailer: Christy Sports
+    what: "26/27 winter gear, plus clearance skis, boots and snowboards (clearance up to 60% off skis)"
+    discount: "Up to 20% off 26/27 winter gear, extra 20% off winter clearance, free shipping on skis and snowboards"
+    ends_on: 2026-11-30
+    url: https://www.christysports.com/shopping/sale.html
+    source: https://www.christysports.com/shopping/sale.html
+  - retailer: Arc'teryx
+    what: Select men's and women's jackets, pants and layers
+    discount: "Black Friday sale: up to 40% off"
+    url: https://arcteryx.com/us/en/c/mens/black-friday-sale/wid-kjyr6zq9
+    source: https://arcteryx.com/us/en
+  - retailer: Smartwool
+    what: Merino base layers and ski socks
+    discount: "25% off select styles, 35% off past-season styles"
+    code: MERINO25
+    url: https://www.smartwool.com/en-us/collections/select-sale-styles
+    source: https://www.smartwool.com/en-us/
+  - retailer: Outdoor Research
+    what: Gloves, shells and insulated jackets
+    discount: "25% off sitewide (some exclusions), free shipping through 11/30"
+    url: https://www.outdoorresearch.com/
+    source: https://www.outdoorresearch.com/
+  - retailer: Helly Hansen
+    what: Ski jackets, pants and fleece
+    discount: "Up to 50% off select winter gear"
+    url: https://www.hellyhansen.com/en_us/black-friday-na/men
+    source: https://snowbrains.com/helly-hansen-black-friday-ski-gear-sale-2026/
+    source_note: SnowBrains, Nov 23, 2026
+  - retailer: Peter Glenn
+    what: Winter ski and snowboard gear
+    discount: "Winter sale: save up to 60% off"
+    url: https://peterglenn.com/categories/?On+Sale=YES
+    source: https://www.peterglenn.com/
+passes:
+  - retailer: Ikon Pass
+    what: 26/27 Ikon Pass, Ikon Base Pass and Ikon Pass Session
+    discount: "Save up to $80 USD"
+    code: GIFT
+    ends_on: 2026-11-30
+    ends_note: "11:59pm MT. The last day to buy an Ikon Pass is Dec 10."
+    url: https://www.ikonpass.com/
+    source: https://www.ikonpass.com/
+  - retailer: Epic Pass
+    what: Epic passes go off sale after Dec 6, and Epic's lodging Cyber Sale ends Dec 7
+    discount: "Last chance to buy before passes go off sale"
+    ends_on: 2026-12-06
+    url: https://www.epicpass.com/
+    source: https://www.epicpass.com/

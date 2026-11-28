@@ -216,6 +216,31 @@ class Resort < ApplicationRecord
     PASS_LABELS[pass]
   end
 
+  # Passes someone can pick in the app or a crew: Epic, Ikon, Indy, Mountain Collective.
+  PICKABLE_PASSES = { "epic" => "Epic", "ikon" => "Ikon", "indy" => "Indy", "mountain_collective" => "Mountain Collective" }.freeze
+
+  def on_pass?(key)
+    case key.to_s
+    when "epic" then on_epic?
+    when "ikon" then on_ikon?
+    when "indy", "mountain_collective" then Array(other_passes).include?(key.to_s)
+    else true # no pass picked: every resort counts
+    end
+  end
+
+  def self.on_pass(key)
+    all.select { |r| r.on_pass?(key) }
+  end
+
+  # Straight-line miles, good enough to sort "near me" (drive time is longer).
+  def miles_from(lat, lng)
+    rad = Math::PI / 180
+    dlat = (latitude.to_f - lat) * rad
+    dlng = (longitude.to_f - lng) * rad
+    a = Math.sin(dlat / 2)**2 + Math.cos(lat * rad) * Math.cos(latitude.to_f * rad) * Math.sin(dlng / 2)**2
+    (3958.8 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))).round
+  end
+
   def on_epic?
     %w[epic both].include?(pass)
   end

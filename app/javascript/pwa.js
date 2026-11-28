@@ -66,6 +66,20 @@ if (nativeApp() && !window.snowwayApp.listening) {
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") window.snowwayApp.native("clearBadge") })
 }
 
+// Tips: count taps. In the iPhone app, Apple allows outside payment links only on the US App Store,
+// so the tip jar stays hidden unless the app's storefront is the US.
+document.addEventListener("click", (e) => {
+  const tip = e.target.closest?.("a[data-tip]")
+  if (tip) capture("tip_click", { option: tip.dataset.tip, placement: tip.dataset.placement })
+})
+if (nativeApp()) {
+  document.documentElement.classList.add("native-app") // CSS hides [data-tip-jar] until .tips-ok
+  Promise.resolve(window.snowwayApp.native("storefront")).then((r) => {
+    window.snowwayApp.storefront = r?.countryCode || null
+    document.documentElement.classList.toggle("tips-ok", r?.countryCode === "USA")
+  })
+}
+
 if (standalone()) {
   window.posthog?.register?.({ app_mode: nativeApp() ? "ios_app" : "standalone" })
   if (!sessionStorage.getItem("snowway_app_open")) {

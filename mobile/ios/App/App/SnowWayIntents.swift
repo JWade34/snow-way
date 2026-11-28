@@ -1,4 +1,5 @@
 import AppIntents
+import CoreLocation
 import SwiftUI
 
 // Siri and Shortcuts. These work with no setup: "Hey Siri, where's the powder in Snow Way?"
@@ -10,15 +11,76 @@ struct WheresThePowderIntent: AppIntent {
     static var description = IntentDescription("The ski resorts getting the most snow in the next 7 days.")
 
     func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView {
-        let top = try await SnowWayAPI.powder(limit: 3)
+        let pass = UserDefaults.standard.string(forKey: SnowWayAPI.passKey)
+        let top = try await SnowWayAPI.powder(limit: 3, pass: pass)
         guard let first = top.first else {
             return .result(dialog: "I couldn't get the forecast right now.", view: PowderSnippet(resorts: []))
         }
-        var line = "\(first.name) leads with \(first.next7DaysIn ?? 0) inches in the next 7 days."
+        let onPass = pass.flatMap { SnowWayAPI.passNames[$0] }.map { "On your \($0) pass, " } ?? ""
+        var line = "\(onPass)\(first.name) leads with \(first.next7DaysIn ?? 0) inches in the next 7 days."
         if top.count > 1 {
             line += " Then " + top.dropFirst().map { "\($0.name) with \($0.next7DaysIn ?? 0)" }.joined(separator: ", and ") + "."
         }
         return .result(dialog: IntentDialog(stringLiteral: line), view: PowderSnippet(resorts: top))
+    }
+}
+
+@available(iOS 16.0, *)
+struct PowderNearMeIntent: AppIntent {
+    static var title: LocalizedStringResource = "Powder near me"
+    static var description = IntentDescription("The snowiest ski resorts within driving distance of where you are.")
+
+    @Parameter(title: "Within miles", default: 250, inclusiveRange: (50, 800))
+    var miles: Int
+
+    func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView {
+        let here = try await OneShotLocation().get()
+        let top = try await SnowWayAPI.powder(limit: 3, near: (here.coordinate.latitude, here.coordinate.longitude), miles: miles)
+        guard let first = top.first else {
+            return .result(dialog: "I didn't find a ski resort within \(miles) miles.", view: PowderSnippet(resorts: []))
+        }
+        let line = "Closest powder: \(first.name), \(first.miles ?? 0) miles away, with \(first.next7DaysIn ?? 0) inches in the next 7 days."
+        return .result(dialog: IntentDialog(stringLiteral: line), view: PowderSnippet(resorts: top))
+    }
+}
+
+// Gets the phone's location once, for "Powder near me". Used on the device only to pick resorts; the
+// coordinates go to snowway.app in that one request and aren't stored.
+@MainActor
+final class OneShotLocation: NSObject, CLLocationManagerDelegate {
+    private let manager = CLLocationManager()
+    private var continuation: CheckedContinuation<CLLocation, Error>?
+
+    func get() async throws -> CLLocation {
+        try await withCheckedThrowingContinuation { cont in
+            continuation = cont
+            manager.delegate = self
+            manager.desiredAccuracy = kCLLocationAccuracyKilometer
+            if manager.authorizationStatus == .notDetermined { manager.requestWhenInUseAuthorization() } else { manager.requestLocation() }
+        }
+    }
+
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        Task { @MainActor in
+            switch manager.authorizationStatus {
+            case .authorizedWhenInUse, .authorizedAlways: manager.requestLocation()
+            case .denied, .restricted: self.finish(.failure(CLError(.denied)))
+            default: break
+            }
+        }
+    }
+
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        Task { @MainActor in if let l = locations.last { self.finish(.success(l)) } }
+    }
+
+    nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        Task { @MainActor in self.finish(.failure(error)) }
+    }
+
+    private func finish(_ result: Result<CLLocation, Error>) {
+        continuation?.resume(with: result)
+        continuation = nil
     }
 }
 
@@ -62,6 +124,10 @@ struct SnowWayShortcuts: AppShortcutsProvider {
             "\(.applicationName) powder report",
             "Ask \(.applicationName) where the powder is"
         ], shortTitle: "Where's the powder?", systemImageName: "snowflake")
+        AppShortcut(intent: PowderNearMeIntent(), phrases: [
+            "Powder near me in \(.applicationName)",
+            "Where's the closest powder in \(.applicationName)"
+        ], shortTitle: "Powder near me", systemImageName: "location")
         AppShortcut(intent: ResortSnowIntent(), phrases: [
             "How much snow is \(\.$resort) getting in \(.applicationName)",
             "\(.applicationName) forecast for \(\.$resort)",

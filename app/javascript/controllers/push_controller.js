@@ -6,11 +6,11 @@ import { Controller } from "@hotwired/stimulus"
 // One device can follow several resorts; each alert is remembered in localStorage so the button shows "on".
 export default class extends Controller {
   static targets = ["offer", "on", "blocked", "ios", "error", "button", "deals"]
-  static values = { resortId: String, placement: String }
+  static values = { resortId: String, placement: String, crewToken: String }
 
   connect() { this.refresh() }
 
-  get key() { return `snowway_push:${this.resortIdValue || "all"}` }
+  get key() { return this.crewTokenValue ? `snowway_push:crew:${this.crewTokenValue}` : `snowway_push:${this.resortIdValue || "all"}` }
   get vapid() { return document.querySelector('meta[name="vapid-public-key"]')?.content }
   get native() { return window.Capacitor?.isNativePlatform?.() ? window.Capacitor.Plugins.PushNotifications : null }
   get apns() { return !!document.querySelector('meta[name="apns-enabled"]') }
@@ -65,7 +65,7 @@ export default class extends Controller {
     const endpoint = await this.endpoint()
     if (!endpoint) { event.target.checked = false; return }
     window.snowwayApp?.haptic?.("selection")
-    const res = await fetch("/push_subscriptions/deals", { method: "PATCH", headers: this.headers(), body: JSON.stringify({ endpoint, deals: on }) }).catch(() => null)
+    const res = await fetch("/push_subscriptions/settings", { method: "PATCH", headers: this.headers(), body: JSON.stringify({ endpoint, deals: on }) }).catch(() => null)
     if (!res?.ok) { event.target.checked = !on; return }
     on ? localStorage.setItem("snowway_push_deals", "1") : localStorage.removeItem("snowway_push_deals")
     this.capture(on ? "push_deals_on" : "push_deals_off")
@@ -106,7 +106,7 @@ export default class extends Controller {
   save(body) {
     return fetch("/push_subscriptions", {
       method: "POST", headers: this.headers(),
-      body: JSON.stringify({ resort_id: this.resortIdValue, threshold_inches: this.threshold, page_path: window.location.pathname, standalone: this.standalone, ...body })
+      body: JSON.stringify({ resort_id: this.resortIdValue, crew_token: this.crewTokenValue || undefined, threshold_inches: this.threshold, page_path: window.location.pathname, standalone: this.standalone, ...body })
     }).then((res) => { if (!res.ok) throw new Error(`save failed ${res.status}`) })
   }
 
@@ -151,9 +151,9 @@ export default class extends Controller {
       const token = this.native && localStorage.getItem("snowway_apns_token")
       const sub = this.native ? null : await this.subscription()
       if (token) {
-        await fetch("/push_subscriptions", { method: "DELETE", headers: this.headers(), body: JSON.stringify({ endpoint: token, resort_id: this.resortIdValue }) })
+        await fetch("/push_subscriptions", { method: "DELETE", headers: this.headers(), body: JSON.stringify({ endpoint: token, resort_id: this.resortIdValue, crew_token: this.crewTokenValue || undefined }) })
       } else if (sub) {
-        const res = await fetch("/push_subscriptions", { method: "DELETE", headers: this.headers(), body: JSON.stringify({ endpoint: sub.endpoint, resort_id: this.resortIdValue }) })
+        const res = await fetch("/push_subscriptions", { method: "DELETE", headers: this.headers(), body: JSON.stringify({ endpoint: sub.endpoint, resort_id: this.resortIdValue, crew_token: this.crewTokenValue || undefined }) })
         const { remaining } = res.ok ? await res.json() : { remaining: 1 }
         if (remaining === 0) await sub.unsubscribe()
       }

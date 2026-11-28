@@ -3,6 +3,8 @@ import Foundation
 // Reads snowway.app's small app feed (/api/app/...). Shared by the app (Siri, Shortcuts) and the widgets.
 enum SnowWayAPI {
     static let base = URL(string: "https://snowway.app")!
+    static let passKey = "snowway.pass"
+    static let passNames = ["epic": "Epic", "ikon": "Ikon", "indy": "Indy", "mountain_collective": "Mountain Collective"]
 
     struct Resort: Codable, Hashable {
         let slug: String
@@ -11,9 +13,10 @@ enum SnowWayAPI {
         var next3DaysIn: Int?
         var next7DaysIn: Int?
         var tempF: Int?
+        var miles: Int?
 
         enum CodingKeys: String, CodingKey {
-            case slug, name, region
+            case slug, name, region, miles
             case next3DaysIn = "next_3_days_in"
             case next7DaysIn = "next_7_days_in"
             case tempF = "temp_f"
@@ -22,8 +25,12 @@ enum SnowWayAPI {
 
     private struct ResortList: Codable { let resorts: [Resort] }
 
-    static func powder(limit: Int = 5) async throws -> [Resort] {
-        try await get("/api/app/powder?limit=\(limit)", as: ResortList.self).resorts
+    // pass: epic, ikon, indy, mountain_collective (nil = every resort). near: only resorts within `miles`.
+    static func powder(limit: Int = 5, pass: String? = nil, near: (lat: Double, lng: Double)? = nil, miles: Int = 300) async throws -> [Resort] {
+        var path = "/api/app/powder?limit=\(limit)"
+        if let pass, passNames[pass] != nil { path += "&pass=\(pass)" }
+        if let near { path += "&lat=\(near.lat)&lng=\(near.lng)&miles=\(miles)" }
+        return try await get(path, as: ResortList.self).resorts
     }
 
     static func search(_ query: String) async throws -> [Resort] {

@@ -126,11 +126,11 @@ class PushAlertsTest < ActionDispatch::IntegrationTest
     post "/push_subscriptions", params: subscription_params.merge(resort_id: resorts(:vail).id), as: :json
     post "/push_subscriptions", params: subscription_params, as: :json
     assert_equal 0, PushSubscription.deal_devices.to_a.size
-    patch "/push_subscriptions/deals", params: { endpoint: "https://fcm.googleapis.com/fcm/send/abc123", deals: true }, as: :json
+    patch "/push_subscriptions/settings", params: { endpoint: "https://fcm.googleapis.com/fcm/send/abc123", deals: true }, as: :json
     assert_response :success
     assert_equal [ true ], PushSubscription.distinct.pluck(:deals)
     assert_equal 1, PushSubscription.deal_devices.to_a.size # one notification per device, not per resort
-    patch "/push_subscriptions/deals", params: { endpoint: "https://nope.example/x", deals: true }, as: :json
+    patch "/push_subscriptions/settings", params: { endpoint: "https://nope.example/x", deals: true }, as: :json
     assert_response :not_found
   end
 

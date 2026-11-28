@@ -8,6 +8,9 @@
     <% links.each do |label, path| %><%= link_to label, path, class: "text-slate-300 hover:text-white transition py-2" %><% end %>
   </nav>
   <div class="flex items-center gap-2">
+  <a href="/notifications" class="native-only hidden items-center gap-1.5 text-sm font-semibold text-slate-200 border border-slate-700 rounded-lg px-3 py-2" aria-label="Alerts and settings">
+    <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Alerts
+  </a>
   <a href="/app" data-install-target="button" data-action="install#install" class="hidden text-sm font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 rounded-lg px-3 py-2 whitespace-nowrap transition">Get the app</a>
   <details class="md:hidden relative">
     <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-center gap-2 text-sm font-semibold text-slate-200 border border-slate-700 rounded-lg px-3 py-2">

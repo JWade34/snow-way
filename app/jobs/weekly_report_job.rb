@@ -14,6 +14,8 @@ class WeeklyReportJob < ApplicationJob
     ranked = totals.sort_by { |_, v| -v }.filter_map { |id, v| [ resorts[id], v ] if resorts[id] }.first(8)
     return if ranked.empty? || ranked.first.last < MIN_TOP_INCHES
 
+    send_push(ranked)
+
     Subscriber.where(weekly_report: true, unsubscribed_at: nil)
       .where("weekly_sent_at IS NULL OR weekly_sent_at < ?", 6.days.ago)
       .where.not(email: new_england_emails)
@@ -26,6 +28,18 @@ class WeeklyReportJob < ApplicationJob
   end
 
   private
+
+  # Thursday Powder Report as a phone notification, for devices that opted in. One per device.
+  def send_push(ranked)
+    return unless PushSubscription.enabled?
+    top = ranked.first(3)
+    title = "Powder Report: #{top.first[0].name} leads with #{top.first[1].round}\""
+    body = top.drop(1).map { |r, v| "#{r.name} #{v.round}\"" }.join(", ").presence || "See where it's snowing this week."
+    PushSubscription.where(weekly: true).select("MIN(id) AS id").group(:endpoint).map(&:id).each do |id|
+      PushDeliveryJob.perform_later(id, title:, body:, tag: "weekly", subtitle: "Next 7 days", category: "POWDER_ALERT", level: "active", relevance: 0.5,
+                                    url: "/powder-report?utm_source=push&utm_medium=notification&utm_campaign=weekly")
+    end
+  end
 
   # People who signed up on /new-england get the New England forecast every Thursday instead of the
   # national report, even in a dry week: the Globe column runs every week and so does this.

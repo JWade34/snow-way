@@ -5,12 +5,20 @@ module Api
     before_action { expires_in 15.minutes, public: true }
 
     # Top resorts by forecast snow: the answer to "Hey Siri, where's the powder?"
+    # Optional: pass=epic|ikon|indy|mountain_collective, and lat/lng (+ miles, default 300) for "near me".
     def powder
       week = Resort.projected_totals(days: 7)
       three = Resort.projected_totals(days: 3)
-      resorts = Resort.where(id: week.keys).index_by(&:id)
-      top = week.sort_by { |_, v| -v }.filter_map { |id, _| resorts[id] }.first(params.fetch(:limit, 5).to_i.clamp(1, 20))
-      render json: { updated_at: SnowForecast.maximum(:updated_at), resorts: top.map { |r| card(r, week, three) } }
+      list = Resort.where(id: week.keys).to_a
+      list = list.select { |r| r.on_pass?(params[:pass]) } if Resort::PICKABLE_PASSES.key?(params[:pass])
+      near = params[:lat].present? && params[:lng].present?
+      if near
+        lat, lng, miles = params[:lat].to_f, params[:lng].to_f, params.fetch(:miles, 300).to_i.clamp(25, 1000)
+        list = list.select { |r| r.miles_from(lat, lng) <= miles }
+      end
+      top = list.sort_by { |r| -week[r.id].to_f }.first(params.fetch(:limit, 5).to_i.clamp(1, 20))
+      render json: { updated_at: SnowForecast.maximum(:updated_at),
+                     resorts: top.map { |r| card(r, week, three).merge(near ? { miles: r.miles_from(lat, lng) } : {}) } }
     end
 
     # Resort search for Siri's resort picker. With no query, the snowiest resorts come first.

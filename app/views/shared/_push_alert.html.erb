@@ -1,12 +1,14 @@
-<%# locals: (resort: nil, placement:, card: false) -%>
+<%# locals: (resort: nil, placement:, card: false, crew: nil) -%>
 <%# Phone notification option for powder alerts. Hidden until push_controller.js knows what this browser supports. -%>
 <% return unless PushSubscription.enabled? %>
-<% what = resort ? "#{resort.name} powder alerts" : "powder alerts" %>
-<div data-controller="push" data-push-resort-id-value="<%= resort&.id %>" data-push-placement-value="<%= placement %>"
+<% what = crew ? "#{crew.name} crew powder alerts" : (resort ? "#{resort.name} powder alerts" : "powder alerts") %>
+<div data-controller="push" data-push-resort-id-value="<%= resort&.id %>" data-push-placement-value="<%= placement %>"<% if crew %> data-push-crew-token-value="<%= crew.token %>"<% end %>
      class="hidden <%= card ? "bg-slate-800/40 border border-slate-700 rounded-xl p-5 mb-10" : "mt-3 pt-3 border-t border-slate-700/60 text-sm" %>">
-  <% if card %><h2 class="text-xl font-bold mb-2">Powder alerts on your phone</h2><% end %>
+  <% if card %><h2 class="text-xl font-bold mb-2"><%= crew ? "Get a crew powder alert" : "Powder alerts on your phone" %></h2><% end %>
   <div data-push-target="offer" class="hidden"><div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-    <span class="text-slate-300"><%= card ? "Get a notification when #{resort ? resort.name : "a resort"} has a big storm in the forecast. No email needed." : "Rather get a phone notification?" %></span>
+    <span class="text-slate-300"><%= if crew then "Get a notification when a resort your whole crew can ski has #{Crew::ALERT_INCHES}\"+ coming in the next 3 days."
+          elsif card then "Get a notification when #{resort ? resort.name : "a resort"} has a big storm in the forecast. No email needed."
+          else "Rather get a phone notification?" end %></span>
     <button type="button" data-push-target="button" data-action="push#enable" class="inline-flex items-center gap-1.5 <%= card ? "bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold rounded-lg px-4 py-2" : "text-cyan-300 hover:text-cyan-200 font-semibold underline underline-offset-2 py-2.5 -my-2.5" %> cursor-pointer transition">
       <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
       Turn on notifications
@@ -19,6 +21,8 @@
       <input type="checkbox" data-push-target="deals" data-action="push#toggleDeals" class="w-4 h-4 accent-cyan-400">
       Also tell me about big gear sales (a few a season)
     </label>
+    <% unless crew %><p class="mt-2 text-slate-400">Skiing with friends? <%= link_to "Start a ski crew", new_crew_path, class: "text-cyan-300 underline underline-offset-2" %> and see where you can all ski.</p><% end %>
+    <%= render "shared/tip_jar", placement: "push_on" %>
   </div>
   <p data-push-target="blocked" class="hidden text-slate-400">Notifications are blocked for snowway.app. To get alerts here, allow them in your browser's site settings.</p>
   <p data-push-target="ios" class="hidden text-slate-300">On iPhone? <%= link_to "Add Snow Way to your Home Screen", "/app#install-steps", class: "text-cyan-300 underline underline-offset-2" %> to get <%= what %> as notifications.</p>

@@ -1,0 +1,55 @@
+<% checked = BlackFridayDeals.checked_on %>
+<% content_for(:title, "Black Friday Ski Deals 2026: Gear and Pass Sales Still On | Snow Way") %>
+<% content_for(:description, "Black Friday 2026 ski and snowboard deals we checked on each store's own site: evo, Burton, Christy Sports, Arc'teryx, Smartwool and more, plus Ikon and Epic pass deadlines.") %>
+<% content_for(:head) do %><%= json_ld({ "@context" => "https://schema.org", "@graph" => [ breadcrumb_schema([ [ "Black Friday Ski Deals", nil ] ]) ] }) %><% end %>
+<% deal_card = lambda do |d| %>
+  <li class="rounded-xl bg-slate-800/50 border border-slate-700 p-4">
+    <div class="flex items-start justify-between gap-3 mb-1">
+      <h3 class="text-lg font-bold text-white m-0"><%= d.retailer %></h3>
+      <% if d.ends_on %><span class="shrink-0 text-xs font-semibold rounded-full px-2.5 py-1 <%= (d.ends_on - @today) <= 1 ? "bg-amber-400/20 text-amber-300" : "bg-slate-700 text-slate-300" %>">Ends <%= d.ends_on == @today ? "today" : d.ends_on.strftime("%b %-d") %><%= " #{d.ends_note.split(".").first}" if d.ends_note&.match?(/\A\d/) %></span><% end %>
+    </div>
+    <p class="text-cyan-300 font-semibold mb-1"><%= d.discount %></p>
+    <p class="text-slate-400 text-sm mb-3"><%= d.what %><% if d.code %> · Code <code class="text-white bg-slate-900 rounded px-1.5 py-0.5"><%= d.code %></code><% end %><% if d.ends_note && !d.ends_note.match?(/\A\d/) %> <%= d.ends_note %><% end %></p>
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+      <a href="<%= d.url %>" target="_blank" rel="sponsored nofollow noopener" data-deal="<%= d.retailer.parameterize %>" class="inline-flex items-center bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold rounded-lg px-4 py-2 no-underline transition">Shop <%= d.retailer %> →</a>
+      <a href="<%= d.source %>" target="_blank" rel="nofollow noopener" class="text-xs text-slate-500 hover:text-slate-300 underline underline-offset-2">Source<%= ": #{d.source_note}" if d.source_note %></a>
+    </div>
+  </li>
+<% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-3xl mx-auto px-4 sm:px-6 py-8" data-placement="black_friday">
+    <%= render "shared/breadcrumbs", crumbs: [ [ "Black Friday Ski Deals", nil ] ] %>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Black Friday ski deals 2026</h1>
+    <p class="text-slate-300 text-lg mb-2">Ski and snowboard sales we checked on each store's own site on <time datetime="<%= checked %>"><%= checked.strftime("%B %-d, %Y") %></time>. Deals drop off this page when they end.</p>
+    <%= affiliate_disclosure("The store sale links aren't affiliate links; the small-gear links are. If you buy through an affiliate link, Snow Way may earn a commission at no extra cost to you.") %>
+
+    <% if @gear.empty? && @passes.empty? %>
+      <p class="text-slate-300 bg-slate-800/50 border border-slate-700 rounded-xl p-5">Black Friday sales are over for this year. <%= link_to "See where the powder is this week", resorts_path, class: "text-cyan-300 underline" %>.</p>
+    <% end %>
+
+    <% if @passes.any? %>
+      <h2 class="text-2xl font-bold mt-8 mb-3">Ski pass deals and deadlines</h2>
+      <ul class="space-y-3 list-none p-0"><% @passes.each { |d| deal_card.call(d) } %></ul>
+      <p class="text-slate-400 text-sm mt-2">Not sure which pass? <%= link_to "Compare Ikon vs Epic", ikon_vs_epic_path, class: "text-cyan-300 underline" %>.</p>
+    <% end %>
+
+    <% if @gear.any? %>
+      <h2 class="text-2xl font-bold mt-8 mb-3">Ski and snowboard gear sales</h2>
+      <ul class="space-y-3 list-none p-0"><% @gear.each { |d| deal_card.call(d) } %></ul>
+    <% end %>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Small gear worth grabbing on sale</h2>
+    <p class="text-slate-300 mb-3">These run out fast once the season starts. Prices change through the weekend, so check the price before you buy.</p>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-none p-0">
+      <% [ [ "Ski goggles", "ski goggles" ], [ "Ski helmets", "ski helmet" ], [ "Heated gloves", "heated ski gloves" ], [ "Hand warmers (bulk)", "hand warmers bulk" ], [ "Merino ski socks", "merino ski socks" ], [ "Neck gaiters", "ski neck gaiter" ] ].each do |label, q| %>
+        <li><%= gear_link(label, q, class: "block rounded-lg border border-slate-700 hover:border-cyan-400 px-4 py-3 text-white font-semibold no-underline transition") %></li>
+      <% end %>
+    </ul>
+
+    <div class="mt-10">
+      <%= render "shared/alert_form", heading: "Get a powder alert", blurb: "Gear is half the trip. We'll email you when a big storm lines up, plus our free Thursday snow report. No spam, unsubscribe anytime." %>
+    </div>
+    <p class="text-slate-500 text-xs mt-6">Not listed: REI's holiday sale ended Nov 23, and we couldn't confirm Backcountry, Amazon, Columbia or The North Face sales on their own sites today. Discounts and end dates are the stores' own wording and can change.</p>
+  </main>
+</div>

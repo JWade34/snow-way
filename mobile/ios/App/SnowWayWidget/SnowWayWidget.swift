@@ -8,7 +8,20 @@ import WidgetKit
 struct PowderEntry: TimelineEntry {
     let date: Date
     let resorts: [SnowWayAPI.Resort]
+    var threeDay = false // tappable toggle: next 3 days instead of next 7
 }
+
+// Tapping "7 days / 3 days" on a widget flips the window. Runs in the widget, no app launch.
+struct ToggleWindowIntent: AppIntent {
+    static var title: LocalizedStringResource = "Switch forecast window"
+    static let key = "snowway.widget.threeDay"
+    func perform() async throws -> some IntentResult {
+        UserDefaults.standard.set(!UserDefaults.standard.bool(forKey: Self.key), forKey: Self.key)
+        return .result()
+    }
+}
+
+private func threeDay() -> Bool { UserDefaults.standard.bool(forKey: ToggleWindowIntent.key) }
 
 private let sample = [
     SnowWayAPI.Resort(slug: "alta", name: "Alta", region: "Utah, USA", next3DaysIn: 14, next7DaysIn: 22, tempF: 18),
@@ -23,8 +36,9 @@ struct PowderProvider: TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping (PowderEntry) -> Void) { completion(placeholder(in: context)) }
     func getTimeline(in context: Context, completion: @escaping (Timeline<PowderEntry>) -> Void) {
         Task {
-            let resorts = (try? await SnowWayAPI.powder(limit: 4)) ?? []
-            completion(Timeline(entries: [PowderEntry(date: Date(), resorts: resorts)], policy: .after(nextRefresh())))
+            var resorts = (try? await SnowWayAPI.powder(limit: 4)) ?? []
+            if threeDay() { resorts.sort { ($0.next3DaysIn ?? 0) > ($1.next3DaysIn ?? 0) } }
+            completion(Timeline(entries: [PowderEntry(date: Date(), resorts: resorts, threeDay: threeDay())], policy: .after(nextRefresh())))
         }
     }
 }
@@ -39,7 +53,7 @@ struct ResortProvider: AppIntentTimelineProvider {
         } else if let top = try? await SnowWayAPI.powder(limit: 1) {
             resorts = top
         }
-        return Timeline(entries: [PowderEntry(date: Date(), resorts: resorts)], policy: .after(nextRefresh()))
+        return Timeline(entries: [PowderEntry(date: Date(), resorts: resorts, threeDay: threeDay())], policy: .after(nextRefresh()))
     }
 }
 
@@ -52,6 +66,9 @@ struct PowderView: View {
     @Environment(\.widgetFamily) var family
     let entry: PowderEntry
     let title: String
+
+    private func inches(_ r: SnowWayAPI.Resort) -> Int { (entry.threeDay ? r.next3DaysIn : r.next7DaysIn) ?? 0 }
+    private var windowLabel: String { entry.threeDay ? "Next 3 days" : "Next 7 days" }
 
     var body: some View {
         switch family {
@@ -76,6 +93,14 @@ struct PowderView: View {
         }
     }
 
+    // "Next 7 days ⇄" button: tap to flip to the next 3 days.
+    private var toggle: some View {
+        Button(intent: ToggleWindowIntent()) {
+            Label(windowLabel, systemImage: "arrow.left.arrow.right").font(.caption2).foregroundStyle(.white.opacity(0.6))
+        }
+        .buttonStyle(.plain)
+    }
+
     private var content: some View {
         let count = family == .systemSmall ? 1 : (family == .systemLarge ? 4 : 3)
         return VStack(alignment: .leading, spacing: 6) {
@@ -90,9 +115,10 @@ struct PowderView: View {
                 Spacer()
             } else if count == 1, let r = entry.resorts.first {
                 Spacer(minLength: 0)
-                Text("\(r.next7DaysIn ?? 0)\"").font(.system(size: 40, weight: .heavy, design: .rounded)).foregroundStyle(snow)
+                Text("\(inches(r))\"").font(.system(size: 40, weight: .heavy, design: .rounded)).foregroundStyle(snow)
+                    .contentTransition(.numericText())
                 Text(r.name).font(.headline).foregroundStyle(.white).lineLimit(1)
-                Text("\(r.next3DaysIn ?? 0)\" next 3 days").font(.caption2).foregroundStyle(.white.opacity(0.7))
+                toggle
             } else {
                 ForEach(entry.resorts.prefix(count), id: \.slug) { r in
                     Link(destination: link(r)) {
@@ -102,12 +128,12 @@ struct PowderView: View {
                                 Text(r.region).font(.caption2).foregroundStyle(.white.opacity(0.6)).lineLimit(1)
                             }
                             Spacer()
-                            Text("\(r.next7DaysIn ?? 0)\"").font(.title3.bold()).foregroundStyle(snow)
+                            Text("\(inches(r))\"").font(.title3.bold()).foregroundStyle(snow).contentTransition(.numericText())
                         }
                     }
                 }
                 Spacer(minLength: 0)
-                Text("Next 7 days").font(.caption2).foregroundStyle(.white.opacity(0.5))
+                toggle
             }
         }
         .widgetURL(link(count == 1 ? entry.resorts.first : nil))
@@ -137,10 +163,26 @@ struct MyResortWidget: Widget {
     }
 }
 
+// Control Center and Action button: "Where's the powder" opens the snowiest resorts (iOS 18).
+@available(iOS 18.0, *)
+struct PowderControl: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        StaticControlConfiguration(kind: "app.snowway.powder-control") {
+            ControlWidgetButton(action: OpenPowderIntent()) {
+                Label("Where's the powder", systemImage: "snowflake")
+            }
+        }
+        .displayName("Where's the powder")
+        .description("Opens Snow Way's powder rankings.")
+    }
+}
+
 @main
 struct SnowWayWidgets: WidgetBundle {
     var body: some Widget {
         PowderNowWidget()
         MyResortWidget()
+        StormLiveActivity()
+        if #available(iOS 18.0, *) { PowderControl() }
     }
 }

@@ -13,11 +13,27 @@ public class SnowWayPlugin: CAPPlugin, CAPBridgedPlugin {
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "clearBadge", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "requestReview", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "viewedResort", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "viewedResort", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "storefront", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setPass", returnType: CAPPluginReturnPromise)
     ]
 
     static let resortActivity = "app.snowway.resort"
     private var activity: NSUserActivity?
+
+    // The App Store country this copy came from ("USA"). Tip links show only on the US storefront.
+    @objc func storefront(_ call: CAPPluginCall) {
+        Task {
+            let code = await Storefront.current?.countryCode
+            call.resolve(["countryCode": code ?? ""])
+        }
+    }
+
+    // The visitor's ski pass (epic, ikon, indy, mountain_collective, none). Siri's answers filter to it.
+    @objc func setPass(_ call: CAPPluginCall) {
+        UserDefaults.standard.set(call.getString("pass"), forKey: SnowWayAPI.passKey)
+        call.resolve()
+    }
 
     @objc func clearBadge(_ call: CAPPluginCall) {
         DispatchQueue.main.async {

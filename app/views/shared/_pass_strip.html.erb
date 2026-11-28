@@ -1,0 +1,19 @@
+<%# iPhone app only: the top resorts on the visitor's own pass, or a one-tap pass picker. Hidden on the website. -%>
+<section data-controller="pass-strip" class="hidden mb-6 bg-slate-800/60 border border-slate-700 rounded-2xl p-5 text-left" aria-label="Powder on your pass">
+  <div data-pass-strip-target="ask" class="hidden">
+    <h2 class="text-lg font-bold mb-1">Which pass do you ski on?</h2>
+    <p class="text-slate-400 text-sm mb-3">We'll show the powder you can ski first. Change it anytime in Alerts.</p>
+    <div class="flex flex-wrap gap-2">
+      <% Resort::PICKABLE_PASSES.merge("none" => "No pass").each do |key, label| %>
+        <button type="button" data-action="pass-strip#pick" data-pass="<%= key %>" class="rounded-full border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-cyan-400 cursor-pointer"><%= label %></button>
+      <% end %>
+    </div>
+  </div>
+  <div data-pass-strip-target="list" class="hidden">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-lg font-bold" data-pass-strip-target="title">Powder on your pass</h2>
+      <a href="/notifications" class="text-sm text-slate-400 underline underline-offset-2">Change</a>
+    </div>
+    <ol data-pass-strip-target="items" class="space-y-1"></ol>
+  </div>
+</section>

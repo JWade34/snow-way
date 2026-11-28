@@ -14,6 +14,8 @@
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Explore</h2>
         <ul class="space-y-1">
           <li><%= link_to "Get the Snow Way App", get_app_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <li><%= link_to "Start a Ski Crew", new_crew_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
+          <% if BlackFridayDeals.gear.any? || BlackFridayDeals.passes.any? %><li><%= link_to "Black Friday Ski Deals", black_friday_deals_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li><% end %>
           <li><%= link_to "Powder Rankings", resorts_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
           <li><%= link_to "Where Is It Snowing?", where_is_it_snowing_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
           <li><%= link_to "Ikon vs Epic", ikon_vs_epic_path, class: "inline-block py-1 text-slate-400 hover:text-white transition text-sm" %></li>
@@ -92,12 +94,14 @@
       <!-- Tip Jar -->
       <div>
         <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Support</h2>
-        <a href="https://buy.stripe.com/fZuaEY4VR8wi4ldfoG6Ri05"
-           target="_blank"
-           rel="noopener"
-           class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 text-slate-900 font-bold py-3 px-5 rounded-xl text-sm transition transform hover:scale-105">
-          Buy me a lift ticket
-        </a>
+        <div data-tip-jar class="flex flex-col items-start gap-2">
+          <% TipJar.options.each_with_index do |o, i| %>
+            <a href="<%= o.url %>" target="_blank" rel="noopener" data-tip="<%= o.key %>" data-placement="footer"
+               class="inline-flex items-center gap-2 <%= i.zero? ? "bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 text-slate-900" : "border border-slate-600 hover:border-cyan-400 text-white" %> font-bold py-3 px-5 rounded-xl text-sm transition transform hover:scale-105">
+              <span aria-hidden="true"><%= o.emoji %></span><%= o.label %><%= " #{o.price}" if o.price %>
+            </a>
+          <% end %>
+        </div>
         <p class="text-slate-400 text-xs mt-2">Help keep the forecasts running</p>
       </div>
     </div>

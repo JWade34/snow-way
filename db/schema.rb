@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_27_042810) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_27_150200) do
   create_table "affiliate_clicks", force: :cascade do |t|
     t.string "page_path", null: false
     t.string "merchant", null: false
@@ -45,6 +45,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_27_042810) do
     t.index ["visited_on", "source", "path"], name: "index_ai_referrals_on_visited_on_and_source_and_path", unique: true
   end
 
+  create_table "crew_members", force: :cascade do |t|
+    t.integer "crew_id", null: false
+    t.string "member_token", null: false
+    t.string "name"
+    t.string "pass"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crew_id", "member_token"], name: "index_crew_members_on_crew_id_and_member_token", unique: true
+    t.index ["crew_id"], name: "index_crew_members_on_crew_id"
+  end
+
+  create_table "crews", force: :cascade do |t|
+    t.string "token", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_crews_on_token", unique: true
+  end
+
   create_table "gear_items", force: :cascade do |t|
     t.string "category", null: false
     t.string "brand"
@@ -58,6 +77,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_27_042810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["public", "category"], name: "index_gear_items_on_public_and_category"
+  end
+
+  create_table "live_activities", force: :cascade do |t|
+    t.string "endpoint", null: false
+    t.integer "resort_id", null: false
+    t.string "push_token"
+    t.datetime "started_at", null: false
+    t.datetime "ended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["endpoint", "resort_id", "ended_at"], name: "index_live_activities_on_endpoint_and_resort_id_and_ended_at"
+    t.index ["resort_id"], name: "index_live_activities_on_resort_id"
   end
 
   create_table "powder_reports", force: :cascade do |t|
@@ -82,7 +113,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_27_042810) do
     t.datetime "updated_at", null: false
     t.string "platform", default: "web", null: false
     t.boolean "deals", default: false, null: false
-    t.index ["endpoint", "resort_id"], name: "index_push_subscriptions_on_endpoint_and_resort_id", unique: true
+    t.integer "crew_id"
+    t.boolean "weekly", default: false, null: false
+    t.string "live_start_token"
+    t.index ["crew_id"], name: "index_push_subscriptions_on_crew_id"
+    t.index ["endpoint", "resort_id", "crew_id"], name: "index_push_subscriptions_on_endpoint_and_resort_id_and_crew_id", unique: true
     t.index ["resort_id"], name: "index_push_subscriptions_on_resort_id"
   end
 
@@ -222,6 +257,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_27_042810) do
     t.index ["token"], name: "index_subscribers_on_token", unique: true
   end
 
+  add_foreign_key "crew_members", "crews"
+  add_foreign_key "live_activities", "resorts"
+  add_foreign_key "push_subscriptions", "crews"
   add_foreign_key "resort_visits", "resorts"
   add_foreign_key "snow_forecasts", "resorts"
   add_foreign_key "subscribers", "resorts"

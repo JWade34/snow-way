@@ -90,6 +90,15 @@ class PagesController < ApplicationController
 
   def get_app; end
 
+  # The iPhone app's Alerts settings (works on the web too, for browsers with notifications on).
+  def notifications; end
+
+  def black_friday
+    @today = Date.current
+    @gear = BlackFridayDeals.gear(@today)
+    @passes = BlackFridayDeals.passes(@today)
+  end
+
   def epic_day_pass
     @tickets = YAML.load_file(Rails.root.join("db/lift_tickets.yml"), permitted_classes: [ Date ])
     @resorts = Resort.where(slug: @tickets.fetch("resorts").keys).index_by(&:slug)

@@ -54,3 +54,7 @@ a[href$="/affiliate-disclosure"]:hover { opacity: 0.8; }
 .guide tbody td { @apply text-slate-300 align-top px-3 py-2 border-b border-slate-800 min-w-[9rem]; }
 .guide tbody tr:last-child th, .guide tbody tr:last-child td { @apply border-b-0; }
 .guide tbody tr:nth-child(even) { @apply bg-slate-800/30; }
+
+/* iPhone app: tips show only on the US App Store (pwa.js adds .tips-ok). */
+.native-app:not(.tips-ok) [data-tip-jar] { display: none; }
+.native-app .native-only.hidden { display: flex; }

@@ -1,0 +1,70 @@
+<% url = "https://snowway.app/crew/#{@crew.token}" %>
+<% lead = @ranking.first %>
+<% invite = "Join our #{@crew.name} ski crew on Snow Way. Add your pass and we'll see where the powder is for all of us: #{url}" %>
+<% content_for(:title, "Join the #{@crew.name} crew on Snow Way") %>
+<% content_for(:description, lead ? "Where can we all ski this week? #{lead[0].name} leads with #{lead[1]}\" in the next 7 days. Add your pass." : "Add your pass and see where the powder is for everyone in the crew.") %>
+<% content_for(:og_image, "https://snowway.app/og/resorts/#{lead[0].slug}.png?v=#{Date.current.strftime("%Y%m%d")}") if lead %>
+<% content_for(:head) do %><meta name="robots" content="noindex, nofollow"><% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-2xl mx-auto px-4 sm:px-6 py-8">
+    <p class="text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-1">Ski crew</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3"><%= @crew.name %></h1>
+    <ul class="flex flex-wrap gap-2 mb-6" aria-label="Crew members">
+      <% @crew.members.order(:created_at).each do |m| %>
+        <li class="rounded-full bg-slate-800 border border-slate-700 px-3 py-1.5 text-sm"><span class="text-white font-semibold"><%= m.display_name %></span> <span class="text-slate-400"><%= m.pass_label %></span><%= " (you)" if m == @me %></li>
+      <% end %>
+    </ul>
+
+    <% unless @me %>
+      <%= form_with url: crew_join_path(@crew.token), class: "bg-cyan-400/10 border border-cyan-400/40 rounded-xl p-5 mb-8 space-y-4" do %>
+        <h2 class="text-xl font-bold">Join the crew</h2>
+        <div>
+          <label for="member_name" class="block text-sm font-semibold text-slate-300 mb-2">Your first name</label>
+          <input id="member_name" name="member_name" maxlength="30" autocomplete="given-name" class="w-full rounded-lg bg-slate-900 border border-slate-600 px-4 py-3 text-white">
+        </div>
+        <%= render "crews/pass_picker" %>
+        <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold rounded-lg px-4 py-3 cursor-pointer transition" data-haptic="success">I'm in</button>
+      <% end %>
+    <% end %>
+
+    <section data-controller="crew-invite" data-crew-invite-url-value="<%= url %>" data-crew-invite-text-value="<%= invite %>"
+             class="<%= params[:created] ? "bg-cyan-400/10 border-cyan-400/40" : "bg-slate-800/40 border-slate-700" %> border rounded-xl p-5 mb-8">
+      <h2 class="text-xl font-bold mb-1"><%= params[:created] ? "Your crew link is ready. Send it to the group chat." : "Invite your crew" %></h2>
+      <p class="text-slate-400 text-sm mb-3">Anyone with the link can join. They don't need the app or an account.</p>
+      <div class="flex flex-wrap gap-2">
+        <a href="sms:&body=<%= ERB::Util.url_encode(invite) %>" data-action="crew-invite#track" data-method="sms" class="inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold rounded-lg px-4 py-2.5 no-underline transition">Text the group</a>
+        <button type="button" data-action="crew-invite#share" data-crew-invite-target="share" class="hidden bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg px-4 py-2.5 cursor-pointer transition">Share…</button>
+        <button type="button" data-action="crew-invite#copy" class="bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg px-4 py-2.5 cursor-pointer transition"><span data-crew-invite-target="copyLabel">Copy link</span></button>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-1">Where you can all ski this week</h2>
+      <p class="text-slate-400 text-sm mb-4">
+        <% if @crew.passes.empty? %>Nobody has picked a pass yet, so this is every resort.
+        <% elsif @crew.overlap? %>Resorts on <%= @crew.passes.map { |p| Resort::PICKABLE_PASSES[p] }.to_sentence %>, ranked by forecast snow.
+        <% else %>Your passes don't share a resort, so here are the snowiest resorts on any crew pass.<% end %>
+      </p>
+      <% if @ranking.any? %>
+        <ol class="space-y-2">
+          <% @ranking.each_with_index do |(resort, week, three), i| %>
+            <li>
+              <%= link_to resort_path(resort), class: "flex items-center gap-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-cyan-400 px-4 py-3 no-underline transition" do %>
+                <span class="text-slate-500 font-bold w-5"><%= i + 1 %></span>
+                <span class="flex-1 min-w-0"><span class="block text-white font-semibold truncate"><%= resort.name %></span><span class="block text-slate-400 text-xs"><%= [ resort.state_province, resort.country ].compact_blank.uniq.join(", ") %> · <%= three %>" next 3 days</span></span>
+                <span class="text-cyan-300 text-2xl font-extrabold"><%= week %>"</span>
+              <% end %>
+            </li>
+          <% end %>
+        </ol>
+        <p class="text-slate-500 text-xs mt-2">Inches of snow forecast in the next 7 days. Forecasts change; check the resort's own report before you drive.</p>
+      <% else %>
+        <p class="text-slate-400">No forecast snow at the crew's resorts right now.</p>
+      <% end %>
+    </section>
+
+    <%= render "shared/push_alert", placement: "crew", card: true, crew: @crew %>
+    <% if lead %><p class="text-sm text-slate-400">Heading to <%= lead[0].name %>? <%= link_to "See places to stay", where_to_stay_resort_path(lead[0]), class: "text-cyan-300 underline underline-offset-2" if Lodging.for(lead[0]) %></p><% end %>
+  </main>
+</div>

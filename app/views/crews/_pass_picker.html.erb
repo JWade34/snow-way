@@ -1,0 +1,12 @@
+<%# locals: (selected: nil) -%>
+<fieldset>
+  <legend class="text-sm font-semibold text-slate-300 mb-2">Your pass</legend>
+  <div class="flex flex-wrap gap-2">
+    <% Resort::PICKABLE_PASSES.merge("none" => "No pass").each do |key, label| %>
+      <label class="cursor-pointer">
+        <input type="radio" name="pass" value="<%= key %>" class="peer sr-only" <%= "checked" if selected == key %> required>
+        <span class="inline-block rounded-full border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 peer-checked:bg-cyan-400 peer-checked:text-slate-900 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-300 transition"><%= label %></span>
+      </label>
+    <% end %>
+  </div>
+</fieldset>

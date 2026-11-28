@@ -37,6 +37,41 @@ module Apns
     Result.new(ok: response.ok?, gone: gone)
   end
 
+  # Live Activity push (storm tracker): start by push-to-start token, then update or end with the activity's token.
+  # state is the ContentState of StormAttributes in the app (camelCase keys).
+  class LiveNotification < Apnotic::Notification
+    attr_accessor :attributes_type, :attributes
+
+    private
+
+    def aps
+      super.tap do |h|
+        h["attributes-type"] = attributes_type if attributes_type
+        h["attributes"] = attributes if attributes
+      end
+    end
+  end
+
+  def live_activity(token:, event:, state:, attributes: nil, alert: nil, dismissal_at: nil, stale_at: nil)
+    n = LiveNotification.new(token)
+    n.topic = "#{TOPIC}.push-type.liveactivity"
+    n.push_type = "liveactivity"
+    n.priority = alert ? 10 : 5
+    n.event = event
+    n.timestamp = Time.current.to_i
+    n.content_state = state
+    n.stale_date = stale_at.to_i if stale_at
+    n.dismissal_date = dismissal_at.to_i if dismissal_at
+    n.alert = alert if alert
+    if event == "start"
+      n.attributes_type = "StormAttributes"
+      n.attributes = attributes
+    end
+    response = connection.push(n, timeout: 10)
+    return Result.new(ok: false, gone: false) unless response
+    Result.new(ok: response.ok?, gone: response.status == "410" || (response.status == "400" && response.body["reason"] == "BadDeviceToken"))
+  end
+
   def connection
     @connection ||= begin
       options = { auth_method: :token, cert_path: StringIO.new(ENV.fetch("APNS_KEY_P8").gsub("\\n", "\n")), key_id: ENV.fetch("APNS_KEY_ID"), team_id: TEAM_ID }

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         defaults.set(defaults.integer(forKey: "snowway.sessions") + 1, forKey: "snowway.sessions")
         if #available(iOS 16.0, *) { SnowWayShortcuts.updateAppShortcutParameters() }
+        StormActivityManager.start()
         return true
     }
 
@@ -47,6 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Hands the APNs device token to Capacitor's PushNotifications plugin, which passes it to snowway.app.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Kept natively too, so the storm tracker can register without the web view.
+        UserDefaults.standard.set(deviceToken.map { String(format: "%02x", $0) }.joined(), forKey: StormActivityManager.deviceTokenKey)
+        StormActivityManager.start()
         NotificationCenter.default.post(name: .capacitorDidRegisterForRemoteNotifications, object: deviceToken)
     }
 

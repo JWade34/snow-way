@@ -58,7 +58,15 @@ Rails.application.routes.draw do
   resources :subscribers, only: [ :create ]
   post "push_subscriptions" => "push_subscriptions#create", as: :push_subscriptions
   delete "push_subscriptions" => "push_subscriptions#destroy"
-  patch "push_subscriptions/deals" => "push_subscriptions#deals", as: :push_subscription_deals
+  get "push_subscriptions" => "push_subscriptions#index"
+  post "push_subscriptions/live_start" => "push_subscriptions#live_start"
+  post "push_subscriptions/live_activity" => "push_subscriptions#live_activity"
+  patch "push_subscriptions/settings" => "push_subscriptions#settings", as: :push_subscription_settings
+  get "notifications" => "pages#notifications", as: :notification_settings
+  resources :crews, only: [ :new, :create ], path: "crew"
+  get "crew/:token" => "crews#show", as: :crew_page, constraints: { token: /[a-z0-9]{8}/ }
+  post "crew/:token/join" => "crews#join", as: :crew_join, constraints: { token: /[a-z0-9]{8}/ }
+  get "black-friday-ski-deals" => "pages#black_friday", as: :black_friday_deals
   match "unsubscribe/:token" => "subscribers#unsubscribe", via: [ :get, :post ], as: :unsubscribe
   match "weekly/:token" => "subscribers#weekly", via: [ :get, :post ], as: :weekly_report
   get "powder-calendar" => "lead_magnets#powder_calendar", as: :powder_calendar

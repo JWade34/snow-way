@@ -1,0 +1,50 @@
+<% content_for(:title, "Alerts and Settings | Snow Way") %>
+<% content_for(:description, "Choose your ski pass and which Snow Way notifications this device gets: powder alerts, crew alerts, the Thursday Powder Report and gear sales.") %>
+<% content_for(:head) do %><meta name="robots" content="noindex, follow"><% end %>
+<% crews = Crew.where(token: cookies.signed[:crews].to_s.split(",")).order(updated_at: :desc) %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-xl mx-auto px-4 sm:px-6 py-8" data-controller="alert-settings">
+    <h1 class="text-3xl font-extrabold mb-6">Alerts and settings</h1>
+
+    <section class="mb-8">
+      <h2 class="text-lg font-bold mb-1">Your ski pass</h2>
+      <p class="text-slate-400 text-sm mb-3">Siri and the app use it to show the powder you can ski.</p>
+      <div class="flex flex-wrap gap-2">
+        <% Resort::PICKABLE_PASSES.merge("none" => "No pass").each do |key, label| %>
+          <button type="button" data-action="alert-settings#pickPass" data-pass="<%= key %>" data-alert-settings-target="pass"
+                  class="rounded-full border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 cursor-pointer transition aria-pressed:bg-cyan-400 aria-pressed:text-slate-900 aria-pressed:border-cyan-400" aria-pressed="false"><%= label %></button>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-lg font-bold mb-3">Notifications on this device</h2>
+      <p data-alert-settings-target="off" class="hidden text-slate-400 text-sm">Notifications aren't on for this device yet. Turn them on below, or from any resort page.</p>
+      <div data-alert-settings-target="on" class="hidden space-y-4">
+        <ul data-alert-settings-target="list" class="space-y-2"></ul>
+        <label class="flex items-start gap-3 cursor-pointer py-1">
+          <input type="checkbox" data-alert-settings-target="weekly" data-action="alert-settings#toggle" data-setting="weekly" class="mt-1 w-5 h-5 accent-cyan-400">
+          <span><span class="block font-semibold">Thursday Powder Report</span><span class="block text-slate-400 text-sm">The week's 3 snowiest resorts, once a week.</span></span>
+        </label>
+        <label class="flex items-start gap-3 cursor-pointer py-1">
+          <input type="checkbox" data-alert-settings-target="deals" data-action="alert-settings#toggle" data-setting="deals" class="mt-1 w-5 h-5 accent-cyan-400">
+          <span><span class="block font-semibold">Big gear sales</span><span class="block text-slate-400 text-sm">A few a season, delivered quietly.</span></span>
+        </label>
+      </div>
+      <div data-alert-settings-target="offer" class="hidden mt-4"><%= render "shared/push_alert", placement: "settings", card: true %></div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-lg font-bold mb-3">Your ski crews</h2>
+      <% if crews.any? %>
+        <ul class="space-y-2 mb-3">
+          <% crews.each do |c| %><li><%= link_to "#{c.name} crew →", crew_page_path(c.token), class: "block rounded-lg bg-slate-800/50 border border-slate-700 hover:border-cyan-400 px-4 py-3 text-white font-semibold no-underline" %></li><% end %>
+        </ul>
+      <% end %>
+      <%= link_to "Start a ski crew", new_crew_path, class: "inline-block bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg px-4 py-2.5 no-underline" %>
+    </section>
+
+    <%= render "shared/tip_jar", placement: "settings", card: true %>
+  </main>
+</div>

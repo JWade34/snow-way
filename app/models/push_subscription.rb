@@ -2,6 +2,7 @@
 # Holds no personal data: just the push service address the browser gave us and the alert settings.
 class PushSubscription < ApplicationRecord
   belongs_to :resort, optional: true
+  belongs_to :crew, optional: true
 
   MAX_FAILURES = 5 # temporary push service errors in a row before we stop trying
 
@@ -12,7 +13,7 @@ class PushSubscription < ApplicationRecord
   scope :deal_devices, -> { where(deals: true).select("MIN(id) AS id, endpoint").group(:endpoint) }
 
   validates :platform, inclusion: { in: PLATFORMS }
-  validates :endpoint, presence: true, length: { maximum: 1000 }, uniqueness: { scope: :resort_id }
+  validates :endpoint, presence: true, length: { maximum: 1000 }, uniqueness: { scope: [ :resort_id, :crew_id ] }
   validates :endpoint, format: { with: %r{\Ahttps://} }, if: :web?
   validates :endpoint, format: { with: /\A\h{64,200}\z/ }, if: :ios? # APNs device token, hex
   validates :p256dh, :auth, presence: true, length: { maximum: 200 }, if: :web?

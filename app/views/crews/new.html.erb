@@ -1,0 +1,28 @@
+<% content_for(:title, "Start a Ski Crew: Where Can We All Ski This Weekend? | Snow Way") %>
+<% content_for(:description, "Make one link for your ski group chat. Everyone adds their pass, and Snow Way ranks the resorts you can all ski by forecast snow. Free, no accounts.") %>
+<% content_for(:head) do %><meta name="robots" content="noindex, follow"><% end %>
+<div class="min-h-screen">
+  <%= render "shared/header" %>
+  <main id="main" class="max-w-xl mx-auto px-4 sm:px-6 py-8">
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Start a ski crew</h1>
+    <p class="text-slate-300 text-lg mb-6">One link for the group chat. Everyone picks their pass, and you see which resorts you can all ski, ranked by the snow coming this week. No accounts.</p>
+    <% if flash[:alert] %><p class="text-amber-300 mb-4"><%= flash[:alert] %></p><% end %>
+    <%= form_with url: crews_path, class: "bg-slate-800/40 border border-slate-700 rounded-xl p-5 space-y-5" do %>
+      <div>
+        <label for="crew_name" class="block text-sm font-semibold text-slate-300 mb-2">Crew name</label>
+        <input id="crew_name" name="name" maxlength="40" required placeholder="Saturday Shredders" class="w-full rounded-lg bg-slate-900 border border-slate-600 px-4 py-3 text-white placeholder-slate-500">
+      </div>
+      <div>
+        <label for="member_name" class="block text-sm font-semibold text-slate-300 mb-2">Your first name <span class="font-normal text-slate-500">(so your friends know who's in)</span></label>
+        <input id="member_name" name="member_name" maxlength="30" autocomplete="given-name" class="w-full rounded-lg bg-slate-900 border border-slate-600 px-4 py-3 text-white">
+      </div>
+      <%= render "crews/pass_picker" %>
+      <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold rounded-lg px-4 py-3 cursor-pointer transition">Make our crew link</button>
+    <% end %>
+    <ul class="mt-6 space-y-2 text-slate-400 text-sm">
+      <li>Works for Epic, Ikon, Indy and Mountain Collective, or no pass.</li>
+      <li>Anyone with the link can join and see the crew's names and passes. Nothing else is shared.</li>
+      <li>Turn on crew powder alerts to hear when a resort you can all ski is about to get hit.</li>
+    </ul>
+  </main>
+</div>

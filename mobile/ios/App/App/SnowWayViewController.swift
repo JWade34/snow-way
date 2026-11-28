@@ -8,13 +8,13 @@ class SnowWayViewController: CAPBridgeViewController {
     override open func capacitorDidLoad() {
         bridge?.registerPluginInstance(SnowWayPlugin())
         NotificationCenter.default.addObserver(forName: .snowWayOpenPath, object: nil, queue: .main) { [weak self] note in
-            if let path = note.object as? String { self?.load(path: path) }
+            if let path = note.object as? String { PendingOpen.path = nil; Self.pendingPath = nil; self?.load(path: path) }
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let path = Self.pendingPath { Self.pendingPath = nil; load(path: path) }
+        if let path = Self.pendingPath ?? PendingOpen.path { Self.pendingPath = nil; PendingOpen.path = nil; load(path: path) }
     }
 
     // Opens a snowway.app page (from Siri, Spotlight or a widget tap). Waits for the web view on a cold start.

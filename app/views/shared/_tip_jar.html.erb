@@ -1,0 +1,19 @@
+<%# locals: (placement:, card: false) -%>
+<%# Optional tips. Hidden until a Stripe Payment Link is set. pwa.js hides it in the iPhone app outside the US App Store. -%>
+<% return unless TipJar.enabled? %>
+<div data-tip-jar class="<%= card ? "bg-slate-800/40 border border-slate-700 rounded-xl p-5 my-8" : "mt-3 text-sm" %>">
+  <% if card %>
+    <h2 class="text-xl font-bold mb-1 mt-0">Like Snow Way?</h2>
+    <p class="text-slate-300 mb-3">It's free, with no ads and no account. If it found you a powder day, you can say thanks.</p>
+  <% else %>
+    <p class="text-slate-400 mb-2">Snow Way is free. If it found you a powder day:</p>
+  <% end %>
+  <div class="flex flex-wrap gap-2">
+    <% TipJar.options.each do |o| %>
+      <a href="<%= o.url %>" target="_blank" rel="noopener" data-tip="<%= o.key %>" data-placement="<%= placement %>"
+         class="inline-flex items-center gap-2 rounded-lg border border-slate-600 hover:border-cyan-400 bg-slate-900/60 px-4 py-2.5 text-white font-semibold no-underline transition">
+        <span aria-hidden="true"><%= o.emoji %></span><%= o.label %><% if o.price %> <span class="text-slate-400 font-normal"><%= o.price %></span><% end %>
+      </a>
+    <% end %>
+  </div>
+</div>

@@ -10,6 +10,7 @@
 		124719CFDB447571998C7B0C /* SnowWayIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476180A4193D57778D923DA0 /* SnowWayIntents.swift */; };
 		13B7C24C4E7002E845FB8DEC /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8FF595873FEA995F0D85B9AF /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
+		3C7B6B0A534F5A3F11BCDB96 /* StormAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7E4B98119F79DC571ED760 /* StormAttributes.swift */; };
 		44A361D733D8276EE98CF272 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97D28DA8D0951FF4E820BC3 /* SwiftUI.framework */; };
 		4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 4D22ABE82AF431CB00220026 /* CapApp-SPM */; };
 		4D8C1CDCB13C3E8C38C63213 /* ResortEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BF34D7493FE278542C22B /* ResortEntity.swift */; };
@@ -19,6 +20,7 @@
 		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+		52E780C0AAF5ACCB395C2046 /* StormAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7E4B98119F79DC571ED760 /* StormAttributes.swift */; };
 		61F56333A8CB0F709068F367 /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AFDDE45B70B766659B8BB /* AppIntents.framework */; };
 		64E0DA7EDA2FB1E4D7FE0ECF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B15DF90F80FD02C2397DEAA /* Foundation.framework */; };
 		6B69E33CFC3F08CABDB6D871 /* SnowWayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1389093B2AE1D97E175E6 /* SnowWayWidget.swift */; };
@@ -27,10 +29,14 @@
 		9A8F9AFC2865406E1B015228 /* SnowWayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813814153E34539DC25CDC3 /* SnowWayAPI.swift */; };
 		A144D9C3D2071898A2AAF3CB /* SnowWayWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E491DC90BAEAF3BD76C9952 /* SnowWayWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A663AC5008AC3016522C632A /* SnowWayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813814153E34539DC25CDC3 /* SnowWayAPI.swift */; };
+		B9BB08B2B05C5A8CBB646146 /* OpenPowderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88C6F17615D68FCFA9A84B1 /* OpenPowderIntent.swift */; };
 		D749BB5C271E59C64F01A955 /* SnowWayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF6C6C8C9EBA6B387DCBC3 /* SnowWayPlugin.swift */; };
 		DCA99417FE55515DF82FF44A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B15DF90F80FD02C2397DEAA /* Foundation.framework */; };
+		E4E8DEF6D6E95A9E524D5BCB /* StormLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FF16D36B6A26AE1B3E7E65 /* StormLiveActivity.swift */; };
 		EB4EC9CB5795E32A46274FEB /* SnowWayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F271AA0C1BCF81680AA91 /* SnowWayViewController.swift */; };
+		EE7ED9DC27A9C55EB67B1D9A /* OpenPowderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88C6F17615D68FCFA9A84B1 /* OpenPowderIntent.swift */; };
 		F547DCE18C9FD3BD1A5AFA77 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C1CB22AF5154F903C965A3 /* NotificationService.swift */; };
+		FAB23DD3458341D8E49AA523 /* StormActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A632FF3E7744EE3702328 /* StormActivityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +76,11 @@
 		1813814153E34539DC25CDC3 /* SnowWayAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayAPI.swift; sourceTree = "<group>"; };
 		22F1389093B2AE1D97E175E6 /* SnowWayWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayWidget.swift; sourceTree = "<group>"; };
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		31FF16D36B6A26AE1B3E7E65 /* StormLiveActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StormLiveActivity.swift; sourceTree = "<group>"; };
 		3E491DC90BAEAF3BD76C9952 /* SnowWayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SnowWayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		476180A4193D57778D923DA0 /* SnowWayIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayIntents.swift; sourceTree = "<group>"; };
 		4B3F271AA0C1BCF81680AA91 /* SnowWayViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayViewController.swift; sourceTree = "<group>"; };
+		4B7A632FF3E7744EE3702328 /* StormActivityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StormActivityManager.swift; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +98,9 @@
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		96BF6C6C8C9EBA6B387DCBC3 /* SnowWayPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnowWayPlugin.swift; sourceTree = "<group>"; };
 		9B15DF90F80FD02C2397DEAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A88C6F17615D68FCFA9A84B1 /* OpenPowderIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpenPowderIntent.swift; sourceTree = "<group>"; };
 		A97D28DA8D0951FF4E820BC3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
+		CF7E4B98119F79DC571ED760 /* StormAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StormAttributes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +139,7 @@
 			children = (
 				22F1389093B2AE1D97E175E6 /* SnowWayWidget.swift */,
 				894FADBB70BA2B8E47135F34 /* Info.plist */,
+				31FF16D36B6A26AE1B3E7E65 /* StormLiveActivity.swift */,
 			);
 			name = SnowWayWidget;
 			path = SnowWayWidget;
@@ -179,6 +190,7 @@
 				476180A4193D57778D923DA0 /* SnowWayIntents.swift */,
 				4B3F271AA0C1BCF81680AA91 /* SnowWayViewController.swift */,
 				96BF6C6C8C9EBA6B387DCBC3 /* SnowWayPlugin.swift */,
+				4B7A632FF3E7744EE3702328 /* StormActivityManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -188,6 +200,8 @@
 			children = (
 				1813814153E34539DC25CDC3 /* SnowWayAPI.swift */,
 				891BF34D7493FE278542C22B /* ResortEntity.swift */,
+				CF7E4B98119F79DC571ED760 /* StormAttributes.swift */,
+				A88C6F17615D68FCFA9A84B1 /* OpenPowderIntent.swift */,
 			);
 			name = Shared;
 			path = Shared;
@@ -362,6 +376,9 @@
 				D749BB5C271E59C64F01A955 /* SnowWayPlugin.swift in Sources */,
 				9A8F9AFC2865406E1B015228 /* SnowWayAPI.swift in Sources */,
 				4D8C1CDCB13C3E8C38C63213 /* ResortEntity.swift in Sources */,
+				3C7B6B0A534F5A3F11BCDB96 /* StormAttributes.swift in Sources */,
+				EE7ED9DC27A9C55EB67B1D9A /* OpenPowderIntent.swift in Sources */,
+				FAB23DD3458341D8E49AA523 /* StormActivityManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +389,9 @@
 				6B69E33CFC3F08CABDB6D871 /* SnowWayWidget.swift in Sources */,
 				A663AC5008AC3016522C632A /* SnowWayAPI.swift in Sources */,
 				7837504F202FCF2696AEA830 /* ResortEntity.swift in Sources */,
+				52E780C0AAF5ACCB395C2046 /* StormAttributes.swift in Sources */,
+				B9BB08B2B05C5A8CBB646146 /* OpenPowderIntent.swift in Sources */,
+				E4E8DEF6D6E95A9E524D5BCB /* StormLiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
